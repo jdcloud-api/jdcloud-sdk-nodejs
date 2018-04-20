@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * oss service.
- * @version 0.2.1
+ * @version 0.2.2
  */
 
 JDCloud.OSS = class OSS extends Service {
@@ -77,7 +77,7 @@ JDCloud.OSS = class OSS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  oss/0.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  oss/0.2.2'
     }
 
     let formParams = {}
@@ -169,7 +169,7 @@ JDCloud.OSS = class OSS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  oss/0.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  oss/0.2.2'
     }
 
     let formParams = {}
@@ -260,7 +260,7 @@ JDCloud.OSS = class OSS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  oss/0.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  oss/0.2.2'
     }
 
     let formParams = {}
@@ -351,7 +351,7 @@ JDCloud.OSS = class OSS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  oss/0.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  oss/0.2.2'
     }
 
     let formParams = {}

@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * nc service.
- * @version 0.2.0
+ * @version 0.2.1
  */
 
 JDCloud.NC = class NC extends Service {
@@ -53,7 +53,7 @@ JDCloud.NC = class NC extends Service {
 privateIpAddress - 主网卡IP地址，模糊匹配，支持单个
 az - 可用区，精确匹配，支持多个
 vpcId - 私有网络ID，精确匹配，支持多个
-status - 云容器状态，精确匹配，支持多个
+status - 容器状态，精确匹配，支持多个
 name - 实例名称，模糊匹配，支持单个
 subnetId - 镜像ID，模糊匹配，支持单个
   optional
@@ -93,7 +93,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.1'
     }
 
     let formParams = {}
@@ -185,7 +185,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.1'
     }
 
     let formParams = {}
@@ -276,7 +276,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.1'
     }
 
     let formParams = {}
@@ -366,7 +366,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.1'
     }
 
     let formParams = {}
@@ -457,7 +457,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.1'
     }
 
     let formParams = {}
@@ -548,7 +548,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.1'
     }
 
     let formParams = {}
@@ -647,7 +647,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.1'
     }
 
     let formParams = {}
@@ -700,7 +700,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     )
   }
   /**
-         *  云容器绑定公网IP 绑定的是主网卡、主内网IP对应的弹性IP
+         *  容器绑定公网IP 绑定的是主网卡、主内网IP对应的弹性IP
          * @param {Object} opts - parameters
          * @param {string} opts.containerId - Container ID
          * @param {string} opts.elasticIpId - 弹性IP ID
@@ -747,7 +747,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.1'
     }
 
     let formParams = {}
@@ -800,7 +800,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     )
   }
   /**
-         *  云容器解绑公网IP 解绑的是主网卡、主内网IP对应的弹性IP
+         *  容器解绑公网IP 解绑的是主网卡、主内网IP对应的弹性IP
          * @param {Object} opts - parameters
          * @param {string} opts.containerId - Container ID
          * @param {string} opts.elasticIpId - 弹性IP ID
@@ -847,7 +847,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.1'
     }
 
     let formParams = {}
@@ -950,7 +950,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.1'
     }
 
     let formParams = {}
@@ -1043,7 +1043,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.1'
     }
 
     let formParams = {}
@@ -1138,7 +1138,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.1'
     }
 
     let formParams = {}
@@ -1194,7 +1194,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
          *  创建 secret
          * @param {Object} opts - parameters
          * @param {string} opts.name - 机密数据名称，不能重复
-         * @param {string} opts.secretType - 私密数据的类型，目前仅支持如下类型：  docker-registry：用来和docker registry认证的类型  ^ generic：基于字面值和文件的通用类型
+         * @param {string} opts.secretType - 私密数据的类型，目前仅支持如下类型：docker-registry：用来和docker registry认证的类型
          * @param {dockerRegistryData} [opts.data] - 机密的数据  optional
          * @param {string} regionId - ID of the region
          * @param {string} callback - callback
@@ -1245,7 +1245,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.1'
     }
 
     let formParams = {}
@@ -1336,7 +1336,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.1'
     }
 
     let formParams = {}
@@ -1426,7 +1426,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.1'
     }
 
     let formParams = {}

@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * disk service.
- * @version 0.3.0
+ * @version 0.3.1
  */
 
 JDCloud.DISK = class DISK extends Service {
@@ -93,7 +93,7 @@ name - 云硬盘名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.3.1'
     }
 
     let formParams = {}
@@ -184,7 +184,7 @@ name - 云硬盘名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.3.1'
     }
 
     let formParams = {}
@@ -284,7 +284,7 @@ name - 云硬盘名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.3.1'
     }
 
     let formParams = {}
@@ -382,7 +382,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.3.1'
     }
 
     let formParams = {}
@@ -485,7 +485,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.3.1'
     }
 
     let formParams = {}
@@ -576,7 +576,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.3.1'
     }
 
     let formParams = {}

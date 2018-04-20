@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * vm service.
- * @version 0.6.0
+ * @version 0.6.1
  */
 
 JDCloud.VM = class VM extends Service {
@@ -83,7 +83,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.1'
     }
 
     let formParams = {}
@@ -173,7 +173,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.1'
     }
 
     let formParams = {}
@@ -267,7 +267,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.1'
     }
 
     let formParams = {}
@@ -358,7 +358,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.1'
     }
 
     let formParams = {}
@@ -457,7 +457,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.1'
     }
 
     let formParams = {}
@@ -552,7 +552,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.1'
     }
 
     let formParams = {}
@@ -643,7 +643,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.1'
     }
 
     let formParams = {}
@@ -744,7 +744,7 @@ imageId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.1'
     }
 
     let formParams = {}
@@ -836,7 +836,7 @@ imageId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.1'
     }
 
     let formParams = {}
@@ -927,7 +927,7 @@ imageId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.1'
     }
 
     let formParams = {}
@@ -1021,7 +1021,7 @@ imageId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.1'
     }
 
     let formParams = {}
@@ -1112,7 +1112,7 @@ imageId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.1'
     }
 
     let formParams = {}
@@ -1203,7 +1203,7 @@ imageId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.1'
     }
 
     let formParams = {}
@@ -1294,7 +1294,7 @@ imageId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.1'
     }
 
     let formParams = {}
@@ -1394,7 +1394,7 @@ imageId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.1'
     }
 
     let formParams = {}
@@ -1494,7 +1494,7 @@ imageId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.1'
     }
 
     let formParams = {}
@@ -1612,7 +1612,7 @@ imageId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.1'
     }
 
     let formParams = {}
@@ -1725,7 +1725,7 @@ imageId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.1'
     }
 
     let formParams = {}
@@ -1829,7 +1829,7 @@ imageId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.1'
     }
 
     let formParams = {}
@@ -1928,7 +1928,7 @@ imageId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.1'
     }
 
     let formParams = {}
@@ -2035,7 +2035,7 @@ imageId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.1'
     }
 
     let formParams = {}
@@ -2126,7 +2126,7 @@ imageId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.1'
     }
 
     let formParams = {}
@@ -2214,7 +2214,7 @@ imageId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.1'
     }
 
     let formParams = {}
@@ -2300,7 +2300,7 @@ imageId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/0.6.1'
     }
 
     let formParams = {}

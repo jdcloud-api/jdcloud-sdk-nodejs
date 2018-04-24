@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * disk service.
- * @version 0.3.1
+ * @version 0.4.0
  */
 
 JDCloud.DISK = class DISK extends Service {
@@ -93,7 +93,7 @@ name - 云硬盘名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.3.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.4.0'
     }
 
     let formParams = {}
@@ -146,7 +146,7 @@ name - 云硬盘名称，模糊匹配，支持单个
     )
   }
   /**
-         *  云硬盘信息详情
+         *  查询云硬盘信息详情
          * @param {Object} opts - parameters
          * @param {string} opts.diskId - 云硬盘ID
          * @param {string} regionId - ID of the region
@@ -184,7 +184,7 @@ name - 云硬盘名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.3.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.4.0'
     }
 
     let formParams = {}
@@ -210,6 +210,105 @@ name - 云硬盘名称，模糊匹配，支持单个
     let request = this.makeRequest(
       '/regions/{regionId}/disks/{diskId}',
       'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+  /**
+         *  修改云硬盘的名字或描述信息
+         * @param {Object} opts - parameters
+         * @param {string} opts.diskId - 云硬盘ID
+         * @param {string} [opts.name] - 云硬盘名称  optional
+         * @param {string} [opts.description] - 云硬盘描述，name和description必须要指定一个  optional
+         * @param {string} regionId - ID of the region
+         * @param {string} callback - callback
+         @return {Object} result
+      */
+
+  modifyDiskAttribute (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyDiskAttribute"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.diskId === undefined || opts.diskId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.diskId' when calling modifyDiskAttribute"
+      )
+    }
+
+    let postBody = {}
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      diskId: opts.diskId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.4.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyDiskAttribute with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/disks/{diskId}',
+      'PATCH',
       pathParams,
       queryParams,
       headerParams,
@@ -284,7 +383,7 @@ name - 云硬盘名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.3.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.4.0'
     }
 
     let formParams = {}
@@ -382,7 +481,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.3.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.4.0'
     }
 
     let formParams = {}
@@ -435,7 +534,7 @@ name - 快照名称，模糊匹配，支持单个
     )
   }
   /**
-         *  为指定云硬盘创建快照调用成功返回后，新生成的快照的状态为 creating
+         *  为指定云硬盘创建快照,新生成的快照的状态为creating
          * @param {Object} opts - parameters
          * @param {snapshotSpec} opts.snapshotSpec - 创建快照规格
          * @param {string} opts.clientToken - 幂等性校验参数
@@ -485,7 +584,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.3.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.4.0'
     }
 
     let formParams = {}
@@ -538,7 +637,7 @@ name - 快照名称，模糊匹配，支持单个
     )
   }
   /**
-         *  云硬盘快照信息详情
+         *  查询云硬盘快照信息详情
          * @param {Object} opts - parameters
          * @param {string} opts.snapshotId - 快照ID
          * @param {string} regionId - ID of the region
@@ -576,7 +675,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.3.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.4.0'
     }
 
     let formParams = {}
@@ -602,6 +701,195 @@ name - 快照名称，模糊匹配，支持单个
     let request = this.makeRequest(
       '/regions/{regionId}/snapshots/{snapshotId}',
       'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+  /**
+         *  修改快照的名字或描述信息
+         * @param {Object} opts - parameters
+         * @param {string} opts.snapshotId - 快照ID
+         * @param {string} [opts.name] - 快照名称  optional
+         * @param {string} [opts.description] - 快照描述，name和description必须要指定一个  optional
+         * @param {string} regionId - ID of the region
+         * @param {string} callback - callback
+         @return {Object} result
+      */
+
+  modifySnpAttribute (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifySnpAttribute"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.snapshotId === undefined || opts.snapshotId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.snapshotId' when calling modifySnpAttribute"
+      )
+    }
+
+    let postBody = {}
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      snapshotId: opts.snapshotId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.4.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifySnpAttribute with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/snapshots/{snapshotId}',
+      'PATCH',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+  /**
+         *  删除单个云硬盘快照:快照状态必须为 available 或 error 状态
+         * @param {Object} opts - parameters
+         * @param {string} opts.snapshotId - 快照ID
+         * @param {string} regionId - ID of the region
+         * @param {string} callback - callback
+         @return {Object} result
+      */
+
+  deleteSnapshot (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteSnapshot"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.snapshotId === undefined || opts.snapshotId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.snapshotId' when calling deleteSnapshot"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      snapshotId: opts.snapshotId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.4.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteSnapshot with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/snapshots/{snapshotId}',
+      'DELETE',
       pathParams,
       queryParams,
       headerParams,

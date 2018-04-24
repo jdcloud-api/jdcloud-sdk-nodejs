@@ -3,6 +3,7 @@ module.exports = {
   REDIS: require('./redis'),
   RDS: require('./rds'),
   MONITOR: require('./monitor'),
+  IAM: require('./iam'),
   DISK: require('./disk'),
   MONGODB: require('./mongodb'),
   VPC: require('./vpc'),

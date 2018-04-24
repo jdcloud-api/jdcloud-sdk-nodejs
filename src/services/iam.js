@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 监控项相关接口
- * 监控项相关接口，提供可用监控项列表查询和监控数据查询等功能
+ * 用户管理接口
+ * 用户管理接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -25,46 +25,35 @@
 require('../lib/node_loader')
 var JDCloud = require('../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'monitor'
+var serviceId = 'iam'
 Service._services[serviceId] = true
 
 /**
- * monitor service.
- * @version 0.3.0
+ * iam service.
+ * @version 0.1.0
  */
 
-JDCloud.MONITOR = class MONITOR extends Service {
+JDCloud.IAM = class IAM extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
       options._defaultEndpoint.protocol || 'https'
     options._defaultEndpoint.host =
-      options._defaultEndpoint.host || 'monitor.jdcloud-api.com'
+      options._defaultEndpoint.host || 'iam.jdcloud-api.com'
     options.basePath = '/v1' // 默认要设为空""
     super(serviceId, options)
   }
 
   /**
-         *  查询监控规则
+         *  创建策略
          * @param {Object} opts - parameters
-         * @param {string} [opts.serviceCode] - 产品名称  optional
-         * @param {string} [opts.resourceId] - 资源Id  optional
-         * @param {integer} [opts.status] - 规则报警状态, 1：正常, 2：报警，4：数据不足  optional
-         * @param {integer} [opts.isAlarming] - 是否为正在报警的规则，0为忽略，1为是，与 status 同时只能生效一个,isAlarming 优先生效  optional
-         * @param {integer} [opts.enabled] - 规则状态：1为启用，0为禁用  optional
-         * @param {integer} [opts.pageNumber] - 当前所在页，默认为1  optional
-         * @param {integer} [opts.pageSize] - ，默认为20；取值范围[1, 100]  optional
+         * @param {createPermissionInfo} opts.createPermissionInfo - 权限信息
          * @param {string} regionId - ID of the region
          * @param {string} callback - callback
          @return {Object} result
-         * @param alarm alarmList
-         * @param number pageNumber  当前页码
-         * @param number numberPages  总页数
-         * @param number numberRecords  总记录数
-         * @param number pageSize  分页大小
       */
 
-  describeAlarms (opts, regionId = this.config.regionId, callback) {
+  createPermission (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -72,135 +61,27 @@ JDCloud.MONITOR = class MONITOR extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeAlarms"
+        "Missing the required parameter 'regionId' when calling  createPermission"
       )
     }
 
     opts = opts || {}
 
-    let postBody = null
-    let queryParams = {}
-    if (opts.serviceCode !== undefined && opts.serviceCode !== null) {
-      queryParams['serviceCode'] = opts.serviceCode
-    }
-    if (opts.resourceId !== undefined && opts.resourceId !== null) {
-      queryParams['resourceId'] = opts.resourceId
-    }
-    if (opts.status !== undefined && opts.status !== null) {
-      queryParams['status'] = opts.status
-    }
-    if (opts.isAlarming !== undefined && opts.isAlarming !== null) {
-      queryParams['isAlarming'] = opts.isAlarming
-    }
-    if (opts.enabled !== undefined && opts.enabled !== null) {
-      queryParams['enabled'] = opts.enabled
-    }
-    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
-      queryParams['pageNumber'] = opts.pageNumber
-    }
-    if (opts.pageSize !== undefined && opts.pageSize !== null) {
-      queryParams['pageSize'] = opts.pageSize
-    }
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.3.0'
-    }
-
-    let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeAlarms with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/alarms',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback) {
-          callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback) {
-          callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-  /**
-         *  创建报警规则，可以为某一个实例创建报警规则，也可以为多个实例同时创建报警规则。
-         * @param {Object} opts - parameters
-         * @param {string} opts.clientToken - 幂等性校验参数，最长32位，值不变则返回值不会变
-         * @param {createAlarmSpec} opts.createAlarmSpec
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
-         * @param string alarmIdList
-      */
-
-  createAlarm (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
+    if (
+      opts.createPermissionInfo === undefined ||
+      opts.createPermissionInfo === null
+    ) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  createAlarm"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.clientToken === undefined || opts.clientToken === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.clientToken' when calling createAlarm"
-      )
-    }
-    if (opts.createAlarmSpec === undefined || opts.createAlarmSpec === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.createAlarmSpec' when calling createAlarm"
+        "Missing the required parameter 'opts.createPermissionInfo' when calling createPermission"
       )
     }
 
     let postBody = {}
-    if (opts.clientToken !== undefined && opts.clientToken !== null) {
-      postBody['clientToken'] = opts.clientToken
-    }
-    if (opts.createAlarmSpec !== undefined && opts.createAlarmSpec !== null) {
-      postBody['createAlarmSpec'] = opts.createAlarmSpec
+    if (
+      opts.createPermissionInfo !== undefined &&
+      opts.createPermissionInfo !== null
+    ) {
+      postBody['createPermissionInfo'] = opts.createPermissionInfo
     }
 
     let queryParams = {}
@@ -210,7 +91,7 @@ JDCloud.MONITOR = class MONITOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.0'
     }
 
     let formParams = {}
@@ -221,7 +102,7 @@ JDCloud.MONITOR = class MONITOR extends Service {
     let returnType = null
 
     this.config.logger(
-      `call createAlarm with params:\npathParams:${JSON.stringify(
+      `call createPermission with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -234,7 +115,7 @@ JDCloud.MONITOR = class MONITOR extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/alarms',
+      '/regions/{regionId}/permission',
       'POST',
       pathParams,
       queryParams,
@@ -263,15 +144,16 @@ JDCloud.MONITOR = class MONITOR extends Service {
     )
   }
   /**
-         *  批量删除规则
+         *  查询策略详情
          * @param {Object} opts - parameters
-         * @param {string} opts.ids - 待删除的规则id，用&quot;|&quot;间隔
+         * @param {integer} opts.permissionId - 权限id
          * @param {string} regionId - ID of the region
          * @param {string} callback - callback
          @return {Object} result
+         * @param permission permission  权限信息
       */
 
-  deleteAlarms (opts, regionId = this.config.regionId, callback) {
+  describePermissionDetail (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -279,30 +161,28 @@ JDCloud.MONITOR = class MONITOR extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  deleteAlarms"
+        "Missing the required parameter 'regionId' when calling  describePermissionDetail"
       )
     }
 
     opts = opts || {}
 
-    if (opts.ids === undefined || opts.ids === null) {
+    if (opts.permissionId === undefined || opts.permissionId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.ids' when calling deleteAlarms"
+        "Missing the required parameter 'opts.permissionId' when calling describePermissionDetail"
       )
     }
 
     let postBody = null
     let queryParams = {}
-    if (opts.ids !== undefined && opts.ids !== null) {
-      queryParams['ids'] = opts.ids
-    }
 
     let pathParams = {
-      regionId: regionId
+      regionId: regionId,
+      permissionId: opts.permissionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.0'
     }
 
     let formParams = {}
@@ -313,7 +193,7 @@ JDCloud.MONITOR = class MONITOR extends Service {
     let returnType = null
 
     this.config.logger(
-      `call deleteAlarms with params:\npathParams:${JSON.stringify(
+      `call describePermissionDetail with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -326,7 +206,542 @@ JDCloud.MONITOR = class MONITOR extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/alarms',
+      '/regions/{regionId}/permission/{permissionId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+  /**
+         *  修改策略
+         * @param {Object} opts - parameters
+         * @param {integer} opts.permissionId - 权限id
+         * @param {updatePermissionInfo} opts.updatePermissionInfo - 权限信息
+         * @param {string} regionId - ID of the region
+         * @param {string} callback - callback
+         @return {Object} result
+      */
+
+  updatePermission (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  updatePermission"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.permissionId === undefined || opts.permissionId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.permissionId' when calling updatePermission"
+      )
+    }
+    if (
+      opts.updatePermissionInfo === undefined ||
+      opts.updatePermissionInfo === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.updatePermissionInfo' when calling updatePermission"
+      )
+    }
+
+    let postBody = {}
+    if (
+      opts.updatePermissionInfo !== undefined &&
+      opts.updatePermissionInfo !== null
+    ) {
+      postBody['updatePermissionInfo'] = opts.updatePermissionInfo
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      permissionId: opts.permissionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call updatePermission with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/permission/{permissionId}',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+  /**
+         *  查询策略列表
+         * @param {Object} opts - parameters
+         * @param {integer} opts.pageNumber - 页码
+         * @param {integer} opts.pageSize - 每页显示数目
+         * @param {string} [opts.keyword] - 关键字  optional
+         * @param {integer} opts.queryType - 权限类型,0-全部，1-系统权限，2-自定义权限
+         * @param {string} regionId - ID of the region
+         * @param {string} callback - callback
+         @return {Object} result
+         * @param integer total  总数
+         * @param permission permissions
+      */
+
+  describePermissions (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describePermissions"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.pageNumber === undefined || opts.pageNumber === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.pageNumber' when calling describePermissions"
+      )
+    }
+    if (opts.pageSize === undefined || opts.pageSize === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.pageSize' when calling describePermissions"
+      )
+    }
+    if (opts.queryType === undefined || opts.queryType === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryType' when calling describePermissions"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    if (opts.keyword !== undefined && opts.keyword !== null) {
+      queryParams['keyword'] = opts.keyword
+    }
+    if (opts.queryType !== undefined && opts.queryType !== null) {
+      queryParams['queryType'] = opts.queryType
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call describePermissions with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/permissions',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+  /**
+         *  查询子用户策略列表
+         * @param {Object} opts - parameters
+         * @param {string} opts.subUser - 子用户用户名
+         * @param {integer} opts.pageNumber - 页码
+         * @param {integer} opts.pageSize - 每页显示数目
+         * @param {string} regionId - ID of the region
+         * @param {string} callback - callback
+         @return {Object} result
+         * @param integer total  总数
+         * @param permission permissions
+      */
+
+  describeSubUserPermissions (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeSubUserPermissions"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.subUser === undefined || opts.subUser === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.subUser' when calling describeSubUserPermissions"
+      )
+    }
+    if (opts.pageNumber === undefined || opts.pageNumber === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.pageNumber' when calling describeSubUserPermissions"
+      )
+    }
+    if (opts.pageSize === undefined || opts.pageSize === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.pageSize' when calling describeSubUserPermissions"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      subUser: opts.subUser
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeSubUserPermissions with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/subUser/{subUser}/permisssions',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+  /**
+         *  为子用户绑定策略
+         * @param {Object} opts - parameters
+         * @param {string} opts.subUser - 子用户用户名
+         * @param {addPermissionsInfo} opts.addPermissionsInfo - 权限信息
+         * @param {string} regionId - ID of the region
+         * @param {string} callback - callback
+         @return {Object} result
+      */
+
+  addPermissionsToSubUser (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  addPermissionsToSubUser"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.subUser === undefined || opts.subUser === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.subUser' when calling addPermissionsToSubUser"
+      )
+    }
+    if (
+      opts.addPermissionsInfo === undefined ||
+      opts.addPermissionsInfo === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.addPermissionsInfo' when calling addPermissionsToSubUser"
+      )
+    }
+
+    let postBody = {}
+    if (
+      opts.addPermissionsInfo !== undefined &&
+      opts.addPermissionsInfo !== null
+    ) {
+      postBody['addPermissionsInfo'] = opts.addPermissionsInfo
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      subUser: opts.subUser
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call addPermissionsToSubUser with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/subUser/{subUser}/permisssions',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+  /**
+         *  为子用户解绑策略
+         * @param {Object} opts - parameters
+         * @param {integer} opts.permissionId - 权限id
+         * @param {string} opts.subUser - 子用户用户名
+         * @param {string} regionId - ID of the region
+         * @param {string} callback - callback
+         @return {Object} result
+      */
+
+  removePermissionOfSubUser (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  removePermissionOfSubUser"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.permissionId === undefined || opts.permissionId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.permissionId' when calling removePermissionOfSubUser"
+      )
+    }
+    if (opts.subUser === undefined || opts.subUser === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.subUser' when calling removePermissionOfSubUser"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      permissionId: opts.permissionId,
+      subUser: opts.subUser
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call removePermissionOfSubUser with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/subUser/{subUser}/permissions/{permissionId}',
       'DELETE',
       pathParams,
       queryParams,
@@ -355,16 +770,15 @@ JDCloud.MONITOR = class MONITOR extends Service {
     )
   }
   /**
-         *  查询规则详情
+         *  创建子账号
          * @param {Object} opts - parameters
-         * @param {string} opts.alarmId - 规则id
+         * @param {createSubUserInfo} opts.createSubUserInfo - 子账号信息
          * @param {string} regionId - ID of the region
          * @param {string} callback - callback
          @return {Object} result
-         * @param alarm alarm
       */
 
-  describeAlarmsByID (opts, regionId = this.config.regionId, callback) {
+  createSubuser (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -372,507 +786,37 @@ JDCloud.MONITOR = class MONITOR extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeAlarmsByID"
+        "Missing the required parameter 'regionId' when calling  createSubuser"
       )
     }
 
     opts = opts || {}
 
-    if (opts.alarmId === undefined || opts.alarmId === null) {
+    if (
+      opts.createSubUserInfo === undefined ||
+      opts.createSubUserInfo === null
+    ) {
       throw new Error(
-        "Missing the required parameter 'opts.alarmId' when calling describeAlarmsByID"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      alarmId: opts.alarmId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.3.0'
-    }
-
-    let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeAlarmsByID with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/alarms/{alarmId}',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback) {
-          callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback) {
-          callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-  /**
-         *  修改已创建的报警规则
-         * @param {Object} opts - parameters
-         * @param {string} opts.alarmId - 规则id
-         * @param {string} opts.calculation - 统计方法：平均值&#x3D;avg、最大值&#x3D;max、最小值&#x3D;min、总和&#x3D;sum
-         * @param {array} [opts.contactGroups] - 通知的联系组，如 [“联系组1”,”联系组2”]  optional
-         * @param {array} [opts.contactPersons] - 通知的联系人，如 [“联系人1”,”联系人2”]  optional
-         * @param {string} [opts.downSample] - 取样频次  optional
-         * @param {string} opts.metric - 根据产品线查询可用监控项列表 接口 返回的Metric字段
-         * @param {integer} [opts.noticePeriod] - 通知周期 单位：小时  optional
-         * @param {string} opts.operation - &gt;&#x3D;、&gt;、&lt;、&lt;&#x3D;、&#x3D;&#x3D;、!&#x3D;
-         * @param {integer} opts.period - 统计周期（单位：分钟），可选值：2,5,15,30,60
-         * @param {string} opts.serviceCode - 产品名称
-         * @param {number} opts.threshold - 阈值
-         * @param {integer} opts.times - 连续多少次后报警，可选值:1,2,3,5
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
-         * @param string alarmId  规则id
-      */
-
-  updateAlarm (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  updateAlarm"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.alarmId === undefined || opts.alarmId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.alarmId' when calling updateAlarm"
-      )
-    }
-    if (opts.calculation === undefined || opts.calculation === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.calculation' when calling updateAlarm"
-      )
-    }
-    if (opts.metric === undefined || opts.metric === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.metric' when calling updateAlarm"
-      )
-    }
-    if (opts.operation === undefined || opts.operation === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.operation' when calling updateAlarm"
-      )
-    }
-    if (opts.period === undefined || opts.period === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.period' when calling updateAlarm"
-      )
-    }
-    if (opts.serviceCode === undefined || opts.serviceCode === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.serviceCode' when calling updateAlarm"
-      )
-    }
-    if (opts.threshold === undefined || opts.threshold === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.threshold' when calling updateAlarm"
-      )
-    }
-    if (opts.times === undefined || opts.times === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.times' when calling updateAlarm"
+        "Missing the required parameter 'opts.createSubUserInfo' when calling createSubuser"
       )
     }
 
     let postBody = {}
-    if (opts.calculation !== undefined && opts.calculation !== null) {
-      postBody['calculation'] = opts.calculation
-    }
-    if (opts.contactGroups !== undefined && opts.contactGroups !== null) {
-      postBody['contactGroups'] = opts.contactGroups
-    }
-    if (opts.contactPersons !== undefined && opts.contactPersons !== null) {
-      postBody['contactPersons'] = opts.contactPersons
-    }
-    if (opts.downSample !== undefined && opts.downSample !== null) {
-      postBody['downSample'] = opts.downSample
-    }
-    if (opts.metric !== undefined && opts.metric !== null) {
-      postBody['metric'] = opts.metric
-    }
-    if (opts.noticePeriod !== undefined && opts.noticePeriod !== null) {
-      postBody['noticePeriod'] = opts.noticePeriod
-    }
-    if (opts.operation !== undefined && opts.operation !== null) {
-      postBody['operation'] = opts.operation
-    }
-    if (opts.period !== undefined && opts.period !== null) {
-      postBody['period'] = opts.period
-    }
-    if (opts.serviceCode !== undefined && opts.serviceCode !== null) {
-      postBody['serviceCode'] = opts.serviceCode
-    }
-    if (opts.threshold !== undefined && opts.threshold !== null) {
-      postBody['threshold'] = opts.threshold
-    }
-    if (opts.times !== undefined && opts.times !== null) {
-      postBody['times'] = opts.times
+    if (
+      opts.createSubUserInfo !== undefined &&
+      opts.createSubUserInfo !== null
+    ) {
+      postBody['createSubUserInfo'] = opts.createSubUserInfo
     }
 
     let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      alarmId: opts.alarmId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.3.0'
-    }
-
-    let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    let returnType = null
-
-    this.config.logger(
-      `call updateAlarm with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/alarms/{alarmId}',
-      'PATCH',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback) {
-          callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback) {
-          callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-  /**
-         *  启用报警规则，当客户的报警规则处于停止状态时，可以使用此接口启用报警规则。
-         * @param {Object} opts - parameters
-         * @param {string} opts.alarmId - 规则id
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
-      */
-
-  enableAlarm (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  enableAlarm"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.alarmId === undefined || opts.alarmId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.alarmId' when calling enableAlarm"
-      )
-    }
-
-    let postBody = {}
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      alarmId: opts.alarmId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.3.0'
-    }
-
-    let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    let returnType = null
-
-    this.config.logger(
-      `call enableAlarm with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/alarms/{alarmId}:enable',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback) {
-          callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback) {
-          callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-  /**
-         *  禁用报警规则。报警规则禁用后，将停止探测实例的监控项数据。
-         * @param {Object} opts - parameters
-         * @param {string} opts.alarmId - 规则id
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
-      */
-
-  disableAlarm (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  disableAlarm"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.alarmId === undefined || opts.alarmId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.alarmId' when calling disableAlarm"
-      )
-    }
-
-    let postBody = {}
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      alarmId: opts.alarmId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.3.0'
-    }
-
-    let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    let returnType = null
-
-    this.config.logger(
-      `call disableAlarm with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/alarms/{alarmId}:disable',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback) {
-          callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback) {
-          callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-  /**
-         *  查询报警历史
-         * @param {Object} opts - parameters
-         * @param {string} [opts.id] - 报警规则的Id  optional
-         * @param {string} [opts.serviceCode] - 产品名称  optional
-         * @param {string} [opts.resourceId] - 资源Id  optional
-         * @param {string} opts.startTime - 查询数据开始时间，默认24小时前，可以输入long型时间，也可以输入yyyy-MM-dd&#39;T&#39;HH:mm:ssZ类型时间
-         * @param {string} opts.endTime - 查询数据结束时间，默认当前时间，可以输入long型时间，也可以输入yyyy-MM-dd&#39;T&#39;HH:mm:ssZ类型时间
-         * @param {integer} [opts.pageNumber] - 当前所在页，默认为1  optional
-         * @param {integer} [opts.pageSize] - ，默认为20；取值范围[1, 100]  optional
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
-         * @param alarmHistory alarmHistoryList
-         * @param number pageNumber  当前页码
-         * @param number numberPages  总页数
-         * @param number numberRecords  总记录数
-         * @param number pageSize  分页大小
-      */
-
-  describeAlarmHistory (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeAlarmHistory"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.startTime === undefined || opts.startTime === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.startTime' when calling describeAlarmHistory"
-      )
-    }
-    if (opts.endTime === undefined || opts.endTime === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.endTime' when calling describeAlarmHistory"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.id !== undefined && opts.id !== null) {
-      queryParams['id'] = opts.id
-    }
-    if (opts.serviceCode !== undefined && opts.serviceCode !== null) {
-      queryParams['serviceCode'] = opts.serviceCode
-    }
-    if (opts.resourceId !== undefined && opts.resourceId !== null) {
-      queryParams['resourceId'] = opts.resourceId
-    }
-    if (opts.startTime !== undefined && opts.startTime !== null) {
-      queryParams['startTime'] = opts.startTime
-    }
-    if (opts.endTime !== undefined && opts.endTime !== null) {
-      queryParams['endTime'] = opts.endTime
-    }
-    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
-      queryParams['pageNumber'] = opts.pageNumber
-    }
-    if (opts.pageSize !== undefined && opts.pageSize !== null) {
-      queryParams['pageSize'] = opts.pageSize
-    }
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.0'
     }
 
     let formParams = {}
@@ -883,7 +827,7 @@ JDCloud.MONITOR = class MONITOR extends Service {
     let returnType = null
 
     this.config.logger(
-      `call describeAlarmHistory with params:\npathParams:${JSON.stringify(
+      `call createSubuser with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -896,8 +840,8 @@ JDCloud.MONITOR = class MONITOR extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/alarmHistory',
-      'GET',
+      '/regions/{regionId}/subUser',
+      'POST',
       pathParams,
       queryParams,
       headerParams,
@@ -925,177 +869,15 @@ JDCloud.MONITOR = class MONITOR extends Service {
     )
   }
   /**
-         *  根据产品线查询可用监控项列表
+         *  查询AccessKey列表
          * @param {Object} opts - parameters
-         * @param {string} opts.serviceCode - 资源的类型，取值vm, lb, ip, database 等
-         * @param {string} callback - callback
-         @return {Object} result
-         * @param metricDetail metrics
-      */
-
-  describeMetrics (opts, callback) {
-    opts = opts || {}
-
-    if (opts.serviceCode === undefined || opts.serviceCode === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.serviceCode' when calling describeMetrics"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.serviceCode !== undefined && opts.serviceCode !== null) {
-      queryParams['serviceCode'] = opts.serviceCode
-    }
-
-    let pathParams = {
-      regionId: 'jdcloud'
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.3.0'
-    }
-
-    let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeMetrics with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/metrics',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback) {
-          callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback) {
-          callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-  /**
-         *  查询可用创建监控规则的指标列表
-         * @param {Object} opts - parameters
-         * @param {string} [opts.serviceCode] - 资源的类型，取值vm, lb, ip, database 等，默认为空，展示所有项目  optional
-         * @param {string} callback - callback
-         @return {Object} result
-         * @param serviceCodeMetrics serviceCodeList
-      */
-
-  describeMetricsForCreateAlarm (opts, callback) {
-    opts = opts || {}
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.serviceCode !== undefined && opts.serviceCode !== null) {
-      queryParams['serviceCode'] = opts.serviceCode
-    }
-
-    let pathParams = {
-      regionId: 'jdcloud'
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.3.0'
-    }
-
-    let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeMetricsForCreateAlarm with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/metricsForCreateAlarm',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback) {
-          callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback) {
-          callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-  /**
-         *  查看某资源的监控数据
-         * @param {Object} opts - parameters
-         * @param {string} opts.metric - 监控项英文标识(id)
-         * @param {string} opts.serviceCode - 资源的类型，取值vm, lb, ip, database 等
-         * @param {string} opts.resourceId - 资源的uuid
-         * @param {string} [opts.startTime] - 查询时间范围的开始时间， UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ（默认为当前时间，早于30d时，将被重置为30d）  optional
-         * @param {string} [opts.endTime] - 查询时间范围的结束时间， UTC时间，格式：2016-12- yyyy-MM-dd&#39;T&#39;HH:mm:ssZ（为空时，将由startTime与timeInterval计算得出）  optional
-         * @param {string} [opts.timeInterval] - 时间间隔：1h，6h，12h，1d，3d，7d，14d，固定时间间隔，timeInterval 与 endTime 至少填一项  optional
          * @param {string} regionId - ID of the region
          * @param {string} callback - callback
          @return {Object} result
-         * @param metricData metricDatas
+         * @param userAccessKey userAccessKeys
       */
 
-  describeMetricData (opts, regionId = this.config.regionId, callback) {
+  describeUserAccessKeys (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -1103,53 +885,21 @@ JDCloud.MONITOR = class MONITOR extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeMetricData"
+        "Missing the required parameter 'regionId' when calling  describeUserAccessKeys"
       )
     }
 
     opts = opts || {}
 
-    if (opts.metric === undefined || opts.metric === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.metric' when calling describeMetricData"
-      )
-    }
-    if (opts.serviceCode === undefined || opts.serviceCode === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.serviceCode' when calling describeMetricData"
-      )
-    }
-    if (opts.resourceId === undefined || opts.resourceId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.resourceId' when calling describeMetricData"
-      )
-    }
-
     let postBody = null
     let queryParams = {}
-    if (opts.serviceCode !== undefined && opts.serviceCode !== null) {
-      queryParams['serviceCode'] = opts.serviceCode
-    }
-    if (opts.resourceId !== undefined && opts.resourceId !== null) {
-      queryParams['resourceId'] = opts.resourceId
-    }
-    if (opts.startTime !== undefined && opts.startTime !== null) {
-      queryParams['startTime'] = opts.startTime
-    }
-    if (opts.endTime !== undefined && opts.endTime !== null) {
-      queryParams['endTime'] = opts.endTime
-    }
-    if (opts.timeInterval !== undefined && opts.timeInterval !== null) {
-      queryParams['timeInterval'] = opts.timeInterval
-    }
 
     let pathParams = {
-      regionId: regionId,
-      metric: opts.metric
+      regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.0'
     }
 
     let formParams = {}
@@ -1160,7 +910,7 @@ JDCloud.MONITOR = class MONITOR extends Service {
     let returnType = null
 
     this.config.logger(
-      `call describeMetricData with params:\npathParams:${JSON.stringify(
+      `call describeUserAccessKeys with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1173,8 +923,363 @@ JDCloud.MONITOR = class MONITOR extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/metrics/{metric}/metricData',
+      '/regions/{regionId}/userAccessKeys',
       'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+  /**
+         *  创建AccessKey
+         * @param {Object} opts - parameters
+         * @param {string} regionId - ID of the region
+         * @param {string} callback - callback
+         @return {Object} result
+      */
+
+  createUserAccessKey (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createUserAccessKey"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call createUserAccessKey with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/userAccessKey',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+  /**
+         *  启用AccessKey
+         * @param {Object} opts - parameters
+         * @param {string} opts.accessKey - accessKey
+         * @param {string} regionId - ID of the region
+         * @param {string} callback - callback
+         @return {Object} result
+      */
+
+  enabledUserAccessKey (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  enabledUserAccessKey"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.accessKey === undefined || opts.accessKey === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.accessKey' when calling enabledUserAccessKey"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      accessKey: opts.accessKey
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call enabledUserAccessKey with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/userAccessKey/{accessKey}:enabled',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+  /**
+         *  禁用AccessKey
+         * @param {Object} opts - parameters
+         * @param {string} opts.accessKey - accessKey
+         * @param {string} regionId - ID of the region
+         * @param {string} callback - callback
+         @return {Object} result
+      */
+
+  disabledUserAccessKey (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  disabledUserAccessKey"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.accessKey === undefined || opts.accessKey === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.accessKey' when calling disabledUserAccessKey"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      accessKey: opts.accessKey
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call disabledUserAccessKey with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/userAccessKey/{accessKey}:disabled',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+  /**
+         *  删除AccessKey
+         * @param {Object} opts - parameters
+         * @param {string} opts.accessKey - accessKey
+         * @param {string} regionId - ID of the region
+         * @param {string} callback - callback
+         @return {Object} result
+      */
+
+  deleteUserAccessKey (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteUserAccessKey"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.accessKey === undefined || opts.accessKey === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.accessKey' when calling deleteUserAccessKey"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      accessKey: opts.accessKey
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteUserAccessKey with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/userAccessKey/{accessKey}',
+      'DELETE',
       pathParams,
       queryParams,
       headerParams,
@@ -1202,4 +1307,4 @@ JDCloud.MONITOR = class MONITOR extends Service {
     )
   }
 }
-module.exports = JDCloud.MONITOR
+module.exports = JDCloud.IAM

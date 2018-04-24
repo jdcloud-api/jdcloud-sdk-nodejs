@@ -537,7 +537,7 @@ cacheInstanceStatus - redis状态，精确匹配，支持多个(running：运行
          *  变更缓存Redis实例配置
          * @param {Object} opts - parameters
          * @param {string} opts.cacheInstanceId - 缓存Redis实例ID
-         * @param {string} opts.cacheInstanceClass - 变更后的缓存Redis&lt;a herf&#x3D;&quot;https://www.jdcloud.com/help/detail/411/isCatalog/1&quot;&gt;实例规格代码&lt;/a&gt;
+         * @param {string} opts.cacheInstanceClass - 变更后的缓存Redis&lt;a href&#x3D;&quot;https://www.jdcloud.com/help/detail/411/isCatalog/1&quot;&gt;实例规格代码&lt;/a&gt;
          * @param {string} regionId - ID of the region
          * @param {string} callback - callback
          @return {Object} result

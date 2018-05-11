@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * monitor service.
- * @version 0.3.0
+ * @version 0.3.2
  */
 
 JDCloud.MONITOR = class MONITOR extends Service {
@@ -45,23 +45,23 @@ JDCloud.MONITOR = class MONITOR extends Service {
   }
 
   /**
-         *  查询监控规则
-         * @param {Object} opts - parameters
-         * @param {string} [opts.serviceCode] - 产品名称  optional
-         * @param {string} [opts.resourceId] - 资源Id  optional
-         * @param {integer} [opts.status] - 规则报警状态, 1：正常, 2：报警，4：数据不足  optional
-         * @param {integer} [opts.isAlarming] - 是否为正在报警的规则，0为忽略，1为是，与 status 同时只能生效一个,isAlarming 优先生效  optional
-         * @param {integer} [opts.enabled] - 规则状态：1为启用，0为禁用  optional
-         * @param {integer} [opts.pageNumber] - 当前所在页，默认为1  optional
-         * @param {integer} [opts.pageSize] - ，默认为20；取值范围[1, 100]  optional
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
-         * @param alarm alarmList
-         * @param number pageNumber  当前页码
-         * @param number numberPages  总页数
-         * @param number numberRecords  总记录数
-         * @param number pageSize  分页大小
+      *  查询监控规则
+      * @param {Object} opts - parameters
+      * @param {string} [opts.serviceCode] - 产品名称  optional
+      * @param {string} [opts.resourceId] - 资源Id  optional
+      * @param {integer} [opts.status] - 规则报警状态, 1：正常, 2：报警，4：数据不足  optional
+      * @param {integer} [opts.isAlarming] - 是否为正在报警的规则，0为忽略，1为是，与 status 同时只能生效一个,isAlarming 优先生效  optional
+      * @param {integer} [opts.enabled] - 规则状态：1为启用，0为禁用  optional
+      * @param {integer} [opts.pageNumber] - 当前所在页，默认为1  optional
+      * @param {integer} [opts.pageSize] - ，默认为20；取值范围[1, 100]  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param alarm alarmList
+      * @param number pageNumber  当前页码
+      * @param number numberPages  总页数
+      * @param number numberRecords  总记录数
+      * @param number pageSize  分页大小
       */
 
   describeAlarms (opts, regionId = this.config.regionId, callback) {
@@ -107,7 +107,7 @@ JDCloud.MONITOR = class MONITOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.3.2'
     }
 
     let formParams = {}
@@ -159,15 +159,16 @@ JDCloud.MONITOR = class MONITOR extends Service {
       }
     )
   }
+
   /**
-         *  创建报警规则，可以为某一个实例创建报警规则，也可以为多个实例同时创建报警规则。
-         * @param {Object} opts - parameters
-         * @param {string} opts.clientToken - 幂等性校验参数，最长32位，值不变则返回值不会变
-         * @param {createAlarmSpec} opts.createAlarmSpec
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
-         * @param string alarmIdList
+      *  创建报警规则，可以为某一个实例创建报警规则，也可以为多个实例同时创建报警规则。
+      * @param {Object} opts - parameters
+      * @param {string} opts.clientToken - 幂等性校验参数，最长32位，值不变则返回值不会变
+      * @param {createAlarmSpec} opts.createAlarmSpec
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string alarmIdList
       */
 
   createAlarm (opts, regionId = this.config.regionId, callback) {
@@ -210,7 +211,7 @@ JDCloud.MONITOR = class MONITOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.3.2'
     }
 
     let formParams = {}
@@ -262,13 +263,14 @@ JDCloud.MONITOR = class MONITOR extends Service {
       }
     )
   }
+
   /**
-         *  批量删除规则
-         * @param {Object} opts - parameters
-         * @param {string} opts.ids - 待删除的规则id，用&quot;|&quot;间隔
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
+      *  批量删除规则
+      * @param {Object} opts - parameters
+      * @param {string} opts.ids - 待删除的规则id，用&quot;|&quot;间隔
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
       */
 
   deleteAlarms (opts, regionId = this.config.regionId, callback) {
@@ -302,7 +304,7 @@ JDCloud.MONITOR = class MONITOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.3.2'
     }
 
     let formParams = {}
@@ -354,14 +356,15 @@ JDCloud.MONITOR = class MONITOR extends Service {
       }
     )
   }
+
   /**
-         *  查询规则详情
-         * @param {Object} opts - parameters
-         * @param {string} opts.alarmId - 规则id
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
-         * @param alarm alarm
+      *  查询规则详情
+      * @param {Object} opts - parameters
+      * @param {string} opts.alarmId - 规则id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param alarm alarm
       */
 
   describeAlarmsByID (opts, regionId = this.config.regionId, callback) {
@@ -393,7 +396,7 @@ JDCloud.MONITOR = class MONITOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.3.2'
     }
 
     let formParams = {}
@@ -445,25 +448,26 @@ JDCloud.MONITOR = class MONITOR extends Service {
       }
     )
   }
+
   /**
-         *  修改已创建的报警规则
-         * @param {Object} opts - parameters
-         * @param {string} opts.alarmId - 规则id
-         * @param {string} opts.calculation - 统计方法：平均值&#x3D;avg、最大值&#x3D;max、最小值&#x3D;min、总和&#x3D;sum
-         * @param {array} [opts.contactGroups] - 通知的联系组，如 [“联系组1”,”联系组2”]  optional
-         * @param {array} [opts.contactPersons] - 通知的联系人，如 [“联系人1”,”联系人2”]  optional
-         * @param {string} [opts.downSample] - 取样频次  optional
-         * @param {string} opts.metric - 根据产品线查询可用监控项列表 接口 返回的Metric字段
-         * @param {integer} [opts.noticePeriod] - 通知周期 单位：小时  optional
-         * @param {string} opts.operation - &gt;&#x3D;、&gt;、&lt;、&lt;&#x3D;、&#x3D;&#x3D;、!&#x3D;
-         * @param {integer} opts.period - 统计周期（单位：分钟），可选值：2,5,15,30,60
-         * @param {string} opts.serviceCode - 产品名称
-         * @param {number} opts.threshold - 阈值
-         * @param {integer} opts.times - 连续多少次后报警，可选值:1,2,3,5
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
-         * @param string alarmId  规则id
+      *  修改已创建的报警规则
+      * @param {Object} opts - parameters
+      * @param {string} opts.alarmId - 规则id
+      * @param {string} opts.calculation - 统计方法：平均值&#x3D;avg、最大值&#x3D;max、最小值&#x3D;min、总和&#x3D;sum
+      * @param {array} [opts.contactGroups] - 通知的联系组，如 [“联系组1”,”联系组2”]  optional
+      * @param {array} [opts.contactPersons] - 通知的联系人，如 [“联系人1”,”联系人2”]  optional
+      * @param {string} [opts.downSample] - 取样频次  optional
+      * @param {string} opts.metric - 根据产品线查询可用监控项列表 接口 返回的Metric字段
+      * @param {integer} [opts.noticePeriod] - 通知周期 单位：小时  optional
+      * @param {string} opts.operation - &gt;&#x3D;、&gt;、&lt;、&lt;&#x3D;、&#x3D;&#x3D;、!&#x3D;
+      * @param {integer} opts.period - 统计周期（单位：分钟），可选值：2,5,15,30,60
+      * @param {string} opts.serviceCode - 产品名称
+      * @param {number} opts.threshold - 阈值
+      * @param {integer} opts.times - 连续多少次后报警，可选值:1,2,3,5
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string alarmId  规则id
       */
 
   updateAlarm (opts, regionId = this.config.regionId, callback) {
@@ -564,7 +568,7 @@ JDCloud.MONITOR = class MONITOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.3.2'
     }
 
     let formParams = {}
@@ -616,13 +620,14 @@ JDCloud.MONITOR = class MONITOR extends Service {
       }
     )
   }
+
   /**
-         *  启用报警规则，当客户的报警规则处于停止状态时，可以使用此接口启用报警规则。
-         * @param {Object} opts - parameters
-         * @param {string} opts.alarmId - 规则id
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
+      *  启用报警规则，当客户的报警规则处于停止状态时，可以使用此接口启用报警规则。
+      * @param {Object} opts - parameters
+      * @param {string} opts.alarmId - 规则id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
       */
 
   enableAlarm (opts, regionId = this.config.regionId, callback) {
@@ -655,7 +660,7 @@ JDCloud.MONITOR = class MONITOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.3.2'
     }
 
     let formParams = {}
@@ -707,13 +712,14 @@ JDCloud.MONITOR = class MONITOR extends Service {
       }
     )
   }
+
   /**
-         *  禁用报警规则。报警规则禁用后，将停止探测实例的监控项数据。
-         * @param {Object} opts - parameters
-         * @param {string} opts.alarmId - 规则id
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
+      *  禁用报警规则。报警规则禁用后，将停止探测实例的监控项数据。
+      * @param {Object} opts - parameters
+      * @param {string} opts.alarmId - 规则id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
       */
 
   disableAlarm (opts, regionId = this.config.regionId, callback) {
@@ -746,7 +752,7 @@ JDCloud.MONITOR = class MONITOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.3.2'
     }
 
     let formParams = {}
@@ -798,24 +804,25 @@ JDCloud.MONITOR = class MONITOR extends Service {
       }
     )
   }
+
   /**
-         *  查询报警历史
-         * @param {Object} opts - parameters
-         * @param {string} [opts.id] - 报警规则的Id  optional
-         * @param {string} [opts.serviceCode] - 产品名称  optional
-         * @param {string} [opts.resourceId] - 资源Id  optional
-         * @param {string} opts.startTime - 查询数据开始时间，默认24小时前，可以输入long型时间，也可以输入yyyy-MM-dd&#39;T&#39;HH:mm:ssZ类型时间
-         * @param {string} opts.endTime - 查询数据结束时间，默认当前时间，可以输入long型时间，也可以输入yyyy-MM-dd&#39;T&#39;HH:mm:ssZ类型时间
-         * @param {integer} [opts.pageNumber] - 当前所在页，默认为1  optional
-         * @param {integer} [opts.pageSize] - ，默认为20；取值范围[1, 100]  optional
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
-         * @param alarmHistory alarmHistoryList
-         * @param number pageNumber  当前页码
-         * @param number numberPages  总页数
-         * @param number numberRecords  总记录数
-         * @param number pageSize  分页大小
+      *  查询报警历史
+      * @param {Object} opts - parameters
+      * @param {string} [opts.id] - 报警规则的Id  optional
+      * @param {string} [opts.serviceCode] - 产品名称  optional
+      * @param {string} [opts.resourceId] - 资源Id  optional
+      * @param {string} opts.startTime - 查询数据开始时间，默认24小时前，可以输入long型时间，也可以输入yyyy-MM-dd&#39;T&#39;HH:mm:ssZ类型时间
+      * @param {string} opts.endTime - 查询数据结束时间，默认当前时间，可以输入long型时间，也可以输入yyyy-MM-dd&#39;T&#39;HH:mm:ssZ类型时间
+      * @param {integer} [opts.pageNumber] - 当前所在页，默认为1  optional
+      * @param {integer} [opts.pageSize] - ，默认为20；取值范围[1, 100]  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param alarmHistory alarmHistoryList
+      * @param number pageNumber  当前页码
+      * @param number numberPages  总页数
+      * @param number numberRecords  总记录数
+      * @param number pageSize  分页大小
       */
 
   describeAlarmHistory (opts, regionId = this.config.regionId, callback) {
@@ -872,7 +879,7 @@ JDCloud.MONITOR = class MONITOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.3.2'
     }
 
     let formParams = {}
@@ -924,13 +931,26 @@ JDCloud.MONITOR = class MONITOR extends Service {
       }
     )
   }
+
   /**
-         *  根据产品线查询可用监控项列表
-         * @param {Object} opts - parameters
-         * @param {string} opts.serviceCode - 资源的类型，取值vm, lb, ip, database 等
-         * @param {string} callback - callback
-         @return {Object} result
-         * @param metricDetail metrics
+      *  根据产品线查询可用监控项列表
+      * @param {Object} opts - parameters
+      * @param {string} opts.serviceCode - 资源的类型 ：
+vm--&gt;云主机
+disk--&gt;云硬盘
+ip--&gt;公网ip
+balance--&gt;负载均衡
+database--&gt;云数据库mysql版本
+cdn--&gt;京东CDN
+redis--&gt;redis云缓存
+mongodb--&gt;mongoDB云缓存
+storage--&gt;云存储
+sqlserver--&gt;云数据库sqlserver版
+nativecontainer--&gt;容器
+
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param metricDetail metrics
       */
 
   describeMetrics (opts, callback) {
@@ -953,7 +973,7 @@ JDCloud.MONITOR = class MONITOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.3.2'
     }
 
     let formParams = {}
@@ -1005,13 +1025,26 @@ JDCloud.MONITOR = class MONITOR extends Service {
       }
     )
   }
+
   /**
-         *  查询可用创建监控规则的指标列表
-         * @param {Object} opts - parameters
-         * @param {string} [opts.serviceCode] - 资源的类型，取值vm, lb, ip, database 等，默认为空，展示所有项目  optional
-         * @param {string} callback - callback
-         @return {Object} result
-         * @param serviceCodeMetrics serviceCodeList
+      *  查询可用创建监控规则的指标列表
+      * @param {Object} opts - parameters
+      * @param {string} [opts.serviceCode] - 资源的类型，默认为空，展示所有项目
+vm--&gt;云主机
+disk--&gt;云硬盘
+ip--&gt;公网ip
+balance--&gt;负载均衡
+database--&gt;云数据库mysql版本
+cdn--&gt;京东CDN
+redis--&gt;redis云缓存
+mongodb--&gt;mongoDB云缓存
+storage--&gt;云存储
+sqlserver--&gt;云数据库sqlserver版
+nativecontainer--&gt;容器
+  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param serviceCodeMetrics serviceCodeList
       */
 
   describeMetricsForCreateAlarm (opts, callback) {
@@ -1028,7 +1061,7 @@ JDCloud.MONITOR = class MONITOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.3.2'
     }
 
     let formParams = {}
@@ -1080,19 +1113,21 @@ JDCloud.MONITOR = class MONITOR extends Service {
       }
     )
   }
+
   /**
-         *  查看某资源的监控数据
-         * @param {Object} opts - parameters
-         * @param {string} opts.metric - 监控项英文标识(id)
-         * @param {string} opts.serviceCode - 资源的类型，取值vm, lb, ip, database 等
-         * @param {string} opts.resourceId - 资源的uuid
-         * @param {string} [opts.startTime] - 查询时间范围的开始时间， UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ（默认为当前时间，早于30d时，将被重置为30d）  optional
-         * @param {string} [opts.endTime] - 查询时间范围的结束时间， UTC时间，格式：2016-12- yyyy-MM-dd&#39;T&#39;HH:mm:ssZ（为空时，将由startTime与timeInterval计算得出）  optional
-         * @param {string} [opts.timeInterval] - 时间间隔：1h，6h，12h，1d，3d，7d，14d，固定时间间隔，timeInterval 与 endTime 至少填一项  optional
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
-         * @param metricData metricDatas
+      *  查看某资源的监控数据
+      * @param {Object} opts - parameters
+      * @param {string} opts.metric - 监控项英文标识(id)
+      * @param {string} opts.serviceCode - 资源的类型，取值vm, lb, ip, database 等
+      * @param {string} opts.resourceId - 资源的uuid
+      * @param {string} [opts.startTime] - 查询时间范围的开始时间， UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ（默认为当前时间，早于30d时，将被重置为30d）  optional
+      * @param {string} [opts.endTime] - 查询时间范围的结束时间， UTC时间，格式：2016-12- yyyy-MM-dd&#39;T&#39;HH:mm:ssZ（为空时，将由startTime与timeInterval计算得出）  optional
+      * @param {string} [opts.timeInterval] - 时间间隔：1h，6h，12h，1d，3d，7d，14d，固定时间间隔，timeInterval 与 endTime 至少填一项  optional
+      * @param {tags} [opts.tags] - 自定义标签  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param metricData metricDatas
       */
 
   describeMetricData (opts, regionId = this.config.regionId, callback) {
@@ -1142,6 +1177,7 @@ JDCloud.MONITOR = class MONITOR extends Service {
     if (opts.timeInterval !== undefined && opts.timeInterval !== null) {
       queryParams['timeInterval'] = opts.timeInterval
     }
+    Object.assign(queryParams, this.buildArrayParam(opts.tags, 'tags'))
 
     let pathParams = {
       regionId: regionId,
@@ -1149,7 +1185,7 @@ JDCloud.MONITOR = class MONITOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.3.2'
     }
 
     let formParams = {}

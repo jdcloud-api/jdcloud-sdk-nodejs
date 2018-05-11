@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * disk service.
- * @version 0.4.0
+ * @version 0.5.0
  */
 
 JDCloud.DISK = class DISK extends Service {
@@ -45,11 +45,11 @@ JDCloud.DISK = class DISK extends Service {
   }
 
   /**
-         *  查询云硬盘列表
-         * @param {Object} opts - parameters
-         * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞)  optional
-         * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围：[10,100]  optional
-         * @param {filter} [opts.filters] - diskId - 云硬盘ID，精确匹配，支持多个
+      *  查询云硬盘列表
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞)  optional
+      * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围：[10,100]  optional
+      * @param {filter} [opts.filters] - diskId - 云硬盘ID，精确匹配，支持多个
 diskType - 云硬盘类型，精确匹配，支持多个，取值为 ssd 或 premium-hdd
 instanceId - 云硬盘所挂载主机的ID，精确匹配，支持多个
 instanceType - 云硬盘所挂载主机的类型，精确匹配，支持多个
@@ -57,11 +57,11 @@ status - 可用区，精确匹配，支持多个
 az - 云硬盘状态，精确匹配，支持多个
 name - 云硬盘名称，模糊匹配，支持单个
   optional
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
-         * @param disk disks
-         * @param integer totalCount  查询的云硬盘数目
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param disk disks
+      * @param integer totalCount  查询的云硬盘数目
       */
 
   describeDisks (opts, regionId = this.config.regionId, callback) {
@@ -93,7 +93,7 @@ name - 云硬盘名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.5.0'
     }
 
     let formParams = {}
@@ -145,14 +145,128 @@ name - 云硬盘名称，模糊匹配，支持单个
       }
     )
   }
+
   /**
-         *  查询云硬盘信息详情
-         * @param {Object} opts - parameters
-         * @param {string} opts.diskId - 云硬盘ID
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
-         * @param disk disk
+      *  创建一块或多块云硬盘
+      * @param {Object} opts - parameters
+      * @param {diskSpec} opts.diskSpec - 创建云硬盘规格
+      * @param {integer} opts.maxCount - 购买实例数量；取值范围：[1,100]
+      * @param {string} opts.clientToken - 幂等性校验参数
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string diskIds
+      */
+
+  createDisks (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createDisks"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.diskSpec === undefined || opts.diskSpec === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.diskSpec' when calling createDisks"
+      )
+    }
+    if (opts.maxCount === undefined || opts.maxCount === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.maxCount' when calling createDisks"
+      )
+    }
+    if (opts.clientToken === undefined || opts.clientToken === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clientToken' when calling createDisks"
+      )
+    }
+
+    let postBody = {}
+    if (opts.diskSpec !== undefined && opts.diskSpec !== null) {
+      postBody['diskSpec'] = opts.diskSpec
+    }
+    if (opts.maxCount !== undefined && opts.maxCount !== null) {
+      postBody['maxCount'] = opts.maxCount
+    }
+    if (opts.clientToken !== undefined && opts.clientToken !== null) {
+      postBody['clientToken'] = opts.clientToken
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.5.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call createDisks with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/disks',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询云硬盘信息详情
+      * @param {Object} opts - parameters
+      * @param {string} opts.diskId - 云硬盘ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param disk disk
       */
 
   describeDisk (opts, regionId = this.config.regionId, callback) {
@@ -184,7 +298,7 @@ name - 云硬盘名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.5.0'
     }
 
     let formParams = {}
@@ -236,15 +350,16 @@ name - 云硬盘名称，模糊匹配，支持单个
       }
     )
   }
+
   /**
-         *  修改云硬盘的名字或描述信息
-         * @param {Object} opts - parameters
-         * @param {string} opts.diskId - 云硬盘ID
-         * @param {string} [opts.name] - 云硬盘名称  optional
-         * @param {string} [opts.description] - 云硬盘描述，name和description必须要指定一个  optional
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
+      *  修改云硬盘的名字或描述信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.diskId - 云硬盘ID
+      * @param {string} [opts.name] - 云硬盘名称  optional
+      * @param {string} [opts.description] - 云硬盘描述，name和description必须要指定一个  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
       */
 
   modifyDiskAttribute (opts, regionId = this.config.regionId, callback) {
@@ -283,7 +398,7 @@ name - 云硬盘名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.5.0'
     }
 
     let formParams = {}
@@ -335,14 +450,106 @@ name - 云硬盘名称，模糊匹配，支持单个
       }
     )
   }
+
   /**
-         *  从已有快照恢复一块云硬盘
-         * @param {Object} opts - parameters
-         * @param {string} opts.diskId - 云硬盘ID
-         * @param {string} opts.snapshotId - 用于恢复云盘的快照ID
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
+      *  删除单个云硬盘
+      * @param {Object} opts - parameters
+      * @param {string} opts.diskId - 云硬盘ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteDisk (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteDisk"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.diskId === undefined || opts.diskId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.diskId' when calling deleteDisk"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      diskId: opts.diskId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.5.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteDisk with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/disks/{diskId}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  从已有快照恢复一块云硬盘
+      * @param {Object} opts - parameters
+      * @param {string} opts.diskId - 云硬盘ID
+      * @param {string} opts.snapshotId - 用于恢复云盘的快照ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
       */
 
   restoreDisk (opts, regionId = this.config.regionId, callback) {
@@ -383,7 +590,7 @@ name - 云硬盘名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.5.0'
     }
 
     let formParams = {}
@@ -435,21 +642,123 @@ name - 云硬盘名称，模糊匹配，支持单个
       }
     )
   }
+
   /**
-         *  查询云硬盘快照列表
-         * @param {Object} opts - parameters
-         * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞)  optional
-         * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围：[10,100]  optional
-         * @param {filter} [opts.filters] - snapshotId - 云硬盘快照ID，支持多个
+      *  扩容云硬盘到指定大小
+      * @param {Object} opts - parameters
+      * @param {string} opts.diskId - 云硬盘ID
+      * @param {integer} opts.diskSizeGB - 扩容后的云硬盘大小，单位为GiB
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  extendDisk (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  extendDisk"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.diskId === undefined || opts.diskId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.diskId' when calling extendDisk"
+      )
+    }
+    if (opts.diskSizeGB === undefined || opts.diskSizeGB === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.diskSizeGB' when calling extendDisk"
+      )
+    }
+
+    let postBody = {}
+    if (opts.diskSizeGB !== undefined && opts.diskSizeGB !== null) {
+      postBody['diskSizeGB'] = opts.diskSizeGB
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      diskId: opts.diskId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.5.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call extendDisk with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/disks/{diskId}:extend',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询云硬盘快照列表
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞)  optional
+      * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围：[10,100]  optional
+      * @param {filter} [opts.filters] - snapshotId - 云硬盘快照ID，支持多个
 diskId - 生成快照的云硬盘ID，支持多个
 status - 快照状态，精确匹配，支持多个,取值为 creating、available、in-use、deleting、error_create、error_delete
 name - 快照名称，模糊匹配，支持单个
   optional
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
-         * @param snapshot snapshots
-         * @param integer totalCount  查询的快照数目
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param snapshot snapshots
+      * @param integer totalCount  查询的快照数目
       */
 
   describeSnapshots (opts, regionId = this.config.regionId, callback) {
@@ -481,7 +790,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.5.0'
     }
 
     let formParams = {}
@@ -533,15 +842,16 @@ name - 快照名称，模糊匹配，支持单个
       }
     )
   }
+
   /**
-         *  为指定云硬盘创建快照,新生成的快照的状态为creating
-         * @param {Object} opts - parameters
-         * @param {snapshotSpec} opts.snapshotSpec - 创建快照规格
-         * @param {string} opts.clientToken - 幂等性校验参数
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
-         * @param string snapshotId  创建的快照ID
+      *  为指定云硬盘创建快照,新生成的快照的状态为creating
+      * @param {Object} opts - parameters
+      * @param {snapshotSpec} opts.snapshotSpec - 创建快照规格
+      * @param {string} opts.clientToken - 幂等性校验参数
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string snapshotId  创建的快照ID
       */
 
   createSnapshot (opts, regionId = this.config.regionId, callback) {
@@ -584,7 +894,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.5.0'
     }
 
     let formParams = {}
@@ -636,14 +946,15 @@ name - 快照名称，模糊匹配，支持单个
       }
     )
   }
+
   /**
-         *  查询云硬盘快照信息详情
-         * @param {Object} opts - parameters
-         * @param {string} opts.snapshotId - 快照ID
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
-         * @param snapshot snapshot
+      *  查询云硬盘快照信息详情
+      * @param {Object} opts - parameters
+      * @param {string} opts.snapshotId - 快照ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param snapshot snapshot
       */
 
   describeSnapshot (opts, regionId = this.config.regionId, callback) {
@@ -675,7 +986,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.5.0'
     }
 
     let formParams = {}
@@ -727,15 +1038,16 @@ name - 快照名称，模糊匹配，支持单个
       }
     )
   }
+
   /**
-         *  修改快照的名字或描述信息
-         * @param {Object} opts - parameters
-         * @param {string} opts.snapshotId - 快照ID
-         * @param {string} [opts.name] - 快照名称  optional
-         * @param {string} [opts.description] - 快照描述，name和description必须要指定一个  optional
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
+      *  修改快照的名字或描述信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.snapshotId - 快照ID
+      * @param {string} [opts.name] - 快照名称  optional
+      * @param {string} [opts.description] - 快照描述，name和description必须要指定一个  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
       */
 
   modifySnpAttribute (opts, regionId = this.config.regionId, callback) {
@@ -774,7 +1086,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.5.0'
     }
 
     let formParams = {}
@@ -826,13 +1138,14 @@ name - 快照名称，模糊匹配，支持单个
       }
     )
   }
+
   /**
-         *  删除单个云硬盘快照:快照状态必须为 available 或 error 状态
-         * @param {Object} opts - parameters
-         * @param {string} opts.snapshotId - 快照ID
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
+      *  删除单个云硬盘快照:快照状态必须为 available 或 error 状态
+      * @param {Object} opts - parameters
+      * @param {string} opts.snapshotId - 快照ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
       */
 
   deleteSnapshot (opts, regionId = this.config.regionId, callback) {
@@ -864,7 +1177,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.5.0'
     }
 
     let formParams = {}

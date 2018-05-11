@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 快照相关接口
- * 快照相关接口，提供创建快照，查询快照信息，删除快照，修改快照信息等功能。
+ * 用户管理接口
+ * 用户管理接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -25,46 +25,35 @@
 require('../lib/node_loader')
 var JDCloud = require('../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'disk'
+var serviceId = 'iam'
 Service._services[serviceId] = true
 
 /**
- * disk service.
- * @version 0.5.0
+ * iam service.
+ * @version 0.1.0
  */
 
-JDCloud.DISK = class DISK extends Service {
+JDCloud.IAM = class IAM extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
       options._defaultEndpoint.protocol || 'https'
     options._defaultEndpoint.host =
-      options._defaultEndpoint.host || 'disk.jdcloud-api.com'
+      options._defaultEndpoint.host || 'iam.jdcloud-api.com'
     options.basePath = '/v1' // 默认要设为空""
     super(serviceId, options)
   }
 
   /**
-      *  查询云硬盘列表
-      * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞)  optional
-      * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围：[10,100]  optional
-      * @param {filter} [opts.filters] - diskId - 云硬盘ID，精确匹配，支持多个
-diskType - 云硬盘类型，精确匹配，支持多个，取值为 ssd 或 premium-hdd
-instanceId - 云硬盘所挂载主机的ID，精确匹配，支持多个
-instanceType - 云硬盘所挂载主机的类型，精确匹配，支持多个
-status - 可用区，精确匹配，支持多个
-az - 云硬盘状态，精确匹配，支持多个
-name - 云硬盘名称，模糊匹配，支持单个
-  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param disk disks
-      * @param integer totalCount  查询的云硬盘数目
+         *  创建策略
+         * @param {Object} opts - parameters
+         * @param {createPermissionInfo} opts.createPermissionInfo - 权限信息
+         * @param {string} regionId - ID of the region
+         * @param {string} callback - callback
+         @return {Object} result
       */
 
-  describeDisks (opts, regionId = this.config.regionId, callback) {
+  createPermission (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -72,131 +61,27 @@ name - 云硬盘名称，模糊匹配，支持单个
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeDisks"
+        "Missing the required parameter 'regionId' when calling  createPermission"
       )
     }
 
     opts = opts || {}
 
-    let postBody = null
-    let queryParams = {}
-    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
-      queryParams['pageNumber'] = opts.pageNumber
-    }
-    if (opts.pageSize !== undefined && opts.pageSize !== null) {
-      queryParams['pageSize'] = opts.pageSize
-    }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.5.0'
-    }
-
-    let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeDisks with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/disks',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback) {
-          callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback) {
-          callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  创建一块或多块云硬盘
-      * @param {Object} opts - parameters
-      * @param {diskSpec} opts.diskSpec - 创建云硬盘规格
-      * @param {integer} opts.maxCount - 购买实例数量；取值范围：[1,100]
-      * @param {string} opts.clientToken - 幂等性校验参数
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param string diskIds
-      */
-
-  createDisks (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
+    if (
+      opts.createPermissionInfo === undefined ||
+      opts.createPermissionInfo === null
+    ) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  createDisks"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.diskSpec === undefined || opts.diskSpec === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.diskSpec' when calling createDisks"
-      )
-    }
-    if (opts.maxCount === undefined || opts.maxCount === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.maxCount' when calling createDisks"
-      )
-    }
-    if (opts.clientToken === undefined || opts.clientToken === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.clientToken' when calling createDisks"
+        "Missing the required parameter 'opts.createPermissionInfo' when calling createPermission"
       )
     }
 
     let postBody = {}
-    if (opts.diskSpec !== undefined && opts.diskSpec !== null) {
-      postBody['diskSpec'] = opts.diskSpec
-    }
-    if (opts.maxCount !== undefined && opts.maxCount !== null) {
-      postBody['maxCount'] = opts.maxCount
-    }
-    if (opts.clientToken !== undefined && opts.clientToken !== null) {
-      postBody['clientToken'] = opts.clientToken
+    if (
+      opts.createPermissionInfo !== undefined &&
+      opts.createPermissionInfo !== null
+    ) {
+      postBody['createPermissionInfo'] = opts.createPermissionInfo
     }
 
     let queryParams = {}
@@ -206,7 +91,7 @@ name - 云硬盘名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.5.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.0'
     }
 
     let formParams = {}
@@ -217,7 +102,7 @@ name - 云硬盘名称，模糊匹配，支持单个
     let returnType = null
 
     this.config.logger(
-      `call createDisks with params:\npathParams:${JSON.stringify(
+      `call createPermission with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -230,7 +115,7 @@ name - 云硬盘名称，模糊匹配，支持单个
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/disks',
+      '/regions/{regionId}/permission',
       'POST',
       pathParams,
       queryParams,
@@ -258,18 +143,17 @@ name - 云硬盘名称，模糊匹配，支持单个
       }
     )
   }
-
   /**
-      *  查询云硬盘信息详情
-      * @param {Object} opts - parameters
-      * @param {string} opts.diskId - 云硬盘ID
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param disk disk
+         *  查询策略详情
+         * @param {Object} opts - parameters
+         * @param {integer} opts.permissionId - 权限id
+         * @param {string} regionId - ID of the region
+         * @param {string} callback - callback
+         @return {Object} result
+         * @param permission permission  权限信息
       */
 
-  describeDisk (opts, regionId = this.config.regionId, callback) {
+  describePermissionDetail (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -277,15 +161,15 @@ name - 云硬盘名称，模糊匹配，支持单个
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeDisk"
+        "Missing the required parameter 'regionId' when calling  describePermissionDetail"
       )
     }
 
     opts = opts || {}
 
-    if (opts.diskId === undefined || opts.diskId === null) {
+    if (opts.permissionId === undefined || opts.permissionId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.diskId' when calling describeDisk"
+        "Missing the required parameter 'opts.permissionId' when calling describePermissionDetail"
       )
     }
 
@@ -294,11 +178,11 @@ name - 云硬盘名称，模糊匹配，支持单个
 
     let pathParams = {
       regionId: regionId,
-      diskId: opts.diskId
+      permissionId: opts.permissionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.5.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.0'
     }
 
     let formParams = {}
@@ -309,7 +193,7 @@ name - 云硬盘名称，模糊匹配，支持单个
     let returnType = null
 
     this.config.logger(
-      `call describeDisk with params:\npathParams:${JSON.stringify(
+      `call describePermissionDetail with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -322,7 +206,7 @@ name - 云硬盘名称，模糊匹配，支持单个
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/disks/{diskId}',
+      '/regions/{regionId}/permission/{permissionId}',
       'GET',
       pathParams,
       queryParams,
@@ -350,19 +234,17 @@ name - 云硬盘名称，模糊匹配，支持单个
       }
     )
   }
-
   /**
-      *  修改云硬盘的名字或描述信息
-      * @param {Object} opts - parameters
-      * @param {string} opts.diskId - 云硬盘ID
-      * @param {string} [opts.name] - 云硬盘名称  optional
-      * @param {string} [opts.description] - 云硬盘描述，name和description必须要指定一个  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
+         *  修改策略
+         * @param {Object} opts - parameters
+         * @param {integer} opts.permissionId - 权限id
+         * @param {updatePermissionInfo} opts.updatePermissionInfo - 权限信息
+         * @param {string} regionId - ID of the region
+         * @param {string} callback - callback
+         @return {Object} result
       */
 
-  modifyDiskAttribute (opts, regionId = this.config.regionId, callback) {
+  updatePermission (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -370,35 +252,43 @@ name - 云硬盘名称，模糊匹配，支持单个
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  modifyDiskAttribute"
+        "Missing the required parameter 'regionId' when calling  updatePermission"
       )
     }
 
     opts = opts || {}
 
-    if (opts.diskId === undefined || opts.diskId === null) {
+    if (opts.permissionId === undefined || opts.permissionId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.diskId' when calling modifyDiskAttribute"
+        "Missing the required parameter 'opts.permissionId' when calling updatePermission"
+      )
+    }
+    if (
+      opts.updatePermissionInfo === undefined ||
+      opts.updatePermissionInfo === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.updatePermissionInfo' when calling updatePermission"
       )
     }
 
     let postBody = {}
-    if (opts.name !== undefined && opts.name !== null) {
-      postBody['name'] = opts.name
-    }
-    if (opts.description !== undefined && opts.description !== null) {
-      postBody['description'] = opts.description
+    if (
+      opts.updatePermissionInfo !== undefined &&
+      opts.updatePermissionInfo !== null
+    ) {
+      postBody['updatePermissionInfo'] = opts.updatePermissionInfo
     }
 
     let queryParams = {}
 
     let pathParams = {
       regionId: regionId,
-      diskId: opts.diskId
+      permissionId: opts.permissionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.5.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.0'
     }
 
     let formParams = {}
@@ -409,7 +299,7 @@ name - 云硬盘名称，模糊匹配，支持单个
     let returnType = null
 
     this.config.logger(
-      `call modifyDiskAttribute with params:\npathParams:${JSON.stringify(
+      `call updatePermission with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -422,8 +312,8 @@ name - 云硬盘名称，模糊匹配，支持单个
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/disks/{diskId}',
-      'PATCH',
+      '/regions/{regionId}/permission/{permissionId}',
+      'PUT',
       pathParams,
       queryParams,
       headerParams,
@@ -450,17 +340,21 @@ name - 云硬盘名称，模糊匹配，支持单个
       }
     )
   }
-
   /**
-      *  删除单个云硬盘
-      * @param {Object} opts - parameters
-      * @param {string} opts.diskId - 云硬盘ID
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
+         *  查询策略列表
+         * @param {Object} opts - parameters
+         * @param {integer} opts.pageNumber - 页码
+         * @param {integer} opts.pageSize - 每页显示数目
+         * @param {string} [opts.keyword] - 关键字  optional
+         * @param {integer} opts.queryType - 权限类型,0-全部，1-系统权限，2-自定义权限
+         * @param {string} regionId - ID of the region
+         * @param {string} callback - callback
+         @return {Object} result
+         * @param integer total  总数
+         * @param permission permissions
       */
 
-  deleteDisk (opts, regionId = this.config.regionId, callback) {
+  describePermissions (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -468,28 +362,49 @@ name - 云硬盘名称，模糊匹配，支持单个
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  deleteDisk"
+        "Missing the required parameter 'regionId' when calling  describePermissions"
       )
     }
 
     opts = opts || {}
 
-    if (opts.diskId === undefined || opts.diskId === null) {
+    if (opts.pageNumber === undefined || opts.pageNumber === null) {
       throw new Error(
-        "Missing the required parameter 'opts.diskId' when calling deleteDisk"
+        "Missing the required parameter 'opts.pageNumber' when calling describePermissions"
+      )
+    }
+    if (opts.pageSize === undefined || opts.pageSize === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.pageSize' when calling describePermissions"
+      )
+    }
+    if (opts.queryType === undefined || opts.queryType === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryType' when calling describePermissions"
       )
     }
 
     let postBody = null
     let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    if (opts.keyword !== undefined && opts.keyword !== null) {
+      queryParams['keyword'] = opts.keyword
+    }
+    if (opts.queryType !== undefined && opts.queryType !== null) {
+      queryParams['queryType'] = opts.queryType
+    }
 
     let pathParams = {
-      regionId: regionId,
-      diskId: opts.diskId
+      regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.5.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.0'
     }
 
     let formParams = {}
@@ -500,7 +415,7 @@ name - 云硬盘名称，模糊匹配，支持单个
     let returnType = null
 
     this.config.logger(
-      `call deleteDisk with params:\npathParams:${JSON.stringify(
+      `call describePermissions with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -513,7 +428,320 @@ name - 云硬盘名称，模糊匹配，支持单个
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/disks/{diskId}',
+      '/regions/{regionId}/permissions',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+  /**
+         *  查询子用户策略列表
+         * @param {Object} opts - parameters
+         * @param {string} opts.subUser - 子用户用户名
+         * @param {integer} opts.pageNumber - 页码
+         * @param {integer} opts.pageSize - 每页显示数目
+         * @param {string} regionId - ID of the region
+         * @param {string} callback - callback
+         @return {Object} result
+         * @param integer total  总数
+         * @param permission permissions
+      */
+
+  describeSubUserPermissions (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeSubUserPermissions"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.subUser === undefined || opts.subUser === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.subUser' when calling describeSubUserPermissions"
+      )
+    }
+    if (opts.pageNumber === undefined || opts.pageNumber === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.pageNumber' when calling describeSubUserPermissions"
+      )
+    }
+    if (opts.pageSize === undefined || opts.pageSize === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.pageSize' when calling describeSubUserPermissions"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      subUser: opts.subUser
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeSubUserPermissions with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/subUser/{subUser}/permisssions',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+  /**
+         *  为子用户绑定策略
+         * @param {Object} opts - parameters
+         * @param {string} opts.subUser - 子用户用户名
+         * @param {addPermissionsInfo} opts.addPermissionsInfo - 权限信息
+         * @param {string} regionId - ID of the region
+         * @param {string} callback - callback
+         @return {Object} result
+      */
+
+  addPermissionsToSubUser (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  addPermissionsToSubUser"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.subUser === undefined || opts.subUser === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.subUser' when calling addPermissionsToSubUser"
+      )
+    }
+    if (
+      opts.addPermissionsInfo === undefined ||
+      opts.addPermissionsInfo === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.addPermissionsInfo' when calling addPermissionsToSubUser"
+      )
+    }
+
+    let postBody = {}
+    if (
+      opts.addPermissionsInfo !== undefined &&
+      opts.addPermissionsInfo !== null
+    ) {
+      postBody['addPermissionsInfo'] = opts.addPermissionsInfo
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      subUser: opts.subUser
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call addPermissionsToSubUser with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/subUser/{subUser}/permisssions',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+  /**
+         *  为子用户解绑策略
+         * @param {Object} opts - parameters
+         * @param {integer} opts.permissionId - 权限id
+         * @param {string} opts.subUser - 子用户用户名
+         * @param {string} regionId - ID of the region
+         * @param {string} callback - callback
+         @return {Object} result
+      */
+
+  removePermissionOfSubUser (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  removePermissionOfSubUser"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.permissionId === undefined || opts.permissionId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.permissionId' when calling removePermissionOfSubUser"
+      )
+    }
+    if (opts.subUser === undefined || opts.subUser === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.subUser' when calling removePermissionOfSubUser"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      permissionId: opts.permissionId,
+      subUser: opts.subUser
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call removePermissionOfSubUser with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/subUser/{subUser}/permissions/{permissionId}',
       'DELETE',
       pathParams,
       queryParams,
@@ -541,18 +769,16 @@ name - 云硬盘名称，模糊匹配，支持单个
       }
     )
   }
-
   /**
-      *  从已有快照恢复一块云硬盘
-      * @param {Object} opts - parameters
-      * @param {string} opts.diskId - 云硬盘ID
-      * @param {string} opts.snapshotId - 用于恢复云盘的快照ID
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
+         *  创建子账号
+         * @param {Object} opts - parameters
+         * @param {createSubUserInfo} opts.createSubUserInfo - 子账号信息
+         * @param {string} regionId - ID of the region
+         * @param {string} callback - callback
+         @return {Object} result
       */
 
-  restoreDisk (opts, regionId = this.config.regionId, callback) {
+  createSubuser (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -560,37 +786,37 @@ name - 云硬盘名称，模糊匹配，支持单个
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  restoreDisk"
+        "Missing the required parameter 'regionId' when calling  createSubuser"
       )
     }
 
     opts = opts || {}
 
-    if (opts.diskId === undefined || opts.diskId === null) {
+    if (
+      opts.createSubUserInfo === undefined ||
+      opts.createSubUserInfo === null
+    ) {
       throw new Error(
-        "Missing the required parameter 'opts.diskId' when calling restoreDisk"
-      )
-    }
-    if (opts.snapshotId === undefined || opts.snapshotId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.snapshotId' when calling restoreDisk"
+        "Missing the required parameter 'opts.createSubUserInfo' when calling createSubuser"
       )
     }
 
     let postBody = {}
-    if (opts.snapshotId !== undefined && opts.snapshotId !== null) {
-      postBody['snapshotId'] = opts.snapshotId
+    if (
+      opts.createSubUserInfo !== undefined &&
+      opts.createSubUserInfo !== null
+    ) {
+      postBody['createSubUserInfo'] = opts.createSubUserInfo
     }
 
     let queryParams = {}
 
     let pathParams = {
-      regionId: regionId,
-      diskId: opts.diskId
+      regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.5.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.0'
     }
 
     let formParams = {}
@@ -601,7 +827,7 @@ name - 云硬盘名称，模糊匹配，支持单个
     let returnType = null
 
     this.config.logger(
-      `call restoreDisk with params:\npathParams:${JSON.stringify(
+      `call createSubuser with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -614,7 +840,7 @@ name - 云硬盘名称，模糊匹配，支持单个
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/disks/{diskId}:restore',
+      '/regions/{regionId}/subUser',
       'POST',
       pathParams,
       queryParams,
@@ -642,18 +868,16 @@ name - 云硬盘名称，模糊匹配，支持单个
       }
     )
   }
-
   /**
-      *  扩容云硬盘到指定大小
-      * @param {Object} opts - parameters
-      * @param {string} opts.diskId - 云硬盘ID
-      * @param {integer} opts.diskSizeGB - 扩容后的云硬盘大小，单位为GiB
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
+         *  查询AccessKey列表
+         * @param {Object} opts - parameters
+         * @param {string} regionId - ID of the region
+         * @param {string} callback - callback
+         @return {Object} result
+         * @param userAccessKey userAccessKeys
       */
 
-  extendDisk (opts, regionId = this.config.regionId, callback) {
+  describeUserAccessKeys (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -661,115 +885,7 @@ name - 云硬盘名称，模糊匹配，支持单个
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  extendDisk"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.diskId === undefined || opts.diskId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.diskId' when calling extendDisk"
-      )
-    }
-    if (opts.diskSizeGB === undefined || opts.diskSizeGB === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.diskSizeGB' when calling extendDisk"
-      )
-    }
-
-    let postBody = {}
-    if (opts.diskSizeGB !== undefined && opts.diskSizeGB !== null) {
-      postBody['diskSizeGB'] = opts.diskSizeGB
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      diskId: opts.diskId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.5.0'
-    }
-
-    let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    let returnType = null
-
-    this.config.logger(
-      `call extendDisk with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/disks/{diskId}:extend',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback) {
-          callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback) {
-          callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询云硬盘快照列表
-      * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞)  optional
-      * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围：[10,100]  optional
-      * @param {filter} [opts.filters] - snapshotId - 云硬盘快照ID，支持多个
-diskId - 生成快照的云硬盘ID，支持多个
-status - 快照状态，精确匹配，支持多个,取值为 creating、available、in-use、deleting、error_create、error_delete
-name - 快照名称，模糊匹配，支持单个
-  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param snapshot snapshots
-      * @param integer totalCount  查询的快照数目
-      */
-
-  describeSnapshots (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeSnapshots"
+        "Missing the required parameter 'regionId' when calling  describeUserAccessKeys"
       )
     }
 
@@ -777,20 +893,13 @@ name - 快照名称，模糊匹配，支持单个
 
     let postBody = null
     let queryParams = {}
-    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
-      queryParams['pageNumber'] = opts.pageNumber
-    }
-    if (opts.pageSize !== undefined && opts.pageSize !== null) {
-      queryParams['pageSize'] = opts.pageSize
-    }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.5.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.0'
     }
 
     let formParams = {}
@@ -801,7 +910,7 @@ name - 快照名称，模糊匹配，支持单个
     let returnType = null
 
     this.config.logger(
-      `call describeSnapshots with params:\npathParams:${JSON.stringify(
+      `call describeUserAccessKeys with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -814,7 +923,7 @@ name - 快照名称，模糊匹配，支持单个
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/snapshots',
+      '/regions/{regionId}/userAccessKeys',
       'GET',
       pathParams,
       queryParams,
@@ -842,19 +951,15 @@ name - 快照名称，模糊匹配，支持单个
       }
     )
   }
-
   /**
-      *  为指定云硬盘创建快照,新生成的快照的状态为creating
-      * @param {Object} opts - parameters
-      * @param {snapshotSpec} opts.snapshotSpec - 创建快照规格
-      * @param {string} opts.clientToken - 幂等性校验参数
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param string snapshotId  创建的快照ID
+         *  创建AccessKey
+         * @param {Object} opts - parameters
+         * @param {string} regionId - ID of the region
+         * @param {string} callback - callback
+         @return {Object} result
       */
 
-  createSnapshot (opts, regionId = this.config.regionId, callback) {
+  createUserAccessKey (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -862,30 +967,13 @@ name - 快照名称，模糊匹配，支持单个
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  createSnapshot"
+        "Missing the required parameter 'regionId' when calling  createUserAccessKey"
       )
     }
 
     opts = opts || {}
 
-    if (opts.snapshotSpec === undefined || opts.snapshotSpec === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.snapshotSpec' when calling createSnapshot"
-      )
-    }
-    if (opts.clientToken === undefined || opts.clientToken === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.clientToken' when calling createSnapshot"
-      )
-    }
-
     let postBody = {}
-    if (opts.snapshotSpec !== undefined && opts.snapshotSpec !== null) {
-      postBody['snapshotSpec'] = opts.snapshotSpec
-    }
-    if (opts.clientToken !== undefined && opts.clientToken !== null) {
-      postBody['clientToken'] = opts.clientToken
-    }
 
     let queryParams = {}
 
@@ -894,7 +982,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.5.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.0'
     }
 
     let formParams = {}
@@ -905,7 +993,7 @@ name - 快照名称，模糊匹配，支持单个
     let returnType = null
 
     this.config.logger(
-      `call createSnapshot with params:\npathParams:${JSON.stringify(
+      `call createUserAccessKey with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -918,7 +1006,7 @@ name - 快照名称，模糊匹配，支持单个
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/snapshots',
+      '/regions/{regionId}/userAccessKey',
       'POST',
       pathParams,
       queryParams,
@@ -946,18 +1034,16 @@ name - 快照名称，模糊匹配，支持单个
       }
     )
   }
-
   /**
-      *  查询云硬盘快照信息详情
-      * @param {Object} opts - parameters
-      * @param {string} opts.snapshotId - 快照ID
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param snapshot snapshot
+         *  启用AccessKey
+         * @param {Object} opts - parameters
+         * @param {string} opts.accessKey - accessKey
+         * @param {string} regionId - ID of the region
+         * @param {string} callback - callback
+         @return {Object} result
       */
 
-  describeSnapshot (opts, regionId = this.config.regionId, callback) {
+  enabledUserAccessKey (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -965,128 +1051,29 @@ name - 快照名称，模糊匹配，支持单个
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeSnapshot"
+        "Missing the required parameter 'regionId' when calling  enabledUserAccessKey"
       )
     }
 
     opts = opts || {}
 
-    if (opts.snapshotId === undefined || opts.snapshotId === null) {
+    if (opts.accessKey === undefined || opts.accessKey === null) {
       throw new Error(
-        "Missing the required parameter 'opts.snapshotId' when calling describeSnapshot"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      snapshotId: opts.snapshotId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.5.0'
-    }
-
-    let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeSnapshot with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/snapshots/{snapshotId}',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback) {
-          callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback) {
-          callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  修改快照的名字或描述信息
-      * @param {Object} opts - parameters
-      * @param {string} opts.snapshotId - 快照ID
-      * @param {string} [opts.name] - 快照名称  optional
-      * @param {string} [opts.description] - 快照描述，name和description必须要指定一个  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  modifySnpAttribute (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  modifySnpAttribute"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.snapshotId === undefined || opts.snapshotId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.snapshotId' when calling modifySnpAttribute"
+        "Missing the required parameter 'opts.accessKey' when calling enabledUserAccessKey"
       )
     }
 
     let postBody = {}
-    if (opts.name !== undefined && opts.name !== null) {
-      postBody['name'] = opts.name
-    }
-    if (opts.description !== undefined && opts.description !== null) {
-      postBody['description'] = opts.description
-    }
 
     let queryParams = {}
 
     let pathParams = {
       regionId: regionId,
-      snapshotId: opts.snapshotId
+      accessKey: opts.accessKey
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.5.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.0'
     }
 
     let formParams = {}
@@ -1097,7 +1084,7 @@ name - 快照名称，模糊匹配，支持单个
     let returnType = null
 
     this.config.logger(
-      `call modifySnpAttribute with params:\npathParams:${JSON.stringify(
+      `call enabledUserAccessKey with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1110,8 +1097,8 @@ name - 快照名称，模糊匹配，支持单个
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/snapshots/{snapshotId}',
-      'PATCH',
+      '/regions/{regionId}/userAccessKey/{accessKey}:enabled',
+      'PUT',
       pathParams,
       queryParams,
       headerParams,
@@ -1138,17 +1125,16 @@ name - 快照名称，模糊匹配，支持单个
       }
     )
   }
-
   /**
-      *  删除单个云硬盘快照:快照状态必须为 available 或 error 状态
-      * @param {Object} opts - parameters
-      * @param {string} opts.snapshotId - 快照ID
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
+         *  禁用AccessKey
+         * @param {Object} opts - parameters
+         * @param {string} opts.accessKey - accessKey
+         * @param {string} regionId - ID of the region
+         * @param {string} callback - callback
+         @return {Object} result
       */
 
-  deleteSnapshot (opts, regionId = this.config.regionId, callback) {
+  disabledUserAccessKey (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -1156,28 +1142,29 @@ name - 快照名称，模糊匹配，支持单个
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  deleteSnapshot"
+        "Missing the required parameter 'regionId' when calling  disabledUserAccessKey"
       )
     }
 
     opts = opts || {}
 
-    if (opts.snapshotId === undefined || opts.snapshotId === null) {
+    if (opts.accessKey === undefined || opts.accessKey === null) {
       throw new Error(
-        "Missing the required parameter 'opts.snapshotId' when calling deleteSnapshot"
+        "Missing the required parameter 'opts.accessKey' when calling disabledUserAccessKey"
       )
     }
 
-    let postBody = null
+    let postBody = {}
+
     let queryParams = {}
 
     let pathParams = {
       regionId: regionId,
-      snapshotId: opts.snapshotId
+      accessKey: opts.accessKey
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.5.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.0'
     }
 
     let formParams = {}
@@ -1188,7 +1175,7 @@ name - 快照名称，模糊匹配，支持单个
     let returnType = null
 
     this.config.logger(
-      `call deleteSnapshot with params:\npathParams:${JSON.stringify(
+      `call disabledUserAccessKey with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1201,7 +1188,97 @@ name - 快照名称，模糊匹配，支持单个
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/snapshots/{snapshotId}',
+      '/regions/{regionId}/userAccessKey/{accessKey}:disabled',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+  /**
+         *  删除AccessKey
+         * @param {Object} opts - parameters
+         * @param {string} opts.accessKey - accessKey
+         * @param {string} regionId - ID of the region
+         * @param {string} callback - callback
+         @return {Object} result
+      */
+
+  deleteUserAccessKey (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteUserAccessKey"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.accessKey === undefined || opts.accessKey === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.accessKey' when calling deleteUserAccessKey"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      accessKey: opts.accessKey
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteUserAccessKey with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/userAccessKey/{accessKey}',
       'DELETE',
       pathParams,
       queryParams,
@@ -1230,4 +1307,4 @@ name - 快照名称，模糊匹配，支持单个
     )
   }
 }
-module.exports = JDCloud.DISK
+module.exports = JDCloud.IAM

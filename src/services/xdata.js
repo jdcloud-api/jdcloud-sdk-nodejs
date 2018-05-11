@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 缓存Redis配额接口
- * 缓存Redis配额相关接口
+ * table相关接口
+ * API related to XDATA-DW table
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -25,44 +25,38 @@
 require('../lib/node_loader')
 var JDCloud = require('../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'redis'
+var serviceId = 'xdata'
 Service._services[serviceId] = true
 
 /**
- * redis service.
- * @version 1.0.0
+ * xdata service.
+ * @version 0.1.0
  */
 
-JDCloud.REDIS = class REDIS extends Service {
+JDCloud.XDATA = class XDATA extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
       options._defaultEndpoint.protocol || 'https'
     options._defaultEndpoint.host =
-      options._defaultEndpoint.host || 'redis.jdcloud-api.com'
+      options._defaultEndpoint.host || 'xdata.jdcloud-api.com'
     options.basePath = '/v1' // 默认要设为空""
     super(serviceId, options)
   }
 
   /**
-         *  查询缓存Redis实例列表
-         * @param {Object} opts - parameters
-         * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
-         * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
-         * @param {filter} [opts.filters] - cacheInstanceId -实例Id，精确匹配，支持多个
-cacheInstanceName - 实例名称，模糊匹配，支持单个
-cacheInstanceStatus - redis状态，精确匹配，支持多个(running：运行，error：错误，creating：创建中，changing：变配中，deleting：删除中)
-  optional
-         * @param {sort} [opts.sorts] - createTime - 创建时间(asc：正序，desc：倒序)
-  optional
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
-         * @param cacheInstance cacheInstances
-         * @param integer totalCount
+      *  查询实例列表
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceName - 实例名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status
+      * @param string message
+      * @param dwDatabaseInfo data
       */
 
-  describeCacheInstances (opts, regionId = this.config.regionId, callback) {
+  listDatabaseInfo (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -70,29 +64,30 @@ cacheInstanceStatus - redis状态，精确匹配，支持多个(running：运行
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeCacheInstances"
+        "Missing the required parameter 'regionId' when calling  listDatabaseInfo"
       )
     }
 
     opts = opts || {}
 
+    if (opts.instanceName === undefined || opts.instanceName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceName' when calling listDatabaseInfo"
+      )
+    }
+
     let postBody = null
     let queryParams = {}
-    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
-      queryParams['pageNumber'] = opts.pageNumber
+    if (opts.instanceName !== undefined && opts.instanceName !== null) {
+      queryParams['instanceName'] = opts.instanceName
     }
-    if (opts.pageSize !== undefined && opts.pageSize !== null) {
-      queryParams['pageSize'] = opts.pageSize
-    }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
-    Object.assign(queryParams, this.buildSortParam(opts.sorts, 'sorts'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/0.1.0'
     }
 
     let formParams = {}
@@ -103,7 +98,7 @@ cacheInstanceStatus - redis状态，精确匹配，支持多个(running：运行
     let returnType = null
 
     this.config.logger(
-      `call describeCacheInstances with params:\npathParams:${JSON.stringify(
+      `call listDatabaseInfo with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -116,7 +111,7 @@ cacheInstanceStatus - redis状态，精确匹配，支持多个(running：运行
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/cacheInstance',
+      '/regions/{regionId}/dwDatabase',
       'GET',
       pathParams,
       queryParams,
@@ -144,19 +139,21 @@ cacheInstanceStatus - redis状态，精确匹配，支持多个(running：运行
       }
     )
   }
+
   /**
-         *  创建一个指定配置的缓存Redis实例
-         * @param {Object} opts - parameters
-         * @param {cacheInstanceSpec} opts.cacheInstance
-         * @param {chargeSpec} [opts.charge]   optional
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
-         * @param string cacheInstanceId
-         * @param string orderNum
+      *  查询数据库详情
+      * @param {Object} opts - parameters
+      * @param {string} opts.databaseName - 数据库名
+      * @param {string} opts.instanceName - 实例名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status
+      * @param string message
+      * @param dwDatabase data
       */
 
-  createCacheInstance (opts, regionId = this.config.regionId, callback) {
+  getDatabaseInfo (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -164,34 +161,36 @@ cacheInstanceStatus - redis状态，精确匹配，支持多个(running：运行
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  createCacheInstance"
+        "Missing the required parameter 'regionId' when calling  getDatabaseInfo"
       )
     }
 
     opts = opts || {}
 
-    if (opts.cacheInstance === undefined || opts.cacheInstance === null) {
+    if (opts.databaseName === undefined || opts.databaseName === null) {
       throw new Error(
-        "Missing the required parameter 'opts.cacheInstance' when calling createCacheInstance"
+        "Missing the required parameter 'opts.databaseName' when calling getDatabaseInfo"
+      )
+    }
+    if (opts.instanceName === undefined || opts.instanceName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceName' when calling getDatabaseInfo"
       )
     }
 
-    let postBody = {}
-    if (opts.cacheInstance !== undefined && opts.cacheInstance !== null) {
-      postBody['cacheInstance'] = opts.cacheInstance
-    }
-    if (opts.charge !== undefined && opts.charge !== null) {
-      postBody['charge'] = opts.charge
-    }
-
+    let postBody = null
     let queryParams = {}
+    if (opts.instanceName !== undefined && opts.instanceName !== null) {
+      queryParams['instanceName'] = opts.instanceName
+    }
 
     let pathParams = {
-      regionId: regionId
+      regionId: regionId,
+      databaseName: opts.databaseName
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/0.1.0'
     }
 
     let formParams = {}
@@ -202,7 +201,7 @@ cacheInstanceStatus - redis状态，精确匹配，支持多个(running：运行
     let returnType = null
 
     this.config.logger(
-      `call createCacheInstance with params:\npathParams:${JSON.stringify(
+      `call getDatabaseInfo with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -215,7 +214,114 @@ cacheInstanceStatus - redis状态，精确匹配，支持多个(running：运行
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/cacheInstance',
+      '/regions/{regionId}/dwDatabase/{databaseName}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建数据库
+      * @param {Object} opts - parameters
+      * @param {string} opts.databaseName - 数据库名
+      * @param {string} opts.instanceName - 实例名称
+      * @param {string} [opts.description] - 描述信息  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status
+      * @param string message
+      */
+
+  createDatabase (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createDatabase"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.databaseName === undefined || opts.databaseName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.databaseName' when calling createDatabase"
+      )
+    }
+    if (opts.instanceName === undefined || opts.instanceName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceName' when calling createDatabase"
+      )
+    }
+
+    let postBody = {}
+    if (opts.instanceName !== undefined && opts.instanceName !== null) {
+      postBody['instanceName'] = opts.instanceName
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      databaseName: opts.databaseName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/0.1.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call createDatabase with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/dwDatabase/{databaseName}',
       'POST',
       pathParams,
       queryParams,
@@ -243,17 +349,20 @@ cacheInstanceStatus - redis状态，精确匹配，支持多个(running：运行
       }
     )
   }
+
   /**
-         *  查询缓存Redis实例详情
-         * @param {Object} opts - parameters
-         * @param {string} opts.cacheInstanceId - 缓存Redis实例ID
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
-         * @param cacheInstance cacheInstance
+      *  删除数据库
+      * @param {Object} opts - parameters
+      * @param {string} opts.databaseName - 数据库名
+      * @param {string} opts.instanceName - 实例名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status
+      * @param string message
       */
 
-  describeCacheInstance (opts, regionId = this.config.regionId, callback) {
+  deleteDatabase (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -261,28 +370,36 @@ cacheInstanceStatus - redis状态，精确匹配，支持多个(running：运行
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeCacheInstance"
+        "Missing the required parameter 'regionId' when calling  deleteDatabase"
       )
     }
 
     opts = opts || {}
 
-    if (opts.cacheInstanceId === undefined || opts.cacheInstanceId === null) {
+    if (opts.databaseName === undefined || opts.databaseName === null) {
       throw new Error(
-        "Missing the required parameter 'opts.cacheInstanceId' when calling describeCacheInstance"
+        "Missing the required parameter 'opts.databaseName' when calling deleteDatabase"
+      )
+    }
+    if (opts.instanceName === undefined || opts.instanceName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceName' when calling deleteDatabase"
       )
     }
 
     let postBody = null
     let queryParams = {}
+    if (opts.instanceName !== undefined && opts.instanceName !== null) {
+      queryParams['instanceName'] = opts.instanceName
+    }
 
     let pathParams = {
       regionId: regionId,
-      cacheInstanceId: opts.cacheInstanceId
+      databaseName: opts.databaseName
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/0.1.0'
     }
 
     let formParams = {}
@@ -293,7 +410,7 @@ cacheInstanceStatus - redis状态，精确匹配，支持多个(running：运行
     let returnType = null
 
     this.config.logger(
-      `call describeCacheInstance with params:\npathParams:${JSON.stringify(
+      `call deleteDatabase with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -306,206 +423,7 @@ cacheInstanceStatus - redis状态，精确匹配，支持多个(running：运行
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/cacheInstance/{cacheInstanceId}',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback) {
-          callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback) {
-          callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-  /**
-         *  修改缓存Redis实例的资源名称、描述，二者至少选一
-         * @param {Object} opts - parameters
-         * @param {string} opts.cacheInstanceId - 缓存Redis实例ID
-         * @param {string} [opts.cacheInstanceName] - 缓存Redis实例资源名称  optional
-         * @param {string} [opts.cacheInstanceDescription] - 缓存Redis实例资源描述  optional
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
-      */
-
-  modifyCacheInstanceAttribute (
-    opts,
-    regionId = this.config.regionId,
-    callback
-  ) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  modifyCacheInstanceAttribute"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.cacheInstanceId === undefined || opts.cacheInstanceId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.cacheInstanceId' when calling modifyCacheInstanceAttribute"
-      )
-    }
-
-    let postBody = {}
-    if (
-      opts.cacheInstanceName !== undefined &&
-      opts.cacheInstanceName !== null
-    ) {
-      postBody['cacheInstanceName'] = opts.cacheInstanceName
-    }
-    if (
-      opts.cacheInstanceDescription !== undefined &&
-      opts.cacheInstanceDescription !== null
-    ) {
-      postBody['cacheInstanceDescription'] = opts.cacheInstanceDescription
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      cacheInstanceId: opts.cacheInstanceId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.0.0'
-    }
-
-    let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    let returnType = null
-
-    this.config.logger(
-      `call modifyCacheInstanceAttribute with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/cacheInstance/{cacheInstanceId}',
-      'PATCH',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback) {
-          callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback) {
-          callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-  /**
-         *  删除单个缓存Redis实例
-         * @param {Object} opts - parameters
-         * @param {string} opts.cacheInstanceId - 缓存Redis实例ID
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
-      */
-
-  deleteCacheInstance (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  deleteCacheInstance"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.cacheInstanceId === undefined || opts.cacheInstanceId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.cacheInstanceId' when calling deleteCacheInstance"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      cacheInstanceId: opts.cacheInstanceId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.0.0'
-    }
-
-    let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    let returnType = null
-
-    this.config.logger(
-      `call deleteCacheInstance with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/cacheInstance/{cacheInstanceId}',
+      '/regions/{regionId}/dwDatabase/{databaseName}',
       'DELETE',
       pathParams,
       queryParams,
@@ -533,18 +451,19 @@ cacheInstanceStatus - redis状态，精确匹配，支持多个(running：运行
       }
     )
   }
+
   /**
-         *  变更缓存Redis实例配置
-         * @param {Object} opts - parameters
-         * @param {string} opts.cacheInstanceId - 缓存Redis实例ID
-         * @param {string} opts.cacheInstanceClass - 变更后的缓存Redis&lt;a href&#x3D;&quot;https://www.jdcloud.com/help/detail/411/isCatalog/1&quot;&gt;实例规格代码&lt;/a&gt;
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
-         * @param string orderNum
+      *  查询实例列表
+      * @param {Object} opts - parameters
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status
+      * @param string message
+      * @param dwInstance data
       */
 
-  modifyCacheInstanceClass (opts, regionId = this.config.regionId, callback) {
+  listInstanceInfo (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -552,213 +471,7 @@ cacheInstanceStatus - redis状态，精确匹配，支持多个(running：运行
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  modifyCacheInstanceClass"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.cacheInstanceId === undefined || opts.cacheInstanceId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.cacheInstanceId' when calling modifyCacheInstanceClass"
-      )
-    }
-    if (
-      opts.cacheInstanceClass === undefined ||
-      opts.cacheInstanceClass === null
-    ) {
-      throw new Error(
-        "Missing the required parameter 'opts.cacheInstanceClass' when calling modifyCacheInstanceClass"
-      )
-    }
-
-    let postBody = {}
-    if (
-      opts.cacheInstanceClass !== undefined &&
-      opts.cacheInstanceClass !== null
-    ) {
-      postBody['cacheInstanceClass'] = opts.cacheInstanceClass
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      cacheInstanceId: opts.cacheInstanceId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.0.0'
-    }
-
-    let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    let returnType = null
-
-    this.config.logger(
-      `call modifyCacheInstanceClass with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/cacheInstance/{cacheInstanceId}:modifyCacheInstanceClass',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback) {
-          callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback) {
-          callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-  /**
-         *  重置缓存Redis实例密码
-         * @param {Object} opts - parameters
-         * @param {string} opts.cacheInstanceId - 缓存Redis实例ID
-         * @param {string} opts.password - 密码，必须包含且只支持字母及数字，不少于8字符不超过16字符
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
-      */
-
-  resetCacheInstancePassword (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  resetCacheInstancePassword"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.cacheInstanceId === undefined || opts.cacheInstanceId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.cacheInstanceId' when calling resetCacheInstancePassword"
-      )
-    }
-    if (opts.password === undefined || opts.password === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.password' when calling resetCacheInstancePassword"
-      )
-    }
-
-    let postBody = {}
-    if (opts.password !== undefined && opts.password !== null) {
-      postBody['password'] = opts.password
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      cacheInstanceId: opts.cacheInstanceId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.0.0'
-    }
-
-    let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    let returnType = null
-
-    this.config.logger(
-      `call resetCacheInstancePassword with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/cacheInstance/{cacheInstanceId}:resetCacheInstancePassword',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback) {
-          callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback) {
-          callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-  /**
-         *  查询某区域下的实例规格列表
-         * @param {Object} opts - parameters
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
-         * @param instanceClass instanceClasses
-         * @param integer totalCount
-      */
-
-  describeInstanceClass (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeInstanceClass"
+        "Missing the required parameter 'regionId' when calling  listInstanceInfo"
       )
     }
 
@@ -772,7 +485,7 @@ cacheInstanceStatus - redis状态，精确匹配，支持多个(running：运行
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/0.1.0'
     }
 
     let formParams = {}
@@ -783,7 +496,7 @@ cacheInstanceStatus - redis状态，精确匹配，支持多个(running：运行
     let returnType = null
 
     this.config.logger(
-      `call describeInstanceClass with params:\npathParams:${JSON.stringify(
+      `call listInstanceInfo with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -796,7 +509,7 @@ cacheInstanceStatus - redis状态，精确匹配，支持多个(running：运行
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/instanceClass',
+      '/regions/{regionId}/dwInstance',
       'GET',
       pathParams,
       queryParams,
@@ -824,16 +537,21 @@ cacheInstanceStatus - redis状态，精确匹配，支持多个(running：运行
       }
     )
   }
+
   /**
-         *  查询账户配额信息
-         * @param {Object} opts - parameters
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
-         * @param quota quota
+      *  查询指定数据库下所有数据表
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceName - 实例名称
+      * @param {string} opts.databaseName - 数据库名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status
+      * @param string message
+      * @param dwTable data
       */
 
-  describeUserQuota (opts, regionId = this.config.regionId, callback) {
+  listTableInfo (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -841,21 +559,38 @@ cacheInstanceStatus - redis状态，精确匹配，支持多个(running：运行
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeUserQuota"
+        "Missing the required parameter 'regionId' when calling  listTableInfo"
       )
     }
 
     opts = opts || {}
 
+    if (opts.instanceName === undefined || opts.instanceName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceName' when calling listTableInfo"
+      )
+    }
+    if (opts.databaseName === undefined || opts.databaseName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.databaseName' when calling listTableInfo"
+      )
+    }
+
     let postBody = null
     let queryParams = {}
+    if (opts.instanceName !== undefined && opts.instanceName !== null) {
+      queryParams['instanceName'] = opts.instanceName
+    }
+    if (opts.databaseName !== undefined && opts.databaseName !== null) {
+      queryParams['databaseName'] = opts.databaseName
+    }
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/0.1.0'
     }
 
     let formParams = {}
@@ -866,7 +601,7 @@ cacheInstanceStatus - redis状态，精确匹配，支持多个(running：运行
     let returnType = null
 
     this.config.logger(
-      `call describeUserQuota with params:\npathParams:${JSON.stringify(
+      `call listTableInfo with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -879,8 +614,337 @@ cacheInstanceStatus - redis状态，精确匹配，支持多个(running：运行
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/quota',
+      '/regions/{regionId}/dwTable',
       'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建数据表
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceName - 实例名称
+      * @param {dwTableDesc} opts.dbModelDBTable - 数据表描述
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status
+      * @param string message
+      */
+
+  createTable (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createTable"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceName === undefined || opts.instanceName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceName' when calling createTable"
+      )
+    }
+    if (opts.dbModelDBTable === undefined || opts.dbModelDBTable === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.dbModelDBTable' when calling createTable"
+      )
+    }
+
+    let postBody = {}
+    if (opts.instanceName !== undefined && opts.instanceName !== null) {
+      postBody['instanceName'] = opts.instanceName
+    }
+    if (opts.dbModelDBTable !== undefined && opts.dbModelDBTable !== null) {
+      postBody['dbModelDBTable'] = opts.dbModelDBTable
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/0.1.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call createTable with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/dwTable',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询数据表信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.tableName - 数据表名
+      * @param {string} opts.instanceName - 实例名称
+      * @param {string} opts.databaseName - 数据库名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status
+      * @param string message
+      * @param dwTable data
+      */
+
+  getTableInfo (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getTableInfo"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.tableName === undefined || opts.tableName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.tableName' when calling getTableInfo"
+      )
+    }
+    if (opts.instanceName === undefined || opts.instanceName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceName' when calling getTableInfo"
+      )
+    }
+    if (opts.databaseName === undefined || opts.databaseName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.databaseName' when calling getTableInfo"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.instanceName !== undefined && opts.instanceName !== null) {
+      queryParams['instanceName'] = opts.instanceName
+    }
+    if (opts.databaseName !== undefined && opts.databaseName !== null) {
+      queryParams['databaseName'] = opts.databaseName
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      tableName: opts.tableName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/0.1.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call getTableInfo with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/dwTable/{tableName}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除数据表
+      * @param {Object} opts - parameters
+      * @param {string} opts.tableName - 数据表名
+      * @param {string} opts.instanceName - 实例名称
+      * @param {string} opts.databaseName - 数据库名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status
+      * @param string message
+      * @param object data
+      */
+
+  deleteTable (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteTable"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.tableName === undefined || opts.tableName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.tableName' when calling deleteTable"
+      )
+    }
+    if (opts.instanceName === undefined || opts.instanceName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceName' when calling deleteTable"
+      )
+    }
+    if (opts.databaseName === undefined || opts.databaseName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.databaseName' when calling deleteTable"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.instanceName !== undefined && opts.instanceName !== null) {
+      queryParams['instanceName'] = opts.instanceName
+    }
+    if (opts.databaseName !== undefined && opts.databaseName !== null) {
+      queryParams['databaseName'] = opts.databaseName
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      tableName: opts.tableName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/0.1.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteTable with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/dwTable/{tableName}',
+      'DELETE',
       pathParams,
       queryParams,
       headerParams,
@@ -908,4 +972,4 @@ cacheInstanceStatus - redis状态，精确匹配，支持多个(running：运行
     )
   }
 }
-module.exports = JDCloud.REDIS
+module.exports = JDCloud.XDATA

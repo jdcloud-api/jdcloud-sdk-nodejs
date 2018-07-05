@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2025 JDCLOUD.COM
+ * Copyright 2018 JDCLOUD.COM
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * ipanti service.
- * @version 0.2.0
+ * @version 1.0.0
  */
 
 JDCloud.IPANTI = class IPANTI extends Service {
@@ -45,16 +45,713 @@ JDCloud.IPANTI = class IPANTI extends Service {
   }
 
   /**
-         *  查询某个实例下的非网站转发配置
-         * @param {Object} opts - parameters
-         * @param {string} opts.instanceId - 实例id
-         * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
-         * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
-         * @param forwardRule forwardRules
-         * @param integer totalCount
+      *  查询DDos攻击日志
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认为10；取值范围[10, 100]  optional
+      * @param {string} opts.startTime - 开始时间，最多查最近30天，UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} opts.endTime - 查询的结束时间，UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} [opts.instanceId] - 高防实例id  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param dDosAttackLog dataList
+      * @param integer totalCount
+      */
+
+  describeDDosAttackLogs (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeDDosAttackLogs"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.startTime === undefined || opts.startTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.startTime' when calling describeDDosAttackLogs"
+      )
+    }
+    if (opts.endTime === undefined || opts.endTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.endTime' when calling describeDDosAttackLogs"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+    Object.assign(
+      queryParams,
+      this.buildArrayParam(opts.instanceId, 'instanceId')
+    )
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeDDosAttackLogs with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/attacklog:ddos',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询cc攻击日志
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认为10；取值范围[10, 100]  optional
+      * @param {string} opts.startTime - 开始时间，最多查最近30天，UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} opts.endTime - 查询的结束时间，UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} [opts.instanceId] - 高防实例id  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param dDosAttackLog dataList
+      * @param integer totalCount
+      */
+
+  describeCcAttackLogs (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeCcAttackLogs"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.startTime === undefined || opts.startTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.startTime' when calling describeCcAttackLogs"
+      )
+    }
+    if (opts.endTime === undefined || opts.endTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.endTime' when calling describeCcAttackLogs"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+    Object.assign(
+      queryParams,
+      this.buildArrayParam(opts.instanceId, 'instanceId')
+    )
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeCcAttackLogs with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/attacklog:cc',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询cc攻击日志详情
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认为10；取值范围[10, 100]  optional
+      * @param {string} opts.startTime - 开始时间，最多查最近30天，UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} opts.endTime - 查询的结束时间，UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} opts.instanceId - 高防实例id
+      * @param {string} [opts.subDomain] - 子域名  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param cCAttackLogDetail dataList
+      * @param integer totalCount
+      */
+
+  describeCcAttackLogDetails (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeCcAttackLogDetails"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.startTime === undefined || opts.startTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.startTime' when calling describeCcAttackLogDetails"
+      )
+    }
+    if (opts.endTime === undefined || opts.endTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.endTime' when calling describeCcAttackLogDetails"
+      )
+    }
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling describeCcAttackLogDetails"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+    if (opts.instanceId !== undefined && opts.instanceId !== null) {
+      queryParams['instanceId'] = opts.instanceId
+    }
+    Object.assign(
+      queryParams,
+      this.buildArrayParam(opts.subDomain, 'subDomain')
+    )
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeCcAttackLogDetails with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/attacklog:ccDetail',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  ddos防护报表
+      * @param {Object} opts - parameters
+      * @param {string} opts.startTime - 开始时间，最多查最近30天，UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} opts.endTime - 查询的结束时间，UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} [opts.instanceId] - 高防实例id，可以传0个或多个  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param number postProtect
+      * @param number preProtect
+      * @param integer time
+      * @param string unit  单位
+      */
+
+  ddosGraph (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  ddosGraph"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.startTime === undefined || opts.startTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.startTime' when calling ddosGraph"
+      )
+    }
+    if (opts.endTime === undefined || opts.endTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.endTime' when calling ddosGraph"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+    Object.assign(
+      queryParams,
+      this.buildArrayParam(opts.instanceId, 'instanceId')
+    )
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call ddosGraph with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/charts:ddosGraph',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  转发流量报表
+      * @param {Object} opts - parameters
+      * @param {string} opts.startTime - 开始时间，最多查最近30天，UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} opts.endTime - 查询的结束时间，UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} [opts.instanceId] - 高防实例id，可以传0个或多个  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param number forwardRecord
+      * @param integer time
+      * @param string unit  单位
+      */
+
+  fwdGraph (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  fwdGraph"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.startTime === undefined || opts.startTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.startTime' when calling fwdGraph"
+      )
+    }
+    if (opts.endTime === undefined || opts.endTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.endTime' when calling fwdGraph"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+    Object.assign(
+      queryParams,
+      this.buildArrayParam(opts.instanceId, 'instanceId')
+    )
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call fwdGraph with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/charts:fwdGraph',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  转发流量报表
+      * @param {Object} opts - parameters
+      * @param {string} opts.startTime - 开始时间，最多查最近30天，UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} opts.endTime - 查询的结束时间，UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} [opts.instanceId] - 高防实例id，可以传0个或多个  optional
+      * @param {string} [opts.subDomain] - 规则域名，可以传0个或多个  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer postProtect
+      * @param integer preProtect
+      * @param integer time
+      * @param string unit  单位
+      */
+
+  ccGraph (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  ccGraph"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.startTime === undefined || opts.startTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.startTime' when calling ccGraph"
+      )
+    }
+    if (opts.endTime === undefined || opts.endTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.endTime' when calling ccGraph"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+    Object.assign(
+      queryParams,
+      this.buildArrayParam(opts.instanceId, 'instanceId')
+    )
+    Object.assign(
+      queryParams,
+      this.buildArrayParam(opts.subDomain, 'subDomain')
+    )
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call ccGraph with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/charts:ccGraph',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询某个实例下的非网站转发配置
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例id
+      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param forwardRule dataList
+      * @param integer totalCount
       */
 
   describeForwardRules (opts, regionId = this.config.regionId, callback) {
@@ -92,7 +789,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
     }
 
     let formParams = {}
@@ -144,14 +841,15 @@ JDCloud.IPANTI = class IPANTI extends Service {
       }
     )
   }
+
   /**
-         *  添加非网站类规则
-         * @param {Object} opts - parameters
-         * @param {string} opts.instanceId - 实例id
-         * @param {forwardRuleSpec} opts.forwardRuleSpec - 非网站类规则参数
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
+      *  添加非网站类规则
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例id
+      * @param {forwardRuleSpec} opts.forwardRuleSpec - 非网站类规则参数
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
       */
 
   createForwardRule (opts, regionId = this.config.regionId, callback) {
@@ -192,7 +890,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
     }
 
     let formParams = {}
@@ -244,15 +942,16 @@ JDCloud.IPANTI = class IPANTI extends Service {
       }
     )
   }
+
   /**
-         *  查询某条非网站类规则
-         * @param {Object} opts - parameters
-         * @param {string} opts.instanceId - 实例id
-         * @param {string} opts.forwardRuleId - 转发规则id
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
-         * @param forwardRule forwardRule
+      *  查询某条非网站类规则
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例id
+      * @param {string} opts.forwardRuleId - 转发规则id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param forwardRule data
       */
 
   describeForwardRule (opts, regionId = this.config.regionId, callback) {
@@ -290,7 +989,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
     }
 
     let formParams = {}
@@ -342,15 +1041,16 @@ JDCloud.IPANTI = class IPANTI extends Service {
       }
     )
   }
+
   /**
-         *  更新某条非网站类规则
-         * @param {Object} opts - parameters
-         * @param {string} opts.instanceId - 实例id
-         * @param {string} opts.forwardRuleId - 转发规则id
-         * @param {forwardRuleSpec} opts.forwardRuleSpec - 非网站类规则参数
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
+      *  更新某条非网站类规则
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例id
+      * @param {string} opts.forwardRuleId - 转发规则id
+      * @param {forwardRuleSpec} opts.forwardRuleSpec - 非网站类规则参数
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
       */
 
   modifyForwardRule (opts, regionId = this.config.regionId, callback) {
@@ -397,7 +1097,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
     }
 
     let formParams = {}
@@ -449,14 +1149,15 @@ JDCloud.IPANTI = class IPANTI extends Service {
       }
     )
   }
+
   /**
-         *  删除某条非网站规则
-         * @param {Object} opts - parameters
-         * @param {string} opts.instanceId - 实例id
-         * @param {string} opts.forwardRuleId - 转发规则id
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
+      *  删除某条非网站规则
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例id
+      * @param {string} opts.forwardRuleId - 转发规则id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
       */
 
   deleteForwardRule (opts, regionId = this.config.regionId, callback) {
@@ -494,7 +1195,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
     }
 
     let formParams = {}
@@ -546,17 +1247,216 @@ JDCloud.IPANTI = class IPANTI extends Service {
       }
     )
   }
+
   /**
-         *  查询实例列表
-         * @param {Object} opts - parameters
-         * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
-         * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
-         * @param {string} [opts.name] - 实例名称，可模糊匹配  optional
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
-         * @param instance instances
-         * @param integer totalCount
+      *  非网站类规则切换成防御状态
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例id
+      * @param {string} opts.forwardRuleId - 转发规则id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  switchForwardRuleProtect (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  switchForwardRuleProtect"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling switchForwardRuleProtect"
+      )
+    }
+    if (opts.forwardRuleId === undefined || opts.forwardRuleId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.forwardRuleId' when calling switchForwardRuleProtect"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      forwardRuleId: opts.forwardRuleId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call switchForwardRuleProtect with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/forwardRules/{forwardRuleId}:protect',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  非网站类规则切换成回源状态
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例id
+      * @param {string} opts.forwardRuleId - 转发规则id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  switchForwardRuleOrigin (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  switchForwardRuleOrigin"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling switchForwardRuleOrigin"
+      )
+    }
+    if (opts.forwardRuleId === undefined || opts.forwardRuleId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.forwardRuleId' when calling switchForwardRuleOrigin"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      forwardRuleId: opts.forwardRuleId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call switchForwardRuleOrigin with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/forwardRules/{forwardRuleId}:origin',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询实例列表
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
+      * @param {string} [opts.name] - 实例名称，可模糊匹配  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param instance dataList
+      * @param integer totalCount
       */
 
   describeInstances (opts, regionId = this.config.regionId, callback) {
@@ -590,7 +1490,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
     }
 
     let formParams = {}
@@ -642,14 +1542,15 @@ JDCloud.IPANTI = class IPANTI extends Service {
       }
     )
   }
+
   /**
-         *  创建实例
-         * @param {Object} opts - parameters
-         * @param {instanceSpec} opts.instanceSpec - 实例规格参数
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
-         * @param string orderId
+      *  创建实例
+      * @param {Object} opts - parameters
+      * @param {instanceSpec} opts.instanceSpec - 实例规格参数
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string orderId
       */
 
   createInstance (opts, regionId = this.config.regionId, callback) {
@@ -684,7 +1585,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
     }
 
     let formParams = {}
@@ -736,14 +1637,15 @@ JDCloud.IPANTI = class IPANTI extends Service {
       }
     )
   }
+
   /**
-         *  查询实例
-         * @param {Object} opts - parameters
-         * @param {string} opts.instanceId - 实例id
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
-         * @param instance instance
+      *  查询实例
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param instance data
       */
 
   describeInstance (opts, regionId = this.config.regionId, callback) {
@@ -775,7 +1677,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
     }
 
     let formParams = {}
@@ -827,14 +1729,15 @@ JDCloud.IPANTI = class IPANTI extends Service {
       }
     )
   }
+
   /**
-         *  设置实例CC防护
-         * @param {Object} opts - parameters
-         * @param {string} opts.instanceId - 实例id
-         * @param {cCSpec} opts.cCSpec - cc参数
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
+      *  设置实例CC防护
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例id
+      * @param {cCSpec} opts.cCSpec - cc参数
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
       */
 
   modifyInstanceCC (opts, regionId = this.config.regionId, callback) {
@@ -875,7 +1778,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
     }
 
     let formParams = {}
@@ -899,7 +1802,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/instances/{instanceId}/setCC',
+      '/regions/{regionId}/instances/{instanceId}:setCC',
       'POST',
       pathParams,
       queryParams,
@@ -927,13 +1830,14 @@ JDCloud.IPANTI = class IPANTI extends Service {
       }
     )
   }
+
   /**
-         *  开启实例CC防护
-         * @param {Object} opts - parameters
-         * @param {string} opts.instanceId - 实例id
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
+      *  开启实例CC防护
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
       */
 
   enableInstanceCC (opts, regionId = this.config.regionId, callback) {
@@ -966,7 +1870,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
     }
 
     let formParams = {}
@@ -990,7 +1894,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/instances/{instanceId}/enableCC',
+      '/regions/{regionId}/instances/{instanceId}:enableCC',
       'POST',
       pathParams,
       queryParams,
@@ -1018,13 +1922,14 @@ JDCloud.IPANTI = class IPANTI extends Service {
       }
     )
   }
+
   /**
-         *  关闭实例CC防护
-         * @param {Object} opts - parameters
-         * @param {string} opts.instanceId - 实例id
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
+      *  关闭实例CC防护
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
       */
 
   disableInstanceCC (opts, regionId = this.config.regionId, callback) {
@@ -1057,7 +1962,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
     }
 
     let formParams = {}
@@ -1081,7 +1986,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/instances/{instanceId}/disableCC',
+      '/regions/{regionId}/instances/{instanceId}:disableCC',
       'POST',
       pathParams,
       queryParams,
@@ -1109,14 +2014,15 @@ JDCloud.IPANTI = class IPANTI extends Service {
       }
     )
   }
+
   /**
-         *  设置实例url白名单
-         * @param {Object} opts - parameters
-         * @param {string} opts.instanceId - 实例id
-         * @param {array} opts.urlWhiteList - 网站类规则参数
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
+      *  设置实例url白名单
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例id
+      * @param {array} opts.urlWhiteList - 网站类规则参数
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
       */
 
   modifyInstanceUrlWhiteList (opts, regionId = this.config.regionId, callback) {
@@ -1157,7 +2063,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
     }
 
     let formParams = {}
@@ -1181,7 +2087,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/instances/{instanceId}/setUrlWhiteList',
+      '/regions/{regionId}/instances/{instanceId}:setUrlWhiteList',
       'POST',
       pathParams,
       queryParams,
@@ -1209,13 +2115,14 @@ JDCloud.IPANTI = class IPANTI extends Service {
       }
     )
   }
+
   /**
-         *  启用实例url白名单
-         * @param {Object} opts - parameters
-         * @param {string} opts.instanceId - 实例id
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
+      *  启用实例url白名单
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
       */
 
   enableInstanceUrlWhiteList (opts, regionId = this.config.regionId, callback) {
@@ -1248,7 +2155,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
     }
 
     let formParams = {}
@@ -1272,7 +2179,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/instances/{instanceId}/enableUrlWhiteList',
+      '/regions/{regionId}/instances/{instanceId}:enableUrlWhiteList',
       'POST',
       pathParams,
       queryParams,
@@ -1300,13 +2207,14 @@ JDCloud.IPANTI = class IPANTI extends Service {
       }
     )
   }
+
   /**
-         *  禁用实例url白名单
-         * @param {Object} opts - parameters
-         * @param {string} opts.instanceId - 实例id
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
+      *  禁用实例url白名单
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
       */
 
   disableInstanceUrlWhiteList (opts, regionId = this.config.regionId, callback) {
@@ -1339,7 +2247,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
     }
 
     let formParams = {}
@@ -1363,7 +2271,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/instances/{instanceId}/disableUrlWhiteList',
+      '/regions/{regionId}/instances/{instanceId}:disableUrlWhiteList',
       'POST',
       pathParams,
       queryParams,
@@ -1391,14 +2299,15 @@ JDCloud.IPANTI = class IPANTI extends Service {
       }
     )
   }
+
   /**
-         *  修改实例名称
-         * @param {Object} opts - parameters
-         * @param {string} opts.instanceId - 实例id
-         * @param {string} opts.name - 新的实例名称
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
+      *  修改实例名称
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例id
+      * @param {string} opts.name - 新的实例名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
       */
 
   modifyInstanceName (opts, regionId = this.config.regionId, callback) {
@@ -1439,7 +2348,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
     }
 
     let formParams = {}
@@ -1463,7 +2372,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/instances/{instanceId}/rename',
+      '/regions/{regionId}/instances/{instanceId}:rename',
       'POST',
       pathParams,
       queryParams,
@@ -1491,14 +2400,15 @@ JDCloud.IPANTI = class IPANTI extends Service {
       }
     )
   }
+
   /**
-         *  设置实例ip黑名单
-         * @param {Object} opts - parameters
-         * @param {string} opts.instanceId - 实例id
-         * @param {array} opts.ipBlackList - ip黑名单列表
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
+      *  设置实例ip黑名单
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例id
+      * @param {array} opts.ipBlackList - ip黑名单列表
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
       */
 
   modifyInstanceIpBlackList (opts, regionId = this.config.regionId, callback) {
@@ -1539,7 +2449,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
     }
 
     let formParams = {}
@@ -1563,7 +2473,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/instances/{instanceId}/setIpBlackList',
+      '/regions/{regionId}/instances/{instanceId}:setIpBlackList',
       'POST',
       pathParams,
       queryParams,
@@ -1591,13 +2501,14 @@ JDCloud.IPANTI = class IPANTI extends Service {
       }
     )
   }
+
   /**
-         *  启用实例ip黑名单
-         * @param {Object} opts - parameters
-         * @param {string} opts.instanceId - 实例id
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
+      *  启用实例ip黑名单
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
       */
 
   enableInstanceIpBlackList (opts, regionId = this.config.regionId, callback) {
@@ -1630,7 +2541,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
     }
 
     let formParams = {}
@@ -1654,7 +2565,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/instances/{instanceId}/enableIpBlackList',
+      '/regions/{regionId}/instances/{instanceId}:enableIpBlackList',
       'POST',
       pathParams,
       queryParams,
@@ -1682,13 +2593,14 @@ JDCloud.IPANTI = class IPANTI extends Service {
       }
     )
   }
+
   /**
-         *  禁用实例ip黑名单
-         * @param {Object} opts - parameters
-         * @param {string} opts.instanceId - 实例id
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
+      *  禁用实例ip黑名单
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
       */
 
   disableInstanceIpBlackList (opts, regionId = this.config.regionId, callback) {
@@ -1721,7 +2633,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
     }
 
     let formParams = {}
@@ -1745,7 +2657,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/instances/{instanceId}/disableIpBlackList',
+      '/regions/{regionId}/instances/{instanceId}:disableIpBlackList',
       'POST',
       pathParams,
       queryParams,
@@ -1773,14 +2685,15 @@ JDCloud.IPANTI = class IPANTI extends Service {
       }
     )
   }
+
   /**
-         *  设置实例ip白名单
-         * @param {Object} opts - parameters
-         * @param {string} opts.instanceId - 实例id
-         * @param {array} opts.ipWhiteList - ip白名单列表
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
+      *  设置实例ip白名单
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例id
+      * @param {array} opts.ipWhiteList - ip白名单列表
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
       */
 
   modifyInstanceIpWhiteList (opts, regionId = this.config.regionId, callback) {
@@ -1821,7 +2734,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
     }
 
     let formParams = {}
@@ -1845,7 +2758,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/instances/{instanceId}/setIpWhiteList',
+      '/regions/{regionId}/instances/{instanceId}:setIpWhiteList',
       'POST',
       pathParams,
       queryParams,
@@ -1873,13 +2786,14 @@ JDCloud.IPANTI = class IPANTI extends Service {
       }
     )
   }
+
   /**
-         *  启用实例ip白名单
-         * @param {Object} opts - parameters
-         * @param {string} opts.instanceId - 实例id
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
+      *  启用实例ip白名单
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
       */
 
   enableInstanceIpWhiteList (opts, regionId = this.config.regionId, callback) {
@@ -1912,7 +2826,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
     }
 
     let formParams = {}
@@ -1936,7 +2850,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/instances/{instanceId}/enableIpWhiteList',
+      '/regions/{regionId}/instances/{instanceId}:enableIpWhiteList',
       'POST',
       pathParams,
       queryParams,
@@ -1964,13 +2878,14 @@ JDCloud.IPANTI = class IPANTI extends Service {
       }
     )
   }
+
   /**
-         *  禁用实例ip白名单
-         * @param {Object} opts - parameters
-         * @param {string} opts.instanceId - 实例id
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
+      *  禁用实例ip白名单
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
       */
 
   disableInstanceIpWhiteList (opts, regionId = this.config.regionId, callback) {
@@ -2003,7 +2918,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
     }
 
     let formParams = {}
@@ -2027,7 +2942,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/instances/{instanceId}/disableIpWhiteList',
+      '/regions/{regionId}/instances/{instanceId}:disableIpWhiteList',
       'POST',
       pathParams,
       queryParams,
@@ -2055,17 +2970,303 @@ JDCloud.IPANTI = class IPANTI extends Service {
       }
     )
   }
+
   /**
-         *  查询某个实例下的网站类规则
-         * @param {Object} opts - parameters
-         * @param {string} opts.instanceId - 实例id
-         * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
-         * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
-         * @param webRule webRules
-         * @param integer totalCount
+      *  开启CC防护每ip的限速
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  enableCcObserverMode (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  enableCcObserverMode"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling enableCcObserverMode"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call enableCcObserverMode with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}:enableCcIpLimit',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  关闭CC防护每ip的限速
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  disableCcObserverMode (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  disableCcObserverMode"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling disableCcObserverMode"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call disableCcObserverMode with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}:disableCcIpLimit',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  设置实例CC防护每ip限速
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例id
+      * @param {ccIpLimitSpec} opts.cCSpec - cc参数
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  setCcIpLimit (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  setCcIpLimit"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling setCcIpLimit"
+      )
+    }
+    if (opts.cCSpec === undefined || opts.cCSpec === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.cCSpec' when calling setCcIpLimit"
+      )
+    }
+
+    let postBody = {}
+    if (opts.cCSpec !== undefined && opts.cCSpec !== null) {
+      postBody['cCSpec'] = opts.cCSpec
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call setCcIpLimit with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}:setCcIpLimit',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询某个实例下的网站类规则
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例id
+      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param webRule dataList
+      * @param integer totalCount
       */
 
   describeWebRules (opts, regionId = this.config.regionId, callback) {
@@ -2103,7 +3304,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
     }
 
     let formParams = {}
@@ -2155,14 +3356,15 @@ JDCloud.IPANTI = class IPANTI extends Service {
       }
     )
   }
+
   /**
-         *  添加网站类规则
-         * @param {Object} opts - parameters
-         * @param {string} opts.instanceId - 实例id
-         * @param {webRuleSpec} opts.webRuleSpec - 网站类规则参数
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
+      *  添加网站类规则
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例id
+      * @param {webRuleSpec} opts.webRuleSpec - 网站类规则参数
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
       */
 
   createWebRule (opts, regionId = this.config.regionId, callback) {
@@ -2203,7 +3405,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
     }
 
     let formParams = {}
@@ -2255,15 +3457,16 @@ JDCloud.IPANTI = class IPANTI extends Service {
       }
     )
   }
+
   /**
-         *  查询某条网站类规则
-         * @param {Object} opts - parameters
-         * @param {string} opts.instanceId - 实例id
-         * @param {string} opts.webRuleId - 网站规则id
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
-         * @param webRule webRule
+      *  查询某条网站类规则
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例id
+      * @param {string} opts.webRuleId - 网站规则id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param webRule data
       */
 
   describeWebRule (opts, regionId = this.config.regionId, callback) {
@@ -2301,7 +3504,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
     }
 
     let formParams = {}
@@ -2353,15 +3556,16 @@ JDCloud.IPANTI = class IPANTI extends Service {
       }
     )
   }
+
   /**
-         *  更新某条网站类规则
-         * @param {Object} opts - parameters
-         * @param {string} opts.instanceId - 实例id
-         * @param {string} opts.webRuleId - 网站规则id
-         * @param {webRuleSpec} opts.webRuleSpec - 网站类规则参数
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
+      *  更新某条网站类规则
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例id
+      * @param {string} opts.webRuleId - 网站规则id
+      * @param {webRuleSpec} opts.webRuleSpec - 网站类规则参数
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
       */
 
   modifyWebRule (opts, regionId = this.config.regionId, callback) {
@@ -2408,7 +3612,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
     }
 
     let formParams = {}
@@ -2460,14 +3664,15 @@ JDCloud.IPANTI = class IPANTI extends Service {
       }
     )
   }
+
   /**
-         *  删除某条网站规则
-         * @param {Object} opts - parameters
-         * @param {string} opts.instanceId - 实例id
-         * @param {string} opts.webRuleId - 网站规则id
-         * @param {string} regionId - ID of the region
-         * @param {string} callback - callback
-         @return {Object} result
+      *  删除某条网站规则
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例id
+      * @param {string} opts.webRuleId - 网站规则id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
       */
 
   deleteWebRule (opts, regionId = this.config.regionId, callback) {
@@ -2505,7 +3710,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
     }
 
     let formParams = {}
@@ -2531,6 +3736,402 @@ JDCloud.IPANTI = class IPANTI extends Service {
     let request = this.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}',
       'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  网站类规则切换成防御状态
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例id
+      * @param {string} opts.webRuleId - 网站规则id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  switchWebRuleProtect (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  switchWebRuleProtect"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling switchWebRuleProtect"
+      )
+    }
+    if (opts.webRuleId === undefined || opts.webRuleId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.webRuleId' when calling switchWebRuleProtect"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      webRuleId: opts.webRuleId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call switchWebRuleProtect with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}:protect',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  网站类规则切换成回源状态
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例id
+      * @param {string} opts.webRuleId - 网站规则id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  switchWebRuleOrigin (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  switchWebRuleOrigin"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling switchWebRuleOrigin"
+      )
+    }
+    if (opts.webRuleId === undefined || opts.webRuleId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.webRuleId' when calling switchWebRuleOrigin"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      webRuleId: opts.webRuleId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call switchWebRuleOrigin with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}:origin',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  网站类规则开启CC
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例id
+      * @param {string} opts.webRuleId - 网站规则id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  enableWebRuleCC (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  enableWebRuleCC"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling enableWebRuleCC"
+      )
+    }
+    if (opts.webRuleId === undefined || opts.webRuleId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.webRuleId' when calling enableWebRuleCC"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      webRuleId: opts.webRuleId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call enableWebRuleCC with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}:enableCC',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  网站类规则禁用CC
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例id
+      * @param {string} opts.webRuleId - 网站规则id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  disableWebRuleCC (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  disableWebRuleCC"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling disableWebRuleCC"
+      )
+    }
+    if (opts.webRuleId === undefined || opts.webRuleId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.webRuleId' when calling disableWebRuleCC"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      webRuleId: opts.webRuleId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call disableWebRuleCC with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}:disableCC',
+      'POST',
       pathParams,
       queryParams,
       headerParams,

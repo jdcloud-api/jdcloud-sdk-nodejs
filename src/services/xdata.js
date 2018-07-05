@@ -1,5 +1,5 @@
 /*
- * Copyright 2018-2025 JDCLOUD.COM
+ * Copyright 2018 JDCLOUD.COM
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * xdata service.
- * @version 0.1.0
+ * @version 1.0.0
  */
 
 JDCloud.XDATA = class XDATA extends Service {
@@ -45,7 +45,7 @@ JDCloud.XDATA = class XDATA extends Service {
   }
 
   /**
-      *  查询实例列表
+      *  查询数据库列表
       * @param {Object} opts - parameters
       * @param {string} opts.instanceName - 实例名称
       * @param {string} regionId - ID of the region
@@ -87,7 +87,7 @@ JDCloud.XDATA = class XDATA extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/0.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.0.0'
     }
 
     let formParams = {}
@@ -190,7 +190,7 @@ JDCloud.XDATA = class XDATA extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/0.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.0.0'
     }
 
     let formParams = {}
@@ -297,7 +297,7 @@ JDCloud.XDATA = class XDATA extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/0.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.0.0'
     }
 
     let formParams = {}
@@ -399,7 +399,7 @@ JDCloud.XDATA = class XDATA extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/0.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.0.0'
     }
 
     let formParams = {}
@@ -485,7 +485,7 @@ JDCloud.XDATA = class XDATA extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/0.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.0.0'
     }
 
     let formParams = {}
@@ -511,6 +511,1006 @@ JDCloud.XDATA = class XDATA extends Service {
     let request = this.makeRequest(
       '/regions/{regionId}/dwInstance',
       'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  执行Spark SQL
+      * @param {Object} opts - parameters
+      * @param {string} [opts.databaseName] - 数据库名称  optional
+      * @param {string} opts.sql - sql脚本
+      * @param {string} opts.userName - 用户名称
+      * @param {string} [opts.queueName] - 队列名称  optional
+      * @param {string} [opts.source] - 资源名称  optional
+      * @param {string} [opts.callBackURL] - 回调地址名称  optional
+      * @param {string} opts.instanceName - 实例名称
+      * @param {string} [opts.instanceOwnerName] - 实例拥有者名称  optional
+      * @param {string} [opts.isExplain] - 是否需要解释  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status
+      * @param string message
+      * @param integer data
+      */
+
+  executeRasQuery (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  executeRasQuery"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.sql === undefined || opts.sql === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.sql' when calling executeRasQuery"
+      )
+    }
+    if (opts.userName === undefined || opts.userName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.userName' when calling executeRasQuery"
+      )
+    }
+    if (opts.instanceName === undefined || opts.instanceName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceName' when calling executeRasQuery"
+      )
+    }
+
+    let postBody = {}
+    if (opts.databaseName !== undefined && opts.databaseName !== null) {
+      postBody['databaseName'] = opts.databaseName
+    }
+    if (opts.sql !== undefined && opts.sql !== null) {
+      postBody['sql'] = opts.sql
+    }
+    if (opts.userName !== undefined && opts.userName !== null) {
+      postBody['userName'] = opts.userName
+    }
+    if (opts.queueName !== undefined && opts.queueName !== null) {
+      postBody['queueName'] = opts.queueName
+    }
+    if (opts.source !== undefined && opts.source !== null) {
+      postBody['source'] = opts.source
+    }
+    if (opts.callBackURL !== undefined && opts.callBackURL !== null) {
+      postBody['callBackURL'] = opts.callBackURL
+    }
+    if (opts.instanceName !== undefined && opts.instanceName !== null) {
+      postBody['instanceName'] = opts.instanceName
+    }
+    if (
+      opts.instanceOwnerName !== undefined &&
+      opts.instanceOwnerName !== null
+    ) {
+      postBody['instanceOwnerName'] = opts.instanceOwnerName
+    }
+    if (opts.isExplain !== undefined && opts.isExplain !== null) {
+      postBody['isExplain'] = opts.isExplain
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.0.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call executeRasQuery with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/dwQuery:executeRasQuery',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  执行PySpark脚本
+      * @param {Object} opts - parameters
+      * @param {string} opts.script - PySpark脚本
+      * @param {string} opts.userName - 用户名称
+      * @param {string} opts.instanceName - 实例名称
+      * @param {string} [opts.instanceOwnerName] - 实例拥有者名称  optional
+      * @param {string} [opts.scriptType] - 脚本类型名称  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status
+      * @param string message
+      * @param integer data
+      */
+
+  executePySparkQuery (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  executePySparkQuery"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.script === undefined || opts.script === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.script' when calling executePySparkQuery"
+      )
+    }
+    if (opts.userName === undefined || opts.userName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.userName' when calling executePySparkQuery"
+      )
+    }
+    if (opts.instanceName === undefined || opts.instanceName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceName' when calling executePySparkQuery"
+      )
+    }
+
+    let postBody = {}
+    if (opts.script !== undefined && opts.script !== null) {
+      postBody['script'] = opts.script
+    }
+    if (opts.userName !== undefined && opts.userName !== null) {
+      postBody['userName'] = opts.userName
+    }
+    if (opts.instanceName !== undefined && opts.instanceName !== null) {
+      postBody['instanceName'] = opts.instanceName
+    }
+    if (
+      opts.instanceOwnerName !== undefined &&
+      opts.instanceOwnerName !== null
+    ) {
+      postBody['instanceOwnerName'] = opts.instanceOwnerName
+    }
+    if (opts.scriptType !== undefined && opts.scriptType !== null) {
+      postBody['scriptType'] = opts.scriptType
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.0.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call executePySparkQuery with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/dwQuery:executePySparkQuery',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取查询状态
+      * @param {Object} opts - parameters
+      * @param {string} opts.userName - 用户名称
+      * @param {string} opts.queryId - 查询id名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status
+      * @param string message
+      * @param string data
+      */
+
+  getRasQueryState (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getRasQueryState"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.userName === undefined || opts.userName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.userName' when calling getRasQueryState"
+      )
+    }
+    if (opts.queryId === undefined || opts.queryId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryId' when calling getRasQueryState"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.userName !== undefined && opts.userName !== null) {
+      queryParams['userName'] = opts.userName
+    }
+    if (opts.queryId !== undefined && opts.queryId !== null) {
+      queryParams['queryId'] = opts.queryId
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.0.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call getRasQueryState with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/dwQuery:getRasQueryState',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取PySpark脚本的执行状态
+      * @param {Object} opts - parameters
+      * @param {string} opts.userName - 用户名称
+      * @param {string} opts.queryId - 查询id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status
+      * @param string message
+      * @param string data
+      */
+
+  getPySparkExecuteState (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getPySparkExecuteState"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.userName === undefined || opts.userName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.userName' when calling getPySparkExecuteState"
+      )
+    }
+    if (opts.queryId === undefined || opts.queryId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryId' when calling getPySparkExecuteState"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.userName !== undefined && opts.userName !== null) {
+      queryParams['userName'] = opts.userName
+    }
+    if (opts.queryId !== undefined && opts.queryId !== null) {
+      queryParams['queryId'] = opts.queryId
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.0.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call getPySparkExecuteState with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/dwQuery:getPySparkExecuteState',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取查询日志
+      * @param {Object} opts - parameters
+      * @param {string} opts.userName - 用户名称
+      * @param {string} opts.queryId - 查询id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status
+      * @param string message
+      */
+
+  getRasQueryLog (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getRasQueryLog"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.userName === undefined || opts.userName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.userName' when calling getRasQueryLog"
+      )
+    }
+    if (opts.queryId === undefined || opts.queryId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryId' when calling getRasQueryLog"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.userName !== undefined && opts.userName !== null) {
+      queryParams['userName'] = opts.userName
+    }
+    if (opts.queryId !== undefined && opts.queryId !== null) {
+      queryParams['queryId'] = opts.queryId
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.0.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call getRasQueryLog with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/dwQuery:getRasQueryLog',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取查询的结果
+      * @param {Object} opts - parameters
+      * @param {string} opts.userName - 用户名称
+      * @param {string} opts.queryId - 查询id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status
+      * @param string message
+      */
+
+  getRasQueryResult (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getRasQueryResult"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.userName === undefined || opts.userName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.userName' when calling getRasQueryResult"
+      )
+    }
+    if (opts.queryId === undefined || opts.queryId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryId' when calling getRasQueryResult"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.userName !== undefined && opts.userName !== null) {
+      queryParams['userName'] = opts.userName
+    }
+    if (opts.queryId !== undefined && opts.queryId !== null) {
+      queryParams['queryId'] = opts.queryId
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.0.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call getRasQueryResult with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/dwQuery:getRasQueryResult',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取PySpark执行的结果
+      * @param {Object} opts - parameters
+      * @param {string} opts.userName - 用户名称
+      * @param {string} opts.queryId - 查询id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status
+      * @param string message
+      */
+
+  getPySparkExecuteResult (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getPySparkExecuteResult"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.userName === undefined || opts.userName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.userName' when calling getPySparkExecuteResult"
+      )
+    }
+    if (opts.queryId === undefined || opts.queryId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryId' when calling getPySparkExecuteResult"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.userName !== undefined && opts.userName !== null) {
+      queryParams['userName'] = opts.userName
+    }
+    if (opts.queryId !== undefined && opts.queryId !== null) {
+      queryParams['queryId'] = opts.queryId
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.0.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call getPySparkExecuteResult with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/dwQuery:getPySparkExecuteResult',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  终止查询
+      * @param {Object} opts - parameters
+      * @param {string} opts.userName - 用户名称
+      * @param {string} opts.queryId - 查询id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status
+      * @param string message
+      */
+
+  cancelRasQuery (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  cancelRasQuery"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.userName === undefined || opts.userName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.userName' when calling cancelRasQuery"
+      )
+    }
+    if (opts.queryId === undefined || opts.queryId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryId' when calling cancelRasQuery"
+      )
+    }
+
+    let postBody = {}
+    if (opts.userName !== undefined && opts.userName !== null) {
+      postBody['userName'] = opts.userName
+    }
+    if (opts.queryId !== undefined && opts.queryId !== null) {
+      postBody['queryId'] = opts.queryId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.0.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call cancelRasQuery with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/dwQuery:cancelRasQuery',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  终止PySpark任务
+      * @param {Object} opts - parameters
+      * @param {string} opts.userName - 用户名称
+      * @param {string} opts.queryId - 查询id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status
+      * @param string message
+      */
+
+  cancelPySparkJob (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  cancelPySparkJob"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.userName === undefined || opts.userName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.userName' when calling cancelPySparkJob"
+      )
+    }
+    if (opts.queryId === undefined || opts.queryId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryId' when calling cancelPySparkJob"
+      )
+    }
+
+    let postBody = {}
+    if (opts.userName !== undefined && opts.userName !== null) {
+      postBody['userName'] = opts.userName
+    }
+    if (opts.queryId !== undefined && opts.queryId !== null) {
+      postBody['queryId'] = opts.queryId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.0.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call cancelPySparkJob with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/dwQuery:cancelPySparkQuery',
+      'POST',
       pathParams,
       queryParams,
       headerParams,
@@ -590,7 +1590,7 @@ JDCloud.XDATA = class XDATA extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/0.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.0.0'
     }
 
     let formParams = {}
@@ -695,7 +1695,7 @@ JDCloud.XDATA = class XDATA extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/0.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.0.0'
     }
 
     let formParams = {}
@@ -807,7 +1807,7 @@ JDCloud.XDATA = class XDATA extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/0.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.0.0'
     }
 
     let formParams = {}
@@ -919,7 +1919,7 @@ JDCloud.XDATA = class XDATA extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/0.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.0.0'
     }
 
     let formParams = {}

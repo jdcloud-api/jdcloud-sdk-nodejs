@@ -78,6 +78,9 @@ SDK使用中的任何问题，欢迎您在Github SDK使用问题反馈页面交�
 	    accessKeyId: global.accessKeyId,
 	    secretAccessKey: global.secretAccessKey
 	  },
+      version: {
+	    vm: 'v1'
+      },
 	  regionId: 'cn-north-1'
 	})
 	

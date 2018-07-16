@@ -1,4 +1,4 @@
-// Copyright 2018-2025 JDCLOUD.COM
+// Copyright 2018 JDCLOUD.COM
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -97,9 +97,9 @@ module.exports = class SignerV2 extends RequestSigner {
   canonicalString () {
     var parts = []
     var pathname = this.request.path
-    // if (this.serviceName !== 'jfs') {
-    //   pathname = util.uriEscapePath(pathname)
-    // }
+    //    if (this.serviceName !== 'jfs') {
+    //      pathname = util.uriEscapePath(pathname)
+    //    }
 
     parts.push(this.request.request.method)
     parts.push(pathname)

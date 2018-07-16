@@ -5,6 +5,7 @@ let defaultValues = {
   regionId: null,
   apiVersions: null,
   endpoint: {},
+  version: {},
   logger: function (string, level = 'INFO') {
     // level: INFO / DEBUG / ERROR / WARN
     console.log(string)

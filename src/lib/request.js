@@ -72,7 +72,7 @@ JDCloud.JCRequest = class JCRequest {
     var queryParamsWithoutEmptyItem = {}
     var keys = Object.keys(queryParams)
     for (let key of keys) {
-      if (queryParams[key] != undefined) {
+      if (queryParams[key] !== undefined) {
         queryParamsWithoutEmptyItem[key] = queryParams[key]
       }
     }

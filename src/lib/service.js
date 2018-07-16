@@ -58,12 +58,14 @@ JDCloud.Service = class Service {
       return JDCloud.fetch(signer.request.request).then(response => {
         return response.json().then(
           result => {
+            result.responseObj = response
             if (response.ok) {
               return result
             }
             return Promise.reject(result)
           },
           error => {
+            error.responseObj = response
             if (error.type === 'invalid-json') {
               // oss没有返回json
               if (response.ok) {
@@ -71,9 +73,11 @@ JDCloud.Service = class Service {
                   requestId: response.headers.get('x-jdcloud-request-id') || ''
                 })
               } else {
+                /* eslint-disable */
                 return Promise.reject({
                   requestId: response.headers.get('x-jdcloud-request-id') || ''
                 })
+                /* eslint-enable */
               }
             }
             throw error
@@ -112,20 +116,60 @@ JDCloud.Service = class Service {
    *  ]
    *
    */
-  buildFilterParam (param, key) {
+  buildFilterParam (param = [], key) {
     var result = {}
-    if (Array.isArray(param)) {
-      for (var i = 0; i < param.length; i++) {
-        var obj = param[i]
+    if (!Array.isArray(param)) {
+      throw new Error(`The type of param 'param' should be Array!`)
+    }
 
-        if (obj.name && obj.values) {
-          result[`${key}.${i + 1}.name`] = obj.name
+    for (var i = 0; i < param.length; i++) {
+      var obj = param[i]
+
+      if (obj.values && !Array.isArray(obj.values)) {
+        throw new Error(
+          `The type of param 'param[${i}].values' should be Array or NULL!`
+        )
+      }
+
+      if (obj.name) {
+        result[`${key}.${i + 1}.name`] = obj.name
+
+        if (obj.values) {
           for (var j = 0; j < obj.values.length; j++) {
             var someString = obj.values[j]
             result[`${key}.${i + 1}.values.${j + 1}`] = someString
           }
-          if (obj.operator) {
-            result[`${key}.${i + 1}.operator`] = obj.operator
+        }
+        if (obj.operator) {
+          result[`${key}.${i + 1}.operator`] = obj.operator
+        }
+      }
+    }
+    return result
+  }
+
+  buildTagFilterParam (param = [], key) {
+    var result = {}
+    if (!Array.isArray(param)) {
+      throw new Error(`The type of param 'param' should be Array!`)
+    }
+
+    for (var i = 0; i < param.length; i++) {
+      var obj = param[i]
+
+      if (obj.values && !Array.isArray(obj.values)) {
+        throw new Error(
+          `The type of param 'param[${i}].values' should be Array or NULL!`
+        )
+      }
+
+      if (obj.key) {
+        result[`${key}.${i + 1}.key`] = obj.key
+
+        if (obj.values) {
+          for (var j = 0; j < obj.values.length; j++) {
+            var someString = obj.values[j]
+            result[`${key}.${i + 1}.values.${j + 1}`] = someString
           }
         }
       }
@@ -133,27 +177,35 @@ JDCloud.Service = class Service {
     return result
   }
 
-  buildSortParam (param, key) {
+  buildSortParam (param = [], key) {
     var result = {}
+    if (!Array.isArray(param)) {
+      throw new Error(`The type of param 'param' should be Array!`)
+    }
+
+    var index = 0
     for (var i = 0; i < param.length; i++) {
       var obj = param[i]
 
       if (obj.name && obj.direction) {
-        result[`${key}.${i + 1}.name`] = obj.name
-        result[`${key}.${i + 1}.direction`] = obj.direction
+        index++
+        result[`${key}.${index}.name`] = obj.name
+        result[`${key}.${index}.direction`] = obj.direction
       }
     }
     return result
   }
 
   // arr=[a,b,c] =>  arr={arr1:a, arr2:b, arr3:c}
-  buildArrayParam (param, key) {
+  buildArrayParam (param = [], key) {
     var result = {}
-    if (Array.isArray(param)) {
-      for (var i = 0; i < param.length; i++) {
-        var value = param[i]
-        result[`${key}.${i + 1}`] = value
-      }
+    if (!Array.isArray(param)) {
+      throw new Error(`The type of param 'param' should be Array!`)
+    }
+
+    for (var i = 0; i < param.length; i++) {
+      var value = param[i]
+      result[`${key}.${i + 1}`] = value
     }
     return result
   }

@@ -116,32 +116,28 @@ JDCloud.Service = class Service {
    *  ]
    *
    */
-  buildFilterParam (param = [], key) {
+  buildFilterParam (param, key) {
     var result = {}
-    if (!Array.isArray(param)) {
-      throw new Error(`The type of param 'param' should be Array!`)
-    }
+    if (Array.isArray(param)) {
+      let index = 0
+      for (var i = 0; i < param.length; i++) {
+        var obj = param[i]
 
-    for (var i = 0; i < param.length; i++) {
-      var obj = param[i]
-
-      if (obj.values && !Array.isArray(obj.values)) {
-        throw new Error(
-          `The type of param 'param[${i}].values' should be Array or NULL!`
-        )
-      }
-
-      if (obj.name) {
-        result[`${key}.${i + 1}.name`] = obj.name
-
-        if (obj.values) {
+        // 兼容空字符串
+        if (obj.values !== '' && !Array.isArray(obj.values)) {
+          throw new Error('The type of filters.values should be Array!')
+        }
+        if (obj.name && obj.values) {
+          if (!obj.values.length) continue
+          result[`${key}.${index + 1}.name`] = obj.name
           for (var j = 0; j < obj.values.length; j++) {
             var someString = obj.values[j]
-            result[`${key}.${i + 1}.values.${j + 1}`] = someString
+            result[`${key}.${index + 1}.values.${j + 1}`] = someString
           }
-        }
-        if (obj.operator) {
-          result[`${key}.${i + 1}.operator`] = obj.operator
+          if (obj.operator) {
+            result[`${key}.${index + 1}.operator`] = obj.operator
+          }
+          index++
         }
       }
     }

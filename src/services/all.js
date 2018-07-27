@@ -1,4 +1,5 @@
 module.exports = {
+  MONITORCM: require('./monitorcm'),
   VM: require('./vm'),
   REDIS: require('./redis'),
   RDS: require('./rds'),
@@ -7,12 +8,16 @@ module.exports = {
   DISK: require('./disk'),
   MONGODB: require('./mongodb'),
   VPC: require('./vpc'),
+  SOP: require('./sop'),
   XDATA: require('./xdata'),
   NC: require('./nc'),
+  CLOUDDNSSERVICE: require('./clouddnsservice'),
   MPS: require('./mps'),
   JMR: require('./jmr'),
   STREAMBUS: require('./streambus'),
   OSS: require('./oss'),
   BASEANTI: require('./baseanti'),
+  STREAMCOMPUTER: require('./streamcomputer'),
+  JKE: require('./jke'),
   IPANTI: require('./ipanti')
 }

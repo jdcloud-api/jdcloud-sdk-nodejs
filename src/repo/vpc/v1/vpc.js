@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * vpc service.
- * @version 0.2.0
+ * @version 0.3.0
  */
 
 JDCloud.VPC = class VPC extends Service {
@@ -89,7 +89,7 @@ chargeStatus - eip的费用支付状态,normal(正常状态) or overdue(预付�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
     }
 
     let formParams = {}
@@ -198,7 +198,7 @@ chargeStatus - eip的费用支付状态,normal(正常状态) or overdue(预付�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
     }
 
     let formParams = {}
@@ -290,7 +290,7 @@ chargeStatus - eip的费用支付状态,normal(正常状态) or overdue(预付�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
     }
 
     let formParams = {}
@@ -381,7 +381,7 @@ chargeStatus - eip的费用支付状态,normal(正常状态) or overdue(预付�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
     }
 
     let formParams = {}
@@ -406,6 +406,538 @@ chargeStatus - eip的费用支付状态,normal(正常状态) or overdue(预付�
 
     let request = this.makeRequest(
       '/regions/{regionId}/elasticIps/{elasticIpId}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询弹性网卡列表
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞), 页码超过总页数时, 显示最后一页  optional
+      * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围：[10,100]  optional
+      * @param {filter} [opts.filters] - networkInterfaceIds - 弹性网卡ID列表，支持多个
+networkInterfaceNames - 弹性网卡名称列表，支持多个
+vpcId - 弹性网卡所属vpc Id，支持单个
+subnetId - 弹性网卡所属子网Id，支持单个
+role - 网卡角色，取值范围：Primary（主网卡）、Secondary（辅助网卡），支持单个
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param networkInterface networkInterfaces
+      * @param number totalCount  总数量
+      */
+
+  describeNetworkInterfaces (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeNetworkInterfaces"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeNetworkInterfaces with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/networkInterfaces/',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建网卡接口，只能创建辅助网卡
+      * @param {Object} opts - parameters
+      * @param {string} opts.subnetId - 子网ID
+      * @param {string} [opts.az] - 可用区，用户的默认可用区  optional
+      * @param {string} [opts.networkInterfaceName] - 网卡名称，只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符。  optional
+      * @param {string} [opts.primaryIpAddress] - 网卡主IP，如果不指定，会自动从子网中分配  optional
+      * @param {array} [opts.secondaryIpAddresses] - SecondaryIp列表  optional
+      * @param {integer} [opts.secondaryIpCount] - 自动分配的SecondaryIp数量  optional
+      * @param {array} [opts.securityGroups] - 要绑定的安全组ID列表，最多指定5个安全组  optional
+      * @param {integer} [opts.sanityCheck] - 源和目标IP地址校验，取值为0或者1,默认为1  optional
+      * @param {string} [opts.description] - 描述,​ 允许输入UTF-8编码下的全部字符，不超过256字符  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string networkInterfaceId  弹性网卡Id
+      */
+
+  createNetworkInterface (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createNetworkInterface"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.subnetId === undefined || opts.subnetId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.subnetId' when calling createNetworkInterface"
+      )
+    }
+
+    let postBody = {}
+    if (opts.subnetId !== undefined && opts.subnetId !== null) {
+      postBody['subnetId'] = opts.subnetId
+    }
+    if (opts.az !== undefined && opts.az !== null) {
+      postBody['az'] = opts.az
+    }
+    if (
+      opts.networkInterfaceName !== undefined &&
+      opts.networkInterfaceName !== null
+    ) {
+      postBody['networkInterfaceName'] = opts.networkInterfaceName
+    }
+    if (opts.primaryIpAddress !== undefined && opts.primaryIpAddress !== null) {
+      postBody['primaryIpAddress'] = opts.primaryIpAddress
+    }
+    if (
+      opts.secondaryIpAddresses !== undefined &&
+      opts.secondaryIpAddresses !== null
+    ) {
+      postBody['secondaryIpAddresses'] = opts.secondaryIpAddresses
+    }
+    if (opts.secondaryIpCount !== undefined && opts.secondaryIpCount !== null) {
+      postBody['secondaryIpCount'] = opts.secondaryIpCount
+    }
+    if (opts.securityGroups !== undefined && opts.securityGroups !== null) {
+      postBody['securityGroups'] = opts.securityGroups
+    }
+    if (opts.sanityCheck !== undefined && opts.sanityCheck !== null) {
+      postBody['sanityCheck'] = opts.sanityCheck
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call createNetworkInterface with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/networkInterfaces/',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询弹性网卡信息详情
+      * @param {Object} opts - parameters
+      * @param {string} opts.networkInterfaceId - networkInterface ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param networkInterface networkInterface  networkInterface资源信息
+      */
+
+  describeNetworkInterface (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeNetworkInterface"
+      )
+    }
+
+    opts = opts || {}
+
+    if (
+      opts.networkInterfaceId === undefined ||
+      opts.networkInterfaceId === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.networkInterfaceId' when calling describeNetworkInterface"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      networkInterfaceId: opts.networkInterfaceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeNetworkInterface with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/networkInterfaces/{networkInterfaceId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改弹性网卡接口
+      * @param {Object} opts - parameters
+      * @param {string} opts.networkInterfaceId - networkInterface ID
+      * @param {string} [opts.networkInterfaceName] - 弹性网卡名称,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符  optional
+      * @param {string} [opts.description] - 描述,允许输入UTF-8编码下的全部字符，不超过256字符  optional
+      * @param {array} [opts.securityGroups] - 以覆盖原有安全组的方式更新的安全组。如果更新安全组ID列表，最多5个安全组  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  modifyNetworkInterface (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyNetworkInterface"
+      )
+    }
+
+    opts = opts || {}
+
+    if (
+      opts.networkInterfaceId === undefined ||
+      opts.networkInterfaceId === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.networkInterfaceId' when calling modifyNetworkInterface"
+      )
+    }
+
+    let postBody = {}
+    if (
+      opts.networkInterfaceName !== undefined &&
+      opts.networkInterfaceName !== null
+    ) {
+      postBody['networkInterfaceName'] = opts.networkInterfaceName
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+    if (opts.securityGroups !== undefined && opts.securityGroups !== null) {
+      postBody['securityGroups'] = opts.securityGroups
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      networkInterfaceId: opts.networkInterfaceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyNetworkInterface with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/networkInterfaces/{networkInterfaceId}',
+      'PATCH',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除弹性网卡接口
+      * @param {Object} opts - parameters
+      * @param {string} opts.networkInterfaceId - networkInterface ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteNetworkInterface (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteNetworkInterface"
+      )
+    }
+
+    opts = opts || {}
+
+    if (
+      opts.networkInterfaceId === undefined ||
+      opts.networkInterfaceId === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.networkInterfaceId' when calling deleteNetworkInterface"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      networkInterfaceId: opts.networkInterfaceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteNetworkInterface with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/networkInterfaces/{networkInterfaceId}',
       'DELETE',
       pathParams,
       queryParams,
@@ -488,7 +1020,7 @@ chargeStatus - eip的费用支付状态,normal(正常状态) or overdue(预付�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
     }
 
     let formParams = {}
@@ -591,7 +1123,7 @@ chargeStatus - eip的费用支付状态,normal(正常状态) or overdue(预付�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
     }
 
     let formParams = {}
@@ -698,7 +1230,7 @@ chargeStatus - eip的费用支付状态,normal(正常状态) or overdue(预付�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
     }
 
     let formParams = {}
@@ -797,7 +1329,7 @@ chargeStatus - eip的费用支付状态,normal(正常状态) or overdue(预付�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
     }
 
     let formParams = {}
@@ -899,7 +1431,7 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
     }
 
     let formParams = {}
@@ -925,6 +1457,120 @@ vpcId - 安全组所属vpc Id，支持单个
     let request = this.makeRequest(
       '/regions/{regionId}/networkSecurityGroups/',
       'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建安全组
+      * @param {Object} opts - parameters
+      * @param {string} opts.vpcId - 私有网络ID
+      * @param {string} opts.networkSecurityGroupName - 安全组名称，只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符。
+      * @param {string} [opts.description] - 描述,​ 允许输入UTF-8编码下的全部字符，不超过256字符  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string networkSecurityGroupId  安全组ID
+      */
+
+  createNetworkSecurityGroup (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createNetworkSecurityGroup"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.vpcId === undefined || opts.vpcId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.vpcId' when calling createNetworkSecurityGroup"
+      )
+    }
+    if (
+      opts.networkSecurityGroupName === undefined ||
+      opts.networkSecurityGroupName === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.networkSecurityGroupName' when calling createNetworkSecurityGroup"
+      )
+    }
+
+    let postBody = {}
+    if (opts.vpcId !== undefined && opts.vpcId !== null) {
+      postBody['vpcId'] = opts.vpcId
+    }
+    if (
+      opts.networkSecurityGroupName !== undefined &&
+      opts.networkSecurityGroupName !== null
+    ) {
+      postBody['networkSecurityGroupName'] = opts.networkSecurityGroupName
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call createNetworkSecurityGroup with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/networkSecurityGroups/',
+      'POST',
       pathParams,
       queryParams,
       headerParams,
@@ -998,7 +1644,7 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
     }
 
     let formParams = {}
@@ -1024,6 +1670,528 @@ vpcId - 安全组所属vpc Id，支持单个
     let request = this.makeRequest(
       '/regions/{regionId}/networkSecurityGroups/{networkSecurityGroupId}',
       'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改安全组属性
+      * @param {Object} opts - parameters
+      * @param {string} opts.networkSecurityGroupId - NetworkSecurityGroup ID
+      * @param {string} [opts.networkSecurityGroupName] - 安全组的名字。名称取值范围：1-32个中文、英文大小写的字母、数字和下划线分隔符  optional
+      * @param {string} [opts.description] - 安全组的描述，取值范围：0-256个UTF-8编码下的全部字符  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  modifyNetworkSecurityGroup (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyNetworkSecurityGroup"
+      )
+    }
+
+    opts = opts || {}
+
+    if (
+      opts.networkSecurityGroupId === undefined ||
+      opts.networkSecurityGroupId === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.networkSecurityGroupId' when calling modifyNetworkSecurityGroup"
+      )
+    }
+
+    let postBody = {}
+    if (
+      opts.networkSecurityGroupName !== undefined &&
+      opts.networkSecurityGroupName !== null
+    ) {
+      postBody['networkSecurityGroupName'] = opts.networkSecurityGroupName
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      networkSecurityGroupId: opts.networkSecurityGroupId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyNetworkSecurityGroup with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/networkSecurityGroups/{networkSecurityGroupId}',
+      'PATCH',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除安全组
+      * @param {Object} opts - parameters
+      * @param {string} opts.networkSecurityGroupId - NetworkSecurityGroup ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteNetworkSecurityGroup (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteNetworkSecurityGroup"
+      )
+    }
+
+    opts = opts || {}
+
+    if (
+      opts.networkSecurityGroupId === undefined ||
+      opts.networkSecurityGroupId === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.networkSecurityGroupId' when calling deleteNetworkSecurityGroup"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      networkSecurityGroupId: opts.networkSecurityGroupId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteNetworkSecurityGroup with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/networkSecurityGroups/{networkSecurityGroupId}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  添加安全组规则
+      * @param {Object} opts - parameters
+      * @param {string} opts.networkSecurityGroupId - NetworkSecurityGroup ID
+      * @param {array} [opts.networkSecurityGroupRuleSpecs] - 安全组规则信息  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  addNetworkSecurityGroupRules (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  addNetworkSecurityGroupRules"
+      )
+    }
+
+    opts = opts || {}
+
+    if (
+      opts.networkSecurityGroupId === undefined ||
+      opts.networkSecurityGroupId === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.networkSecurityGroupId' when calling addNetworkSecurityGroupRules"
+      )
+    }
+
+    let postBody = {}
+    if (
+      opts.networkSecurityGroupRuleSpecs !== undefined &&
+      opts.networkSecurityGroupRuleSpecs !== null
+    ) {
+      postBody['networkSecurityGroupRuleSpecs'] =
+        opts.networkSecurityGroupRuleSpecs
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      networkSecurityGroupId: opts.networkSecurityGroupId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call addNetworkSecurityGroupRules with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/networkSecurityGroups/{networkSecurityGroupId}:addNetworkSecurityGroupRules',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  移除安全组规则
+      * @param {Object} opts - parameters
+      * @param {string} opts.networkSecurityGroupId - NetworkSecurityGroup ID
+      * @param {array} opts.ruleIds - 安全组规则Id列表
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  removeNetworkSecurityGroupRules (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  removeNetworkSecurityGroupRules"
+      )
+    }
+
+    opts = opts || {}
+
+    if (
+      opts.networkSecurityGroupId === undefined ||
+      opts.networkSecurityGroupId === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.networkSecurityGroupId' when calling removeNetworkSecurityGroupRules"
+      )
+    }
+    if (opts.ruleIds === undefined || opts.ruleIds === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.ruleIds' when calling removeNetworkSecurityGroupRules"
+      )
+    }
+
+    let postBody = {}
+    if (opts.ruleIds !== undefined && opts.ruleIds !== null) {
+      postBody['ruleIds'] = opts.ruleIds
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      networkSecurityGroupId: opts.networkSecurityGroupId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call removeNetworkSecurityGroupRules with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/networkSecurityGroups/{networkSecurityGroupId}:removeNetworkSecurityGroupRules',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改安全组规则
+      * @param {Object} opts - parameters
+      * @param {string} opts.networkSecurityGroupId - NetworkSecurityGroup ID
+      * @param {array} [opts.modifySecurityGroupRuleSpecs] - 安全组规则信息  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  modifyNetworkSecurityGroupRules (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyNetworkSecurityGroupRules"
+      )
+    }
+
+    opts = opts || {}
+
+    if (
+      opts.networkSecurityGroupId === undefined ||
+      opts.networkSecurityGroupId === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.networkSecurityGroupId' when calling modifyNetworkSecurityGroupRules"
+      )
+    }
+
+    let postBody = {}
+    if (
+      opts.modifySecurityGroupRuleSpecs !== undefined &&
+      opts.modifySecurityGroupRuleSpecs !== null
+    ) {
+      postBody['modifySecurityGroupRuleSpecs'] =
+        opts.modifySecurityGroupRuleSpecs
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      networkSecurityGroupId: opts.networkSecurityGroupId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyNetworkSecurityGroupRules with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/networkSecurityGroups/{networkSecurityGroupId}:modifyNetworkSecurityGroupRules',
+      'POST',
       pathParams,
       queryParams,
       headerParams,
@@ -1098,7 +2266,7 @@ vpcId - 子网所属VPC Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
     }
 
     let formParams = {}
@@ -1190,7 +2358,7 @@ vpcId - 子网所属VPC Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
     }
 
     let formParams = {}
@@ -1287,7 +2455,7 @@ vpcNames - vpc名称列表,支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
     }
 
     let formParams = {}
@@ -1379,7 +2547,7 @@ vpcNames - vpc名称列表,支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
     }
 
     let formParams = {}
@@ -1478,7 +2646,7 @@ remoteVpcId - vpcPeering对端Vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
     }
 
     let formParams = {}
@@ -1595,7 +2763,7 @@ remoteVpcId - vpcPeering对端Vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
     }
 
     let formParams = {}
@@ -1687,7 +2855,7 @@ remoteVpcId - vpcPeering对端Vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
     }
 
     let formParams = {}
@@ -1787,7 +2955,7 @@ remoteVpcId - vpcPeering对端Vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
     }
 
     let formParams = {}
@@ -1878,7 +3046,7 @@ remoteVpcId - vpcPeering对端Vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
     }
 
     let formParams = {}

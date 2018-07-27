@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 单库上云
- * 单库上云相关接口
+ * 性能统计
+ * 性能统计相关接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * rds service.
- * @version 0.2.3
+ * @version 0.2.5
  */
 
 JDCloud.RDS = class RDS extends Service {
@@ -45,7 +45,99 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  创建数据库账户
+      *  查看实例下所有账号信息&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param account accounts
+      */
+
+  describeAccounts (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeAccounts"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling describeAccounts"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeAccounts with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/accounts',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建数据库账户&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {} opts.accountName - 用户名
@@ -101,7 +193,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
     }
 
     let formParams = {}
@@ -155,7 +247,7 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  删除数据库账户
+      *  删除数据库账户&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {string} opts.accountName - 账户名
@@ -199,7 +291,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
     }
 
     let formParams = {}
@@ -253,7 +345,7 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  数据库账号授权
+      *  数据库账号授权&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {string} opts.accountName - 账户名
@@ -313,7 +405,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
     }
 
     let formParams = {}
@@ -367,7 +459,7 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  数据库账号重置密码
+      *  数据库账号重置密码&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {string} opts.accountName - 账户名
@@ -421,7 +513,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
     }
 
     let formParams = {}
@@ -475,21 +567,704 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  获取备份信息
+      *  查看开启的审计选项&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - Instance ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string enabled  当前已开启的审计选项。如当前实例未开启审计，则返回空
+      */
+
+  describeAudit (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeAudit"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling describeAudit"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeAudit with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/audit',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  开启数据库审计&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - Instance ID
+      * @param {} opts.enabled - 要开启的审计选项，各个选项之间用英文逗号或空格进行分割，例如：DATABASE_OBJECT_ACCESS_GROUP,ACKUP_RESTORE_GROUP
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  createAudit (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createAudit"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling createAudit"
+      )
+    }
+    if (opts.enabled === undefined || opts.enabled === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.enabled' when calling createAudit"
+      )
+    }
+
+    let postBody = {}
+    if (opts.enabled !== undefined && opts.enabled !== null) {
+      postBody['enabled'] = opts.enabled
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call createAudit with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/audit',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  清除/关闭 数据库审计&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - Instance ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteAudit (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteAudit"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling deleteAudit"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteAudit with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/audit',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取审计所有选项及推荐的选项&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - Instance ID
+      * @param {} opts.name - 审计选项类别，大小写敏感
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string enabled  建议开启的审计选项
+      * @param string disabled  未开启的审计选项（AuditDefault类模板）或所有审计选项（AuditOptions类模板）
+      */
+
+  getAuditOptions (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getAuditOptions"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling getAuditOptions"
+      )
+    }
+    if (opts.name === undefined || opts.name === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.name' when calling getAuditOptions"
+      )
+    }
+
+    let postBody = {}
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call getAuditOptions with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/audit:getOptions',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改当前审计选项&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - Instance ID
+      * @param {} [opts.add] - 增加审计项，多个审计项之间用英文逗号，分号或空格分隔，例如DATABASE_OBJECT_ACCESS_GROUP,ACKUP_RESTORE_GROUP  optional
+      * @param {} [opts.drop] - 删除审计项，多个审计项之间用英文逗号，分号或空格分隔，例如DATABASE_OBJECT_ACCESS_GROUP,ACKUP_RESTORE_GROUP如删除了所有审计项，则审计自动关闭  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  modifyAudit (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyAudit"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling modifyAudit"
+      )
+    }
+
+    let postBody = {}
+    if (opts.add !== undefined && opts.add !== null) {
+      postBody['add'] = opts.add
+    }
+    if (opts.drop !== undefined && opts.drop !== null) {
+      postBody['drop'] = opts.drop
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyAudit with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/audit:modifyAudit',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查看审计文件列表&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - Instance ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param auditFile auditFiles
+      */
+
+  getAuditFiles (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getAuditFiles"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling getAuditFiles"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call getAuditFiles with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/audit:getAuditFiles',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取某个审计文件的下载链接&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - Instance ID
+      * @param {} opts.fileName - 审计文件名
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string publicURL  公网下载链接，若当前不可下载，则为空串
+      * @param string internalURL  内网下载链接，若当前不可下载，则为空串
+      */
+
+  getAuditDownloadURL (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getAuditDownloadURL"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling getAuditDownloadURL"
+      )
+    }
+    if (opts.fileName === undefined || opts.fileName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.fileName' when calling getAuditDownloadURL"
+      )
+    }
+
+    let postBody = {}
+    if (opts.fileName !== undefined && opts.fileName !== null) {
+      postBody['fileName'] = opts.fileName
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call getAuditDownloadURL with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/audit:getAuditDownloadURL',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取备份信息&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
-      * @param {integer} [opts.auto] - 查询备份类型，0为手动备份，1为自动备份，不传表示全部. - 测试参数，后续可能被其他参数取代  optional
-      * @param {string} [opts.backupTypeFilter] - 返回backupType等于指定值的备份列表。full为全量备份，diff为增量备份- 测试参数，后续可能被其他参数取代  optional
-      * @param {string} [opts.dbNameFilter] - 返回dbName等于指定值的备份列表，不传或为空返回全部- 测试参数，后续可能被其他参数取代  optional
-      * @param {string} [opts.backupTimeRangeStartFilter] - 返回备份开始时间大于该时间的备份列表- 测试参数，后续可能被其他参数取代  optional
-      * @param {string} [opts.backupTimeRangeEndFilter] - 返回备份开始时间小于等于该时间的备份列表- 测试参数，后续可能被其他参数取代  optional
+      * @param {integer} [opts.auto] - 查询备份类型，0为手动备份，1为自动备份，不传表示全部. &lt;/br&gt;&lt;strong&gt;- 测试参数，后续可能被其他参数取代&lt;/strong&gt;  optional
+      * @param {string} [opts.backupTypeFilter] - 返回backupType等于指定值的备份列表。full为全量备份，diff为增量备份&lt;/br&gt;&lt;strong&gt;- 测试参数，后续可能被其他参数取代&lt;/strong&gt;  optional
+      * @param {string} [opts.dbNameFilter] - 返回dbName等于指定值的备份列表，不传或为空返回全部&lt;/br&gt;&lt;strong&gt;- 测试参数，后续可能被其他参数取代&lt;/strong&gt;  optional
+      * @param {string} [opts.backupTimeRangeStartFilter] - 返回备份开始时间大于该时间的备份列表，格式为：YYYY-MM-DD HH:mm:ss&lt;/br&gt;&lt;strong&gt;- 测试参数，后续可能被其他参数取代&lt;/strong&gt;  optional
+      * @param {string} [opts.backupTimeRangeEndFilter] - 返回备份开始时间小于等于该时间的备份列表，格式为：YYYY-MM-DD HH:mm:ss&lt;/br&gt;&lt;strong&gt;- 测试参数，后续可能被其他参数取代&lt;/strong&gt;  optional
       * @param {integer} opts.pageNumber - 显示数据的页码，取值范围：[1,1000)，页码超过总页数时，显示最后一页，用于查询列表的接口
-      * @param {integer} opts.pageSize - 每页显示的数据条数，取值范围：10/20/30/50/100
+      * @param {integer} opts.pageSize - 每页显示的数据条数，默认为10，取值范围：[1,100]，只能为10的倍数
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       * @param backup backup
-      * @param integer totalCount
+      * @param integer totalCount  总记录数
       */
 
   describeBackups (opts, regionId = this.config.regionId, callback) {
@@ -561,7 +1336,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
     }
 
     let formParams = {}
@@ -615,13 +1390,14 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  创建备份
+      *  创建备份&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
       * @param {Object} opts - parameters
       * @param {string} [opts.instanceId] - 集群ID  optional
       * @param {backupSpec} [opts.backupSpec] - 备份规格  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param string backupId  备份Id
       */
 
   createBackup (opts, regionId = this.config.regionId, callback) {
@@ -653,7 +1429,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
     }
 
     let formParams = {}
@@ -707,16 +1483,107 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  获取备份下载链接
+      *  删除备份&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
       * @param {Object} opts - parameters
       * @param {string} opts.backupId - 备份ID
-      * @param {string} [opts.fileName] - MySQL：无需此参数；SQL Server：指定该备份中需要获取下载链接的文件名称，SQL Server必须输入该参数  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteBackup (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteBackup"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.backupId === undefined || opts.backupId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.backupId' when calling deleteBackup"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      backupId: opts.backupId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteBackup with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/backups/{backupId}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取备份下载链接&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      * @param {Object} opts - parameters
+      * @param {string} opts.backupId - 备份ID
+      * @param {string} [opts.fileName] - SQL Server：指定该备份中需要获取下载链接的文件名称，SQL Server必须输入该参数&lt;/br&gt;MySQL：无需此参数；  optional
       * @param {string} [opts.urlExpirationSecond] - 指定下载链接的有效时间，单位秒,缺省为86400秒（即24小时） 取值范围：1-864000  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param string publicURL
-      * @param string internalURL
+      * @param string publicURL  公网下载链接，若当前不可下载，则为空串
+      * @param string internalURL  内网下载链接，若当前不可下载，则为空串
       */
 
   describeBackupDownloadURL (opts, regionId = this.config.regionId, callback) {
@@ -757,7 +1624,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
     }
 
     let formParams = {}
@@ -811,11 +1678,107 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  创建数据库
+      *  查看数据库列表&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例ID
+      * @param {string} [opts.dbName] - 数据库名称  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param database databases
+      */
+
+  describeDatabases (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeDatabases"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling describeDatabases"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.dbName !== undefined && opts.dbName !== null) {
+      queryParams['dbName'] = opts.dbName
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeDatabases with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/databases',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建数据库&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {} opts.dbName - 数据库名称
-      * @param {} opts.characterSetName - 字符集名称,mysql字符集包括：utf8；SQL Server字符集包括：Chinese_PRC_CI_AS、Chinese_PRC_CS_AS、SQL_Latin1_General_CP1_CI_AS、SQL_Latin1_General_CP1_CS_AS、Chinese_PRC_BIN
+      * @param {} opts.characterSetName - 字符集名称&lt;/br&gt;&lt;strong&gt;mysql字符集支持：&lt;/strong&gt;&lt;/br&gt;- utf8；&lt;/br&gt;&lt;strong&gt;SQL Server字符集支持：&lt;/strong&gt;&lt;/br&gt;- Chinese_PRC_CI_AS&lt;/br&gt;- Chinese_PRC_CS_AS&lt;/br&gt;- SQL_Latin1_General_CP1_CI_AS&lt;/br&gt;- SQL_Latin1_General_CP1_CS_AS&lt;/br&gt;- Chinese_PRC_BIN
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -867,7 +1830,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
     }
 
     let formParams = {}
@@ -921,7 +1884,7 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  删除数据库
+      *  删除数据库 [MFA enabled]
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {string} opts.dbName - 库名称
@@ -965,7 +1928,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
     }
 
     let formParams = {}
@@ -1019,7 +1982,7 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  从云数据库SQL Server备份中恢复单个数据库
+      *  从云数据库SQL Server备份中恢复单个数据库&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {string} opts.dbName - 库名称
@@ -1082,7 +2045,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
     }
 
     let formParams = {}
@@ -1136,7 +2099,7 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  从用户上传的备份文件中恢复SQL Server数据库
+      *  从用户上传的备份文件中恢复SQL Server数据库&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {string} opts.dbName - 库名称
@@ -1194,7 +2157,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
     }
 
     let formParams = {}
@@ -1248,7 +2211,207 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  获取单库上云文件列表
+      *  从OSS恢复SQL Server数据库&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例ID
+      * @param {string} opts.dbName - 库名称
+      * @param {} opts.ossURL - 用户在单库上云中上传的文件地址
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  restoreDatabaseFromOSS (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  restoreDatabaseFromOSS"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling restoreDatabaseFromOSS"
+      )
+    }
+    if (opts.dbName === undefined || opts.dbName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.dbName' when calling restoreDatabaseFromOSS"
+      )
+    }
+    if (opts.ossURL === undefined || opts.ossURL === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.ossURL' when calling restoreDatabaseFromOSS"
+      )
+    }
+
+    let postBody = {}
+    if (opts.ossURL !== undefined && opts.ossURL !== null) {
+      postBody['ossURL'] = opts.ossURL
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      dbName: opts.dbName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call restoreDatabaseFromOSS with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/databases/{dbName}:restoreDatabaseFromOSS',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取SQL Server 错误日志及下载信息&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - Instance ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param errorLog errorLogs
+      */
+
+  describeErrorLogs (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeErrorLogs"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling describeErrorLogs"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeErrorLogs with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/errorLogs',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取单库上云文件列表&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {string} regionId - ID of the region
@@ -1286,7 +2449,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
     }
 
     let formParams = {}
@@ -1312,6 +2475,1106 @@ JDCloud.RDS = class RDS extends Service {
     let request = this.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/importFiles',
       'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取上传导入文件的需要的Key&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string key
+      */
+
+  getUploadKey (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getUploadKey"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling getUploadKey"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call getUploadKey with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/importFiles:getUploadKey',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  设置上传文件是否共享给该用户的其他实例&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例ID
+      * @param {string} opts.fileName - 单库上云文件名
+      * @param {} opts.shared - 文件是否共享，不区分大小写，true:共享;false:不共享
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  setImportFileShared (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  setImportFileShared"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling setImportFileShared"
+      )
+    }
+    if (opts.fileName === undefined || opts.fileName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.fileName' when calling setImportFileShared"
+      )
+    }
+    if (opts.shared === undefined || opts.shared === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.shared' when calling setImportFileShared"
+      )
+    }
+
+    let postBody = {}
+    if (opts.shared !== undefined && opts.shared !== null) {
+      postBody['shared'] = opts.shared
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      fileName: opts.fileName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call setImportFileShared with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/importFiles/{fileName}:setShared',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询RDS实例列表&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：支持
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 显示数据的页码，取值范围：[1,1000)，页码超过总页数时，显示最后一页，用于查询列表的接口  optional
+      * @param {integer} [opts.pageSize] - 每页显示的数据条数，取值范围：10/20/30/50/100  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param dBInstance dbInstances
+      * @param integer totalCount
+      */
+
+  describeInstances (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeInstances"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeInstances with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建数据库集群实例&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：支持
+      * @param {Object} opts - parameters
+      * @param {dBInstanceSpec} opts.instanceSpec - 新建实例规格
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string instanceId
+      */
+
+  createInstance (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createInstance"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceSpec === undefined || opts.instanceSpec === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceSpec' when calling createInstance"
+      )
+    }
+
+    let postBody = {}
+    if (opts.instanceSpec !== undefined && opts.instanceSpec !== null) {
+      postBody['instanceSpec'] = opts.instanceSpec
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call createInstance with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询RDS实例详细信息&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：支持
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - Instance ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param dBInstanceAttribute dbInstanceAttributes
+      */
+
+  describeInstanceAttributes (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeInstanceAttributes"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling describeInstanceAttributes"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeInstanceAttributes with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除数据库集群实例及Mysql只读实例&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：支持 [MFA enabled]
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - Instance ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteInstance (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteInstance"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling deleteInstance"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteInstance with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改RDS实例名称&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - Instance ID
+      * @param {} opts.instanceName - 实例名称，名称支持中文、数字、小写字母及英文下划线“_”，且不少于2字符不超过32字符
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  setInstanceName (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  setInstanceName"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling setInstanceName"
+      )
+    }
+    if (opts.instanceName === undefined || opts.instanceName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceName' when calling setInstanceName"
+      )
+    }
+
+    let postBody = {}
+    if (opts.instanceName !== undefined && opts.instanceName !== null) {
+      postBody['instanceName'] = opts.instanceName
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call setInstanceName with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}:setInstanceName',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  RDS实例主备切换&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - Instance ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  failoverInstance (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  failoverInstance"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling failoverInstance"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call failoverInstance with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}:failoverInstance',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  重启RDS实例&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - Instance ID
+      * @param {} [opts.rebootMaster] - 是否重启主节点。&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持  optional
+      * @param {} [opts.rebootSlave] - 是否重启从节点。&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  rebootInstance (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rebootInstance"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling rebootInstance"
+      )
+    }
+
+    let postBody = {}
+    if (opts.rebootMaster !== undefined && opts.rebootMaster !== null) {
+      postBody['rebootMaster'] = opts.rebootMaster
+    }
+    if (opts.rebootSlave !== undefined && opts.rebootSlave !== null) {
+      postBody['rebootSlave'] = opts.rebootSlave
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call rebootInstance with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}:rebootInstance',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  索引性能统计&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - Instance ID
+      * @param {string} opts.queryType - 查询类型，不同的查询类型按照相应的字段从高到低返回结果。支持如下类型：Missing：缺失索引Size：索引大小，单位KBUpdates：索引更新次数Scans：表扫描次数Used：最少使用
+      * @param {string} [opts.db] - 需要查询的数据库名，多个数据库名之间用英文逗号分隔，默认所有数据库  optional
+      * @param {integer} [opts.pageNumber] - 显示数据的页码，取值范围：[1,1000)，页码超过总页数时，显示最后一页，用于查询列表的接口  optional
+      * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为50，取值范围：[1,100]，只能为10的倍数  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param missingIndexResult missingIndexResult
+      * @param indexPerformanceResult indexPerformanceResult
+      * @param integer totalCount  总记录数
+      * @param integer pageNumber  当前页码
+      * @param integer pageSize  每页显示的数据条数
+      */
+
+  describeIndexPerformance (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeIndexPerformance"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling describeIndexPerformance"
+      )
+    }
+    if (opts.queryType === undefined || opts.queryType === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryType' when calling describeIndexPerformance"
+      )
+    }
+
+    let postBody = {}
+    if (opts.queryType !== undefined && opts.queryType !== null) {
+      postBody['queryType'] = opts.queryType
+    }
+    if (opts.db !== undefined && opts.db !== null) {
+      postBody['db'] = opts.db
+    }
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      postBody['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeIndexPerformance with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/performance:describeIndexPerformance',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询性能统计&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - Instance ID
+      * @param {string} opts.queryType - 查询类型，不同的查询类型按照相应的字段从高到低返回结果。支持如下类型：ExecutionCount：执行次数LastRows：上次返回行数ElapsedTime：平均执行时间CPUTime：平均CPU时间LogicalReads：平均逻辑读LogicalWrites：平均逻辑写PhysicalReads：平均物理读
+      * @param {integer} [opts.threshold] - 只返回查询条件大于等于threshold的记录，默认为0  optional
+      * @param {integer} [opts.pageNumber] - 显示数据的页码，取值范围：[1,1000)，页码超过总页数时，显示最后一页，用于查询列表的接口  optional
+      * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为50，取值范围：[1,100]，只能为10的倍数  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param queryPerformanceResult queryPerformanceResult
+      * @param integer totalCount  总记录数
+      * @param integer pageNumber  当前页码
+      * @param integer pageSize  每页显示的数据条数
+      */
+
+  describeQueryPerformance (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeQueryPerformance"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling describeQueryPerformance"
+      )
+    }
+    if (opts.queryType === undefined || opts.queryType === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryType' when calling describeQueryPerformance"
+      )
+    }
+
+    let postBody = {}
+    if (opts.queryType !== undefined && opts.queryType !== null) {
+      postBody['queryType'] = opts.queryType
+    }
+    if (opts.threshold !== undefined && opts.threshold !== null) {
+      postBody['threshold'] = opts.threshold
+    }
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      postBody['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeQueryPerformance with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/performance:describeQueryPerformance',
+      'POST',
       pathParams,
       queryParams,
       headerParams,

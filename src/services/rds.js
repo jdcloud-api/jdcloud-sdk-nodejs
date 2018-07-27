@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 单库上云
- * 单库上云相关接口
+ * 性能统计
+ * 性能统计相关接口
  *
  * OpenAPI spec version: v1
  * Contact:

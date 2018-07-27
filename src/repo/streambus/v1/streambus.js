@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * TOPIC相关 API
- * 流数据总线topic相关信息接口
+ * ConsumerGroup相关 API
+ * 流数据总线ConsumerGroup相关信息接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * streambus service.
- * @version 0.2.4
+ * @version 1.0.0
  */
 
 JDCloud.STREAMBUS = class STREAMBUS extends Service {
@@ -79,7 +79,7 @@ JDCloud.STREAMBUS = class STREAMBUS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streambus/0.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  streambus/1.0.0'
     }
 
     let formParams = {}
@@ -104,6 +104,100 @@ JDCloud.STREAMBUS = class STREAMBUS extends Service {
 
     let request = this.makeRequest(
       '/regions/{regionId}/topicList',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查看指定主题
+      * @param {Object} opts - parameters
+      * @param {string} opts.name
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param addTopic topic
+      */
+
+  describeTopic (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeTopic"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.name === undefined || opts.name === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.name' when calling describeTopic"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.name !== undefined && opts.name !== null) {
+      queryParams['name'] = opts.name
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  streambus/1.0.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeTopic with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/topic',
       'GET',
       pathParams,
       queryParams,
@@ -175,7 +269,7 @@ JDCloud.STREAMBUS = class STREAMBUS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streambus/0.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  streambus/1.0.0'
     }
 
     let formParams = {}
@@ -271,7 +365,7 @@ JDCloud.STREAMBUS = class STREAMBUS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streambus/0.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  streambus/1.0.0'
     }
 
     let formParams = {}
@@ -297,6 +391,389 @@ JDCloud.STREAMBUS = class STREAMBUS extends Service {
     let request = this.makeRequest(
       '/regions/{regionId}/topic',
       'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除topic
+      * @param {Object} opts - parameters
+      * @param {string} opts.name
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status
+      * @param string message  状态信息
+      */
+
+  deleteTopic (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteTopic"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.name === undefined || opts.name === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.name' when calling deleteTopic"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.name !== undefined && opts.name !== null) {
+      queryParams['name'] = opts.name
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  streambus/1.0.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteTopic with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/topic',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查看指定主题的所有消费组
+      * @param {Object} opts - parameters
+      * @param {integer} opts.topicId - 主题id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param consumerGroup consumerGroup
+      */
+
+  getConsumerGroupList (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getConsumerGroupList"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.topicId === undefined || opts.topicId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.topicId' when calling getConsumerGroupList"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.topicId !== undefined && opts.topicId !== null) {
+      queryParams['topicId'] = opts.topicId
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  streambus/1.0.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call getConsumerGroupList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/consumerGroupList',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建consumerGroupName
+      * @param {Object} opts - parameters
+      * @param {consumerGroup} [opts.consumerGroupStr] - 消费组对象  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string message
+      * @param boolean status
+      */
+
+  createConsumerGroup (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createConsumerGroup"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.consumerGroupStr !== undefined && opts.consumerGroupStr !== null) {
+      postBody['consumerGroupStr'] = opts.consumerGroupStr
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  streambus/1.0.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call createConsumerGroup with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/consumerGroup',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除consumerGroupName
+      * @param {Object} opts - parameters
+      * @param {integer} opts.topicId - 主题ID
+      * @param {integer} opts.consumerGroupId - 消费组ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string message
+      * @param boolean status
+      */
+
+  deleteConsumerGroup (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteConsumerGroup"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.topicId === undefined || opts.topicId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.topicId' when calling deleteConsumerGroup"
+      )
+    }
+    if (opts.consumerGroupId === undefined || opts.consumerGroupId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.consumerGroupId' when calling deleteConsumerGroup"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.topicId !== undefined && opts.topicId !== null) {
+      queryParams['topicId'] = opts.topicId
+    }
+    if (opts.consumerGroupId !== undefined && opts.consumerGroupId !== null) {
+      queryParams['consumerGroupId'] = opts.consumerGroupId
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  streambus/1.0.0'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteConsumerGroup with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/consumerGroup',
+      'DELETE',
       pathParams,
       queryParams,
       headerParams,

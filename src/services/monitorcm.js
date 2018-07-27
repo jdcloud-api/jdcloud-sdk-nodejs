@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * ConsumerGroup相关 API
- * 流数据总线ConsumerGroup相关信息接口
+ * 监控项相关接口
+ * 监控项相关接口，提供自定义监控数据上报功能
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -24,20 +24,20 @@
 
 const JDCloud = require('../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'streambus'
+var serviceId = 'monitorcm'
 Service._services[serviceId] = true
 
 /**
- * streambus service.
+ * monitorcm service.
  */
 
-JDCloud.STREAMBUS = class STREAMBUS {
+JDCloud.MONITORCM = class MONITORCM {
   constructor (config = {}) {
     this.init(config)
     return new this.service(config)
   }
   init (config) {
-    let serviceName = 'streambus'
+    let serviceName = 'monitorcm'
     let version = config.version || JDCloud.config.version
     let versionFlag = 'v1'
     if (version && version[serviceName]) {
@@ -52,4 +52,4 @@ JDCloud.STREAMBUS = class STREAMBUS {
   }
 }
 
-module.exports = JDCloud.STREAMBUS
+module.exports = JDCloud.MONITORCM

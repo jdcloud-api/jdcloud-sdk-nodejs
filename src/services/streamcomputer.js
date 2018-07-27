@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * ConsumerGroup相关 API
- * 流数据总线ConsumerGroup相关信息接口
+ * NameSpace相关 API
+ * 流数据总线NameSpace相关信息接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -24,20 +24,20 @@
 
 const JDCloud = require('../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'streambus'
+var serviceId = 'streamcomputer'
 Service._services[serviceId] = true
 
 /**
- * streambus service.
+ * streamcomputer service.
  */
 
-JDCloud.STREAMBUS = class STREAMBUS {
+JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER {
   constructor (config = {}) {
     this.init(config)
     return new this.service(config)
   }
   init (config) {
-    let serviceName = 'streambus'
+    let serviceName = 'streamcomputer'
     let version = config.version || JDCloud.config.version
     let versionFlag = 'v1'
     if (version && version[serviceName]) {
@@ -52,4 +52,4 @@ JDCloud.STREAMBUS = class STREAMBUS {
   }
 }
 
-module.exports = JDCloud.STREAMBUS
+module.exports = JDCloud.STREAMCOMPUTER

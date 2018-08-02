@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 监控项相关接口
- * 监控项相关接口，提供可用监控项列表查询和监控数据查询等功能
+ * 监控项自定义监控相关接口
+ * 自定义监控项相关接口，提供自定义监控数据上报功能
  *
  * OpenAPI spec version: v1
  * Contact:

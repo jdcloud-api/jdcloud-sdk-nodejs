@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 监控项相关接口
- * 监控项相关接口，提供可用监控项列表查询和监控数据查询等功能
+ * 监控项自定义监控相关接口
+ * 自定义监控项相关接口，提供自定义监控数据上报功能
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * monitor service.
- * @version 0.4.1
+ * @version 1.1.1
  */
 
 JDCloud.MONITOR = class MONITOR extends Service {
@@ -52,13 +52,13 @@ JDCloud.MONITOR = class MONITOR extends Service {
       * @param {integer} [opts.status] - 规则报警状态, 1：正常, 2：报警，4：数据不足  optional
       * @param {integer} [opts.isAlarming] - 是否为正在报警的规则，0为忽略，1为是，与 status 同时只能生效一个,isAlarming 优先生效  optional
       * @param {integer} [opts.enabled] - 规则状态：1为启用，0为禁用  optional
-      * @param {integer} [opts.pageNumber] - 当前所在页，默认为1  optional
-      * @param {integer} [opts.pageSize] - ，默认为20；取值范围[1, 100]  optional
+      * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞)  optional
+      * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围：[10,100]  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       * @param alarm alarmList
-      * @param number pageNumber  当前页码
+      * @param number pageNumber  页码
       * @param number numberPages  总页数
       * @param number numberRecords  总记录数
       * @param number pageSize  分页大小
@@ -107,7 +107,7 @@ JDCloud.MONITOR = class MONITOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.1.1'
     }
 
     let formParams = {}
@@ -211,7 +211,7 @@ JDCloud.MONITOR = class MONITOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.1.1'
     }
 
     let formParams = {}
@@ -265,7 +265,7 @@ JDCloud.MONITOR = class MONITOR extends Service {
   }
 
   /**
-      *  批量删除规则
+      *  批量删除已创建的报警规则
       * @param {Object} opts - parameters
       * @param {string} opts.ids - 待删除的规则id，用&quot;|&quot;间隔
       * @param {string} regionId - ID of the region
@@ -304,7 +304,7 @@ JDCloud.MONITOR = class MONITOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.1.1'
     }
 
     let formParams = {}
@@ -396,7 +396,7 @@ JDCloud.MONITOR = class MONITOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.1.1'
     }
 
     let formParams = {}
@@ -568,7 +568,7 @@ JDCloud.MONITOR = class MONITOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.1.1'
     }
 
     let formParams = {}
@@ -660,7 +660,7 @@ JDCloud.MONITOR = class MONITOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.1.1'
     }
 
     let formParams = {}
@@ -752,7 +752,7 @@ JDCloud.MONITOR = class MONITOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.1.1'
     }
 
     let formParams = {}
@@ -813,13 +813,13 @@ JDCloud.MONITOR = class MONITOR extends Service {
       * @param {string} [opts.resourceId] - 资源Id  optional
       * @param {string} opts.startTime - 查询数据开始时间，默认24小时前，可以输入long型时间，也可以输入yyyy-MM-dd&#39;T&#39;HH:mm:ssZ类型时间
       * @param {string} opts.endTime - 查询数据结束时间，默认当前时间，可以输入long型时间，也可以输入yyyy-MM-dd&#39;T&#39;HH:mm:ssZ类型时间
-      * @param {integer} [opts.pageNumber] - 当前所在页，默认为1  optional
-      * @param {integer} [opts.pageSize] - ，默认为20；取值范围[1, 100]  optional
+      * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞)  optional
+      * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围：[10,100]  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       * @param alarmHistory alarmHistoryList
-      * @param number pageNumber  当前页码
+      * @param number pageNumber  页码
       * @param number numberPages  总页数
       * @param number numberRecords  总记录数
       * @param number pageSize  分页大小
@@ -879,7 +879,7 @@ JDCloud.MONITOR = class MONITOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.1.1'
     }
 
     let formParams = {}
@@ -973,7 +973,7 @@ nativecontainer--&gt;容器
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.1.1'
     }
 
     let formParams = {}
@@ -1061,7 +1061,7 @@ nativecontainer--&gt;容器
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.1.1'
     }
 
     let formParams = {}
@@ -1123,7 +1123,7 @@ nativecontainer--&gt;容器
       * @param {string} [opts.startTime] - 查询时间范围的开始时间， UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ（默认为当前时间，早于30d时，将被重置为30d）  optional
       * @param {string} [opts.endTime] - 查询时间范围的结束时间， UTC时间，格式：2016-12- yyyy-MM-dd&#39;T&#39;HH:mm:ssZ（为空时，将由startTime与timeInterval计算得出）  optional
       * @param {string} [opts.timeInterval] - 时间间隔：1h，6h，12h，1d，3d，7d，14d，固定时间间隔，timeInterval 与 endTime 至少填一项  optional
-      * @param {tags} [opts.tags] - 自定义标签  optional
+      * @param {tagFilter} [opts.tags] - 自定义标签  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1177,7 +1177,7 @@ nativecontainer--&gt;容器
     if (opts.timeInterval !== undefined && opts.timeInterval !== null) {
       queryParams['timeInterval'] = opts.timeInterval
     }
-    Object.assign(queryParams, this.buildArrayParam(opts.tags, 'tags'))
+    Object.assign(queryParams, this.buildTagFilterParam(opts.tags, 'tags'))
 
     let pathParams = {
       regionId: regionId,
@@ -1185,7 +1185,7 @@ nativecontainer--&gt;容器
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/0.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.1.1'
     }
 
     let formParams = {}
@@ -1211,6 +1211,84 @@ nativecontainer--&gt;容器
     let request = this.makeRequest(
       '/regions/{regionId}/metrics/{metric}/metricData',
       'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  自定义监控数据上报接口
+      * @param {Object} opts - parameters
+      * @param {array} [opts.metricDataList] - 数据参数  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean success  全部写入成功为true，否则为false
+      * @param metricDataList errMetricDataList
+      */
+
+  putMetricData (opts, callback) {
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.metricDataList !== undefined && opts.metricDataList !== null) {
+      postBody['metricDataList'] = opts.metricDataList
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.1.1'
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call putMetricData with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/customMetrics',
+      'POST',
       pathParams,
       queryParams,
       headerParams,

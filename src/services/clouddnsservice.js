@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 监控项自定义监控相关接口
- * 自定义监控项相关接口，提供自定义监控数据上报功能
+ * 网站监控
+ * 云解析OpenAPI网站监控接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -24,20 +24,20 @@
 
 const JDCloud = require('../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'monitor'
+var serviceId = 'clouddnsservice'
 Service._services[serviceId] = true
 
 /**
- * monitor service.
+ * clouddnsservice service.
  */
 
-JDCloud.MONITOR = class MONITOR {
+JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE {
   constructor (config = {}) {
     this.init(config)
     return new this.service(config)
   }
   init (config) {
-    let serviceName = 'monitor'
+    let serviceName = 'clouddnsservice'
     let version = config.version || JDCloud.config.version
     let versionFlag = 'v1'
     if (version && version[serviceName]) {
@@ -52,4 +52,4 @@ JDCloud.MONITOR = class MONITOR {
   }
 }
 
-module.exports = JDCloud.MONITOR
+module.exports = JDCloud.CLOUDDNSSERVICE

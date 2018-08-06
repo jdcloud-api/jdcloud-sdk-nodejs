@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * clouddnsservice service.
- * @version 1.0.1
+ * @version 1.0.2
  */
 
 JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
@@ -100,7 +100,14 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.2'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -225,7 +232,14 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.2'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -318,7 +332,14 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.2'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -422,7 +443,14 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.2'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -542,7 +570,14 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.2'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -663,7 +698,14 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.2'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -720,6 +762,8 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
       *  查询某个主域名的解析记录
       * @param {Object} opts - parameters
       * @param {string} opts.domainId - 域名ID
+      * @param {integer} [opts.pageNumber] - 当前页数，起始值为1，默认为1  optional
+      * @param {integer} [opts.pageSize] - 分页查询时设置的每页行数, 默认为10  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -751,6 +795,12 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
 
     let postBody = null
     let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
 
     let pathParams = {
       regionId: regionId,
@@ -758,7 +808,14 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.2'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -872,7 +929,14 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.2'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -974,7 +1038,14 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.2'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1075,7 +1146,14 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.2'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1180,7 +1258,14 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.2'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1287,7 +1372,14 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.2'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1388,7 +1480,14 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.2'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1489,7 +1588,14 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.2'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1594,7 +1700,14 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.2'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1703,7 +1816,14 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.2'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1804,7 +1924,14 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.2'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1911,7 +2038,14 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.2'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}

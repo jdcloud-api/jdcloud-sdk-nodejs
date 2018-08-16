@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 集群管理
- * JMR集群管理相关接口
+ * 工作流管理
+ * JMR工作流相关接口
  *
  * OpenAPI spec version: v1
  * Contact:

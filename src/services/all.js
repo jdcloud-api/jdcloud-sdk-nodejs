@@ -1,10 +1,10 @@
 module.exports = {
-  MONITORCM: require('./monitorcm'),
   VM: require('./vm'),
   REDIS: require('./redis'),
   RDS: require('./rds'),
   MONITOR: require('./monitor'),
   IAM: require('./iam'),
+  CPS: require('./cps'),
   DISK: require('./disk'),
   MONGODB: require('./mongodb'),
   VPC: require('./vpc'),

@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * streambus service.
- * @version 1.0.0
+ * @version 1.0.1
  */
 
 JDCloud.STREAMBUS = class STREAMBUS extends Service {
@@ -45,7 +45,7 @@ JDCloud.STREAMBUS = class STREAMBUS extends Service {
   }
 
   /**
-      *  查询topic
+      *  查询topic列表，返回topic的集合
       * @param {Object} opts - parameters
       * @param {string} [opts.keyword]   optional
       * @param {string} regionId - ID of the region
@@ -79,7 +79,14 @@ JDCloud.STREAMBUS = class STREAMBUS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streambus/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  streambus/1.0.1'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -133,13 +140,13 @@ JDCloud.STREAMBUS = class STREAMBUS extends Service {
   }
 
   /**
-      *  查看指定主题
+      *  查询指定主题,如果已归档会返回归档信息
       * @param {Object} opts - parameters
       * @param {string} opts.name
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param addTopic topic
+      * @param topicModel topic
       */
 
   describeTopic (opts, regionId = this.config.regionId, callback) {
@@ -173,7 +180,14 @@ JDCloud.STREAMBUS = class STREAMBUS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streambus/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  streambus/1.0.1'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -227,9 +241,9 @@ JDCloud.STREAMBUS = class STREAMBUS extends Service {
   }
 
   /**
-      *  创建topic
+      *  创建topic时，topicModel中只需要传topic参数，另外两个参数可为空
       * @param {Object} opts - parameters
-      * @param {addTopic} opts.topicModel
+      * @param {topicModel} opts.topicModel - 示例：{&quot;topicModel&quot;:{&quot;topic&quot;:{&quot;archived&quot;:0,&quot;id&quot;:&quot;&quot;,&quot;name&quot;:&quot;create&quot;,&quot;remark&quot;:&quot;备注&quot;,&quot;shardNum&quot;:1,&quot;partitionNum&quot;:2,&quot;lifecycle&quot;:3}}}
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -269,7 +283,14 @@ JDCloud.STREAMBUS = class STREAMBUS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streambus/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  streambus/1.0.1'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -323,9 +344,9 @@ JDCloud.STREAMBUS = class STREAMBUS extends Service {
   }
 
   /**
-      *  更新topic
+      *  此接口可以用来更新主题，创建归档，修改归档，删除归档，传入不同的参数可以实现不同的功能。修改归档只需要修改相应归档的参数，删除归档只需要把归档参数置为空即可
       * @param {Object} opts - parameters
-      * @param {addTopic} opts.topicModel
+      * @param {topicModel} opts.topicModel - 当更新主题时只需要修改topicModel中的topic中的属性即可；创建归档需要指定target以及归档的目的地(mysql,京东云 Elasticsearch,对象存储,数据计算服务)参数
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -365,7 +386,14 @@ JDCloud.STREAMBUS = class STREAMBUS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streambus/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  streambus/1.0.1'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -460,7 +488,14 @@ JDCloud.STREAMBUS = class STREAMBUS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streambus/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  streambus/1.0.1'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -554,7 +589,14 @@ JDCloud.STREAMBUS = class STREAMBUS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streambus/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  streambus/1.0.1'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -644,7 +686,14 @@ JDCloud.STREAMBUS = class STREAMBUS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streambus/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  streambus/1.0.1'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -748,7 +797,14 @@ JDCloud.STREAMBUS = class STREAMBUS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streambus/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  streambus/1.0.1'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}

@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 白名单
- * 白名单相关接口
+ * 云物理服务器
+ * 云物理服务器子网操作相关的接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -24,20 +24,20 @@
 
 const JDCloud = require('../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'rds'
+var serviceId = 'cps'
 Service._services[serviceId] = true
 
 /**
- * rds service.
+ * cps service.
  */
 
-JDCloud.RDS = class RDS {
+JDCloud.CPS = class CPS {
   constructor (config = {}) {
     this.init(config)
     return new this.service(config)
   }
   init (config) {
-    let serviceName = 'rds'
+    let serviceName = 'cps'
     let version = config.version || JDCloud.config.version
     let versionFlag = 'v1'
     if (version && version[serviceName]) {
@@ -52,4 +52,4 @@ JDCloud.RDS = class RDS {
   }
 }
 
-module.exports = JDCloud.RDS
+module.exports = JDCloud.CPS

@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 性能统计
- * 性能统计相关接口
+ * 白名单
+ * 白名单相关接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * rds service.
- * @version 0.2.5
+ * @version 0.2.7
  */
 
 JDCloud.RDS = class RDS extends Service {
@@ -45,7 +45,7 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  查看实例下所有账号信息&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      *  查看实例下所有账号信息&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：支持
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {string} regionId - ID of the region
@@ -83,7 +83,14 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -137,7 +144,7 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  创建数据库账户&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      *  创建数据库账户&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：支持
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {} opts.accountName - 用户名
@@ -193,7 +200,14 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -247,7 +261,7 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  删除数据库账户&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      *  删除数据库账户&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：支持
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {string} opts.accountName - 账户名
@@ -291,7 +305,14 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -405,7 +426,14 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -459,7 +487,7 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  数据库账号重置密码&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      *  数据库账号重置密码&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：支持
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {string} opts.accountName - 账户名
@@ -513,7 +541,14 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -605,7 +640,14 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -706,7 +748,14 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -797,7 +846,14 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -900,7 +956,14 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1000,7 +1063,14 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1093,7 +1163,14 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1196,7 +1273,14 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1336,7 +1420,14 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1429,7 +1520,14 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1483,7 +1581,7 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  删除备份&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      *  删除备份&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：支持
       * @param {Object} opts - parameters
       * @param {string} opts.backupId - 备份ID
       * @param {string} regionId - ID of the region
@@ -1520,7 +1618,14 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1624,7 +1729,14 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1678,10 +1790,10 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  查看数据库列表&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      *  查看数据库列表&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：支持
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
-      * @param {string} [opts.dbName] - 数据库名称  optional
+      * @param {string} [opts.dbName] - 数据库名称&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1720,7 +1832,14 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1774,7 +1893,7 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  创建数据库&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      *  创建数据库&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：支持
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {} opts.dbName - 数据库名称
@@ -1830,7 +1949,14 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1884,7 +2010,7 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  删除数据库 [MFA enabled]
+      *  删除数据库&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：支持 [MFA enabled]
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {string} opts.dbName - 库名称
@@ -1928,7 +2054,14 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -2045,7 +2178,14 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -2157,7 +2297,14 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -2265,7 +2412,14 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -2357,7 +2511,14 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -2449,7 +2610,14 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -2542,7 +2710,14 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -2650,7 +2825,14 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -2743,7 +2925,14 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -2838,7 +3027,14 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -2930,7 +3126,14 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -3021,7 +3224,14 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -3047,6 +3257,108 @@ JDCloud.RDS = class RDS extends Service {
     let request = this.makeRequest(
       '/regions/{regionId}/instances/{instanceId}',
       'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查看RDS实例备份策略&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - Instance ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string startWindow  自动备份开始时间窗口，范围00:00-23:59，时间范围差不得小于30分钟。例如：00:00-01:00，表示0点到1点开始进行数据库自动备份，备份完成时间则跟实例大小有关，不一定在这个时间范围中
+      * @param integer retentionPeriod  自动备份保留周期，单位天,范围7-730
+      * @param integer cycleMode  自动备份循环模式&lt;br/&gt;1:表示每天都是全量备份&lt;br/&gt;2:表示自动备份按照全量、增量、增量这样的方式进行，例如第1天是全量备份，第2、3天是增量备份；第4天又是全量备份，以此类推
+      */
+
+  getBackupPolicy (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getBackupPolicy"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling getBackupPolicy"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call getBackupPolicy with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}:getBackupPolicy',
+      'POST',
       pathParams,
       queryParams,
       headerParams,
@@ -3122,7 +3434,14 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -3214,7 +3533,14 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -3268,7 +3594,7 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  重启RDS实例&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      *  重启RDS实例&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：支持
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - Instance ID
       * @param {} [opts.rebootMaster] - 是否重启主节点。&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持  optional
@@ -3314,7 +3640,14 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -3339,6 +3672,307 @@ JDCloud.RDS = class RDS extends Service {
 
     let request = this.makeRequest(
       '/regions/{regionId}/instances/{instanceId}:rebootInstance',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  开启RDS实例的外网访问，用户可以通过internet访问RDS实例&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：支持
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - Instance ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  enableInternetAccess (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  enableInternetAccess"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling enableInternetAccess"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call enableInternetAccess with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}:enableInternetAccess',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  关闭RDS实例的外网访问，用户无法通过Internet访问RDS，但可以通过内网域名访问&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：支持
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - Instance ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  disableInternetAccess (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  disableInternetAccess"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling disableInternetAccess"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call disableInternetAccess with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}:disableInternetAccess',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  使用实例的全量备份覆盖恢复当前实例&lt;/br&gt;- SQL Server：不支持&lt;/br&gt;- MySQL：支持
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - Instance ID
+      * @param {} [opts.backupId] - 用于恢复的备份Id，仅限于本实例生成的备份  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  restoreInstance (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  restoreInstance"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling restoreInstance"
+      )
+    }
+
+    let postBody = {}
+    if (opts.backupId !== undefined && opts.backupId !== null) {
+      postBody['backupId'] = opts.backupId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call restoreInstance with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}:restoreInstance',
       'POST',
       pathParams,
       queryParams,
@@ -3432,7 +4066,14 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -3549,7 +4190,14 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -3575,6 +4223,105 @@ JDCloud.RDS = class RDS extends Service {
     let request = this.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/performance:describeQueryPerformance',
       'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查看RDS实例当前白名单&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：支持
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - Instance ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param whiteList whiteLists
+      */
+
+  describeWhiteList (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeWhiteList"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling describeWhiteList"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeWhiteList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/whiteList',
+      'GET',
       pathParams,
       queryParams,
       headerParams,

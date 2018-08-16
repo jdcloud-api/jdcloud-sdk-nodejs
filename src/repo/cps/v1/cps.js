@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * storage相关 API
- * 流计算storage相关信息接口
+ * 云物理服务器
+ * 云物理服务器子网操作相关的接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -25,37 +25,36 @@
 require('../../../lib/node_loader')
 var JDCloud = require('../../../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'streamcomputer'
+var serviceId = 'cps'
 Service._services[serviceId] = true
 
 /**
- * streamcomputer service.
- * @version 1.0.1
+ * cps service.
+ * @version 1.0.0
  */
 
-JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
+JDCloud.CPS = class CPS extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
       options._defaultEndpoint.protocol || 'https'
     options._defaultEndpoint.host =
-      options._defaultEndpoint.host || 'streamcompute.jdcloud-api.com'
+      options._defaultEndpoint.host || 'cps.jdcloud-api.com'
     options.basePath = '/v1' // 默认要设为空""
     super(serviceId, options)
   }
 
   /**
-      *  查询指定作业详情
+      *  查询云物理服务器支持的操作系统
       * @param {Object} opts - parameters
-      * @param {integer} opts.jobId
-      * @param {integer} opts.namespaceId
+      * @param {string} opts.deviceType - 云物理服务器类型，可调用接口（describeDeviceTypes）获取指定地域的服务器类型，例如：cps.s.normal,cps.c.normal
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param jobStr jobStr
+      * @param os oss
       */
 
-  describeJob (opts, regionId = this.config.regionId, callback) {
+  describeOS (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -63,30 +62,22 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeJob"
+        "Missing the required parameter 'regionId' when calling  describeOS"
       )
     }
 
     opts = opts || {}
 
-    if (opts.jobId === undefined || opts.jobId === null) {
+    if (opts.deviceType === undefined || opts.deviceType === null) {
       throw new Error(
-        "Missing the required parameter 'opts.jobId' when calling describeJob"
-      )
-    }
-    if (opts.namespaceId === undefined || opts.namespaceId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.namespaceId' when calling describeJob"
+        "Missing the required parameter 'opts.deviceType' when calling describeOS"
       )
     }
 
     let postBody = null
     let queryParams = {}
-    if (opts.jobId !== undefined && opts.jobId !== null) {
-      queryParams['jobId'] = opts.jobId
-    }
-    if (opts.namespaceId !== undefined && opts.namespaceId !== null) {
-      queryParams['namespaceId'] = opts.namespaceId
+    if (opts.deviceType !== undefined && opts.deviceType !== null) {
+      queryParams['deviceType'] = opts.deviceType
     }
 
     let pathParams = {
@@ -94,7 +85,7 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streamcomputer/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.0'
     }
 
     // 扩展自定义头
@@ -112,7 +103,7 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     let returnType = null
 
     this.config.logger(
-      `call describeJob with params:\npathParams:${JSON.stringify(
+      `call describeOS with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -125,7 +116,7 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/job',
+      '/regions/{regionId}/os',
       'GET',
       pathParams,
       queryParams,
@@ -155,16 +146,18 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
   }
 
   /**
-      *  添加或者更新job
+      *  查询物理服务器可预装的软件列表&lt;br/&gt;
+可调用接口（describeOS）获取云物理服务器支持的操作系统列表&lt;br/&gt;
+
       * @param {Object} opts - parameters
-      * @param {jobStr} opts.jobStr - 创建作业的详情
+      * @param {string} opts.osTypeId - 操作系统系统类型ID，调用接口（describeOS）获取云物理服务器支持的操作系统
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param okInfo okInfo  成功结果对象
+      * @param software softwares
       */
 
-  addOrUpdateJob (opts, regionId = this.config.regionId, callback) {
+  describeSoftware (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -172,31 +165,28 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  addOrUpdateJob"
+        "Missing the required parameter 'regionId' when calling  describeSoftware"
       )
     }
 
     opts = opts || {}
 
-    if (opts.jobStr === undefined || opts.jobStr === null) {
+    if (opts.osTypeId === undefined || opts.osTypeId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.jobStr' when calling addOrUpdateJob"
+        "Missing the required parameter 'opts.osTypeId' when calling describeSoftware"
       )
     }
 
-    let postBody = {}
-    if (opts.jobStr !== undefined && opts.jobStr !== null) {
-      postBody['jobStr'] = opts.jobStr
-    }
-
+    let postBody = null
     let queryParams = {}
 
     let pathParams = {
-      regionId: regionId
+      regionId: regionId,
+      osTypeId: opts.osTypeId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streamcomputer/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.0'
     }
 
     // 扩展自定义头
@@ -214,7 +204,7 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     let returnType = null
 
     this.config.logger(
-      `call addOrUpdateJob with params:\npathParams:${JSON.stringify(
+      `call describeSoftware with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -227,7 +217,215 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/job',
+      '/regions/{regionId}/os/{osTypeId}/softwares',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询云物理服务器名称
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 云物理服务器ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string name  云物理服务器名称
+      */
+
+  describeInstanceName (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeInstanceName"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling describeInstanceName"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeInstanceName with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}:describeInstanceName',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改云物理服务器部分信息，包括名称、描述
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 云物理服务器ID
+      * @param {string} [opts.name] - 云物理服务器名称  optional
+      * @param {string} [opts.description] - 云物理服务器描述  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string name  云物理服务器名称
+      * @param string description  云物理服务器描述
+      */
+
+  modifyInstance (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyInstance"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling modifyInstance"
+      )
+    }
+
+    let postBody = {}
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyInstance with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}:modifyInstance',
       'POST',
       pathParams,
       queryParams,
@@ -257,18 +455,15 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
   }
 
   /**
-      *  删除作业
+      *  查询云物理服务器类型
       * @param {Object} opts - parameters
-      * @param {string} opts.namespaceId
-      * @param {integer} opts.jobId
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param string message  删除job返回信息
-      * @param boolean status
+      * @param deviceType deviceTypes
       */
 
-  deleteJob (opts, regionId = this.config.regionId, callback) {
+  describeDeviceTypes (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -276,38 +471,21 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  deleteJob"
+        "Missing the required parameter 'regionId' when calling  describeDeviceTypes"
       )
     }
 
     opts = opts || {}
 
-    if (opts.namespaceId === undefined || opts.namespaceId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.namespaceId' when calling deleteJob"
-      )
-    }
-    if (opts.jobId === undefined || opts.jobId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.jobId' when calling deleteJob"
-      )
-    }
-
     let postBody = null
     let queryParams = {}
-    if (opts.namespaceId !== undefined && opts.namespaceId !== null) {
-      queryParams['namespaceId'] = opts.namespaceId
-    }
-    if (opts.jobId !== undefined && opts.jobId !== null) {
-      queryParams['jobId'] = opts.jobId
-    }
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streamcomputer/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.0'
     }
 
     // 扩展自定义头
@@ -325,7 +503,7 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     let returnType = null
 
     this.config.logger(
-      `call deleteJob with params:\npathParams:${JSON.stringify(
+      `call describeDeviceTypes with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -338,108 +516,7 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/job',
-      'DELETE',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback) {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback) {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询指定应用下的所有job
-      * @param {Object} opts - parameters
-      * @param {string} opts.namespaceId
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param jobStr data
-      */
-
-  getJobList (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  getJobList"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.namespaceId === undefined || opts.namespaceId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.namespaceId' when calling getJobList"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.namespaceId !== undefined && opts.namespaceId !== null) {
-      queryParams['namespaceId'] = opts.namespaceId
-    }
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streamcomputer/1.0.1'
-    }
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-    }
-
-    let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    let returnType = null
-
-    this.config.logger(
-      `call getJobList with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/jobList',
+      '/regions/{regionId}/deviceTypes',
       'GET',
       pathParams,
       queryParams,
@@ -469,17 +546,17 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
   }
 
   /**
-      *  运行job
+      *  查询云物理服务器支持的raid类型
       * @param {Object} opts - parameters
-      * @param {string} opts.namespaceId
-      * @param {integer} opts.jobId
+      * @param {string} opts.deviceType - 云物理服务器类型，可查询describeDeviceTypes接口获取指定地域的服务器类型，例如：cps.s.normal,cps.c.normal
+      * @param {string} [opts.volumeType] - 磁盘类型，取值范围：system、data  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param string message  是否成功提交作业
+      * @param raid raids
       */
 
-  startJob (opts, regionId = this.config.regionId, callback) {
+  describeDeviceRaids (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -487,30 +564,25 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  startJob"
+        "Missing the required parameter 'regionId' when calling  describeDeviceRaids"
       )
     }
 
     opts = opts || {}
 
-    if (opts.namespaceId === undefined || opts.namespaceId === null) {
+    if (opts.deviceType === undefined || opts.deviceType === null) {
       throw new Error(
-        "Missing the required parameter 'opts.namespaceId' when calling startJob"
-      )
-    }
-    if (opts.jobId === undefined || opts.jobId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.jobId' when calling startJob"
+        "Missing the required parameter 'opts.deviceType' when calling describeDeviceRaids"
       )
     }
 
     let postBody = null
     let queryParams = {}
-    if (opts.namespaceId !== undefined && opts.namespaceId !== null) {
-      queryParams['namespaceId'] = opts.namespaceId
+    if (opts.deviceType !== undefined && opts.deviceType !== null) {
+      queryParams['deviceType'] = opts.deviceType
     }
-    if (opts.jobId !== undefined && opts.jobId !== null) {
-      queryParams['jobId'] = opts.jobId
+    if (opts.volumeType !== undefined && opts.volumeType !== null) {
+      queryParams['volumeType'] = opts.volumeType
     }
 
     let pathParams = {
@@ -518,7 +590,7 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streamcomputer/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.0'
     }
 
     // 扩展自定义头
@@ -536,7 +608,7 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     let returnType = null
 
     this.config.logger(
-      `call startJob with params:\npathParams:${JSON.stringify(
+      `call describeDeviceRaids with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -549,7 +621,7 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/job:start',
+      '/regions/{regionId}/raids',
       'GET',
       pathParams,
       queryParams,
@@ -579,17 +651,19 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
   }
 
   /**
-      *  停止作业运行job
+      *  查询单个云物理服务器raid信息
       * @param {Object} opts - parameters
-      * @param {string} opts.namespaceId
-      * @param {integer} opts.jobId
+      * @param {string} opts.instanceId - 云物理服务器ID
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param string message  成功启动作业返回信息
+      * @param string sysRaidTypeId  系统盘raid类型Id
+      * @param string sysRaidType  系统盘raid类型
+      * @param string dataRaidTypeId  数据盘raid类型Id
+      * @param string dataRaidType  数据盘raid类型
       */
 
-  stopJob (opts, regionId = this.config.regionId, callback) {
+  describeInstanceRaid (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -597,38 +671,28 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  stopJob"
+        "Missing the required parameter 'regionId' when calling  describeInstanceRaid"
       )
     }
 
     opts = opts || {}
 
-    if (opts.namespaceId === undefined || opts.namespaceId === null) {
+    if (opts.instanceId === undefined || opts.instanceId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.namespaceId' when calling stopJob"
-      )
-    }
-    if (opts.jobId === undefined || opts.jobId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.jobId' when calling stopJob"
+        "Missing the required parameter 'opts.instanceId' when calling describeInstanceRaid"
       )
     }
 
     let postBody = null
     let queryParams = {}
-    if (opts.namespaceId !== undefined && opts.namespaceId !== null) {
-      queryParams['namespaceId'] = opts.namespaceId
-    }
-    if (opts.jobId !== undefined && opts.jobId !== null) {
-      queryParams['jobId'] = opts.jobId
-    }
 
     let pathParams = {
-      regionId: regionId
+      regionId: regionId,
+      instanceId: opts.instanceId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streamcomputer/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.0'
     }
 
     // 扩展自定义头
@@ -646,7 +710,7 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     let returnType = null
 
     this.config.logger(
-      `call stopJob with params:\npathParams:${JSON.stringify(
+      `call describeInstanceRaid with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -659,7 +723,7 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/job:stop',
+      '/regions/{regionId}/instances/{instanceId}:describeInstanceRaid',
       'GET',
       pathParams,
       queryParams,
@@ -689,16 +753,19 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
   }
 
   /**
-      *  查询租户下的应用列表
+      *  查询单个云物理服务器监控信息
       * @param {Object} opts - parameters
-      * @param {string} [opts.keyword]   optional
+      * @param {string} opts.instanceId - 云物理服务器ID
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param namespace namespaces
+      * @param boolean cpus  CPU状态是否正常
+      * @param boolean mems  内存状态是否正常
+      * @param boolean disks  硬盘状态是否正常
+      * @param boolean nics  网卡状态是否正常
       */
 
-  queryNamespaces (opts, regionId = this.config.regionId, callback) {
+  describeInstanceStatus (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -706,24 +773,28 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  queryNamespaces"
+        "Missing the required parameter 'regionId' when calling  describeInstanceStatus"
       )
     }
 
     opts = opts || {}
 
-    let postBody = null
-    let queryParams = {}
-    if (opts.keyword !== undefined && opts.keyword !== null) {
-      queryParams['keyword'] = opts.keyword
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling describeInstanceStatus"
+      )
     }
 
+    let postBody = null
+    let queryParams = {}
+
     let pathParams = {
-      regionId: regionId
+      regionId: regionId,
+      instanceId: opts.instanceId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streamcomputer/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.0'
     }
 
     // 扩展自定义头
@@ -741,7 +812,7 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     let returnType = null
 
     this.config.logger(
-      `call queryNamespaces with params:\npathParams:${JSON.stringify(
+      `call describeInstanceStatus with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -754,7 +825,7 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/namespaces',
+      '/regions/{regionId}/instances/{instanceId}:describeInstanceStatus',
       'GET',
       pathParams,
       queryParams,
@@ -784,16 +855,19 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
   }
 
   /**
-      *  查询某个应用详情
+      *  重启单个云物理服务器，只能重启running状态的服务器
       * @param {Object} opts - parameters
-      * @param {integer} opts.namespaceId
+      * @param {string} opts.instanceId - 云物理服务器ID
+      * @param {string} [opts.clientToken] - 由客户端生成，用于保证请求的幂等性，长度不能超过36个字符；&lt;br/&gt;
+如果多个请求使用了相同的clientToken，只会执行第一个请求，之后的请求直接返回第一个请求的结果&lt;br/&gt;
+  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param namespace namespace  查询出的namespace对象
+      * @param boolean success  重启操作是否成功
       */
 
-  queryNamespaceDetail (opts, regionId = this.config.regionId, callback) {
+  restartInstance (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -801,132 +875,32 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  queryNamespaceDetail"
+        "Missing the required parameter 'regionId' when calling  restartInstance"
       )
     }
 
     opts = opts || {}
 
-    if (opts.namespaceId === undefined || opts.namespaceId === null) {
+    if (opts.instanceId === undefined || opts.instanceId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.namespaceId' when calling queryNamespaceDetail"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.namespaceId !== undefined && opts.namespaceId !== null) {
-      queryParams['namespaceId'] = opts.namespaceId
-    }
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streamcomputer/1.0.1'
-    }
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-    }
-
-    let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    let returnType = null
-
-    this.config.logger(
-      `call queryNamespaceDetail with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/namespaceDetail',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback) {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback) {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  创建namespace
-      * @param {Object} opts - parameters
-      * @param {namespace} opts.namespaceStr
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param boolean status  创建成功标志
-      */
-
-  createNamespace (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  createNamespace"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.namespaceStr === undefined || opts.namespaceStr === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.namespaceStr' when calling createNamespace"
+        "Missing the required parameter 'opts.instanceId' when calling restartInstance"
       )
     }
 
     let postBody = {}
-    if (opts.namespaceStr !== undefined && opts.namespaceStr !== null) {
-      postBody['namespaceStr'] = opts.namespaceStr
+    if (opts.clientToken !== undefined && opts.clientToken !== null) {
+      postBody['clientToken'] = opts.clientToken
     }
 
     let queryParams = {}
 
     let pathParams = {
-      regionId: regionId
+      regionId: regionId,
+      instanceId: opts.instanceId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streamcomputer/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.0'
     }
 
     // 扩展自定义头
@@ -944,7 +918,7 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     let returnType = null
 
     this.config.logger(
-      `call createNamespace with params:\npathParams:${JSON.stringify(
+      `call restartInstance with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -957,109 +931,7 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/namespace',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback) {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback) {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  更新namespace
-      * @param {Object} opts - parameters
-      * @param {namespace} opts.namespaceStr
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param boolean status  更新成功标志
-      */
-
-  updateNamespace (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  updateNamespace"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.namespaceStr === undefined || opts.namespaceStr === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.namespaceStr' when calling updateNamespace"
-      )
-    }
-
-    let postBody = {}
-    if (opts.namespaceStr !== undefined && opts.namespaceStr !== null) {
-      postBody['namespaceStr'] = opts.namespaceStr
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streamcomputer/1.0.1'
-    }
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-    }
-
-    let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    let returnType = null
-
-    this.config.logger(
-      `call updateNamespace with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/namespace',
+      '/regions/{regionId}/instances/{instanceId}:restartInstance',
       'PUT',
       pathParams,
       queryParams,
@@ -1089,16 +961,19 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
   }
 
   /**
-      *  删除namespace,如果旗下关联有其他资源，不允许删除
+      *  停止单个云物理服务器，只能停止running状态的服务器
       * @param {Object} opts - parameters
-      * @param {integer} opts.namespaceId
+      * @param {string} opts.instanceId - 云物理服务器ID
+      * @param {string} [opts.clientToken] - 由客户端生成，用于保证请求的幂等性，长度不能超过36个字符；&lt;br/&gt;
+如果多个请求使用了相同的clientToken，只会执行第一个请求，之后的请求直接返回第一个请求的结果&lt;br/&gt;
+  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param boolean status  删除namespace成功标志
+      * @param boolean success  停止操作是否成功
       */
 
-  deleteNamespace (opts, regionId = this.config.regionId, callback) {
+  stopInstance (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -1106,30 +981,32 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  deleteNamespace"
+        "Missing the required parameter 'regionId' when calling  stopInstance"
       )
     }
 
     opts = opts || {}
 
-    if (opts.namespaceId === undefined || opts.namespaceId === null) {
+    if (opts.instanceId === undefined || opts.instanceId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.namespaceId' when calling deleteNamespace"
+        "Missing the required parameter 'opts.instanceId' when calling stopInstance"
       )
     }
 
-    let postBody = null
-    let queryParams = {}
-    if (opts.namespaceId !== undefined && opts.namespaceId !== null) {
-      queryParams['namespaceId'] = opts.namespaceId
+    let postBody = {}
+    if (opts.clientToken !== undefined && opts.clientToken !== null) {
+      postBody['clientToken'] = opts.clientToken
     }
 
+    let queryParams = {}
+
     let pathParams = {
-      regionId: regionId
+      regionId: regionId,
+      instanceId: opts.instanceId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streamcomputer/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.0'
     }
 
     // 扩展自定义头
@@ -1147,7 +1024,7 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     let returnType = null
 
     this.config.logger(
-      `call deleteNamespace with params:\npathParams:${JSON.stringify(
+      `call stopInstance with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1160,8 +1037,8 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/namespace',
-      'DELETE',
+      '/regions/{regionId}/instances/{instanceId}:stopInstance',
+      'PUT',
       pathParams,
       queryParams,
       headerParams,
@@ -1190,16 +1067,19 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
   }
 
   /**
-      *  查询指定输入
+      *  启动单个云物理服务器，只能启动stopped状态的服务器
       * @param {Object} opts - parameters
-      * @param {integer} opts.storageId - storageId
+      * @param {string} opts.instanceId - 云物理服务器ID
+      * @param {string} [opts.clientToken] - 由客户端生成，用于保证请求的幂等性，长度不能超过36个字符；&lt;br/&gt;
+如果多个请求使用了相同的clientToken，只会执行第一个请求，之后的请求直接返回第一个请求的结果&lt;br/&gt;
+  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param storage data
+      * @param boolean success  启动操作是否成功
       */
 
-  describeStorage (opts, regionId = this.config.regionId, callback) {
+  startInstance (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -1207,30 +1087,32 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeStorage"
+        "Missing the required parameter 'regionId' when calling  startInstance"
       )
     }
 
     opts = opts || {}
 
-    if (opts.storageId === undefined || opts.storageId === null) {
+    if (opts.instanceId === undefined || opts.instanceId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.storageId' when calling describeStorage"
+        "Missing the required parameter 'opts.instanceId' when calling startInstance"
       )
     }
 
-    let postBody = null
-    let queryParams = {}
-    if (opts.storageId !== undefined && opts.storageId !== null) {
-      queryParams['storageId'] = opts.storageId
+    let postBody = {}
+    if (opts.clientToken !== undefined && opts.clientToken !== null) {
+      postBody['clientToken'] = opts.clientToken
     }
 
+    let queryParams = {}
+
     let pathParams = {
-      regionId: regionId
+      regionId: regionId,
+      instanceId: opts.instanceId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streamcomputer/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.0'
     }
 
     // 扩展自定义头
@@ -1248,7 +1130,7 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     let returnType = null
 
     this.config.logger(
-      `call describeStorage with params:\npathParams:${JSON.stringify(
+      `call startInstance with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1261,7 +1143,342 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/storage',
+      '/regions/{regionId}/instances/{instanceId}:startInstance',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  重装云物理服务器，只能重装stopped状态的服务器&lt;br&gt;
+- 可调用接口（describeOS）获取云物理服务器支持的操作系统列表
+- 可调用接口（describeSoftware）获取云物理服务器支持的软件列表，也可以不预装软件
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 云物理服务器ID
+      * @param {string} [opts.clientToken] - 由客户端生成，用于保证请求的幂等性，长度不能超过36个字符；&lt;br/&gt;
+如果多个请求使用了相同的clientToken，只会执行第一个请求，之后的请求直接返回第一个请求的结果&lt;br/&gt;
+  optional
+      * @param {reinstallInstanceSpec} opts.instanceSpec - 云物理服务器配置
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean success  重装操作是否成功
+      */
+
+  reinstallInstance (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  reinstallInstance"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling reinstallInstance"
+      )
+    }
+    if (opts.instanceSpec === undefined || opts.instanceSpec === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceSpec' when calling reinstallInstance"
+      )
+    }
+
+    let postBody = {}
+    if (opts.clientToken !== undefined && opts.clientToken !== null) {
+      postBody['clientToken'] = opts.clientToken
+    }
+    if (opts.instanceSpec !== undefined && opts.instanceSpec !== null) {
+      postBody['instanceSpec'] = opts.instanceSpec
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call reinstallInstance with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}:reinstallInstance',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  升级云物理服务器外网带宽，只能操作running或者stopped状态的服务器&lt;br&gt;
+- 不支持未启用外网的服务器升级带宽
+- 外网带宽不支持降级
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 云物理服务器ID
+      * @param {string} [opts.clientToken] - 由客户端生成，用于保证请求的幂等性，长度不能超过36个字符；&lt;br/&gt;
+如果多个请求使用了相同的clientToken，只会执行第一个请求，之后的请求直接返回第一个请求的结果&lt;br/&gt;
+  optional
+      * @param {integer} opts.bandwidth - 外网带宽，单位Mbps，取值范围[1,200]
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean success  升级带宽是否成功
+      */
+
+  modifyBandwidth (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyBandwidth"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling modifyBandwidth"
+      )
+    }
+    if (opts.bandwidth === undefined || opts.bandwidth === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.bandwidth' when calling modifyBandwidth"
+      )
+    }
+
+    let postBody = {}
+    if (opts.clientToken !== undefined && opts.clientToken !== null) {
+      postBody['clientToken'] = opts.clientToken
+    }
+    if (opts.bandwidth !== undefined && opts.bandwidth !== null) {
+      postBody['bandwidth'] = opts.bandwidth
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyBandwidth with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}:modifyBandwidth',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询单台云物理服务器详细信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 云物理服务器ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param instance instance
+      */
+
+  describeInstance (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeInstance"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling describeInstance"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeInstance with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}',
       'GET',
       pathParams,
       queryParams,
@@ -1291,17 +1508,29 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
   }
 
   /**
-      *  创建或者更新storage
+      *  批量查询云物理服务器详细信息&lt;br/&gt;
+支持分页查询，默认每页10条&lt;br/&gt;
+
       * @param {Object} opts - parameters
-      * @param {storage} opts.storageStr - 创建或者更新storage的详情
+      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认为10；取值范围[10, 100]  optional
+      * @param {string} [opts.az] - 可用区，精确匹配  optional
+      * @param {string} [opts.name] - 云物理服务器名称，支持模糊匹配  optional
+      * @param {string} [opts.networkType] - 网络类型，精确匹配，目前只支持basic  optional
+      * @param {string} [opts.deviceType] - 服务器类型，精确匹配，调用接口（describeDeviceTypes）获取物理服务器类型列表  optional
+      * @param {string} [opts.status] - 云物理服务器状态，参考云物理服务器状态  optional
+      * @param {filter} [opts.filters] - instanceId - 云物理服务器ID，精确匹配，支持多个
+  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param string message
-      * @param boolean status
+      * @param instance instances
+      * @param integer pageNumber  页码；默认为1
+      * @param integer pageSize  分页大小；默认为10；取值范围[10, 100]
+      * @param integer totalCount  查询结果总数
       */
 
-  addOrUpdateStorage (opts, regionId = this.config.regionId, callback) {
+  describeInstances (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -1309,21 +1538,159 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  addOrUpdateStorage"
+        "Missing the required parameter 'regionId' when calling  describeInstances"
       )
     }
 
     opts = opts || {}
 
-    if (opts.storageStr === undefined || opts.storageStr === null) {
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    if (opts.az !== undefined && opts.az !== null) {
+      queryParams['az'] = opts.az
+    }
+    if (opts.name !== undefined && opts.name !== null) {
+      queryParams['name'] = opts.name
+    }
+    if (opts.networkType !== undefined && opts.networkType !== null) {
+      queryParams['networkType'] = opts.networkType
+    }
+    if (opts.deviceType !== undefined && opts.deviceType !== null) {
+      queryParams['deviceType'] = opts.deviceType
+    }
+    if (opts.status !== undefined && opts.status !== null) {
+      queryParams['status'] = opts.status
+    }
+    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeInstances with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建一台或多台指定配置的云物理服务器
+- 地域与可用区
+  - 调用接口（describeRegiones）获取云物理服务器支持的地域与可用区
+- 服务器规格类型
+  - 调用接口（describeDeviceTypes）获取物理服务器类型列表
+  - 不能使用已下线、或已售馨的规格ID
+- 操作系统和预装软件
+  - 可调用接口（describeOS）获取云物理服务器支持的操作系统列表
+  - 可调用接口（describeSoftware）获取云物理服务器支持的软件列表，也可以不预装软件
+- 存储
+  - 数据盘多种Raid可选，可调用接口（describeDeviceRaids）获取服务器支持的Raid列表
+- 网络
+  - 网络类型目前只支持basic
+  - 线路目前只支持bgp
+  - 支持不启用外网，如果启用外网，带宽范围[1,200] 单位Mbps
+- 其他
+  - 购买时长，可按年或月购买，最少购买时长1个月，最长36个月（3年）
+  - 密码设置参考公共参数规范
+
+      * @param {Object} opts - parameters
+      * @param {string} [opts.clientToken] - 由客户端生成，用于保证请求的幂等性，长度不能超过36个字符；&lt;br/&gt;
+如果多个请求使用了相同的clientToken，只会执行第一个请求，之后的请求直接返回第一个请求的结果&lt;br/&gt;
+  optional
+      * @param {instanceSpec} opts.instanceSpec - 描述云物理服务器配置
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string instanceIds
+      */
+
+  createInstances (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.storageStr' when calling addOrUpdateStorage"
+        "Missing the required parameter 'regionId' when calling  createInstances"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceSpec === undefined || opts.instanceSpec === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceSpec' when calling createInstances"
       )
     }
 
     let postBody = {}
-    if (opts.storageStr !== undefined && opts.storageStr !== null) {
-      postBody['storageStr'] = opts.storageStr
+    if (opts.clientToken !== undefined && opts.clientToken !== null) {
+      postBody['clientToken'] = opts.clientToken
+    }
+    if (opts.instanceSpec !== undefined && opts.instanceSpec !== null) {
+      postBody['instanceSpec'] = opts.instanceSpec
     }
 
     let queryParams = {}
@@ -1333,7 +1700,7 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streamcomputer/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.0'
     }
 
     // 扩展自定义头
@@ -1351,7 +1718,7 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     let returnType = null
 
     this.config.logger(
-      `call addOrUpdateStorage with params:\npathParams:${JSON.stringify(
+      `call createInstances with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1364,8 +1731,8 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/storage',
-      'POST',
+      '/regions/{regionId}/instances',
+      'PUT',
       pathParams,
       queryParams,
       headerParams,
@@ -1394,47 +1761,25 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
   }
 
   /**
-      *  删除指定输入
+      *  查询云物理服务器区域列表
       * @param {Object} opts - parameters
-      * @param {integer} opts.storageId - storageId
-      * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param string message
+      * @param region regions
       */
 
-  deleteStorage (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  deleteStorage"
-      )
-    }
-
+  describeRegiones (opts, callback) {
     opts = opts || {}
-
-    if (opts.storageId === undefined || opts.storageId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.storageId' when calling deleteStorage"
-      )
-    }
 
     let postBody = null
     let queryParams = {}
-    if (opts.storageId !== undefined && opts.storageId !== null) {
-      queryParams['storageId'] = opts.storageId
-    }
 
     let pathParams = {
-      regionId: regionId
+      regionId: 'jdcloud'
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streamcomputer/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.0'
     }
 
     // 扩展自定义头
@@ -1452,7 +1797,7 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     let returnType = null
 
     this.config.logger(
-      `call deleteStorage with params:\npathParams:${JSON.stringify(
+      `call describeRegiones with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1465,8 +1810,8 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/storage',
-      'DELETE',
+      '/regions',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -1495,17 +1840,16 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
   }
 
   /**
-      *  创建或者更新storage
+      *  查询子网
       * @param {Object} opts - parameters
-      * @param {string} opts.storageType - storage类型
-      * @param {string} opts.namespaceId - namespaceId
+      * @param {string} opts.az - 可用区, 如cn-east-1a；可调用接口（describeRegiones）获取云物理服务器支持的可用区
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param storage storageList
+      * @param subnet subnet  子网详细信息
       */
 
-  getStorageList (opts, regionId = this.config.regionId, callback) {
+  describeSubnet (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -1513,30 +1857,22 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  getStorageList"
+        "Missing the required parameter 'regionId' when calling  describeSubnet"
       )
     }
 
     opts = opts || {}
 
-    if (opts.storageType === undefined || opts.storageType === null) {
+    if (opts.az === undefined || opts.az === null) {
       throw new Error(
-        "Missing the required parameter 'opts.storageType' when calling getStorageList"
-      )
-    }
-    if (opts.namespaceId === undefined || opts.namespaceId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.namespaceId' when calling getStorageList"
+        "Missing the required parameter 'opts.az' when calling describeSubnet"
       )
     }
 
     let postBody = null
     let queryParams = {}
-    if (opts.storageType !== undefined && opts.storageType !== null) {
-      queryParams['storageType'] = opts.storageType
-    }
-    if (opts.namespaceId !== undefined && opts.namespaceId !== null) {
-      queryParams['namespaceId'] = opts.namespaceId
+    if (opts.az !== undefined && opts.az !== null) {
+      queryParams['az'] = opts.az
     }
 
     let pathParams = {
@@ -1544,7 +1880,7 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streamcomputer/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.0'
     }
 
     // 扩展自定义头
@@ -1562,7 +1898,7 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     let returnType = null
 
     this.config.logger(
-      `call getStorageList with params:\npathParams:${JSON.stringify(
+      `call describeSubnet with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1575,7 +1911,7 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/storageList',
+      '/regions/{regionId}/subnet',
       'GET',
       pathParams,
       queryParams,
@@ -1604,4 +1940,4 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     )
   }
 }
-module.exports = JDCloud.STREAMCOMPUTER
+module.exports = JDCloud.CPS

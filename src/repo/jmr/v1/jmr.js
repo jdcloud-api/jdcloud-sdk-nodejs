@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 集群管理
- * JMR集群管理相关接口
+ * 工作流管理
+ * JMR工作流相关接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * jmr service.
- * @version 1.0.0
+ * @version 1.1.0
  */
 
 JDCloud.JMR = class JMR extends Service {
@@ -51,7 +51,7 @@ JDCloud.JMR = class JMR extends Service {
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param boolean status
+      * @param string status
       * @param string message
       */
 
@@ -87,7 +87,14 @@ JDCloud.JMR = class JMR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -111,7 +118,7 @@ JDCloud.JMR = class JMR extends Service {
     )
 
     let request = this.makeRequest(
-      '/v1/regions/{regionId}/create',
+      '/regions/{regionId}/cluster:create',
       'POST',
       pathParams,
       queryParams,
@@ -147,7 +154,7 @@ JDCloud.JMR = class JMR extends Service {
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param boolean status
+      * @param string status
       * @param string message
       * @param clusterDetailModel data
       */
@@ -183,7 +190,14 @@ JDCloud.JMR = class JMR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -207,7 +221,7 @@ JDCloud.JMR = class JMR extends Service {
     )
 
     let request = this.makeRequest(
-      '/v1/regions/{regionId}/detail',
+      '/regions/{regionId}/detail',
       'GET',
       pathParams,
       queryParams,
@@ -243,7 +257,7 @@ JDCloud.JMR = class JMR extends Service {
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param boolean status
+      * @param string status
       * @param string message
       */
 
@@ -277,7 +291,14 @@ JDCloud.JMR = class JMR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -301,7 +322,5891 @@ JDCloud.JMR = class JMR extends Service {
     )
 
     let request = this.makeRequest(
-      '/v1/regions/{regionId}/release',
+      '/regions/{regionId}/cluster/{id}:release',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取用户appKey和secretKey
+      * @param {Object} opts - parameters
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      * @param appModel data
+      */
+
+  getKey (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getKey"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call getKey with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/key',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  软件配置信息列表
+      * @param {Object} opts - parameters
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      * @param softStack data
+      */
+
+  getPropertyValue (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getPropertyValue"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call getPropertyValue with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/softwareStack',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  硬件配置信息列表
+      * @param {Object} opts - parameters
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      * @param hardWareStackData data
+      */
+
+  getHardwareStack (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getHardwareStack"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call getHardwareStack with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/hardwareStack',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取主机规格列表(过滤掉低内存的规格, 低于4核全部去掉。)
+      * @param {Object} opts - parameters
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      * @param instanceList data
+      */
+
+  getInstanceList (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getInstanceList"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call getInstanceList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询用户集群列表及相关服务的一些信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.id - 集群ID；由八位字符组成
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      * @param idata data
+      */
+
+  idataCluster (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  idataCluster"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.id === undefined || opts.id === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.id' when calling idataCluster"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      id: opts.id
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call idataCluster with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/idata',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取软件清单信息
+      * @param {Object} opts - parameters
+      * @param {} [opts.ver] - JMR软件版本号  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      * @param string data
+      */
+
+  getSoftwareInfo (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getSoftwareInfo"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.ver !== undefined && opts.ver !== null) {
+      postBody['ver'] = opts.ver
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call getSoftwareInfo with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/softwareInfo',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取软件清单信息
+      * @param {Object} opts - parameters
+      * @param {} [opts.ver] - JMR软件版本号  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      * @param softwareInfoAndVersion data
+      */
+
+  getSoftwareAndVersionInfo (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getSoftwareAndVersionInfo"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.ver !== undefined && opts.ver !== null) {
+      postBody['ver'] = opts.ver
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call getSoftwareAndVersionInfo with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/softwareInfo/v2',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  返回jmr版本列表
+      * @param {Object} opts - parameters
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      * @param string data
+      */
+
+  getJmrVersionList (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getJmrVersionList"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call getJmrVersionList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/jmrVersions',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  计算集群价格
+      * @param {Object} opts - parameters
+      * @param {clusterListViewModel} opts.clusterListViewModel - 集群信息视图
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      * @param integer data
+      */
+
+  calculateClusterPrice (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  calculateClusterPrice"
+      )
+    }
+
+    opts = opts || {}
+
+    if (
+      opts.clusterListViewModel === undefined ||
+      opts.clusterListViewModel === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterListViewModel' when calling calculateClusterPrice"
+      )
+    }
+
+    let postBody = {}
+    if (
+      opts.clusterListViewModel !== undefined &&
+      opts.clusterListViewModel !== null
+    ) {
+      postBody['clusterListViewModel'] = opts.clusterListViewModel
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call calculateClusterPrice with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/cluster:calculate',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取剩余可创建资源数
+      * @param {Object} opts - parameters
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      * @param availableNumData data
+      */
+
+  getAvaliableNum (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getAvaliableNum"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call getAvaliableNum with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/avaliableNum',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询server的剩余配额
+      * @param {Object} opts - parameters
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      * @param availableNumData data
+      */
+
+  queryServerQuota (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  queryServerQuota"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call queryServerQuota with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/serverQuota:query',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取vpc集合
+      * @param {Object} opts - parameters
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      * @param availableNumData data
+      */
+
+  queryVpcs (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  queryVpcs"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call queryVpcs with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/vpcs:query',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询VpcSubnet集合
+      * @param {Object} opts - parameters
+      * @param {string} opts.vpcId
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      * @param availableNumData data
+      */
+
+  queryVpcSubnets (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  queryVpcSubnets"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.vpcId === undefined || opts.vpcId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.vpcId' when calling queryVpcSubnets"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      vpcId: opts.vpcId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call queryVpcSubnets with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/vpcSubnets/{vpcId}:query',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  逻辑删除
+      * @param {Object} opts - parameters
+      * @param {string} opts.recordId
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      */
+
+  deleteCluster (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteCluster"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.recordId === undefined || opts.recordId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.recordId' when calling deleteCluster"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      recordId: opts.recordId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteCluster with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/cluster/{recordId}:delete',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询集群随机码
+      * @param {Object} opts - parameters
+      * @param {cluster} opts.recordId - 即集群ID，类中包含计费类型type,集群clusterId
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      * @param string data  集群的8位随机码
+      */
+
+  queryFloatingIp (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  queryFloatingIp"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.recordId === undefined || opts.recordId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.recordId' when calling queryFloatingIp"
+      )
+    }
+
+    let postBody = {}
+    if (opts.recordId !== undefined && opts.recordId !== null) {
+      postBody['recordId'] = opts.recordId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call queryFloatingIp with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/floatingIp:query',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  用户名校验
+      * @param {Object} opts - parameters
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      */
+
+  validateUser (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  validateUser"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call validateUser with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/userName:validate',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  续费
+      * @param {Object} opts - parameters
+      * @param {} [opts.clusterId] - 续费集群clusterId  optional
+      * @param {} [opts.type] - &quot;必传参数，计费类型&quot;
+      &quot;* 1:按配置&quot;
+      &quot;* 601-609：包年包月1一个月到9个月&quot;
+      &quot;* 610:包年包月一年&quot;
+      &quot;* 620:包年包月两年&quot;
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      */
+
+  renewBillingOrder (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  renewBillingOrder"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.clusterId !== undefined && opts.clusterId !== null) {
+      postBody['clusterId'] = opts.clusterId
+    }
+    if (opts.type !== undefined && opts.type !== null) {
+      postBody['type'] = opts.type
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call renewBillingOrder with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/BillingOrder:renew',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  验证输入的集群名称是否重复
+      * @param {Object} opts - parameters
+      * @param {string} opts.name
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      */
+
+  validateName (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  validateName"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.name === undefined || opts.name === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.name' when calling validateName"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      name: opts.name
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call validateName with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/cluster/{name}:validate',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  根据userpin获取accessKey和accessKeySecret
+      * @param {Object} opts - parameters
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      * @param userAccessKey data
+      */
+
+  getAccessKeys (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getAccessKeys"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call getAccessKeys with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/accessKeys',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  集群扩容
+      * @param {Object} opts - parameters
+      * @param {} [opts.clusterId] - 需要扩容的集群ID  optional
+      * @param {} [opts.expansionNum] - 扩容的数量  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      */
+
+  clusterExpansion (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  clusterExpansion"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.clusterId !== undefined && opts.clusterId !== null) {
+      postBody['clusterId'] = opts.clusterId
+    }
+    if (opts.expansionNum !== undefined && opts.expansionNum !== null) {
+      postBody['expansionNum'] = opts.expansionNum
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call clusterExpansion with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/cluster:expansion',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  计算集群扩容的价格
+      * @param {Object} opts - parameters
+      * @param {clusterExpansion} opts.clusterExpansion
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      * @param number data
+      */
+
+  calculateExpansionPrice (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  calculateExpansionPrice"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterExpansion === undefined || opts.clusterExpansion === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterExpansion' when calling calculateExpansionPrice"
+      )
+    }
+
+    let postBody = {}
+    if (opts.clusterExpansion !== undefined && opts.clusterExpansion !== null) {
+      postBody['clusterExpansion'] = opts.clusterExpansion
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call calculateExpansionPrice with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/cluster/expansionPrice:calculate',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  集群扩容时，显示集群details
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 需要扩容的集群ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      * @param clusterDetailInfo data
+      */
+
+  getClusterDetailInfo (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getClusterDetailInfo"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling getClusterDetailInfo"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      clusterId: opts.clusterId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call getClusterDetailInfo with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/clusterInfo/{clusterId}:detail',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  当前监控的服务列表
+      * @param {Object} opts - parameters
+      * @param {} [opts.clusterId] - 集群Id  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      * @param string data
+      */
+
+  monitorServiceList (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  monitorServiceList"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.clusterId !== undefined && opts.clusterId !== null) {
+      postBody['clusterId'] = opts.clusterId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call monitorServiceList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/monitorServices',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  服务存活状态监控明细数据
+      * @param {Object} opts - parameters
+      * @param {} [opts.clusterId] - 集群ID  optional
+      * @param {} [opts.service] - 服务名称，如HADOOP  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      * @param string data
+      */
+
+  monitorDetails (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  monitorDetails"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.clusterId !== undefined && opts.clusterId !== null) {
+      postBody['clusterId'] = opts.clusterId
+    }
+    if (opts.service !== undefined && opts.service !== null) {
+      postBody['service'] = opts.service
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call monitorDetails with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/monitorDetails',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  通过clusterId得到远程连接集群主节点的VNC URL
+      * @param {Object} opts - parameters
+      * @param {} [opts.clusterId] - 集群Id  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      * @param string data
+      */
+
+  getFirstServerVncUrl (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getFirstServerVncUrl"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.clusterId !== undefined && opts.clusterId !== null) {
+      queryParams['clusterId'] = opts.clusterId
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call getFirstServerVncUrl with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/firstServerVncUrl',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取作业类型列表
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 集群Id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      * @param string data
+      */
+
+  getJobTypeList (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getJobTypeList"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling getJobTypeList"
+      )
+    }
+
+    let postBody = {}
+    if (opts.clusterId !== undefined && opts.clusterId !== null) {
+      postBody['clusterId'] = opts.clusterId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call getJobTypeList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/jobType:list',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取作业列表
+      * @param {Object} opts - parameters
+      * @param {} [opts.jmrJobViewModel]   optional
+      * @param {} [opts.selectParams]   optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      * @param getJobListData data
+      */
+
+  getJobList (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getJobList"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.jmrJobViewModel !== undefined && opts.jmrJobViewModel !== null) {
+      postBody['jmrJobViewModel'] = opts.jmrJobViewModel
+    }
+    if (opts.selectParams !== undefined && opts.selectParams !== null) {
+      postBody['selectParams'] = opts.selectParams
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call getJobList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/jobView:list',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  校验作业名称是否有效
+      * @param {Object} opts - parameters
+      * @param {jmrJobViewModel} opts.jmrJobViewModel
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      */
+
+  isValidJobName (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  isValidJobName"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.jmrJobViewModel === undefined || opts.jmrJobViewModel === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.jmrJobViewModel' when calling isValidJobName"
+      )
+    }
+
+    let postBody = {}
+    if (opts.jmrJobViewModel !== undefined && opts.jmrJobViewModel !== null) {
+      postBody['jmrJobViewModel'] = opts.jmrJobViewModel
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call isValidJobName with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/jobName:Validate',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建作业
+      * @param {Object} opts - parameters
+      * @param {jmrJobViewModel} opts.jmrJobViewModel
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      */
+
+  createJob (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createJob"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.jmrJobViewModel === undefined || opts.jmrJobViewModel === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.jmrJobViewModel' when calling createJob"
+      )
+    }
+
+    let postBody = {}
+    if (opts.jmrJobViewModel !== undefined && opts.jmrJobViewModel !== null) {
+      postBody['jmrJobViewModel'] = opts.jmrJobViewModel
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call createJob with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/job:create',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改作业信息
+      * @param {Object} opts - parameters
+      * @param {jmrJobViewModel} opts.jmrJobViewModel
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      */
+
+  modifyJob (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyJob"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.jmrJobViewModel === undefined || opts.jmrJobViewModel === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.jmrJobViewModel' when calling modifyJob"
+      )
+    }
+
+    let postBody = {}
+    if (opts.jmrJobViewModel !== undefined && opts.jmrJobViewModel !== null) {
+      postBody['jmrJobViewModel'] = opts.jmrJobViewModel
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyJob with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/job:modify',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除作业
+      * @param {Object} opts - parameters
+      * @param {string} opts.jobId - 需要删除的作业Id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      */
+
+  deleteJob (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteJob"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.jobId === undefined || opts.jobId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.jobId' when calling deleteJob"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      jobId: opts.jobId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteJob with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/job/{jobId}:delete',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建作业并执行
+      * @param {Object} opts - parameters
+      * @param {jmrJobViewModel} opts.jmrJobViewModel
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      */
+
+  createAndExcuteJob (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createAndExcuteJob"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.jmrJobViewModel === undefined || opts.jmrJobViewModel === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.jmrJobViewModel' when calling createAndExcuteJob"
+      )
+    }
+
+    let postBody = {}
+    if (opts.jmrJobViewModel !== undefined && opts.jmrJobViewModel !== null) {
+      postBody['jmrJobViewModel'] = opts.jmrJobViewModel
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call createAndExcuteJob with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/job:createAndExecute',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  执行task
+      * @param {Object} opts - parameters
+      * @param {} [opts.jmrTaskViewModel]   optional
+      * @param {} [opts.clusterId]   optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      * @param string data
+      */
+
+  executeJob (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  executeJob"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.jmrTaskViewModel !== undefined && opts.jmrTaskViewModel !== null) {
+      postBody['jmrTaskViewModel'] = opts.jmrTaskViewModel
+    }
+    if (opts.clusterId !== undefined && opts.clusterId !== null) {
+      postBody['clusterId'] = opts.clusterId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call executeJob with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/job:execute',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查看作业明细
+      * @param {Object} opts - parameters
+      * @param {string} opts.jobId - 需要查看的作业的Id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      * @param jmrJobViewModel data
+      */
+
+  showJobDetails (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  showJobDetails"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.jobId === undefined || opts.jobId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.jobId' when calling showJobDetails"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      jobId: opts.jobId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call showJobDetails with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/{jobId}:detail',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取某一作业的运行记录
+      * @param {Object} opts - parameters
+      * @param {string} opts.jobId - 需要查询的jobId
+      * @param {} [opts.selectParams]   optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      * @param taskViewListData data
+      */
+
+  getTaskList (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getTaskList"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.jobId === undefined || opts.jobId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.jobId' when calling getTaskList"
+      )
+    }
+
+    let postBody = {}
+    if (opts.selectParams !== undefined && opts.selectParams !== null) {
+      postBody['selectParams'] = opts.selectParams
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      jobId: opts.jobId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call getTaskList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/{jobId}/task:list',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除集群的hdfs文件
+      * @param {Object} opts - parameters
+      * @param {} [opts.clusterId] - 集群ID  optional
+      * @param {} [opts.filePath] - 要删除的文件路径  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteHdfsFile (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteHdfsFile"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.clusterId !== undefined && opts.clusterId !== null) {
+      postBody['clusterId'] = opts.clusterId
+    }
+    if (opts.filePath !== undefined && opts.filePath !== null) {
+      postBody['filePath'] = opts.filePath
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteHdfsFile with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/hdfsFile:delete',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取集群的作业数
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 集群ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      * @param integer data  集群作业数量
+      */
+
+  getClusterJobCount (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getClusterJobCount"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling getClusterJobCount"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      clusterId: opts.clusterId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call getClusterJobCount with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/clusterJob/{clusterId}:count',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取集群的部署作业数
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 集群的Id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      * @param cronJobData data
+      */
+
+  getClusterCronJobCount (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getClusterCronJobCount"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling getClusterCronJobCount"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      clusterId: opts.clusterId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call getClusterCronJobCount with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/clusterCronJob/{clusterId}:count',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取执行计划列表
+      * @param {Object} opts - parameters
+      * @param {} [opts.jmrPlanViewModel]   optional
+      * @param {} [opts.selectParams]   optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      * @param taskPlanViewListData data
+      */
+
+  getCronJobList (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getCronJobList"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.jmrPlanViewModel !== undefined && opts.jmrPlanViewModel !== null) {
+      postBody['jmrPlanViewModel'] = opts.jmrPlanViewModel
+    }
+    if (opts.selectParams !== undefined && opts.selectParams !== null) {
+      postBody['selectParams'] = opts.selectParams
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call getCronJobList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/cronJob:list',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  校验执行计划名称是否可用
+      * @param {Object} opts - parameters
+      * @param {} [opts.planId]   optional
+      * @param {} [opts.planName]   optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      */
+
+  isValidPlanName (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  isValidPlanName"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.planId !== undefined && opts.planId !== null) {
+      postBody['planId'] = opts.planId
+    }
+    if (opts.planName !== undefined && opts.planName !== null) {
+      postBody['planName'] = opts.planName
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call isValidPlanName with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/planName:valid',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  新建或更新调度配置
+      * @param {Object} opts - parameters
+      * @param {} [opts.jmrPlanViewModel]   optional
+      * @param {} [opts.time]   optional
+      * @param {} [opts.month]   optional
+      * @param {} [opts.week]   optional
+      * @param {} [opts.day]   optional
+      * @param {} [opts.hour]   optional
+      * @param {} [opts.minute]   optional
+      * @param {string} opts.hour
+      * @param {string} opts.minute
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      */
+
+  createCronJob (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createCronJob"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.hour === undefined || opts.hour === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.hour' when calling createCronJob"
+      )
+    }
+    if (opts.minute === undefined || opts.minute === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.minute' when calling createCronJob"
+      )
+    }
+
+    let postBody = {}
+    if (opts.jmrPlanViewModel !== undefined && opts.jmrPlanViewModel !== null) {
+      postBody['jmrPlanViewModel'] = opts.jmrPlanViewModel
+    }
+    if (opts.time !== undefined && opts.time !== null) {
+      postBody['time'] = opts.time
+    }
+    if (opts.month !== undefined && opts.month !== null) {
+      postBody['month'] = opts.month
+    }
+    if (opts.week !== undefined && opts.week !== null) {
+      postBody['week'] = opts.week
+    }
+    if (opts.day !== undefined && opts.day !== null) {
+      postBody['day'] = opts.day
+    }
+    if (opts.hour !== undefined && opts.hour !== null) {
+      postBody['hour'] = opts.hour
+    }
+    if (opts.minute !== undefined && opts.minute !== null) {
+      postBody['minute'] = opts.minute
+    }
+    if (opts.hour !== undefined && opts.hour !== null) {
+      postBody['hour'] = opts.hour
+    }
+    if (opts.minute !== undefined && opts.minute !== null) {
+      postBody['minute'] = opts.minute
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call createCronJob with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/cronJob:create',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取定时任务详情
+      * @param {Object} opts - parameters
+      * @param {string} opts.planId - 执行计划的Id
+      * @param {} [opts.selectParams]   optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      * @param jobViewListData data
+      */
+
+  getCronJobDetail (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getCronJobDetail"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.planId === undefined || opts.planId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.planId' when calling getCronJobDetail"
+      )
+    }
+
+    let postBody = {}
+    if (opts.selectParams !== undefined && opts.selectParams !== null) {
+      postBody['selectParams'] = opts.selectParams
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      planId: opts.planId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call getCronJobDetail with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/cronJob:detail',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改执行计划
+      * @param {Object} opts - parameters
+      * @param {} [opts.jmrPlanViewModel]   optional
+      * @param {} [opts.time]   optional
+      * @param {} [opts.month]   optional
+      * @param {} [opts.week]   optional
+      * @param {} [opts.day]   optional
+      * @param {} [opts.hour]   optional
+      * @param {} [opts.minute]   optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      */
+
+  modifyCronJob (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyCronJob"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.jmrPlanViewModel !== undefined && opts.jmrPlanViewModel !== null) {
+      postBody['jmrPlanViewModel'] = opts.jmrPlanViewModel
+    }
+    if (opts.time !== undefined && opts.time !== null) {
+      postBody['time'] = opts.time
+    }
+    if (opts.month !== undefined && opts.month !== null) {
+      postBody['month'] = opts.month
+    }
+    if (opts.week !== undefined && opts.week !== null) {
+      postBody['week'] = opts.week
+    }
+    if (opts.day !== undefined && opts.day !== null) {
+      postBody['day'] = opts.day
+    }
+    if (opts.hour !== undefined && opts.hour !== null) {
+      postBody['hour'] = opts.hour
+    }
+    if (opts.minute !== undefined && opts.minute !== null) {
+      postBody['minute'] = opts.minute
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyCronJob with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/cronJob:modify',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  暂停定时任务
+      * @param {Object} opts - parameters
+      * @param {string} opts.planId - 暂停的任务ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      */
+
+  pauseCronJob (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  pauseCronJob"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.planId === undefined || opts.planId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.planId' when calling pauseCronJob"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      planId: opts.planId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call pauseCronJob with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/cronJob/{planId}:pause',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  恢复定时任务
+      * @param {Object} opts - parameters
+      * @param {string} opts.planId - 需要恢复的任务ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      */
+
+  resumeCronJob (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  resumeCronJob"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.planId === undefined || opts.planId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.planId' when calling resumeCronJob"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      planId: opts.planId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call resumeCronJob with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/cronJob/{planId}:resume',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除定时任务
+      * @param {Object} opts - parameters
+      * @param {string} opts.planId
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      */
+
+  deleteCronJob (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteCronJob"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.planId === undefined || opts.planId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.planId' when calling deleteCronJob"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      planId: opts.planId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteCronJob with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/cronJob/{planId}:delete',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取定时任务的运行记录
+      * @param {Object} opts - parameters
+      * @param {number} opts.planId
+      * @param {} [opts.selectParams]   optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      */
+
+  getCronJobTaskList (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getCronJobTaskList"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.planId === undefined || opts.planId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.planId' when calling getCronJobTaskList"
+      )
+    }
+
+    let postBody = {}
+    if (opts.selectParams !== undefined && opts.selectParams !== null) {
+      postBody['selectParams'] = opts.selectParams
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      planId: opts.planId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call getCronJobTaskList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/cronJobTask/plan/{planId}:list',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询某一执行计划的某一个job的运行记录
+      * @param {Object} opts - parameters
+      * @param {string} opts.jobId - 作业ID
+      * @param {} [opts.planId]   optional
+      * @param {} [opts.selectParams]   optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      */
+
+  getCronJobTaskListByJobId (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getCronJobTaskListByJobId"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.jobId === undefined || opts.jobId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.jobId' when calling getCronJobTaskListByJobId"
+      )
+    }
+
+    let postBody = {}
+    if (opts.planId !== undefined && opts.planId !== null) {
+      postBody['planId'] = opts.planId
+    }
+    if (opts.selectParams !== undefined && opts.selectParams !== null) {
+      postBody['selectParams'] = opts.selectParams
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      jobId: opts.jobId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call getCronJobTaskListByJobId with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/cronJobTask/job/{jobId}:list',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  立即执行
+      * @param {Object} opts - parameters
+      * @param {number} opts.planId
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      * @param taskPlanViewListData data
+      */
+
+  runCronJobOnce (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  runCronJobOnce"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.planId === undefined || opts.planId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.planId' when calling runCronJobOnce"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      planId: opts.planId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call runCronJobOnce with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/cronJob/{planId}:runOnce',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取定时任务的某个作业的最后一次运行记录
+      * @param {Object} opts - parameters
+      * @param {string} opts.jobId
+      * @param {} [opts.planId]   optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      * @param string data
+      */
+
+  getLastCronJobTask (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getLastCronJobTask"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.jobId === undefined || opts.jobId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.jobId' when calling getLastCronJobTask"
+      )
+    }
+
+    let postBody = {}
+    if (opts.planId !== undefined && opts.planId !== null) {
+      postBody['planId'] = opts.planId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      jobId: opts.jobId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call getLastCronJobTask with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/lastCronJobTask/{jobId}',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取计划中的任务(已经添加到quartz调度器的任务)
+      * @param {Object} opts - parameters
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      * @param jmrPlanViewModel data
+      */
+
+  queryExecutingJobList (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  queryExecutingJobList"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call queryExecutingJobList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/executingJob:list',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取工作流列表
+      * @param {Object} opts - parameters
+      * @param {string} opts.workflowName - 工作流名称
+      * @param {selectParams} [opts.selectParams]   optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      * @param object data
+      */
+
+  getWorkFlowList (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getWorkFlowList"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.workflowName === undefined || opts.workflowName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.workflowName' when calling getWorkFlowList"
+      )
+    }
+
+    let postBody = {}
+    if (opts.selectParams !== undefined && opts.selectParams !== null) {
+      postBody['selectParams'] = opts.selectParams
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      workflowName: opts.workflowName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call getWorkFlowList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/{workflowName}:list',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  保存工作流
+      * @param {Object} opts - parameters
+      * @param {emrWorkflow} opts.workflow
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      * @param message data
+      */
+
+  saveWorkFlow (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  saveWorkFlow"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.workflow === undefined || opts.workflow === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.workflow' when calling saveWorkFlow"
+      )
+    }
+
+    let postBody = {}
+    if (opts.workflow !== undefined && opts.workflow !== null) {
+      postBody['workflow'] = opts.workflow
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call saveWorkFlow with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/workflow:save',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除工作流
+      * @param {Object} opts - parameters
+      * @param {string} opts.workflowId - 工作流ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      */
+
+  deleteWorkFlow (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteWorkFlow"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.workflowId === undefined || opts.workflowId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.workflowId' when calling deleteWorkFlow"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      workflowId: opts.workflowId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteWorkFlow with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/{workflowId}:delete',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  运行工作流
+      * @param {Object} opts - parameters
+      * @param {string} opts.workflowId - 工作流ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      */
+
+  runWorkFlow (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  runWorkFlow"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.workflowId === undefined || opts.workflowId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.workflowId' when calling runWorkFlow"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      workflowId: opts.workflowId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call runWorkFlow with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/{workflowId}:run',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查看工作流详情
+      * @param {Object} opts - parameters
+      * @param {} [opts.wfInstanceId]   optional
+      * @param {} [opts.wfId]   optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param message message
+      */
+
+  wfInstanceDetail (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  wfInstanceDetail"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.wfInstanceId !== undefined && opts.wfInstanceId !== null) {
+      postBody['wfInstanceId'] = opts.wfInstanceId
+    }
+    if (opts.wfId !== undefined && opts.wfId !== null) {
+      postBody['wfId'] = opts.wfId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call wfInstanceDetail with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/wfInstance:detail',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取工作流运行记录列表
+      * @param {Object} opts - parameters
+      * @param {selectParams} [opts.selectParams]   optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      * @param object data
+      */
+
+  getWorkFlowTrackerList (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getWorkFlowTrackerList"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.selectParams !== undefined && opts.selectParams !== null) {
+      postBody['selectParams'] = opts.selectParams
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call getWorkFlowTrackerList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/workFlowTracker:list',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除运行记录
+      * @param {Object} opts - parameters
+      * @param {string} opts.trackerId
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status
+      * @param string message
+      */
+
+  deleteWorkFlowTracker (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteWorkFlowTracker"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.trackerId === undefined || opts.trackerId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.trackerId' when calling deleteWorkFlowTracker"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      trackerId: opts.trackerId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteWorkFlowTracker with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/tracker/{trackerId}:delete',
       'POST',
       pathParams,
       queryParams,

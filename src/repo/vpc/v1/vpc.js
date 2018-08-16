@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * vpc service.
- * @version 0.3.0
+ * @version 0.4.0
  */
 
 JDCloud.VPC = class VPC extends Service {
@@ -89,7 +89,14 @@ chargeStatus - eip的费用支付状态,normal(正常状态) or overdue(预付�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -198,7 +205,14 @@ chargeStatus - eip的费用支付状态,normal(正常状态) or overdue(预付�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -290,7 +304,14 @@ chargeStatus - eip的费用支付状态,normal(正常状态) or overdue(预付�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -381,7 +402,14 @@ chargeStatus - eip的费用支付状态,normal(正常状态) or overdue(预付�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -481,7 +509,14 @@ role - 网卡角色，取值范围：Primary（主网卡）、Secondary（辅助
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -614,7 +649,14 @@ role - 网卡角色，取值范围：Primary（主网卡）、Secondary（辅助
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -709,7 +751,14 @@ role - 网卡角色，取值范围：Primary（主网卡）、Secondary（辅助
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -819,7 +868,14 @@ role - 网卡角色，取值范围：Primary（主网卡）、Secondary（辅助
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -913,7 +969,14 @@ role - 网卡角色，取值范围：Primary（主网卡）、Secondary（辅助
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1020,7 +1083,14 @@ role - 网卡角色，取值范围：Primary（主网卡）、Secondary（辅助
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1123,7 +1193,14 @@ role - 网卡角色，取值范围：Primary（主网卡）、Secondary（辅助
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1230,7 +1307,14 @@ role - 网卡角色，取值范围：Primary（主网卡）、Secondary（辅助
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1329,7 +1413,14 @@ role - 网卡角色，取值范围：Primary（主网卡）、Secondary（辅助
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1431,7 +1522,14 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1545,7 +1643,14 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1644,7 +1749,14 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1750,7 +1862,14 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1844,7 +1963,14 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1951,7 +2077,14 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -2059,7 +2192,14 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -2166,7 +2306,14 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -2191,6 +2338,114 @@ vpcId - 安全组所属vpc Id，支持单个
 
     let request = this.makeRequest(
       '/regions/{regionId}/networkSecurityGroups/{networkSecurityGroupId}:modifyNetworkSecurityGroupRules',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  给路由表解绑子网接口
+      * @param {Object} opts - parameters
+      * @param {string} opts.routeTableId - RouteTable ID
+      * @param {string} opts.subnetId - 路由表要解绑的子网ID，解绑后子网绑定默认路由表
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  disassociateRouteTable (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  disassociateRouteTable"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.routeTableId === undefined || opts.routeTableId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.routeTableId' when calling disassociateRouteTable"
+      )
+    }
+    if (opts.subnetId === undefined || opts.subnetId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.subnetId' when calling disassociateRouteTable"
+      )
+    }
+
+    let postBody = {}
+    if (opts.subnetId !== undefined && opts.subnetId !== null) {
+      postBody['subnetId'] = opts.subnetId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      routeTableId: opts.routeTableId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call disassociateRouteTable with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/routeTables/{routeTableId}:disassociateRouteTable',
       'POST',
       pathParams,
       queryParams,
@@ -2266,7 +2521,14 @@ vpcId - 子网所属VPC Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -2358,7 +2620,14 @@ vpcId - 子网所属VPC Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -2455,7 +2724,14 @@ vpcNames - vpc名称列表,支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -2481,6 +2757,116 @@ vpcNames - vpc名称列表,支持多个
     let request = this.makeRequest(
       '/regions/{regionId}/vpcs/',
       'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建私有网络
+      * @param {Object} opts - parameters
+      * @param {string} opts.vpcName - 私有网络名称,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符。
+      * @param {string} [opts.addressPrefix] - 如果为空，则不限制网段，如果不为空，10.0.0.0/8、172.16.0.0/12和192.168.0.0/16及它们包含的子网，且子网掩码长度为16-28之间  optional
+      * @param {string} [opts.description] - vpc描述，允许输入UTF-8编码下的全部字符，不超过256字符。  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string vpcId  私有网络ID
+      */
+
+  createVpc (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createVpc"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.vpcName === undefined || opts.vpcName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.vpcName' when calling createVpc"
+      )
+    }
+
+    let postBody = {}
+    if (opts.vpcName !== undefined && opts.vpcName !== null) {
+      postBody['vpcName'] = opts.vpcName
+    }
+    if (opts.addressPrefix !== undefined && opts.addressPrefix !== null) {
+      postBody['addressPrefix'] = opts.addressPrefix
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call createVpc with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/vpcs/',
+      'POST',
       pathParams,
       queryParams,
       headerParams,
@@ -2547,7 +2933,14 @@ vpcNames - vpc名称列表,支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -2573,6 +2966,104 @@ vpcNames - vpc名称列表,支持多个
     let request = this.makeRequest(
       '/regions/{regionId}/vpcs/{vpcId}',
       'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除私有网络
+      * @param {Object} opts - parameters
+      * @param {string} opts.vpcId - Vpc ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteVpc (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteVpc"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.vpcId === undefined || opts.vpcId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.vpcId' when calling deleteVpc"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      vpcId: opts.vpcId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteVpc with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/vpcs/{vpcId}',
+      'DELETE',
       pathParams,
       queryParams,
       headerParams,
@@ -2646,7 +3137,14 @@ remoteVpcId - vpcPeering对端Vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -2763,7 +3261,14 @@ remoteVpcId - vpcPeering对端Vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -2855,7 +3360,14 @@ remoteVpcId - vpcPeering对端Vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -2955,7 +3467,14 @@ remoteVpcId - vpcPeering对端Vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -3046,7 +3565,14 @@ remoteVpcId - vpcPeering对端Vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}

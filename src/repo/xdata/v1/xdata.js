@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * table相关接口
+ * table
  * API related to XDATA-DW table
  *
  * OpenAPI spec version: v1
@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * xdata service.
- * @version 1.0.0
+ * @version 1.1.0
  */
 
 JDCloud.XDATA = class XDATA extends Service {
@@ -45,7 +45,7 @@ JDCloud.XDATA = class XDATA extends Service {
   }
 
   /**
-      *  查询数据库列表
+      *  查询用户实例的所有数据库信息
       * @param {Object} opts - parameters
       * @param {string} opts.instanceName - 实例名称
       * @param {string} regionId - ID of the region
@@ -87,7 +87,14 @@ JDCloud.XDATA = class XDATA extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -141,7 +148,7 @@ JDCloud.XDATA = class XDATA extends Service {
   }
 
   /**
-      *  查询数据库详情
+      *  查询用户实例的指定数据库信息
       * @param {Object} opts - parameters
       * @param {string} opts.databaseName - 数据库名
       * @param {string} opts.instanceName - 实例名称
@@ -190,7 +197,14 @@ JDCloud.XDATA = class XDATA extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -244,11 +258,11 @@ JDCloud.XDATA = class XDATA extends Service {
   }
 
   /**
-      *  创建数据库
+      *  创建属于用户实例的数据库
       * @param {Object} opts - parameters
       * @param {string} opts.databaseName - 数据库名
       * @param {string} opts.instanceName - 实例名称
-      * @param {string} [opts.description] - 描述信息  optional
+      * @param {string} [opts.description] - 数据库描述信息  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -297,7 +311,14 @@ JDCloud.XDATA = class XDATA extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -351,7 +372,7 @@ JDCloud.XDATA = class XDATA extends Service {
   }
 
   /**
-      *  删除数据库
+      *  删除用户实例的指定数据库
       * @param {Object} opts - parameters
       * @param {string} opts.databaseName - 数据库名
       * @param {string} opts.instanceName - 实例名称
@@ -399,7 +420,14 @@ JDCloud.XDATA = class XDATA extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -453,7 +481,7 @@ JDCloud.XDATA = class XDATA extends Service {
   }
 
   /**
-      *  查询实例列表
+      *  查询用户所属的实例信息
       * @param {Object} opts - parameters
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -485,7 +513,14 @@ JDCloud.XDATA = class XDATA extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -539,7 +574,7 @@ JDCloud.XDATA = class XDATA extends Service {
   }
 
   /**
-      *  执行Spark SQL
+      *  执行用户编写的Spark SQL脚本
       * @param {Object} opts - parameters
       * @param {string} [opts.databaseName] - 数据库名称  optional
       * @param {string} opts.sql - sql脚本
@@ -627,7 +662,14 @@ JDCloud.XDATA = class XDATA extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -681,7 +723,7 @@ JDCloud.XDATA = class XDATA extends Service {
   }
 
   /**
-      *  执行PySpark脚本
+      *  执行用户编写的PySpark脚本
       * @param {Object} opts - parameters
       * @param {string} opts.script - PySpark脚本
       * @param {string} opts.userName - 用户名称
@@ -753,7 +795,14 @@ JDCloud.XDATA = class XDATA extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -807,7 +856,7 @@ JDCloud.XDATA = class XDATA extends Service {
   }
 
   /**
-      *  获取查询状态
+      *  获取用户Spark SQL脚本的查询状态
       * @param {Object} opts - parameters
       * @param {string} opts.userName - 用户名称
       * @param {string} opts.queryId - 查询id名称
@@ -858,7 +907,14 @@ JDCloud.XDATA = class XDATA extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -912,7 +968,7 @@ JDCloud.XDATA = class XDATA extends Service {
   }
 
   /**
-      *  获取PySpark脚本的执行状态
+      *  获取用户PySpark脚本的执行状态
       * @param {Object} opts - parameters
       * @param {string} opts.userName - 用户名称
       * @param {string} opts.queryId - 查询id
@@ -963,7 +1019,14 @@ JDCloud.XDATA = class XDATA extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1017,7 +1080,7 @@ JDCloud.XDATA = class XDATA extends Service {
   }
 
   /**
-      *  获取查询日志
+      *  获取用户Spark SQL脚本的查询日志
       * @param {Object} opts - parameters
       * @param {string} opts.userName - 用户名称
       * @param {string} opts.queryId - 查询id
@@ -1067,7 +1130,14 @@ JDCloud.XDATA = class XDATA extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1121,7 +1191,7 @@ JDCloud.XDATA = class XDATA extends Service {
   }
 
   /**
-      *  获取查询的结果
+      *  获取用户Spark SQL脚本的查询结果
       * @param {Object} opts - parameters
       * @param {string} opts.userName - 用户名称
       * @param {string} opts.queryId - 查询id
@@ -1171,7 +1241,14 @@ JDCloud.XDATA = class XDATA extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1225,7 +1302,7 @@ JDCloud.XDATA = class XDATA extends Service {
   }
 
   /**
-      *  获取PySpark执行的结果
+      *  获取用户PySpark脚本的执行结果
       * @param {Object} opts - parameters
       * @param {string} opts.userName - 用户名称
       * @param {string} opts.queryId - 查询id
@@ -1275,7 +1352,14 @@ JDCloud.XDATA = class XDATA extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1329,7 +1413,7 @@ JDCloud.XDATA = class XDATA extends Service {
   }
 
   /**
-      *  终止查询
+      *  终止用户Spark SQL脚本查询
       * @param {Object} opts - parameters
       * @param {string} opts.userName - 用户名称
       * @param {string} opts.queryId - 查询id
@@ -1380,7 +1464,14 @@ JDCloud.XDATA = class XDATA extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1434,7 +1525,7 @@ JDCloud.XDATA = class XDATA extends Service {
   }
 
   /**
-      *  终止PySpark任务
+      *  终止用户PySpark脚本任务
       * @param {Object} opts - parameters
       * @param {string} opts.userName - 用户名称
       * @param {string} opts.queryId - 查询id
@@ -1485,7 +1576,14 @@ JDCloud.XDATA = class XDATA extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1539,7 +1637,7 @@ JDCloud.XDATA = class XDATA extends Service {
   }
 
   /**
-      *  查询指定数据库下所有数据表
+      *  查询用户实例指定数据库下的所有数据表信息
       * @param {Object} opts - parameters
       * @param {string} opts.instanceName - 实例名称
       * @param {string} opts.databaseName - 数据库名称
@@ -1590,7 +1688,14 @@ JDCloud.XDATA = class XDATA extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1644,10 +1749,10 @@ JDCloud.XDATA = class XDATA extends Service {
   }
 
   /**
-      *  创建数据表
+      *  创建用户实例的数据表
       * @param {Object} opts - parameters
       * @param {string} opts.instanceName - 实例名称
-      * @param {dwTableDesc} opts.dbModelDBTable - 数据表描述
+      * @param {dwTableDesc} opts.dbModelDBTable - 数据表描述信息
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1695,7 +1800,14 @@ JDCloud.XDATA = class XDATA extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1749,7 +1861,7 @@ JDCloud.XDATA = class XDATA extends Service {
   }
 
   /**
-      *  查询数据表信息
+      *  查询用户实例的指定数据表信息
       * @param {Object} opts - parameters
       * @param {string} opts.tableName - 数据表名
       * @param {string} opts.instanceName - 实例名称
@@ -1807,7 +1919,14 @@ JDCloud.XDATA = class XDATA extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1861,7 +1980,7 @@ JDCloud.XDATA = class XDATA extends Service {
   }
 
   /**
-      *  删除数据表
+      *  删除用户实例的指定数据表
       * @param {Object} opts - parameters
       * @param {string} opts.tableName - 数据表名
       * @param {string} opts.instanceName - 实例名称
@@ -1919,7 +2038,14 @@ JDCloud.XDATA = class XDATA extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  xdata/1.1.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}

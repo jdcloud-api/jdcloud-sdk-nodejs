@@ -6,6 +6,7 @@ module.exports = {
   IAM: require('./iam'),
   CPS: require('./cps'),
   DISK: require('./disk'),
+  DATASTAR: require('./datastar'),
   MONGODB: require('./mongodb'),
   VPC: require('./vpc'),
   SOP: require('./sop'),

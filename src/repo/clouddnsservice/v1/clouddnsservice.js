@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * clouddnsservice service.
- * @version 1.0.2
+ * @version 1.0.3
  */
 
 JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
@@ -47,15 +47,16 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
   /**
       *  查询用户名下的主域名列表
       * @param {Object} opts - parameters
-      * @param {integer} opts.pageNumber - 当前页数，起始值为1，默认为1
-      * @param {integer} opts.pageSize - 分页查询时设置的每页行数
-      * @param {string} [opts.domainName] - 关键字，按照”%domainName%”模式搜索主域名  optional
+      * @param {integer} opts.pageNumber - 分页查询时查询的每页的序号，起始值为1，默认为1
+      * @param {integer} opts.pageSize - 分页查询时设置的每页行数，默认为10
+      * @param {string} [opts.domainName] - 关键字，按照”%domainName%”模式匹配主域名  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       * @param domain dataList
-      * @param integer currentCount
-      * @param integer totalCount
+      * @param integer currentCount  当前页的域名列表里域名的个数
+      * @param integer totalCount  所有匹配的域名列表的个数
+      * @param integer totalPage  所有匹配的域名列表按照分页参数一共的页数
       */
 
   getDomains (opts, regionId = this.config.regionId, callback) {
@@ -100,7 +101,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.3'
     }
 
     // 扩展自定义头
@@ -163,18 +164,18 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
   /**
       *  添加主域名
       * @param {Object} opts - parameters
-      * @param {integer} opts.packId - 套餐类型, 0免费 ,1企业版, 2高级版
-      * @param {string} opts.domainName - 域名
+      * @param {integer} opts.packId - 域名的套餐类型, 0-&gt;免费 ,1-&gt;企业版, 2-&gt;高级版
+      * @param {string} opts.domainName - 要添加的域名
       * @param {integer} [opts.domainId] - 域名ID，升级高级版必填  optional
-      * @param {integer} [opts.buyType] - 1新购买、2升级，高级版必填  optional
-      * @param {integer} [opts.timeSpan] - 1-3 ，时长，高级版必填  optional
-      * @param {integer} [opts.timeUnit] - 时间单位，高级版必填  optional
-      * @param {integer} [opts.billingType] - 计费类型，高级版必填  optional
+      * @param {integer} [opts.buyType] - 1-&gt;新购买、2-&gt;升级，收费套餐的域名必填  optional
+      * @param {integer} [opts.timeSpan] - 1，2，3 ，时长，收费套餐的域名必填  optional
+      * @param {integer} [opts.timeUnit] - 时间单位，收费套餐的域名必填  optional
+      * @param {integer} [opts.billingType] - 计费类型，收费套餐的域名必填  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param domain data
-      * @param string order  收费版的订单号
+      * @param domain data  新添加的的域名结构
+      * @param string order  添加收费版域名的订单号
       */
 
   addDomain (opts, regionId = this.config.regionId, callback) {
@@ -232,7 +233,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.3'
     }
 
     // 扩展自定义头
@@ -295,7 +296,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
   /**
       *  删除主域名
       * @param {Object} opts - parameters
-      * @param {integer} opts.domainId - 域名ID
+      * @param {integer} opts.domainId - 需要删除的域名ID
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -332,7 +333,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.3'
     }
 
     // 扩展自定义头
@@ -395,12 +396,12 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
   /**
       *  修改主域名
       * @param {Object} opts - parameters
-      * @param {string} opts.domainName - 域名
-      * @param {integer} opts.id - 域名ID
+      * @param {string} opts.domainName - 需要修改的域名
+      * @param {integer} opts.id - 需要修改的域名ID
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param domain updateDomain
+      * @param domain updateDomain  修改后的域名结构
       */
 
   updateDomain (opts, regionId = this.config.regionId, callback) {
@@ -443,7 +444,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.3'
     }
 
     // 扩展自定义头
@@ -507,7 +508,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
       *  查看域名的解析次数
       * @param {Object} opts - parameters
       * @param {string} opts.domainId - 域名ID
-      * @param {string} opts.domainName - 域名
+      * @param {string} opts.domainName - 查询的域名
       * @param {string} opts.start - 起始时间, UTC时间例如2017-11-10T23:00:00Z
       * @param {string} opts.end - 终止时间, UTC时间例如2017-11-10T23:00:00Z
       * @param {string} regionId - ID of the region
@@ -570,7 +571,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.3'
     }
 
     // 扩展自定义头
@@ -698,7 +699,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.3'
     }
 
     // 扩展自定义头
@@ -759,7 +760,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
   }
 
   /**
-      *  查询某个主域名的解析记录
+      *  查询主域名的解析记录
       * @param {Object} opts - parameters
       * @param {string} opts.domainId - 域名ID
       * @param {integer} [opts.pageNumber] - 当前页数，起始值为1，默认为1  optional
@@ -768,9 +769,9 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
       * @param {string} callback - callback
       @return {Object} result
       * @param rR dataList
-      * @param integer totalCount
-      * @param integer totalPage
-      * @param integer currentCount
+      * @param integer totalCount  所有解析记录的个数
+      * @param integer totalPage  所有解析记录的页数
+      * @param integer currentCount  当前页解析记录的个数
       */
 
   searchRR (opts, regionId = this.config.regionId, callback) {
@@ -808,7 +809,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.3'
     }
 
     // 扩展自定义头
@@ -869,7 +870,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
   }
 
   /**
-      *  查询DNS所有解析线路
+      *  查询云解析所有的基础解析线路
       * @param {Object} opts - parameters
       * @param {string} opts.domainId - 域名ID
       * @param {integer} [opts.loadMode] - 展示方式  optional
@@ -929,7 +930,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.3'
     }
 
     // 扩展自定义头
@@ -990,14 +991,14 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
   }
 
   /**
-      *  添加域名解析
+      *  添加域名的解析记录
       * @param {Object} opts - parameters
       * @param {string} opts.domainId - 域名ID
       * @param {addRR} opts.req - RR参数
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param rR dataList
+      * @param rR dataList  添加成功后的解析记录结果
       */
 
   addRR (opts, regionId = this.config.regionId, callback) {
@@ -1038,7 +1039,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.3'
     }
 
     // 扩展自定义头
@@ -1146,7 +1147,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.3'
     }
 
     // 扩展自定义头
@@ -1211,7 +1212,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
       * @param {Object} opts - parameters
       * @param {string} opts.domainId - 域名ID
       * @param {array} [opts.ids] - 需要操作的解析记录ID  optional
-      * @param {string} opts.action - 操作类型，on/off/del，分别是启用、停用、删除解析记录
+      * @param {string} opts.action - 操作类型，on-&gt;启用 off-&gt;停用 del-&gt;删除
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1258,7 +1259,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.3'
     }
 
     // 扩展自定义头
@@ -1328,9 +1329,9 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param integer currentCount
-      * @param integer totalCount
-      * @param integer totalPage
+      * @param integer currentCount  当前页面网站监控项的个数
+      * @param integer totalCount  所有网站监控项的个数
+      * @param integer totalPage  所有网站监控项的页数
       * @param monitor dataList
       */
 
@@ -1372,7 +1373,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.3'
     }
 
     // 扩展自定义头
@@ -1433,7 +1434,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
   }
 
   /**
-      *  添加子域名的监控项，采用默认配置
+      *  添加子域名的监控项，默认把子域名的所有监控项都添加上监控
       * @param {Object} opts - parameters
       * @param {string} opts.domainId - 域名ID
       * @param {string} opts.subDomainName - 子域名
@@ -1480,7 +1481,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.3'
     }
 
     // 扩展自定义头
@@ -1588,7 +1589,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.3'
     }
 
     // 扩展自定义头
@@ -1700,7 +1701,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.3'
     }
 
     // 扩展自定义头
@@ -1761,7 +1762,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
   }
 
   /**
-      *  监控项的操作，包括：删除，暂停，启动, 手动恢复, 手动切换
+      *  监控项的操作集合，包括：删除，暂停，启动, 手动恢复, 手动切换
       * @param {Object} opts - parameters
       * @param {string} opts.domainId - 域名ID
       * @param {string} opts.action - 删除del, 暂停stop, 开启start, 手动恢复recover，手动切换switch
@@ -1816,7 +1817,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.3'
     }
 
     // 扩展自定义头
@@ -1924,7 +1925,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.3'
     }
 
     // 扩展自定义头
@@ -1994,9 +1995,9 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param integer currentCount
-      * @param integer totalCount
-      * @param integer totalPage
+      * @param integer currentCount  当前页面报警信息的个数
+      * @param integer totalCount  所有报警信息的个数
+      * @param integer totalPage  所有报警信息的页数
       * @param monitorAlarmInfo dataList
       */
 
@@ -2038,7 +2039,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.3'
     }
 
     // 扩展自定义头

@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * backup相关接口
- * API related to Relational MONGODB Service
+ * 安全管理
+ * API related to MONGODB security
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * mongodb service.
- * @version 1.0.0
+ * @version 1.0.2
  */
 
 JDCloud.MONGODB = class MONGODB extends Service {
@@ -52,6 +52,7 @@ JDCloud.MONGODB = class MONGODB extends Service {
       * @param {filter} [opts.filters] - instanceId - 实例ID, 精确匹配
 instanceName - 实例名称, 模糊匹配
 instanceStatus - mongodb状态，精确匹配，支持多个.RUNNING：运行, ERROR：错误 ,BUILDING：创建中, DELETING：删除中, RESTORING：恢复中, RESIZING：变配中
+chargeMode - 计费类型，精确匹配
   optional
       * @param {sort} [opts.sorts] - createTime - 创建时间,asc（正序），desc（倒序）
   optional
@@ -93,7 +94,14 @@ instanceStatus - mongodb状态，精确匹配，支持多个.RUNNING：运行, E
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.2'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -193,7 +201,14 @@ instanceStatus - mongodb状态，精确匹配，支持多个.RUNNING：运行, E
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.2'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -284,7 +299,14 @@ instanceStatus - mongodb状态，精确匹配，支持多个.RUNNING：运行, E
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.2'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -385,7 +407,14 @@ instanceStatus - mongodb状态，精确匹配，支持多个.RUNNING：运行, E
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.2'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -503,7 +532,14 @@ instanceStatus - mongodb状态，精确匹配，支持多个.RUNNING：运行, E
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.2'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -604,7 +640,14 @@ instanceStatus - mongodb状态，精确匹配，支持多个.RUNNING：运行, E
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.2'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -698,7 +741,14 @@ instanceStatus - mongodb状态，精确匹配，支持多个.RUNNING：运行, E
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.2'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -808,7 +858,14 @@ instanceStatus - mongodb状态，精确匹配，支持多个.RUNNING：运行, E
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.2'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -909,7 +966,14 @@ instanceStatus - mongodb状态，精确匹配，支持多个.RUNNING：运行, E
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.2'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -935,6 +999,188 @@ instanceStatus - mongodb状态，精确匹配，支持多个.RUNNING：运行, E
     let request = this.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/restoreInstance',
       'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取规格
+      * @param {Object} opts - parameters
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param flavor flavors
+      */
+
+  describeFlavors (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeFlavors"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.2'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeFlavors with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/flavors',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取可用区
+      * @param {Object} opts - parameters
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param availableZones availableZones
+      */
+
+  describeAvailableZones (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeAvailableZones"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.2'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeAvailableZones with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/availableZones',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -1007,7 +1253,14 @@ backupId - 备份ID, 精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.2'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1106,7 +1359,14 @@ backupId - 备份ID, 精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.2'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1197,7 +1457,14 @@ backupId - 备份ID, 精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.2'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1289,7 +1556,14 @@ backupId - 备份ID, 精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.2'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1315,6 +1589,222 @@ backupId - 备份ID, 精确匹配
     let request = this.makeRequest(
       '/regions/{regionId}/backups/{backupId}/downloadURL',
       'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询实例访问白名单
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - Instance ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string securityIps
+      */
+
+  describeSecurityIps (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeSecurityIps"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling describeSecurityIps"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.2'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeSecurityIps with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/securityIps',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改实例访问白名单
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - Instance ID
+      * @param {} opts.modifyMode - 修改方式,Add 增加白名单,Delete 删除白名单.
+      * @param {} opts.securityIps - IP白名单分组下的IP列表，最多45个以逗号隔开，格式如下：0.0.0.0/0，10.23.12.24（IP），或者10.23.12.24/24（CIDR模式，无类域间路由，/24表示了地址中前缀的长度，范围[1，32]）。
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  modifySecurityIps (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifySecurityIps"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling modifySecurityIps"
+      )
+    }
+    if (opts.modifyMode === undefined || opts.modifyMode === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.modifyMode' when calling modifySecurityIps"
+      )
+    }
+    if (opts.securityIps === undefined || opts.securityIps === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.securityIps' when calling modifySecurityIps"
+      )
+    }
+
+    let postBody = {}
+    if (opts.modifyMode !== undefined && opts.modifyMode !== null) {
+      postBody['modifyMode'] = opts.modifyMode
+    }
+    if (opts.securityIps !== undefined && opts.securityIps !== null) {
+      postBody['securityIps'] = opts.securityIps
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.2'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifySecurityIps with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/securityIps',
+      'POST',
       pathParams,
       queryParams,
       headerParams,

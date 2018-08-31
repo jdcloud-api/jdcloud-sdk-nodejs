@@ -45,15 +45,15 @@ JDCloud.DATASTAR = class DATASTAR extends Service {
   }
 
   /**
-      *  null
+      *  根据设备ID查询人群包ID
       * @param {Object} opts - parameters
-      * @param {string} opts.deviceIds - dmp根据deviceIds批量查询最大packageId入参
+      * @param {string} opts.deviceIds - MD5（deviceId），多个MD5（deviceId）用英文逗号进行分割，注：MD5结果小写
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param boolean status
-      * @param string message
-      * @param string data
+      * @param boolean status  true为成功，false为失败
+      * @param string message  描述信息
+      * @param string data  Map&lt;String,String&gt;序列化后的字符串，需要再次转换并使用。Key为deviceId，value为人群包Id
       */
 
   getPackageId (opts, regionId = this.config.regionId, callback) {
@@ -120,110 +120,6 @@ JDCloud.DATASTAR = class DATASTAR extends Service {
     let request = this.makeRequest(
       '/regions/{regionId}/dmp/getPackageId',
       'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback) {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback) {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  null
-      * @param {Object} opts - parameters
-      * @param {testOpenApiReq} opts.testOpenApiInfo - testOpenApi入参
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param boolean status
-      * @param string message
-      * @param string data
-      */
-
-  testWelcome (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  testWelcome"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.testOpenApiInfo === undefined || opts.testOpenApiInfo === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.testOpenApiInfo' when calling testWelcome"
-      )
-    }
-
-    let postBody = {}
-    if (opts.testOpenApiInfo !== undefined && opts.testOpenApiInfo !== null) {
-      postBody['testOpenApiInfo'] = opts.testOpenApiInfo
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  datastar/1.0.0'
-    }
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-    }
-
-    let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    let returnType = null
-
-    this.config.logger(
-      `call testWelcome with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/welcome',
-      'POST',
       pathParams,
       queryParams,
       headerParams,

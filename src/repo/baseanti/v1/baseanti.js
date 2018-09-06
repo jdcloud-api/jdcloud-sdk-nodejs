@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * baseanti service.
- * @version 1.0.0
+ * @version 1.0.1
  */
 
 JDCloud.BASEANTI = class BASEANTI extends Service {
@@ -47,6 +47,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
   /**
       *  查询区域下的公网Ip资源列表
       * @param {Object} opts - parameters
+      * @param {string} [opts.ip] - IP模糊匹配  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -70,13 +71,23 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
 
     let postBody = null
     let queryParams = {}
+    if (opts.ip !== undefined && opts.ip !== null) {
+      queryParams['ip'] = opts.ip
+    }
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.0.1'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -168,7 +179,14 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.0.1'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -275,7 +293,14 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.0.1'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -379,7 +404,14 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.0.1'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -475,7 +507,14 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.0.1'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}

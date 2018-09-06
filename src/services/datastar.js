@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 安全管理
- * API related to MONGODB security
+ * welcome测试接口
+ * API related to datastar
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -24,20 +24,20 @@
 
 const JDCloud = require('../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'mongodb'
+var serviceId = 'datastar'
 Service._services[serviceId] = true
 
 /**
- * mongodb service.
+ * datastar service.
  */
 
-JDCloud.MONGODB = class MONGODB {
+JDCloud.DATASTAR = class DATASTAR {
   constructor (config = {}) {
     this.init(config)
     return new this.service(config)
   }
   init (config) {
-    let serviceName = 'mongodb'
+    let serviceName = 'datastar'
     let version = config.version || JDCloud.config.version
     let versionFlag = 'v1'
     if (version && version[serviceName]) {
@@ -52,4 +52,4 @@ JDCloud.MONGODB = class MONGODB {
   }
 }
 
-module.exports = JDCloud.MONGODB
+module.exports = JDCloud.DATASTAR

@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * rds service.
- * @version 0.2.7
+ * @version 0.3.0
  */
 
 JDCloud.RDS = class RDS extends Service {
@@ -45,9 +45,9 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  查看实例下所有账号信息&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：支持
+      *  查看某个RDS实例下所有账号信息，包括账号名称、对各个数据库的访问权限信息等
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例ID
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -83,7 +83,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
     }
 
     // 扩展自定义头
@@ -144,11 +144,11 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  创建数据库账户&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：支持
+      *  创建数据库账号，用户可以使用客户端，应用程序等通过该账号和密码登录RDS数据库实例。&lt;br&gt;为便于管理和恢复，RDS对账号进行了限制，数据库账号只能通过控制台或者OpenAPI进行创建、删除账号以及对账号授权等，用户不能通过SQL语句对账号进行相关操作。
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例ID
-      * @param {} opts.accountName - 用户名
-      * @param {} opts.accountPassword - 用户密码
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
+      * @param {} opts.accountName - 账号名，在同一个RDS实例中，账号名不能重复。账号名的具体规则可参见帮助中心文档:[名称及密码限制](../../../documentation/Cloud-Database-and-Cache/RDS/Introduction/Restrictions/SQLServer-Restrictions.md)
+      * @param {} opts.accountPassword - 密码,密码的具体规则可参见帮助中心文档:[名称及密码限制](../../../documentation/Cloud-Database-and-Cache/RDS/Introduction/Restrictions/SQLServer-Restrictions.md)
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -200,7 +200,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
     }
 
     // 扩展自定义头
@@ -261,10 +261,10 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  删除数据库账户&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：支持
+      *  删除数据库账号，账号删除后不可恢复，用户无法再使用该账号登录RDS实例
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例ID
-      * @param {string} opts.accountName - 账户名
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
+      * @param {string} opts.accountName - 账号名，在同一个实例中账号名不能重复
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -305,7 +305,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
     }
 
     // 扩展自定义头
@@ -366,10 +366,10 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  数据库账号授权&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      *  授予账号的数据库访问权限，即该账号对数据库拥有什么权限。一个账号可以对多个数据库具有访问权限。&lt;br&gt;为便于管理，RDS对权限进行了归类，目前提供以下两种权限&lt;br&gt;- ro：只读权限，用户只能读取数据库中的数据，不能进行创建、插入、删除、更改等操作。&lt;br&gt;- rw：读写权限，用户可以对数据库进行增删改查等操作
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例ID
-      * @param {string} opts.accountName - 账户名
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
+      * @param {string} opts.accountName - 账号名，在同一个实例中账号名不能重复
       * @param {array} opts.accountPrivileges - 账号的访问权限
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -426,7 +426,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
     }
 
     // 扩展自定义头
@@ -487,11 +487,121 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  数据库账号重置密码&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：支持
+      *  取消该账号对某个数据库的所有权限。权限取消后，该账号将不能访问此数据库。取消账号对某个数据库的访问权限，不影响该账号对其他数据库的访问权限&lt;br&gt;- 仅支持MySQL
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例ID
-      * @param {string} opts.accountName - 账户名
-      * @param {} opts.accountPassword - 新密码
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
+      * @param {string} opts.accountName - 账号名，在同一个实例中账号名不能重复
+      * @param {array} [opts.dbNames] - 需要取消授权的数据库的名称。权限取消后，该账号将不能访问此数据库  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  revokePrivilege (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  revokePrivilege"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling revokePrivilege"
+      )
+    }
+    if (opts.accountName === undefined || opts.accountName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.accountName' when calling revokePrivilege"
+      )
+    }
+
+    let postBody = {}
+    if (opts.dbNames !== undefined && opts.dbNames !== null) {
+      postBody['dbNames'] = opts.dbNames
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      accountName: opts.accountName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call revokePrivilege with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/accounts/{accountName}:revokePrivilege',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  重置数据库账号密码。如果用户忘记账号的密码，可以使用该接口重置指定账号密码。密码重置后，以前的密码将无法使用，必须使用重置后的新密码登录或连接数据库实例。
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
+      * @param {string} opts.accountName - 账号名，在同一个实例中账号名不能重复
+      * @param {} opts.accountPassword - 新密码，密码的具体规则可参见帮助中心文档:[名称及密码限制](../../../documentation/Cloud-Database-and-Cache/RDS/Introduction/Restrictions/SQLServer-Restrictions.md)
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -541,7 +651,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
     }
 
     // 扩展自定义头
@@ -602,13 +712,13 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  查看开启的审计选项&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      *  查看当前实例已开启的审计选项。如当前实例未开启审计，则返回空&lt;br&gt;- 仅支持SQL Server
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - Instance ID
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param string enabled  当前已开启的审计选项。如当前实例未开启审计，则返回空
+      * @param string enabled  当前已开启的审计选项。如当前实例未开启审计，则返回空数组
       */
 
   describeAudit (opts, regionId = this.config.regionId, callback) {
@@ -640,7 +750,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
     }
 
     // 扩展自定义头
@@ -701,10 +811,10 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  开启数据库审计&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      *  开启SQL Server的数据库审计功能，目前支持实例级的数据库审计。用户可以根据需要开启、关闭审计、自定义审计策略，并下载审计文件。审计文件为原生的SQL Server审计文件，缺省保存6个月。&lt;br&gt;- 仅支持SQL Server
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - Instance ID
-      * @param {} opts.enabled - 要开启的审计选项，各个选项之间用英文逗号或空格进行分割，例如：DATABASE_OBJECT_ACCESS_GROUP,ACKUP_RESTORE_GROUP
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
+      * @param {} opts.enabled - 要开启的审计选项，各个选项之间用英文逗号或空格进行分割，例如：DATABASE_OBJECT_ACCESS_GROUP,ACKUP_RESTORE_GROU等&lt;br&gt;各个数据库版本支持的审计选项可以通过接口[getAuditOptions](./getAuditOptions.md)获得，各个审计项的具体含义可以参看微软的官方文档
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -748,7 +858,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
     }
 
     // 扩展自定义头
@@ -809,9 +919,9 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  清除/关闭 数据库审计&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      *  关闭数据库审计。关闭数据库审计后，以前生成的审计结果文件并不会被立即删除。审计结果文件会过期后由系统自动删除，过期时间缺省为6个月&lt;br&gt;- 仅支持SQL Server
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - Instance ID
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -846,7 +956,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
     }
 
     // 扩展自定义头
@@ -907,15 +1017,15 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  获取审计所有选项及推荐的选项&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      *  获取当前系统所支持的各种数据库版本的审计选项及相应的推荐选项&lt;br&gt;- 仅支持SQL Server
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - Instance ID
-      * @param {} opts.name - 审计选项类别，大小写敏感
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
+      * @param {} opts.name - 审计选项类别，**大小写敏感**，目前支持两种类型：&lt;br&gt;（1）AuditOptions开头：在disalbed参数中返回SQL Server各个版本支持的所有选项，支持的名称为&lt;br&gt;AuditOptions2008R2&lt;br&gt;AuditOptions2012&lt;br&gt;AuditOptions2014&lt;br&gt;AuditOptions2016&lt;br&gt;例如输入参数为&quot;AuditOptions2016&quot;，则在disabled字段中返回SQL Server 2016 版本所支持的所有的审计选项&lt;br&gt;（2）AuditDefault开头：京东云建议的默认选项,在enabled参数中返回建议开启的选项，在disabled参数中返回不开启的选项，支持的名称为：&lt;br&gt;AuditDefault2008R2&lt;br&gt;AuditDefault2012&lt;br&gt;AuditDefault2014&lt;br&gt;AuditDefault2016&lt;br&gt;例如输入参数为&quot;AuditDefault2016&quot;，则在enabled字段返回SQL Server 2016 版本中京东云建议开启的审计选项，在disabled字段中返回建议不开启的选项
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param string enabled  建议开启的审计选项
-      * @param string disabled  未开启的审计选项（AuditDefault类模板）或所有审计选项（AuditOptions类模板）
+      * @param string enabled  AuditDefault类模板：返回建议开启的审计选项。&lt;br&gt; AuditOptions类模板：不返回该参数
+      * @param string disabled  AuditDefault类模板：返回未开启的审计选项&lt;br&gt;AuditOptions类模板：返回所有的审计选项
       */
 
   getAuditOptions (opts, regionId = this.config.regionId, callback) {
@@ -956,7 +1066,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
     }
 
     // 扩展自定义头
@@ -1017,11 +1127,11 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  修改当前审计选项&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      *  修改当前的审计选项。当前已有审计选项可以通过describeAudit获得，支持的全部选项可以通过getAuditOptions获得。&lt;br&gt;- 仅支持SQL Server
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - Instance ID
-      * @param {} [opts.add] - 增加审计项，多个审计项之间用英文逗号，分号或空格分隔，例如DATABASE_OBJECT_ACCESS_GROUP,ACKUP_RESTORE_GROUP  optional
-      * @param {} [opts.drop] - 删除审计项，多个审计项之间用英文逗号，分号或空格分隔，例如DATABASE_OBJECT_ACCESS_GROUP,ACKUP_RESTORE_GROUP如删除了所有审计项，则审计自动关闭  optional
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
+      * @param {} [opts.add] - 在原有审计项基础上，增加新的审计项，多个审计项之间用英文逗号，分号或空格分隔，例如DATABASE_OBJECT_ACCESS_GROUP,ACKUP_RESTORE_GROUP  optional
+      * @param {} [opts.drop] - 删除审计项，多个审计项之间用英文逗号，分号或空格分隔，例如DATABASE_OBJECT_ACCESS_GROUP,ACKUP_RESTORE_GROUP&lt;br&gt;如删除了所有审计项，则审计自动关闭  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1063,7 +1173,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
     }
 
     // 扩展自定义头
@@ -1124,9 +1234,9 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  查看审计文件列表&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      *  获取当前实例下的所有审计结果文件的列表&lt;br&gt;- 仅支持SQL Server
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - Instance ID
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1163,7 +1273,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
     }
 
     // 扩展自定义头
@@ -1224,9 +1334,9 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  获取某个审计文件的下载链接&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      *  获取某个审计文件的下载链接，同时支持内链和外链，链接的有效时间为24小时&lt;br&gt;- 仅支持SQL Server
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - Instance ID
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
       * @param {} opts.fileName - 审计文件名
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -1273,7 +1383,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
     }
 
     // 扩展自定义头
@@ -1334,16 +1444,16 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  获取备份信息&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      *  查看该RDS实例下所有备份的详细信息，返回的备份列表按照备份开始时间（backupStartTime）降序排列。
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例ID
-      * @param {integer} [opts.auto] - 查询备份类型，0为手动备份，1为自动备份，不传表示全部. &lt;/br&gt;&lt;strong&gt;- 测试参数，后续可能被其他参数取代&lt;/strong&gt;  optional
-      * @param {string} [opts.backupTypeFilter] - 返回backupType等于指定值的备份列表。full为全量备份，diff为增量备份&lt;/br&gt;&lt;strong&gt;- 测试参数，后续可能被其他参数取代&lt;/strong&gt;  optional
-      * @param {string} [opts.dbNameFilter] - 返回dbName等于指定值的备份列表，不传或为空返回全部&lt;/br&gt;&lt;strong&gt;- 测试参数，后续可能被其他参数取代&lt;/strong&gt;  optional
-      * @param {string} [opts.backupTimeRangeStartFilter] - 返回备份开始时间大于该时间的备份列表，格式为：YYYY-MM-DD HH:mm:ss&lt;/br&gt;&lt;strong&gt;- 测试参数，后续可能被其他参数取代&lt;/strong&gt;  optional
-      * @param {string} [opts.backupTimeRangeEndFilter] - 返回备份开始时间小于等于该时间的备份列表，格式为：YYYY-MM-DD HH:mm:ss&lt;/br&gt;&lt;strong&gt;- 测试参数，后续可能被其他参数取代&lt;/strong&gt;  optional
-      * @param {integer} opts.pageNumber - 显示数据的页码，取值范围：[1,1000)，页码超过总页数时，显示最后一页，用于查询列表的接口
-      * @param {integer} opts.pageSize - 每页显示的数据条数，默认为10，取值范围：[1,100]，只能为10的倍数
+      * @param {string} opts.instanceId - RDS实例ID，唯一标识一个实例
+      * @param {integer} [opts.auto] - 查询备份类型，0为手动备份，1为自动备份，不传表示全部. &lt;br&gt;**- 测试参数，仅支持SQL Server，后续可能被其他参数取代**  optional
+      * @param {string} [opts.backupTypeFilter] - 返回backupType等于指定值的备份列表。full为全量备份，diff为增量备份&lt;br&gt;**- 测试参数，仅支持SQL Server，后续可能被其他参数取代**  optional
+      * @param {string} [opts.dbNameFilter] - 返回dbName等于指定值的备份列表，不传或为空返回全部&lt;br&gt;**- 测试参数，仅支持SQL Server，后续可能被其他参数取代**  optional
+      * @param {string} [opts.backupTimeRangeStartFilter] - 返回备份开始时间大于该时间的备份列表&lt;br&gt;**- 测试参数，仅支持SQL Server，后续可能被其他参数取代**  optional
+      * @param {string} [opts.backupTimeRangeEndFilter] - 返回备份开始时间小于等于该时间的备份列表&lt;br&gt;**- 测试参数，仅支持SQL Server，后续可能被其他参数取代**  optional
+      * @param {integer} opts.pageNumber - 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页。
+      * @param {integer} opts.pageSize - 每页显示的数据条数，默认为10，取值范围：10、20、30、50、100
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1420,7 +1530,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
     }
 
     // 扩展自定义头
@@ -1481,9 +1591,9 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  创建备份&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      *  创建一个RDS实例全量备份，可以对整个实例或者部分数据库（仅SQL Server支持）进行全量备份。同一时间点，只能有一个正在运行的备份任务
       * @param {Object} opts - parameters
-      * @param {string} [opts.instanceId] - 集群ID  optional
+      * @param {string} [opts.instanceId] - RDS实例ID，唯一标识一个实例  optional
       * @param {backupSpec} [opts.backupSpec] - 备份规格  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -1520,7 +1630,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
     }
 
     // 扩展自定义头
@@ -1581,7 +1691,7 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  删除备份&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：支持
+      *  删除RDS实例备份，仅允许删除用户生成的备份，系统自动备份不允许删除。
       * @param {Object} opts - parameters
       * @param {string} opts.backupId - 备份ID
       * @param {string} regionId - ID of the region
@@ -1618,7 +1728,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
     }
 
     // 扩展自定义头
@@ -1679,11 +1789,11 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  获取备份下载链接&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      *  获取整个备份或备份中单个文件的下载链接。&lt;br&gt;- 当输入参数中有文件名时，获取该文件的下载链接。&lt;br&gt;- 输入参数中无文件名时，获取整个备份的下载链接。&lt;br&gt;由于备份机制的差异，使用该接口下载备份时，SQL Server必须输入文件名，每个文件逐一下载，不支持下载整个备份。SQL Server备份中的文件名（不包括后缀）即为备份的数据库名。例如文件名为my_test_db.bak，表示该文件是my_test_db数据库的备份。&lt;br&gt;MySQL可下载整个备份集，但不支持单个文件的下载。&lt;br&gt;- 仅支持SQL Server
       * @param {Object} opts - parameters
       * @param {string} opts.backupId - 备份ID
-      * @param {string} [opts.fileName] - SQL Server：指定该备份中需要获取下载链接的文件名称，SQL Server必须输入该参数&lt;/br&gt;MySQL：无需此参数；  optional
-      * @param {string} [opts.urlExpirationSecond] - 指定下载链接的有效时间，单位秒,缺省为86400秒（即24小时） 取值范围：1-864000  optional
+      * @param {string} [opts.fileName] - 文件名称&lt;br&gt;- MySQL：不支持该参数&lt;br&gt;- SQL Server：必须输入该参数，指定该备份中需要获取下载链接的文件名称。备份中的文件名（不包括后缀）即为备份的数据库名。例如文件名为my_test_db.bak，表示该文件是my_test_db数据库的备份  optional
+      * @param {string} [opts.urlExpirationSecond] - 指定下载链接的过期时间，单位秒,缺省为86400秒，即24小时。&lt;br&gt;- MySQL：不支持该参数，只能是默认值&lt;br&gt;- SQL Server：支持  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1729,7 +1839,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
     }
 
     // 扩展自定义头
@@ -1790,10 +1900,10 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  查看数据库列表&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：支持
+      *  获取当前实例的所有数据库详细信息的列表
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例ID
-      * @param {string} [opts.dbName] - 数据库名称&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持  optional
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
+      * @param {string} [opts.dbName] - 数据库名。如果不指定数据库名，则返回所有数据库列表&lt;br&gt;- **MySQL：不支持该字段**&lt;br&gt;- **SQL Server：支持该字段**  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1832,7 +1942,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
     }
 
     // 扩展自定义头
@@ -1893,11 +2003,11 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  创建数据库&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：支持
+      *  创建一个数据库。 为了实例的管理和数据恢复，RDS对用户权限进行了限制，用户仅能通过控制台或本接口创建数据库
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例ID
-      * @param {} opts.dbName - 数据库名称
-      * @param {} opts.characterSetName - 字符集名称&lt;/br&gt;&lt;strong&gt;mysql字符集支持：&lt;/strong&gt;&lt;/br&gt;- utf8；&lt;/br&gt;&lt;strong&gt;SQL Server字符集支持：&lt;/strong&gt;&lt;/br&gt;- Chinese_PRC_CI_AS&lt;/br&gt;- Chinese_PRC_CS_AS&lt;/br&gt;- SQL_Latin1_General_CP1_CI_AS&lt;/br&gt;- SQL_Latin1_General_CP1_CS_AS&lt;/br&gt;- Chinese_PRC_BIN
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
+      * @param {} opts.dbName - 数据库名，数据库名称的限制请参考[帮助中心文档](../../../documentation/Cloud-Database-and-Cache/RDS/Introduction/Restrictions/SQLServer-Restrictions.md)
+      * @param {} opts.characterSetName - 数据库的字符集名，当前支持的字符集请查看[枚举参数定义](../Enum-Definitions/Enum-Definitions.md)
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1949,7 +2059,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
     }
 
     // 扩展自定义头
@@ -2010,9 +2120,9 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  删除数据库&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：支持 [MFA enabled]
+      *  从RDS实例中删除数据库。为便于管理和数据恢复，RDS对用户权限进行了控制，用户仅能通过控制台或本接口删除数据库 [MFA enabled]
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例ID
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
       * @param {string} opts.dbName - 库名称
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -2054,7 +2164,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
     }
 
     // 扩展自定义头
@@ -2115,12 +2225,12 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  从云数据库SQL Server备份中恢复单个数据库&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      *  从备份中恢复单个数据库，支持从其他实例（但必须是同一个账号下的实例）备份中恢复。例如可以从生产环境的数据库实例的备份恢复到测试环境的数据库中。&lt;br&gt;- 仅支持SQL Server
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例ID
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
       * @param {string} opts.dbName - 库名称
-      * @param {} opts.backupId - 备份ID
-      * @param {} opts.backupFileName - 指定该备份中用于恢复数据库的文件名称
+      * @param {} opts.backupId - 备份ID，可从备份查询接口describeBackups获取
+      * @param {} opts.backupFileName - 指定该备份中用于恢复数据库的文件名称。通常情况下文件名（不包括后缀）即为备份的数据库名。例如文件名为my_test_db.bak，表示该文件是my_test_db数据库的备份
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -2178,7 +2288,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
     }
 
     // 扩展自定义头
@@ -2239,12 +2349,12 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  从用户上传的备份文件中恢复SQL Server数据库&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      *  从用户通过单库上云工具上传到云上的备份文件中恢复单个数据库&lt;br&gt;- 仅支持SQL Server
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例ID
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
       * @param {string} opts.dbName - 库名称
-      * @param {} [opts.sharedFileGid] - 共享文件的全局ID，可从上传文件查询接口describeImportFiles获取；如果该文件不是共享文件，则全局ID为空  optional
-      * @param {} opts.fileName - 用户在单库上云中上传的文件名称
+      * @param {} [opts.sharedFileGid] - 共享文件的全局ID，可从上传文件查询接口[describeImportFiles](../import/describeImportFiles.md)获取；如果该文件不是共享文件，则不用输入该参数  optional
+      * @param {} opts.fileName - 用户上传的备份文件名称（包括文件后缀名），例如mydb1.bak
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -2297,7 +2407,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
     }
 
     // 扩展自定义头
@@ -2358,11 +2468,11 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  从OSS恢复SQL Server数据库&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      *  从上传到OSS的备份文件中恢复单个数据库&lt;br&gt;- 仅支持SQL Server
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例ID
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
       * @param {string} opts.dbName - 库名称
-      * @param {} opts.ossURL - 用户在单库上云中上传的文件地址
+      * @param {} opts.ossURL - 用户上传到对象存储OSS上的备份文件的内链
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -2412,7 +2522,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
     }
 
     // 扩展自定义头
@@ -2473,9 +2583,9 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  获取SQL Server 错误日志及下载信息&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      *  获取SQL Server 错误日志及下载信息&lt;br&gt;- 仅支持SQL Server
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - Instance ID
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -2511,7 +2621,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
     }
 
     // 扩展自定义头
@@ -2572,9 +2682,9 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  获取单库上云文件列表&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      *  获取用户通过单库上云工具上传到该实例上的文件列表&lt;br&gt;- 仅支持SQL Server
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例ID
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -2610,7 +2720,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
     }
 
     // 扩展自定义头
@@ -2671,13 +2781,13 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  获取上传导入文件的需要的Key&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      *  获取单库上云工具上传文件的需要的Key。单库上云工具需要正确的key值方能连接到京东云&lt;br&gt;- 仅支持SQL Server
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例ID
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param string key
+      * @param string key  上传文件需要用到的Key
       */
 
   getUploadKey (opts, regionId = this.config.regionId, callback) {
@@ -2710,7 +2820,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
     }
 
     // 扩展自定义头
@@ -2771,11 +2881,11 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  设置上传文件是否共享给该用户的其他实例&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      *  设置或取消上传文件是否共享给同一账号下的其他实例。缺省情况下，文件仅在上传的实例上可见并可导入，其他实例不可见不可导入。如果需要该文件在其他实例上也可导入，可将此文件设置为共享&lt;br&gt;- 仅支持SQL Server
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例ID
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
       * @param {string} opts.fileName - 单库上云文件名
-      * @param {} opts.shared - 文件是否共享，不区分大小写，true:共享;false:不共享
+      * @param {} opts.shared - 文件是否共享&lt;br&gt;true:共享&lt;br&gt;false:不共享
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -2825,7 +2935,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
     }
 
     // 扩展自定义头
@@ -2886,10 +2996,10 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  查询RDS实例列表&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：支持
+      *  获取当前账号下所有RDS实例及MySQL只读实例的概要信息，例如实例类型，版本，计费信息等
       * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNumber] - 显示数据的页码，取值范围：[1,1000)，页码超过总页数时，显示最后一页，用于查询列表的接口  optional
-      * @param {integer} [opts.pageSize] - 每页显示的数据条数，取值范围：10/20/30/50/100  optional
+      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页;  optional
+      * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为100，取值范围：[10,100]，用于查询列表的接口  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -2925,7 +3035,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
     }
 
     // 扩展自定义头
@@ -2986,7 +3096,7 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  创建数据库集群实例&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：支持
+      *  创建一个RDS实例，用户可以使用相应的数据库客户端或者应用程序通过域名和端口链接到该RDS实例上，进行操作。
       * @param {Object} opts - parameters
       * @param {dBInstanceSpec} opts.instanceSpec - 新建实例规格
       * @param {string} regionId - ID of the region
@@ -3027,7 +3137,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
     }
 
     // 扩展自定义头
@@ -3088,9 +3198,9 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  查询RDS实例详细信息&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：支持
+      *  查询RDS实例（MySQL、SQL Server等）的详细信息以及MySQL只读实例详细信息
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - Instance ID
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -3126,7 +3236,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
     }
 
     // 扩展自定义头
@@ -3187,9 +3297,9 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  删除数据库集群实例及Mysql只读实例&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：支持 [MFA enabled]
+      *  删除一个RDS实例或者MySQL的只读实例。删除MySQL主实例时，会同时将对应的MySQL只读实例也删除 [MFA enabled]
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - Instance ID
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -3224,7 +3334,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
     }
 
     // 扩展自定义头
@@ -3285,15 +3395,16 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  查看RDS实例备份策略&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      *  查看RDS实例备份策略。根据数据库类型的不同，支持的备份策略也略有差异，具体请看返回参数中的详细说明
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - Instance ID
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param string startWindow  自动备份开始时间窗口，范围00:00-23:59，时间范围差不得小于30分钟。例如：00:00-01:00，表示0点到1点开始进行数据库自动备份，备份完成时间则跟实例大小有关，不一定在这个时间范围中
-      * @param integer retentionPeriod  自动备份保留周期，单位天,范围7-730
-      * @param integer cycleMode  自动备份循环模式&lt;br/&gt;1:表示每天都是全量备份&lt;br/&gt;2:表示自动备份按照全量、增量、增量这样的方式进行，例如第1天是全量备份，第2、3天是增量备份；第4天又是全量备份，以此类推
+      * @param string startWindow  自动备份开始时间窗口，范围00:00-23:59，时间范围差不得小于30分钟。&lt;br&gt;例如：00:00-01:00，表示0点到1点开始进行数据库自动备份，备份完成时间则跟实例大小有关，不一定在这个时间范围中
+      * @param integer retentionPeriod  自动备份保留周期，单位天,缺省为7天，范围7-730
+      * @param integer cycleMode  自动备份循环模式&lt;br&gt;1:表示每天都是全量备份&lt;br&gt;2:表示自动备份按照全量、增量、增量这样的方式进行，例如第1天是全量备份，第2、3天是增量备份；第4天又是全量备份，以此类推.&lt;br&gt;- **SQL Server支持**&lt;br&gt;- **MySQL不支持**
+      * @param string backupBinlog  是否备份binlog&lt;br&gt;true:表示备份&lt;br&gt;false:表示不备份&lt;br&gt; - **SQL Server不支持**&lt;br&gt;- **MySQL支持**
       */
 
   getBackupPolicy (opts, regionId = this.config.regionId, callback) {
@@ -3326,7 +3437,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
     }
 
     // 扩展自定义头
@@ -3387,10 +3498,113 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  修改RDS实例名称&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      *  修改RDS实例备份策略，目前仅支持用户修改“自动备份开始时间窗口”这个参数，其他参数暂不开放修改
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - Instance ID
-      * @param {} opts.instanceName - 实例名称，名称支持中文、数字、小写字母及英文下划线“_”，且不少于2字符不超过32字符
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
+      * @param {} [opts.startWindow] - 自动备份开始时间窗口,例如：00:00-01:00，表示0点到1点开始进行数据库自动备份，备份完成时间则跟实例大小有关，不一定在这个时间范围中&lt;br&gt;SQL Server:范围00:00-23:59，时间范围差不得小于30分钟。&lt;br&gt;MySQL,只能是以下取值:&lt;br&gt;00:00-01:00&lt;br&gt;01:00-02:00&lt;br&gt;......&lt;br&gt;23:00-24:00  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  setBackupPolicy (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  setBackupPolicy"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling setBackupPolicy"
+      )
+    }
+
+    let postBody = {}
+    if (opts.startWindow !== undefined && opts.startWindow !== null) {
+      postBody['startWindow'] = opts.startWindow
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call setBackupPolicy with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}:setBackupPolicy',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改实例名称，可支持中文，实例名的具体规则可参见帮助中心文档:[名称及密码限制](../../../documentation/Cloud-Database-and-Cache/RDS/Introduction/Restrictions/SQLServer-Restrictions.md)&lt;br&gt;- 仅支持SQL Server
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
+      * @param {} opts.instanceName - 实例名称，名称支持中文，实例名的具体规则可参见帮助中心文档:[名称及密码限制](../../../documentation/Cloud-Database-and-Cache/RDS/Introduction/Restrictions/SQLServer-Restrictions.md)
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -3434,7 +3648,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
     }
 
     // 扩展自定义头
@@ -3495,9 +3709,9 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  RDS实例主备切换&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      *  对RDS实例进行主备切换。&lt;br&gt;注意：如果实例正在进行备份，那么主备切换将会终止备份操作。可以查看备份策略中的备份开始时间确认是否有备份正在运行。如果确实需要在实例备份时进行主备切换，建议切换完成 后，手工进行一次实例的全备&lt;br&gt;对于SQL Server，主备切换后30分钟内，不支持按时间点恢复/创建，例如在10:05分用户进行了主备切换，那么10:05 ~ 10:35这个时间段不能进行按时间点恢复/创建。&lt;br&gt;- 仅支持SQL Server
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - Instance ID
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -3533,7 +3747,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
     }
 
     // 扩展自定义头
@@ -3594,11 +3808,11 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  重启RDS实例&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：支持
+      *  重启RDS实例，例如修改了一些配置参数后，需要重启实例才能生效。可以结合主备切换的功能，轮流重启备机，降低对业务的影响&lt;br&gt;**注意：如果实例正在进行备份，那么重启主实例将会终止备份操作。** 可以查看备份策略中的备份开始时间确认是否有备份正在运行。如果确实需要在实例备份时重启主实例，建议重启后，手工进行一次实例的全备。
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - Instance ID
-      * @param {} [opts.rebootMaster] - 是否重启主节点。&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持  optional
-      * @param {} [opts.rebootSlave] - 是否重启从节点。&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持  optional
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
+      * @param {} [opts.rebootMaster] - 是否重启主节点。&lt;br&gt; - 仅SQL Server 支持该参数  optional
+      * @param {} [opts.rebootSlave] - 是否重启备节点。&lt;br&gt; - 仅SQL Server 支持该参数  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -3640,7 +3854,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
     }
 
     // 扩展自定义头
@@ -3701,9 +3915,9 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  开启RDS实例的外网访问，用户可以通过internet访问RDS实例&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：支持
+      *  开启RDS实例的外网访问功能。开启后，用户可以通过internet访问RDS实例
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - Instance ID
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -3739,7 +3953,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
     }
 
     // 扩展自定义头
@@ -3800,9 +4014,9 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  关闭RDS实例的外网访问，用户无法通过Internet访问RDS，但可以通过内网域名访问&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：支持
+      *  关闭RDS实例的外网访问功能。关闭后，用户无法通过Internet访问RDS，但可以在京东云内网通过内网域名访问
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - Instance ID
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -3838,7 +4052,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
     }
 
     // 扩展自定义头
@@ -3899,9 +4113,9 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  使用实例的全量备份覆盖恢复当前实例&lt;/br&gt;- SQL Server：不支持&lt;/br&gt;- MySQL：支持
+      *  使用实例的全量备份覆盖恢复当前实例&lt;br&gt;- 仅支持MySQL
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - Instance ID
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
       * @param {} [opts.backupId] - 用于恢复的备份Id，仅限于本实例生成的备份  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -3941,7 +4155,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
     }
 
     // 扩展自定义头
@@ -4002,20 +4216,382 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  索引性能统计&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      *  根据源实例全量备份创建一个新实例，新实例的数据跟源实例在创建备份时的数据状态一样。&lt;br&gt;例如根据源实例A的一个全量备份“mybak”新建一个实例B，该备份是在“‘2018-8-18 03:23:54”创建的。那么新建实例B的数据状态跟实例A‘2018-8-18 03:23:54’的状态一致&lt;br&gt;- 仅支持MySQL
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - Instance ID
-      * @param {string} opts.queryType - 查询类型，不同的查询类型按照相应的字段从高到低返回结果。支持如下类型：Missing：缺失索引Size：索引大小，单位KBUpdates：索引更新次数Scans：表扫描次数Used：最少使用
+      * @param {string} opts.backupId - 备份ID
+      * @param {string} opts.engine - 标识是创建什么类型的实例，例如MySQL，SQL Server等,具体可参见文档[枚举参数定义](../Enum-Definitions/Enum-Definitions.md)&lt;br&gt;**注意：备份来源实例的engine和要创建的实例的engine必须一致**
+      * @param {restoredNewDBInstanceSpec} opts.instanceSpec - 新建实例规格
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string instanceId
+      */
+
+  createInstanceFromBackup (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createInstanceFromBackup"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.backupId === undefined || opts.backupId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.backupId' when calling createInstanceFromBackup"
+      )
+    }
+    if (opts.engine === undefined || opts.engine === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.engine' when calling createInstanceFromBackup"
+      )
+    }
+    if (opts.instanceSpec === undefined || opts.instanceSpec === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceSpec' when calling createInstanceFromBackup"
+      )
+    }
+
+    let postBody = {}
+    if (opts.backupId !== undefined && opts.backupId !== null) {
+      postBody['backupId'] = opts.backupId
+    }
+    if (opts.engine !== undefined && opts.engine !== null) {
+      postBody['engine'] = opts.engine
+    }
+    if (opts.instanceSpec !== undefined && opts.instanceSpec !== null) {
+      postBody['instanceSpec'] = opts.instanceSpec
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call createInstanceFromBackup with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances:createInstanceFromBackup',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  实例扩容，支持升级实例的CPU，内存及磁盘。目前暂不支持实例降配&lt;br&gt;- 仅支持MySQL
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
+      * @param {string} opts.newInstanceClass - 扩容后实例规格
+      * @param {integer} opts.newInstanceStorageGB - 扩容后实例磁盘大小
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string orderId  生成的订单号
+      */
+
+  modifyInstanceSpec (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyInstanceSpec"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling modifyInstanceSpec"
+      )
+    }
+    if (opts.newInstanceClass === undefined || opts.newInstanceClass === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.newInstanceClass' when calling modifyInstanceSpec"
+      )
+    }
+    if (
+      opts.newInstanceStorageGB === undefined ||
+      opts.newInstanceStorageGB === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.newInstanceStorageGB' when calling modifyInstanceSpec"
+      )
+    }
+
+    let postBody = {}
+    if (opts.newInstanceClass !== undefined && opts.newInstanceClass !== null) {
+      postBody['newInstanceClass'] = opts.newInstanceClass
+    }
+    if (
+      opts.newInstanceStorageGB !== undefined &&
+      opts.newInstanceStorageGB !== null
+    ) {
+      postBody['newInstanceStorageGB'] = opts.newInstanceStorageGB
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyInstanceSpec with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}:modifyInstanceSpec',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  根据源实例备份创建一个新实例，并通过追加日志的方式，将新实例的数据恢复到跟源实例指定时间点的数据状态一样。&lt;br&gt;例如根据实例A在“2018-06-18 23:00:00”时间点创建一个实例B，就是新建一个实例B，该实例B的数据跟实例A在“2018-06-18 23:00:00”这个时间点的数据完全一致。&lt;br&gt;对于SQL Server，主备切换后30分钟内，不支持按时间点恢复/创建，例如在10:05分用户进行了主备切换，那么10:05 ~ 10:35这个时间段不能进行按时间点恢复/创建。&lt;br&gt;- 仅支持MySQL
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
+      * @param {string} opts.restoreTime - 根据源实例的哪个时间点创建新实例
+      * @param {restoredNewDBInstanceSpec} opts.instanceSpec - 新建实例规格
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string instanceId  新创建的实例ID
+      */
+
+  createInstanceByTime (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createInstanceByTime"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling createInstanceByTime"
+      )
+    }
+    if (opts.restoreTime === undefined || opts.restoreTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.restoreTime' when calling createInstanceByTime"
+      )
+    }
+    if (opts.instanceSpec === undefined || opts.instanceSpec === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceSpec' when calling createInstanceByTime"
+      )
+    }
+
+    let postBody = {}
+    if (opts.restoreTime !== undefined && opts.restoreTime !== null) {
+      postBody['restoreTime'] = opts.restoreTime
+    }
+    if (opts.instanceSpec !== undefined && opts.instanceSpec !== null) {
+      postBody['instanceSpec'] = opts.instanceSpec
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call createInstanceByTime with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}:createInstanceByTime',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  根据用户定义的查询条件，获取索引性能的统计信息，并提供缺失索引及索引创建建议。用户可以根据这些信息查找与索引相关的性能瓶颈，并进行优化。&lt;br&gt;- 仅支持SQL Server
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
+      * @param {string} opts.queryType - 查询类型，不同的查询类型按照相应的字段从高到低返回结果。&lt;br&gt;支持如下类型：&lt;br&gt;Missing：缺失索引&lt;br&gt;Size：索引大小，单位KB&lt;br&gt;Updates：索引更新次数&lt;br&gt;Scans：表扫描次数&lt;br&gt;Used：最少使用&lt;br&gt;
       * @param {string} [opts.db] - 需要查询的数据库名，多个数据库名之间用英文逗号分隔，默认所有数据库  optional
-      * @param {integer} [opts.pageNumber] - 显示数据的页码，取值范围：[1,1000)，页码超过总页数时，显示最后一页，用于查询列表的接口  optional
-      * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为50，取值范围：[1,100]，只能为10的倍数  optional
+      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,1000)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页。  optional
+      * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为50，取值范围：[1,100]，只能为10的倍数，用于查询列表的接口  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       * @param missingIndexResult missingIndexResult
       * @param indexPerformanceResult indexPerformanceResult
-      * @param integer totalCount  总记录数
-      * @param integer pageNumber  当前页码
+      * @param integer totalCount  总记录条数
+      * @param integer pageNumber  当前数据的页码
       * @param integer pageSize  每页显示的数据条数
       */
 
@@ -4066,7 +4642,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
     }
 
     // 扩展自定义头
@@ -4127,19 +4703,19 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  查询性能统计&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：暂不支持
+      *  根据用户定义的查询条件，获取SQL执行的性能统计信息，例如慢SQL等。用户可以根据这些信息查找与SQL执行相关的性能瓶颈，并进行优化。&lt;br&gt;- 仅支持SQL Server
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - Instance ID
-      * @param {string} opts.queryType - 查询类型，不同的查询类型按照相应的字段从高到低返回结果。支持如下类型：ExecutionCount：执行次数LastRows：上次返回行数ElapsedTime：平均执行时间CPUTime：平均CPU时间LogicalReads：平均逻辑读LogicalWrites：平均逻辑写PhysicalReads：平均物理读
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
+      * @param {string} opts.queryType - 查询类型，不同的查询类型按照相应的字段从高到低返回结果。&lt;br&gt;支持如下类型：&lt;br&gt;ExecutionCount：执行次数&lt;br&gt;LastRows：上次返回行数&lt;br&gt;ElapsedTime：平均执行时间&lt;br&gt;CPUTime：平均CPU时间&lt;br&gt;LogicalReads：平均逻辑读&lt;br&gt;LogicalWrites：平均逻辑写&lt;br&gt;PhysicalReads：平均物理读&lt;br&gt;
       * @param {integer} [opts.threshold] - 只返回查询条件大于等于threshold的记录，默认为0  optional
-      * @param {integer} [opts.pageNumber] - 显示数据的页码，取值范围：[1,1000)，页码超过总页数时，显示最后一页，用于查询列表的接口  optional
-      * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为50，取值范围：[1,100]，只能为10的倍数  optional
+      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,1000]。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页。  optional
+      * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为50，取值范围：[1,100]，只能为10的倍数，用于查询列表的接口  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       * @param queryPerformanceResult queryPerformanceResult
-      * @param integer totalCount  总记录数
-      * @param integer pageNumber  当前页码
+      * @param integer totalCount  总记录条数
+      * @param integer pageNumber  当前数据的页码
       * @param integer pageSize  每页显示的数据条数
       */
 
@@ -4190,7 +4766,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
     }
 
     // 扩展自定义头
@@ -4251,9 +4827,9 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  查看RDS实例当前白名单&lt;/br&gt;- SQL Server：支持&lt;/br&gt;- MySQL：支持
+      *  查看RDS实例当前白名单。白名单是允许访问当前实例的IP/IP段列表，缺省情况下，白名单对本VPC开放。如果用户开启了外网访问的功能，还需要对外网的IP配置白名单。
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - Instance ID
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -4289,7 +4865,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.2.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
     }
 
     // 扩展自定义头
@@ -4322,6 +4898,114 @@ JDCloud.RDS = class RDS extends Service {
     let request = this.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/whiteList',
       'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改允许访问实例的IP白名单。白名单是允许访问当前实例的IP/IP段列表，缺省情况下，白名单对本VPC开放。如果用户开启了外网访问的功能，还需要对外网的IP配置白名单。
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
+      * @param {string} opts.ips - IP或IP段，不同的IP/IP段之间用英文逗号分隔，例如0.0.0.0/0,192.168.0.10
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  modifyWhiteList (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyWhiteList"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling modifyWhiteList"
+      )
+    }
+    if (opts.ips === undefined || opts.ips === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.ips' when calling modifyWhiteList"
+      )
+    }
+
+    let postBody = {}
+    if (opts.ips !== undefined && opts.ips !== null) {
+      postBody['ips'] = opts.ips
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyWhiteList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/whiteList',
+      'PUT',
       pathParams,
       queryParams,
       headerParams,

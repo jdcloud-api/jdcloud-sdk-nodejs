@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * vpc service.
- * @version 0.4.0
+ * @version 0.5.0
  */
 
 JDCloud.VPC = class VPC extends Service {
@@ -89,7 +89,7 @@ chargeStatus - eip的费用支付状态,normal(正常状态) or overdue(预付�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
     }
 
     // 扩展自定义头
@@ -205,7 +205,7 @@ chargeStatus - eip的费用支付状态,normal(正常状态) or overdue(预付�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
     }
 
     // 扩展自定义头
@@ -304,7 +304,7 @@ chargeStatus - eip的费用支付状态,normal(正常状态) or overdue(预付�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
     }
 
     // 扩展自定义头
@@ -402,7 +402,7 @@ chargeStatus - eip的费用支付状态,normal(正常状态) or overdue(预付�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
     }
 
     // 扩展自定义头
@@ -435,6 +435,1066 @@ chargeStatus - eip的费用支付状态,normal(正常状态) or overdue(预付�
     let request = this.makeRequest(
       '/regions/{regionId}/elasticIps/{elasticIpId}',
       'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询Acl列表
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞), 页码超过总页数时, 显示最后一页  optional
+      * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围：[10,100]  optional
+      * @param {filter} [opts.filters] - networkAclIds - 弹性网卡ID列表，支持多个
+networkAclNames - 弹性网卡名称列表，支持多个
+vpcId - 弹性网卡所属vpc Id，支持单个
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param networkAcl networkAcls
+      * @param number totalCount  总数量
+      */
+
+  describeNetworkAcls (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeNetworkAcls"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeNetworkAcls with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/networkAcls/',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建networkAcl接口
+      * @param {Object} opts - parameters
+      * @param {string} opts.vpcId - 私有网络id
+      * @param {string} opts.networkAclName - networkAcl名称
+      * @param {string} [opts.description] - 描述,允许输入UTF-8编码下的全部字符，不超过256字符  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string networkAclId  networkAcl ID
+      */
+
+  createNetworkAcl (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createNetworkAcl"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.vpcId === undefined || opts.vpcId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.vpcId' when calling createNetworkAcl"
+      )
+    }
+    if (opts.networkAclName === undefined || opts.networkAclName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.networkAclName' when calling createNetworkAcl"
+      )
+    }
+
+    let postBody = {}
+    if (opts.vpcId !== undefined && opts.vpcId !== null) {
+      postBody['vpcId'] = opts.vpcId
+    }
+    if (opts.networkAclName !== undefined && opts.networkAclName !== null) {
+      postBody['networkAclName'] = opts.networkAclName
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call createNetworkAcl with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/networkAcls/',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询networkAcl资源详情
+      * @param {Object} opts - parameters
+      * @param {string} opts.networkAclId - networkAclId ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param networkAcl networkAcl  networkAcl资源信息
+      */
+
+  describeNetworkAcl (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeNetworkAcl"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.networkAclId === undefined || opts.networkAclId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.networkAclId' when calling describeNetworkAcl"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      networkAclId: opts.networkAclId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeNetworkAcl with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/networkAcls/{networkAclId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改networkAcl接口
+      * @param {Object} opts - parameters
+      * @param {string} opts.networkAclId - networkAclId ID
+      * @param {string} [opts.networkAclName] - networkAcl名称,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符  optional
+      * @param {string} [opts.description] - 描述,允许输入UTF-8编码下的全部字符，不超过256字符  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  modifyNetworkAcl (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyNetworkAcl"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.networkAclId === undefined || opts.networkAclId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.networkAclId' when calling modifyNetworkAcl"
+      )
+    }
+
+    let postBody = {}
+    if (opts.networkAclName !== undefined && opts.networkAclName !== null) {
+      postBody['networkAclName'] = opts.networkAclName
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      networkAclId: opts.networkAclId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyNetworkAcl with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/networkAcls/{networkAclId}',
+      'PATCH',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除networkAcl接口
+      * @param {Object} opts - parameters
+      * @param {string} opts.networkAclId - networkAclId ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteNetworkAcl (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteNetworkAcl"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.networkAclId === undefined || opts.networkAclId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.networkAclId' when calling deleteNetworkAcl"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      networkAclId: opts.networkAclId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteNetworkAcl with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/networkAcls/{networkAclId}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  给子网绑定networkAcl接口
+      * @param {Object} opts - parameters
+      * @param {string} opts.networkAclId - networkAclId ID
+      * @param {array} opts.subnetIds - 修改networkAcl属性
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  associateNetworkAcl (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  associateNetworkAcl"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.networkAclId === undefined || opts.networkAclId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.networkAclId' when calling associateNetworkAcl"
+      )
+    }
+    if (opts.subnetIds === undefined || opts.subnetIds === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.subnetIds' when calling associateNetworkAcl"
+      )
+    }
+
+    let postBody = {}
+    if (opts.subnetIds !== undefined && opts.subnetIds !== null) {
+      postBody['subnetIds'] = opts.subnetIds
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      networkAclId: opts.networkAclId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call associateNetworkAcl with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/networkAcls/{networkAclId}:associateNetworkAcl',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  给子网解绑NetworkAcl接口
+      * @param {Object} opts - parameters
+      * @param {string} opts.networkAclId - networkAclId ID
+      * @param {string} opts.subnetId - networkAcl要解绑的子网ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  disassociateNetworkAcl (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  disassociateNetworkAcl"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.networkAclId === undefined || opts.networkAclId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.networkAclId' when calling disassociateNetworkAcl"
+      )
+    }
+    if (opts.subnetId === undefined || opts.subnetId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.subnetId' when calling disassociateNetworkAcl"
+      )
+    }
+
+    let postBody = {}
+    if (opts.subnetId !== undefined && opts.subnetId !== null) {
+      postBody['subnetId'] = opts.subnetId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      networkAclId: opts.networkAclId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call disassociateNetworkAcl with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/networkAcls/{networkAclId}:disassociateNetworkAcl',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  添加networkAcl规则接口
+      * @param {Object} opts - parameters
+      * @param {string} opts.networkAclId - networkAclId ID
+      * @param {array} [opts.networkAclRuleSpecs] - networkAcl规则列表  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  addNetworkAclRules (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  addNetworkAclRules"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.networkAclId === undefined || opts.networkAclId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.networkAclId' when calling addNetworkAclRules"
+      )
+    }
+
+    let postBody = {}
+    if (
+      opts.networkAclRuleSpecs !== undefined &&
+      opts.networkAclRuleSpecs !== null
+    ) {
+      postBody['networkAclRuleSpecs'] = opts.networkAclRuleSpecs
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      networkAclId: opts.networkAclId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call addNetworkAclRules with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/networkAcls/{networkAclId}:addNetworkAclRules',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  移除networkAcl规则
+      * @param {Object} opts - parameters
+      * @param {string} opts.networkAclId - networkAclId ID
+      * @param {array} opts.ruleIds - 修改networkAcl属性
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  removeNetworkAclRules (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  removeNetworkAclRules"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.networkAclId === undefined || opts.networkAclId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.networkAclId' when calling removeNetworkAclRules"
+      )
+    }
+    if (opts.ruleIds === undefined || opts.ruleIds === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.ruleIds' when calling removeNetworkAclRules"
+      )
+    }
+
+    let postBody = {}
+    if (opts.ruleIds !== undefined && opts.ruleIds !== null) {
+      postBody['ruleIds'] = opts.ruleIds
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      networkAclId: opts.networkAclId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call removeNetworkAclRules with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/networkAcls/{networkAclId}:removeNetworkAclRules',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改networkAcl接口
+      * @param {Object} opts - parameters
+      * @param {string} opts.networkAclId - networkAclId ID
+      * @param {array} [opts.modifyNetworkAclRuleSpecs] - networkAcl规则列表  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  modifyNetworkAclRules (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyNetworkAclRules"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.networkAclId === undefined || opts.networkAclId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.networkAclId' when calling modifyNetworkAclRules"
+      )
+    }
+
+    let postBody = {}
+    if (
+      opts.modifyNetworkAclRuleSpecs !== undefined &&
+      opts.modifyNetworkAclRuleSpecs !== null
+    ) {
+      postBody['modifyNetworkAclRuleSpecs'] = opts.modifyNetworkAclRuleSpecs
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      networkAclId: opts.networkAclId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyNetworkAclRules with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/networkAcls/{networkAclId}:modifyNetworkAclRules',
+      'POST',
       pathParams,
       queryParams,
       headerParams,
@@ -509,7 +1569,7 @@ role - 网卡角色，取值范围：Primary（主网卡）、Secondary（辅助
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
     }
 
     // 扩展自定义头
@@ -649,7 +1709,7 @@ role - 网卡角色，取值范围：Primary（主网卡）、Secondary（辅助
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
     }
 
     // 扩展自定义头
@@ -751,7 +1811,7 @@ role - 网卡角色，取值范围：Primary（主网卡）、Secondary（辅助
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
     }
 
     // 扩展自定义头
@@ -868,7 +1928,7 @@ role - 网卡角色，取值范围：Primary（主网卡）、Secondary（辅助
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
     }
 
     // 扩展自定义头
@@ -969,7 +2029,7 @@ role - 网卡角色，取值范围：Primary（主网卡）、Secondary（辅助
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
     }
 
     // 扩展自定义头
@@ -1083,7 +2143,7 @@ role - 网卡角色，取值范围：Primary（主网卡）、Secondary（辅助
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
     }
 
     // 扩展自定义头
@@ -1193,7 +2253,7 @@ role - 网卡角色，取值范围：Primary（主网卡）、Secondary（辅助
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
     }
 
     // 扩展自定义头
@@ -1307,7 +2367,7 @@ role - 网卡角色，取值范围：Primary（主网卡）、Secondary（辅助
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
     }
 
     // 扩展自定义头
@@ -1413,7 +2473,7 @@ role - 网卡角色，取值范围：Primary（主网卡）、Secondary（辅助
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
     }
 
     // 扩展自定义头
@@ -1522,7 +2582,7 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
     }
 
     // 扩展自定义头
@@ -1643,7 +2703,7 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
     }
 
     // 扩展自定义头
@@ -1749,7 +2809,7 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
     }
 
     // 扩展自定义头
@@ -1862,7 +2922,7 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
     }
 
     // 扩展自定义头
@@ -1963,7 +3023,7 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
     }
 
     // 扩展自定义头
@@ -2077,7 +3137,7 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
     }
 
     // 扩展自定义头
@@ -2192,7 +3252,7 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
     }
 
     // 扩展自定义头
@@ -2306,7 +3366,7 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
     }
 
     // 扩展自定义头
@@ -2338,6 +3398,1058 @@ vpcId - 安全组所属vpc Id，支持单个
 
     let request = this.makeRequest(
       '/regions/{regionId}/networkSecurityGroups/{networkSecurityGroupId}:modifyNetworkSecurityGroupRules',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询配额信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.type - 资源类型，取值范围：vpc、elastic_ip、subnet、security_group、vpcpeering、network_interface（配额只统计辅助网卡）
+      * @param {string} [opts.parentResourceId] - type为vpc、elastic_ip、network_interface不设置, type为subnet、security_group、vpcpeering设置为vpcId  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param object quota
+      */
+
+  describeQuota (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeQuota"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.type === undefined || opts.type === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.type' when calling describeQuota"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.type !== undefined && opts.type !== null) {
+      queryParams['type'] = opts.type
+    }
+    if (opts.parentResourceId !== undefined && opts.parentResourceId !== null) {
+      queryParams['parentResourceId'] = opts.parentResourceId
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeQuota with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/quotas/',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询路由表列表
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞), 页码超过总页数时, 显示最后一页  optional
+      * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围：[10,100]  optional
+      * @param {filter} [opts.filters] - routeTableIds - 路由表ID列表，支持多个
+routeTableNames - 路由表名称列表，支持多个
+vpcId - 路由表所属vpc Id，支持单个
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param routeTable routeTables
+      * @param number totalCount  总数量
+      */
+
+  describeRouteTables (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeRouteTables"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeRouteTables with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/routeTables/',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建路由表
+      * @param {Object} opts - parameters
+      * @param {string} opts.vpcId - 路由表所属的私有网络ID
+      * @param {string} opts.routeTableName - 路由表名称，只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符。
+      * @param {string} [opts.description] - 描述,​ 允许输入UTF-8编码下的全部字符，不超过256字符  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string routeTableId  路由表ID
+      */
+
+  createRouteTable (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createRouteTable"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.vpcId === undefined || opts.vpcId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.vpcId' when calling createRouteTable"
+      )
+    }
+    if (opts.routeTableName === undefined || opts.routeTableName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.routeTableName' when calling createRouteTable"
+      )
+    }
+
+    let postBody = {}
+    if (opts.vpcId !== undefined && opts.vpcId !== null) {
+      postBody['vpcId'] = opts.vpcId
+    }
+    if (opts.routeTableName !== undefined && opts.routeTableName !== null) {
+      postBody['routeTableName'] = opts.routeTableName
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call createRouteTable with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/routeTables/',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询路由表信息详情
+      * @param {Object} opts - parameters
+      * @param {string} opts.routeTableId - RouteTable ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param routeTable routeTable  路由表资源信息
+      */
+
+  describeRouteTable (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeRouteTable"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.routeTableId === undefined || opts.routeTableId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.routeTableId' when calling describeRouteTable"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      routeTableId: opts.routeTableId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeRouteTable with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/routeTables/{routeTableId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改路由表属性
+      * @param {Object} opts - parameters
+      * @param {string} opts.routeTableId - RouteTable ID
+      * @param {string} [opts.routeTableName] - 路由表的名字。名称取值范围：1-32个中文、英文大小写的字母、数字和下划线分隔符  optional
+      * @param {string} [opts.description] - 路由表的描述，取值范围：0-256个UTF-8编码下的全部字符  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  modifyRouteTable (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyRouteTable"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.routeTableId === undefined || opts.routeTableId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.routeTableId' when calling modifyRouteTable"
+      )
+    }
+
+    let postBody = {}
+    if (opts.routeTableName !== undefined && opts.routeTableName !== null) {
+      postBody['routeTableName'] = opts.routeTableName
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      routeTableId: opts.routeTableId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyRouteTable with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/routeTables/{routeTableId}',
+      'PATCH',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除路由表
+      * @param {Object} opts - parameters
+      * @param {string} opts.routeTableId - RouteTable ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteRouteTable (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteRouteTable"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.routeTableId === undefined || opts.routeTableId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.routeTableId' when calling deleteRouteTable"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      routeTableId: opts.routeTableId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteRouteTable with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/routeTables/{routeTableId}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  添加路由表规则
+      * @param {Object} opts - parameters
+      * @param {string} opts.routeTableId - RouteTable ID
+      * @param {array} [opts.routeTableRuleSpecs] - 安全组规则信息  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  addRouteTableRules (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  addRouteTableRules"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.routeTableId === undefined || opts.routeTableId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.routeTableId' when calling addRouteTableRules"
+      )
+    }
+
+    let postBody = {}
+    if (
+      opts.routeTableRuleSpecs !== undefined &&
+      opts.routeTableRuleSpecs !== null
+    ) {
+      postBody['routeTableRuleSpecs'] = opts.routeTableRuleSpecs
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      routeTableId: opts.routeTableId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call addRouteTableRules with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/routeTables/{routeTableId}:addRouteTableRules',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  移除路由表规则
+      * @param {Object} opts - parameters
+      * @param {string} opts.routeTableId - RouteTable ID
+      * @param {array} opts.ruleIds - 路由表规则Id列表
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  removeRouteTableRules (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  removeRouteTableRules"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.routeTableId === undefined || opts.routeTableId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.routeTableId' when calling removeRouteTableRules"
+      )
+    }
+    if (opts.ruleIds === undefined || opts.ruleIds === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.ruleIds' when calling removeRouteTableRules"
+      )
+    }
+
+    let postBody = {}
+    if (opts.ruleIds !== undefined && opts.ruleIds !== null) {
+      postBody['ruleIds'] = opts.ruleIds
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      routeTableId: opts.routeTableId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call removeRouteTableRules with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/routeTables/{routeTableId}:removeRouteTableRules',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改路由表规则
+      * @param {Object} opts - parameters
+      * @param {string} opts.routeTableId - RouteTable ID
+      * @param {array} [opts.modifyRouteTableRuleSpecs] - 路由表规则信息  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  modifyRouteTableRules (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyRouteTableRules"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.routeTableId === undefined || opts.routeTableId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.routeTableId' when calling modifyRouteTableRules"
+      )
+    }
+
+    let postBody = {}
+    if (
+      opts.modifyRouteTableRuleSpecs !== undefined &&
+      opts.modifyRouteTableRuleSpecs !== null
+    ) {
+      postBody['modifyRouteTableRuleSpecs'] = opts.modifyRouteTableRuleSpecs
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      routeTableId: opts.routeTableId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyRouteTableRules with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/routeTables/{routeTableId}:modifyRouteTableRules',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  路由表绑定子网接口
+      * @param {Object} opts - parameters
+      * @param {string} opts.routeTableId - RouteTable ID
+      * @param {array} [opts.subnetIds] - 路由表要绑定的子网ID列表, subnet已被其他路由表绑定时，自动解绑。  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  associateRouteTable (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  associateRouteTable"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.routeTableId === undefined || opts.routeTableId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.routeTableId' when calling associateRouteTable"
+      )
+    }
+
+    let postBody = {}
+    if (opts.subnetIds !== undefined && opts.subnetIds !== null) {
+      postBody['subnetIds'] = opts.subnetIds
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      routeTableId: opts.routeTableId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call associateRouteTable with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/routeTables/{routeTableId}:associateRouteTable',
       'POST',
       pathParams,
       queryParams,
@@ -2414,7 +4526,7 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
     }
 
     // 扩展自定义头
@@ -2521,7 +4633,7 @@ vpcId - 子网所属VPC Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
     }
 
     // 扩展自定义头
@@ -2554,6 +4666,134 @@ vpcId - 子网所属VPC Id，支持单个
     let request = this.makeRequest(
       '/regions/{regionId}/subnets/',
       'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建子网
+      * @param {Object} opts - parameters
+      * @param {string} opts.vpcId - 子网所属vpc的Id
+      * @param {string} opts.subnetName - 子网名称,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符。
+      * @param {string} opts.addressPrefix - 子网网段，vpc内子网网段不能重叠，cidr的取值范围：10.0.0.0/8、172.16.0.0/12和192.168.0.0/16及它们包含的子网，且子网掩码长度为16-28之间，如果vpc含有cidr，则必须为vpc所在cidr的子网
+      * @param {string} [opts.routeTableId] - 子网关联的路由表Id, 默认为vpc的默认路由表  optional
+      * @param {string} [opts.description] - 子网描述信息,允许输入UTF-8编码下的全部字符，不超过256字符。  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string subnetId  子网ID
+      */
+
+  createSubnet (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createSubnet"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.vpcId === undefined || opts.vpcId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.vpcId' when calling createSubnet"
+      )
+    }
+    if (opts.subnetName === undefined || opts.subnetName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.subnetName' when calling createSubnet"
+      )
+    }
+    if (opts.addressPrefix === undefined || opts.addressPrefix === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.addressPrefix' when calling createSubnet"
+      )
+    }
+
+    let postBody = {}
+    if (opts.vpcId !== undefined && opts.vpcId !== null) {
+      postBody['vpcId'] = opts.vpcId
+    }
+    if (opts.subnetName !== undefined && opts.subnetName !== null) {
+      postBody['subnetName'] = opts.subnetName
+    }
+    if (opts.addressPrefix !== undefined && opts.addressPrefix !== null) {
+      postBody['addressPrefix'] = opts.addressPrefix
+    }
+    if (opts.routeTableId !== undefined && opts.routeTableId !== null) {
+      postBody['routeTableId'] = opts.routeTableId
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call createSubnet with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/subnets/',
+      'POST',
       pathParams,
       queryParams,
       headerParams,
@@ -2620,7 +4860,7 @@ vpcId - 子网所属VPC Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
     }
 
     // 扩展自定义头
@@ -2653,6 +4893,211 @@ vpcId - 子网所属VPC Id，支持单个
     let request = this.makeRequest(
       '/regions/{regionId}/subnets/{subnetId}',
       'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改子网接口
+      * @param {Object} opts - parameters
+      * @param {string} opts.subnetId - Subnet ID
+      * @param {string} [opts.subnetName] - 子网名称,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符。  optional
+      * @param {string} [opts.description] - 子网描述信息，允许输入UTF-8编码下的全部字符，不超过256字符。  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  modifySubnet (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifySubnet"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.subnetId === undefined || opts.subnetId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.subnetId' when calling modifySubnet"
+      )
+    }
+
+    let postBody = {}
+    if (opts.subnetName !== undefined && opts.subnetName !== null) {
+      postBody['subnetName'] = opts.subnetName
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      subnetId: opts.subnetId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifySubnet with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/subnets/{subnetId}',
+      'PATCH',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除子网
+      * @param {Object} opts - parameters
+      * @param {string} opts.subnetId - Subnet ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteSubnet (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteSubnet"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.subnetId === undefined || opts.subnetId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.subnetId' when calling deleteSubnet"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      subnetId: opts.subnetId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteSubnet with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/subnets/{subnetId}',
+      'DELETE',
       pathParams,
       queryParams,
       headerParams,
@@ -2724,7 +5169,7 @@ vpcNames - vpc名称列表,支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
     }
 
     // 扩展自定义头
@@ -2834,7 +5279,7 @@ vpcNames - vpc名称列表,支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
     }
 
     // 扩展自定义头
@@ -2933,7 +5378,7 @@ vpcNames - vpc名称列表,支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
     }
 
     // 扩展自定义头
@@ -2966,6 +5411,113 @@ vpcNames - vpc名称列表,支持多个
     let request = this.makeRequest(
       '/regions/{regionId}/vpcs/{vpcId}',
       'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改私有网络接口
+      * @param {Object} opts - parameters
+      * @param {string} opts.vpcId - Vpc ID
+      * @param {string} [opts.vpcName] - 私有网络名称,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符。  optional
+      * @param {string} [opts.description] - vpc描述，允许输入UTF-8编码下的全部字符，不超过256字符。  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  modifyVpc (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyVpc"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.vpcId === undefined || opts.vpcId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.vpcId' when calling modifyVpc"
+      )
+    }
+
+    let postBody = {}
+    if (opts.vpcName !== undefined && opts.vpcName !== null) {
+      postBody['vpcName'] = opts.vpcName
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      vpcId: opts.vpcId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyVpc with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/vpcs/{vpcId}',
+      'PATCH',
       pathParams,
       queryParams,
       headerParams,
@@ -3031,7 +5583,7 @@ vpcNames - vpc名称列表,支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
     }
 
     // 扩展自定义头
@@ -3137,7 +5689,7 @@ remoteVpcId - vpcPeering对端Vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
     }
 
     // 扩展自定义头
@@ -3261,7 +5813,7 @@ remoteVpcId - vpcPeering对端Vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
     }
 
     // 扩展自定义头
@@ -3360,7 +5912,7 @@ remoteVpcId - vpcPeering对端Vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
     }
 
     // 扩展自定义头
@@ -3467,7 +6019,7 @@ remoteVpcId - vpcPeering对端Vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
     }
 
     // 扩展自定义头
@@ -3565,7 +6117,7 @@ remoteVpcId - vpcPeering对端Vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.5.0'
     }
 
     // 扩展自定义头

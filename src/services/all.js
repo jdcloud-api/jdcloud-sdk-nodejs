@@ -11,6 +11,7 @@ module.exports = {
   VPC: require('./vpc'),
   SOP: require('./sop'),
   XDATA: require('./xdata'),
+  CR: require('./cr'),
   NC: require('./nc'),
   CLOUDDNSSERVICE: require('./clouddnsservice'),
   MPS: require('./mps'),

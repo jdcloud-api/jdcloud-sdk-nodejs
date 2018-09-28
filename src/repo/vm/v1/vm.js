@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * vm service.
- * @version 1.0.3
+ * @version 1.0.8
  */
 
 JDCloud.VM = class VM extends Service {
@@ -84,7 +84,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
     // 扩展自定义头
@@ -184,7 +184,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
     // 扩展自定义头
@@ -253,7 +253,7 @@ JDCloud.VM = class VM extends Service {
       * @param {string} [opts.imageSource] - 镜像来源，如果没有指定ids参数，此参数必传；取值范围：public、shared、thirdparty、private  optional
       * @param {string} [opts.platform] - 操作系统平台，取值范围：Windows Server、CentOS、Ubuntu  optional
       * @param {string} [opts.rootDeviceType] - 镜像支持的系统盘类型，[localDisk,cloudDisk]  optional
-      * @param {string} [opts.status] - &lt;a href&#x3D;&quot;https://www.jdcloud.com/help/detail/3871/isCatalog/1&quot;&gt;参考镜像状态&lt;/a&gt;  optional
+      * @param {string} [opts.status] - &lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/image_status&quot;&gt;参考镜像状态&lt;/a&gt;  optional
       * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
       * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
       * @param {string} [opts.ids] - 镜像ID列表，如果指定了此参数，其它参数可为空  optional
@@ -305,7 +305,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
     // 扩展自定义头
@@ -406,7 +406,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
     // 扩展自定义头
@@ -505,7 +505,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
     // 扩展自定义头
@@ -610,7 +610,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
     // 扩展自定义头
@@ -714,7 +714,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
     // 扩展自定义头
@@ -814,7 +814,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
     // 扩展自定义头
@@ -928,7 +928,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
     // 扩展自定义头
@@ -993,8 +993,8 @@ JDCloud.VM = class VM extends Service {
 
       * @param {Object} opts - parameters
       * @param {string} opts.imageId - 镜像ID
-      * @param {string} [opts.name] - 名称，&lt;a href&#x3D;&quot;https://www.jdcloud.com/help/detail/3870/isCatalog/1&quot;&gt;参考公共参数规范&lt;/a&gt;。  optional
-      * @param {string} [opts.description] - 描述，&lt;a href&#x3D;&quot;https://www.jdcloud.com/help/detail/3870/isCatalog/1&quot;&gt;参考公共参数规范&lt;/a&gt;。  optional
+      * @param {string} [opts.name] - 名称，&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/general_parameters&quot;&gt;参考公共参数规范&lt;/a&gt;。  optional
+      * @param {string} [opts.description] - 描述，&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/general_parameters&quot;&gt;参考公共参数规范&lt;/a&gt;。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1036,7 +1036,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
     // 扩展自定义头
@@ -1107,7 +1107,7 @@ JDCloud.VM = class VM extends Service {
 privateIpAddress - 主网卡内网主IP地址，模糊匹配，支持多个
 az - 可用区，精确匹配，支持多个
 vpcId - 私有网络ID，精确匹配，支持多个
-status - 云主机状态，精确匹配，支持多个，&lt;a href&#x3D;&quot;https://www.jdcloud.com/help/detail/3869/isCatalog/1&quot;&gt;参考云主机状态&lt;/a&gt;
+status - 云主机状态，精确匹配，支持多个，&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/vm_status&quot;&gt;参考云主机状态&lt;/a&gt;
 name - 云主机名称，模糊匹配，支持单个
 imageId - 镜像ID，精确匹配，支持多个
 networkInterfaceId - 弹性网卡ID，精确匹配，支持多个
@@ -1151,7 +1151,7 @@ faultDomain - 错误域，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
     // 扩展自定义头
@@ -1212,16 +1212,16 @@ faultDomain - 错误域，支持多个
   }
 
   /**
-      *  创建一台或多台指定配置的云主机，创建模式分为三种：1.普通方式、2.使用高可用组、3.使用启动模板。三种方式创建云主机时参数的必传与非必传是不同的，具体请参考&lt;a href&#x3D;&quot;https://www.jdcloud.com/help/detail/3383/isCatalog/1&quot;&gt;参数详细说明&lt;/a&gt;&lt;br&gt;
+      *  创建一台或多台指定配置的云主机，创建模式分为三种：1.普通方式、2.使用高可用组、3.使用启动模板。三种方式创建云主机时参数的必传与非必传是不同的，具体请参考&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/create_vm_sample&quot;&gt;参数详细说明&lt;/a&gt;&lt;br&gt;
 - 创建云主机需要通过实名认证
 - 实例规格
-    - 可查询&lt;a href&#x3D;&quot;https://www.jdcloud.com/help/detail/2901/isCatalog/1&quot;&gt;DescribeInstanceTypes&lt;/a&gt;接口获得指定地域或可用区的规格信息。
+    - 可查询&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/describeinstancetypes&quot;&gt;DescribeInstanceTypes&lt;/a&gt;接口获得指定地域或可用区的规格信息。
     - 不能使用已下线、或已售馨的规格ID
 - 镜像
     - Windows Server 2012 R2标准版 64位 中文版 SQL Server 2014 标准版 SP2内存需大于1GB；
     - Windows Server所有镜像CPU不可选超过64核CPU。
-    - 可查询&lt;a href&#x3D;&quot;https://www.jdcloud.com/help/detail/2874/isCatalog/1&quot;&gt;DescribeImages&lt;/a&gt;接口获得指定地域的镜像信息。
-    - 选择的镜像必须支持选择的实例规格。可查询&lt;a href&#x3D;&quot;https://www.jdcloud.com/help/detail/2872/isCatalog/1&quot;&gt;DescribeImageConstraints&lt;/a&gt;接口获得指定镜像的实例规格限制信息。&lt;br&gt;
+    - 可查询&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/describeimages&quot;&gt;DescribeImages&lt;/a&gt;接口获得指定地域的镜像信息。
+    - 选择的镜像必须支持选择的实例规格。可查询&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/describeimageconstraints&quot;&gt;DescribeImageConstraints&lt;/a&gt;接口获得指定镜像的实例规格限制信息。&lt;br&gt;
 - 网络配置
     - 指定主网卡配置信息
         - 必须指定subnetId
@@ -1260,7 +1260,7 @@ faultDomain - 错误域，支持多个
     - maxCount为最大努力，不保证一定能达到maxCount
     - 虚机的az会覆盖磁盘的az属性
 - 密码
-    - &lt;a href&#x3D;&quot;https://www.jdcloud.com/help/detail/3870/isCatalog/1&quot;&gt;参考公共参数规范&lt;/a&gt;
+    - &lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/general_parameters&quot;&gt;参考公共参数规范&lt;/a&gt;
 
       * @param {Object} opts - parameters
       * @param {instanceSpec} opts.instanceSpec - 描述云主机配置
@@ -1313,7 +1313,7 @@ faultDomain - 错误域，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
     // 扩展自定义头
@@ -1413,7 +1413,7 @@ faultDomain - 错误域，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
     // 扩展自定义头
@@ -1515,7 +1515,7 @@ faultDomain - 错误域，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
     // 扩展自定义头
@@ -1583,7 +1583,7 @@ faultDomain - 错误域，支持多个
       * @param {filter} [opts.filters] - instanceId - 云主机ID，精确匹配，支持多个
 privateIpAddress - 主网卡内网主IP地址，模糊匹配，支持多个
 vpcId - 私有网络ID，精确匹配，支持多个
-status - 云主机状态，精确匹配，支持多个，&lt;a href&#x3D;&quot;https://www.jdcloud.com/help/detail/3869/isCatalog/1&quot;&gt;参考云主机状态&lt;/a&gt;
+status - 云主机状态，精确匹配，支持多个，&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/vm_status&quot;&gt;参考云主机状态&lt;/a&gt;
 name - 云主机名称，模糊匹配，支持单个
 imageId - 镜像ID，精确匹配，支持多个
 networkInterfaceId - 弹性网卡ID，精确匹配，支持多个
@@ -1625,7 +1625,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
     // 扩展自定义头
@@ -1693,7 +1693,7 @@ subnetId - 子网ID，精确匹配，支持多个
       * @param {filter} [opts.filters] - instanceId - 云主机ID，精确匹配，支持多个
 privateIpAddress - 主网卡内网主IP地址，模糊匹配，支持多个
 vpcId - 私有网络ID，精确匹配，支持多个
-status - 云主机状态，精确匹配，支持多个，&lt;a href&#x3D;&quot;https://www.jdcloud.com/help/detail/3869/isCatalog/1&quot;&gt;参考云主机状态&lt;/a&gt;
+status - 云主机状态，精确匹配，支持多个，&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/vm_status&quot;&gt;参考云主机状态&lt;/a&gt;
 name - 云主机名称，模糊匹配，支持单个
 imageId - 镜像ID，精确匹配，支持多个
 networkInterfaceId - 弹性网卡ID，精确匹配，支持多个
@@ -1739,7 +1739,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
     // 扩展自定义头
@@ -1839,7 +1839,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
     // 扩展自定义头
@@ -1940,7 +1940,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
     // 扩展自定义头
@@ -2040,7 +2040,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
     // 扩展自定义头
@@ -2104,7 +2104,7 @@ subnetId - 子网ID，精确匹配，支持多个
       *  云主机挂载一块弹性网卡。&lt;br&gt;
 云主机状态必须为&lt;b&gt;running&lt;/b&gt;或&lt;b&gt;stopped&lt;/b&gt;状态，并且没有正在进行中的任务才可操作。&lt;br&gt;
 弹性网卡上如果绑定了公网IP，那么公网IP所在az需要与云主机的az保持一致，或者公网IP属于全可用区，才可挂载。&lt;br&gt;
-云主机挂载弹性网卡的数量，不能超过实例规格的限制。可查询&lt;a href&#x3D;&quot;https://www.jdcloud.com/help/detail/2901/isCatalog/1&quot;&gt;DescribeInstanceTypes&lt;/a&gt;接口获得指定规格可挂载弹性网卡的数量上限。&lt;br&gt;
+云主机挂载弹性网卡的数量，不能超过实例规格的限制。可查询&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/describeinstancetypes&quot;&gt;DescribeInstanceTypes&lt;/a&gt;接口获得指定规格可挂载弹性网卡的数量上限。&lt;br&gt;
 弹性网卡与云主机必须在相同vpc下。
 
       * @param {Object} opts - parameters
@@ -2163,7 +2163,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
     // 扩展自定义头
@@ -2280,7 +2280,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
     // 扩展自定义头
@@ -2389,7 +2389,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
     // 扩展自定义头
@@ -2499,7 +2499,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
     // 扩展自定义头
@@ -2608,7 +2608,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
     // 扩展自定义头
@@ -2676,8 +2676,8 @@ subnetId - 子网ID，精确匹配，支持多个
 
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 云主机ID
-      * @param {string} opts.name - 镜像名称，&lt;a href&#x3D;&quot;https://www.jdcloud.com/help/detail/3870/isCatalog/1&quot;&gt;参考公共参数规范&lt;/a&gt;。
-      * @param {string} opts.description - 镜像描述，&lt;a href&#x3D;&quot;https://www.jdcloud.com/help/detail/3870/isCatalog/1&quot;&gt;参考公共参数规范&lt;/a&gt;。
+      * @param {string} opts.name - 镜像名称，&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/general_parameters&quot;&gt;参考公共参数规范&lt;/a&gt;。
+      * @param {string} opts.description - 镜像描述，&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/general_parameters&quot;&gt;参考公共参数规范&lt;/a&gt;。
       * @param {array} [opts.dataDisks] - 数据盘列表，可以在实例已挂载数据盘的基础上，额外增加新的快照、空盘、或排除云主机中的数据盘。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -2734,7 +2734,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
     // 扩展自定义头
@@ -2853,7 +2853,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
     // 扩展自定义头
@@ -2966,7 +2966,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
     // 扩展自定义头
@@ -3070,7 +3070,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
     // 扩展自定义头
@@ -3135,8 +3135,8 @@ subnetId - 子网ID，精确匹配，支持多个
 
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 云主机ID
-      * @param {string} [opts.name] - 名称，&lt;a href&#x3D;&quot;https://www.jdcloud.com/help/detail/3870/isCatalog/1&quot;&gt;参考公共参数规范&lt;/a&gt;。  optional
-      * @param {string} [opts.description] - 描述，&lt;a href&#x3D;&quot;https://www.jdcloud.com/help/detail/3870/isCatalog/1&quot;&gt;参考公共参数规范&lt;/a&gt;。  optional
+      * @param {string} [opts.name] - 名称，&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/general_parameters&quot;&gt;参考公共参数规范&lt;/a&gt;。  optional
+      * @param {string} [opts.description] - 描述，&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/general_parameters&quot;&gt;参考公共参数规范&lt;/a&gt;。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -3178,7 +3178,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
     // 扩展自定义头
@@ -3244,7 +3244,7 @@ subnetId - 子网ID，精确匹配，支持多个
 
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 云主机ID
-      * @param {string} opts.password - 密码，&lt;a href&#x3D;&quot;https://www.jdcloud.com/help/detail/3870/isCatalog/1&quot;&gt;参考公共参数规范&lt;/a&gt;。
+      * @param {string} opts.password - 密码，&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/general_parameters&quot;&gt;参考公共参数规范&lt;/a&gt;。
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -3288,7 +3288,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
     // 扩展自定义头
@@ -3389,7 +3389,7 @@ vnc地址的有效期为1个小时，调用接口获取vnc地址后如果1个小
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
     // 扩展自定义头
@@ -3456,13 +3456,13 @@ vnc地址的有效期为1个小时，调用接口获取vnc地址后如果1个小
 本地盘(local类型)做系统盘的主机，一代与二代实例规格不允许相互调整。&lt;br&gt;
 使用高可用组(Ag)创建的主机，一代与二代实例规格不允许相互调整。&lt;br&gt;
 云硬盘(cloud类型)做系统盘的主机，一代与二代实例规格允许相互调整。&lt;br&gt;
-如果当前主机中的弹性网卡数量，大于新实例规格允许的弹性网卡数量，会返回错误。可查询&lt;a href&#x3D;&quot;https://www.jdcloud.com/help/detail/2901/isCatalog/1&quot;&gt;DescribeInstanceTypes&lt;/a&gt;接口获得指定地域及可用区下的实例规格信息。&lt;br&gt;
-当前主机所使用的镜像，需要支持要变更的目标实例规格，否则返回错误。可查询&lt;a href&#x3D;&quot;https://www.jdcloud.com/help/detail/2872/isCatalog/1&quot;&gt;DescribeImageConstraints&lt;/a&gt;接口获得指定镜像的实例规格限制信息。&lt;br&gt;
+如果当前主机中的弹性网卡数量，大于新实例规格允许的弹性网卡数量，会返回错误。可查询&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/describeinstancetypes&quot;&gt;DescribeInstanceTypes&lt;/a&gt;接口获得指定地域及可用区下的实例规格信息。&lt;br&gt;
+当前主机所使用的镜像，需要支持要变更的目标实例规格，否则返回错误。可查询&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/describeimageconstraints&quot;&gt;DescribeImageConstraints&lt;/a&gt;接口获得指定镜像的实例规格限制信息。&lt;br&gt;
 云主机欠费或到期时，无法更改实例规格。
 
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 云主机ID
-      * @param {string} opts.instanceType - 实例规格，可查询&lt;a href&#x3D;&quot;https://www.jdcloud.com/help/detail/2901/isCatalog/1&quot;&gt;DescribeInstanceTypes&lt;/a&gt;接口获得指定地域或可用区的规格信息。
+      * @param {string} opts.instanceType - 实例规格，可查询&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/describeinstancetypes&quot;&gt;DescribeInstanceTypes&lt;/a&gt;接口获得指定地域或可用区的规格信息。
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -3506,7 +3506,7 @@ vnc地址的有效期为1个小时，调用接口获取vnc地址后如果1个小
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
     // 扩展自定义头
@@ -3569,14 +3569,14 @@ vnc地址的有效期为1个小时，调用接口获取vnc地址后如果1个小
   /**
       *  云主机使用指定镜像重置云主机系统&lt;br&gt;
 云主机的状态必须为&lt;b&gt;stopped&lt;/b&gt;状态。&lt;br&gt;
-若当前云主机的系统盘类型为local类型，那么更换的镜像必须为localDisk类型的镜像；同理若当前云主机的系统盘为cloud类型，那么更换的镜像必须为cloudDisk类型的镜像。可查询&lt;a href&#x3D;&quot;https://www.jdcloud.com/help/detail/2874/isCatalog/1&quot;&gt;DescribeImages&lt;/a&gt;接口获得指定地域的镜像信息。&lt;br&gt;
+若当前云主机的系统盘类型为local类型，那么更换的镜像必须为localDisk类型的镜像；同理若当前云主机的系统盘为cloud类型，那么更换的镜像必须为cloudDisk类型的镜像。可查询&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/describeimages&quot;&gt;DescribeImages&lt;/a&gt;接口获得指定地域的镜像信息。&lt;br&gt;
 若不指定镜像ID，默认使用当前主机的原镜像重置系统。&lt;br&gt;
-指定的镜像必须能够支持当前主机的实例规格(instanceType)，否则会返回错误。可查询&lt;a href&#x3D;&quot;https://www.jdcloud.com/help/detail/2872/isCatalog/1&quot;&gt;DescribeImageConstraints&lt;/a&gt;接口获得指定镜像支持的系统盘类型信息。
+指定的镜像必须能够支持当前主机的实例规格(instanceType)，否则会返回错误。可查询&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/describeimageconstraints&quot;&gt;DescribeImageConstraints&lt;/a&gt;接口获得指定镜像支持的系统盘类型信息。
 
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 云主机ID
-      * @param {string} opts.password - 云主机密码，&lt;a href&#x3D;&quot;https://www.jdcloud.com/help/detail/3870/isCatalog/1&quot;&gt;参考公共参数规范&lt;/a&gt;。
-      * @param {string} [opts.imageId] - 镜像ID。可查询&lt;a href&#x3D;&quot;https://www.jdcloud.com/help/detail/2874/isCatalog/1&quot;&gt;DescribeImages&lt;/a&gt;接口获得指定地域的镜像信息。  optional
+      * @param {string} opts.password - 云主机密码，&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/general_parameters&quot;&gt;参考公共参数规范&lt;/a&gt;。
+      * @param {string} [opts.imageId] - 镜像ID。可查询&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/describeimages&quot;&gt;DescribeImages&lt;/a&gt;接口获得指定地域的镜像信息。  optional
       * @param {array} [opts.keyNames] - 密钥对名称；当前只支持一个。仅Linux系统支持指定。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -3627,7 +3627,7 @@ vnc地址的有效期为1个小时，调用接口获取vnc地址后如果1个小
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
     // 扩展自定义头
@@ -3725,7 +3725,7 @@ az - 可用区，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
     // 扩展自定义头
@@ -3786,10 +3786,437 @@ az - 可用区，精确匹配，支持多个
   }
 
   /**
-      *  查询配额，支持：云主机、镜像、密钥、模板
+      *  批量查询密钥对。&lt;br&gt;
+此接口支持分页查询，默认每页20条。
 
       * @param {Object} opts - parameters
-      * @param {filter} [opts.filters] - resourceTypes - 资源类型，支持多个[instance，keypair，image，instanceTemplate]
+      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
+      * @param {filter} [opts.filters] - keyNames - 密钥对名称，精确匹配，支持多个
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param keypair keypairs
+      * @param number totalCount  总的数据条数
+      */
+
+  describeKeypairs (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeKeypairs"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeKeypairs with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/keypairs',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建ssh密钥对。公钥部分存储在京东云，并返回未加密的 PEM 编码的 PKCS#8 格式私钥，您只有一次机会保存您的私钥。请妥善保管。&lt;br&gt;
+若传入已存在的密钥名称，会返回错误。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.keyName - 密钥对名称，需要全局唯一。只允许数字、大小写字母、下划线“_”及中划线“-”，不超过32个字符。
+
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string keyName  密钥对名称
+      * @param string privateKey  密钥对的私钥部分，PEM PKCS#8 格式。
+      * @param string keyFingerprint  密钥对的指纹，根据 RFC4716 定义的公钥指纹格式，采用 MD5 信息摘要算法。
+      */
+
+  createKeypair (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createKeypair"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.keyName === undefined || opts.keyName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.keyName' when calling createKeypair"
+      )
+    }
+
+    let postBody = {}
+    if (opts.keyName !== undefined && opts.keyName !== null) {
+      postBody['keyName'] = opts.keyName
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call createKeypair with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/keypairs',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  导入由其他工具生成的密钥对的公钥部分。&lt;br&gt;
+若传入已存在的密钥名称，会返回错误。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.keyName - 密钥对名称，需要全局唯一。只允许数字、大小写字母、下划线“_”及中划线“-”，不超过32个字符。
+
+      * @param {string} opts.publicKey - 密钥对的公钥部分
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string keyName  密钥对名称
+      * @param string keyFingerprint  密钥对的指纹，根据 RFC4716 定义的公钥指纹格式，采用 MD5 信息摘要算法。
+      */
+
+  importKeypair (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  importKeypair"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.keyName === undefined || opts.keyName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.keyName' when calling importKeypair"
+      )
+    }
+    if (opts.publicKey === undefined || opts.publicKey === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.publicKey' when calling importKeypair"
+      )
+    }
+
+    let postBody = {}
+    if (opts.keyName !== undefined && opts.keyName !== null) {
+      postBody['keyName'] = opts.keyName
+    }
+    if (opts.publicKey !== undefined && opts.publicKey !== null) {
+      postBody['publicKey'] = opts.publicKey
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call importKeypair with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/keypairs:import',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除ssh密钥对。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.keyName - 密钥名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteKeypair (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteKeypair"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.keyName === undefined || opts.keyName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.keyName' when calling deleteKeypair"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      keyName: opts.keyName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteKeypair with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/keypairs/{keyName}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询配额，支持：云主机、镜像、密钥、模板、镜像共享
+
+      * @param {Object} opts - parameters
+      * @param {string} [opts.imageId] - 私有镜像Id，查询镜像共享(imageShare)配额时，此参数必传  optional
+      * @param {filter} [opts.filters] - resourceTypes - 资源类型，支持多个[instance，keypair，image，instanceTemplate，imageShare]
   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -3813,6 +4240,9 @@ az - 可用区，精确匹配，支持多个
 
     let postBody = null
     let queryParams = {}
+    if (opts.imageId !== undefined && opts.imageId !== null) {
+      queryParams['imageId'] = opts.imageId
+    }
     Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
@@ -3820,7 +4250,7 @@ az - 可用区，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
     // 扩展自定义头

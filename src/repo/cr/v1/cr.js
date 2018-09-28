@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * cr service.
- * @version 0.1.0
+ * @version 0.1.1
  */
 
 JDCloud.CR = class CR extends Service {
@@ -95,7 +95,7 @@ JDCloud.CR = class CR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cr/0.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cr/0.1.1'
     }
 
     // 扩展自定义头
@@ -203,7 +203,7 @@ tagStatus - 打标TAGGED或没打标UNTAGGED
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cr/0.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cr/0.1.1'
     }
 
     // 扩展自定义头
@@ -297,7 +297,7 @@ tagStatus - 打标TAGGED或没打标UNTAGGED
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cr/0.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cr/0.1.1'
     }
 
     // 扩展自定义头
@@ -361,9 +361,9 @@ tagStatus - 打标TAGGED或没打标UNTAGGED
       *  通过参数创建注册表。
 
       * @param {Object} opts - parameters
-      * @param {string} [opts.registryName] - 用户定义的registry名称。&lt;br&gt; DNS兼容registry名称规则如下：
+      * @param {string} opts.registryName - 用户定义的registry名称。&lt;br&gt; DNS兼容registry名称规则如下：
  &lt;br&gt; 不可为空，且不能超过32字符 &lt;br&gt; 以小写字母开始和结尾，支持使用小写字母、数字、中划线(-)
-  optional
+
       * @param {string} [opts.description] - 注册表描述，&lt;a href&#x3D;&quot;https://www.jdcloud.com/help/detail/3870/isCatalog/1&quot;&gt;参考公共参数规范&lt;/a&gt;。
   optional
       * @param {string} regionId - ID of the region
@@ -386,6 +386,12 @@ tagStatus - 打标TAGGED或没打标UNTAGGED
 
     opts = opts || {}
 
+    if (opts.registryName === undefined || opts.registryName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.registryName' when calling createRegistry"
+      )
+    }
+
     let postBody = {}
     if (opts.registryName !== undefined && opts.registryName !== null) {
       postBody['registryName'] = opts.registryName
@@ -401,7 +407,7 @@ tagStatus - 打标TAGGED或没打标UNTAGGED
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cr/0.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cr/0.1.1'
     }
 
     // 扩展自定义头
@@ -462,15 +468,119 @@ tagStatus - 打标TAGGED或没打标UNTAGGED
   }
 
   /**
+      *  查询指定注册表名称是否已经存在以及是否符合命名规范。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.registryName - 待验证的注册表名。
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer code  表示用户指定的注册表是否通过校验， 0 通过 1 名称为空 2 不符合规范 3 重名
+      * @param string reason  code字段非零时，给出详细原因。
+      */
+
+  checkRegistryName (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  checkRegistryName"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.registryName === undefined || opts.registryName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.registryName' when calling checkRegistryName"
+      )
+    }
+
+    let postBody = {}
+    if (opts.registryName !== undefined && opts.registryName !== null) {
+      postBody['registryName'] = opts.registryName
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cr/0.1.1'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call checkRegistryName with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/registries:checkRegistryName',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  通过参数创建镜像仓库。
 仓库名称可以分解为多个路径名，每个名称必须至少包含一个小写字母数字，考虑URL规范。
 支持包含段划线或者下划线进行分割，但不允许点&#39;.&#39;，多个路径名之间通过(&quot;/&quot;)连接，总长度不超过256个字符，当前只支持二级目录。
 
       * @param {Object} opts - parameters
       * @param {string} opts.registryName - 注册表名称
-      * @param {string} [opts.repositoryName] - 镜像仓库名称。
+      * @param {string} opts.repositoryName - 镜像仓库名称。
 可以专有模式如默认命名空间nginx-web-app；或者和命名空间一起将多个仓库聚集在一起如 project-a/nginx-web-app。
-  optional
+
       * @param {string} [opts.description] - 注册表描述，&lt;a href&#x3D;&quot;https://www.jdcloud.com/help/detail/3870/isCatalog/1&quot;&gt;参考公共参数规范&lt;/a&gt;。
   optional
       * @param {string} regionId - ID of the region
@@ -498,6 +608,11 @@ tagStatus - 打标TAGGED或没打标UNTAGGED
         "Missing the required parameter 'opts.registryName' when calling createRepository"
       )
     }
+    if (opts.repositoryName === undefined || opts.repositoryName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.repositoryName' when calling createRepository"
+      )
+    }
 
     let postBody = {}
     if (opts.repositoryName !== undefined && opts.repositoryName !== null) {
@@ -515,7 +630,7 @@ tagStatus - 打标TAGGED或没打标UNTAGGED
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cr/0.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cr/0.1.1'
     }
 
     // 扩展自定义头

@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * rds service.
- * @version 0.3.0
+ * @version 0.3.3
  */
 
 JDCloud.RDS = class RDS extends Service {
@@ -83,7 +83,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -200,7 +200,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -305,7 +305,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -426,7 +426,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -536,7 +536,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -651,7 +651,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -750,7 +750,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -858,7 +858,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -956,7 +956,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -1020,7 +1020,7 @@ JDCloud.RDS = class RDS extends Service {
       *  获取当前系统所支持的各种数据库版本的审计选项及相应的推荐选项&lt;br&gt;- 仅支持SQL Server
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
-      * @param {} opts.name - 审计选项类别，**大小写敏感**，目前支持两种类型：&lt;br&gt;（1）AuditOptions开头：在disalbed参数中返回SQL Server各个版本支持的所有选项，支持的名称为&lt;br&gt;AuditOptions2008R2&lt;br&gt;AuditOptions2012&lt;br&gt;AuditOptions2014&lt;br&gt;AuditOptions2016&lt;br&gt;例如输入参数为&quot;AuditOptions2016&quot;，则在disabled字段中返回SQL Server 2016 版本所支持的所有的审计选项&lt;br&gt;（2）AuditDefault开头：京东云建议的默认选项,在enabled参数中返回建议开启的选项，在disabled参数中返回不开启的选项，支持的名称为：&lt;br&gt;AuditDefault2008R2&lt;br&gt;AuditDefault2012&lt;br&gt;AuditDefault2014&lt;br&gt;AuditDefault2016&lt;br&gt;例如输入参数为&quot;AuditDefault2016&quot;，则在enabled字段返回SQL Server 2016 版本中京东云建议开启的审计选项，在disabled字段中返回建议不开启的选项
+      * @param {string} opts.name - 审计选项类别，**大小写敏感**，目前支持两种类型：&lt;br&gt;（1）AuditOptions开头：在disalbed参数中返回SQL Server各个版本支持的所有选项，支持的名称为&lt;br&gt;AuditOptions2008R2&lt;br&gt;AuditOptions2012&lt;br&gt;AuditOptions2014&lt;br&gt;AuditOptions2016&lt;br&gt;例如输入参数为&quot;AuditOptions2016&quot;，则在disabled字段中返回SQL Server 2016 版本所支持的所有的审计选项&lt;br&gt;（2）AuditDefault开头：京东云建议的默认选项,在enabled参数中返回建议开启的选项，在disabled参数中返回不开启的选项，支持的名称为：&lt;br&gt;AuditDefault2008R2&lt;br&gt;AuditDefault2012&lt;br&gt;AuditDefault2014&lt;br&gt;AuditDefault2016&lt;br&gt;例如输入参数为&quot;AuditDefault2016&quot;，则在enabled字段返回SQL Server 2016 版本中京东云建议开启的审计选项，在disabled字段中返回建议不开启的选项
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1028,7 +1028,7 @@ JDCloud.RDS = class RDS extends Service {
       * @param string disabled  AuditDefault类模板：返回未开启的审计选项&lt;br&gt;AuditOptions类模板：返回所有的审计选项
       */
 
-  getAuditOptions (opts, regionId = this.config.regionId, callback) {
+  describeAuditOptions (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -1036,7 +1036,7 @@ JDCloud.RDS = class RDS extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  getAuditOptions"
+        "Missing the required parameter 'regionId' when calling  describeAuditOptions"
       )
     }
 
@@ -1044,21 +1044,20 @@ JDCloud.RDS = class RDS extends Service {
 
     if (opts.instanceId === undefined || opts.instanceId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.instanceId' when calling getAuditOptions"
+        "Missing the required parameter 'opts.instanceId' when calling describeAuditOptions"
       )
     }
     if (opts.name === undefined || opts.name === null) {
       throw new Error(
-        "Missing the required parameter 'opts.name' when calling getAuditOptions"
+        "Missing the required parameter 'opts.name' when calling describeAuditOptions"
       )
     }
 
-    let postBody = {}
-    if (opts.name !== undefined && opts.name !== null) {
-      postBody['name'] = opts.name
-    }
-
+    let postBody = null
     let queryParams = {}
+    if (opts.name !== undefined && opts.name !== null) {
+      queryParams['name'] = opts.name
+    }
 
     let pathParams = {
       regionId: regionId,
@@ -1066,7 +1065,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -1084,7 +1083,7 @@ JDCloud.RDS = class RDS extends Service {
     let returnType = null
 
     this.config.logger(
-      `call getAuditOptions with params:\npathParams:${JSON.stringify(
+      `call describeAuditOptions with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1097,8 +1096,8 @@ JDCloud.RDS = class RDS extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/instances/{instanceId}/audit:getOptions',
-      'POST',
+      '/regions/{regionId}/instances/{instanceId}/audit:describeAuditOptions',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -1173,7 +1172,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -1243,7 +1242,7 @@ JDCloud.RDS = class RDS extends Service {
       * @param auditFile auditFiles
       */
 
-  getAuditFiles (opts, regionId = this.config.regionId, callback) {
+  describeAuditFiles (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -1251,7 +1250,7 @@ JDCloud.RDS = class RDS extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  getAuditFiles"
+        "Missing the required parameter 'regionId' when calling  describeAuditFiles"
       )
     }
 
@@ -1259,12 +1258,11 @@ JDCloud.RDS = class RDS extends Service {
 
     if (opts.instanceId === undefined || opts.instanceId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.instanceId' when calling getAuditFiles"
+        "Missing the required parameter 'opts.instanceId' when calling describeAuditFiles"
       )
     }
 
-    let postBody = {}
-
+    let postBody = null
     let queryParams = {}
 
     let pathParams = {
@@ -1273,7 +1271,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -1291,7 +1289,7 @@ JDCloud.RDS = class RDS extends Service {
     let returnType = null
 
     this.config.logger(
-      `call getAuditFiles with params:\npathParams:${JSON.stringify(
+      `call describeAuditFiles with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1304,8 +1302,8 @@ JDCloud.RDS = class RDS extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/instances/{instanceId}/audit:getAuditFiles',
-      'POST',
+      '/regions/{regionId}/instances/{instanceId}/audit:describeAuditFiles',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -1337,7 +1335,7 @@ JDCloud.RDS = class RDS extends Service {
       *  获取某个审计文件的下载链接，同时支持内链和外链，链接的有效时间为24小时&lt;br&gt;- 仅支持SQL Server
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
-      * @param {} opts.fileName - 审计文件名
+      * @param {string} opts.fileName - 审计文件名
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1345,7 +1343,7 @@ JDCloud.RDS = class RDS extends Service {
       * @param string internalURL  内网下载链接，若当前不可下载，则为空串
       */
 
-  getAuditDownloadURL (opts, regionId = this.config.regionId, callback) {
+  describeAuditDownloadURL (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -1353,7 +1351,7 @@ JDCloud.RDS = class RDS extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  getAuditDownloadURL"
+        "Missing the required parameter 'regionId' when calling  describeAuditDownloadURL"
       )
     }
 
@@ -1361,21 +1359,20 @@ JDCloud.RDS = class RDS extends Service {
 
     if (opts.instanceId === undefined || opts.instanceId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.instanceId' when calling getAuditDownloadURL"
+        "Missing the required parameter 'opts.instanceId' when calling describeAuditDownloadURL"
       )
     }
     if (opts.fileName === undefined || opts.fileName === null) {
       throw new Error(
-        "Missing the required parameter 'opts.fileName' when calling getAuditDownloadURL"
+        "Missing the required parameter 'opts.fileName' when calling describeAuditDownloadURL"
       )
     }
 
-    let postBody = {}
-    if (opts.fileName !== undefined && opts.fileName !== null) {
-      postBody['fileName'] = opts.fileName
-    }
-
+    let postBody = null
     let queryParams = {}
+    if (opts.fileName !== undefined && opts.fileName !== null) {
+      queryParams['fileName'] = opts.fileName
+    }
 
     let pathParams = {
       regionId: regionId,
@@ -1383,7 +1380,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -1401,7 +1398,7 @@ JDCloud.RDS = class RDS extends Service {
     let returnType = null
 
     this.config.logger(
-      `call getAuditDownloadURL with params:\npathParams:${JSON.stringify(
+      `call describeAuditDownloadURL with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1414,8 +1411,8 @@ JDCloud.RDS = class RDS extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/instances/{instanceId}/audit:getAuditDownloadURL',
-      'POST',
+      '/regions/{regionId}/instances/{instanceId}/audit:describeAuditDownloadURL',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -1530,7 +1527,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -1630,7 +1627,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -1728,7 +1725,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -1789,7 +1786,7 @@ JDCloud.RDS = class RDS extends Service {
   }
 
   /**
-      *  获取整个备份或备份中单个文件的下载链接。&lt;br&gt;- 当输入参数中有文件名时，获取该文件的下载链接。&lt;br&gt;- 输入参数中无文件名时，获取整个备份的下载链接。&lt;br&gt;由于备份机制的差异，使用该接口下载备份时，SQL Server必须输入文件名，每个文件逐一下载，不支持下载整个备份。SQL Server备份中的文件名（不包括后缀）即为备份的数据库名。例如文件名为my_test_db.bak，表示该文件是my_test_db数据库的备份。&lt;br&gt;MySQL可下载整个备份集，但不支持单个文件的下载。&lt;br&gt;- 仅支持SQL Server
+      *  获取整个备份或备份中单个文件的下载链接。&lt;br&gt;- 当输入参数中有文件名时，获取该文件的下载链接。&lt;br&gt;- 输入参数中无文件名时，获取整个备份的下载链接。&lt;br&gt;由于备份机制的差异，使用该接口下载备份时，SQL Server必须输入文件名，每个文件逐一下载，不支持下载整个备份。SQL Server备份中的文件名（不包括后缀）即为备份的数据库名。例如文件名为my_test_db.bak，表示该文件是my_test_db数据库的备份。&lt;br&gt;MySQL可下载整个备份集，但不支持单个文件的下载。
       * @param {Object} opts - parameters
       * @param {string} opts.backupId - 备份ID
       * @param {string} [opts.fileName] - 文件名称&lt;br&gt;- MySQL：不支持该参数&lt;br&gt;- SQL Server：必须输入该参数，指定该备份中需要获取下载链接的文件名称。备份中的文件名（不包括后缀）即为备份的数据库名。例如文件名为my_test_db.bak，表示该文件是my_test_db数据库的备份  optional
@@ -1839,7 +1836,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -1870,7 +1867,230 @@ JDCloud.RDS = class RDS extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/backups/{backupId}/downloadURLs',
+      '/regions/{regionId}/backups/{backupId}:describeBackupDownloadURL',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取MySQL实例中binlog的详细信息&lt;br&gt;- 仅支持MySQL
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
+      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页。  optional
+      * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为10，取值范围：10、20、30、50、100  optional
+      * @param {string} [opts.startTime] - 查询开始时间，格式为：YYYY-MM-DD HH:mm:ss，开始时间到结束时间不超过三天  optional
+      * @param {string} [opts.endTime] - 查询结束时间，格式为：YYYY-MM-DD HH:mm:ss，开始时间到结束时间不超过三天  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer totalCount  总记录数
+      * @param binlog binlogs
+      */
+
+  describeBinlogs (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeBinlogs"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling describeBinlogs"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeBinlogs with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/binlogs',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取MySQL实例的binlog的下载链接&lt;br&gt;- 仅支持MySQL
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
+      * @param {string} opts.binlogBackupId - binlog的备份ID，可以通过describeBinlogs获得
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string publicURL  公网下载链接
+      * @param string internalURL  内网下载链接
+      */
+
+  describeBinlogDownloadURL (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeBinlogDownloadURL"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling describeBinlogDownloadURL"
+      )
+    }
+    if (opts.binlogBackupId === undefined || opts.binlogBackupId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.binlogBackupId' when calling describeBinlogDownloadURL"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      binlogBackupId: opts.binlogBackupId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeBinlogDownloadURL with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/binlogs/{binlogBackupId}:describeBinlogDownloadURL',
       'GET',
       pathParams,
       queryParams,
@@ -1942,7 +2162,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -2059,7 +2279,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -2164,7 +2384,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -2288,7 +2508,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -2407,7 +2627,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -2522,7 +2742,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -2621,7 +2841,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -2720,7 +2940,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -2820,7 +3040,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -2935,7 +3155,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -3035,7 +3255,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -3137,7 +3357,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -3236,7 +3456,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -3334,7 +3554,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -3407,7 +3627,7 @@ JDCloud.RDS = class RDS extends Service {
       * @param string backupBinlog  是否备份binlog&lt;br&gt;true:表示备份&lt;br&gt;false:表示不备份&lt;br&gt; - **SQL Server不支持**&lt;br&gt;- **MySQL支持**
       */
 
-  getBackupPolicy (opts, regionId = this.config.regionId, callback) {
+  describeBackupPolicy (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -3415,7 +3635,7 @@ JDCloud.RDS = class RDS extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  getBackupPolicy"
+        "Missing the required parameter 'regionId' when calling  describeBackupPolicy"
       )
     }
 
@@ -3423,12 +3643,11 @@ JDCloud.RDS = class RDS extends Service {
 
     if (opts.instanceId === undefined || opts.instanceId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.instanceId' when calling getBackupPolicy"
+        "Missing the required parameter 'opts.instanceId' when calling describeBackupPolicy"
       )
     }
 
-    let postBody = {}
-
+    let postBody = null
     let queryParams = {}
 
     let pathParams = {
@@ -3437,7 +3656,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -3455,7 +3674,7 @@ JDCloud.RDS = class RDS extends Service {
     let returnType = null
 
     this.config.logger(
-      `call getBackupPolicy with params:\npathParams:${JSON.stringify(
+      `call describeBackupPolicy with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -3468,8 +3687,8 @@ JDCloud.RDS = class RDS extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/instances/{instanceId}:getBackupPolicy',
-      'POST',
+      '/regions/{regionId}/instances/{instanceId}:describeBackupPolicy',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -3507,7 +3726,7 @@ JDCloud.RDS = class RDS extends Service {
       @return {Object} result
       */
 
-  setBackupPolicy (opts, regionId = this.config.regionId, callback) {
+  modifyBackupPolicy (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -3515,7 +3734,7 @@ JDCloud.RDS = class RDS extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  setBackupPolicy"
+        "Missing the required parameter 'regionId' when calling  modifyBackupPolicy"
       )
     }
 
@@ -3523,7 +3742,7 @@ JDCloud.RDS = class RDS extends Service {
 
     if (opts.instanceId === undefined || opts.instanceId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.instanceId' when calling setBackupPolicy"
+        "Missing the required parameter 'opts.instanceId' when calling modifyBackupPolicy"
       )
     }
 
@@ -3540,7 +3759,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -3558,7 +3777,7 @@ JDCloud.RDS = class RDS extends Service {
     let returnType = null
 
     this.config.logger(
-      `call setBackupPolicy with params:\npathParams:${JSON.stringify(
+      `call modifyBackupPolicy with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -3571,7 +3790,7 @@ JDCloud.RDS = class RDS extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/instances/{instanceId}:setBackupPolicy',
+      '/regions/{regionId}/instances/{instanceId}:modifyBackupPolicy',
       'POST',
       pathParams,
       queryParams,
@@ -3610,7 +3829,7 @@ JDCloud.RDS = class RDS extends Service {
       @return {Object} result
       */
 
-  setInstanceName (opts, regionId = this.config.regionId, callback) {
+  modifyInstanceName (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -3618,7 +3837,7 @@ JDCloud.RDS = class RDS extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  setInstanceName"
+        "Missing the required parameter 'regionId' when calling  modifyInstanceName"
       )
     }
 
@@ -3626,12 +3845,12 @@ JDCloud.RDS = class RDS extends Service {
 
     if (opts.instanceId === undefined || opts.instanceId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.instanceId' when calling setInstanceName"
+        "Missing the required parameter 'opts.instanceId' when calling modifyInstanceName"
       )
     }
     if (opts.instanceName === undefined || opts.instanceName === null) {
       throw new Error(
-        "Missing the required parameter 'opts.instanceName' when calling setInstanceName"
+        "Missing the required parameter 'opts.instanceName' when calling modifyInstanceName"
       )
     }
 
@@ -3648,7 +3867,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -3666,7 +3885,7 @@ JDCloud.RDS = class RDS extends Service {
     let returnType = null
 
     this.config.logger(
-      `call setInstanceName with params:\npathParams:${JSON.stringify(
+      `call modifyInstanceName with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -3679,7 +3898,7 @@ JDCloud.RDS = class RDS extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/instances/{instanceId}:setInstanceName',
+      '/regions/{regionId}/instances/{instanceId}:modifyInstanceName',
       'POST',
       pathParams,
       queryParams,
@@ -3747,7 +3966,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -3854,7 +4073,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -3953,7 +4172,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -4052,7 +4271,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -4155,7 +4374,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -4275,7 +4494,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -4399,7 +4618,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -4517,7 +4736,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -4549,6 +4768,114 @@ JDCloud.RDS = class RDS extends Service {
 
     let request = this.makeRequest(
       '/regions/{regionId}/instances/{instanceId}:createInstanceByTime',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改MySQL实例的连接模式：标准模式(standard) 和高安全模式(security).&lt;br&gt;- **标准模式**：响应时间短，但没有 SQL 审计和拦截的能力。&lt;br&gt;- **高安全模式**：具备一定的 SQL注入拦截能力（通过分析表达式、关键系统函数等来实现防御 SQL 注入攻击），并可开启 SQL 审计，但会增加一定的响应时间。&lt;br&gt;- 仅支持MySQL
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
+      * @param {string} opts.connectionMode - 连接模式&lt;br&gt; - standard：标准模式(缺省)，响应时间短，但没有 SQL 审计和拦截的能力 &lt;br&gt;- security：高安全模式，具备一定的 SQL注入拦截能力，并可开启 SQL 审计，但会增加一定的响应时间
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  modifyConnectionMode (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyConnectionMode"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling modifyConnectionMode"
+      )
+    }
+    if (opts.connectionMode === undefined || opts.connectionMode === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.connectionMode' when calling modifyConnectionMode"
+      )
+    }
+
+    let postBody = {}
+    if (opts.connectionMode !== undefined && opts.connectionMode !== null) {
+      postBody['connectionMode'] = opts.connectionMode
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyConnectionMode with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}:modifyConnectionMode',
       'POST',
       pathParams,
       queryParams,
@@ -4620,21 +4947,20 @@ JDCloud.RDS = class RDS extends Service {
       )
     }
 
-    let postBody = {}
+    let postBody = null
+    let queryParams = {}
     if (opts.queryType !== undefined && opts.queryType !== null) {
-      postBody['queryType'] = opts.queryType
+      queryParams['queryType'] = opts.queryType
     }
     if (opts.db !== undefined && opts.db !== null) {
-      postBody['db'] = opts.db
+      queryParams['db'] = opts.db
     }
     if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
-      postBody['pageNumber'] = opts.pageNumber
+      queryParams['pageNumber'] = opts.pageNumber
     }
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
-      postBody['pageSize'] = opts.pageSize
+      queryParams['pageSize'] = opts.pageSize
     }
-
-    let queryParams = {}
 
     let pathParams = {
       regionId: regionId,
@@ -4642,7 +4968,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -4674,7 +5000,7 @@ JDCloud.RDS = class RDS extends Service {
 
     let request = this.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/performance:describeIndexPerformance',
-      'POST',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -4744,21 +5070,20 @@ JDCloud.RDS = class RDS extends Service {
       )
     }
 
-    let postBody = {}
+    let postBody = null
+    let queryParams = {}
     if (opts.queryType !== undefined && opts.queryType !== null) {
-      postBody['queryType'] = opts.queryType
+      queryParams['queryType'] = opts.queryType
     }
     if (opts.threshold !== undefined && opts.threshold !== null) {
-      postBody['threshold'] = opts.threshold
+      queryParams['threshold'] = opts.threshold
     }
     if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
-      postBody['pageNumber'] = opts.pageNumber
+      queryParams['pageNumber'] = opts.pageNumber
     }
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
-      postBody['pageSize'] = opts.pageSize
+      queryParams['pageSize'] = opts.pageSize
     }
-
-    let queryParams = {}
 
     let pathParams = {
       regionId: regionId,
@@ -4766,7 +5091,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -4798,7 +5123,267 @@ JDCloud.RDS = class RDS extends Service {
 
     let request = this.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/performance:describeQueryPerformance',
-      'POST',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询MySQL实例的慢日志的详细信息。&lt;br&gt;- 仅支持SQL Server
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
+      * @param {string} opts.startTime - 慢日志开始时间,格式为：YYYY-MM-DD HH:mm:ss,开始时间到结束时间不能大于30天,结束时间不能大于当前时间
+      * @param {string} opts.endTime - 慢日志结束时间,格式为：YYYY-MM-DD HH:mm:ss,开始时间到结束时间不能大于30天,结束时间不能大于当前时间
+      * @param {string} [opts.dbName] - 查询哪个数据库的慢日志，不填表示返回所有数据库的慢日志  optional
+      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,1000)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页。  optional
+      * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为10，取值范围：10、20、30、50、100  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param slowLogAttributes slowLogsAttributes
+      * @param integer totalCount  总记录条数
+      */
+
+  describeSlowLogAttributes (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeSlowLogAttributes"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling describeSlowLogAttributes"
+      )
+    }
+    if (opts.startTime === undefined || opts.startTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.startTime' when calling describeSlowLogAttributes"
+      )
+    }
+    if (opts.endTime === undefined || opts.endTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.endTime' when calling describeSlowLogAttributes"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+    if (opts.dbName !== undefined && opts.dbName !== null) {
+      queryParams['dbName'] = opts.dbName
+    }
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeSlowLogAttributes with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/performance:describeSlowLogAttributes',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询MySQL实例的慢日志的概要信息。&lt;br&gt;- 仅支持SQL Server
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
+      * @param {string} opts.startTime - 慢日志开始时间,格式为：YYYY-MM-DD HH:mm:ss,开始时间到结束时间不能大于30天,结束时间不能大于当前时间
+      * @param {string} opts.endTime - 慢日志结束时间,格式为：YYYY-MM-DD HH:mm:ss,开始时间到结束时间不能大于30天,结束时间不能大于当前时间
+      * @param {string} [opts.dbName] - 查询哪个数据库的慢日志，不填表示返回所有数据库的慢日志  optional
+      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,1000)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页。  optional
+      * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为10，取值范围：10、20、30、50、100  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param slowLogDigest slowLogs
+      * @param integer totalCount  总记录条数
+      */
+
+  describeSlowLogs (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeSlowLogs"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling describeSlowLogs"
+      )
+    }
+    if (opts.startTime === undefined || opts.startTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.startTime' when calling describeSlowLogs"
+      )
+    }
+    if (opts.endTime === undefined || opts.endTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.endTime' when calling describeSlowLogs"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+    if (opts.dbName !== undefined && opts.dbName !== null) {
+      queryParams['dbName'] = opts.dbName
+    }
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeSlowLogs with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/performance:describeSlowLogs',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -4865,7 +5450,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头
@@ -4973,7 +5558,7 @@ JDCloud.RDS = class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.3'
     }
 
     // 扩展自定义头

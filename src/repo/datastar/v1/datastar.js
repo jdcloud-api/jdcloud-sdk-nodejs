@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * datastar service.
- * @version 1.0.1
+ * @version 1.0.2
  */
 
 JDCloud.DATASTAR = class DATASTAR extends Service {
@@ -42,127 +42,6 @@ JDCloud.DATASTAR = class DATASTAR extends Service {
       options._defaultEndpoint.host || 'datastar.cn-south-1.jdcloud-api.com'
     options.basePath = '/v1' // 默认要设为空""
     super(serviceId, options)
-  }
-
-  /**
-      *  根据deviceId查询对应用户的画像信息
-      * @param {Object} opts - parameters
-      * @param {string} opts.id - deviceId，mobile等,多个id英文逗号分隔
-      * @param {string} opts.type - 数据类型
-      * @param {string} opts.labelCode - 画像标签编号,多个画像标签英文逗号分隔
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param boolean status  true为成功，false为失败
-      * @param string message  描述信息
-      * @param string data  Map&lt;String, Map&lt;String,String&gt;&gt;序列化后的字符串，需要再次转换并使用。Key为对应的deviceId，value为对应的画像标签内容
-      */
-
-  getProfile (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  getProfile"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.id === undefined || opts.id === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.id' when calling getProfile"
-      )
-    }
-    if (opts.type === undefined || opts.type === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.type' when calling getProfile"
-      )
-    }
-    if (opts.labelCode === undefined || opts.labelCode === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.labelCode' when calling getProfile"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.id !== undefined && opts.id !== null) {
-      queryParams['id'] = opts.id
-    }
-    if (opts.type !== undefined && opts.type !== null) {
-      queryParams['type'] = opts.type
-    }
-    if (opts.labelCode !== undefined && opts.labelCode !== null) {
-      queryParams['labelCode'] = opts.labelCode
-    }
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  datastar/1.0.1'
-    }
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-    }
-
-    let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    let returnType = null
-
-    this.config.logger(
-      `call getProfile with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/profile/getProfile',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback) {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback) {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
   }
 
   /**
@@ -208,7 +87,7 @@ JDCloud.DATASTAR = class DATASTAR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  datastar/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  datastar/1.0.2'
     }
 
     // 扩展自定义头
@@ -240,6 +119,149 @@ JDCloud.DATASTAR = class DATASTAR extends Service {
 
     let request = this.makeRequest(
       '/regions/{regionId}/dmp/getPackageId',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  根据区域、行业、一级指标、二级指标、起始时间等条件查询数据
+      * @param {Object} opts - parameters
+      * @param {string} opts.region - 查询区域，比如某某省或某某市（可选区域以最终授权为准）
+      * @param {string} opts.industry - 查询行业，比如某个水果或者农作物（可选行业以最终授权为准）
+      * @param {string} opts.startDate - 查询起始时间，格式如下：yyyy-MM-dd
+      * @param {string} opts.endDate - 查询结束时间，格式如下：yyyy-MM-dd
+      * @param {string} opts.firstIndex - 数据对应的第一级分析指标（可选一级指标以最终授权为准）
+      * @param {string} [opts.secondIndex] - 数据对应的第二级分析指标，如不填写，则默认把一级指标下的所有二级指标都查询出来（可选二级指标以最终授权为准）  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status  true为成功，false为失败
+      * @param string message  描述信息
+      * @param regionIndustryDataList data  查询数据结果
+      */
+
+  getLargeScreenData (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getLargeScreenData"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.region === undefined || opts.region === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.region' when calling getLargeScreenData"
+      )
+    }
+    if (opts.industry === undefined || opts.industry === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.industry' when calling getLargeScreenData"
+      )
+    }
+    if (opts.startDate === undefined || opts.startDate === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.startDate' when calling getLargeScreenData"
+      )
+    }
+    if (opts.endDate === undefined || opts.endDate === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.endDate' when calling getLargeScreenData"
+      )
+    }
+    if (opts.firstIndex === undefined || opts.firstIndex === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.firstIndex' when calling getLargeScreenData"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.region !== undefined && opts.region !== null) {
+      queryParams['region'] = opts.region
+    }
+    if (opts.industry !== undefined && opts.industry !== null) {
+      queryParams['industry'] = opts.industry
+    }
+    if (opts.startDate !== undefined && opts.startDate !== null) {
+      queryParams['startDate'] = opts.startDate
+    }
+    if (opts.endDate !== undefined && opts.endDate !== null) {
+      queryParams['endDate'] = opts.endDate
+    }
+    if (opts.firstIndex !== undefined && opts.firstIndex !== null) {
+      queryParams['firstIndex'] = opts.firstIndex
+    }
+    if (opts.secondIndex !== undefined && opts.secondIndex !== null) {
+      queryParams['secondIndex'] = opts.secondIndex
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  datastar/1.0.2'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call getLargeScreenData with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/largeScreen/getData',
       'GET',
       pathParams,
       queryParams,

@@ -34,71 +34,80 @@ SDK使用中的任何问题，欢迎您在Github SDK使用问题反馈页面交�
 # 调用SDK #
 
 ## 两种引用方式 ##
-	var JDCloud = require('jdcloud-sdk-js');
+
+```js
+var JDCloud = require('jdcloud-sdk-js');
+```
 
 这种引用方式会加载所有的可用的services
 
-
-
-	var NC = require('jdcloud-sdk-js/services/nc');
+```js
+var NC = require('jdcloud-sdk-js/services/nc');
+```
 
 这种引用方式只会加载用到的service，此时仍然可以使用var JDCloud = require('jdcloud-sdk-js/global')来引用JDCloud对象
-## 
-配置方法 ##
+
+## 配置方法 ##
+
 对JDCloud的配置为通用配置，所有services共享配置:
 
-
-	JDCloud.config.update({/*配置项*/});
+```js
+JDCloud.config.update({/*配置项*/});
+```
 
 
 对某个service的配置会覆盖通用配置： 
 
-
-	var NC = require('jdcloud-sdk-js/services/nc');
-	var nc = new NC({/*配置项*/});
-
+```js
+var NC = require('jdcloud-sdk-js/services/nc');
+var nc = new NC({/*配置项*/});
+```
 
 ## 配置项 ##
-	let config = {
-	    credentials:{
-	        accessKeyId,
-	        secretAccessKey,
-	    },
-	    regionId,   //地域信息，某个api调用可以单独传参regionId，如果调用时不传，则会使用此配置中的regionId
-	}
 
+```js
+let config = {
+    credentials:{
+	accessKeyId,
+	secretAccessKey,
+    },
+    regionId,   //地域信息，某个api调用可以单独传参regionId，如果调用时不传，则会使用此配置中的regionId
+}
+```
 
 ## 调用示例 ##
 以下是查询单个云主机实例详情的调用示例
 
-	var VM = require('jdcloud-sdk-js/services/vm')
-	
-	var vm = new VM({
-	  credentials: {
-	    accessKeyId: global.accessKeyId,
-	    secretAccessKey: global.secretAccessKey
-	  },
-      version: {
-	    vm: 'v1'
+```js
+var VM = require('jdcloud-sdk-js/services/vm')
+
+var vm = new VM({
+  credentials: {
+    accessKeyId: global.accessKeyId,
+    secretAccessKey: global.secretAccessKey
+  },
+version: {
+    vm: 'v1'
+},
+  regionId: 'cn-north-1'
+})
+
+vm.createInstances({
+    instanceSpec: {
+      instanceType: 'g.s1.micro',
+      az: 'cn-north-1a',
+      imageId: '98d44a0f-88c1-451a-8971-f1f769073b6c',
+      name: 'node-sdk-test',
+      elasticIp: { bandwidthMbps: 2, provider: 'BGP' },
+      primaryNetworkInterface: {
+       networkInterface: {
+	  subnetId: 'subnet-3dm13k30gh',
+	  az: 'cn-north-1a'
+	}
       },
-	  regionId: 'cn-north-1'
-	})
-	
-	vm.createInstances({
-	    instanceSpec: {
-	      instanceType: 'g.s1.micro',
-	      az: 'cn-north-1a',
-	      imageId: '98d44a0f-88c1-451a-8971-f1f769073b6c',
-	      name: 'node-sdk-test',
-	      elasticIp: { bandwidthMbps: 2, provider: 'BGP' },
-	      primaryNetworkInterface: {
- 	       networkInterface: {
-	          subnetId: 'subnet-3dm13k30gh',
-	          az: 'cn-north-1a'
-	        }
-	      },
-	      systemDisk: { diskCategory: 'local' },
-	      description: 'sdk'
-	    },
-	    maxCount: 1
-	  }, 'cn-north-1')
+      systemDisk: { diskCategory: 'local' },
+      description: 'sdk'
+    },
+    maxCount: 1
+  }, 'cn-north-1')
+```  

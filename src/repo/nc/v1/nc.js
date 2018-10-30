@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * nc service.
- * @version 0.2.1
+ * @version 0.2.5
  */
 
 JDCloud.NC = class NC extends Service {
@@ -45,7 +45,9 @@ JDCloud.NC = class NC extends Service {
   }
 
   /**
-      *  查询容器列表
+      *  批量查询原生容器的详细信息&lt;br&gt;
+此接口支持分页查询，默认每页20条。
+
       * @param {Object} opts - parameters
       * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
       * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
@@ -93,7 +95,14 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.5'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -147,7 +156,60 @@ subnetId - 镜像ID，模糊匹配，支持单个
   }
 
   /**
-      *  创建一台或多台指定配置的实例
+      *  创建一台或多台指定配置容器。
+- 创建容器需要通过实名认证
+- 镜像
+    - 容器的镜像通过镜像名称来确定
+    - nginx:tag 或 mysql/mysql-server:tag 这样命名的镜像表示 docker hub 官方镜像
+    - container-registry/image:tag 这样命名的镜像表示私有仓储的镜像
+    - 私有仓储必须兼容 docker registry 认证机制，并通过 secret 来保存机密信息
+- hostname 规范
+    - 支持两种方式：以标签方式书写或以完整主机名方式书写
+    - 标签规范
+        - 0-9，a-z(不分大小写)和 -（减号），其他的都是无效的字符串
+        - 不能以减号开始，也不能以减号结尾
+        - 最小1个字符，最大63个字符
+    - 完整的主机名由一系列标签与点连接组成
+        - 标签与标签之间使用“.”(点)进行连接
+        - 不能以“.”(点)开始，也不能以“.”(点)结尾
+        - 整个主机名（包括标签以及分隔点“.”）最多有63个ASCII字符
+- 网络配置
+    - 指定主网卡配置信息
+        - 必须指定一个子网
+        - 一台云主机创建时必须指定一个安全组，至多指定 5 个安全组
+        - 可以指定 elasticIp 规格来约束创建的弹性 IP，带宽取值范围 [1-200]Mbps，步进 1Mbps
+        - 可以指定网卡的主 IP(primaryIpAddress)，该 IP 需要在子网 IP 范围内且未被占用，指定子网 IP 时 maxCount 只能为1
+        - 安全组 securityGroup 需与子网 Subnet 在同一个私有网络 VPC 内
+        - 主网卡 deviceIndex 设置为 1
+- 存储
+    - volume 分为 root volume 和 data volume，root volume 的挂载目录是 /，data volume 的挂载目录可以随意指定
+    - volume 的底层存储介质当前只支持 cloud 类别，也就是云硬盘
+    - 系统盘
+        - 云硬盘类型可以选择 ssd、premium-hdd
+        - 磁盘大小
+            - ssd：范围 [10, 100]GB，步长为 10G
+            - premium-hdd：范围 [20, 1000]GB，步长为 10G
+        - 自动删除
+            - 云盘默认跟随容器实例自动删除，如果是包年包月的数据盘或共享型数据盘，此参数不生效
+        - 可以选择已存在的云硬盘
+    - 数据盘
+        - 云硬盘类型可以选择 ssd、premium-hdd
+        - 磁盘大小
+            - ssd：范围[20,1000]GB，步长为10G
+            - premium-hdd：范围[20,3000]GB，步长为10G
+        - 自动删除
+            - 默认自动删除
+        - 可以选择已存在的云硬盘
+        - 单个容器最多可以挂载 7 个 data volume
+- 计费
+  - 弹性IP的计费模式，如果选择按用量类型可以单独设置，其它计费模式都以主机为准
+  - 云硬盘的计费模式以主机为准
+- 容器日志
+    - 默认在本地分配10MB的存储空间，自动 rotate
+- 其他
+    - 创建完成后，容器状态为running
+    - maxCount 为最大努力，不保证一定能达到 maxCount
+
       * @param {Object} opts - parameters
       * @param {containerSpec} [opts.containerSpec] - 创建容器规格  optional
       * @param {integer} [opts.maxCount] - 购买实例数量；取值范围：[1,100]  optional
@@ -186,7 +248,14 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.5'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -240,7 +309,8 @@ subnetId - 镜像ID，模糊匹配，支持单个
   }
 
   /**
-      *  查询容器详情
+      *  查询一台原生容器的详细信息
+
       * @param {Object} opts - parameters
       * @param {string} opts.containerId - Container ID
       * @param {string} regionId - ID of the region
@@ -278,7 +348,14 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.5'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -332,7 +409,10 @@ subnetId - 镜像ID，模糊匹配，支持单个
   }
 
   /**
-      *  删除单个实例
+      *  容器状态必须为 stopped、running 或 error状态。 &lt;br&gt;
+按量付费的实例，如不主动删除将一直运行，不再使用的实例，可通过本接口主动停用。&lt;br&gt;
+只能支持主动删除按量计费类型的实例。包年包月过期的容器也可以删除，其它的情况还请发工单系统。计费状态异常的容器无法删除。
+
       * @param {Object} opts - parameters
       * @param {string} opts.containerId - Container ID
       * @param {string} regionId - ID of the region
@@ -369,7 +449,14 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.5'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -423,7 +510,9 @@ subnetId - 镜像ID，模糊匹配，支持单个
   }
 
   /**
-      *  启动单个实例
+      *  启动处于关闭状态的单个容器，处在任务执行中的容器无法启动。&lt;br&gt;
+容器实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;br&gt;
+
       * @param {Object} opts - parameters
       * @param {string} opts.containerId - Container ID
       * @param {string} regionId - ID of the region
@@ -461,7 +550,14 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.5'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -515,7 +611,8 @@ subnetId - 镜像ID，模糊匹配，支持单个
   }
 
   /**
-      *  停止单个实例
+      *  停止处于运行状态的单个实例，处于任务执行中的容器无法启动。
+
       * @param {Object} opts - parameters
       * @param {string} opts.containerId - Container ID
       * @param {string} regionId - ID of the region
@@ -553,7 +650,14 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.5'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -607,7 +711,8 @@ subnetId - 镜像ID，模糊匹配，支持单个
   }
 
   /**
-      *  修改容器属性
+      *  修改容器的 名称 和 描述。
+
       * @param {Object} opts - parameters
       * @param {string} opts.containerId - Container ID
       * @param {string} [opts.name] - 容器名称  optional
@@ -653,7 +758,14 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.5'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -707,7 +819,10 @@ subnetId - 镜像ID，模糊匹配，支持单个
   }
 
   /**
-      *  容器绑定公网IP 绑定的是主网卡、主内网IP对应的弹性IP
+      *  容器绑定弹性公网 IP，绑定的是主网卡、主内网IP对应的弹性IP. &lt;br&gt;
+一台云主机只能绑定一个弹性公网 IP(主网卡)，若主网卡已存在弹性公网IP，会返回错误。&lt;br&gt;
+如果是黑名单中的用户，会返回错误。
+
       * @param {Object} opts - parameters
       * @param {string} opts.containerId - Container ID
       * @param {string} opts.elasticIpId - 弹性IP ID
@@ -754,7 +869,14 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.5'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -808,7 +930,8 @@ subnetId - 镜像ID，模糊匹配，支持单个
   }
 
   /**
-      *  容器解绑公网IP 解绑的是主网卡、主内网IP对应的弹性IP
+      *  容器解绑公网 IP，解绑的是主网卡、主内网 IP 对应的弹性 IP.
+
       * @param {Object} opts - parameters
       * @param {string} opts.containerId - Container ID
       * @param {string} opts.elasticIpId - 弹性IP ID
@@ -855,7 +978,14 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.5'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -909,12 +1039,16 @@ subnetId - 镜像ID，模糊匹配，支持单个
   }
 
   /**
-      *  查询容器日志
+      *  查询单个容器日志
+
       * @param {Object} opts - parameters
       * @param {string} opts.containerId - Container ID
-      * @param {integer} [opts.tailLines]   optional
-      * @param {integer} [opts.sinceSeconds]   optional
-      * @param {integer} [opts.limitBytes]   optional
+      * @param {integer} [opts.tailLines] - 返回日志文件中倒数 tailLines 行，如不指定，默认从容器启动时或 sinceSeconds 指定的时间读取。
+  optional
+      * @param {integer} [opts.sinceSeconds] - 返回相对于当前时间之前sinceSeconds之内的日志。
+  optional
+      * @param {integer} [opts.limitBytes] - 限制返回的日志文件内容字节数，取值范围 [1-4]KB，最大 4KB.
+  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -959,7 +1093,14 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.5'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1013,9 +1154,11 @@ subnetId - 镜像ID，模糊匹配，支持单个
   }
 
   /**
-      *  查询资源的配额
+      *  查询资源的配额，支持：原生容器 pod 和 secret.
+
       * @param {Object} opts - parameters
-      * @param {string} opts.resourceType - 资源类型  container：用户能创建的容器的配额  secret：用户能创建的secret的配额
+      * @param {string} opts.resourceType - resourceType - 资源类型，支持 [container, pod, secret]
+
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1053,7 +1196,14 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.5'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1107,7 +1257,9 @@ subnetId - 镜像ID，模糊匹配，支持单个
   }
 
   /**
-      *  查询secret列表
+      *  查询 secret 列表。&lt;br&gt;
+此接口支持分页查询，默认每页20条。
+
       * @param {Object} opts - parameters
       * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
       * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
@@ -1149,7 +1301,14 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.5'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1203,11 +1362,18 @@ subnetId - 镜像ID，模糊匹配，支持单个
   }
 
   /**
-      *  创建 secret
+      *  创建一个 secret，用于存放镜像仓库机密相关信息。
+
       * @param {Object} opts - parameters
       * @param {string} opts.name - 机密数据名称，不能重复
-      * @param {string} opts.secretType - 私密数据的类型，目前仅支持如下类型：docker-registry：用来和docker registry认证的类型
-      * @param {dockerRegistryData} [opts.data] - 机密的数据  optional
+
+      * @param {string} opts.secretType - 机密数据的类型，目前仅支持：docker-registry 类型，用来和docker registry认证的类型。
+
+      * @param {dockerRegistryData} [opts.data] - 机密的数据。&lt;br&gt;
+key 的有效字符包括字母、数字、-、_和.； &lt;br&gt;
+value 是 Base64 编码的字符串，不能包含换行符（在 linux 下使用 base64 -w 0选项），每个value长度上限为4KB，整个data的长度不能超过256KB; &lt;br&gt;
+必须包含server、username、password 字段，email 字段是可选的。&lt;br&gt;
+  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1257,7 +1423,14 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.5'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1311,7 +1484,8 @@ subnetId - 镜像ID，模糊匹配，支持单个
   }
 
   /**
-      *  查询 secret 详情
+      *  查询单个 secret 详情
+
       * @param {Object} opts - parameters
       * @param {string} opts.name - Secret Name
       * @param {string} regionId - ID of the region
@@ -1349,7 +1523,14 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.5'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}
@@ -1403,7 +1584,8 @@ subnetId - 镜像ID，模糊匹配，支持单个
   }
 
   /**
-      *  删除 secret
+      *  删除单个 secret
+
       * @param {Object} opts - parameters
       * @param {string} opts.name - Secret Name
       * @param {string} regionId - ID of the region
@@ -1440,7 +1622,14 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.5'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
     }
 
     let formParams = {}

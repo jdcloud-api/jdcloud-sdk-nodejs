@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * monitor service.
- * @version 1.2.2
+ * @version 1.2.3
  */
 
 JDCloud.MONITOR = class MONITOR extends Service {
@@ -96,7 +96,7 @@ JDCloud.MONITOR = class MONITOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.3'
     }
 
     // 扩展自定义头
@@ -230,7 +230,7 @@ filter name 为resourceIds表示查询多个资源的规则  optional
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.3'
     }
 
     // 扩展自定义头
@@ -367,7 +367,7 @@ filter name 为resourceIds表示查询多个资源的规则  optional
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.3'
     }
 
     // 扩展自定义头
@@ -430,8 +430,15 @@ filter name 为resourceIds表示查询多个资源的规则  optional
   /**
       *  创建报警规则，可以为某一个实例创建报警规则，也可以为多个实例同时创建报警规则。
       * @param {Object} opts - parameters
-      * @param {string} opts.clientToken - 幂等性校验参数,最长36位
-      * @param {createAlarmSpec} opts.createAlarmSpec
+      * @param {array} [opts.contactGroups] - 报警规则通知的联系组，必须在控制台上已创建，例如&quot; [&#39;联系组1&#39;,&#39;联系组2&#39;]&quot;  optional
+      * @param {array} [opts.contactPersons] - 报警规则通知的联系人，必须在控制台上已创建，例如 [“联系人1”,”联系人2”]  optional
+      * @param {string} [opts.downSample] - 取样频次  optional
+      * @param {string} opts.metric - 根据产品线查询可用监控项列表 接口 返回的Metric字段
+      * @param {integer} [opts.noticePeriod] - 通知周期 单位：小时  optional
+      * @param {array} [opts.resourceIds] - 报警规则对应实例列表，每次最多100个，例如&quot;[&#39;resourceId1&#39;,&#39;resourceId2&#39;]&quot;  optional
+      * @param {string} opts.serviceCode - 产品名称
+      * @param {number} opts.threshold - 查询指标的周期，单位为分钟,目前支持的取值：2，5，15，30，60
+      * @param {integer} opts.times - 连续探测几次都满足阈值条件时报警，可选值:1,2,3,5
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -452,23 +459,54 @@ filter name 为resourceIds表示查询多个资源的规则  optional
 
     opts = opts || {}
 
-    if (opts.clientToken === undefined || opts.clientToken === null) {
+    if (opts.metric === undefined || opts.metric === null) {
       throw new Error(
-        "Missing the required parameter 'opts.clientToken' when calling createAlarm"
+        "Missing the required parameter 'opts.metric' when calling createAlarm"
       )
     }
-    if (opts.createAlarmSpec === undefined || opts.createAlarmSpec === null) {
+    if (opts.serviceCode === undefined || opts.serviceCode === null) {
       throw new Error(
-        "Missing the required parameter 'opts.createAlarmSpec' when calling createAlarm"
+        "Missing the required parameter 'opts.serviceCode' when calling createAlarm"
+      )
+    }
+    if (opts.threshold === undefined || opts.threshold === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.threshold' when calling createAlarm"
+      )
+    }
+    if (opts.times === undefined || opts.times === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.times' when calling createAlarm"
       )
     }
 
     let postBody = {}
-    if (opts.clientToken !== undefined && opts.clientToken !== null) {
-      postBody['clientToken'] = opts.clientToken
+    if (opts.contactGroups !== undefined && opts.contactGroups !== null) {
+      postBody['contactGroups'] = opts.contactGroups
     }
-    if (opts.createAlarmSpec !== undefined && opts.createAlarmSpec !== null) {
-      postBody['createAlarmSpec'] = opts.createAlarmSpec
+    if (opts.contactPersons !== undefined && opts.contactPersons !== null) {
+      postBody['contactPersons'] = opts.contactPersons
+    }
+    if (opts.downSample !== undefined && opts.downSample !== null) {
+      postBody['downSample'] = opts.downSample
+    }
+    if (opts.metric !== undefined && opts.metric !== null) {
+      postBody['metric'] = opts.metric
+    }
+    if (opts.noticePeriod !== undefined && opts.noticePeriod !== null) {
+      postBody['noticePeriod'] = opts.noticePeriod
+    }
+    if (opts.resourceIds !== undefined && opts.resourceIds !== null) {
+      postBody['resourceIds'] = opts.resourceIds
+    }
+    if (opts.serviceCode !== undefined && opts.serviceCode !== null) {
+      postBody['serviceCode'] = opts.serviceCode
+    }
+    if (opts.threshold !== undefined && opts.threshold !== null) {
+      postBody['threshold'] = opts.threshold
+    }
+    if (opts.times !== undefined && opts.times !== null) {
+      postBody['times'] = opts.times
     }
 
     let queryParams = {}
@@ -478,7 +516,7 @@ filter name 为resourceIds表示查询多个资源的规则  optional
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.3'
     }
 
     // 扩展自定义头
@@ -511,98 +549,6 @@ filter name 为resourceIds表示查询多个资源的规则  optional
     let request = this.makeRequest(
       '/regions/{regionId}/alarms',
       'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback) {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback) {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  批量删除规则
-      * @param {Object} opts - parameters
-      * @param {filter} [opts.filter] - filter name为&#39;ids&#39;为要删除的告警id  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  batchDeleteAlarms (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  batchDeleteAlarms"
-      )
-    }
-
-    opts = opts || {}
-
-    let postBody = null
-    let queryParams = {}
-    Object.assign(queryParams, this.buildFilterParam(opts.filter, 'filter'))
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.2'
-    }
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-    }
-
-    let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    let returnType = null
-
-    this.config.logger(
-      `call batchDeleteAlarms with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/alarms',
-      'DELETE',
       pathParams,
       queryParams,
       headerParams,
@@ -669,7 +615,7 @@ filter name 为resourceIds表示查询多个资源的规则  optional
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.3'
     }
 
     // 扩展自定义头
@@ -797,7 +743,7 @@ filter name 为resourceIds表示查询多个资源的规则  optional
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.3'
     }
 
     // 扩展自定义头
@@ -896,7 +842,7 @@ filter name 为resourceIds表示查询多个资源的规则  optional
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.3'
     }
 
     // 扩展自定义头
@@ -995,7 +941,7 @@ filter name 为resourceIds表示查询多个资源的规则  optional
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.3'
     }
 
     // 扩展自定义头
@@ -1056,359 +1002,7 @@ filter name 为resourceIds表示查询多个资源的规则  optional
   }
 
   /**
-      *  批量创建报警规则，可以为多个实例创建多个报警规则。
-      * @param {Object} opts - parameters
-      * @param {string} opts.clientToken - 幂等性校验参数，最长36位
-      * @param {array} [opts.contacts] - 通知的联系人  optional
-      * @param {string} [opts.datacenter] - 地域  optional
-      * @param {array} [opts.resourceIds] - 报警规则对应实例列表，每次最多100个，例如&quot;[&#39;resourceId1&#39;,&#39;resourceId2&#39;]&quot;  optional
-      * @param {integer} [opts.ruleType] - 规则类型, 1表示资源监控，6表示站点监控，默认为1  optional
-      * @param {array} [opts.rules] - 要批量创建的规则列表  optional
-      * @param {boolean} [opts.saveTemplate] - 是否保存为模板  optional
-      * @param {string} opts.serviceCode - 产品线标识，规则对应的serviceCode
-      * @param {string} [opts.templateName] - 模板名称，保存模板时，不能为空  optional
-      * @param {string} [opts.templateServiceCode] - 产品线标识，保存为模板时，模板对应的serviceCode  optional
-      * @param {string} [opts.webHookContent] - 回调content 注：仅webHookUrl和webHookContent均不为空时，才会创建webHook  optional
-      * @param {string} [opts.webHookProtocol] - webHook协议  optional
-      * @param {string} [opts.webHookSecret] - 回调secret，用户请求签名，防伪造  optional
-      * @param {string} [opts.webHookUrl] - 回调url  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param string alarmIDList
-      */
-
-  batchCreateAlarms (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  batchCreateAlarms"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.clientToken === undefined || opts.clientToken === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.clientToken' when calling batchCreateAlarms"
-      )
-    }
-    if (opts.serviceCode === undefined || opts.serviceCode === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.serviceCode' when calling batchCreateAlarms"
-      )
-    }
-
-    let postBody = {}
-    if (opts.clientToken !== undefined && opts.clientToken !== null) {
-      postBody['clientToken'] = opts.clientToken
-    }
-    if (opts.contacts !== undefined && opts.contacts !== null) {
-      postBody['contacts'] = opts.contacts
-    }
-    if (opts.datacenter !== undefined && opts.datacenter !== null) {
-      postBody['datacenter'] = opts.datacenter
-    }
-    if (opts.resourceIds !== undefined && opts.resourceIds !== null) {
-      postBody['resourceIds'] = opts.resourceIds
-    }
-    if (opts.ruleType !== undefined && opts.ruleType !== null) {
-      postBody['ruleType'] = opts.ruleType
-    }
-    if (opts.rules !== undefined && opts.rules !== null) {
-      postBody['rules'] = opts.rules
-    }
-    if (opts.saveTemplate !== undefined && opts.saveTemplate !== null) {
-      postBody['saveTemplate'] = opts.saveTemplate
-    }
-    if (opts.serviceCode !== undefined && opts.serviceCode !== null) {
-      postBody['serviceCode'] = opts.serviceCode
-    }
-    if (opts.templateName !== undefined && opts.templateName !== null) {
-      postBody['templateName'] = opts.templateName
-    }
-    if (
-      opts.templateServiceCode !== undefined &&
-      opts.templateServiceCode !== null
-    ) {
-      postBody['templateServiceCode'] = opts.templateServiceCode
-    }
-    if (opts.webHookContent !== undefined && opts.webHookContent !== null) {
-      postBody['webHookContent'] = opts.webHookContent
-    }
-    if (opts.webHookProtocol !== undefined && opts.webHookProtocol !== null) {
-      postBody['webHookProtocol'] = opts.webHookProtocol
-    }
-    if (opts.webHookSecret !== undefined && opts.webHookSecret !== null) {
-      postBody['webHookSecret'] = opts.webHookSecret
-    }
-    if (opts.webHookUrl !== undefined && opts.webHookUrl !== null) {
-      postBody['webHookUrl'] = opts.webHookUrl
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.2'
-    }
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-    }
-
-    let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    let returnType = null
-
-    this.config.logger(
-      `call batchCreateAlarms with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/alarms/batch',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback) {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback) {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  批量禁用规则
-      * @param {Object} opts - parameters
-      * @param {array} [opts.ids] - 告警规则的ID列表  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  batchDisableAlarms (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  batchDisableAlarms"
-      )
-    }
-
-    opts = opts || {}
-
-    let postBody = {}
-    if (opts.ids !== undefined && opts.ids !== null) {
-      postBody['ids'] = opts.ids
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.2'
-    }
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-    }
-
-    let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    let returnType = null
-
-    this.config.logger(
-      `call batchDisableAlarms with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/alarms:disable',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback) {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback) {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  批量启用规则
-      * @param {Object} opts - parameters
-      * @param {array} [opts.ids] - 告警规则的ID列表  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  batchEnableAlarms (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  batchEnableAlarms"
-      )
-    }
-
-    opts = opts || {}
-
-    let postBody = {}
-    if (opts.ids !== undefined && opts.ids !== null) {
-      postBody['ids'] = opts.ids
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.2'
-    }
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-    }
-
-    let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    let returnType = null
-
-    this.config.logger(
-      `call batchEnableAlarms with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/alarms:enable',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback) {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback) {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  根据产品线查询可用监控项列表
+      *  根据产品线查询可用监控项列表,metric介绍：&lt;a href&#x3D;&quot;https://docs.jdcloud.com/cn/monitoring/metrics&quot;&gt;Metrics&lt;/a&gt;
       * @param {Object} opts - parameters
       * @param {string} opts.serviceCode - 资源的类型，取值vm, lb, ip, database 等
       * @param {string} callback - callback
@@ -1436,7 +1030,7 @@ filter name 为resourceIds表示查询多个资源的规则  optional
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.3'
     }
 
     // 扩展自定义头
@@ -1519,7 +1113,7 @@ filter name 为resourceIds表示查询多个资源的规则  optional
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.3'
     }
 
     // 扩展自定义头
@@ -1654,7 +1248,7 @@ filter name 为resourceIds表示查询多个资源的规则  optional
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.3'
     }
 
     // 扩展自定义头
@@ -1715,7 +1309,7 @@ filter name 为resourceIds表示查询多个资源的规则  optional
   }
 
   /**
-      *  查看某资源的监控数据
+      *  查看某资源的监控数据，metric介绍：&lt;a href&#x3D;&quot;https://docs.jdcloud.com/cn/monitoring/metrics&quot;&gt;Metrics&lt;/a&gt;
       * @param {Object} opts - parameters
       * @param {string} opts.metric - 监控项英文标识(id)
       * @param {string} opts.serviceCode - 资源的类型，取值vm, lb, ip, database 等
@@ -1789,7 +1383,7 @@ filter name 为resourceIds表示查询多个资源的规则  optional
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.3'
     }
 
     // 扩展自定义头
@@ -1850,137 +1444,7 @@ filter name 为resourceIds表示查询多个资源的规则  optional
   }
 
   /**
-      *  查看某资源多个监控项数据
-      * @param {Object} opts - parameters
-      * @param {string} opts.serviceCode - 资源的类型，取值vm, lb, ip, database 等
-      * @param {string} opts.resourceId - 资源的uuid
-      * @param {string} [opts.startTime] - 查询时间范围的开始时间， UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ（默认为当前时间，早于30d时，将被重置为30d）  optional
-      * @param {string} [opts.endTime] - 查询时间范围的结束时间， UTC时间，格式：2016-12- yyyy-MM-dd&#39;T&#39;HH:mm:ssZ（为空时，将由startTime与timeInterval计算得出）  optional
-      * @param {string} [opts.timeInterval] - 时间间隔：1h，6h，12h，1d，3d，7d，14d，固定时间间隔，timeInterval 与 endTime 至少填一项  optional
-      * @param {boolean} [opts.groupBy] - 是否对查询的tags分组  optional
-      * @param {filter} [opts.filters] - 自定义标签  optional
-      * @param {tagFilter} [opts.tags] - 自定义标签  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param metricData metricDatas
-      */
-
-  batchDescribeMetricData (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  batchDescribeMetricData"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.serviceCode === undefined || opts.serviceCode === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.serviceCode' when calling batchDescribeMetricData"
-      )
-    }
-    if (opts.resourceId === undefined || opts.resourceId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.resourceId' when calling batchDescribeMetricData"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.serviceCode !== undefined && opts.serviceCode !== null) {
-      queryParams['serviceCode'] = opts.serviceCode
-    }
-    if (opts.resourceId !== undefined && opts.resourceId !== null) {
-      queryParams['resourceId'] = opts.resourceId
-    }
-    if (opts.startTime !== undefined && opts.startTime !== null) {
-      queryParams['startTime'] = opts.startTime
-    }
-    if (opts.endTime !== undefined && opts.endTime !== null) {
-      queryParams['endTime'] = opts.endTime
-    }
-    if (opts.timeInterval !== undefined && opts.timeInterval !== null) {
-      queryParams['timeInterval'] = opts.timeInterval
-    }
-    if (opts.groupBy !== undefined && opts.groupBy !== null) {
-      queryParams['groupBy'] = opts.groupBy
-    }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
-    Object.assign(queryParams, this.buildTagFilterParam(opts.tags, 'tags'))
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.2'
-    }
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-    }
-
-    let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    let returnType = null
-
-    this.config.logger(
-      `call batchDescribeMetricData with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/metricsData',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback) {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback) {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  该接口为自定义监控数据上报的接口，方便您将自己采集的时序数据上报到云监控。可上报原始数据和已聚合的统计数据。支持批量上报方式。单次请求最多包含 50 个数据点；数据大小不超过 256k。
+      *  该接口为自定义监控数据上报的接口，方便您将自己采集的时序数据上报到云监控。不同region域名上报不同region的数据，参考：&lt;a href&#x3D;&quot;https://docs.jdcloud.com/cn/monitoring/reporting-monitoring-data&quot;&gt;调用说明&lt;/a&gt;可上报原始数据和已聚合的统计数据。支持批量上报方式。单次请求最多包含 50 个数据点；数据大小不超过 256k。
       * @param {Object} opts - parameters
       * @param {array} [opts.metricDataList] - 数据参数  optional
       * @param {string} callback - callback
@@ -2004,7 +1468,7 @@ filter name 为resourceIds表示查询多个资源的规则  optional
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.3'
     }
 
     // 扩展自定义头

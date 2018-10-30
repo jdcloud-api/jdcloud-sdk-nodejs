@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * clouddnsservice service.
- * @version 1.0.3
+ * @version 1.0.6
  */
 
 JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
@@ -45,7 +45,152 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
   }
 
   /**
-      *  查询用户名下的主域名列表
+      *  查看用户在云解析服务下的操作记录
+      * @param {Object} opts - parameters
+      * @param {integer} opts.pageNumber - 分页参数，页的序号，默认是1
+      * @param {integer} opts.pageSize - 分页参数，每页含有的结果的数目，默认是10
+      * @param {string} opts.startTime - 记录的起始时间，格式：UTC时间例如2017-11-10T23:00:00Z
+      * @param {string} opts.endTime - 记录的终止时间，格式：UTC时间例如2017-11-10T23:00:00Z
+      * @param {string} [opts.keyWord] - 日志需要匹配的关键词  optional
+      * @param {boolean} [opts.success] - 日志里面的结果是成功还是失败  optional
+      * @param {integer} [opts.type] - 日志的类型  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param actionlog dataList
+      * @param integer currentCount  当前页的操作记录列表里的个数
+      * @param integer totalCount  所有操作记录的个数
+      * @param integer totalPage  操作记录列表按照分页参数一共的页数
+      */
+
+  getActionLog (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getActionLog"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.pageNumber === undefined || opts.pageNumber === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.pageNumber' when calling getActionLog"
+      )
+    }
+    if (opts.pageSize === undefined || opts.pageSize === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.pageSize' when calling getActionLog"
+      )
+    }
+    if (opts.startTime === undefined || opts.startTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.startTime' when calling getActionLog"
+      )
+    }
+    if (opts.endTime === undefined || opts.endTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.endTime' when calling getActionLog"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+    if (opts.keyWord !== undefined && opts.keyWord !== null) {
+      queryParams['keyWord'] = opts.keyWord
+    }
+    if (opts.success !== undefined && opts.success !== null) {
+      queryParams['success'] = opts.success
+    }
+    if (opts.type !== undefined && opts.type !== null) {
+      queryParams['type'] = opts.type
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.6'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call getActionLog with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/log/actionLog',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询用户名下的主域名列表。&lt;br&gt;
+请在调用域名相关的API之前，调用此API获取相关的domainId和domainName。
+
       * @param {Object} opts - parameters
       * @param {integer} opts.pageNumber - 分页查询时查询的每页的序号，起始值为1，默认为1
       * @param {integer} opts.pageSize - 分页查询时设置的每页行数，默认为10
@@ -101,7 +246,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.6'
     }
 
     // 扩展自定义头
@@ -167,7 +312,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
       * @param {integer} opts.packId - 域名的套餐类型, 0-&gt;免费 ,1-&gt;企业版, 2-&gt;高级版
       * @param {string} opts.domainName - 要添加的域名
       * @param {integer} [opts.domainId] - 域名ID，升级高级版必填  optional
-      * @param {integer} [opts.buyType] - 1-&gt;新购买、2-&gt;升级，收费套餐的域名必填  optional
+      * @param {integer} [opts.buyType] - 1-&gt;新购买、3-&gt;升级，收费套餐的域名必填  optional
       * @param {integer} [opts.timeSpan] - 1，2，3 ，时长，收费套餐的域名必填  optional
       * @param {integer} [opts.timeUnit] - 时间单位，收费套餐的域名必填  optional
       * @param {integer} [opts.billingType] - 计费类型，收费套餐的域名必填  optional
@@ -233,7 +378,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.6'
     }
 
     // 扩展自定义头
@@ -333,7 +478,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.6'
     }
 
     // 扩展自定义头
@@ -444,7 +589,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.6'
     }
 
     // 扩展自定义头
@@ -507,7 +652,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
   /**
       *  查看域名的解析次数
       * @param {Object} opts - parameters
-      * @param {string} opts.domainId - 域名ID
+      * @param {string} opts.domainId - 域名ID，请使用getDomains接口获取。
       * @param {string} opts.domainName - 查询的域名
       * @param {string} opts.start - 起始时间, UTC时间例如2017-11-10T23:00:00Z
       * @param {string} opts.end - 终止时间, UTC时间例如2017-11-10T23:00:00Z
@@ -571,7 +716,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.6'
     }
 
     // 扩展自定义头
@@ -634,7 +779,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
   /**
       *  查看域名的查询流量
       * @param {Object} opts - parameters
-      * @param {string} opts.domainId - 域名ID
+      * @param {string} opts.domainId - 域名ID，请使用getDomains接口获取。
       * @param {string} opts.domainName - 域名
       * @param {string} opts.start - 起始时间, UTC时间例如2017-11-10T23:00:00Z
       * @param {string} opts.end - 终止时间, UTC时间例如2017-11-10T23:00:00Z
@@ -642,7 +787,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
       * @param {string} callback - callback
       @return {Object} result
       * @param integer time
-      * @param string unit  数据的单位
+      * @param string unit  数据序列的单位
       * @param number traffic
       */
 
@@ -699,7 +844,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.6'
     }
 
     // 扩展自定义头
@@ -760,9 +905,11 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
   }
 
   /**
-      *  查询主域名的解析记录
+      *  查询主域名的解析记录。&lt;br&gt;
+在使用解析记录相关的接口之前，请调用此接口获取解析记录的列表。
+
       * @param {Object} opts - parameters
-      * @param {string} opts.domainId - 域名ID
+      * @param {string} opts.domainId - 域名ID，请使用getDomains接口获取。
       * @param {integer} [opts.pageNumber] - 当前页数，起始值为1，默认为1  optional
       * @param {integer} [opts.pageSize] - 分页查询时设置的每页行数, 默认为10  optional
       * @param {string} regionId - ID of the region
@@ -809,7 +956,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.6'
     }
 
     // 扩展自定义头
@@ -870,11 +1017,13 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
   }
 
   /**
-      *  查询云解析所有的基础解析线路
+      *  查询云解析所有的基础解析线路。&lt;br&gt;
+在使用解析线路的参数之前，请调用此接口获取解析线路的ID。
+
       * @param {Object} opts - parameters
-      * @param {string} opts.domainId - 域名ID
-      * @param {integer} [opts.loadMode] - 展示方式  optional
-      * @param {integer} opts.packId - 套餐ID
+      * @param {string} opts.domainId - 域名ID，请使用getDomains接口获取。
+      * @param {integer} [opts.loadMode] - 展示方式，暂时不使用  optional
+      * @param {integer} opts.packId - 套餐ID，0-&gt;免费版 1-&gt;企业版 2-&gt;企业高级版
       * @param {integer} opts.viewId - view ID，默认为0
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -930,7 +1079,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.6'
     }
 
     // 扩展自定义头
@@ -993,7 +1142,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
   /**
       *  添加域名的解析记录
       * @param {Object} opts - parameters
-      * @param {string} opts.domainId - 域名ID
+      * @param {string} opts.domainId - 域名ID，请使用getDomains接口获取。
       * @param {addRR} opts.req - RR参数
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -1039,7 +1188,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.6'
     }
 
     // 扩展自定义头
@@ -1102,7 +1251,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
   /**
       *  修改主域名的某个解析记录
       * @param {Object} opts - parameters
-      * @param {string} opts.domainId - 域名ID
+      * @param {string} opts.domainId - 域名ID，请使用getDomains接口获取。
       * @param {updateRR} opts.req - updateRR参数
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -1147,7 +1296,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.6'
     }
 
     // 扩展自定义头
@@ -1210,7 +1359,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
   /**
       *  启用、停用、删除主域名下的解析记录
       * @param {Object} opts - parameters
-      * @param {string} opts.domainId - 域名ID
+      * @param {string} opts.domainId - 域名ID，请使用getDomains接口获取。
       * @param {array} [opts.ids] - 需要操作的解析记录ID  optional
       * @param {string} opts.action - 操作类型，on-&gt;启用 off-&gt;停用 del-&gt;删除
       * @param {string} regionId - ID of the region
@@ -1259,7 +1408,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.6'
     }
 
     // 扩展自定义头
@@ -1320,9 +1469,684 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
   }
 
   /**
+      *  添加域名的自定义解析线路
+      * @param {Object} opts - parameters
+      * @param {addView} opts.req - 添加自定义线路的参数
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param userview data  添加成功后返回的自定义线路的结构
+      */
+
+  addUserView (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  addUserView"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling addUserView"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.6'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call addUserView with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/userview/addUserView',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除域名的自定义解析线路
+      * @param {Object} opts - parameters
+      * @param {delView} opts.req - 删除自定义线路的参数
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  delUserView (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  delUserView"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling delUserView"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.6'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call delUserView with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/userview/delUserView',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询域名的自定义解析线路
+      * @param {Object} opts - parameters
+      * @param {integer} opts.domainId - 主域名ID
+      * @param {integer} opts.viewId - 自定义线路ID
+      * @param {integer} [opts.viewName] - 自定义线路名称, 最多64个字符  optional
+      * @param {integer} opts.pageNumber - 分页参数，页的序号
+      * @param {integer} opts.pageSize - 分页参数，每页含有的结果的数目
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param userViewInput dataList
+      * @param integer currentCount  当前页的自定义线路列表里的个数
+      * @param integer totalCount  所有自定义线路列表的个数
+      * @param integer totalPage  所有自定义线路列表按照分页参数一共的页数
+      */
+
+  getUserView (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getUserView"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.domainId === undefined || opts.domainId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.domainId' when calling getUserView"
+      )
+    }
+    if (opts.viewId === undefined || opts.viewId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.viewId' when calling getUserView"
+      )
+    }
+    if (opts.pageNumber === undefined || opts.pageNumber === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.pageNumber' when calling getUserView"
+      )
+    }
+    if (opts.pageSize === undefined || opts.pageSize === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.pageSize' when calling getUserView"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.domainId !== undefined && opts.domainId !== null) {
+      queryParams['domainId'] = opts.domainId
+    }
+    if (opts.viewId !== undefined && opts.viewId !== null) {
+      queryParams['viewId'] = opts.viewId
+    }
+    if (opts.viewName !== undefined && opts.viewName !== null) {
+      queryParams['viewName'] = opts.viewName
+    }
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.6'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call getUserView with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/userview/getUserView',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  添加域名的自定义解析线路的IP段
+      * @param {Object} opts - parameters
+      * @param {addViewIP} opts.req - 添加域名的自定义解析线路的IP段的参数
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  addUserViewIP (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  addUserViewIP"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling addUserViewIP"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.6'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call addUserViewIP with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/userview/addUserViewIP',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除域名的自定义解析线路的IP段
+      * @param {Object} opts - parameters
+      * @param {delViewIP} opts.req - 删除域名的自定义解析线路的IP段的参数
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  delUserViewIP (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  delUserViewIP"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling delUserViewIP"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.6'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call delUserViewIP with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/userview/delUserViewIP',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询域名的自定义解析线路的IP段
+      * @param {Object} opts - parameters
+      * @param {integer} opts.domainId - 主域名ID
+      * @param {integer} opts.viewId - 自定义线路ID
+      * @param {integer} [opts.viewName] - 自定义线路名称, 最多64个字符  optional
+      * @param {integer} opts.pageNumber - 分页参数，页的序号, 默认为1
+      * @param {integer} opts.pageSize - 分页参数，每页含有的结果的数目，默认为10
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string dataList
+      * @param integer currentCount  当前页的IP列表里的个数
+      * @param integer totalCount  IP列表里的IP段的个数
+      * @param integer totalPage  IP列表按照分页参数一共的页数
+      */
+
+  getUserViewIP (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getUserViewIP"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.domainId === undefined || opts.domainId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.domainId' when calling getUserViewIP"
+      )
+    }
+    if (opts.viewId === undefined || opts.viewId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.viewId' when calling getUserViewIP"
+      )
+    }
+    if (opts.pageNumber === undefined || opts.pageNumber === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.pageNumber' when calling getUserViewIP"
+      )
+    }
+    if (opts.pageSize === undefined || opts.pageSize === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.pageSize' when calling getUserViewIP"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.domainId !== undefined && opts.domainId !== null) {
+      queryParams['domainId'] = opts.domainId
+    }
+    if (opts.viewId !== undefined && opts.viewId !== null) {
+      queryParams['viewId'] = opts.viewId
+    }
+    if (opts.viewName !== undefined && opts.viewName !== null) {
+      queryParams['viewName'] = opts.viewName
+    }
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.6'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call getUserViewIP with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/userview/getUserViewIP',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  查看主域名的监控项的配置以及状态
       * @param {Object} opts - parameters
-      * @param {string} opts.domainId - 域名ID
+      * @param {string} opts.domainId - 域名ID，请使用getDomains接口获取。
       * @param {integer} [opts.pageIndex] - 当前页数，起始值为1，默认为1  optional
       * @param {integer} [opts.pageSize] - 分页查询时设置的每页行数  optional
       * @param {string} [opts.searchValue] - 查询的值  optional
@@ -1373,7 +2197,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.6'
     }
 
     // 扩展自定义头
@@ -1436,7 +2260,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
   /**
       *  添加子域名的监控项，默认把子域名的所有监控项都添加上监控
       * @param {Object} opts - parameters
-      * @param {string} opts.domainId - 域名ID
+      * @param {string} opts.domainId - 域名ID，请使用getDomains接口获取。
       * @param {string} opts.subDomainName - 子域名
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -1481,7 +2305,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.6'
     }
 
     // 扩展自定义头
@@ -1544,7 +2368,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
   /**
       *  查询子域名的可用监控对象
       * @param {Object} opts - parameters
-      * @param {string} opts.domainId - 域名ID
+      * @param {string} opts.domainId - 域名ID，请使用getDomains接口获取。
       * @param {string} opts.subDomainName - 子域名
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -1589,7 +2413,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.6'
     }
 
     // 扩展自定义头
@@ -1652,7 +2476,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
   /**
       *  添加子域名的某些特定监控对象为监控项
       * @param {Object} opts - parameters
-      * @param {string} opts.domainId - 域名ID
+      * @param {string} opts.domainId - 域名ID，请使用getDomains接口获取。
       * @param {string} opts.subDomainName - 子域名
       * @param {array} [opts.targets] - 子域名可用监控对象的数组  optional
       * @param {string} regionId - ID of the region
@@ -1701,7 +2525,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.6'
     }
 
     // 扩展自定义头
@@ -1764,7 +2588,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
   /**
       *  监控项的操作集合，包括：删除，暂停，启动, 手动恢复, 手动切换
       * @param {Object} opts - parameters
-      * @param {string} opts.domainId - 域名ID
+      * @param {string} opts.domainId - 域名ID，请使用getDomains接口获取。
       * @param {string} opts.action - 删除del, 暂停stop, 开启start, 手动恢复recover，手动切换switch
       * @param {array} [opts.ids] - 监控项ID  optional
       * @param {string} [opts.switchTarget] - 监控项的主机值, 手动切换时必填  optional
@@ -1817,7 +2641,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.6'
     }
 
     // 扩展自定义头
@@ -1880,7 +2704,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
   /**
       *  域名的监控项修改
       * @param {Object} opts - parameters
-      * @param {string} opts.domainId - 域名ID
+      * @param {string} opts.domainId - 域名ID，请使用getDomains接口获取。
       * @param {updateMonitor} opts.updateMonitor - 监控项设置信息
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -1925,7 +2749,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.6'
     }
 
     // 扩展自定义头
@@ -1988,7 +2812,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
   /**
       *  主域名的监控项的报警信息
       * @param {Object} opts - parameters
-      * @param {string} opts.domainId - 域名ID
+      * @param {string} opts.domainId - 域名ID，请使用getDomains接口获取。
       * @param {integer} [opts.pageIndex] - 当前页数，起始值为1，默认为1  optional
       * @param {integer} [opts.pageSize] - 分页查询时设置的每页行数  optional
       * @param {string} [opts.searchValue] - 关键字  optional
@@ -2039,7 +2863,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.6'
     }
 
     // 扩展自定义头

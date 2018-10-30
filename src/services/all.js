@@ -8,6 +8,7 @@ module.exports = {
   DISK: require('./disk'),
   DATASTAR: require('./datastar'),
   MONGODB: require('./mongodb'),
+  IAS: require('./ias'),
   VPC: require('./vpc'),
   SOP: require('./sop'),
   XDATA: require('./xdata'),

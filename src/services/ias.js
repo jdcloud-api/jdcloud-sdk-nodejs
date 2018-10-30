@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Repository
- * 容器镜像仓库相关接口
+ * JDCLOUD IAS Services API
+ * 京东云联合登陆Api
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -24,20 +24,20 @@
 
 const JDCloud = require('../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'cr'
+var serviceId = 'ias'
 Service._services[serviceId] = true
 
 /**
- * cr service.
+ * ias service.
  */
 
-JDCloud.CR = class CR {
+JDCloud.IAS = class IAS {
   constructor (config = {}) {
     this.init(config)
     return new this.service(config)
   }
   init (config) {
-    let serviceName = 'cr'
+    let serviceName = 'ias'
     let version = config.version || JDCloud.config.version
     let versionFlag = 'v1'
     if (version && version[serviceName]) {
@@ -52,4 +52,4 @@ JDCloud.CR = class CR {
   }
 }
 
-module.exports = JDCloud.CR
+module.exports = JDCloud.IAS

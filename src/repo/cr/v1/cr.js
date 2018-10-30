@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 配额
+ * Repository
  * 容器镜像仓库相关接口
  *
  * OpenAPI spec version: v1
@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * cr service.
- * @version 0.1.1
+ * @version 0.2.0
  */
 
 JDCloud.CR = class CR extends Service {
@@ -56,7 +56,9 @@ JDCloud.CR = class CR extends Service {
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param authorizationData authorizationData
+      * @param string authorizationToken
+      * @param string loginCmdLine
+      * @param string expiresAt
       */
 
   getAuthorizationToken (opts, regionId = this.config.regionId, callback) {
@@ -95,7 +97,7 @@ JDCloud.CR = class CR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cr/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cr/0.2.0'
     }
 
     // 扩展自定义头
@@ -127,6 +129,230 @@ JDCloud.CR = class CR extends Service {
 
     let request = this.makeRequest(
       '/regions/{regionId}/registries/{registryName}:getAuthorizationToken',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  &lt;p&gt;批量查询令牌。&lt;/p&gt;
+&lt;p&gt;暂时不支持分页和过滤条件。&lt;/p&gt;
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.registryName - 注册表名称
+      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
+      * @param {filter} [opts.filters] - token - 令牌 ID，支持多个
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param authorizationData authorizationTokens
+      * @param number totalCount
+      */
+
+  describeAuthorizationTokens (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeAuthorizationTokens"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.registryName === undefined || opts.registryName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.registryName' when calling describeAuthorizationTokens"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: regionId,
+      registryName: opts.registryName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cr/0.2.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeAuthorizationTokens with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/registries/{registryName}/tokens',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  释放用户 registry 的 token。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.registryName - 注册表名称
+      * @param {string} [opts.authorizationToken] - 准备释放的 token ID，功能为指定token释放。  optional
+      * @param {boolean} [opts.forceAll] - true 表示强制删除用户当前registry下所有有效token的标志；false 表示删除所有有效token。  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  releaseAuthorizationToken (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  releaseAuthorizationToken"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.registryName === undefined || opts.registryName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.registryName' when calling releaseAuthorizationToken"
+      )
+    }
+
+    let postBody = {}
+    if (
+      opts.authorizationToken !== undefined &&
+      opts.authorizationToken !== null
+    ) {
+      postBody['authorizationToken'] = opts.authorizationToken
+    }
+    if (opts.forceAll !== undefined && opts.forceAll !== null) {
+      postBody['forceAll'] = opts.forceAll
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      registryName: opts.registryName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cr/0.2.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call releaseAuthorizationToken with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/registries/{registryName}:releaseAuthorizationToken',
       'POST',
       pathParams,
       queryParams,
@@ -203,7 +429,7 @@ tagStatus - 打标TAGGED或没打标UNTAGGED
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cr/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cr/0.2.0'
     }
 
     // 扩展自定义头
@@ -236,6 +462,129 @@ tagStatus - 打标TAGGED或没打标UNTAGGED
     let request = this.makeRequest(
       '/regions/{regionId}/images',
       'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除镜像
+imageDigest imageTag imageTagStatus 三者只能且必须传一个。
+可根据Tag状态删除Image，例如删除所有tagged的镜像。
+digest和tag唯一表征单个镜像，其中imageDigest为sha256哈希，image manifest的digest。
+例如 sha256:examplee6d1e504117a17000003d3753086354a38375961f2e665416ef4b1b2f；image使用的tag, 如  &quot;precise&quot;
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.registryName - 注册表名称
+      * @param {string} opts.repositoryName - 镜像仓库表名称
+      * @param {string} [opts.imageDigest] - sha256哈希，image manifest的digest.  optional
+      * @param {string} [opts.imageTag] - image使用的tag  optional
+      * @param {string} [opts.imageTagStatus] - 枚举中的一个值，如 tagged 和 untagged.  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteImage (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteImage"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.registryName === undefined || opts.registryName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.registryName' when calling deleteImage"
+      )
+    }
+    if (opts.repositoryName === undefined || opts.repositoryName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.repositoryName' when calling deleteImage"
+      )
+    }
+
+    let postBody = {}
+    if (opts.imageDigest !== undefined && opts.imageDigest !== null) {
+      postBody['imageDigest'] = opts.imageDigest
+    }
+    if (opts.imageTag !== undefined && opts.imageTag !== null) {
+      postBody['imageTag'] = opts.imageTag
+    }
+    if (opts.imageTagStatus !== undefined && opts.imageTagStatus !== null) {
+      postBody['imageTagStatus'] = opts.imageTagStatus
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      registryName: opts.registryName,
+      repositoryName: opts.repositoryName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cr/0.2.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteImage with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/registries/{registryName}/repositories/{repositoryName}:deleteImage',
+      'POST',
       pathParams,
       queryParams,
       headerParams,
@@ -297,7 +646,7 @@ tagStatus - 打标TAGGED或没打标UNTAGGED
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cr/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cr/0.2.0'
     }
 
     // 扩展自定义头
@@ -329,6 +678,99 @@ tagStatus - 打标TAGGED或没打标UNTAGGED
 
     let request = this.makeRequest(
       '/regions/{regionId}/quotas',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  批量查询指定用户下所有 registry 详情。
+暂不支持 filter.
+
+      * @param {Object} opts - parameters
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param registry registries
+      */
+
+  describeRegistries (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeRegistries"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cr/0.2.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeRegistries with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/registries',
       'GET',
       pathParams,
       queryParams,
@@ -407,7 +849,7 @@ tagStatus - 打标TAGGED或没打标UNTAGGED
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cr/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cr/0.2.0'
     }
 
     // 扩展自定义头
@@ -440,6 +882,205 @@ tagStatus - 打标TAGGED或没打标UNTAGGED
     let request = this.makeRequest(
       '/regions/{regionId}/registries',
       'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询指定用户下某个 registry 详情。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.registryName - 注册表名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param registry registry
+      */
+
+  describeRegistry (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeRegistry"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.registryName === undefined || opts.registryName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.registryName' when calling describeRegistry"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      registryName: opts.registryName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cr/0.2.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeRegistry with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/registries/{registryName}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除指定用户下某个 registry.
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.registryName - 注册表名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteRegistry (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteRegistry"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.registryName === undefined || opts.registryName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.registryName' when calling deleteRegistry"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      registryName: opts.registryName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cr/0.2.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteRegistry with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/registries/{registryName}',
+      'DELETE',
       pathParams,
       queryParams,
       headerParams,
@@ -511,7 +1152,7 @@ tagStatus - 打标TAGGED或没打标UNTAGGED
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cr/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cr/0.2.0'
     }
 
     // 扩展自定义头
@@ -630,7 +1271,7 @@ tagStatus - 打标TAGGED或没打标UNTAGGED
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cr/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cr/0.2.0'
     }
 
     // 扩展自定义头
@@ -662,6 +1303,332 @@ tagStatus - 打标TAGGED或没打标UNTAGGED
 
     let request = this.makeRequest(
       '/regions/{regionId}/registries/{registryName}/repositories',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  描述用户指定 registry 下的 repository.
+
+      * @param {Object} opts - parameters
+      * @param {array} [opts.filters] - name - 仓库名称，模糊匹配，支持单个
+  optional
+      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param repository repositories
+      * @param number totalCount
+      */
+
+  describeRepositories (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeRepositories"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.filters !== undefined && opts.filters !== null) {
+      postBody['filters'] = opts.filters
+    }
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      postBody['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cr/0.2.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeRepositories with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/listRepositories',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除指定用户下某个镜像仓库.
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.registryName - 注册表名称
+      * @param {string} opts.repositoryName - 镜像仓库名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteRepository (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteRepository"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.registryName === undefined || opts.registryName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.registryName' when calling deleteRepository"
+      )
+    }
+    if (opts.repositoryName === undefined || opts.repositoryName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.repositoryName' when calling deleteRepository"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      registryName: opts.registryName,
+      repositoryName: opts.repositoryName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cr/0.2.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteRepository with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/registries/{registryName}/repositories/{repositoryName}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback) {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback) {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询指定镜像仓库名称是否已经存在以及是否符合命名规范。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.registryName - 注册表名。
+      * @param {string} opts.repositoryName - 待验证的镜像仓库名。
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer code  表示用户指定的镜像仓库名是否通过校验， 0 通过 1 名称为空 2 不符合规范 3 重名
+      * @param string reason  code字段非零时，给出详细原因。
+      */
+
+  checkRepositoryName (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  checkRepositoryName"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.registryName === undefined || opts.registryName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.registryName' when calling checkRepositoryName"
+      )
+    }
+    if (opts.repositoryName === undefined || opts.repositoryName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.repositoryName' when calling checkRepositoryName"
+      )
+    }
+
+    let postBody = {}
+    if (opts.registryName !== undefined && opts.registryName !== null) {
+      postBody['registryName'] = opts.registryName
+    }
+    if (opts.repositoryName !== undefined && opts.repositoryName !== null) {
+      postBody['repositoryName'] = opts.repositoryName
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cr/0.2.0'
+    }
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+    }
+
+    let formParams = {}
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    let returnType = null
+
+    this.config.logger(
+      `call checkRepositoryName with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/repositories:checkRepositoryName',
       'POST',
       pathParams,
       queryParams,

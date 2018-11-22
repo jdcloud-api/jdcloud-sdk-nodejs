@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * welcome测试接口
- * API related to datastar
+ * JDCLOUD IAS Services API
+ * 京东云联合登陆Api
  *
  * OpenAPI spec version: v1
  * Contact: 
@@ -24,20 +24,20 @@
 
 const JDCloud = require('../lib/core')
 var Service = JDCloud.Service
-var serviceId = "datastar"
+var serviceId = "ias"
 Service._services[serviceId] = true;
 
 /**
-* datastar service.
+* ias service.
 */
 
-JDCloud.DATASTAR = class DATASTAR {
+JDCloud.IAS = class IAS {
   constructor(config = {}) {
     this.init(config)
     return new this.service(config)
   }
   init(config) {
-    let serviceName = 'datastar'
+    let serviceName = 'ias'
     let version = config.version || JDCloud.config.version
     let versionFlag = 'v1'
     if(version && version[serviceName]) {
@@ -51,4 +51,4 @@ JDCloud.DATASTAR = class DATASTAR {
   }
 }
 
-module.exports = JDCloud.DATASTAR
+module.exports = JDCloud.IAS

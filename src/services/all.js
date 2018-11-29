@@ -1,5 +1,6 @@
 module.exports ={
        VM:require('./vm'),
+       KMS:require('./kms'),
        IAM:require('./iam'),
        DISK:require('./disk'),
        MONGODB:require('./mongodb'),

@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 监控数据上报接口
- * 监控数据上报接口
+ * Statistics APIs
+ * 资源统计相关接口
  *
  * OpenAPI spec version: v1
  * Contact: 

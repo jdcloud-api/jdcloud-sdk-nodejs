@@ -21,6 +21,7 @@ module.exports ={
        BILLING:require('./billing'),
        CR:require('./cr'),
        NC:require('./nc'),
+       CDN:require('./cdn'),
        JDW:require('./jdw'),
        CLOUDDNSSERVICE:require('./clouddnsservice'),
        OSS:require('./oss'),

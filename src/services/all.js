@@ -10,6 +10,7 @@ module.exports ={
        BASEANTI:require('./baseanti'),
        JKE:require('./jke'),
        IPANTI:require('./ipanti'),
+       HTTPDNS:require('./httpdns'),
        RDS:require('./rds'),
        REDIS:require('./redis'),
        MONITOR:require('./monitor'),

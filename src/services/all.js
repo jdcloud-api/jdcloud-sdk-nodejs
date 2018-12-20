@@ -5,6 +5,7 @@ module.exports ={
        DISK:require('./disk'),
        MONGODB:require('./mongodb'),
        IAS:require('./ias'),
+       FUNCTION:require('./function'),
        MPS:require('./mps'),
        STREAMBUS:require('./streambus'),
        BASEANTI:require('./baseanti'),
@@ -26,5 +27,6 @@ module.exports ={
        JDW:require('./jdw'),
        CLOUDDNSSERVICE:require('./clouddnsservice'),
        OSS:require('./oss'),
-       STREAMCOMPUTER:require('./streamcomputer')
+       STREAMCOMPUTER:require('./streamcomputer'),
+       AMS:require('./ams')
 };

@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 大屏数据查询接口
- * 陕西苹果大屏数据查询接口
+ * 应用管理平台API (仅对授权用户使用)
+ * 应用管理平台API
  *
  * OpenAPI spec version: v1
  * Contact: 
@@ -24,20 +24,20 @@
 
 const JDCloud = require('../lib/core')
 var Service = JDCloud.Service
-var serviceId = "datastar"
+var serviceId = "ams"
 Service._services[serviceId] = true;
 
 /**
-* datastar service.
+* ams service.
 */
 
-JDCloud.DATASTAR = class DATASTAR {
+JDCloud.AMS = class AMS {
   constructor(config = {}) {
     this.init(config)
     return new this.service(config)
   }
   init(config) {
-    let serviceName = 'datastar'
+    let serviceName = 'ams'
     let version = config.version || JDCloud.config.version
     let versionFlag = 'v1'
     if(version && version[serviceName]) {
@@ -51,4 +51,4 @@ JDCloud.DATASTAR = class DATASTAR {
   }
 }
 
-module.exports = JDCloud.DATASTAR
+module.exports = JDCloud.AMS

@@ -30,7 +30,7 @@ Service._services[serviceId] = true;
 
 /**
 * rds service.
-* @version 0.3.6
+* @version 0.4.1
 */
 
 JDCloud.RDS= class RDS extends Service {
@@ -46,10 +46,13 @@ JDCloud.RDS= class RDS extends Service {
       *  查看某个RDS实例下所有账号信息，包括账号名称、对各个数据库的访问权限信息等
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例 
+      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页;  optional 
+      * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为100，取值范围：[10,100]，用于查询列表的接口  optional 
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       * @param account accounts  
+      * @param integer totalCount  
       */
 
     describeAccounts(opts, regionId = this.config.regionId, callback){
@@ -71,6 +74,12 @@ JDCloud.RDS= class RDS extends Service {
           let postBody = null;
           let queryParams = {
           };
+           if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+               queryParams['pageNumber'] = opts.pageNumber
+           }
+           if (opts.pageSize !== undefined && opts.pageSize !== null) {
+               queryParams['pageSize'] = opts.pageSize
+           }
 
           let pathParams = {
                'regionId': regionId,
@@ -78,20 +87,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -101,16 +122,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -163,20 +184,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -186,16 +219,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -238,20 +271,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -261,16 +306,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -321,20 +366,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -344,20 +401,20 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
-      *  取消该账号对某个数据库的所有权限。权限取消后，该账号将不能访问此数据库。取消账号对某个数据库的访问权限，不影响该账号对其他数据库的访问权限&lt;br&gt;- 仅支持MySQL
+      *  取消该账号对某个数据库的所有权限。权限取消后，该账号将不能访问此数据库。取消账号对某个数据库的访问权限，不影响该账号对其他数据库的访问权限
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例 
       * @param {string} opts.accountName - 账号名，在同一个实例中账号名不能重复 
@@ -401,20 +458,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -424,16 +493,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -484,20 +553,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -507,16 +588,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -555,20 +636,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -578,16 +671,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -633,20 +726,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -656,16 +761,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -703,20 +808,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -726,16 +843,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -782,20 +899,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -805,16 +934,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -861,20 +990,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -884,16 +1025,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -932,20 +1073,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -955,16 +1108,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -1011,20 +1164,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -1034,16 +1199,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -1082,20 +1247,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -1105,16 +1282,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -1153,20 +1330,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -1176,16 +1365,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -1255,20 +1444,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -1278,16 +1479,101 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  查看指定地域下各种RDS数据库支持的可用区，不同类型的RDS支持的可用区不一样
+      * @param {Object} opts - parameters
+      * @param {string} opts.engine - RDS引擎类型，参见[枚举参数定义](../Enum-Definitions/Enum-Definitions.md) 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string azs  
+      */
+
+    describeAzs(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  describeAzs');
+          }
+
+         opts = opts || {};
+
+          if (opts.engine === undefined || opts.engine === null) {
+               throw new Error('Missing the required parameter \'opts.engine\' when calling describeAzs');
+          }
+
+          let postBody = null;
+          let queryParams = {
+          };
+           if (opts.engine !== undefined && opts.engine !== null) {
+               queryParams['engine'] = opts.engine
+           }
+
+          let pathParams = {
+               'regionId': regionId,
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call describeAzs with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/azs', 'GET', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -1363,20 +1649,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -1386,16 +1684,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -1438,20 +1736,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -1461,16 +1771,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -1508,20 +1818,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -1531,16 +1853,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -1588,20 +1910,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -1611,16 +1945,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -1663,20 +1997,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -1686,16 +2032,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -1744,20 +2090,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -1767,16 +2125,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -1814,20 +2172,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -1837,16 +2207,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -1902,20 +2272,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -1925,16 +2307,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -1979,20 +2361,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -2002,16 +2396,99 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  清理本地的binlog并释放空间。 系统只会清理已经备份到存储的binlog，不会影响MySQL实例的备份恢复&lt;br&gt;- 仅支持MySQL
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+    clearBinlogs(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  clearBinlogs');
+          }
+
+         opts = opts || {};
+
+          if (opts.instanceId === undefined || opts.instanceId === null) {
+               throw new Error('Missing the required parameter \'opts.instanceId\' when calling clearBinlogs');
+          }
+
+         let postBody =   {
+          };
+
+          let queryParams = {};
+
+          let pathParams = {
+               'regionId': regionId,
+               'instanceId': opts.instanceId 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call clearBinlogs with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/instances/{instanceId}/binlogs:clearBinlogs', 'POST', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -2054,20 +2531,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -2077,16 +2566,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -2139,20 +2628,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -2162,16 +2663,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -2214,20 +2715,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -2237,16 +2750,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -2304,20 +2817,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -2327,16 +2852,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -2391,20 +2916,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -2414,16 +2951,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -2431,7 +2968,7 @@ JDCloud.RDS= class RDS extends Service {
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例 
       * @param {string} opts.dbName - 库名称 
-      * @param {} opts.ossURL - 用户上传到对象存储OSS上的备份文件的内链 
+      * @param {} opts.ossURL - 用户上传到对象存储OSS上的备份文件的路径。&lt;br&gt;例如用户备份上传的bucket为db_backup，文件为test_server/db1.bak，那么ossULR为db_backup/test_server/db1.bak。&lt;br&gt;**授权说明**：需要授予账户ID：785455908940，对这个bucket的读取权限，具体步骤可以查看[文档](https://docs.jdcloud.com/cn/object-storage-service/set-bucket-policy-2)。 
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -2474,20 +3011,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -2497,16 +3046,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -2545,20 +3094,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -2568,16 +3129,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -2616,20 +3177,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -2639,16 +3212,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -2688,20 +3261,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -2711,16 +3296,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -2771,20 +3356,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -2794,16 +3391,107 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  删除用户通过单库上云工具上传的数据库备份文件&lt;br&gt;- 仅支持SQL Server
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例 
+      * @param {string} opts.fileName - 单库上云文件名 
+      * @param {} [opts.sharedFileGid] - 共享文件的全局ID，可从上传文件查询接口describeImportFiles中获取；如果该文件不是共享文件，则无须输入该字段  optional 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+    deleteImportFile(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  deleteImportFile');
+          }
+
+         opts = opts || {};
+
+          if (opts.instanceId === undefined || opts.instanceId === null) {
+               throw new Error('Missing the required parameter \'opts.instanceId\' when calling deleteImportFile');
+          }
+          if (opts.fileName === undefined || opts.fileName === null) {
+               throw new Error('Missing the required parameter \'opts.fileName\' when calling deleteImportFile');
+          }
+
+          let postBody = null;
+          let queryParams = {
+          };
+           if (opts.sharedFileGid !== undefined && opts.sharedFileGid !== null) {
+               queryParams['sharedFileGid'] = opts.sharedFileGid
+           }
+
+          let pathParams = {
+               'regionId': regionId,
+               'instanceId': opts.instanceId ,
+               'fileName': opts.fileName 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call deleteImportFile with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/instances/{instanceId}/importFiles/{fileName}', 'DELETE', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -2811,6 +3499,16 @@ JDCloud.RDS= class RDS extends Service {
       * @param {Object} opts - parameters
       * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页;  optional 
       * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为100，取值范围：[10,100]，用于查询列表的接口  optional 
+      * @param {filter} [opts.filters] - 过滤参数，多个过滤参数之间的关系为“与”(and)
+支持以下属性的过滤：
+instanceId, 支持operator选项：eq
+instanceName, 支持operator选项：eq
+engine, 支持operator选项：eq
+engineVersion, 支持operator选项：eq
+instanceStatus, 支持operator选项：eq
+chargeMode, 支持operator选项：eq
+  optional 
+      * @param {tagFilter} [opts.tagFilters] - 资源标签  optional 
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -2840,26 +3538,40 @@ JDCloud.RDS= class RDS extends Service {
            if (opts.pageSize !== undefined && opts.pageSize !== null) {
                queryParams['pageSize'] = opts.pageSize
            }
+          Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'));
+          Object.assign(queryParams, this.buildTagFilterParam(opts.tagFilters, 'tagFilters'));
 
           let pathParams = {
                'regionId': regionId,
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -2869,16 +3581,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -2920,20 +3632,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -2943,16 +3667,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -2991,20 +3715,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -3014,16 +3750,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -3061,20 +3797,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -3084,16 +3832,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -3135,20 +3883,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -3158,16 +3918,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -3210,20 +3970,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -3233,20 +4005,20 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
-      *  修改实例名称，可支持中文，实例名的具体规则可参见帮助中心文档:[名称及密码限制](../../../documentation/Cloud-Database-and-Cache/RDS/Introduction/Restrictions/SQLServer-Restrictions.md)&lt;br&gt;- 仅支持SQL Server
+      *  修改实例名称，可支持中文，实例名的具体规则可参见帮助中心文档:[名称及密码限制](../../../documentation/Cloud-Database-and-Cache/RDS/Introduction/Restrictions/SQLServer-Restrictions.md)
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例 
       * @param {} opts.instanceName - 实例名称，名称支持中文，实例名的具体规则可参见帮助中心文档:[名称及密码限制](../../../documentation/Cloud-Database-and-Cache/RDS/Introduction/Restrictions/SQLServer-Restrictions.md) 
@@ -3288,20 +4060,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -3311,16 +4095,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -3359,20 +4143,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -3382,16 +4178,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -3438,20 +4234,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -3461,16 +4269,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -3509,20 +4317,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -3532,16 +4352,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -3580,20 +4400,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -3603,16 +4435,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -3655,20 +4487,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -3678,20 +4522,20 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
-      *  根据源实例全量备份创建一个新实例，新实例的数据跟源实例在创建备份时的数据状态一样。&lt;br&gt;例如根据源实例A的一个全量备份“mybak”新建一个实例B，该备份是在“‘2018-8-18 03:23:54”创建的。那么新建实例B的数据状态跟实例A‘2018-8-18 03:23:54’的状态一致&lt;br&gt;- 仅支持MySQL
+      *  根据源实例全量备份创建一个新实例，新实例的数据跟源实例在创建备份时的数据状态一样。&lt;br&gt;例如根据源实例A的一个全量备份“mybak”新建一个实例B，该备份是在“‘2018-8-18 03:23:54”创建的。那么新建实例B的数据状态跟实例A‘2018-8-18 03:23:54’的状态一致
       * @param {Object} opts - parameters
       * @param {string} opts.backupId - 备份ID 
       * @param {string} opts.engine - 标识是创建什么类型的实例，例如MySQL，SQL Server等,具体可参见文档[枚举参数定义](../Enum-Definitions/Enum-Definitions.md)&lt;br&gt;**注意：备份来源实例的engine和要创建的实例的engine必须一致** 
@@ -3743,20 +4587,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -3766,16 +4622,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -3829,20 +4685,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -3852,20 +4720,20 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
-      *  根据源实例备份创建一个新实例，并通过追加日志的方式，将新实例的数据恢复到跟源实例指定时间点的数据状态一样。&lt;br&gt;例如根据实例A在“2018-06-18 23:00:00”时间点创建一个实例B，就是新建一个实例B，该实例B的数据跟实例A在“2018-06-18 23:00:00”这个时间点的数据完全一致。&lt;br&gt;对于SQL Server，主备切换后30分钟内，不支持按时间点恢复/创建，例如在10:05分用户进行了主备切换，那么10:05 ~ 10:35这个时间段不能进行按时间点恢复/创建。&lt;br&gt;- 仅支持MySQL
+      *  根据源实例备份创建一个新实例，并通过追加日志的方式，将新实例的数据恢复到跟源实例指定时间点的数据状态一样。&lt;br&gt;例如根据实例A在“2018-06-18 23:00:00”时间点创建一个实例B，就是新建一个实例B，该实例B的数据跟实例A在“2018-06-18 23:00:00”这个时间点的数据完全一致。&lt;br&gt;对于SQL Server，主备切换后30分钟内，不支持按时间点恢复/创建，例如在10:05分用户进行了主备切换，那么10:05 ~ 10:35这个时间段不能进行按时间点恢复/创建。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例 
       * @param {string} opts.restoreTime - 根据源实例的哪个时间点创建新实例 
@@ -3915,20 +4783,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -3938,16 +4818,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -3993,20 +4873,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -4016,16 +4908,614 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  获取SQL Server实例按时间点恢复/创建时，可恢复到的最后的一个时间点&lt;br&gt;- 仅支持SQL Server
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string latestRestoreTime  实例按时间点恢复时,可恢复到的最后的一个时间点
+      */
+
+    describeLatestRestoreTime(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  describeLatestRestoreTime');
+          }
+
+         opts = opts || {};
+
+          if (opts.instanceId === undefined || opts.instanceId === null) {
+               throw new Error('Missing the required parameter \'opts.instanceId\' when calling describeLatestRestoreTime');
+          }
+
+          let postBody = null;
+          let queryParams = {
+          };
+
+          let pathParams = {
+               'regionId': regionId,
+               'instanceId': opts.instanceId 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call describeLatestRestoreTime with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/instances/{instanceId}:describeLatestRestoreTime', 'GET', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  开启数据库的高安全模式&lt;br&gt;- 仅支持MySQL
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - Instance ID 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+    enableIntercept(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  enableIntercept');
+          }
+
+         opts = opts || {};
+
+          if (opts.instanceId === undefined || opts.instanceId === null) {
+               throw new Error('Missing the required parameter \'opts.instanceId\' when calling enableIntercept');
+          }
+
+         let postBody =   {
+          };
+
+          let queryParams = {};
+
+          let pathParams = {
+               'regionId': regionId,
+               'instanceId': opts.instanceId 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call enableIntercept with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/instances/{instanceId}/intercept:enableIntercept', 'POST', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  关闭数据库的高安全模式&lt;br&gt;- 仅支持MySQL
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - Instance ID 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+    disableIntercept(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  disableIntercept');
+          }
+
+         opts = opts || {};
+
+          if (opts.instanceId === undefined || opts.instanceId === null) {
+               throw new Error('Missing the required parameter \'opts.instanceId\' when calling disableIntercept');
+          }
+
+         let postBody =   {
+          };
+
+          let queryParams = {};
+
+          let pathParams = {
+               'regionId': regionId,
+               'instanceId': opts.instanceId 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call disableIntercept with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/instances/{instanceId}/intercept:disableIntercept', 'POST', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  查看SQL Server实例的配置参数&lt;br&gt;- 仅支持SQL Server
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - Instance ID 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param dBInstanceParameter parameters  
+      */
+
+    describeParameters(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  describeParameters');
+          }
+
+         opts = opts || {};
+
+          if (opts.instanceId === undefined || opts.instanceId === null) {
+               throw new Error('Missing the required parameter \'opts.instanceId\' when calling describeParameters');
+          }
+
+          let postBody = null;
+          let queryParams = {
+          };
+
+          let pathParams = {
+               'regionId': regionId,
+               'instanceId': opts.instanceId 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call describeParameters with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/instances/{instanceId}/parameters', 'GET', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  修改SQL Server数实例的配置参数。 部分参数修改后，需要重启才能生效，具体可以参考微软的相关文档&lt;br&gt;- 仅支持SQL Server
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - Instance ID 
+      * @param {array} opts.parameters - 修改的实例参数 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+    modifyParameters(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  modifyParameters');
+          }
+
+         opts = opts || {};
+
+          if (opts.instanceId === undefined || opts.instanceId === null) {
+               throw new Error('Missing the required parameter \'opts.instanceId\' when calling modifyParameters');
+          }
+          if (opts.parameters === undefined || opts.parameters === null) {
+               throw new Error('Missing the required parameter \'opts.parameters\' when calling modifyParameters');
+          }
+
+         let postBody =   {
+          };
+           if (opts.parameters !== undefined && opts.parameters !== null) {
+               postBody['parameters'] = opts.parameters
+           }
+
+          let queryParams = {};
+
+          let pathParams = {
+               'regionId': regionId,
+               'instanceId': opts.instanceId 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call modifyParameters with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/instances/{instanceId}/parameters', 'PUT', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  删除参数组&lt;br&gt;- 仅支持MySQL
+      * @param {Object} opts - parameters
+      * @param {string} opts.parameterGroupId - Parameter Group ID 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+    deleteParameterGroup(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  deleteParameterGroup');
+          }
+
+         opts = opts || {};
+
+          if (opts.parameterGroupId === undefined || opts.parameterGroupId === null) {
+               throw new Error('Missing the required parameter \'opts.parameterGroupId\' when calling deleteParameterGroup');
+          }
+
+          let postBody = null;
+          let queryParams = {
+          };
+
+          let pathParams = {
+               'regionId': regionId,
+               'parameterGroupId': opts.parameterGroupId 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call deleteParameterGroup with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/parameterGroups/{parameterGroupId}', 'DELETE', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  修改参数组名称，描述&lt;br&gt;- 仅支持MySQL
+      * @param {Object} opts - parameters
+      * @param {string} opts.parameterGroupId - Parameter Group ID 
+      * @param {} opts.parameterGroupName - 参数组名称 
+      * @param {} [opts.description] - 参数组描述  optional 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+    modifyParameterGroupAttribute(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  modifyParameterGroupAttribute');
+          }
+
+         opts = opts || {};
+
+          if (opts.parameterGroupId === undefined || opts.parameterGroupId === null) {
+               throw new Error('Missing the required parameter \'opts.parameterGroupId\' when calling modifyParameterGroupAttribute');
+          }
+          if (opts.parameterGroupName === undefined || opts.parameterGroupName === null) {
+               throw new Error('Missing the required parameter \'opts.parameterGroupName\' when calling modifyParameterGroupAttribute');
+          }
+
+         let postBody =   {
+          };
+           if (opts.parameterGroupName !== undefined && opts.parameterGroupName !== null) {
+               postBody['parameterGroupName'] = opts.parameterGroupName
+           }
+           if (opts.description !== undefined && opts.description !== null) {
+               postBody['description'] = opts.description
+           }
+
+          let queryParams = {};
+
+          let pathParams = {
+               'regionId': regionId,
+               'parameterGroupId': opts.parameterGroupId 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call modifyParameterGroupAttribute with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/parameterGroups/{parameterGroupId}:modifyParameterGroupAttribute', 'PUT', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -4087,20 +5577,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -4110,16 +5612,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -4180,20 +5682,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -4203,20 +5717,20 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
-      *  查询MySQL实例的慢日志的详细信息。&lt;br&gt;- 仅支持SQL Server
+      *  查询MySQL实例的慢日志的详细信息。&lt;br&gt;- 仅支持MySQL
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例 
       * @param {string} opts.startTime - 慢日志开始时间,格式为：YYYY-MM-DD HH:mm:ss,开始时间到结束时间不能大于30天,结束时间不能大于当前时间 
@@ -4278,20 +5792,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -4301,20 +5827,20 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
-      *  查询MySQL实例的慢日志的概要信息。&lt;br&gt;- 仅支持SQL Server
+      *  查询MySQL实例的慢日志的概要信息。&lt;br&gt;- 仅支持MySQL
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例 
       * @param {string} opts.startTime - 慢日志开始时间,格式为：YYYY-MM-DD HH:mm:ss,开始时间到结束时间不能大于30天,结束时间不能大于当前时间 
@@ -4376,20 +5902,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -4399,16 +5937,118 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  根据用户定义的查询条件，获取正在执行中的SQL执行的性能信息。用户可以根据这些信息查找与SQL执行相关的性能瓶颈，并进行优化。&lt;br&gt;- 仅支持SQL Server
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例 
+      * @param {string} [opts.db] - 需要查询的数据库名，多个数据库名之间用英文逗号分隔，默认所有数据库  optional 
+      * @param {integer} [opts.threshold] - 返回执行时间大于等于threshold的记录，默认10，单位秒  optional 
+      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,1000)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页。  optional 
+      * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为50，取值范围：[1,100]，只能为10的倍数  optional 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param activeQueryPerformanceResult activeQueryPerformanceResult  
+      * @param integer totalCount  总记录条数
+      * @param integer pageNumber  当前数据的页码
+      * @param integer pageSize  每页显示的数据条数
+      */
+
+    describeActiveQueryPerformance(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  describeActiveQueryPerformance');
+          }
+
+         opts = opts || {};
+
+          if (opts.instanceId === undefined || opts.instanceId === null) {
+               throw new Error('Missing the required parameter \'opts.instanceId\' when calling describeActiveQueryPerformance');
+          }
+
+          let postBody = null;
+          let queryParams = {
+          };
+           if (opts.db !== undefined && opts.db !== null) {
+               queryParams['db'] = opts.db
+           }
+           if (opts.threshold !== undefined && opts.threshold !== null) {
+               queryParams['threshold'] = opts.threshold
+           }
+           if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+               queryParams['pageNumber'] = opts.pageNumber
+           }
+           if (opts.pageSize !== undefined && opts.pageSize !== null) {
+               queryParams['pageSize'] = opts.pageSize
+           }
+
+          let pathParams = {
+               'regionId': regionId,
+               'instanceId': opts.instanceId 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call describeActiveQueryPerformance with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/instances/{instanceId}/performance:describeActiveQueryPerformance', 'GET', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -4447,20 +6087,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -4470,16 +6122,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
       /**
@@ -4525,20 +6177,32 @@ JDCloud.RDS= class RDS extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.3.6',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  rds/0.4.1',
           };
           
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
           // 扩展自定义头
           if (opts['x-extra-header']) {
             for (let extraHeader in opts['x-extra-header']) {
               headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
             }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
           }
 
           let formParams = {};
-
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
 
           let returnType = null;
 
@@ -4548,16 +6212,16 @@ JDCloud.RDS= class RDS extends Service {
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
-                 if (callback) {
-                          return callback(null, result);
-                 }
-                          return result
-                 }, function (error) {
-                          if (callback) {
-                              return callback(error);
-                          }
-                          return Promise.reject(error)
-                 });
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
     }
 
 };

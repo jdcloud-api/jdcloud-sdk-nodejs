@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 安全管理
- * API related to MONGODB security
+ * Vpc-VserverGroup
+ * 与服务器组相关的接口
  *
  * OpenAPI spec version: v1
  * Contact: 
@@ -24,20 +24,20 @@
 
 const JDCloud = require('../lib/core')
 var Service = JDCloud.Service
-var serviceId = "mongodb"
+var serviceId = "jdfusion"
 Service._services[serviceId] = true;
 
 /**
-* mongodb service.
+* jdfusion service.
 */
 
-JDCloud.MONGODB = class MONGODB {
+JDCloud.JDFUSION = class JDFUSION {
   constructor(config = {}) {
     this.init(config)
     return new this.service(config)
   }
   init(config) {
-    let serviceName = 'mongodb'
+    let serviceName = 'jdfusion'
     let version = config.version || JDCloud.config.version
     let versionFlag = 'v1'
     if(version && version[serviceName]) {
@@ -51,4 +51,4 @@ JDCloud.MONGODB = class MONGODB {
   }
 }
 
-module.exports = JDCloud.MONGODB
+module.exports = JDCloud.JDFUSION

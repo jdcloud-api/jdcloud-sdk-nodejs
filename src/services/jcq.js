@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 售罄相关接口
- * 查询售罄情况
+ * Topic
+ * Topic相关接口
  *
  * OpenAPI spec version: v1
  * Contact: 
@@ -24,20 +24,20 @@
 
 const JDCloud = require('../lib/core')
 var Service = JDCloud.Service
-var serviceId = "disk"
+var serviceId = "jcq"
 Service._services[serviceId] = true;
 
 /**
-* disk service.
+* jcq service.
 */
 
-JDCloud.DISK = class DISK {
+JDCloud.JCQ = class JCQ {
   constructor(config = {}) {
     this.init(config)
     return new this.service(config)
   }
   init(config) {
-    let serviceName = 'disk'
+    let serviceName = 'jcq'
     let version = config.version || JDCloud.config.version
     let versionFlag = 'v1'
     if(version && version[serviceName]) {
@@ -51,4 +51,4 @@ JDCloud.DISK = class DISK {
   }
 }
 
-module.exports = JDCloud.DISK
+module.exports = JDCloud.JCQ

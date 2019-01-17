@@ -30,7 +30,7 @@ Service._services[serviceId] = true;
 
 /**
 * clouddnsservice service.
-* @version 1.0.9
+* @version 1.0.10
 */
 
 JDCloud.CLOUDDNSSERVICE= class CLOUDDNSSERVICE extends Service {
@@ -116,7 +116,7 @@ JDCloud.CLOUDDNSSERVICE= class CLOUDDNSSERVICE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.9',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.10',
           };
           
           let contentTypes = ['application/json'];
@@ -217,7 +217,7 @@ JDCloud.CLOUDDNSSERVICE= class CLOUDDNSSERVICE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.9',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.10',
           };
           
           let contentTypes = ['application/json'];
@@ -331,7 +331,7 @@ JDCloud.CLOUDDNSSERVICE= class CLOUDDNSSERVICE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.9',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.10',
           };
           
           let contentTypes = ['application/json'];
@@ -415,7 +415,7 @@ JDCloud.CLOUDDNSSERVICE= class CLOUDDNSSERVICE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.9',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.10',
           };
           
           let contentTypes = ['application/json'];
@@ -507,7 +507,7 @@ JDCloud.CLOUDDNSSERVICE= class CLOUDDNSSERVICE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.9',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.10',
           };
           
           let contentTypes = ['application/json'];
@@ -612,7 +612,7 @@ JDCloud.CLOUDDNSSERVICE= class CLOUDDNSSERVICE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.9',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.10',
           };
           
           let contentTypes = ['application/json'];
@@ -718,7 +718,7 @@ JDCloud.CLOUDDNSSERVICE= class CLOUDDNSSERVICE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.9',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.10',
           };
           
           let contentTypes = ['application/json'];
@@ -814,7 +814,7 @@ JDCloud.CLOUDDNSSERVICE= class CLOUDDNSSERVICE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.9',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.10',
           };
           
           let contentTypes = ['application/json'];
@@ -917,7 +917,7 @@ JDCloud.CLOUDDNSSERVICE= class CLOUDDNSSERVICE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.9',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.10',
           };
           
           let contentTypes = ['application/json'];
@@ -1008,7 +1008,7 @@ JDCloud.CLOUDDNSSERVICE= class CLOUDDNSSERVICE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.9',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.10',
           };
           
           let contentTypes = ['application/json'];
@@ -1098,7 +1098,7 @@ JDCloud.CLOUDDNSSERVICE= class CLOUDDNSSERVICE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.9',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.10',
           };
           
           let contentTypes = ['application/json'];
@@ -1192,7 +1192,7 @@ JDCloud.CLOUDDNSSERVICE= class CLOUDDNSSERVICE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.9',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.10',
           };
           
           let contentTypes = ['application/json'];
@@ -1277,7 +1277,7 @@ JDCloud.CLOUDDNSSERVICE= class CLOUDDNSSERVICE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.9',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.10',
           };
           
           let contentTypes = ['application/json'];
@@ -1309,209 +1309,6 @@ JDCloud.CLOUDDNSSERVICE= class CLOUDDNSSERVICE extends Service {
           this.config.logger(`call batchSetDnsResolve with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
 
           let request = this.makeRequest('/regions/{regionId}/BatchSetDnsResolve', 'POST', pathParams, queryParams,
-                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
-
-          return request.then(function (result) {
-            if (callback && typeof callback === 'function') {
-              return callback(null, result);
-            }
-            return result
-            }, function (error) {
-               if (callback && typeof callback === 'function') {
-                 return callback(error);
-               }
-               return Promise.reject(error)
-          });
-    }
-
-      /**
-      *  设置域名解析记录的负载均衡
-      * @param {Object} opts - parameters
-      * @param {string} opts.domainId - 域名ID，请使用getDomains接口获取。 
-      * @param {array} [opts.idWeights] - 要设置解析记录的权重参数列表  optional 
-      * @param {string} opts.type - 这几条解析记录的类型。可以设置权重的类型有：A、AAAA、CNAME、JNAME 
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-    setLB(opts, regionId = this.config.regionId, callback){
-         if (typeof regionId === 'function') {
-           callback = regionId
-           regionId = this.config.regionId
-         }
-
-          if (regionId === undefined || regionId === null) {
-               throw new Error('Missing the required parameter \'regionId\' when calling  setLB');
-          }
-
-         opts = opts || {};
-
-          if (opts.domainId === undefined || opts.domainId === null) {
-               throw new Error('Missing the required parameter \'opts.domainId\' when calling setLB');
-          }
-          if (opts.type === undefined || opts.type === null) {
-               throw new Error('Missing the required parameter \'opts.type\' when calling setLB');
-          }
-
-         let postBody =   {
-          };
-           if (opts.idWeights !== undefined && opts.idWeights !== null) {
-               postBody['idWeights'] = opts.idWeights
-           }
-           if (opts.type !== undefined && opts.type !== null) {
-               postBody['type'] = opts.type
-           }
-
-          let queryParams = {};
-
-          let pathParams = {
-               'regionId': regionId,
-               'domainId': opts.domainId 
-          };
-
-         let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.9',
-          };
-          
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
-
-          // 扩展自定义头
-          if (opts['x-extra-header']) {
-            for (let extraHeader in opts['x-extra-header']) {
-              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-            }
-
-            if (Array.isArray(opts['x-extra-header']['content-type'])) {
-              contentTypes = opts['x-extra-header']['content-type']
-            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-              contentTypes = opts['x-extra-header']['content-type'].split(',')
-            }
-
-            if (Array.isArray(opts['x-extra-header']['accept'])) {
-              accepts = opts['x-extra-header']['accept']
-            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-              accepts = opts['x-extra-header']['accept'].split(',')
-            }
-          }
-
-          let formParams = {};
-
-          let returnType = null;
-
-          this.config.logger(`call setLB with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
-
-          let request = this.makeRequest('/regions/{regionId}/domain/{domainId}/SetLB', 'POST', pathParams, queryParams,
-                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
-
-          return request.then(function (result) {
-            if (callback && typeof callback === 'function') {
-              return callback(null, result);
-            }
-            return result
-            }, function (error) {
-               if (callback && typeof callback === 'function') {
-                 return callback(error);
-               }
-               return Promise.reject(error)
-          });
-    }
-
-      /**
-      *  查看当前域名所有的有负载均衡的解析记录&lt;br&gt;
-这些解析记录分页展示的列表
-
-      * @param {Object} opts - parameters
-      * @param {string} opts.domainId - 域名ID，请使用getDomains接口获取。 
-      * @param {string} opts.type - 解析记录的类型。有权重的类型有：A、AAAA、CNAME、JNAME 
-      * @param {integer} opts.pageNumber - 负载均衡记录分页展示的页数，默认为1 
-      * @param {integer} opts.pageSize - 负载均衡记录分页展示时每页的记录数，默认为10 
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param getlb dataList  
-      * @param integer totalCount  所有负载均衡记录的个数
-      * @param integer totalPage  所有负载均衡记录的页数
-      * @param integer currentCount  当前页负载均衡记录的个数
-      */
-
-    getLB(opts, regionId = this.config.regionId, callback){
-         if (typeof regionId === 'function') {
-           callback = regionId
-           regionId = this.config.regionId
-         }
-
-          if (regionId === undefined || regionId === null) {
-               throw new Error('Missing the required parameter \'regionId\' when calling  getLB');
-          }
-
-         opts = opts || {};
-
-          if (opts.domainId === undefined || opts.domainId === null) {
-               throw new Error('Missing the required parameter \'opts.domainId\' when calling getLB');
-          }
-          if (opts.type === undefined || opts.type === null) {
-               throw new Error('Missing the required parameter \'opts.type\' when calling getLB');
-          }
-          if (opts.pageNumber === undefined || opts.pageNumber === null) {
-               throw new Error('Missing the required parameter \'opts.pageNumber\' when calling getLB');
-          }
-          if (opts.pageSize === undefined || opts.pageSize === null) {
-               throw new Error('Missing the required parameter \'opts.pageSize\' when calling getLB');
-          }
-
-          let postBody = null;
-          let queryParams = {
-          };
-           if (opts.type !== undefined && opts.type !== null) {
-               queryParams['type'] = opts.type
-           }
-           if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
-               queryParams['pageNumber'] = opts.pageNumber
-           }
-           if (opts.pageSize !== undefined && opts.pageSize !== null) {
-               queryParams['pageSize'] = opts.pageSize
-           }
-
-          let pathParams = {
-               'regionId': regionId,
-               'domainId': opts.domainId 
-          };
-
-         let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.9',
-          };
-          
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
-
-          // 扩展自定义头
-          if (opts['x-extra-header']) {
-            for (let extraHeader in opts['x-extra-header']) {
-              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-            }
-
-            if (Array.isArray(opts['x-extra-header']['content-type'])) {
-              contentTypes = opts['x-extra-header']['content-type']
-            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-              contentTypes = opts['x-extra-header']['content-type'].split(',')
-            }
-
-            if (Array.isArray(opts['x-extra-header']['accept'])) {
-              accepts = opts['x-extra-header']['accept']
-            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-              accepts = opts['x-extra-header']['accept'].split(',')
-            }
-          }
-
-          let formParams = {};
-
-          let returnType = null;
-
-          this.config.logger(`call getLB with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
-
-          let request = this.makeRequest('/regions/{regionId}/domain/{domainId}/GetLB', 'GET', pathParams, queryParams,
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
@@ -1566,7 +1363,7 @@ JDCloud.CLOUDDNSSERVICE= class CLOUDDNSSERVICE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.9',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.10',
           };
           
           let contentTypes = ['application/json'];
@@ -1651,7 +1448,7 @@ JDCloud.CLOUDDNSSERVICE= class CLOUDDNSSERVICE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.9',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.10',
           };
           
           let contentTypes = ['application/json'];
@@ -1764,7 +1561,7 @@ JDCloud.CLOUDDNSSERVICE= class CLOUDDNSSERVICE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.9',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.10',
           };
           
           let contentTypes = ['application/json'];
@@ -1849,7 +1646,7 @@ JDCloud.CLOUDDNSSERVICE= class CLOUDDNSSERVICE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.9',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.10',
           };
           
           let contentTypes = ['application/json'];
@@ -1934,7 +1731,7 @@ JDCloud.CLOUDDNSSERVICE= class CLOUDDNSSERVICE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.9',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.10',
           };
           
           let contentTypes = ['application/json'];
@@ -2047,7 +1844,7 @@ JDCloud.CLOUDDNSSERVICE= class CLOUDDNSSERVICE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.9',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.10',
           };
           
           let contentTypes = ['application/json'];
@@ -2145,7 +1942,7 @@ JDCloud.CLOUDDNSSERVICE= class CLOUDDNSSERVICE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.9',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.10',
           };
           
           let contentTypes = ['application/json'];
@@ -2235,7 +2032,7 @@ JDCloud.CLOUDDNSSERVICE= class CLOUDDNSSERVICE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.9',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.10',
           };
           
           let contentTypes = ['application/json'];
@@ -2325,7 +2122,7 @@ JDCloud.CLOUDDNSSERVICE= class CLOUDDNSSERVICE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.9',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.10',
           };
           
           let contentTypes = ['application/json'];
@@ -2419,7 +2216,7 @@ JDCloud.CLOUDDNSSERVICE= class CLOUDDNSSERVICE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.9',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.10',
           };
           
           let contentTypes = ['application/json'];
@@ -2517,7 +2314,7 @@ JDCloud.CLOUDDNSSERVICE= class CLOUDDNSSERVICE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.9',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.10',
           };
           
           let contentTypes = ['application/json'];
@@ -2607,7 +2404,7 @@ JDCloud.CLOUDDNSSERVICE= class CLOUDDNSSERVICE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.9',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.10',
           };
           
           let contentTypes = ['application/json'];
@@ -2705,7 +2502,7 @@ JDCloud.CLOUDDNSSERVICE= class CLOUDDNSSERVICE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.9',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.10',
           };
           
           let contentTypes = ['application/json'];

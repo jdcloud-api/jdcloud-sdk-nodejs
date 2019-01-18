@@ -30,7 +30,7 @@ Service._services[serviceId] = true;
 
 /**
 * jdfusion service.
-* @version 0.1.0
+* @version 0.2.0
 */
 
 JDCloud.JDFUSION= class JDFUSION extends Service {
@@ -77,7 +77,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -127,7 +127,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
       /**
       *  为指定用户关联云
       * @param {Object} opts - parameters
-      * @param {createCloudInfoReq} opts.body  
+      * @param {cloudInfo} opts.cloud  
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -146,14 +146,14 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
 
          opts = opts || {};
 
-          if (opts.body === undefined || opts.body === null) {
-               throw new Error('Missing the required parameter \'opts.body\' when calling registCloudInfo');
+          if (opts.cloud === undefined || opts.cloud === null) {
+               throw new Error('Missing the required parameter \'opts.cloud\' when calling registCloudInfo');
           }
 
          let postBody =   {
           };
-           if (opts.body !== undefined && opts.body !== null) {
-               postBody['body'] = opts.body
+           if (opts.cloud !== undefined && opts.cloud !== null) {
+               postBody['cloud'] = opts.cloud
            }
 
           let queryParams = {};
@@ -163,7 +163,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -246,7 +246,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -328,7 +328,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -376,6 +376,1120 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
     }
 
       /**
+      *  查询部署信息列表
+      * @param {Object} opts - parameters
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param deploymentInfo deployments  
+      */
+
+    getDeployments(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  getDeployments');
+          }
+
+         opts = opts || {};
+
+
+          let postBody = null;
+          let queryParams = {
+          };
+
+          let pathParams = {
+               'regionId': regionId,
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call getDeployments with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/deployments', 'GET', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  创建部署信息
+      * @param {Object} opts - parameters
+      * @param {deploymentInfo} opts.deployment - 创建deployment 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param deploymentInfo deployment  
+      */
+
+    createDeployment(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  createDeployment');
+          }
+
+         opts = opts || {};
+
+          if (opts.deployment === undefined || opts.deployment === null) {
+               throw new Error('Missing the required parameter \'opts.deployment\' when calling createDeployment');
+          }
+
+         let postBody =   {
+          };
+           if (opts.deployment !== undefined && opts.deployment !== null) {
+               postBody['deployment'] = opts.deployment
+           }
+
+          let queryParams = {};
+
+          let pathParams = {
+               'regionId': regionId,
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call createDeployment with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/deployments', 'POST', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  根据已有资源反向生成deployment
+      * @param {Object} opts - parameters
+      * @param {reverseDeploymentInfo} opts.reverse - 根据已有资源反向生成deployment 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param deploymentInfo deployment  
+      */
+
+    reverseDeployment(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  reverseDeployment');
+          }
+
+         opts = opts || {};
+
+          if (opts.reverse === undefined || opts.reverse === null) {
+               throw new Error('Missing the required parameter \'opts.reverse\' when calling reverseDeployment');
+          }
+
+         let postBody =   {
+          };
+           if (opts.reverse !== undefined && opts.reverse !== null) {
+               postBody['reverse'] = opts.reverse
+           }
+
+          let queryParams = {};
+
+          let pathParams = {
+               'regionId': regionId,
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call reverseDeployment with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/deployments:reverse', 'POST', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  查询部署信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.id - Deployment ID 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param deploymentInfo deployment  
+      */
+
+    getDeploymentsById(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  getDeploymentsById');
+          }
+
+         opts = opts || {};
+
+          if (opts.id === undefined || opts.id === null) {
+               throw new Error('Missing the required parameter \'opts.id\' when calling getDeploymentsById');
+          }
+
+          let postBody = null;
+          let queryParams = {
+          };
+
+          let pathParams = {
+               'regionId': regionId,
+               'id': opts.id 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call getDeploymentsById with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/deployments/{id}', 'GET', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  修改部署信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.id - Deployment ID 
+      * @param {deploymentInfo} opts.deployment - 修改deployment 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param deploymentInfo deployment  
+      */
+
+    editDeployment(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  editDeployment');
+          }
+
+         opts = opts || {};
+
+          if (opts.id === undefined || opts.id === null) {
+               throw new Error('Missing the required parameter \'opts.id\' when calling editDeployment');
+          }
+          if (opts.deployment === undefined || opts.deployment === null) {
+               throw new Error('Missing the required parameter \'opts.deployment\' when calling editDeployment');
+          }
+
+         let postBody =   {
+          };
+           if (opts.deployment !== undefined && opts.deployment !== null) {
+               postBody['deployment'] = opts.deployment
+           }
+
+          let queryParams = {};
+
+          let pathParams = {
+               'regionId': regionId,
+               'id': opts.id 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call editDeployment with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/deployments/{id}', 'PUT', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  删除部署信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.id - Deployment ID 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+    deleteDeployment(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  deleteDeployment');
+          }
+
+         opts = opts || {};
+
+          if (opts.id === undefined || opts.id === null) {
+               throw new Error('Missing the required parameter \'opts.id\' when calling deleteDeployment');
+          }
+
+          let postBody = null;
+          let queryParams = {
+          };
+
+          let pathParams = {
+               'regionId': regionId,
+               'id': opts.id 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call deleteDeployment with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/deployments/{id}', 'DELETE', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  克隆部署信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.id - Deployment ID 
+      * @param {deployment} opts.deployment - 创建deployment 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param deploymentInfo deployment  
+      */
+
+    cloneDeployment(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  cloneDeployment');
+          }
+
+         opts = opts || {};
+
+          if (opts.id === undefined || opts.id === null) {
+               throw new Error('Missing the required parameter \'opts.id\' when calling cloneDeployment');
+          }
+          if (opts.deployment === undefined || opts.deployment === null) {
+               throw new Error('Missing the required parameter \'opts.deployment\' when calling cloneDeployment');
+          }
+
+         let postBody =   {
+          };
+           if (opts.deployment !== undefined && opts.deployment !== null) {
+               postBody['deployment'] = opts.deployment
+           }
+
+          let queryParams = {};
+
+          let pathParams = {
+               'regionId': regionId,
+               'id': opts.id 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call cloneDeployment with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/deployments/{id}:clone', 'PUT', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  预部署
+      * @param {Object} opts - parameters
+      * @param {string} opts.id - Deployment ID 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+    dryrunDeployment(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  dryrunDeployment');
+          }
+
+         opts = opts || {};
+
+          if (opts.id === undefined || opts.id === null) {
+               throw new Error('Missing the required parameter \'opts.id\' when calling dryrunDeployment');
+          }
+
+         let postBody =   {
+          };
+
+          let queryParams = {};
+
+          let pathParams = {
+               'regionId': regionId,
+               'id': opts.id 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call dryrunDeployment with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/deployments/{id}:dryrun', 'POST', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  应用部署
+      * @param {Object} opts - parameters
+      * @param {string} opts.id - Deployment ID 
+      * @param {apply} opts.apply - 应用部署 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param deploymentInfo deployment  
+      */
+
+    applyDeployment(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  applyDeployment');
+          }
+
+         opts = opts || {};
+
+          if (opts.id === undefined || opts.id === null) {
+               throw new Error('Missing the required parameter \'opts.id\' when calling applyDeployment');
+          }
+          if (opts.apply === undefined || opts.apply === null) {
+               throw new Error('Missing the required parameter \'opts.apply\' when calling applyDeployment');
+          }
+
+         let postBody =   {
+          };
+           if (opts.apply !== undefined && opts.apply !== null) {
+               postBody['apply'] = opts.apply
+           }
+
+          let queryParams = {};
+
+          let pathParams = {
+               'regionId': regionId,
+               'id': opts.id 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call applyDeployment with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/deployments/{id}:apply', 'POST', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  查询执行结果
+      * @param {Object} opts - parameters
+      * @param {string} opts.id - deployment ID 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param taskInfo task  
+      */
+
+    getDeploymentResult(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  getDeploymentResult');
+          }
+
+         opts = opts || {};
+
+          if (opts.id === undefined || opts.id === null) {
+               throw new Error('Missing the required parameter \'opts.id\' when calling getDeploymentResult');
+          }
+
+          let postBody = null;
+          let queryParams = {
+          };
+
+          let pathParams = {
+               'regionId': regionId,
+               'id': opts.id 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call getDeploymentResult with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/deployments/{id}/result', 'GET', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  查询应用记录
+      * @param {Object} opts - parameters
+      * @param {string} opts.id - Deployment ID 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param deploymentApplyInfo versions  
+      */
+
+    getDeploymentVersions(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  getDeploymentVersions');
+          }
+
+         opts = opts || {};
+
+          if (opts.id === undefined || opts.id === null) {
+               throw new Error('Missing the required parameter \'opts.id\' when calling getDeploymentVersions');
+          }
+
+          let postBody = null;
+          let queryParams = {
+          };
+
+          let pathParams = {
+               'regionId': regionId,
+               'id': opts.id 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call getDeploymentVersions with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/deployments/{id}/versions', 'GET', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  查询应用记录详细信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.id - deployment ID 
+      * @param {string} opts.version_id - application ID 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param deploymentInfo deployment  
+      */
+
+    getDeploymentsVersion(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  getDeploymentsVersion');
+          }
+
+         opts = opts || {};
+
+          if (opts.id === undefined || opts.id === null) {
+               throw new Error('Missing the required parameter \'opts.id\' when calling getDeploymentsVersion');
+          }
+          if (opts.version_id === undefined || opts.version_id === null) {
+               throw new Error('Missing the required parameter \'opts.version_id\' when calling getDeploymentsVersion');
+          }
+
+          let postBody = null;
+          let queryParams = {
+          };
+
+          let pathParams = {
+               'regionId': regionId,
+               'id': opts.id ,
+               'version_id': opts.version_id 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call getDeploymentsVersion with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/deployments/{id}/versions/{version_id}', 'GET', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  应用部署回滚
+      * @param {Object} opts - parameters
+      * @param {string} opts.id - deployment ID 
+      * @param {string} opts.version_id - application ID 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param deploymentInfo deployment  
+      */
+
+    rollbackDeploymentsVersion(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  rollbackDeploymentsVersion');
+          }
+
+         opts = opts || {};
+
+          if (opts.id === undefined || opts.id === null) {
+               throw new Error('Missing the required parameter \'opts.id\' when calling rollbackDeploymentsVersion');
+          }
+          if (opts.version_id === undefined || opts.version_id === null) {
+               throw new Error('Missing the required parameter \'opts.version_id\' when calling rollbackDeploymentsVersion');
+          }
+
+         let postBody =   {
+          };
+
+          let queryParams = {};
+
+          let pathParams = {
+               'regionId': regionId,
+               'id': opts.id ,
+               'version_id': opts.version_id 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call rollbackDeploymentsVersion with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/deployments/{id}/versions/{version_id}:rollback', 'PUT', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
       *  根据云提供商查询对应的云硬盘资源信息
       * @param {Object} opts - parameters
       * @param {string} regionId - ID of the region
@@ -406,7 +1520,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -456,7 +1570,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
       /**
       *  根据云提供商创建云硬盘
       * @param {Object} opts - parameters
-      * @param {createDataDiskReq} opts.body - 创建云硬盘 
+      * @param {createDataDisk} opts.disk - 创建云硬盘 
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -475,14 +1589,14 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
 
          opts = opts || {};
 
-          if (opts.body === undefined || opts.body === null) {
-               throw new Error('Missing the required parameter \'opts.body\' when calling createDisk');
+          if (opts.disk === undefined || opts.disk === null) {
+               throw new Error('Missing the required parameter \'opts.disk\' when calling createDisk');
           }
 
          let postBody =   {
           };
-           if (opts.body !== undefined && opts.body !== null) {
-               postBody['body'] = opts.body
+           if (opts.disk !== undefined && opts.disk !== null) {
+               postBody['disk'] = opts.disk
            }
 
           let queryParams = {};
@@ -492,7 +1606,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -575,7 +1689,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -657,7 +1771,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -708,7 +1822,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
       *  云硬盘挂载至虚拟机
       * @param {Object} opts - parameters
       * @param {string} opts.id - 云硬盘 ID 
-      * @param {attachDataDiskReq} opts.body - 云硬盘挂载至虚拟机 
+      * @param {attachDataDisk} opts.attach - 云硬盘挂载至虚拟机 
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -730,14 +1844,14 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           if (opts.id === undefined || opts.id === null) {
                throw new Error('Missing the required parameter \'opts.id\' when calling attachDiskToVmInstanceByDiskId');
           }
-          if (opts.body === undefined || opts.body === null) {
-               throw new Error('Missing the required parameter \'opts.body\' when calling attachDiskToVmInstanceByDiskId');
+          if (opts.attach === undefined || opts.attach === null) {
+               throw new Error('Missing the required parameter \'opts.attach\' when calling attachDiskToVmInstanceByDiskId');
           }
 
          let postBody =   {
           };
-           if (opts.body !== undefined && opts.body !== null) {
-               postBody['body'] = opts.body
+           if (opts.attach !== undefined && opts.attach !== null) {
+               postBody['attach'] = opts.attach
            }
 
           let queryParams = {};
@@ -748,7 +1862,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -799,7 +1913,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
       *  从虚拟机卸载云硬盘
       * @param {Object} opts - parameters
       * @param {string} opts.id - 云硬盘 ID 
-      * @param {detachDataDiskReq} opts.body - 从虚拟机卸载云硬盘 
+      * @param {detachDataDisk} opts.detach - 从虚拟机卸载云硬盘 
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -820,14 +1934,14 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           if (opts.id === undefined || opts.id === null) {
                throw new Error('Missing the required parameter \'opts.id\' when calling detachDiskToVmInstanceByDiskId');
           }
-          if (opts.body === undefined || opts.body === null) {
-               throw new Error('Missing the required parameter \'opts.body\' when calling detachDiskToVmInstanceByDiskId');
+          if (opts.detach === undefined || opts.detach === null) {
+               throw new Error('Missing the required parameter \'opts.detach\' when calling detachDiskToVmInstanceByDiskId');
           }
 
          let postBody =   {
           };
-           if (opts.body !== undefined && opts.body !== null) {
-               postBody['body'] = opts.body
+           if (opts.detach !== undefined && opts.detach !== null) {
+               postBody['detach'] = opts.detach
            }
 
           let queryParams = {};
@@ -838,7 +1952,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -870,6 +1984,3041 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           this.config.logger(`call detachDiskToVmInstanceByDiskId with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
 
           let request = this.makeRequest('/regions/{regionId}/disk_disks/{id}:detach', 'PUT', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  根据云提供商查询对应的OSS存储桶列表
+      * @param {Object} opts - parameters
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param ossBucketInfo buckets  
+      */
+
+    getBuckets(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  getBuckets');
+          }
+
+         opts = opts || {};
+
+
+          let postBody = null;
+          let queryParams = {
+          };
+
+          let pathParams = {
+               'regionId': regionId,
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call getBuckets with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/oss_buckets', 'GET', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  根据给定的信息，创建OSS存储桶
+      * @param {Object} opts - parameters
+      * @param {createOSSBucket} opts.bucket - 创建OSS存储桶 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param resourceTFInfo task  
+      */
+
+    createBucket(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  createBucket');
+          }
+
+         opts = opts || {};
+
+          if (opts.bucket === undefined || opts.bucket === null) {
+               throw new Error('Missing the required parameter \'opts.bucket\' when calling createBucket');
+          }
+
+         let postBody =   {
+          };
+           if (opts.bucket !== undefined && opts.bucket !== null) {
+               postBody['bucket'] = opts.bucket
+           }
+
+          let queryParams = {};
+
+          let pathParams = {
+               'regionId': regionId,
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call createBucket with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/oss_buckets', 'POST', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  根据云提供商查询对应的OSS存储桶信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.name - OSS存储桶名称 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param ossBucketInfo bucket  
+      */
+
+    getBucketByName(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  getBucketByName');
+          }
+
+         opts = opts || {};
+
+          if (opts.name === undefined || opts.name === null) {
+               throw new Error('Missing the required parameter \'opts.name\' when calling getBucketByName');
+          }
+
+          let postBody = null;
+          let queryParams = {
+          };
+
+          let pathParams = {
+               'regionId': regionId,
+               'name': opts.name 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call getBucketByName with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/oss_buckets/{name}', 'GET', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  删除指定ID的OSS存储桶信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.name - OSS存储桶名称 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+    deleteBucket(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  deleteBucket');
+          }
+
+         opts = opts || {};
+
+          if (opts.name === undefined || opts.name === null) {
+               throw new Error('Missing the required parameter \'opts.name\' when calling deleteBucket');
+          }
+
+          let postBody = null;
+          let queryParams = {
+          };
+
+          let pathParams = {
+               'regionId': regionId,
+               'name': opts.name 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call deleteBucket with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/oss_buckets/{name}', 'DELETE', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  根据过滤条件，取得指定OSS存储桶上的文件列表
+      * @param {Object} opts - parameters
+      * @param {string} opts.name - OSS存储桶名称 
+      * @param {string} [opts.marker] - 本次查询的起点（文件key值）  optional 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean isTruncated  是否已被截断（表示没有更多数据了）
+      * @param string marker  本次查询的起点（文件key值）
+      * @param ossFileInfo files  
+      */
+
+    getBucketFiles(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  getBucketFiles');
+          }
+
+         opts = opts || {};
+
+          if (opts.name === undefined || opts.name === null) {
+               throw new Error('Missing the required parameter \'opts.name\' when calling getBucketFiles');
+          }
+
+          let postBody = null;
+          let queryParams = {
+          };
+           if (opts.marker !== undefined && opts.marker !== null) {
+               queryParams['marker'] = opts.marker
+           }
+
+          let pathParams = {
+               'regionId': regionId,
+               'name': opts.name 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call getBucketFiles with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/oss_buckets/{name}/files', 'GET', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  获取任务列表
+      * @param {Object} opts - parameters
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param transferTaskInfoWithID tasks  
+      */
+
+    getTransferTasks(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  getTransferTasks');
+          }
+
+         opts = opts || {};
+
+
+          let postBody = null;
+          let queryParams = {
+          };
+
+          let pathParams = {
+               'regionId': regionId,
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call getTransferTasks with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/oss_transferTasks', 'GET', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  创建任务
+      * @param {Object} opts - parameters
+      * @param {transferTaskInfo} [opts.task]   optional 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param transferTaskInfoWithID task  
+      */
+
+    createTransferTask(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  createTransferTask');
+          }
+
+         opts = opts || {};
+
+
+         let postBody =   {
+          };
+           if (opts.task !== undefined && opts.task !== null) {
+               postBody['task'] = opts.task
+           }
+
+          let queryParams = {};
+
+          let pathParams = {
+               'regionId': regionId,
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call createTransferTask with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/oss_transferTasks', 'POST', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  根据指定ID获取任务信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.id - 用户ID 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param transferTaskInfoWithID task  
+      */
+
+    getTransferTaskById(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  getTransferTaskById');
+          }
+
+         opts = opts || {};
+
+          if (opts.id === undefined || opts.id === null) {
+               throw new Error('Missing the required parameter \'opts.id\' when calling getTransferTaskById');
+          }
+
+          let postBody = null;
+          let queryParams = {
+          };
+
+          let pathParams = {
+               'regionId': regionId,
+               'id': opts.id 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call getTransferTaskById with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/oss_transferTasks/{id}', 'GET', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  根据指定ID修改任务
+      * @param {Object} opts - parameters
+      * @param {string} opts.id - 任务ID 
+      * @param {transferTaskInfo} [opts.task]   optional 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+    editTransferTask(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  editTransferTask');
+          }
+
+         opts = opts || {};
+
+          if (opts.id === undefined || opts.id === null) {
+               throw new Error('Missing the required parameter \'opts.id\' when calling editTransferTask');
+          }
+
+         let postBody =   {
+          };
+           if (opts.task !== undefined && opts.task !== null) {
+               postBody['task'] = opts.task
+           }
+
+          let queryParams = {};
+
+          let pathParams = {
+               'regionId': regionId,
+               'id': opts.id 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call editTransferTask with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/oss_transferTasks/{id}', 'PUT', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  根据指定ID删除任务
+      * @param {Object} opts - parameters
+      * @param {string} opts.id - 任务ID 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+    deleteTransferTask(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  deleteTransferTask');
+          }
+
+         opts = opts || {};
+
+          if (opts.id === undefined || opts.id === null) {
+               throw new Error('Missing the required parameter \'opts.id\' when calling deleteTransferTask');
+          }
+
+          let postBody = null;
+          let queryParams = {
+          };
+
+          let pathParams = {
+               'regionId': regionId,
+               'id': opts.id 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call deleteTransferTask with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/oss_transferTasks/{id}', 'DELETE', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  根据指定ID启动任务
+      * @param {Object} opts - parameters
+      * @param {string} opts.id - 用户ID 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+    startTransferTask(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  startTransferTask');
+          }
+
+         opts = opts || {};
+
+          if (opts.id === undefined || opts.id === null) {
+               throw new Error('Missing the required parameter \'opts.id\' when calling startTransferTask');
+          }
+
+         let postBody =   {
+          };
+
+          let queryParams = {};
+
+          let pathParams = {
+               'regionId': regionId,
+               'id': opts.id 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call startTransferTask with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/oss_transferTasks/{id}:start', 'PUT', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  根据指定ID停止任务
+      * @param {Object} opts - parameters
+      * @param {string} opts.id - 用户ID 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+    stopTransferTask(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  stopTransferTask');
+          }
+
+         opts = opts || {};
+
+          if (opts.id === undefined || opts.id === null) {
+               throw new Error('Missing the required parameter \'opts.id\' when calling stopTransferTask');
+          }
+
+         let postBody =   {
+          };
+
+          let queryParams = {};
+
+          let pathParams = {
+               'regionId': regionId,
+               'id': opts.id 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call stopTransferTask with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/oss_transferTasks/{id}:stop', 'PUT', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  根据指定任务id查询迁移进度
+      * @param {Object} opts - parameters
+      * @param {string} opts.id - 任务ID 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param transferTaskProgressInfo task  
+      */
+
+    getTransferTaskProgress(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  getTransferTaskProgress');
+          }
+
+         opts = opts || {};
+
+          if (opts.id === undefined || opts.id === null) {
+               throw new Error('Missing the required parameter \'opts.id\' when calling getTransferTaskProgress');
+          }
+
+          let postBody = null;
+          let queryParams = {
+          };
+
+          let pathParams = {
+               'regionId': regionId,
+               'id': opts.id 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call getTransferTaskProgress with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/oss_transferTasks/{id}/progress', 'GET', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  根据指定任务id查询迁移失败文件列表
+      * @param {Object} opts - parameters
+      * @param {string} opts.id - 任务ID 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param transferTaskFailedDetailInfo bucket  
+      */
+
+    getTransferTaskFailedFiles(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  getTransferTaskFailedFiles');
+          }
+
+         opts = opts || {};
+
+          if (opts.id === undefined || opts.id === null) {
+               throw new Error('Missing the required parameter \'opts.id\' when calling getTransferTaskFailedFiles');
+          }
+
+          let postBody = null;
+          let queryParams = {
+          };
+
+          let pathParams = {
+               'regionId': regionId,
+               'id': opts.id 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call getTransferTaskFailedFiles with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/oss_transferTasks/{id}/failed-files', 'GET', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  根据过滤条件，取得指定RDS实例上的账号信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.instId - RDS实例ID 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param rdsAccountInfo accounts  
+      */
+
+    getRdsAccountsByInstId(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  getRdsAccountsByInstId');
+          }
+
+         opts = opts || {};
+
+          if (opts.instId === undefined || opts.instId === null) {
+               throw new Error('Missing the required parameter \'opts.instId\' when calling getRdsAccountsByInstId');
+          }
+
+          let postBody = null;
+          let queryParams = {
+          };
+
+          let pathParams = {
+               'regionId': regionId,
+               'instId': opts.instId 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call getRdsAccountsByInstId with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/rds_instances/{instId}/accounts', 'GET', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  根据给定的信息，创建指定RDS实例的账户
+      * @param {Object} opts - parameters
+      * @param {string} opts.instId - RDS实例ID 
+      * @param {createRDSAccount} opts.account - 创建RDS实例的账号信息 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param resourceTFInfo task  
+      */
+
+    createRdsAccounts(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  createRdsAccounts');
+          }
+
+         opts = opts || {};
+
+          if (opts.instId === undefined || opts.instId === null) {
+               throw new Error('Missing the required parameter \'opts.instId\' when calling createRdsAccounts');
+          }
+          if (opts.account === undefined || opts.account === null) {
+               throw new Error('Missing the required parameter \'opts.account\' when calling createRdsAccounts');
+          }
+
+         let postBody =   {
+          };
+           if (opts.account !== undefined && opts.account !== null) {
+               postBody['account'] = opts.account
+           }
+
+          let queryParams = {};
+
+          let pathParams = {
+               'regionId': regionId,
+               'instId': opts.instId 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call createRdsAccounts with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/rds_instances/{instId}/accounts', 'POST', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  根据过滤条件，取得指定RDS实例上的账号信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.instId - RDS实例ID 
+      * @param {string} opts.accountName - 账号名称 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param rdsAccountInfo account  
+      */
+
+    getRdsAccountsByInstIdAndAccountName(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  getRdsAccountsByInstIdAndAccountName');
+          }
+
+         opts = opts || {};
+
+          if (opts.instId === undefined || opts.instId === null) {
+               throw new Error('Missing the required parameter \'opts.instId\' when calling getRdsAccountsByInstIdAndAccountName');
+          }
+          if (opts.accountName === undefined || opts.accountName === null) {
+               throw new Error('Missing the required parameter \'opts.accountName\' when calling getRdsAccountsByInstIdAndAccountName');
+          }
+
+          let postBody = null;
+          let queryParams = {
+          };
+
+          let pathParams = {
+               'regionId': regionId,
+               'instId': opts.instId ,
+               'accountName': opts.accountName 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call getRdsAccountsByInstIdAndAccountName with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/rds_instances/{instId}/accounts/{accountName}', 'GET', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  删除指定RDS实例上，指定用户名的账号信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.instId - RDS实例ID 
+      * @param {string} opts.accountName - 账号用户名 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+    deleteRdsAccount(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  deleteRdsAccount');
+          }
+
+         opts = opts || {};
+
+          if (opts.instId === undefined || opts.instId === null) {
+               throw new Error('Missing the required parameter \'opts.instId\' when calling deleteRdsAccount');
+          }
+          if (opts.accountName === undefined || opts.accountName === null) {
+               throw new Error('Missing the required parameter \'opts.accountName\' when calling deleteRdsAccount');
+          }
+
+          let postBody = null;
+          let queryParams = {
+          };
+
+          let pathParams = {
+               'regionId': regionId,
+               'instId': opts.instId ,
+               'accountName': opts.accountName 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call deleteRdsAccount with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/rds_instances/{instId}/accounts/{accountName}', 'DELETE', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  给RDS账号分配数据库权限
+      * @param {Object} opts - parameters
+      * @param {string} opts.instId - RDS实例ID 
+      * @param {string} opts.accountName - 账号名称 
+      * @param {dbPrivilegeInfo} opts.dbPrivilegeInfo - RDS账号对数据库的权限信息 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+    grantRdsAccount(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  grantRdsAccount');
+          }
+
+         opts = opts || {};
+
+          if (opts.instId === undefined || opts.instId === null) {
+               throw new Error('Missing the required parameter \'opts.instId\' when calling grantRdsAccount');
+          }
+          if (opts.accountName === undefined || opts.accountName === null) {
+               throw new Error('Missing the required parameter \'opts.accountName\' when calling grantRdsAccount');
+          }
+          if (opts.dbPrivilegeInfo === undefined || opts.dbPrivilegeInfo === null) {
+               throw new Error('Missing the required parameter \'opts.dbPrivilegeInfo\' when calling grantRdsAccount');
+          }
+
+         let postBody =   {
+          };
+           if (opts.dbPrivilegeInfo !== undefined && opts.dbPrivilegeInfo !== null) {
+               postBody['dbPrivilegeInfo'] = opts.dbPrivilegeInfo
+           }
+
+          let queryParams = {};
+
+          let pathParams = {
+               'regionId': regionId,
+               'instId': opts.instId ,
+               'accountName': opts.accountName 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call grantRdsAccount with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/rds_instances/{instId}/accounts/{accountName}:grant', 'PUT', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  给RDS账号分配数据库权限
+      * @param {Object} opts - parameters
+      * @param {string} opts.instId - RDS实例ID 
+      * @param {string} opts.accountName - 账号名称 
+      * @param {string} opts.dbName - 数据库名称 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+    revokeRdsAccount(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  revokeRdsAccount');
+          }
+
+         opts = opts || {};
+
+          if (opts.instId === undefined || opts.instId === null) {
+               throw new Error('Missing the required parameter \'opts.instId\' when calling revokeRdsAccount');
+          }
+          if (opts.accountName === undefined || opts.accountName === null) {
+               throw new Error('Missing the required parameter \'opts.accountName\' when calling revokeRdsAccount');
+          }
+          if (opts.dbName === undefined || opts.dbName === null) {
+               throw new Error('Missing the required parameter \'opts.dbName\' when calling revokeRdsAccount');
+          }
+
+          let postBody = null;
+          let queryParams = {
+          };
+
+          let pathParams = {
+               'regionId': regionId,
+               'instId': opts.instId ,
+               'accountName': opts.accountName ,
+               'dbName': opts.dbName 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call revokeRdsAccount with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/rds_instances/{instId}/accounts/{accountName}/databases/{dbName}:revoke', 'DELETE', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  根据过滤条件，取得指定RDS实例上的数据库信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.instId - RDS实例ID 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param rdsDBInfo dbs  
+      */
+
+    getRdsDatabasesByInstId(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  getRdsDatabasesByInstId');
+          }
+
+         opts = opts || {};
+
+          if (opts.instId === undefined || opts.instId === null) {
+               throw new Error('Missing the required parameter \'opts.instId\' when calling getRdsDatabasesByInstId');
+          }
+
+          let postBody = null;
+          let queryParams = {
+          };
+
+          let pathParams = {
+               'regionId': regionId,
+               'instId': opts.instId 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call getRdsDatabasesByInstId with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/rds_instances/{instId}/databases', 'GET', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  根据给定的信息，创建指定RDS实例的数据库
+      * @param {Object} opts - parameters
+      * @param {string} opts.instId - RDS实例ID 
+      * @param {createRDSDB} opts.database - 创建RDS实例的数据库信息 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param resourceTFInfo task  
+      */
+
+    createRdsDatabase(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  createRdsDatabase');
+          }
+
+         opts = opts || {};
+
+          if (opts.instId === undefined || opts.instId === null) {
+               throw new Error('Missing the required parameter \'opts.instId\' when calling createRdsDatabase');
+          }
+          if (opts.database === undefined || opts.database === null) {
+               throw new Error('Missing the required parameter \'opts.database\' when calling createRdsDatabase');
+          }
+
+         let postBody =   {
+          };
+           if (opts.database !== undefined && opts.database !== null) {
+               postBody['database'] = opts.database
+           }
+
+          let queryParams = {};
+
+          let pathParams = {
+               'regionId': regionId,
+               'instId': opts.instId 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call createRdsDatabase with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/rds_instances/{instId}/databases', 'POST', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  根据过滤条件，取得指定RDS实例上的数据库信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.instId - RDS实例ID 
+      * @param {string} opts.dbName - 数据库名称 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param rdsDBInfo db  
+      */
+
+    getRdsDatabaseByInstIdAndDbName(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  getRdsDatabaseByInstIdAndDbName');
+          }
+
+         opts = opts || {};
+
+          if (opts.instId === undefined || opts.instId === null) {
+               throw new Error('Missing the required parameter \'opts.instId\' when calling getRdsDatabaseByInstIdAndDbName');
+          }
+          if (opts.dbName === undefined || opts.dbName === null) {
+               throw new Error('Missing the required parameter \'opts.dbName\' when calling getRdsDatabaseByInstIdAndDbName');
+          }
+
+          let postBody = null;
+          let queryParams = {
+          };
+
+          let pathParams = {
+               'regionId': regionId,
+               'instId': opts.instId ,
+               'dbName': opts.dbName 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call getRdsDatabaseByInstIdAndDbName with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/rds_instances/{instId}/databases/{dbName}', 'GET', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  删除指定RDS实例上，指定数据库名的数据库信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.instId - RDS实例ID 
+      * @param {string} opts.dbName - 数据库名称 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+    deleteRdsDatabase(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  deleteRdsDatabase');
+          }
+
+         opts = opts || {};
+
+          if (opts.instId === undefined || opts.instId === null) {
+               throw new Error('Missing the required parameter \'opts.instId\' when calling deleteRdsDatabase');
+          }
+          if (opts.dbName === undefined || opts.dbName === null) {
+               throw new Error('Missing the required parameter \'opts.dbName\' when calling deleteRdsDatabase');
+          }
+
+          let postBody = null;
+          let queryParams = {
+          };
+
+          let pathParams = {
+               'regionId': regionId,
+               'instId': opts.instId ,
+               'dbName': opts.dbName 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call deleteRdsDatabase with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/rds_instances/{instId}/databases/{dbName}', 'DELETE', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  根据云提供商查询对应的RDS实例信息
+      * @param {Object} opts - parameters
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param rdsInstanceDetailInfo instances  
+      */
+
+    getRdsInstances(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  getRdsInstances');
+          }
+
+         opts = opts || {};
+
+
+          let postBody = null;
+          let queryParams = {
+          };
+
+          let pathParams = {
+               'regionId': regionId,
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call getRdsInstances with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/rds_instances', 'GET', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  根据给定的信息，创建RDS实例
+      * @param {Object} opts - parameters
+      * @param {createRDSInstance} opts.instance - 创建RDS实例 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param resourceTFInfo task  
+      */
+
+    createRdsInstance(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  createRdsInstance');
+          }
+
+         opts = opts || {};
+
+          if (opts.instance === undefined || opts.instance === null) {
+               throw new Error('Missing the required parameter \'opts.instance\' when calling createRdsInstance');
+          }
+
+         let postBody =   {
+          };
+           if (opts.instance !== undefined && opts.instance !== null) {
+               postBody['instance'] = opts.instance
+           }
+
+          let queryParams = {};
+
+          let pathParams = {
+               'regionId': regionId,
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call createRdsInstance with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/rds_instances', 'POST', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  根据云提供商查询对应的RDS实例信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.instId - RDS实例ID 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param rdsInstanceDetailInfo instance  
+      */
+
+    getRdsByInstId(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  getRdsByInstId');
+          }
+
+         opts = opts || {};
+
+          if (opts.instId === undefined || opts.instId === null) {
+               throw new Error('Missing the required parameter \'opts.instId\' when calling getRdsByInstId');
+          }
+
+          let postBody = null;
+          let queryParams = {
+          };
+
+          let pathParams = {
+               'regionId': regionId,
+               'instId': opts.instId 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call getRdsByInstId with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/rds_instances/{instId}', 'GET', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  删除指定ID的RDS实例信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.instId - RDS实例ID 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+    deleteRdsByInstId(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  deleteRdsByInstId');
+          }
+
+         opts = opts || {};
+
+          if (opts.instId === undefined || opts.instId === null) {
+               throw new Error('Missing the required parameter \'opts.instId\' when calling deleteRdsByInstId');
+          }
+
+          let postBody = null;
+          let queryParams = {
+          };
+
+          let pathParams = {
+               'regionId': regionId,
+               'instId': opts.instId 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call deleteRdsByInstId with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/rds_instances/{instId}', 'DELETE', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  查询数据同步通道信息
+      * @param {Object} opts - parameters
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param channelInfo channels  
+      */
+
+    getChannels(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  getChannels');
+          }
+
+         opts = opts || {};
+
+
+          let postBody = null;
+          let queryParams = {
+          };
+
+          let pathParams = {
+               'regionId': regionId,
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call getChannels with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/migration_mysqlChannels', 'GET', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  创建数据同步通道
+      * @param {Object} opts - parameters
+      * @param {channelInfo} opts.channel - 创建channel 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param channelInfo channel  
+      */
+
+    createChannel(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  createChannel');
+          }
+
+         opts = opts || {};
+
+          if (opts.channel === undefined || opts.channel === null) {
+               throw new Error('Missing the required parameter \'opts.channel\' when calling createChannel');
+          }
+
+         let postBody =   {
+          };
+           if (opts.channel !== undefined && opts.channel !== null) {
+               postBody['channel'] = opts.channel
+           }
+
+          let queryParams = {};
+
+          let pathParams = {
+               'regionId': regionId,
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call createChannel with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/migration_mysqlChannels', 'POST', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  删除channel
+      * @param {Object} opts - parameters
+      * @param {string} opts.id - channel ID 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+    deleteChannel(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  deleteChannel');
+          }
+
+         opts = opts || {};
+
+          if (opts.id === undefined || opts.id === null) {
+               throw new Error('Missing the required parameter \'opts.id\' when calling deleteChannel');
+          }
+
+          let postBody = null;
+          let queryParams = {
+          };
+
+          let pathParams = {
+               'regionId': regionId,
+               'id': opts.id 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call deleteChannel with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/migration_mysqlChannels/{id}', 'DELETE', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  启动数据同步
+      * @param {Object} opts - parameters
+      * @param {string} opts.id - channel ID 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+    startChannel(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  startChannel');
+          }
+
+         opts = opts || {};
+
+          if (opts.id === undefined || opts.id === null) {
+               throw new Error('Missing the required parameter \'opts.id\' when calling startChannel');
+          }
+
+         let postBody =   {
+          };
+
+          let queryParams = {};
+
+          let pathParams = {
+               'regionId': regionId,
+               'id': opts.id 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call startChannel with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/migration_mysqlChannels/{id}:start', 'PUT', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  停止数据同步
+      * @param {Object} opts - parameters
+      * @param {string} opts.id - channel ID 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+    stopChannel(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  stopChannel');
+          }
+
+         opts = opts || {};
+
+          if (opts.id === undefined || opts.id === null) {
+               throw new Error('Missing the required parameter \'opts.id\' when calling stopChannel');
+          }
+
+         let postBody =   {
+          };
+
+          let queryParams = {};
+
+          let pathParams = {
+               'regionId': regionId,
+               'id': opts.id 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call stopChannel with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/migration_mysqlChannels/{id}:stop', 'PUT', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  查询数据源
+      * @param {Object} opts - parameters
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param datasourceInfo datasources  
+      */
+
+    getDatasources(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  getDatasources');
+          }
+
+         opts = opts || {};
+
+
+          let postBody = null;
+          let queryParams = {
+          };
+
+          let pathParams = {
+               'regionId': regionId,
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call getDatasources with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/migration_mysqlDatasources', 'GET', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  创建数据源
+      * @param {Object} opts - parameters
+      * @param {datasourceInfo} opts.datasource - 创建数据源 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param datasourceInfo datasource  
+      */
+
+    createDatasource(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  createDatasource');
+          }
+
+         opts = opts || {};
+
+          if (opts.datasource === undefined || opts.datasource === null) {
+               throw new Error('Missing the required parameter \'opts.datasource\' when calling createDatasource');
+          }
+
+         let postBody =   {
+          };
+           if (opts.datasource !== undefined && opts.datasource !== null) {
+               postBody['datasource'] = opts.datasource
+           }
+
+          let queryParams = {};
+
+          let pathParams = {
+               'regionId': regionId,
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call createDatasource with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/migration_mysqlDatasources', 'POST', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  删除数据源
+      * @param {Object} opts - parameters
+      * @param {string} opts.id - channel ID 
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+    deleteDatasource(opts, regionId = this.config.regionId, callback){
+         if (typeof regionId === 'function') {
+           callback = regionId
+           regionId = this.config.regionId
+         }
+
+          if (regionId === undefined || regionId === null) {
+               throw new Error('Missing the required parameter \'regionId\' when calling  deleteDatasource');
+          }
+
+         opts = opts || {};
+
+          if (opts.id === undefined || opts.id === null) {
+               throw new Error('Missing the required parameter \'opts.id\' when calling deleteDatasource');
+          }
+
+          let postBody = null;
+          let queryParams = {
+          };
+
+          let pathParams = {
+               'regionId': regionId,
+               'id': opts.id 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call deleteDatasource with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/regions/{regionId}/migration_mysqlDatasources/{id}', 'DELETE', pathParams, queryParams,
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
@@ -921,7 +5070,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -1008,7 +5157,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -1090,7 +5239,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -1173,7 +5322,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -1255,7 +5404,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -1333,7 +5482,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -1383,7 +5532,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
       /**
       *  根据云提供商创建虚拟机
       * @param {Object} opts - parameters
-      * @param {createVmReq} opts.body - 创建VM 
+      * @param {createVm} opts.vm - 创建VM 
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1402,14 +5551,14 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
 
          opts = opts || {};
 
-          if (opts.body === undefined || opts.body === null) {
-               throw new Error('Missing the required parameter \'opts.body\' when calling createVmInstance');
+          if (opts.vm === undefined || opts.vm === null) {
+               throw new Error('Missing the required parameter \'opts.vm\' when calling createVmInstance');
           }
 
          let postBody =   {
           };
-           if (opts.body !== undefined && opts.body !== null) {
-               postBody['body'] = opts.body
+           if (opts.vm !== undefined && opts.vm !== null) {
+               postBody['vm'] = opts.vm
            }
 
           let queryParams = {};
@@ -1419,7 +5568,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -1502,7 +5651,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -1585,7 +5734,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -1668,7 +5817,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -1746,7 +5895,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -1829,7 +5978,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -1911,7 +6060,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -1989,7 +6138,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -2039,7 +6188,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
       /**
       *  根据云提供商创建密钥对
       * @param {Object} opts - parameters
-      * @param {createKeypairReq} opts.body - 创建keypair 
+      * @param {createKeypair} opts.keypair - 创建keypair 
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -2058,14 +6207,14 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
 
          opts = opts || {};
 
-          if (opts.body === undefined || opts.body === null) {
-               throw new Error('Missing the required parameter \'opts.body\' when calling createVmKeypair');
+          if (opts.keypair === undefined || opts.keypair === null) {
+               throw new Error('Missing the required parameter \'opts.keypair\' when calling createVmKeypair');
           }
 
          let postBody =   {
           };
-           if (opts.body !== undefined && opts.body !== null) {
-               postBody['body'] = opts.body
+           if (opts.keypair !== undefined && opts.keypair !== null) {
+               postBody['keypair'] = opts.keypair
            }
 
           let queryParams = {};
@@ -2075,7 +6224,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -2153,7 +6302,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -2203,7 +6352,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
       /**
       *  根据云提供商分配公网IP
       * @param {Object} opts - parameters
-      * @param {allocateEipAddressReq} opts.body - 分配弹性公网ip 
+      * @param {allocateEipAddress} opts.allocate - 分配弹性公网ip 
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -2222,14 +6371,14 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
 
          opts = opts || {};
 
-          if (opts.body === undefined || opts.body === null) {
-               throw new Error('Missing the required parameter \'opts.body\' when calling createVpcEip');
+          if (opts.allocate === undefined || opts.allocate === null) {
+               throw new Error('Missing the required parameter \'opts.allocate\' when calling createVpcEip');
           }
 
          let postBody =   {
           };
-           if (opts.body !== undefined && opts.body !== null) {
-               postBody['body'] = opts.body
+           if (opts.allocate !== undefined && opts.allocate !== null) {
+               postBody['allocate'] = opts.allocate
            }
 
           let queryParams = {};
@@ -2239,7 +6388,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -2322,7 +6471,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -2404,7 +6553,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -2455,7 +6604,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
       *  弹性公网IP绑定到虚拟机
       * @param {Object} opts - parameters
       * @param {string} opts.id - 公网IP ID 
-      * @param {associateEipAddressReq} opts.body - 弹性公网IP绑定到虚拟机 
+      * @param {associateEipAddress} opts.associate - 弹性公网IP绑定到虚拟机 
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -2477,14 +6626,14 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           if (opts.id === undefined || opts.id === null) {
                throw new Error('Missing the required parameter \'opts.id\' when calling associateVpcEipById');
           }
-          if (opts.body === undefined || opts.body === null) {
-               throw new Error('Missing the required parameter \'opts.body\' when calling associateVpcEipById');
+          if (opts.associate === undefined || opts.associate === null) {
+               throw new Error('Missing the required parameter \'opts.associate\' when calling associateVpcEipById');
           }
 
          let postBody =   {
           };
-           if (opts.body !== undefined && opts.body !== null) {
-               postBody['body'] = opts.body
+           if (opts.associate !== undefined && opts.associate !== null) {
+               postBody['associate'] = opts.associate
            }
 
           let queryParams = {};
@@ -2495,7 +6644,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -2546,7 +6695,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
       *  解绑公网IP
       * @param {Object} opts - parameters
       * @param {string} opts.id - 公网IP ID 
-      * @param {unassociateEipAddressReq} opts.body - 解绑公网IP 
+      * @param {unassociateEipAddress} opts.unassociate - 解绑公网IP 
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -2567,14 +6716,14 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           if (opts.id === undefined || opts.id === null) {
                throw new Error('Missing the required parameter \'opts.id\' when calling disassociateVpcEipById');
           }
-          if (opts.body === undefined || opts.body === null) {
-               throw new Error('Missing the required parameter \'opts.body\' when calling disassociateVpcEipById');
+          if (opts.unassociate === undefined || opts.unassociate === null) {
+               throw new Error('Missing the required parameter \'opts.unassociate\' when calling disassociateVpcEipById');
           }
 
          let postBody =   {
           };
-           if (opts.body !== undefined && opts.body !== null) {
-               postBody['body'] = opts.body
+           if (opts.unassociate !== undefined && opts.unassociate !== null) {
+               postBody['unassociate'] = opts.unassociate
            }
 
           let queryParams = {};
@@ -2585,7 +6734,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -2635,7 +6784,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
       /**
       *  创建HTTP监听器
       * @param {Object} opts - parameters
-      * @param {createLoadBalancerHTTPListenerReq} opts.body - 创建HTTP监听器 
+      * @param {createLoadBalancerHTTPListener} opts.httpListener - 创建HTTP监听器 
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -2654,14 +6803,14 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
 
          opts = opts || {};
 
-          if (opts.body === undefined || opts.body === null) {
-               throw new Error('Missing the required parameter \'opts.body\' when calling createVpcLBHttpListener');
+          if (opts.httpListener === undefined || opts.httpListener === null) {
+               throw new Error('Missing the required parameter \'opts.httpListener\' when calling createVpcLBHttpListener');
           }
 
          let postBody =   {
           };
-           if (opts.body !== undefined && opts.body !== null) {
-               postBody['body'] = opts.body
+           if (opts.httpListener !== undefined && opts.httpListener !== null) {
+               postBody['httpListener'] = opts.httpListener
            }
 
           let queryParams = {};
@@ -2671,7 +6820,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -2754,7 +6903,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -2836,7 +6985,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -2914,7 +7063,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -2964,7 +7113,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
       /**
       *  根据云提供商创建网卡
       * @param {Object} opts - parameters
-      * @param {createNetInterfaceReq} opts.body - 创建网卡 
+      * @param {createNetInterface} opts.netInterface - 创建网卡 
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -2983,14 +7132,14 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
 
          opts = opts || {};
 
-          if (opts.body === undefined || opts.body === null) {
-               throw new Error('Missing the required parameter \'opts.body\' when calling createVpcNetworkInterface');
+          if (opts.netInterface === undefined || opts.netInterface === null) {
+               throw new Error('Missing the required parameter \'opts.netInterface\' when calling createVpcNetworkInterface');
           }
 
          let postBody =   {
           };
-           if (opts.body !== undefined && opts.body !== null) {
-               postBody['body'] = opts.body
+           if (opts.netInterface !== undefined && opts.netInterface !== null) {
+               postBody['netInterface'] = opts.netInterface
            }
 
           let queryParams = {};
@@ -3000,7 +7149,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -3051,7 +7200,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
       *  网卡挂载虚拟机
       * @param {Object} opts - parameters
       * @param {string} opts.id - 网卡 ID 
-      * @param {attachNetInterfaceReq} opts.body - 网卡挂载虚拟机 
+      * @param {attachNetInterface} opts.attach - 网卡挂载虚拟机 
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -3073,14 +7222,14 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           if (opts.id === undefined || opts.id === null) {
                throw new Error('Missing the required parameter \'opts.id\' when calling attachVpcNetworkInterfaceById');
           }
-          if (opts.body === undefined || opts.body === null) {
-               throw new Error('Missing the required parameter \'opts.body\' when calling attachVpcNetworkInterfaceById');
+          if (opts.attach === undefined || opts.attach === null) {
+               throw new Error('Missing the required parameter \'opts.attach\' when calling attachVpcNetworkInterfaceById');
           }
 
          let postBody =   {
           };
-           if (opts.body !== undefined && opts.body !== null) {
-               postBody['body'] = opts.body
+           if (opts.attach !== undefined && opts.attach !== null) {
+               postBody['attach'] = opts.attach
            }
 
           let queryParams = {};
@@ -3091,7 +7240,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -3142,7 +7291,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
       *  卸载网卡
       * @param {Object} opts - parameters
       * @param {string} opts.id - 网卡 ID 
-      * @param {detachNetInterfaceReq} opts.body - 卸载网卡 
+      * @param {detachNetInterface} opts.detach - 卸载网卡 
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -3163,14 +7312,14 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           if (opts.id === undefined || opts.id === null) {
                throw new Error('Missing the required parameter \'opts.id\' when calling detachVpcNetworkInterfaceById');
           }
-          if (opts.body === undefined || opts.body === null) {
-               throw new Error('Missing the required parameter \'opts.body\' when calling detachVpcNetworkInterfaceById');
+          if (opts.detach === undefined || opts.detach === null) {
+               throw new Error('Missing the required parameter \'opts.detach\' when calling detachVpcNetworkInterfaceById');
           }
 
          let postBody =   {
           };
-           if (opts.body !== undefined && opts.body !== null) {
-               postBody['body'] = opts.body
+           if (opts.detach !== undefined && opts.detach !== null) {
+               postBody['detach'] = opts.detach
            }
 
           let queryParams = {};
@@ -3181,7 +7330,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -3264,7 +7413,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -3346,7 +7495,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -3424,7 +7573,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -3474,7 +7623,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
       /**
       *  根据云提供商创建安全组
       * @param {Object} opts - parameters
-      * @param {createSecurityGroupReq} opts.body - 创建securityGroup 
+      * @param {createSecurityGroup} opts.securityGroup - 创建securityGroup 
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -3493,14 +7642,14 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
 
          opts = opts || {};
 
-          if (opts.body === undefined || opts.body === null) {
-               throw new Error('Missing the required parameter \'opts.body\' when calling createVpcSecurityGroup');
+          if (opts.securityGroup === undefined || opts.securityGroup === null) {
+               throw new Error('Missing the required parameter \'opts.securityGroup\' when calling createVpcSecurityGroup');
           }
 
          let postBody =   {
           };
-           if (opts.body !== undefined && opts.body !== null) {
-               postBody['body'] = opts.body
+           if (opts.securityGroup !== undefined && opts.securityGroup !== null) {
+               postBody['securityGroup'] = opts.securityGroup
            }
 
           let queryParams = {};
@@ -3510,7 +7659,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -3593,7 +7742,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -3675,7 +7824,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -3753,7 +7902,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -3803,7 +7952,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
       /**
       *  根据云提供商创建负载均衡
       * @param {Object} opts - parameters
-      * @param {createSlbReq} opts.body - 创建SLB 
+      * @param {slbInfo} opts.slb - 创建SLB 
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -3822,14 +7971,14 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
 
          opts = opts || {};
 
-          if (opts.body === undefined || opts.body === null) {
-               throw new Error('Missing the required parameter \'opts.body\' when calling createVpcSlb');
+          if (opts.slb === undefined || opts.slb === null) {
+               throw new Error('Missing the required parameter \'opts.slb\' when calling createVpcSlb');
           }
 
          let postBody =   {
           };
-           if (opts.body !== undefined && opts.body !== null) {
-               postBody['body'] = opts.body
+           if (opts.slb !== undefined && opts.slb !== null) {
+               postBody['slb'] = opts.slb
            }
 
           let queryParams = {};
@@ -3839,7 +7988,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -3922,7 +8071,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -4004,7 +8153,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -4082,7 +8231,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -4132,7 +8281,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
       /**
       *  根据云提供商创建子网
       * @param {Object} opts - parameters
-      * @param {createSubnetReq} opts.body - 创建subnet 
+      * @param {createSubnet} opts.subnet - 创建subnet 
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -4151,14 +8300,14 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
 
          opts = opts || {};
 
-          if (opts.body === undefined || opts.body === null) {
-               throw new Error('Missing the required parameter \'opts.body\' when calling createVpcSubnet');
+          if (opts.subnet === undefined || opts.subnet === null) {
+               throw new Error('Missing the required parameter \'opts.subnet\' when calling createVpcSubnet');
           }
 
          let postBody =   {
           };
-           if (opts.body !== undefined && opts.body !== null) {
-               postBody['body'] = opts.body
+           if (opts.subnet !== undefined && opts.subnet !== null) {
+               postBody['subnet'] = opts.subnet
            }
 
           let queryParams = {};
@@ -4168,7 +8317,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -4251,7 +8400,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -4333,7 +8482,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -4411,7 +8560,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -4461,7 +8610,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
       /**
       *  根据云提供商创建私有网络
       * @param {Object} opts - parameters
-      * @param {createVpcReq} opts.body - 创建VPC 
+      * @param {vpcInfo} opts.vpc - 创建VPC 
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -4480,14 +8629,14 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
 
          opts = opts || {};
 
-          if (opts.body === undefined || opts.body === null) {
-               throw new Error('Missing the required parameter \'opts.body\' when calling createVpc');
+          if (opts.vpc === undefined || opts.vpc === null) {
+               throw new Error('Missing the required parameter \'opts.vpc\' when calling createVpc');
           }
 
          let postBody =   {
           };
-           if (opts.body !== undefined && opts.body !== null) {
-               postBody['body'] = opts.body
+           if (opts.vpc !== undefined && opts.vpc !== null) {
+               postBody['vpc'] = opts.vpc
            }
 
           let queryParams = {};
@@ -4497,7 +8646,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -4579,7 +8728,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];
@@ -4629,7 +8778,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
       /**
       *  创建虚拟服务器组，并添加后端服务器
       * @param {Object} opts - parameters
-      * @param {createVserverGroupReq} opts.body - 创建虚拟服务器组 
+      * @param {createVserverGroup} opts.vserverGroup - 创建虚拟服务器组 
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -4648,14 +8797,14 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
 
          opts = opts || {};
 
-          if (opts.body === undefined || opts.body === null) {
-               throw new Error('Missing the required parameter \'opts.body\' when calling createVpcVServerGroup');
+          if (opts.vserverGroup === undefined || opts.vserverGroup === null) {
+               throw new Error('Missing the required parameter \'opts.vserverGroup\' when calling createVpcVServerGroup');
           }
 
          let postBody =   {
           };
-           if (opts.body !== undefined && opts.body !== null) {
-               postBody['body'] = opts.body
+           if (opts.vserverGroup !== undefined && opts.vserverGroup !== null) {
+               postBody['vserverGroup'] = opts.vserverGroup
            }
 
           let queryParams = {};
@@ -4665,7 +8814,7 @@ JDCloud.JDFUSION= class JDFUSION extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.1.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  jdfusion/0.2.0',
           };
           
           let contentTypes = ['application/json'];

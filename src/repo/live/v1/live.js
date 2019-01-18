@@ -30,7 +30,7 @@ Service._services[serviceId] = true;
 
 /**
 * live service.
-* @version 1.0.0
+* @version 1.0.1
 */
 
 JDCloud.LIVE= class LIVE extends Service {
@@ -43,9 +43,9 @@ JDCloud.LIVE= class LIVE extends Service {
     }
 
       /**
-      *  查询域名下的app列表
+      *  查询域名下的APP列表
       * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNum] - 页码；默认为1  optional 
+      * @param {integer} [opts.pageNum] - 页码；默认为1；取值范围[1, 100000]  optional 
       * @param {integer} [opts.pageSize] - 分页大小；默认为10；取值范围[10, 100]  optional 
       * @param {filter} [opts.filters] - 域名下的app列表过滤条件, 不传递分页参数时默认返回10条  optional 
       * @param {string} callback - callback
@@ -53,7 +53,7 @@ JDCloud.LIVE= class LIVE extends Service {
       * @param integer pageNumber  当前页码
       * @param integer pageSize  每页数量
       * @param number totalCount  查询总数
-      * @param appList appList  
+      * @param app apps  
       */
 
     describeLiveApp(opts, callback){
@@ -77,7 +77,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -125,13 +125,12 @@ JDCloud.LIVE= class LIVE extends Service {
     }
 
       /**
-      *  添加 app 模板
+      *  添加直播APP
       * @param {Object} opts - parameters
       * @param {string} opts.publishDomain - 直播的推流域名 
       * @param {string} opts.appName - appName 
       * @param {string} callback - callback
       @return {Object} result
-      * @param string publishDomain  直播的推流域名
       */
 
     addLiveApp(opts, callback){
@@ -161,7 +160,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -215,7 +214,6 @@ JDCloud.LIVE= class LIVE extends Service {
       * @param {string} opts.appName - appName 
       * @param {string} callback - callback
       @return {Object} result
-      * @param string publishDomain  直播的推流域名
       */
 
     startLiveApp(opts, callback){
@@ -245,7 +243,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -299,7 +297,6 @@ JDCloud.LIVE= class LIVE extends Service {
       * @param {string} opts.appName - appName 
       * @param {string} callback - callback
       @return {Object} result
-      * @param string publishDomain  直播的推流域名
       */
 
     stopLiveApp(opts, callback){
@@ -329,7 +326,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -377,13 +374,12 @@ JDCloud.LIVE= class LIVE extends Service {
     }
 
       /**
-      *  删除app
+      *  删除APP
       * @param {Object} opts - parameters
       * @param {string} opts.publishDomain - 推流域名 
       * @param {string} opts.appName - 直播流所属应用名称 
       * @param {string} callback - callback
       @return {Object} result
-      * @param string publishDomain  直播的推流域名
       */
 
     deleteLiveApp(opts, callback){
@@ -408,7 +404,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -458,18 +454,18 @@ JDCloud.LIVE= class LIVE extends Service {
       /**
       *  查询域名列表
       * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNum] - 页码；默认为1  optional 
+      * @param {integer} [opts.pageNum] - 页码；默认为1；取值范围[1, 100000]  optional 
       * @param {integer} [opts.pageSize] - 分页大小；默认为10；取值范围[10, 100]  optional 
-      * @param {filter} [opts.filters] - 域名列表查询过滤条件, 不传递分页参数时默认返回10条  optional 
+      * @param {string} [opts.publishDomain] - 域名  optional 
       * @param {string} callback - callback
       @return {Object} result
       * @param integer pageNumber  当前页码
       * @param integer pageSize  每页数量
       * @param number totalCount  查询总数
-      * @param domainList domainList  
+      * @param domainDetails domainDetails  
       */
 
-    describeLiveDomain(opts, callback){
+    describeLiveDomains(opts, callback){
 
          opts = opts || {};
 
@@ -483,14 +479,16 @@ JDCloud.LIVE= class LIVE extends Service {
            if (opts.pageSize !== undefined && opts.pageSize !== null) {
                queryParams['pageSize'] = opts.pageSize
            }
-          Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'));
+           if (opts.publishDomain !== undefined && opts.publishDomain !== null) {
+               queryParams['publishDomain'] = opts.publishDomain
+           }
 
           let pathParams = {
                'regionId': 'jdcloud',
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -519,7 +517,7 @@ JDCloud.LIVE= class LIVE extends Service {
 
           let returnType = null;
 
-          this.config.logger(`call describeLiveDomain with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+          this.config.logger(`call describeLiveDomains with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
 
           let request = this.makeRequest('/domains', 'GET', pathParams, queryParams,
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
@@ -542,10 +540,8 @@ JDCloud.LIVE= class LIVE extends Service {
       * @param {Object} opts - parameters
       * @param {string} opts.publishDomain - 直播的推流域名 
       * @param {string} opts.playDomain - 直播的播放域名 
-      * @param {string} opts.region - 区域ID 
       * @param {string} callback - callback
       @return {Object} result
-      * @param string publishDomain  直播的推流域名
       */
 
     addLiveDomain(opts, callback){
@@ -558,9 +554,6 @@ JDCloud.LIVE= class LIVE extends Service {
           if (opts.playDomain === undefined || opts.playDomain === null) {
                throw new Error('Missing the required parameter \'opts.playDomain\' when calling addLiveDomain');
           }
-          if (opts.region === undefined || opts.region === null) {
-               throw new Error('Missing the required parameter \'opts.region\' when calling addLiveDomain');
-          }
 
          let postBody =   {
           };
@@ -570,9 +563,6 @@ JDCloud.LIVE= class LIVE extends Service {
            if (opts.playDomain !== undefined && opts.playDomain !== null) {
                postBody['playDomain'] = opts.playDomain
            }
-           if (opts.region !== undefined && opts.region !== null) {
-               postBody['region'] = opts.region
-           }
 
           let queryParams = {};
 
@@ -581,7 +571,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -634,7 +624,6 @@ JDCloud.LIVE= class LIVE extends Service {
       * @param {string} opts.publishDomain - 要启动的域名 
       * @param {string} callback - callback
       @return {Object} result
-      * @param string publishDomain  要启动的域名
       */
 
     startLiveDomain(opts, callback){
@@ -658,7 +647,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -706,12 +695,11 @@ JDCloud.LIVE= class LIVE extends Service {
     }
 
       /**
-      *  停止域名
+      *  停用域名
       * @param {Object} opts - parameters
-      * @param {string} opts.publishDomain - 要启动的域名 
+      * @param {string} opts.publishDomain - 要停用的域名 
       * @param {string} callback - callback
       @return {Object} result
-      * @param string publishDomain  要启动的域名
       */
 
     stopLiveDomain(opts, callback){
@@ -735,7 +723,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -788,8 +776,8 @@ JDCloud.LIVE= class LIVE extends Service {
       * @param {string} opts.publishDomain - 推流域名 
       * @param {string} callback - callback
       @return {Object} result
-      * @param publishDomain publishDomain  
-      * @param playDomain playDomain  
+      * @param publishDomain publishDomains  
+      * @param playDomain playDomains  
       */
 
     describeLiveDomainDetail(opts, callback){
@@ -810,7 +798,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -863,7 +851,6 @@ JDCloud.LIVE= class LIVE extends Service {
       * @param {string} opts.publishDomain - 推流域名 
       * @param {string} callback - callback
       @return {Object} result
-      * @param string publishDomain  要删除的域名
       */
 
     deleteLiveDomain(opts, callback){
@@ -884,7 +871,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -934,7 +921,7 @@ JDCloud.LIVE= class LIVE extends Service {
       /**
       *  查询录制模板列表
       * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNum] - 页码；默认为1  optional 
+      * @param {integer} [opts.pageNum] - 页码；默认为1；取值范围[1, 100000]  optional 
       * @param {integer} [opts.pageSize] - 分页大小；默认为10；取值范围[10, 100]  optional 
       * @param {filter} [opts.filters] - 域名列表查询过滤条件, 不传递分页参数时默认返回10条  optional 
       * @param {string} callback - callback
@@ -966,7 +953,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -1014,7 +1001,7 @@ JDCloud.LIVE= class LIVE extends Service {
     }
 
       /**
-      *  添加录制模板
+      *  添加直播录制模板
       * @param {Object} opts - parameters
       * @param {integer} opts.recordPeriod - 自动录制周期 
       * @param {string} opts.saveBucket - null 
@@ -1023,7 +1010,6 @@ JDCloud.LIVE= class LIVE extends Service {
       * @param {string} opts.template - 录制模板自定义名称 
       * @param {string} callback - callback
       @return {Object} result
-      * @param boolean feedback  返回结果
       */
 
     addCustomLiveStreamRecordTemplate(opts, callback){
@@ -1071,7 +1057,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -1119,14 +1105,13 @@ JDCloud.LIVE= class LIVE extends Service {
     }
 
       /**
-      *  添加app录制配置
+      *  添加APP录制配置
       * @param {Object} opts - parameters
       * @param {string} opts.appName - 直播流所属应用名称 
       * @param {string} opts.publishDomain - 您的推流加速域名 
       * @param {string} opts.template - 录制模版 
       * @param {string} callback - callback
       @return {Object} result
-      * @param string publishDomain  您的推流加速域名
       */
 
     addLiveStreamAppRecord(opts, callback){
@@ -1162,7 +1147,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -1216,7 +1201,6 @@ JDCloud.LIVE= class LIVE extends Service {
       * @param {string} opts.template - 录制模版 
       * @param {string} callback - callback
       @return {Object} result
-      * @param string publishDomain  您的推流加速域名
       */
 
     addLiveStreamDomainRecord(opts, callback){
@@ -1246,7 +1230,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -1296,7 +1280,7 @@ JDCloud.LIVE= class LIVE extends Service {
       /**
       *  查询录制配置
       * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNum] - 页码；默认为1  optional 
+      * @param {integer} [opts.pageNum] - 页码；默认为1；取值范围[1, 100000]  optional 
       * @param {integer} [opts.pageSize] - 分页大小；默认为10；取值范围[10, 100]  optional 
       * @param {filter} [opts.filters] - 转码模板查询过滤条件, 不传递分页参数时默认返回10条  optional 
       * @param {string} callback - callback
@@ -1328,7 +1312,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -1376,24 +1360,23 @@ JDCloud.LIVE= class LIVE extends Service {
     }
 
       /**
-      *  添加录制回调配置
+      *  设置录制回调通知
       * @param {Object} opts - parameters
       * @param {string} opts.publishDomain - 您的推流加速域名 
       * @param {string} opts.notifyUrl - 设置直播流信息推送到的 URL 地址 
       * @param {string} callback - callback
       @return {Object} result
-      * @param string publishDomain  您的推流加速域名
       */
 
-    addLiveStreamRecordNotifyConfig(opts, callback){
+    setLiveStreamRecordNotifyConfig(opts, callback){
 
          opts = opts || {};
 
           if (opts.publishDomain === undefined || opts.publishDomain === null) {
-               throw new Error('Missing the required parameter \'opts.publishDomain\' when calling addLiveStreamRecordNotifyConfig');
+               throw new Error('Missing the required parameter \'opts.publishDomain\' when calling setLiveStreamRecordNotifyConfig');
           }
           if (opts.notifyUrl === undefined || opts.notifyUrl === null) {
-               throw new Error('Missing the required parameter \'opts.notifyUrl\' when calling addLiveStreamRecordNotifyConfig');
+               throw new Error('Missing the required parameter \'opts.notifyUrl\' when calling setLiveStreamRecordNotifyConfig');
           }
 
          let postBody =   {
@@ -1412,7 +1395,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -1441,7 +1424,7 @@ JDCloud.LIVE= class LIVE extends Service {
 
           let returnType = null;
 
-          this.config.logger(`call addLiveStreamRecordNotifyConfig with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+          this.config.logger(`call setLiveStreamRecordNotifyConfig with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
 
           let request = this.makeRequest('/recordNotifys:config', 'POST', pathParams, queryParams,
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
@@ -1460,12 +1443,11 @@ JDCloud.LIVE= class LIVE extends Service {
     }
 
       /**
-      *  删除录制模板
+      *  删除用户自定义录制模板
       * @param {Object} opts - parameters
       * @param {string} opts.template - 录制模板自定义名称 
       * @param {string} callback - callback
       @return {Object} result
-      * @param string template  录制模板自定义名称
       */
 
     deleteCustomLiveStreamRecordTemplate(opts, callback){
@@ -1486,7 +1468,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -1534,14 +1516,13 @@ JDCloud.LIVE= class LIVE extends Service {
     }
 
       /**
-      *  删除app录制配置
+      *  删除APP录制配置
       * @param {Object} opts - parameters
       * @param {string} opts.publishDomain - 推流加速域名 
       * @param {string} opts.appName - 直播流所属应用名称 
       * @param {string} opts.template - 录制模板自定义名称 
       * @param {string} callback - callback
       @return {Object} result
-      * @param string publishDomain  您的推流加速域名
       */
 
     deleteLiveStreamAppRecord(opts, callback){
@@ -1570,7 +1551,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -1624,7 +1605,6 @@ JDCloud.LIVE= class LIVE extends Service {
       * @param {string} opts.template - 录制模板自定义名称 
       * @param {string} callback - callback
       @return {Object} result
-      * @param string publishDomain  您的推流加速域名
       */
 
     deleteLiveStreamDomainRecord(opts, callback){
@@ -1649,7 +1629,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -1724,7 +1704,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -1777,7 +1757,6 @@ JDCloud.LIVE= class LIVE extends Service {
       * @param {string} opts.publishDomain - 推流加速域名 
       * @param {string} callback - callback
       @return {Object} result
-      * @param string publishDomain  您的推流加速域名
       */
 
     deleteLiveStreamRecordNotifyConfig(opts, callback){
@@ -1798,7 +1777,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -1846,35 +1825,72 @@ JDCloud.LIVE= class LIVE extends Service {
     }
 
       /**
-      *  查询直播域名网络带宽监控数据
+      *  添加录制打点任务
       * @param {Object} opts - parameters
-      * @param {string} opts.publishDomain - 直播的推流域名 
+      * @param {string} opts.publishDomain - 推流加速域名 
+      * @param {string} opts.appName - 直播流所属应用名称 
+      * @param {string} opts.streamName - 直播流名称 
+      * @param {array} [opts.recordTimes] - 您的推流加速域名  optional 
+      * @param {string} opts.saveBucket - 存储桶 
+      * @param {string} opts.saveEndpoint - 存储地址 
+      * @param {string} opts.recordFileType - 录制文件类型 
+      * @param {string} [opts.saveObject] - 录制文件存储路径  optional 
       * @param {string} callback - callback
       @return {Object} result
-      * @param boolean feedback  返回结果
       */
 
-    addLiveDomain(opts, callback){
+    addLiveRecordTask(opts, callback){
 
          opts = opts || {};
 
           if (opts.publishDomain === undefined || opts.publishDomain === null) {
-               throw new Error('Missing the required parameter \'opts.publishDomain\' when calling addLiveDomain');
+               throw new Error('Missing the required parameter \'opts.publishDomain\' when calling addLiveRecordTask');
+          }
+          if (opts.appName === undefined || opts.appName === null) {
+               throw new Error('Missing the required parameter \'opts.appName\' when calling addLiveRecordTask');
+          }
+          if (opts.streamName === undefined || opts.streamName === null) {
+               throw new Error('Missing the required parameter \'opts.streamName\' when calling addLiveRecordTask');
+          }
+          if (opts.saveBucket === undefined || opts.saveBucket === null) {
+               throw new Error('Missing the required parameter \'opts.saveBucket\' when calling addLiveRecordTask');
+          }
+          if (opts.saveEndpoint === undefined || opts.saveEndpoint === null) {
+               throw new Error('Missing the required parameter \'opts.saveEndpoint\' when calling addLiveRecordTask');
+          }
+          if (opts.recordFileType === undefined || opts.recordFileType === null) {
+               throw new Error('Missing the required parameter \'opts.recordFileType\' when calling addLiveRecordTask');
           }
 
-          let postBody = null;
-          let queryParams = {
+         let postBody =   {
           };
-           if (opts.publishDomain !== undefined && opts.publishDomain !== null) {
-               queryParams['publishDomain'] = opts.publishDomain
+           if (opts.recordTimes !== undefined && opts.recordTimes !== null) {
+               postBody['recordTimes'] = opts.recordTimes
            }
+           if (opts.saveBucket !== undefined && opts.saveBucket !== null) {
+               postBody['saveBucket'] = opts.saveBucket
+           }
+           if (opts.saveEndpoint !== undefined && opts.saveEndpoint !== null) {
+               postBody['saveEndpoint'] = opts.saveEndpoint
+           }
+           if (opts.recordFileType !== undefined && opts.recordFileType !== null) {
+               postBody['recordFileType'] = opts.recordFileType
+           }
+           if (opts.saveObject !== undefined && opts.saveObject !== null) {
+               postBody['saveObject'] = opts.saveObject
+           }
+
+          let queryParams = {};
 
           let pathParams = {
                'regionId': 'jdcloud',
+               'publishDomain': opts.publishDomain ,
+               'appName': opts.appName ,
+               'streamName': opts.streamName 
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -1903,85 +1919,9 @@ JDCloud.LIVE= class LIVE extends Service {
 
           let returnType = null;
 
-          this.config.logger(`call addLiveDomain with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+          this.config.logger(`call addLiveRecordTask with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
 
-          let request = this.makeRequest('/liveDomainNetworks', 'GET', pathParams, queryParams,
-                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
-
-          return request.then(function (result) {
-            if (callback && typeof callback === 'function') {
-              return callback(null, result);
-            }
-            return result
-            }, function (error) {
-               if (callback && typeof callback === 'function') {
-                 return callback(error);
-               }
-               return Promise.reject(error)
-          });
-    }
-
-      /**
-      *  查询直播域名录制时长数据
-      * @param {Object} opts - parameters
-      * @param {string} opts.publishDomain - 直播的推流域名 
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param boolean feedback  返回结果
-      */
-
-    addLiveRecord(opts, callback){
-
-         opts = opts || {};
-
-          if (opts.publishDomain === undefined || opts.publishDomain === null) {
-               throw new Error('Missing the required parameter \'opts.publishDomain\' when calling addLiveRecord');
-          }
-
-          let postBody = null;
-          let queryParams = {
-          };
-           if (opts.publishDomain !== undefined && opts.publishDomain !== null) {
-               queryParams['publishDomain'] = opts.publishDomain
-           }
-
-          let pathParams = {
-               'regionId': 'jdcloud',
-          };
-
-         let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
-          };
-          
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
-
-          // 扩展自定义头
-          if (opts['x-extra-header']) {
-            for (let extraHeader in opts['x-extra-header']) {
-              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-            }
-
-            if (Array.isArray(opts['x-extra-header']['content-type'])) {
-              contentTypes = opts['x-extra-header']['content-type']
-            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-              contentTypes = opts['x-extra-header']['content-type'].split(',')
-            }
-
-            if (Array.isArray(opts['x-extra-header']['accept'])) {
-              accepts = opts['x-extra-header']['accept']
-            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-              accepts = opts['x-extra-header']['accept'].split(',')
-            }
-          }
-
-          let formParams = {};
-
-          let returnType = null;
-
-          this.config.logger(`call addLiveRecord with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
-
-          let request = this.makeRequest('/liveDomainRecords', 'GET', pathParams, queryParams,
+          let request = this.makeRequest('/records/{publishDomain}/appNames/{appName}/streamNames/{streamName}/task', 'POST', pathParams, queryParams,
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
@@ -2011,7 +1951,6 @@ JDCloud.LIVE= class LIVE extends Service {
       * @param {string} opts.template - 录制模板自定义名称 
       * @param {string} callback - callback
       @return {Object} result
-      * @param boolean feedback  返回结果
       */
 
     addCustomLiveStreamSnapshotTemplate(opts, callback){
@@ -2083,7 +2022,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -2133,7 +2072,7 @@ JDCloud.LIVE= class LIVE extends Service {
       /**
       *  查询直播截图配置
       * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNum] - 页码；默认为1  optional 
+      * @param {integer} [opts.pageNum] - 页码；默认为1；取值范围[1, 100000]  optional 
       * @param {integer} [opts.pageSize] - 分页大小；默认为10；取值范围[10, 100]  optional 
       * @param {filter} [opts.filters] - 直播截图查询过滤条件, 不传递分页参数时默认返回10条  optional 
       * @param {string} callback - callback
@@ -2165,7 +2104,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -2215,7 +2154,7 @@ JDCloud.LIVE= class LIVE extends Service {
       /**
       *  查询直播截图模板列表
       * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNum] - 页码；默认为1  optional 
+      * @param {integer} [opts.pageNum] - 页码；默认为1；取值范围[1, 100000]  optional 
       * @param {integer} [opts.pageSize] - 分页大小；默认为10；取值范围[10, 100]  optional 
       * @param {filter} [opts.filters] - 域名列表查询过滤条件, 不传递分页参数时默认返回10条  optional 
       * @param {string} callback - callback
@@ -2247,7 +2186,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -2295,14 +2234,13 @@ JDCloud.LIVE= class LIVE extends Service {
     }
 
       /**
-      *  添加app直播截图配置
+      *  添加APP直播截图配置
       * @param {Object} opts - parameters
       * @param {string} opts.appName - 直播流所属应用名称 
       * @param {string} opts.publishDomain - 您的推流加速域名 
       * @param {string} opts.template - 截图模版 
       * @param {string} callback - callback
       @return {Object} result
-      * @param boolean feedback  返回结果
       */
 
     addLiveStreamAppSnapshot(opts, callback){
@@ -2338,7 +2276,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -2392,7 +2330,6 @@ JDCloud.LIVE= class LIVE extends Service {
       * @param {string} opts.template - 截图模版 
       * @param {string} callback - callback
       @return {Object} result
-      * @param boolean feedback  返回结果
       */
 
     addLiveStreamDomainSnapshot(opts, callback){
@@ -2422,7 +2359,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -2470,24 +2407,23 @@ JDCloud.LIVE= class LIVE extends Service {
     }
 
       /**
-      *  添加截图回调配置
+      *  设置截图回调通知
       * @param {Object} opts - parameters
       * @param {string} opts.publishDomain - 您的推流加速域名 
       * @param {string} opts.notifyUrl - 设置直播流信息推送到的 URL 地址 
       * @param {string} callback - callback
       @return {Object} result
-      * @param boolean feedback  返回结果
       */
 
-    addLiveStreamSnapshotNotifyConfig(opts, callback){
+    setLiveStreamSnapshotNotifyConfig(opts, callback){
 
          opts = opts || {};
 
           if (opts.publishDomain === undefined || opts.publishDomain === null) {
-               throw new Error('Missing the required parameter \'opts.publishDomain\' when calling addLiveStreamSnapshotNotifyConfig');
+               throw new Error('Missing the required parameter \'opts.publishDomain\' when calling setLiveStreamSnapshotNotifyConfig');
           }
           if (opts.notifyUrl === undefined || opts.notifyUrl === null) {
-               throw new Error('Missing the required parameter \'opts.notifyUrl\' when calling addLiveStreamSnapshotNotifyConfig');
+               throw new Error('Missing the required parameter \'opts.notifyUrl\' when calling setLiveStreamSnapshotNotifyConfig');
           }
 
          let postBody =   {
@@ -2506,7 +2442,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -2535,7 +2471,7 @@ JDCloud.LIVE= class LIVE extends Service {
 
           let returnType = null;
 
-          this.config.logger(`call addLiveStreamSnapshotNotifyConfig with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+          this.config.logger(`call setLiveStreamSnapshotNotifyConfig with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
 
           let request = this.makeRequest('/snapshotNotifys:config', 'POST', pathParams, queryParams,
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
@@ -2554,12 +2490,11 @@ JDCloud.LIVE= class LIVE extends Service {
     }
 
       /**
-      *  删除直播截图模板
+      *  删除用户自定义直播截图模板
       * @param {Object} opts - parameters
       * @param {string} opts.template - 录制模板自定义名称 
       * @param {string} callback - callback
       @return {Object} result
-      * @param boolean feedback  返回结果
       */
 
     deleteCustomLiveStreamSnapshotTemplate(opts, callback){
@@ -2580,7 +2515,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -2628,14 +2563,13 @@ JDCloud.LIVE= class LIVE extends Service {
     }
 
       /**
-      *  删除app直播截图配置
+      *  删除APP截图配置
       * @param {Object} opts - parameters
       * @param {string} opts.publishDomain - 推流加速域名 
       * @param {string} opts.appName - 直播流所属应用名称 
       * @param {string} opts.template - 录制模板自定义名称 
       * @param {string} callback - callback
       @return {Object} result
-      * @param boolean feedback  返回结果
       */
 
     deleteLiveStreamAppSnapshot(opts, callback){
@@ -2664,7 +2598,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -2712,7 +2646,7 @@ JDCloud.LIVE= class LIVE extends Service {
     }
 
       /**
-      *  删除域名直播截图配置
+      *  删除域名截图配置
       * @param {Object} opts - parameters
       * @param {string} opts.publishDomain - 推流加速域名 
       * @param {string} opts.template - 录制模板自定义名称 
@@ -2742,7 +2676,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -2790,7 +2724,7 @@ JDCloud.LIVE= class LIVE extends Service {
     }
 
       /**
-      *  查询截图信息回调配置
+      *  查询截图回调配置
       * @param {Object} opts - parameters
       * @param {string} opts.publishDomain - 推流加速域名 
       * @param {string} callback - callback
@@ -2817,7 +2751,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -2870,7 +2804,6 @@ JDCloud.LIVE= class LIVE extends Service {
       * @param {string} opts.publishDomain - 推流加速域名 
       * @param {string} callback - callback
       @return {Object} result
-      * @param boolean feedback  返回结果
       */
 
     deleteLiveStreamSnapshotNotifyConfig(opts, callback){
@@ -2891,7 +2824,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -2946,7 +2879,6 @@ JDCloud.LIVE= class LIVE extends Service {
       * @param {string} opts.streamName - 流名称 
       * @param {string} callback - callback
       @return {Object} result
-      * @param string publishDomain  您的加速域名
       */
 
     forbidLiveStream(opts, callback){
@@ -2982,7 +2914,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -3037,7 +2969,6 @@ JDCloud.LIVE= class LIVE extends Service {
       * @param {string} opts.streamName - 流名称 
       * @param {string} callback - callback
       @return {Object} result
-      * @param string publishDomain  您的加速域名
       */
 
     resumeLiveStream(opts, callback){
@@ -3073,7 +3004,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -3121,24 +3052,23 @@ JDCloud.LIVE= class LIVE extends Service {
     }
 
       /**
-      *  设置NotifyURL
+      *  设置直播流状态通知
       * @param {Object} opts - parameters
       * @param {string} opts.publishDomain - 您的加速域名 
       * @param {string} opts.notifyUrl - 设置直播流信息推送到的 URL 地址 
       * @param {string} callback - callback
       @return {Object} result
-      * @param string publishDomain  您的加速域名
       */
 
-    setLiveStreamNotifyUrlConfig(opts, callback){
+    setLiveStreamNotifyConfig(opts, callback){
 
          opts = opts || {};
 
           if (opts.publishDomain === undefined || opts.publishDomain === null) {
-               throw new Error('Missing the required parameter \'opts.publishDomain\' when calling setLiveStreamNotifyUrlConfig');
+               throw new Error('Missing the required parameter \'opts.publishDomain\' when calling setLiveStreamNotifyConfig');
           }
           if (opts.notifyUrl === undefined || opts.notifyUrl === null) {
-               throw new Error('Missing the required parameter \'opts.notifyUrl\' when calling setLiveStreamNotifyUrlConfig');
+               throw new Error('Missing the required parameter \'opts.notifyUrl\' when calling setLiveStreamNotifyConfig');
           }
 
          let postBody =   {
@@ -3157,7 +3087,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -3186,7 +3116,7 @@ JDCloud.LIVE= class LIVE extends Service {
 
           let returnType = null;
 
-          this.config.logger(`call setLiveStreamNotifyUrlConfig with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+          this.config.logger(`call setLiveStreamNotifyConfig with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
 
           let request = this.makeRequest('/streamNotifys', 'POST', pathParams, queryParams,
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
@@ -3205,21 +3135,21 @@ JDCloud.LIVE= class LIVE extends Service {
     }
 
       /**
-      *  查询NotifyURL
+      *  查询直播流状态通知
       * @param {Object} opts - parameters
       * @param {string} opts.publishDomain - 推流域名 
       * @param {string} callback - callback
       @return {Object} result
-      * @param string publishDoamin  您的加速域名
+      * @param string publishDomain  您的加速域名
       * @param string notifyUrl  回调地址
       */
 
-    describeLiveStreamNotifyUrlConfig(opts, callback){
+    describeLiveStreamNotifyConfig(opts, callback){
 
          opts = opts || {};
 
           if (opts.publishDomain === undefined || opts.publishDomain === null) {
-               throw new Error('Missing the required parameter \'opts.publishDomain\' when calling describeLiveStreamNotifyUrlConfig');
+               throw new Error('Missing the required parameter \'opts.publishDomain\' when calling describeLiveStreamNotifyConfig');
           }
 
           let postBody = null;
@@ -3232,7 +3162,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -3261,7 +3191,7 @@ JDCloud.LIVE= class LIVE extends Service {
 
           let returnType = null;
 
-          this.config.logger(`call describeLiveStreamNotifyUrlConfig with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+          this.config.logger(`call describeLiveStreamNotifyConfig with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
 
           let request = this.makeRequest('/streamNotifys/{publishDomain}', 'GET', pathParams, queryParams,
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
@@ -3280,20 +3210,19 @@ JDCloud.LIVE= class LIVE extends Service {
     }
 
       /**
-      *  删除NotifyURL
+      *  删除直播流状态通知
       * @param {Object} opts - parameters
       * @param {string} opts.publishDomain - 推流域名 
       * @param {string} callback - callback
       @return {Object} result
-      * @param string publishDomain  您的加速域名
       */
 
-    deleteLiveStreamNotifyUrlConfig(opts, callback){
+    deleteLiveStreamNotifyConfig(opts, callback){
 
          opts = opts || {};
 
           if (opts.publishDomain === undefined || opts.publishDomain === null) {
-               throw new Error('Missing the required parameter \'opts.publishDomain\' when calling deleteLiveStreamNotifyUrlConfig');
+               throw new Error('Missing the required parameter \'opts.publishDomain\' when calling deleteLiveStreamNotifyConfig');
           }
 
           let postBody = null;
@@ -3306,7 +3235,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -3335,9 +3264,202 @@ JDCloud.LIVE= class LIVE extends Service {
 
           let returnType = null;
 
-          this.config.logger(`call deleteLiveStreamNotifyUrlConfig with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+          this.config.logger(`call deleteLiveStreamNotifyConfig with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
 
           let request = this.makeRequest('/streamNotifys/{publishDomain}', 'DELETE', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  查看域名下所有的正在推的流的信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.publishDomain - 推流域名 
+      * @param {integer} [opts.pageNum] - 页码；默认为1；取值范围[1, 100000]  optional 
+      * @param {integer} [opts.pageSize] - 分页大小；默认为10；取值范围[10, 100]  optional 
+      * @param {string} [opts.appName] - 应用名称（APP）  optional 
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer pageNumber  当前页码
+      * @param integer pageSize  每页数量
+      * @param number totalCount  查询总数
+      * @param onlineStreamInfo onlineStreamInfos  
+      */
+
+    describeLiveStreamOnlineList(opts, callback){
+
+         opts = opts || {};
+
+          if (opts.publishDomain === undefined || opts.publishDomain === null) {
+               throw new Error('Missing the required parameter \'opts.publishDomain\' when calling describeLiveStreamOnlineList');
+          }
+
+          let postBody = null;
+          let queryParams = {
+          };
+           if (opts.pageNum !== undefined && opts.pageNum !== null) {
+               queryParams['pageNum'] = opts.pageNum
+           }
+           if (opts.pageSize !== undefined && opts.pageSize !== null) {
+               queryParams['pageSize'] = opts.pageSize
+           }
+           if (opts.appName !== undefined && opts.appName !== null) {
+               queryParams['appName'] = opts.appName
+           }
+
+          let pathParams = {
+               'regionId': 'jdcloud',
+               'publishDomain': opts.publishDomain 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call describeLiveStreamOnlineList with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/streams/{publishDomain}/onlineList', 'GET', pathParams, queryParams,
+                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
+
+          return request.then(function (result) {
+            if (callback && typeof callback === 'function') {
+              return callback(null, result);
+            }
+            return result
+            }, function (error) {
+               if (callback && typeof callback === 'function') {
+                 return callback(error);
+               }
+               return Promise.reject(error)
+          });
+    }
+
+      /**
+      *  查看域名下推流记录
+      * @param {Object} opts - parameters
+      * @param {string} opts.publishDomain - 推流域名 
+      * @param {integer} [opts.pageNum] - 页码；默认为1；取值范围[1, 100000]  optional 
+      * @param {integer} [opts.pageSize] - 分页大小；默认为10；取值范围[10, 100]  optional 
+      * @param {string} [opts.appName] - 直播流所属应用名称  optional 
+      * @param {string} [opts.streamName] - 直播流名称  optional 
+      * @param {string} opts.startTime - 起始时间 
+      * @param {string} [opts.endTime] - 结束时间  optional 
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer pageNumber  当前页码
+      * @param integer pageSize  每页数量
+      * @param number totalCount  查询总数
+      * @param liveStreamPublishInfo liveStreamPublishInfos  
+      */
+
+    describeLiveStreamPublishList(opts, callback){
+
+         opts = opts || {};
+
+          if (opts.publishDomain === undefined || opts.publishDomain === null) {
+               throw new Error('Missing the required parameter \'opts.publishDomain\' when calling describeLiveStreamPublishList');
+          }
+          if (opts.startTime === undefined || opts.startTime === null) {
+               throw new Error('Missing the required parameter \'opts.startTime\' when calling describeLiveStreamPublishList');
+          }
+
+          let postBody = null;
+          let queryParams = {
+          };
+           if (opts.pageNum !== undefined && opts.pageNum !== null) {
+               queryParams['pageNum'] = opts.pageNum
+           }
+           if (opts.pageSize !== undefined && opts.pageSize !== null) {
+               queryParams['pageSize'] = opts.pageSize
+           }
+           if (opts.appName !== undefined && opts.appName !== null) {
+               queryParams['appName'] = opts.appName
+           }
+           if (opts.streamName !== undefined && opts.streamName !== null) {
+               queryParams['streamName'] = opts.streamName
+           }
+           if (opts.startTime !== undefined && opts.startTime !== null) {
+               queryParams['startTime'] = opts.startTime
+           }
+           if (opts.endTime !== undefined && opts.endTime !== null) {
+               queryParams['endTime'] = opts.endTime
+           }
+
+          let pathParams = {
+               'regionId': 'jdcloud',
+               'publishDomain': opts.publishDomain 
+          };
+
+         let headerParams = {
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
+          };
+          
+          let contentTypes = ['application/json'];
+          let accepts = ['application/json'];
+
+          // 扩展自定义头
+          if (opts['x-extra-header']) {
+            for (let extraHeader in opts['x-extra-header']) {
+              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+            }
+
+            if (Array.isArray(opts['x-extra-header']['content-type'])) {
+              contentTypes = opts['x-extra-header']['content-type']
+            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+              contentTypes = opts['x-extra-header']['content-type'].split(',')
+            }
+
+            if (Array.isArray(opts['x-extra-header']['accept'])) {
+              accepts = opts['x-extra-header']['accept']
+            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+              accepts = opts['x-extra-header']['accept'].split(',')
+            }
+          }
+
+          let formParams = {};
+
+          let returnType = null;
+
+          this.config.logger(`call describeLiveStreamPublishList with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+
+          let request = this.makeRequest('/streams/{publishDomain}/publishList', 'GET', pathParams, queryParams,
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
@@ -3360,7 +3482,6 @@ JDCloud.LIVE= class LIVE extends Service {
       * @param {string} opts.template - 转码模版 
       * @param {string} callback - callback
       @return {Object} result
-      * @param string publishDomain  直播的推流域名
       */
 
     addLiveStreamDomainTranscode(opts, callback){
@@ -3390,7 +3511,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -3438,14 +3559,13 @@ JDCloud.LIVE= class LIVE extends Service {
     }
 
       /**
-      *  添加app转码配置
+      *  添加APP转码配置
       * @param {Object} opts - parameters
       * @param {string} opts.publishDomain - 直播的推流域名 
       * @param {string} opts.template - 转码模版 
       * @param {string} opts.appName - 直播流所属应用名称 
       * @param {string} callback - callback
       @return {Object} result
-      * @param string publishDomain  直播的推流域名
       */
 
     addLiveStreamAppTranscode(opts, callback){
@@ -3481,7 +3601,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -3543,42 +3663,41 @@ JDCloud.LIVE= class LIVE extends Service {
       * @param {integer} opts.audioCodeRate - 转码输出音频码率 
       * @param {string} callback - callback
       @return {Object} result
-      * @param number templateId  模板ID
       */
 
-    addCustomLiveStreamTranscode(opts, callback){
+    addCustomLiveStreamTranscodeTemplate(opts, callback){
 
          opts = opts || {};
 
           if (opts.videoCodeRate === undefined || opts.videoCodeRate === null) {
-               throw new Error('Missing the required parameter \'opts.videoCodeRate\' when calling addCustomLiveStreamTranscode');
+               throw new Error('Missing the required parameter \'opts.videoCodeRate\' when calling addCustomLiveStreamTranscodeTemplate');
           }
           if (opts.videoFrameRate === undefined || opts.videoFrameRate === null) {
-               throw new Error('Missing the required parameter \'opts.videoFrameRate\' when calling addCustomLiveStreamTranscode');
+               throw new Error('Missing the required parameter \'opts.videoFrameRate\' when calling addCustomLiveStreamTranscodeTemplate');
           }
           if (opts.width === undefined || opts.width === null) {
-               throw new Error('Missing the required parameter \'opts.width\' when calling addCustomLiveStreamTranscode');
+               throw new Error('Missing the required parameter \'opts.width\' when calling addCustomLiveStreamTranscodeTemplate');
           }
           if (opts.height === undefined || opts.height === null) {
-               throw new Error('Missing the required parameter \'opts.height\' when calling addCustomLiveStreamTranscode');
+               throw new Error('Missing the required parameter \'opts.height\' when calling addCustomLiveStreamTranscodeTemplate');
           }
           if (opts.template === undefined || opts.template === null) {
-               throw new Error('Missing the required parameter \'opts.template\' when calling addCustomLiveStreamTranscode');
+               throw new Error('Missing the required parameter \'opts.template\' when calling addCustomLiveStreamTranscodeTemplate');
           }
           if (opts.audioCodec === undefined || opts.audioCodec === null) {
-               throw new Error('Missing the required parameter \'opts.audioCodec\' when calling addCustomLiveStreamTranscode');
+               throw new Error('Missing the required parameter \'opts.audioCodec\' when calling addCustomLiveStreamTranscodeTemplate');
           }
           if (opts.audioFormat === undefined || opts.audioFormat === null) {
-               throw new Error('Missing the required parameter \'opts.audioFormat\' when calling addCustomLiveStreamTranscode');
+               throw new Error('Missing the required parameter \'opts.audioFormat\' when calling addCustomLiveStreamTranscodeTemplate');
           }
           if (opts.audioSampleRate === undefined || opts.audioSampleRate === null) {
-               throw new Error('Missing the required parameter \'opts.audioSampleRate\' when calling addCustomLiveStreamTranscode');
+               throw new Error('Missing the required parameter \'opts.audioSampleRate\' when calling addCustomLiveStreamTranscodeTemplate');
           }
           if (opts.audioChannel === undefined || opts.audioChannel === null) {
-               throw new Error('Missing the required parameter \'opts.audioChannel\' when calling addCustomLiveStreamTranscode');
+               throw new Error('Missing the required parameter \'opts.audioChannel\' when calling addCustomLiveStreamTranscodeTemplate');
           }
           if (opts.audioCodeRate === undefined || opts.audioCodeRate === null) {
-               throw new Error('Missing the required parameter \'opts.audioCodeRate\' when calling addCustomLiveStreamTranscode');
+               throw new Error('Missing the required parameter \'opts.audioCodeRate\' when calling addCustomLiveStreamTranscodeTemplate');
           }
 
          let postBody =   {
@@ -3621,7 +3740,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -3650,7 +3769,7 @@ JDCloud.LIVE= class LIVE extends Service {
 
           let returnType = null;
 
-          this.config.logger(`call addCustomLiveStreamTranscode with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+          this.config.logger(`call addCustomLiveStreamTranscodeTemplate with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
 
           let request = this.makeRequest('/transcodeCustoms:template', 'POST', pathParams, queryParams,
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
@@ -3669,9 +3788,9 @@ JDCloud.LIVE= class LIVE extends Service {
     }
 
       /**
-      *  查询转码模板列表
+      *  查询用户自定义转码模板列表
       * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNum] - 页码；默认为1  optional 
+      * @param {integer} [opts.pageNum] - 页码；默认为1；取值范围[1, 100000]  optional 
       * @param {integer} [opts.pageSize] - 分页大小；默认为10；取值范围[10, 100]  optional 
       * @param {filter} [opts.filters] - 转码模板查询过滤条件, 不传递分页参数时默认返回10条  optional 
       * @param {string} callback - callback
@@ -3679,10 +3798,10 @@ JDCloud.LIVE= class LIVE extends Service {
       * @param integer pageNumber  当前页码
       * @param integer pageSize  每页数量
       * @param number totalCount  查询总数
-      * @param transcodeInfo transcodeTemplateList  
+      * @param transcodeInfo transcodeTemplates  
       */
 
-    describeCustomLiveStreamTranscodes(opts, callback){
+    describeCustomLiveStreamTranscodeTemplates(opts, callback){
 
          opts = opts || {};
 
@@ -3703,7 +3822,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -3732,7 +3851,7 @@ JDCloud.LIVE= class LIVE extends Service {
 
           let returnType = null;
 
-          this.config.logger(`call describeCustomLiveStreamTranscodes with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+          this.config.logger(`call describeCustomLiveStreamTranscodeTemplates with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
 
           let request = this.makeRequest('/transcodeCustoms', 'GET', pathParams, queryParams,
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
@@ -3753,8 +3872,8 @@ JDCloud.LIVE= class LIVE extends Service {
       /**
       *  查询转码模板配置
       * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNum] - 页码, 默认为1, 取值范围：[1,∞)  optional 
-      * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围：[10,100]  optional 
+      * @param {integer} [opts.pageNum] - 页码；默认为1；取值范围[1, 100000]  optional 
+      * @param {integer} [opts.pageSize] - 分页大小；默认为10；取值范围[10, 100]  optional 
       * @param {filter} [opts.filters] - 转码模板查询过滤条件, 不传递分页参数时默认返回10条  optional 
       * @param {string} callback - callback
       @return {Object} result
@@ -3785,7 +3904,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -3839,7 +3958,6 @@ JDCloud.LIVE= class LIVE extends Service {
       * @param {string} opts.template - 转码模版 
       * @param {string} callback - callback
       @return {Object} result
-      * @param string publishDomain  直播的推流域名
       */
 
     deleteLiveStreamDomainTranscode(opts, callback){
@@ -3864,7 +3982,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -3912,14 +4030,13 @@ JDCloud.LIVE= class LIVE extends Service {
     }
 
       /**
-      *  删除app转码配置
+      *  删除APP转码配置
       * @param {Object} opts - parameters
       * @param {string} opts.publishDomain - 推流加速域名 
       * @param {string} opts.appName - 直播流所属应用名称 
       * @param {string} opts.template - 转码模版 
       * @param {string} callback - callback
       @return {Object} result
-      * @param string publishDomain  直播的推流域名
       */
 
     deleteLiveStreamAppTranscode(opts, callback){
@@ -3948,7 +4065,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -3996,7 +4113,7 @@ JDCloud.LIVE= class LIVE extends Service {
     }
 
       /**
-      *  查询转码模板详情
+      *  查询用户自定义转码模板详情
       * @param {Object} opts - parameters
       * @param {string} opts.template - 转码模版 
       * @param {string} callback - callback
@@ -4013,12 +4130,12 @@ JDCloud.LIVE= class LIVE extends Service {
       * @param integer audioCodeRate  转码输出音频码率
       */
 
-    describeCustomLiveStreamTranscode(opts, callback){
+    describeCustomLiveStreamTranscodeTemplate(opts, callback){
 
          opts = opts || {};
 
           if (opts.template === undefined || opts.template === null) {
-               throw new Error('Missing the required parameter \'opts.template\' when calling describeCustomLiveStreamTranscode');
+               throw new Error('Missing the required parameter \'opts.template\' when calling describeCustomLiveStreamTranscodeTemplate');
           }
 
           let postBody = null;
@@ -4031,7 +4148,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -4060,7 +4177,7 @@ JDCloud.LIVE= class LIVE extends Service {
 
           let returnType = null;
 
-          this.config.logger(`call describeCustomLiveStreamTranscode with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+          this.config.logger(`call describeCustomLiveStreamTranscodeTemplate with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
 
           let request = this.makeRequest('/transcodeCustoms/{template}', 'GET', pathParams, queryParams,
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
@@ -4079,20 +4196,19 @@ JDCloud.LIVE= class LIVE extends Service {
     }
 
       /**
-      *  删除自定义转码模板
+      *  删除用户自定义转码模板
       * @param {Object} opts - parameters
       * @param {string} opts.template - 转码模版 
       * @param {string} callback - callback
       @return {Object} result
-      * @param string template  转码模板自定义名称
       */
 
-    deleteCustomLiveStreamTranscode(opts, callback){
+    deleteCustomLiveStreamTranscodeTemplate(opts, callback){
 
          opts = opts || {};
 
           if (opts.template === undefined || opts.template === null) {
-               throw new Error('Missing the required parameter \'opts.template\' when calling deleteCustomLiveStreamTranscode');
+               throw new Error('Missing the required parameter \'opts.template\' when calling deleteCustomLiveStreamTranscodeTemplate');
           }
 
           let postBody = null;
@@ -4105,7 +4221,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -4134,7 +4250,7 @@ JDCloud.LIVE= class LIVE extends Service {
 
           let returnType = null;
 
-          this.config.logger(`call deleteCustomLiveStreamTranscode with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
+          this.config.logger(`call deleteCustomLiveStreamTranscodeTemplate with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
 
           let request = this.makeRequest('/transcodeCustoms/{template}', 'DELETE', pathParams, queryParams,
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
@@ -4163,7 +4279,6 @@ JDCloud.LIVE= class LIVE extends Service {
       * @param {string} opts.url - 高 
       * @param {string} callback - callback
       @return {Object} result
-      * @param boolean feedback  返回结果
       */
 
     addCustomLiveStreamWatermarkTemplate(opts, callback){
@@ -4217,7 +4332,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -4267,7 +4382,7 @@ JDCloud.LIVE= class LIVE extends Service {
       /**
       *  查询录制模板列表
       * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNum] - 页码；默认为1  optional 
+      * @param {integer} [opts.pageNum] - 页码；默认为1；取值范围[1, 100000]  optional 
       * @param {integer} [opts.pageSize] - 分页大小；默认为10；取值范围[10, 100]  optional 
       * @param {filter} [opts.filters] - 录制模板列表查询过滤条件, 不传递分页参数时默认返回10条  optional 
       * @param {string} callback - callback
@@ -4299,7 +4414,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -4347,14 +4462,13 @@ JDCloud.LIVE= class LIVE extends Service {
     }
 
       /**
-      *  添加app水印配置
+      *  添加APP水印配置
       * @param {Object} opts - parameters
       * @param {string} opts.appName - 直播流所属应用名称 
       * @param {string} opts.publishDomain - 您的推流加速域名 
       * @param {string} opts.template - 录制模版 
       * @param {string} callback - callback
       @return {Object} result
-      * @param boolean feedback  返回结果
       */
 
     addLiveStreamAppWatermark(opts, callback){
@@ -4390,7 +4504,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -4444,7 +4558,6 @@ JDCloud.LIVE= class LIVE extends Service {
       * @param {string} opts.template - 录制模版 
       * @param {string} callback - callback
       @return {Object} result
-      * @param boolean feedback  返回结果
       */
 
     addLiveStreamDomainWatermark(opts, callback){
@@ -4474,7 +4587,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -4524,7 +4637,7 @@ JDCloud.LIVE= class LIVE extends Service {
       /**
       *  查询水印配置
       * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNum] - 页码；默认为1  optional 
+      * @param {integer} [opts.pageNum] - 页码；默认为1；取值范围[1, 100000]  optional 
       * @param {integer} [opts.pageSize] - 分页大小；默认为10；取值范围[10, 100]  optional 
       * @param {filter} [opts.filters] - 录制模板列表查询过滤条件, 不传递分页参数时默认返回10条  optional 
       * @param {string} callback - callback
@@ -4556,7 +4669,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -4604,12 +4717,11 @@ JDCloud.LIVE= class LIVE extends Service {
     }
 
       /**
-      *  删除直播水印模板
+      *  删除用户自定义水印模板
       * @param {Object} opts - parameters
       * @param {string} opts.template - 转码模版 
       * @param {string} callback - callback
       @return {Object} result
-      * @param string template  录制模板自定义名称
       */
 
     deleteCustomLiveStreamWatermarkTemplate(opts, callback){
@@ -4630,7 +4742,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -4678,14 +4790,13 @@ JDCloud.LIVE= class LIVE extends Service {
     }
 
       /**
-      *  删除app水印配置
+      *  删除APP水印配置
       * @param {Object} opts - parameters
       * @param {string} opts.publishDomain - 推流加速域名 
       * @param {string} opts.appName - 直播流所属应用名称 
       * @param {string} opts.template - 转码模版 
       * @param {string} callback - callback
       @return {Object} result
-      * @param boolean feedback  返回结果
       */
 
     deleteLiveStreamAppWatermark(opts, callback){
@@ -4714,7 +4825,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];
@@ -4768,7 +4879,6 @@ JDCloud.LIVE= class LIVE extends Service {
       * @param {string} opts.template - 转码模版 
       * @param {string} callback - callback
       @return {Object} result
-      * @param boolean feedback  返回结果
       */
 
     deleteLiveStreamDomainWatermark(opts, callback){
@@ -4793,7 +4903,7 @@ JDCloud.LIVE= class LIVE extends Service {
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.0',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.1',
           };
           
           let contentTypes = ['application/json'];

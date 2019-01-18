@@ -30,7 +30,7 @@ Service._services[serviceId] = true;
 
 /**
 * monitor service.
-* @version 1.2.5
+* @version 1.3.0
 */
 
 JDCloud.MONITOR= class MONITOR extends Service {
@@ -45,11 +45,12 @@ JDCloud.MONITOR= class MONITOR extends Service {
       /**
       *  查询报警历史
 检索条件组合优先级从高到低为
-1. serviceCode
-1.1 serviceCode + resourceId
-1.2 serviceCode + resourceIds
-2. serviceCodes
-3. 用户所有规则
+1. alarmId
+2. serviceCode
+2.1 serviceCode + resourceId
+2.2 serviceCode + resourceIds
+3. serviceCodes
+4. 用户所有规则
       * @param {Object} opts - parameters
       * @param {integer} [opts.pageNumber] - 当前所在页，默认为1  optional 
       * @param {integer} [opts.pageSize] - 页面大小，默认为20；取值范围[1, 100]  optional 
@@ -59,9 +60,12 @@ JDCloud.MONITOR= class MONITOR extends Service {
       * @param {integer} [opts.alarming] - 正在报警, 取值为1  optional 
       * @param {string} [opts.startTime] - 开始时间  optional 
       * @param {string} [opts.endTime] - 结束时间  optional 
+      * @param {integer} [opts.ruleType] - 规则类型,默认查询1， 1表示资源监控，6表示站点监控,7表示可用性监控  optional 
       * @param {filter} [opts.filters] - 服务码或资源Id列表
 filter name 为serviceCodes表示查询多个产品线的规则
 filter name 为resourceIds表示查询多个资源的规则  optional 
+      * @param {string} [opts.resourceIdList] - resourceId列表  optional 
+      * @param {string} [opts.serviceCodeList] - 产品线列表  optional 
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -109,14 +113,19 @@ filter name 为resourceIds表示查询多个资源的规则  optional
            if (opts.endTime !== undefined && opts.endTime !== null) {
                queryParams['endTime'] = opts.endTime
            }
+           if (opts.ruleType !== undefined && opts.ruleType !== null) {
+               queryParams['ruleType'] = opts.ruleType
+           }
           Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'));
+          Object.assign(queryParams, this.buildArrayParam(opts.resourceIdList, 'resourceIdList'));
+          Object.assign(queryParams, this.buildArrayParam(opts.serviceCodeList, 'serviceCodeList'));
 
           let pathParams = {
                'regionId': regionId,
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.5',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.3.0',
           };
           
           let contentTypes = ['application/json'];
@@ -165,16 +174,17 @@ filter name 为resourceIds表示查询多个资源的规则  optional
 
       /**
       *  查询规则, 查询参数组合及优先级从高到低为：
-1：serviceCode不为空
-1.1：serviceCode + resourceId
-1.2: serviceCode + resourceIds
-2：serviceCodes不为空
-3: 所有规则
+1：alarmId不为空
+2：serviceCode不为空
+2.1：serviceCode + resourceId
+2.2: serviceCode + resourceIds
+3：serviceCodes不为空
+4: 所有规则
       * @param {Object} opts - parameters
       * @param {integer} [opts.pageNumber] - 当前所在页，默认为1  optional 
       * @param {integer} [opts.pageSize] - 页面大小，默认为20；取值范围[1, 100]  optional 
       * @param {string} [opts.serviceCode] - 产品名称  optional 
-      * @param {string} [opts.resourceID] - 资源ID  optional 
+      * @param {string} [opts.resourceId] - 资源ID  optional 
       * @param {integer} [opts.ruleType] - 规则类型, 1表示资源监控，6表示站点监控,7表示可用性监控  optional 
       * @param {integer} [opts.status] - 规则报警状态, 1：正常, 2：报警，4：数据不足  optional 
       * @param {integer} [opts.enabled] - 规则状态：1为启用，0为禁用  optional 
@@ -215,8 +225,8 @@ filter name 为resourceIds表示查询多个资源的规则  optional
            if (opts.serviceCode !== undefined && opts.serviceCode !== null) {
                queryParams['serviceCode'] = opts.serviceCode
            }
-           if (opts.resourceID !== undefined && opts.resourceID !== null) {
-               queryParams['resourceID'] = opts.resourceID
+           if (opts.resourceId !== undefined && opts.resourceId !== null) {
+               queryParams['resourceId'] = opts.resourceId
            }
            if (opts.ruleType !== undefined && opts.ruleType !== null) {
                queryParams['ruleType'] = opts.ruleType
@@ -240,7 +250,7 @@ filter name 为resourceIds表示查询多个资源的规则  optional
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.5',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.3.0',
           };
           
           let contentTypes = ['application/json'];
@@ -333,7 +343,7 @@ filter name 为resourceIds表示查询多个资源的规则  optional
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.5',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.3.0',
           };
           
           let contentTypes = ['application/json'];
@@ -416,7 +426,7 @@ filter name 为resourceIds表示查询多个资源的规则  optional
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.5',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.3.0',
           };
           
           let contentTypes = ['application/json'];
@@ -526,7 +536,7 @@ filter name 为resourceIds表示查询多个资源的规则  optional
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.5',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.3.0',
           };
           
           let contentTypes = ['application/json'];
@@ -622,7 +632,7 @@ filter name 为resourceIds表示查询多个资源的规则  optional
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.5',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.3.0',
           };
           
           let contentTypes = ['application/json'];
@@ -705,7 +715,7 @@ filter name 为resourceIds表示查询多个资源的规则  optional
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.5',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.3.0',
           };
           
           let contentTypes = ['application/json'];
@@ -788,7 +798,7 @@ filter name 为resourceIds表示查询多个资源的规则  optional
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.5',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.3.0',
           };
           
           let contentTypes = ['application/json'];
@@ -838,20 +848,24 @@ filter name 为resourceIds表示查询多个资源的规则  optional
       /**
       *  查询报警历史
 检索条件组合优先级从高到低为
-1. serviceCode
-1.1 serviceCode + resourceId
-1.2 serviceCode + resourceIds
-2. serviceCodes
-3. 用户所有规则
+1. alarmId
+2. serviceCode
+2.1 serviceCode + resourceId
+2.2 serviceCode + resourceIds
+3. serviceCodes
+4. 用户所有规则
       * @param {Object} opts - parameters
       * @param {integer} [opts.pageNumber] - 当前所在页，默认为1  optional 
       * @param {integer} [opts.pageSize] - 页面大小，默认为20；取值范围[1, 100]  optional 
       * @param {string} [opts.serviceCode] - 产品线  optional 
       * @param {string} [opts.resourceId] - 资源Id  optional 
+      * @param {array} [opts.resourceIdList] - resourceId列表  optional 
       * @param {string} [opts.alarmId] - 规则Id  optional 
       * @param {integer} [opts.alarming] - 正在报警, 取值为1  optional 
+      * @param {array} [opts.serviceCodeList] - 产品线列表  optional 
       * @param {string} [opts.startTime] - 开始时间  optional 
       * @param {string} [opts.endTime] - 结束时间  optional 
+      * @param {integer} [opts.ruleType] - 规则类型,默认查询1， 1表示资源监控，6表示站点监控,7表示可用性监控  optional 
       * @param {array} [opts.filters] - 服务码或资源Id列表
 filter name 为serviceCodes表示查询多个产品线的规则
 filter name 为resourceIds表示查询多个资源的规则  optional 
@@ -880,17 +894,26 @@ filter name 为resourceIds表示查询多个资源的规则  optional
            if (opts.resourceId !== undefined && opts.resourceId !== null) {
                postBody['resourceId'] = opts.resourceId
            }
+           if (opts.resourceIdList !== undefined && opts.resourceIdList !== null) {
+               postBody['resourceIdList'] = opts.resourceIdList
+           }
            if (opts.alarmId !== undefined && opts.alarmId !== null) {
                postBody['alarmId'] = opts.alarmId
            }
            if (opts.alarming !== undefined && opts.alarming !== null) {
                postBody['alarming'] = opts.alarming
            }
+           if (opts.serviceCodeList !== undefined && opts.serviceCodeList !== null) {
+               postBody['serviceCodeList'] = opts.serviceCodeList
+           }
            if (opts.startTime !== undefined && opts.startTime !== null) {
                postBody['startTime'] = opts.startTime
            }
            if (opts.endTime !== undefined && opts.endTime !== null) {
                postBody['endTime'] = opts.endTime
+           }
+           if (opts.ruleType !== undefined && opts.ruleType !== null) {
+               postBody['ruleType'] = opts.ruleType
            }
            if (opts.filters !== undefined && opts.filters !== null) {
                postBody['filters'] = opts.filters
@@ -903,7 +926,7 @@ filter name 为resourceIds表示查询多个资源的规则  optional
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.5',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.3.0',
           };
           
           let contentTypes = ['application/json'];
@@ -934,7 +957,7 @@ filter name 为resourceIds表示查询多个资源的规则  optional
 
           this.config.logger(`call describeAlarmHistoryAllRegion with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
 
-          let request = this.makeRequest('/rule/queryNotice', 'POST', pathParams, queryParams,
+          let request = this.makeRequest('/ruleNoticeHistory', 'POST', pathParams, queryParams,
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
@@ -987,7 +1010,7 @@ filter name 为resourceIds表示查询多个资源的规则  optional
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.5',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.3.0',
           };
           
           let contentTypes = ['application/json'];
@@ -1018,121 +1041,7 @@ filter name 为resourceIds表示查询多个资源的规则  optional
 
           this.config.logger(`call deleteAlarmsCm with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
 
-          let request = this.makeRequest('/regions/{regionId}/cm/alarms', 'DELETE', pathParams, queryParams,
-                          headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
-
-          return request.then(function (result) {
-            if (callback && typeof callback === 'function') {
-              return callback(null, result);
-            }
-            return result
-            }, function (error) {
-               if (callback && typeof callback === 'function') {
-                 return callback(error);
-               }
-               return Promise.reject(error)
-          });
-    }
-
-      /**
-      *  查询自定义监控项数据
-      * @param {Object} opts - parameters
-      * @param {string} opts.namespace - namespace 
-      * @param {string} opts.metric - 监控项英文标识(id)，监控项名称 
-      * @param {string} [opts.aggrType] - 指标聚合方式，每个指标都有默认的聚合方式， 可选值包括：sum,avg.max.min；多个对象的数据如何合并(resourceId -&gt; cluster)  optional 
-      * @param {string} [opts.downSampleType] - 指标采样方式，默认avg， 可选值包括：sum,avg,max,min,last；同一对象的数据，在改变时间点粒度时如何合并(1m-&gt;20m)  optional 
-      * @param {string} [opts.startTime] - 查询时间范围的开始时间， UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ（默认为当前时间，早于30d时，将被重置为30d）  optional 
-      * @param {string} [opts.endTime] - 查询时间范围的结束时间， UTC时间，格式：2016-12- yyyy-MM-dd&#39;T&#39;HH:mm:ssZ（为空时，将由startTime与timeInterval计算得出）  optional 
-      * @param {string} [opts.timeInterval] - 时间间隔：1h，6h，12h，1d，3d，7d，14d，固定时间间隔，timeInterval 与 endTime 至少填一项  optional 
-      * @param {boolean} [opts.groupBy] - 是否对查询的tags分组  optional 
-      * @param {tagFilter} [opts.tags] - 自定义标签  optional 
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param metricData metricDatas  
-      */
-
-    describeCmMetricDataByTagSpec(opts, regionId = this.config.regionId, callback){
-         if (typeof regionId === 'function') {
-           callback = regionId
-           regionId = this.config.regionId
-         }
-
-          if (regionId === undefined || regionId === null) {
-               throw new Error('Missing the required parameter \'regionId\' when calling  describeCmMetricDataByTagSpec');
-          }
-
-         opts = opts || {};
-
-          if (opts.namespace === undefined || opts.namespace === null) {
-               throw new Error('Missing the required parameter \'opts.namespace\' when calling describeCmMetricDataByTagSpec');
-          }
-          if (opts.metric === undefined || opts.metric === null) {
-               throw new Error('Missing the required parameter \'opts.metric\' when calling describeCmMetricDataByTagSpec');
-          }
-
-          let postBody = null;
-          let queryParams = {
-          };
-           if (opts.aggrType !== undefined && opts.aggrType !== null) {
-               queryParams['aggrType'] = opts.aggrType
-           }
-           if (opts.downSampleType !== undefined && opts.downSampleType !== null) {
-               queryParams['downSampleType'] = opts.downSampleType
-           }
-           if (opts.startTime !== undefined && opts.startTime !== null) {
-               queryParams['startTime'] = opts.startTime
-           }
-           if (opts.endTime !== undefined && opts.endTime !== null) {
-               queryParams['endTime'] = opts.endTime
-           }
-           if (opts.timeInterval !== undefined && opts.timeInterval !== null) {
-               queryParams['timeInterval'] = opts.timeInterval
-           }
-           if (opts.groupBy !== undefined && opts.groupBy !== null) {
-               queryParams['groupBy'] = opts.groupBy
-           }
-          Object.assign(queryParams, this.buildTagFilterParam(opts.tags, 'tags'));
-
-          let pathParams = {
-               'regionId': regionId,
-               'namespace': opts.namespace ,
-               'metric': opts.metric 
-          };
-
-         let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.5',
-          };
-          
-          let contentTypes = ['application/json'];
-          let accepts = ['application/json'];
-
-          // 扩展自定义头
-          if (opts['x-extra-header']) {
-            for (let extraHeader in opts['x-extra-header']) {
-              headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-            }
-
-            if (Array.isArray(opts['x-extra-header']['content-type'])) {
-              contentTypes = opts['x-extra-header']['content-type']
-            } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-              contentTypes = opts['x-extra-header']['content-type'].split(',')
-            }
-
-            if (Array.isArray(opts['x-extra-header']['accept'])) {
-              accepts = opts['x-extra-header']['accept']
-            } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-              accepts = opts['x-extra-header']['accept'].split(',')
-            }
-          }
-
-          let formParams = {};
-
-          let returnType = null;
-
-          this.config.logger(`call describeCmMetricDataByTagSpec with params:\npathParams:${JSON.stringify(pathParams)},\nqueryParams:${JSON.stringify(queryParams)}, \nheaderParams:${JSON.stringify(headerParams)}, \nformParams:${JSON.stringify(formParams)}, \npostBody:${JSON.stringify(postBody)}`,"DEBUG");
-
-          let request = this.makeRequest('/regions/{regionId}/cm/namespaces/{namespace}/metrics/{metric}/metricData', 'GET', pathParams, queryParams,
+          let request = this.makeRequest('/regions/{regionId}/cmAlarms', 'DELETE', pathParams, queryParams,
                           headerParams, formParams, postBody, contentTypes, accepts, returnType, callback);
 
           return request.then(function (result) {
@@ -1177,7 +1086,7 @@ filter name 为resourceIds表示查询多个资源的规则  optional
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.5',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.3.0',
           };
           
           let contentTypes = ['application/json'];
@@ -1250,7 +1159,7 @@ filter name 为resourceIds表示查询多个资源的规则  optional
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.5',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.3.0',
           };
           
           let contentTypes = ['application/json'];
@@ -1302,7 +1211,7 @@ filter name 为resourceIds表示查询多个资源的规则  optional
       * @param {Object} opts - parameters
       * @param {string} opts.metric - 监控项英文标识(id) 
       * @param {string} opts.serviceCode - 资源的类型，取值vm, lb, ip, database 等 
-      * @param {string} opts.resourceId - 资源的uuid，支持多个resourceId批量查询，每个id用|分隔。 如：id1|id2|id3|id4 
+      * @param {string} opts.resourceId - 资源的uuid，支持多个resourceId批量查询，每个id用竖线&#39;|&#39;分隔。 如：id1|id2|id3|id4 
       * @param {string} [opts.startTime] - 查询时间范围的开始时间， UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ（默认为当前时间，早于30d时，将被重置为30d）  optional 
       * @param {string} [opts.endTime] - 查询时间范围的结束时间， UTC时间，格式：2016-12- yyyy-MM-dd&#39;T&#39;HH:mm:ssZ（为空时，将由startTime与timeInterval计算得出）  optional 
       * @param {string} [opts.timeInterval] - 查询的时间间隔，最大不超过30天，支持分钟级别,小时级别，天级别，例如：1m、1h、1d  optional 
@@ -1369,7 +1278,7 @@ filter name 为resourceIds表示查询多个资源的规则  optional
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.5',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.3.0',
           };
           
           let contentTypes = ['application/json'];
@@ -1420,14 +1329,16 @@ filter name 为resourceIds表示查询多个资源的规则  optional
       *  查看某资源多个监控项数据，metric介绍1：&lt;a href&#x3D;&quot;https://docs.jdcloud.com/cn/monitoring/metrics&quot;&gt;Metrics&lt;/a&gt;
       * @param {Object} opts - parameters
       * @param {string} opts.metric - 监控项英文标识(id) 
+      * @param {string} [opts.aggrType] - 聚合方式，默认等于downSampleType或avg，可选值参考http://opentsdb.net/docs/build/html/user_guide/query/aggregators.html?highlight&#x3D;zimsum#available-aggregators  optional 
+      * @param {string} [opts.downSampleType] - 采样方式，默认等于aggrType或avg，可选值参考http://opentsdb.net/docs/build/html/user_guide/query/aggregators.html?highlight&#x3D;avg#available-aggregators  optional 
+      * @param {string} [opts.startTime] - 查询时间范围的开始时间， UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ  optional 
+      * @param {string} [opts.endTime] - 查询时间范围的结束时间， UTC时间，格式：2016-12- yyyy-MM-dd&#39;T&#39;HH:mm:ssZ（为空时，将由startTime与timeInterval计算得出）  optional 
+      * @param {string} [opts.timeInterval] - 时间间隔：1h，6h，12h，1d，3d，7d，14d，固定时间间隔，timeInterval默认为1h，当前时间往 前1h  optional 
+      * @param {boolean} [opts.groupBy] - 是否对查询的tags分组  optional 
+      * @param {boolean} [opts.rate] - 是否求速率  optional 
       * @param {string} opts.serviceCode - 资源的类型，取值vm, lb, ip, database 等 
       * @param {string} opts.resourceId - 资源的uuid 
-      * @param {string} [opts.aggrType] - 指标聚合方式，每个指标都有默认的聚合方式， 可选值包括：sum,avg.max.min  optional 
-      * @param {string} [opts.startTime] - 查询时间范围的开始时间， UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ（默认为当前时间，早于30d时，将被重置为30d）  optional 
-      * @param {string} [opts.endTime] - 查询时间范围的结束时间， UTC时间，格式：2016-12- yyyy-MM-dd&#39;T&#39;HH:mm:ssZ（为空时，将由startTime与timeInterval计算得出）  optional 
-      * @param {string} [opts.timeInterval] - 时间间隔：1h，6h，12h，1d，3d，7d，14d，固定时间间隔，timeInterval 与 endTime 至少填一项  optional 
-      * @param {boolean} [opts.groupBy] - 是否对查询的tags分组  optional 
-      * @param {tagFilter} [opts.tags] - 自定义标签  optional 
+      * @param {tagFilter} [opts.tags] - 自定义标签/tag；至少要传一个tag，且tag.Values不为空  optional 
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1459,14 +1370,11 @@ filter name 为resourceIds表示查询多个资源的规则  optional
           let postBody = null;
           let queryParams = {
           };
-           if (opts.serviceCode !== undefined && opts.serviceCode !== null) {
-               queryParams['serviceCode'] = opts.serviceCode
-           }
-           if (opts.resourceId !== undefined && opts.resourceId !== null) {
-               queryParams['resourceId'] = opts.resourceId
-           }
            if (opts.aggrType !== undefined && opts.aggrType !== null) {
                queryParams['aggrType'] = opts.aggrType
+           }
+           if (opts.downSampleType !== undefined && opts.downSampleType !== null) {
+               queryParams['downSampleType'] = opts.downSampleType
            }
            if (opts.startTime !== undefined && opts.startTime !== null) {
                queryParams['startTime'] = opts.startTime
@@ -1480,6 +1388,15 @@ filter name 为resourceIds表示查询多个资源的规则  optional
            if (opts.groupBy !== undefined && opts.groupBy !== null) {
                queryParams['groupBy'] = opts.groupBy
            }
+           if (opts.rate !== undefined && opts.rate !== null) {
+               queryParams['rate'] = opts.rate
+           }
+           if (opts.serviceCode !== undefined && opts.serviceCode !== null) {
+               queryParams['serviceCode'] = opts.serviceCode
+           }
+           if (opts.resourceId !== undefined && opts.resourceId !== null) {
+               queryParams['resourceId'] = opts.resourceId
+           }
           Object.assign(queryParams, this.buildTagFilterParam(opts.tags, 'tags'));
 
           let pathParams = {
@@ -1488,7 +1405,7 @@ filter name 为resourceIds表示查询多个资源的规则  optional
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.5',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.3.0',
           };
           
           let contentTypes = ['application/json'];
@@ -1563,7 +1480,7 @@ filter name 为resourceIds表示查询多个资源的规则  optional
           };
 
          let headerParams = {
-               'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.2.5',
+               'User-Agent': 'JdcloudSdkNode/1.0.0  monitor/1.3.0',
           };
           
           let contentTypes = ['application/json'];

@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 云物理服务器
- * 云物理服务器子网操作相关的接口
+ * elite交付服务相关接口
+ * elite交付服务相关接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -24,20 +24,20 @@
 
 const JDCloud = require('../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'cps'
+var serviceId = 'elite'
 Service._services[serviceId] = true
 
 /**
- * cps service.
+ * elite service.
  */
 
-JDCloud.CPS = class CPS {
+JDCloud.ELITE = class ELITE {
   constructor (config = {}) {
     this.init(config)
     return new this.service(config)
   }
   init (config) {
-    let serviceName = 'cps'
+    let serviceName = 'elite'
     let version = config.version || JDCloud.config.version
     let versionFlag = 'v1'
     if (version && version[serviceName]) {
@@ -53,4 +53,4 @@ JDCloud.CPS = class CPS {
   }
 }
 
-module.exports = JDCloud.CPS
+module.exports = JDCloud.ELITE

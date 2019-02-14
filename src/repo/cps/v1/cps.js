@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * cps service.
- * @version 1.0.0
+ * @version 1.0.4
  */
 
 JDCloud.CPS = class CPS extends Service {
@@ -47,7 +47,7 @@ JDCloud.CPS = class CPS extends Service {
   /**
       *  查询云物理服务器支持的操作系统
       * @param {Object} opts - parameters
-      * @param {string} opts.deviceType - 云物理服务器类型，可调用接口（describeDeviceTypes）获取指定地域的服务器类型，例如：cps.s.normal,cps.c.normal
+      * @param {string} opts.deviceType - 实例类型，可调用接口（describeDeviceTypes）获取指定地域的实例类型，例如：cps.c.normal
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -85,20 +85,32 @@ JDCloud.CPS = class CPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.4'
     }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
 
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -131,114 +143,13 @@ JDCloud.CPS = class CPS extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询物理服务器可预装的软件列表&lt;br/&gt;
-可调用接口（describeOS）获取云物理服务器支持的操作系统列表&lt;br/&gt;
-
-      * @param {Object} opts - parameters
-      * @param {string} opts.osTypeId - 操作系统系统类型ID，调用接口（describeOS）获取云物理服务器支持的操作系统
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param software softwares
-      */
-
-  describeSoftware (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeSoftware"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.osTypeId === undefined || opts.osTypeId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.osTypeId' when calling describeSoftware"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      osTypeId: opts.osTypeId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.0'
-    }
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-    }
-
-    let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeSoftware with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/os/{osTypeId}/softwares',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback) {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -285,20 +196,32 @@ JDCloud.CPS = class CPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.4'
     }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
 
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -331,13 +254,13 @@ JDCloud.CPS = class CPS extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -394,20 +317,32 @@ JDCloud.CPS = class CPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.4'
     }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
 
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -440,13 +375,13 @@ JDCloud.CPS = class CPS extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -455,8 +390,9 @@ JDCloud.CPS = class CPS extends Service {
   }
 
   /**
-      *  查询云物理服务器类型
+      *  查询云物理服务器实例类型
       * @param {Object} opts - parameters
+      * @param {string} [opts.az] - 可用区，精确匹配  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -479,26 +415,41 @@ JDCloud.CPS = class CPS extends Service {
 
     let postBody = null
     let queryParams = {}
+    if (opts.az !== undefined && opts.az !== null) {
+      queryParams['az'] = opts.az
+    }
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.4'
     }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
 
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -531,13 +482,13 @@ JDCloud.CPS = class CPS extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -546,9 +497,9 @@ JDCloud.CPS = class CPS extends Service {
   }
 
   /**
-      *  查询云物理服务器支持的raid类型
+      *  查询某种实例类型的云物理服务器支持的RAID类型，可查询系统盘RAID类型和数据盘RAID类型
       * @param {Object} opts - parameters
-      * @param {string} opts.deviceType - 云物理服务器类型，可查询describeDeviceTypes接口获取指定地域的服务器类型，例如：cps.s.normal,cps.c.normal
+      * @param {string} opts.deviceType - 实例类型，可调用（describeDeviceTypes）接口获取指定地域的实例类型，例如：cps.c.normal
       * @param {string} [opts.volumeType] - 磁盘类型，取值范围：system、data  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -590,20 +541,32 @@ JDCloud.CPS = class CPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.4'
     }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
 
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -636,13 +599,13 @@ JDCloud.CPS = class CPS extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -651,16 +614,16 @@ JDCloud.CPS = class CPS extends Service {
   }
 
   /**
-      *  查询单个云物理服务器raid信息
+      *  查询单个云物理服务器已安装的RAID信息，包括系统盘RAID信息和数据盘RAID信息
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 云物理服务器ID
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param string sysRaidTypeId  系统盘raid类型Id
-      * @param string sysRaidType  系统盘raid类型
-      * @param string dataRaidTypeId  数据盘raid类型Id
-      * @param string dataRaidType  数据盘raid类型
+      * @param string sysRaidTypeId  系统盘RAID类型ID
+      * @param string sysRaidType  系统盘RAID类型
+      * @param string dataRaidTypeId  数据盘RAID类型ID
+      * @param string dataRaidType  数据盘RAID类型
       */
 
   describeInstanceRaid (opts, regionId = this.config.regionId, callback) {
@@ -692,20 +655,32 @@ JDCloud.CPS = class CPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.4'
     }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
 
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -738,13 +713,13 @@ JDCloud.CPS = class CPS extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -753,7 +728,7 @@ JDCloud.CPS = class CPS extends Service {
   }
 
   /**
-      *  查询单个云物理服务器监控信息
+      *  查询单个云物理服务器硬件监控信息
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 云物理服务器ID
       * @param {string} regionId - ID of the region
@@ -794,20 +769,32 @@ JDCloud.CPS = class CPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.4'
     }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
 
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -840,13 +827,13 @@ JDCloud.CPS = class CPS extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -900,20 +887,32 @@ JDCloud.CPS = class CPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.4'
     }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
 
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -946,13 +945,13 @@ JDCloud.CPS = class CPS extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -961,7 +960,7 @@ JDCloud.CPS = class CPS extends Service {
   }
 
   /**
-      *  停止单个云物理服务器，只能停止running状态的服务器
+      *  对单个云物理服务器执行关机操作，只能停止running状态的服务器
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 云物理服务器ID
       * @param {string} [opts.clientToken] - 由客户端生成，用于保证请求的幂等性，长度不能超过36个字符；&lt;br/&gt;
@@ -970,7 +969,7 @@ JDCloud.CPS = class CPS extends Service {
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param boolean success  停止操作是否成功
+      * @param boolean success  关机操作是否成功
       */
 
   stopInstance (opts, regionId = this.config.regionId, callback) {
@@ -1006,20 +1005,32 @@ JDCloud.CPS = class CPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.4'
     }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
 
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -1052,13 +1063,13 @@ JDCloud.CPS = class CPS extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -1067,7 +1078,7 @@ JDCloud.CPS = class CPS extends Service {
   }
 
   /**
-      *  启动单个云物理服务器，只能启动stopped状态的服务器
+      *  对单个云物理服务器执行开机操作，只能启动stopped状态的服务器
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 云物理服务器ID
       * @param {string} [opts.clientToken] - 由客户端生成，用于保证请求的幂等性，长度不能超过36个字符；&lt;br/&gt;
@@ -1076,7 +1087,7 @@ JDCloud.CPS = class CPS extends Service {
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param boolean success  启动操作是否成功
+      * @param boolean success  开机操作是否成功
       */
 
   startInstance (opts, regionId = this.config.regionId, callback) {
@@ -1112,20 +1123,32 @@ JDCloud.CPS = class CPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.4'
     }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
 
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -1158,13 +1181,13 @@ JDCloud.CPS = class CPS extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -1173,9 +1196,8 @@ JDCloud.CPS = class CPS extends Service {
   }
 
   /**
-      *  重装云物理服务器，只能重装stopped状态的服务器&lt;br&gt;
+      *  重装云物理服务器，只能重装stopped状态的服务器&lt;br/&gt;
 - 可调用接口（describeOS）获取云物理服务器支持的操作系统列表
-- 可调用接口（describeSoftware）获取云物理服务器支持的软件列表，也可以不预装软件
 
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 云物理服务器ID
@@ -1230,20 +1252,32 @@ JDCloud.CPS = class CPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.4'
     }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
 
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -1276,13 +1310,13 @@ JDCloud.CPS = class CPS extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -1291,7 +1325,7 @@ JDCloud.CPS = class CPS extends Service {
   }
 
   /**
-      *  升级云物理服务器外网带宽，只能操作running或者stopped状态的服务器&lt;br&gt;
+      *  升级云物理服务器外网带宽，只能操作running或者stopped状态的服务器&lt;br/&gt;
 - 不支持未启用外网的服务器升级带宽
 - 外网带宽不支持降级
 
@@ -1348,20 +1382,32 @@ JDCloud.CPS = class CPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.4'
     }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
 
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -1394,13 +1440,13 @@ JDCloud.CPS = class CPS extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -1447,20 +1493,32 @@ JDCloud.CPS = class CPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.4'
     }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
 
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -1493,13 +1551,13 @@ JDCloud.CPS = class CPS extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -1517,7 +1575,7 @@ JDCloud.CPS = class CPS extends Service {
       * @param {string} [opts.az] - 可用区，精确匹配  optional
       * @param {string} [opts.name] - 云物理服务器名称，支持模糊匹配  optional
       * @param {string} [opts.networkType] - 网络类型，精确匹配，目前只支持basic  optional
-      * @param {string} [opts.deviceType] - 服务器类型，精确匹配，调用接口（describeDeviceTypes）获取物理服务器类型列表  optional
+      * @param {string} [opts.deviceType] - 实例类型，精确匹配，调用接口（describeDeviceTypes）获取实例类型  optional
       * @param {string} [opts.status] - 云物理服务器状态，参考云物理服务器状态  optional
       * @param {filter} [opts.filters] - instanceId - 云物理服务器ID，精确匹配，支持多个
   optional
@@ -1574,20 +1632,32 @@ JDCloud.CPS = class CPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.4'
     }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
 
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -1620,13 +1690,13 @@ JDCloud.CPS = class CPS extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -1635,24 +1705,23 @@ JDCloud.CPS = class CPS extends Service {
   }
 
   /**
-      *  创建一台或多台指定配置的云物理服务器
-- 地域与可用区
-  - 调用接口（describeRegiones）获取云物理服务器支持的地域与可用区
-- 服务器规格类型
-  - 调用接口（describeDeviceTypes）获取物理服务器类型列表
-  - 不能使用已下线、或已售馨的规格ID
-- 操作系统和预装软件
-  - 可调用接口（describeOS）获取云物理服务器支持的操作系统列表
-  - 可调用接口（describeSoftware）获取云物理服务器支持的软件列表，也可以不预装软件
-- 存储
-  - 数据盘多种Raid可选，可调用接口（describeDeviceRaids）获取服务器支持的Raid列表
-- 网络
-  - 网络类型目前只支持basic
-  - 线路目前只支持bgp
-  - 支持不启用外网，如果启用外网，带宽范围[1,200] 单位Mbps
-- 其他
-  - 购买时长，可按年或月购买，最少购买时长1个月，最长36个月（3年）
-  - 密码设置参考公共参数规范
+      *  创建一台或多台指定配置的云物理服务器&lt;br/&gt;
+- 地域与可用区&lt;br/&gt;
+  - 调用接口（describeRegiones）获取云物理服务器支持的地域与可用区&lt;br/&gt;
+- 实例类型&lt;br/&gt;
+  - 调用接口（describeDeviceTypes）获取物理实例类型列表&lt;br/&gt;
+  - 不能使用已下线、或已售馨的实例类型&lt;br/&gt;
+- 操作系统和预装软件&lt;br/&gt;
+  - 可调用接口（describeOS）获取云物理服务器支持的操作系统列表&lt;br/&gt;
+- 存储&lt;br/&gt;
+  - 数据盘多种RAID可选，可调用接口（describeDeviceRaids）获取服务器支持的RAID列表&lt;br/&gt;
+- 网络&lt;br/&gt;
+  - 网络类型目前只支持basic&lt;br/&gt;
+  - 线路目前只支持bgp&lt;br/&gt;
+  - 支持不启用外网，如果启用外网，带宽范围[1,200] 单位Mbps&lt;br/&gt;
+- 其他&lt;br/&gt;
+  - 购买时长，可按年或月购买：月取值范围[1,9], 年取值范围[1,3]&lt;br/&gt;
+  - 密码设置参考公共参数规范&lt;br/&gt;
 
       * @param {Object} opts - parameters
       * @param {string} [opts.clientToken] - 由客户端生成，用于保证请求的幂等性，长度不能超过36个字符；&lt;br/&gt;
@@ -1700,20 +1769,32 @@ JDCloud.CPS = class CPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.4'
     }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
 
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -1746,13 +1827,13 @@ JDCloud.CPS = class CPS extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -1761,7 +1842,7 @@ JDCloud.CPS = class CPS extends Service {
   }
 
   /**
-      *  查询云物理服务器区域列表
+      *  查询云物理服务器地域列表
       * @param {Object} opts - parameters
       * @param {string} callback - callback
       @return {Object} result
@@ -1779,20 +1860,32 @@ JDCloud.CPS = class CPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.4'
     }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
 
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -1825,13 +1918,13 @@ JDCloud.CPS = class CPS extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -1842,7 +1935,7 @@ JDCloud.CPS = class CPS extends Service {
   /**
       *  查询子网
       * @param {Object} opts - parameters
-      * @param {string} opts.az - 可用区, 如cn-east-1a；可调用接口（describeRegiones）获取云物理服务器支持的可用区
+      * @param {string} opts.az - 可用区, 如cn-east-1a；可调用接口（describeRegiones）获取云物理服务器在该地域支持的可用区
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1880,20 +1973,32 @@ JDCloud.CPS = class CPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/1.0.4'
     }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
 
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -1926,13 +2031,13 @@ JDCloud.CPS = class CPS extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)

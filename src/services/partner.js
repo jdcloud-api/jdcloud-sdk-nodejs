@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Repository
- * 容器镜像仓库相关接口
+ * 返还规则
+ * 渠道管理平台返还规则
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -24,20 +24,20 @@
 
 const JDCloud = require('../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'containerregistry'
+var serviceId = 'partner'
 Service._services[serviceId] = true
 
 /**
- * containerregistry service.
+ * partner service.
  */
 
-JDCloud.CONTAINERREGISTRY = class CONTAINERREGISTRY {
+JDCloud.PARTNER = class PARTNER {
   constructor (config = {}) {
     this.init(config)
     return new this.service(config)
   }
   init (config) {
-    let serviceName = 'containerregistry'
+    let serviceName = 'partner'
     let version = config.version || JDCloud.config.version
     let versionFlag = 'v1'
     if (version && version[serviceName]) {
@@ -53,4 +53,4 @@ JDCloud.CONTAINERREGISTRY = class CONTAINERREGISTRY {
   }
 }
 
-module.exports = JDCloud.CONTAINERREGISTRY
+module.exports = JDCloud.PARTNER

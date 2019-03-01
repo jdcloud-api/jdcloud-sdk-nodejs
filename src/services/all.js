@@ -2,6 +2,7 @@ module.exports = {
   RDS: require('./rds'),
   JKE: require('./jke'),
   AMS: require('./ams'),
+  JDRO: require('./jdro'),
   VOD: require('./vod'),
   STREAMCOMPUTER: require('./streamcomputer'),
   IPANTI: require('./ipanti'),
@@ -34,6 +35,7 @@ module.exports = {
   MPS: require('./mps'),
   DISK: require('./disk'),
   CONTAINERREGISTRY: require('./containerregistry'),
+  PARTNER: require('./partner'),
   NC: require('./nc'),
   VM: require('./vm'),
   JDW: require('./jdw')

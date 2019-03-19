@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 用户管理接口
- * 用户管理接口
+ * 模板
+ * 模板相关操作接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -25,35 +25,40 @@
 require('../../../lib/node_loader')
 var JDCloud = require('../../../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'iam'
+var serviceId = 'jdro'
 Service._services[serviceId] = true
 
 /**
- * iam service.
- * @version 0.1.1
+ * jdro service.
+ * @version 0.0.4
  */
 
-JDCloud.IAM = class IAM extends Service {
+JDCloud.JDRO = class JDRO extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
       options._defaultEndpoint.protocol || 'https'
     options._defaultEndpoint.host =
-      options._defaultEndpoint.host || 'iam.jdcloud-api.com'
+      options._defaultEndpoint.host || 'jdro.jdcloud-api.com'
     options.basePath = '/v1' // 默认要设为空""
     super(serviceId, options)
   }
 
   /**
-      *  创建策略
+      *  查询支持的资源列表
       * @param {Object} opts - parameters
-      * @param {createPermissionInfo} opts.createPermissionInfo - 权限信息
+      * @param {integer} [opts.pageNumber] - 当前所在页，默认为1  optional
+      * @param {integer} [opts.pageSize] - 页面大小，默认为20；取值范围[1, 100]  optional
+      * @param {string} [opts.product] - 产品线类型，比如 VM  optional
+      * @param {string} [opts.search] - 搜索的内容  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param describeResourceTypeListItem resourceTypeList
+      * @param integer totalCount
       */
 
-  createPermission (opts, regionId = this.config.regionId, callback) {
+  describeResourceTypeList (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -61,37 +66,33 @@ JDCloud.IAM = class IAM extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  createPermission"
+        "Missing the required parameter 'regionId' when calling  describeResourceTypeList"
       )
     }
 
     opts = opts || {}
 
-    if (
-      opts.createPermissionInfo === undefined ||
-      opts.createPermissionInfo === null
-    ) {
-      throw new Error(
-        "Missing the required parameter 'opts.createPermissionInfo' when calling createPermission"
-      )
-    }
-
-    let postBody = {}
-    if (
-      opts.createPermissionInfo !== undefined &&
-      opts.createPermissionInfo !== null
-    ) {
-      postBody['createPermissionInfo'] = opts.createPermissionInfo
-    }
-
+    let postBody = null
     let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    if (opts.product !== undefined && opts.product !== null) {
+      queryParams['product'] = opts.product
+    }
+    if (opts.search !== undefined && opts.search !== null) {
+      queryParams['search'] = opts.search
+    }
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdro/0.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -121,7 +122,7 @@ JDCloud.IAM = class IAM extends Service {
     let returnType = null
 
     this.config.logger(
-      `call createPermission with params:\npathParams:${JSON.stringify(
+      `call describeResourceTypeList with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -134,7 +135,394 @@ JDCloud.IAM = class IAM extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/permission',
+      '/regions/{regionId}/resourcetypes',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询支持的资源结构详情
+      * @param {Object} opts - parameters
+      * @param {string} opts.resourceType - 资源类型
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param object propertyTypes
+      * @param resourceTypes resourceTypes
+      */
+
+  describeResourceTypeSpecification (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeResourceTypeSpecification"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.resourceType === undefined || opts.resourceType === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.resourceType' when calling describeResourceTypeSpecification"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      resourceType: opts.resourceType
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdro/0.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeResourceTypeSpecification with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/resourcetypes/{resourceType}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询资源栈列表
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 当前所在页，默认为1  optional
+      * @param {integer} [opts.pageSize] - 页面大小，默认为20；取值范围[1, 100]  optional
+      * @param {string} [opts.stackName] - 资源栈名称  optional
+      * @param {string} [opts.action] - 资源栈正在执行的动作  optional
+      * @param {string} [opts.status] - 资源栈正在执行的动作的状态  optional
+      * @param {string} [opts.createStartTime] - 创建开始时间  optional
+      * @param {string} [opts.createEndTime] - 创建结束时间  optional
+      * @param {string} [opts.updateStartTime] - 更新开始时间  optional
+      * @param {string} [opts.updateEndTime] - 更新结束时间  optional
+      * @param {string} [opts.sortField] - 排序字段, createtime, updatetime  optional
+      * @param {string} [opts.sortBy] - 排序方式，asc，desc  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param stackOut list
+      * @param integer totalCount
+      */
+
+  describeStacks (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeStacks"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    if (opts.stackName !== undefined && opts.stackName !== null) {
+      queryParams['stackName'] = opts.stackName
+    }
+    if (opts.action !== undefined && opts.action !== null) {
+      queryParams['action'] = opts.action
+    }
+    if (opts.status !== undefined && opts.status !== null) {
+      queryParams['status'] = opts.status
+    }
+    if (opts.createStartTime !== undefined && opts.createStartTime !== null) {
+      queryParams['createStartTime'] = opts.createStartTime
+    }
+    if (opts.createEndTime !== undefined && opts.createEndTime !== null) {
+      queryParams['createEndTime'] = opts.createEndTime
+    }
+    if (opts.updateStartTime !== undefined && opts.updateStartTime !== null) {
+      queryParams['updateStartTime'] = opts.updateStartTime
+    }
+    if (opts.updateEndTime !== undefined && opts.updateEndTime !== null) {
+      queryParams['updateEndTime'] = opts.updateEndTime
+    }
+    if (opts.sortField !== undefined && opts.sortField !== null) {
+      queryParams['sortField'] = opts.sortField
+    }
+    if (opts.sortBy !== undefined && opts.sortBy !== null) {
+      queryParams['sortBy'] = opts.sortBy
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdro/0.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeStacks with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/stacks',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建资源栈
+      * @param {Object} opts - parameters
+      * @param {environment} opts.environment
+      * @param {object} opts.template - 模板, JSON对象
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string stackID
+      */
+
+  createStack (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createStack"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.environment === undefined || opts.environment === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.environment' when calling createStack"
+      )
+    }
+    if (opts.template === undefined || opts.template === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.template' when calling createStack"
+      )
+    }
+
+    let postBody = {}
+    if (opts.environment !== undefined && opts.environment !== null) {
+      postBody['environment'] = opts.environment
+    }
+    if (opts.template !== undefined && opts.template !== null) {
+      postBody['template'] = opts.template
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdro/0.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createStack with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/stacks',
       'POST',
       pathParams,
       queryParams,
@@ -164,16 +552,16 @@ JDCloud.IAM = class IAM extends Service {
   }
 
   /**
-      *  查询策略详情
+      *  查询资源栈详情
       * @param {Object} opts - parameters
-      * @param {integer} opts.permissionId - 权限id
+      * @param {string} opts.stackId - 资源栈 ID
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param permission permission  权限信息
+      * @param stackOut stack
       */
 
-  describePermissionDetail (opts, regionId = this.config.regionId, callback) {
+  describeStack (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -181,15 +569,15 @@ JDCloud.IAM = class IAM extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describePermissionDetail"
+        "Missing the required parameter 'regionId' when calling  describeStack"
       )
     }
 
     opts = opts || {}
 
-    if (opts.permissionId === undefined || opts.permissionId === null) {
+    if (opts.stackId === undefined || opts.stackId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.permissionId' when calling describePermissionDetail"
+        "Missing the required parameter 'opts.stackId' when calling describeStack"
       )
     }
 
@@ -198,11 +586,11 @@ JDCloud.IAM = class IAM extends Service {
 
     let pathParams = {
       regionId: regionId,
-      permissionId: opts.permissionId
+      stackId: opts.stackId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdro/0.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -232,7 +620,7 @@ JDCloud.IAM = class IAM extends Service {
     let returnType = null
 
     this.config.logger(
-      `call describePermissionDetail with params:\npathParams:${JSON.stringify(
+      `call describeStack with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -245,7 +633,7 @@ JDCloud.IAM = class IAM extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/permission/{permissionId}',
+      '/regions/{regionId}/stacks/{stackId}',
       'GET',
       pathParams,
       queryParams,
@@ -275,16 +663,16 @@ JDCloud.IAM = class IAM extends Service {
   }
 
   /**
-      *  修改策略
+      *  删除资源栈
       * @param {Object} opts - parameters
-      * @param {integer} opts.permissionId - 权限id
-      * @param {updatePermissionInfo} opts.updatePermissionInfo - 权限信息
+      * @param {string} opts.stackId - 资源栈 ID
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param string details
       */
 
-  updatePermission (opts, regionId = this.config.regionId, callback) {
+  deleteStack (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -292,538 +680,15 @@ JDCloud.IAM = class IAM extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  updatePermission"
+        "Missing the required parameter 'regionId' when calling  deleteStack"
       )
     }
 
     opts = opts || {}
 
-    if (opts.permissionId === undefined || opts.permissionId === null) {
+    if (opts.stackId === undefined || opts.stackId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.permissionId' when calling updatePermission"
-      )
-    }
-    if (
-      opts.updatePermissionInfo === undefined ||
-      opts.updatePermissionInfo === null
-    ) {
-      throw new Error(
-        "Missing the required parameter 'opts.updatePermissionInfo' when calling updatePermission"
-      )
-    }
-
-    let postBody = {}
-    if (
-      opts.updatePermissionInfo !== undefined &&
-      opts.updatePermissionInfo !== null
-    ) {
-      postBody['updatePermissionInfo'] = opts.updatePermissionInfo
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      permissionId: opts.permissionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.1'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call updatePermission with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/permission/{permissionId}',
-      'PUT',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询策略列表
-      * @param {Object} opts - parameters
-      * @param {integer} opts.pageNumber - 页码
-      * @param {integer} opts.pageSize - 每页显示数目
-      * @param {string} [opts.keyword] - 关键字  optional
-      * @param {integer} opts.queryType - 权限类型,0-全部，1-系统权限，2-自定义权限
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param integer total  总数
-      * @param permission permissions
-      */
-
-  describePermissions (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  describePermissions"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.pageNumber === undefined || opts.pageNumber === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.pageNumber' when calling describePermissions"
-      )
-    }
-    if (opts.pageSize === undefined || opts.pageSize === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.pageSize' when calling describePermissions"
-      )
-    }
-    if (opts.queryType === undefined || opts.queryType === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.queryType' when calling describePermissions"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
-      queryParams['pageNumber'] = opts.pageNumber
-    }
-    if (opts.pageSize !== undefined && opts.pageSize !== null) {
-      queryParams['pageSize'] = opts.pageSize
-    }
-    if (opts.keyword !== undefined && opts.keyword !== null) {
-      queryParams['keyword'] = opts.keyword
-    }
-    if (opts.queryType !== undefined && opts.queryType !== null) {
-      queryParams['queryType'] = opts.queryType
-    }
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.1'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describePermissions with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/permissions',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询子用户策略列表
-      * @param {Object} opts - parameters
-      * @param {string} opts.subUser - 子用户用户名
-      * @param {integer} opts.pageNumber - 页码
-      * @param {integer} opts.pageSize - 每页显示数目
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param integer total  总数
-      * @param permission permissions
-      */
-
-  describeSubUserPermissions (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeSubUserPermissions"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.subUser === undefined || opts.subUser === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.subUser' when calling describeSubUserPermissions"
-      )
-    }
-    if (opts.pageNumber === undefined || opts.pageNumber === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.pageNumber' when calling describeSubUserPermissions"
-      )
-    }
-    if (opts.pageSize === undefined || opts.pageSize === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.pageSize' when calling describeSubUserPermissions"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
-      queryParams['pageNumber'] = opts.pageNumber
-    }
-    if (opts.pageSize !== undefined && opts.pageSize !== null) {
-      queryParams['pageSize'] = opts.pageSize
-    }
-
-    let pathParams = {
-      regionId: regionId,
-      subUser: opts.subUser
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.1'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeSubUserPermissions with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/subUser/{subUser}/permisssions',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  为子用户绑定策略
-      * @param {Object} opts - parameters
-      * @param {string} opts.subUser - 子用户用户名
-      * @param {addPermissionsInfo} opts.addPermissionsInfo - 权限信息
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  addPermissionsToSubUser (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  addPermissionsToSubUser"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.subUser === undefined || opts.subUser === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.subUser' when calling addPermissionsToSubUser"
-      )
-    }
-    if (
-      opts.addPermissionsInfo === undefined ||
-      opts.addPermissionsInfo === null
-    ) {
-      throw new Error(
-        "Missing the required parameter 'opts.addPermissionsInfo' when calling addPermissionsToSubUser"
-      )
-    }
-
-    let postBody = {}
-    if (
-      opts.addPermissionsInfo !== undefined &&
-      opts.addPermissionsInfo !== null
-    ) {
-      postBody['addPermissionsInfo'] = opts.addPermissionsInfo
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      subUser: opts.subUser
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.1'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call addPermissionsToSubUser with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/subUser/{subUser}/permisssions',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  为子用户解绑策略
-      * @param {Object} opts - parameters
-      * @param {integer} opts.permissionId - 权限id
-      * @param {string} opts.subUser - 子用户用户名
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  removePermissionOfSubUser (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  removePermissionOfSubUser"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.permissionId === undefined || opts.permissionId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.permissionId' when calling removePermissionOfSubUser"
-      )
-    }
-    if (opts.subUser === undefined || opts.subUser === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.subUser' when calling removePermissionOfSubUser"
+        "Missing the required parameter 'opts.stackId' when calling deleteStack"
       )
     }
 
@@ -832,12 +697,11 @@ JDCloud.IAM = class IAM extends Service {
 
     let pathParams = {
       regionId: regionId,
-      permissionId: opts.permissionId,
-      subUser: opts.subUser
+      stackId: opts.stackId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdro/0.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -867,7 +731,7 @@ JDCloud.IAM = class IAM extends Service {
     let returnType = null
 
     this.config.logger(
-      `call removePermissionOfSubUser with params:\npathParams:${JSON.stringify(
+      `call deleteStack with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -880,7 +744,7 @@ JDCloud.IAM = class IAM extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/subUser/{subUser}/permissions/{permissionId}',
+      '/regions/{regionId}/stacks/{stackId}',
       'DELETE',
       pathParams,
       queryParams,
@@ -910,16 +774,18 @@ JDCloud.IAM = class IAM extends Service {
   }
 
   /**
-      *  获取SessionToken
+      *  创建更改集
       * @param {Object} opts - parameters
-      * @param {getSessionTokenInfo} opts.getSessionTokenInfo - 获取sessionToken参数
+      * @param {string} opts.stackId - 资源栈 ID
+      * @param {environment} opts.environment
+      * @param {object} opts.template - 模板, JSON对象
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param string sessionToken  安全令牌
+      * @param string id
       */
 
-  getSessionToken (opts, regionId = this.config.regionId, callback) {
+  createChangeSet (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -927,37 +793,45 @@ JDCloud.IAM = class IAM extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  getSessionToken"
+        "Missing the required parameter 'regionId' when calling  createChangeSet"
       )
     }
 
     opts = opts || {}
 
-    if (
-      opts.getSessionTokenInfo === undefined ||
-      opts.getSessionTokenInfo === null
-    ) {
+    if (opts.stackId === undefined || opts.stackId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.getSessionTokenInfo' when calling getSessionToken"
+        "Missing the required parameter 'opts.stackId' when calling createChangeSet"
+      )
+    }
+    if (opts.environment === undefined || opts.environment === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.environment' when calling createChangeSet"
+      )
+    }
+    if (opts.template === undefined || opts.template === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.template' when calling createChangeSet"
       )
     }
 
     let postBody = {}
-    if (
-      opts.getSessionTokenInfo !== undefined &&
-      opts.getSessionTokenInfo !== null
-    ) {
-      postBody['getSessionTokenInfo'] = opts.getSessionTokenInfo
+    if (opts.environment !== undefined && opts.environment !== null) {
+      postBody['environment'] = opts.environment
+    }
+    if (opts.template !== undefined && opts.template !== null) {
+      postBody['template'] = opts.template
     }
 
     let queryParams = {}
 
     let pathParams = {
-      regionId: regionId
+      regionId: regionId,
+      stackId: opts.stackId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdro/0.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -987,7 +861,7 @@ JDCloud.IAM = class IAM extends Service {
     let returnType = null
 
     this.config.logger(
-      `call getSessionToken with params:\npathParams:${JSON.stringify(
+      `call createChangeSet with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1000,7 +874,7 @@ JDCloud.IAM = class IAM extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/securityToken:getSessionToken',
+      '/regions/{regionId}/stacks/{stackId}/changesets',
       'POST',
       pathParams,
       queryParams,
@@ -1030,15 +904,16 @@ JDCloud.IAM = class IAM extends Service {
   }
 
   /**
-      *  验证SessionToken有效性
+      *  执行更改集
       * @param {Object} opts - parameters
-      * @param {verifySessionTokenInfo} opts.verifySessionTokenInfo - 验证sessionToken参数
+      * @param {string} opts.stackId - 资源栈 ID
+      * @param {string} opts.changesetId - 更改集 ID
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       */
 
-  verifySessionToken (opts, regionId = this.config.regionId, callback) {
+  executeChangeSet (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -1046,37 +921,35 @@ JDCloud.IAM = class IAM extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  verifySessionToken"
+        "Missing the required parameter 'regionId' when calling  executeChangeSet"
       )
     }
 
     opts = opts || {}
 
-    if (
-      opts.verifySessionTokenInfo === undefined ||
-      opts.verifySessionTokenInfo === null
-    ) {
+    if (opts.stackId === undefined || opts.stackId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.verifySessionTokenInfo' when calling verifySessionToken"
+        "Missing the required parameter 'opts.stackId' when calling executeChangeSet"
+      )
+    }
+    if (opts.changesetId === undefined || opts.changesetId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.changesetId' when calling executeChangeSet"
       )
     }
 
     let postBody = {}
-    if (
-      opts.verifySessionTokenInfo !== undefined &&
-      opts.verifySessionTokenInfo !== null
-    ) {
-      postBody['verifySessionTokenInfo'] = opts.verifySessionTokenInfo
-    }
 
     let queryParams = {}
 
     let pathParams = {
-      regionId: regionId
+      regionId: regionId,
+      stackId: opts.stackId,
+      changesetId: opts.changesetId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdro/0.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -1106,7 +979,7 @@ JDCloud.IAM = class IAM extends Service {
     let returnType = null
 
     this.config.logger(
-      `call verifySessionToken with params:\npathParams:${JSON.stringify(
+      `call executeChangeSet with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1119,7 +992,7 @@ JDCloud.IAM = class IAM extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/securityToken:verifySessionToken',
+      '/regions/{regionId}/stacks/{stackId}/changesets/{changesetId}',
       'POST',
       pathParams,
       queryParams,
@@ -1149,15 +1022,21 @@ JDCloud.IAM = class IAM extends Service {
   }
 
   /**
-      *  创建子账号
+      *  查询资源栈事件列表
       * @param {Object} opts - parameters
-      * @param {createSubUserInfo} opts.createSubUserInfo - 子账号信息
+      * @param {string} opts.stackId - 资源栈 ID
+      * @param {integer} [opts.pageNumber] - 当前所在页，默认为1  optional
+      * @param {integer} [opts.pageSize] - 页面大小，默认为20；取值范围[1, 100]  optional
+      * @param {string} [opts.startTime] - 事件开始时间  optional
+      * @param {string} [opts.endTime] - 事件结束时间  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param eventOut list
+      * @param integer totalCount
       */
 
-  createSubuser (opts, regionId = this.config.regionId, callback) {
+  describeStackEvents (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -1165,140 +1044,40 @@ JDCloud.IAM = class IAM extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  createSubuser"
+        "Missing the required parameter 'regionId' when calling  describeStackEvents"
       )
     }
 
     opts = opts || {}
 
-    if (
-      opts.createSubUserInfo === undefined ||
-      opts.createSubUserInfo === null
-    ) {
+    if (opts.stackId === undefined || opts.stackId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.createSubUserInfo' when calling createSubuser"
+        "Missing the required parameter 'opts.stackId' when calling describeStackEvents"
       )
     }
-
-    let postBody = {}
-    if (
-      opts.createSubUserInfo !== undefined &&
-      opts.createSubUserInfo !== null
-    ) {
-      postBody['createSubUserInfo'] = opts.createSubUserInfo
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.1'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call createSubuser with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/subUser',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询AccessKey列表
-      * @param {Object} opts - parameters
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param userAccessKey userAccessKeys
-      */
-
-  describeUserAccessKeys (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeUserAccessKeys"
-      )
-    }
-
-    opts = opts || {}
 
     let postBody = null
     let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
 
     let pathParams = {
-      regionId: regionId
+      regionId: regionId,
+      stackId: opts.stackId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdro/0.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -1328,7 +1107,7 @@ JDCloud.IAM = class IAM extends Service {
     let returnType = null
 
     this.config.logger(
-      `call describeUserAccessKeys with params:\npathParams:${JSON.stringify(
+      `call describeStackEvents with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1341,7 +1120,7 @@ JDCloud.IAM = class IAM extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/userAccessKeys',
+      '/regions/{regionId}/stacks/{stackId}/events',
       'GET',
       pathParams,
       queryParams,
@@ -1371,14 +1150,21 @@ JDCloud.IAM = class IAM extends Service {
   }
 
   /**
-      *  创建AccessKey
+      *  查询资源栈中资源列表
       * @param {Object} opts - parameters
+      * @param {string} opts.stackId - 资源栈 ID
+      * @param {integer} [opts.pageNumber] - 当前所在页，默认为1  optional
+      * @param {integer} [opts.pageSize] - 页面大小，默认为20；取值范围[1, 100]  optional
+      * @param {string} [opts.search] - 按照京东云产品线名称或者资源逻辑ID进行模糊搜索  optional
+      * @param {string} [opts.product] - 只按照京东云产品线名称进行模糊搜索，比如VM，Disk等  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param resourceOut list
+      * @param integer totalCount
       */
 
-  createUserAccessKey (opts, regionId = this.config.regionId, callback) {
+  describeStackResources (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -1386,133 +1172,40 @@ JDCloud.IAM = class IAM extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  createUserAccessKey"
+        "Missing the required parameter 'regionId' when calling  describeStackResources"
       )
     }
 
     opts = opts || {}
 
-    let postBody = {}
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.1'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call createUserAccessKey with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/userAccessKey',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  启用AccessKey
-      * @param {Object} opts - parameters
-      * @param {string} opts.accessKey - accessKey
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  enabledUserAccessKey (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
+    if (opts.stackId === undefined || opts.stackId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  enabledUserAccessKey"
+        "Missing the required parameter 'opts.stackId' when calling describeStackResources"
       )
     }
 
-    opts = opts || {}
-
-    if (opts.accessKey === undefined || opts.accessKey === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.accessKey' when calling enabledUserAccessKey"
-      )
-    }
-
-    let postBody = {}
-
+    let postBody = null
     let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    if (opts.search !== undefined && opts.search !== null) {
+      queryParams['search'] = opts.search
+    }
+    if (opts.product !== undefined && opts.product !== null) {
+      queryParams['product'] = opts.product
+    }
 
     let pathParams = {
       regionId: regionId,
-      accessKey: opts.accessKey
+      stackId: opts.stackId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdro/0.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -1542,7 +1235,7 @@ JDCloud.IAM = class IAM extends Service {
     let returnType = null
 
     this.config.logger(
-      `call enabledUserAccessKey with params:\npathParams:${JSON.stringify(
+      `call describeStackResources with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1555,8 +1248,8 @@ JDCloud.IAM = class IAM extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/userAccessKey/{accessKey}:enabled',
-      'PUT',
+      '/regions/{regionId}/stacks/{stackId}/resources',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -1585,15 +1278,16 @@ JDCloud.IAM = class IAM extends Service {
   }
 
   /**
-      *  禁用AccessKey
+      *  查询资源栈使用的模板
       * @param {Object} opts - parameters
-      * @param {string} opts.accessKey - accessKey
+      * @param {string} opts.stackId - 资源栈 ID
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param string template  模板信息
       */
 
-  disabledUserAccessKey (opts, regionId = this.config.regionId, callback) {
+  describeStackTemplate (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -1601,126 +1295,15 @@ JDCloud.IAM = class IAM extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  disabledUserAccessKey"
+        "Missing the required parameter 'regionId' when calling  describeStackTemplate"
       )
     }
 
     opts = opts || {}
 
-    if (opts.accessKey === undefined || opts.accessKey === null) {
+    if (opts.stackId === undefined || opts.stackId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.accessKey' when calling disabledUserAccessKey"
-      )
-    }
-
-    let postBody = {}
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      accessKey: opts.accessKey
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.1'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call disabledUserAccessKey with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/userAccessKey/{accessKey}:disabled',
-      'PUT',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  删除AccessKey
-      * @param {Object} opts - parameters
-      * @param {string} opts.accessKey - accessKey
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  deleteUserAccessKey (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  deleteUserAccessKey"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.accessKey === undefined || opts.accessKey === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.accessKey' when calling deleteUserAccessKey"
+        "Missing the required parameter 'opts.stackId' when calling describeStackTemplate"
       )
     }
 
@@ -1729,11 +1312,11 @@ JDCloud.IAM = class IAM extends Service {
 
     let pathParams = {
       regionId: regionId,
-      accessKey: opts.accessKey
+      stackId: opts.stackId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdro/0.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -1763,7 +1346,7 @@ JDCloud.IAM = class IAM extends Service {
     let returnType = null
 
     this.config.logger(
-      `call deleteUserAccessKey with params:\npathParams:${JSON.stringify(
+      `call describeStackTemplate with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1776,8 +1359,131 @@ JDCloud.IAM = class IAM extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/userAccessKey/{accessKey}',
-      'DELETE',
+      '/regions/{regionId}/stacks/{stackId}/template',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  模板校验
+      * @param {Object} opts - parameters
+      * @param {environment} [opts.environment]   optional
+      * @param {object} opts.template - 模板
+      * @param {string} [opts.validateMode] - 可取值:(validateTemplate (检测模板), validateStack (检测模板和environment)) 默认validateTemplate  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string describe
+      * @param object result  验证模板结果信息，JSON格式
+      */
+
+  validateTemplate (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  validateTemplate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.template === undefined || opts.template === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.template' when calling validateTemplate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.environment !== undefined && opts.environment !== null) {
+      postBody['environment'] = opts.environment
+    }
+    if (opts.template !== undefined && opts.template !== null) {
+      postBody['template'] = opts.template
+    }
+    if (opts.validateMode !== undefined && opts.validateMode !== null) {
+      postBody['validateMode'] = opts.validateMode
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdro/0.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call validateTemplate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/templateValidate',
+      'POST',
       pathParams,
       queryParams,
       headerParams,
@@ -1805,4 +1511,4 @@ JDCloud.IAM = class IAM extends Service {
     )
   }
 }
-module.exports = JDCloud.IAM
+module.exports = JDCloud.JDRO

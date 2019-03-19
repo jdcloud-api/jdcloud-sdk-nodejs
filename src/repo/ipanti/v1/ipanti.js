@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 网站转发配置相关接口
- * 网站转发配置相关接口
+ * Anti DDos Pro Web Rule Configuration APIs
+ * Anti DDos Pro Web Rule Configuration APIs
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * ipanti service.
- * @version 1.0.1
+ * @version 1.3.0
  */
 
 JDCloud.IPANTI = class IPANTI extends Service {
@@ -45,21 +45,23 @@ JDCloud.IPANTI = class IPANTI extends Service {
   }
 
   /**
-      *  查询DDos攻击日志
+      *  查询 DDos 攻击日志
       * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
-      * @param {integer} [opts.pageSize] - 分页大小；默认为10；取值范围[10, 100]  optional
-      * @param {string} opts.startTime - 开始时间，最多查最近30天，UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-      * @param {string} opts.endTime - 查询的结束时间，UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-      * @param {string} [opts.instanceId] - 高防实例id  optional
+      * @param {integer} [opts.pageNumber] - 页码, 默认为1  optional
+      * @param {integer} [opts.pageSize] - 分页大小, 默认为10, 取值范围[10, 100]  optional
+      * @param {string} opts.startTime - 开始时间, 只能查询最近 60 天以内的数据, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} opts.endTime - 查询的结束时间, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {integer} [opts.instanceId] - 高防实例 ID  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       * @param dDosAttackLog dataList
-      * @param integer totalCount
+      * @param integer currentCount  当前页数量
+      * @param integer totalCount  实例总数
+      * @param integer totalPage  总页数
       */
 
-  describeDDosAttackLogs (opts, regionId = this.config.regionId, callback) {
+  describeDDoSAttackLogs (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -67,7 +69,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeDDosAttackLogs"
+        "Missing the required parameter 'regionId' when calling  describeDDoSAttackLogs"
       )
     }
 
@@ -75,12 +77,12 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     if (opts.startTime === undefined || opts.startTime === null) {
       throw new Error(
-        "Missing the required parameter 'opts.startTime' when calling describeDDosAttackLogs"
+        "Missing the required parameter 'opts.startTime' when calling describeDDoSAttackLogs"
       )
     }
     if (opts.endTime === undefined || opts.endTime === null) {
       throw new Error(
-        "Missing the required parameter 'opts.endTime' when calling describeDDosAttackLogs"
+        "Missing the required parameter 'opts.endTime' when calling describeDDoSAttackLogs"
       )
     }
 
@@ -108,18 +110,37 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
 
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
     let returnType = null
 
     this.config.logger(
-      `call describeDDosAttackLogs with params:\npathParams:${JSON.stringify(
+      `call describeDDoSAttackLogs with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -132,7 +153,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/attacklog:ddos',
+      '/regions/{regionId}/attacklog:DDoS',
       'GET',
       pathParams,
       queryParams,
@@ -147,13 +168,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -162,21 +183,23 @@ JDCloud.IPANTI = class IPANTI extends Service {
   }
 
   /**
-      *  查询cc攻击日志
+      *  查询 CC 攻击日志
       * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
-      * @param {integer} [opts.pageSize] - 分页大小；默认为10；取值范围[10, 100]  optional
-      * @param {string} opts.startTime - 开始时间，最多查最近30天，UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-      * @param {string} opts.endTime - 查询的结束时间，UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-      * @param {string} [opts.instanceId] - 高防实例id  optional
+      * @param {integer} [opts.pageNumber] - 页码, 默认为1  optional
+      * @param {integer} [opts.pageSize] - 分页大小, 默认为10, 取值范围[10, 100]  optional
+      * @param {string} opts.startTime - 开始时间, 只能查询最近 60 天以内的数据, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} opts.endTime - 查询的结束时间, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {integer} [opts.instanceId] - 高防实例 ID  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       * @param dDosAttackLog dataList
-      * @param integer totalCount
+      * @param integer currentCount  当前页数量
+      * @param integer totalCount  实例总数
+      * @param integer totalPage  总页数
       */
 
-  describeCcAttackLogs (opts, regionId = this.config.regionId, callback) {
+  describeCCAttackLogs (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -184,7 +207,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeCcAttackLogs"
+        "Missing the required parameter 'regionId' when calling  describeCCAttackLogs"
       )
     }
 
@@ -192,12 +215,12 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     if (opts.startTime === undefined || opts.startTime === null) {
       throw new Error(
-        "Missing the required parameter 'opts.startTime' when calling describeCcAttackLogs"
+        "Missing the required parameter 'opts.startTime' when calling describeCCAttackLogs"
       )
     }
     if (opts.endTime === undefined || opts.endTime === null) {
       throw new Error(
-        "Missing the required parameter 'opts.endTime' when calling describeCcAttackLogs"
+        "Missing the required parameter 'opts.endTime' when calling describeCCAttackLogs"
       )
     }
 
@@ -225,18 +248,37 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
 
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
     let returnType = null
 
     this.config.logger(
-      `call describeCcAttackLogs with params:\npathParams:${JSON.stringify(
+      `call describeCCAttackLogs with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -249,7 +291,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/attacklog:cc',
+      '/regions/{regionId}/attacklog:CC',
       'GET',
       pathParams,
       queryParams,
@@ -264,13 +306,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -279,22 +321,24 @@ JDCloud.IPANTI = class IPANTI extends Service {
   }
 
   /**
-      *  查询cc攻击日志详情
+      *  查询 CC 攻击日志详情
       * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
-      * @param {integer} [opts.pageSize] - 分页大小；默认为10；取值范围[10, 100]  optional
-      * @param {string} opts.startTime - 开始时间，最多查最近30天，UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-      * @param {string} opts.endTime - 查询的结束时间，UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-      * @param {string} opts.instanceId - 高防实例id
+      * @param {integer} [opts.pageNumber] - 页码, 默认为1  optional
+      * @param {integer} [opts.pageSize] - 分页大小, 默认为10, 取值范围[10, 100]  optional
+      * @param {string} opts.startTime - 开始时间, 只能查询最近 60 天以内的数据, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} opts.endTime - 查询的结束时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {integer} opts.instanceId - 高防实例 ID
       * @param {string} [opts.subDomain] - 子域名  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       * @param cCAttackLogDetail dataList
-      * @param integer totalCount
+      * @param integer currentCount  当前页数量
+      * @param integer totalCount  实例总数
+      * @param integer totalPage  总页数
       */
 
-  describeCcAttackLogDetails (opts, regionId = this.config.regionId, callback) {
+  describeCCAttackLogDetails (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -302,7 +346,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeCcAttackLogDetails"
+        "Missing the required parameter 'regionId' when calling  describeCCAttackLogDetails"
       )
     }
 
@@ -310,17 +354,17 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     if (opts.startTime === undefined || opts.startTime === null) {
       throw new Error(
-        "Missing the required parameter 'opts.startTime' when calling describeCcAttackLogDetails"
+        "Missing the required parameter 'opts.startTime' when calling describeCCAttackLogDetails"
       )
     }
     if (opts.endTime === undefined || opts.endTime === null) {
       throw new Error(
-        "Missing the required parameter 'opts.endTime' when calling describeCcAttackLogDetails"
+        "Missing the required parameter 'opts.endTime' when calling describeCCAttackLogDetails"
       )
     }
     if (opts.instanceId === undefined || opts.instanceId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.instanceId' when calling describeCcAttackLogDetails"
+        "Missing the required parameter 'opts.instanceId' when calling describeCCAttackLogDetails"
       )
     }
 
@@ -351,18 +395,37 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
 
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
     let returnType = null
 
     this.config.logger(
-      `call describeCcAttackLogDetails with params:\npathParams:${JSON.stringify(
+      `call describeCCAttackLogDetails with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -375,7 +438,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/attacklog:ccDetail',
+      '/regions/{regionId}/attacklog:CCDetail',
       'GET',
       pathParams,
       queryParams,
@@ -390,13 +453,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -405,21 +468,17 @@ JDCloud.IPANTI = class IPANTI extends Service {
   }
 
   /**
-      *  ddos防护报表
+      *  下载 DDos 攻击日志
       * @param {Object} opts - parameters
-      * @param {string} opts.startTime - 开始时间，最多查最近30天，UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-      * @param {string} opts.endTime - 查询的结束时间，UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-      * @param {string} [opts.instanceId] - 高防实例id，可以传0个或多个  optional
+      * @param {string} opts.startTime - 开始时间, 只能下载最近 60 天以内的数据, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} opts.endTime - 查询的结束时间, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {integer} [opts.instanceId] - 高防实例 ID  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param number postProtect
-      * @param number preProtect
-      * @param integer time
-      * @param string unit  单位
       */
 
-  ddosGraph (opts, regionId = this.config.regionId, callback) {
+  downloadDDoSAttackLogs (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -427,7 +486,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  ddosGraph"
+        "Missing the required parameter 'regionId' when calling  downloadDDoSAttackLogs"
       )
     }
 
@@ -435,12 +494,12 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     if (opts.startTime === undefined || opts.startTime === null) {
       throw new Error(
-        "Missing the required parameter 'opts.startTime' when calling ddosGraph"
+        "Missing the required parameter 'opts.startTime' when calling downloadDDoSAttackLogs"
       )
     }
     if (opts.endTime === undefined || opts.endTime === null) {
       throw new Error(
-        "Missing the required parameter 'opts.endTime' when calling ddosGraph"
+        "Missing the required parameter 'opts.endTime' when calling downloadDDoSAttackLogs"
       )
     }
 
@@ -462,18 +521,37 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
 
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
     let returnType = null
 
     this.config.logger(
-      `call ddosGraph with params:\npathParams:${JSON.stringify(
+      `call downloadDDoSAttackLogs with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -486,7 +564,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/charts:ddosGraph',
+      '/regions/{regionId}/attacklog:DDoS/download',
       'GET',
       pathParams,
       queryParams,
@@ -501,13 +579,669 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  下载 CC 攻击日志
+      * @param {Object} opts - parameters
+      * @param {string} opts.startTime - 开始时间, 只能下载最近 60 天以内的数据, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} opts.endTime - 查询的结束时间, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {integer} [opts.instanceId] - 高防实例 ID  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  downloadCCAttackLogs (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  downloadCCAttackLogs"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.startTime === undefined || opts.startTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.startTime' when calling downloadCCAttackLogs"
+      )
+    }
+    if (opts.endTime === undefined || opts.endTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.endTime' when calling downloadCCAttackLogs"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+    Object.assign(
+      queryParams,
+      this.buildArrayParam(opts.instanceId, 'instanceId')
+    )
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call downloadCCAttackLogs with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/attacklog:CC/download',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  下载 CC 攻击日志详情
+      * @param {Object} opts - parameters
+      * @param {string} opts.startTime - 开始时间, 只能下载最近 60 天以内的数据, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} opts.endTime - 查询的结束时间, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {integer} opts.instanceId - 高防实例 ID
+      * @param {string} [opts.subDomain] - 子域名  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  downloadCCAttackLogDetails (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  downloadCCAttackLogDetails"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.startTime === undefined || opts.startTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.startTime' when calling downloadCCAttackLogDetails"
+      )
+    }
+    if (opts.endTime === undefined || opts.endTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.endTime' when calling downloadCCAttackLogDetails"
+      )
+    }
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling downloadCCAttackLogDetails"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+    if (opts.instanceId !== undefined && opts.instanceId !== null) {
+      queryParams['instanceId'] = opts.instanceId
+    }
+    Object.assign(
+      queryParams,
+      this.buildArrayParam(opts.subDomain, 'subDomain')
+    )
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call downloadCCAttackLogDetails with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/attacklog:CCDetail/download',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询攻击次数及流量峰值
+      * @param {Object} opts - parameters
+      * @param {string} opts.startTime - 开始时间, 只能查询最近 60 天以内的数据, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} opts.endTime - 查询的结束时间, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {integer} opts.type - 攻击类型, 0 为 DDos, 1 为 CC
+      * @param {integer} [opts.instanceId] - 高防实例 ID  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param number flow  攻击流量峰值
+      * @param integer count  攻击次数
+      * @param string unit  流量单位, bps、Kbps、Mbps、Gbps
+      */
+
+  describeAttackStatistics (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeAttackStatistics"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.startTime === undefined || opts.startTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.startTime' when calling describeAttackStatistics"
+      )
+    }
+    if (opts.endTime === undefined || opts.endTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.endTime' when calling describeAttackStatistics"
+      )
+    }
+    if (opts.type === undefined || opts.type === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.type' when calling describeAttackStatistics"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+    if (opts.type !== undefined && opts.type !== null) {
+      queryParams['type'] = opts.type
+    }
+    Object.assign(
+      queryParams,
+      this.buildArrayParam(opts.instanceId, 'instanceId')
+    )
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeAttackStatistics with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/attacklog/describeAttackStatistics',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询各类型攻击次数
+      * @param {Object} opts - parameters
+      * @param {string} opts.startTime - 开始时间, 只能查询最近 60 天以内的数据, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} opts.endTime - 查询的结束时间, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {integer} [opts.instanceId] - 高防实例 ID  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param attackTypeCount dataList
+      */
+
+  describeAttackTypeCount (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeAttackTypeCount"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.startTime === undefined || opts.startTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.startTime' when calling describeAttackTypeCount"
+      )
+    }
+    if (opts.endTime === undefined || opts.endTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.endTime' when calling describeAttackTypeCount"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+    Object.assign(
+      queryParams,
+      this.buildArrayParam(opts.instanceId, 'instanceId')
+    )
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeAttackTypeCount with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/attacklog/describeAttackTypeCount',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  DDos 防护流量报表
+      * @param {Object} opts - parameters
+      * @param {string} opts.startTime - 开始时间, 最多查最近 60 天, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} opts.endTime - 查询的结束时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {integer} [opts.instanceId] - 高防实例 Id 列表  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param number preProtect
+      * @param number postProtect
+      * @param string time
+      * @param string unit  流量单位, bps, Kbps, Mbps, Gbps
+      */
+
+  describeDDoSGraph (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeDDoSGraph"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.startTime === undefined || opts.startTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.startTime' when calling describeDDoSGraph"
+      )
+    }
+    if (opts.endTime === undefined || opts.endTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.endTime' when calling describeDDoSGraph"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+    Object.assign(
+      queryParams,
+      this.buildArrayParam(opts.instanceId, 'instanceId')
+    )
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeDDoSGraph with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/charts:DDoSGraph',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -518,18 +1252,18 @@ JDCloud.IPANTI = class IPANTI extends Service {
   /**
       *  转发流量报表
       * @param {Object} opts - parameters
-      * @param {string} opts.startTime - 开始时间，最多查最近30天，UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-      * @param {string} opts.endTime - 查询的结束时间，UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-      * @param {string} [opts.instanceId] - 高防实例id，可以传0个或多个  optional
+      * @param {string} opts.startTime - 开始时间, 最多查最近 60 天, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} opts.endTime - 查询的结束时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {integer} [opts.instanceId] - 高防实例 Id 列表  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       * @param number forwardRecord
-      * @param integer time
-      * @param string unit  单位
+      * @param string time
+      * @param string unit  流量单位, bps, Kbps, Mbps, Gbps
       */
 
-  fwdGraph (opts, regionId = this.config.regionId, callback) {
+  describeFwdGraph (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -537,7 +1271,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  fwdGraph"
+        "Missing the required parameter 'regionId' when calling  describeFwdGraph"
       )
     }
 
@@ -545,12 +1279,12 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     if (opts.startTime === undefined || opts.startTime === null) {
       throw new Error(
-        "Missing the required parameter 'opts.startTime' when calling fwdGraph"
+        "Missing the required parameter 'opts.startTime' when calling describeFwdGraph"
       )
     }
     if (opts.endTime === undefined || opts.endTime === null) {
       throw new Error(
-        "Missing the required parameter 'opts.endTime' when calling fwdGraph"
+        "Missing the required parameter 'opts.endTime' when calling describeFwdGraph"
       )
     }
 
@@ -572,18 +1306,37 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
 
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
     let returnType = null
 
     this.config.logger(
-      `call fwdGraph with params:\npathParams:${JSON.stringify(
+      `call describeFwdGraph with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -611,13 +1364,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -626,22 +1379,22 @@ JDCloud.IPANTI = class IPANTI extends Service {
   }
 
   /**
-      *  转发流量报表
+      *  CC 防护流量报表
       * @param {Object} opts - parameters
-      * @param {string} opts.startTime - 开始时间，最多查最近30天，UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-      * @param {string} opts.endTime - 查询的结束时间，UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-      * @param {string} [opts.instanceId] - 高防实例id，可以传0个或多个  optional
-      * @param {string} [opts.subDomain] - 规则域名，可以传0个或多个  optional
+      * @param {string} opts.startTime - 开始时间, 最多查最近 60 天, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} opts.endTime - 查询的结束时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {integer} [opts.instanceId] - 高防实例 Id 列表  optional
+      * @param {string} [opts.subDomain] - 规则域名列表  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       * @param integer postProtect
       * @param integer preProtect
-      * @param integer time
-      * @param string unit  单位
+      * @param string time
+      * @param string unit  流量单位
       */
 
-  ccGraph (opts, regionId = this.config.regionId, callback) {
+  describeCCGraph (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -649,7 +1402,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  ccGraph"
+        "Missing the required parameter 'regionId' when calling  describeCCGraph"
       )
     }
 
@@ -657,12 +1410,12 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     if (opts.startTime === undefined || opts.startTime === null) {
       throw new Error(
-        "Missing the required parameter 'opts.startTime' when calling ccGraph"
+        "Missing the required parameter 'opts.startTime' when calling describeCCGraph"
       )
     }
     if (opts.endTime === undefined || opts.endTime === null) {
       throw new Error(
-        "Missing the required parameter 'opts.endTime' when calling ccGraph"
+        "Missing the required parameter 'opts.endTime' when calling describeCCGraph"
       )
     }
 
@@ -688,18 +1441,37 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
 
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
     let returnType = null
 
     this.config.logger(
-      `call ccGraph with params:\npathParams:${JSON.stringify(
+      `call describeCCGraph with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -712,7 +1484,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/charts:ccGraph',
+      '/regions/{regionId}/charts:CCGraph',
       'GET',
       pathParams,
       queryParams,
@@ -727,13 +1499,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -744,14 +1516,18 @@ JDCloud.IPANTI = class IPANTI extends Service {
   /**
       *  查询某个实例下的非网站转发配置
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例id
-      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
-      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
+      * @param {integer} opts.instanceId - 高防实例 Id
+      * @param {integer} [opts.pageNumber] - 页码, 默认为1  optional
+      * @param {integer} [opts.pageSize] - 分页大小, 默认为10, 取值范围[10, 100]  optional
+      * @param {string} [opts.searchType] - 查询类型名称, domain:源站域名, ip:源站 IP, port: 转发端口, originPort: 源站端口  optional
+      * @param {string} [opts.searchValue] - 查询类型值  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       * @param forwardRule dataList
-      * @param integer totalCount
+      * @param integer currentCount  当前页数量
+      * @param integer totalCount  总数
+      * @param integer totalPage  总页数
       */
 
   describeForwardRules (opts, regionId = this.config.regionId, callback) {
@@ -782,6 +1558,12 @@ JDCloud.IPANTI = class IPANTI extends Service {
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
+    if (opts.searchType !== undefined && opts.searchType !== null) {
+      queryParams['searchType'] = opts.searchType
+    }
+    if (opts.searchValue !== undefined && opts.searchValue !== null) {
+      queryParams['searchValue'] = opts.searchValue
+    }
 
     let pathParams = {
       regionId: regionId,
@@ -789,13 +1571,32 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
 
     let returnType = null
 
@@ -828,13 +1629,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -845,11 +1646,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
   /**
       *  添加非网站类规则
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例id
-      * @param {forwardRuleSpec} opts.forwardRuleSpec - 非网站类规则参数
+      * @param {integer} opts.instanceId - 高防实例 Id
+      * @param {forwardRuleSpec} opts.forwardRuleSpec - 添加非网站类规则请求参数
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param integer code  0: 添加规则失败, 1: 添加规则成功
+      * @param string message  添加规则失败时给出具体原因
       */
 
   createForwardRule (opts, regionId = this.config.regionId, callback) {
@@ -890,13 +1693,32 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
 
     let returnType = null
 
@@ -929,13 +1751,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -944,10 +1766,10 @@ JDCloud.IPANTI = class IPANTI extends Service {
   }
 
   /**
-      *  查询某条非网站类规则
+      *  查询非网站类规则
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例id
-      * @param {string} opts.forwardRuleId - 转发规则id
+      * @param {integer} opts.instanceId - 高防实例 Id
+      * @param {integer} opts.forwardRuleId - 转发规则 Id
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -989,13 +1811,32 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
 
     let returnType = null
 
@@ -1028,13 +1869,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -1043,14 +1884,16 @@ JDCloud.IPANTI = class IPANTI extends Service {
   }
 
   /**
-      *  更新某条非网站类规则
+      *  更新非网站类规则
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例id
-      * @param {string} opts.forwardRuleId - 转发规则id
-      * @param {forwardRuleSpec} opts.forwardRuleSpec - 非网站类规则参数
+      * @param {integer} opts.instanceId - 高防实例 Id
+      * @param {integer} opts.forwardRuleId - 转发规则 Id
+      * @param {forwardRuleSpec} opts.forwardRuleSpec - 更新非网站类规则请求参数
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param integer code  0: 更新规则失败, 1: 更新规则成功
+      * @param string message  更新规则失败时给出具体原因
       */
 
   modifyForwardRule (opts, regionId = this.config.regionId, callback) {
@@ -1097,13 +1940,32 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
 
     let returnType = null
 
@@ -1136,13 +1998,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -1151,13 +2013,15 @@ JDCloud.IPANTI = class IPANTI extends Service {
   }
 
   /**
-      *  删除某条非网站规则
+      *  删除非网站规则
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例id
-      * @param {string} opts.forwardRuleId - 转发规则id
+      * @param {integer} opts.instanceId - 高防实例 Id
+      * @param {integer} opts.forwardRuleId - 转发规则 Id
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param integer code  0: 删除规则失败, 1: 删除规则成功
+      * @param string message  删除规则失败时给出具体原因
       */
 
   deleteForwardRule (opts, regionId = this.config.regionId, callback) {
@@ -1195,13 +2059,32 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
 
     let returnType = null
 
@@ -1234,13 +2117,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -1251,11 +2134,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
   /**
       *  非网站类规则切换成防御状态
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例id
-      * @param {string} opts.forwardRuleId - 转发规则id
+      * @param {integer} opts.instanceId - 高防实例 Id
+      * @param {integer} opts.forwardRuleId - 转发规则 Id
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param integer code  0: 切换失败, 1: 切换成功
+      * @param string message  切换失败时给出具体原因
       */
 
   switchForwardRuleProtect (opts, regionId = this.config.regionId, callback) {
@@ -1294,13 +2179,32 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
 
     let returnType = null
 
@@ -1333,13 +2237,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -1350,11 +2254,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
   /**
       *  非网站类规则切换成回源状态
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例id
-      * @param {string} opts.forwardRuleId - 转发规则id
+      * @param {integer} opts.instanceId - 高防实例 Id
+      * @param {integer} opts.forwardRuleId - 转发规则 Id
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param integer code  0: 切换失败, 1: 切换成功
+      * @param string message  切换失败时给出具体原因
       */
 
   switchForwardRuleOrigin (opts, regionId = this.config.regionId, callback) {
@@ -1393,13 +2299,32 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
 
     let returnType = null
 
@@ -1432,13 +2357,377 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询非网站类转发规则的防护规则
+      * @param {Object} opts - parameters
+      * @param {integer} opts.instanceId - 高防实例 Id
+      * @param {integer} opts.forwardRuleId - 转发规则 Id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param forwardProtectionRule protectionRule
+      */
+
+  describeProtectionRuleOfForwardRule (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeProtectionRuleOfForwardRule"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling describeProtectionRuleOfForwardRule"
+      )
+    }
+    if (opts.forwardRuleId === undefined || opts.forwardRuleId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.forwardRuleId' when calling describeProtectionRuleOfForwardRule"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      forwardRuleId: opts.forwardRuleId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeProtectionRuleOfForwardRule with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/forwardRules/{forwardRuleId}:describeProtectionRule',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改非网站类转发规则的防护规则
+      * @param {Object} opts - parameters
+      * @param {integer} opts.instanceId - 高防实例 Id
+      * @param {integer} opts.forwardRuleId - 转发规则 Id
+      * @param {forwardProtectionRuleSpec} opts.forwardProtectionRuleSpec - 修改非网站类转发规则的防护规则请求参数
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer code  0: 修改规则失败, 1: 修改规则成功
+      * @param string message  修改规则失败时给出具体原因
+      */
+
+  modifyProtectionRuleOfForwardRule (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyProtectionRuleOfForwardRule"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling modifyProtectionRuleOfForwardRule"
+      )
+    }
+    if (opts.forwardRuleId === undefined || opts.forwardRuleId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.forwardRuleId' when calling modifyProtectionRuleOfForwardRule"
+      )
+    }
+    if (
+      opts.forwardProtectionRuleSpec === undefined ||
+      opts.forwardProtectionRuleSpec === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.forwardProtectionRuleSpec' when calling modifyProtectionRuleOfForwardRule"
+      )
+    }
+
+    let postBody = {}
+    if (
+      opts.forwardProtectionRuleSpec !== undefined &&
+      opts.forwardProtectionRuleSpec !== null
+    ) {
+      postBody['forwardProtectionRuleSpec'] = opts.forwardProtectionRuleSpec
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      forwardRuleId: opts.forwardRuleId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyProtectionRuleOfForwardRule with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/forwardRules/{forwardRuleId}:modifyProtectionRule',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询非网站类转发规则的防护规则 Geo 拦截可设置区域编码
+      * @param {Object} opts - parameters
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param country dataList
+      */
+
+  describeGeoAreas (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeGeoAreas"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeGeoAreas with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/describeGeoAreas',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -1449,14 +2738,16 @@ JDCloud.IPANTI = class IPANTI extends Service {
   /**
       *  查询实例列表
       * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
-      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
+      * @param {integer} [opts.pageNumber] - 页码, 默认为 1  optional
+      * @param {integer} [opts.pageSize] - 分页大小, 默认为 10, 取值范围[10, 100], 0 表示全量  optional
       * @param {string} [opts.name] - 实例名称，可模糊匹配  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       * @param instance dataList
-      * @param integer totalCount
+      * @param integer currentCount  当前页数量
+      * @param integer totalCount  总数
+      * @param integer totalPage  总页数
       */
 
   describeInstances (opts, regionId = this.config.regionId, callback) {
@@ -1490,13 +2781,32 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
 
     let returnType = null
 
@@ -1529,13 +2839,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -1544,13 +2854,14 @@ JDCloud.IPANTI = class IPANTI extends Service {
   }
 
   /**
-      *  创建实例
+      *  新购或升级高防实例, 新购或升级成功时, 需根据订单 id 完成支付流程, 新购或升级实例才会生效
       * @param {Object} opts - parameters
-      * @param {instanceSpec} opts.instanceSpec - 实例规格参数
+      * @param {createInstanceSpec} opts.createInstanceSpec - 新购或升级实例请求参数
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param string orderId
+      * @param integer code  0: 新购或升级实例失败, 1: 新购或升级实例成功
+      * @param string message  新购或升级成功时为 订单 id, 创建实例失败时给出具体原因
       */
 
   createInstance (opts, regionId = this.config.regionId, callback) {
@@ -1567,15 +2878,21 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     opts = opts || {}
 
-    if (opts.instanceSpec === undefined || opts.instanceSpec === null) {
+    if (
+      opts.createInstanceSpec === undefined ||
+      opts.createInstanceSpec === null
+    ) {
       throw new Error(
-        "Missing the required parameter 'opts.instanceSpec' when calling createInstance"
+        "Missing the required parameter 'opts.createInstanceSpec' when calling createInstance"
       )
     }
 
     let postBody = {}
-    if (opts.instanceSpec !== undefined && opts.instanceSpec !== null) {
-      postBody['instanceSpec'] = opts.instanceSpec
+    if (
+      opts.createInstanceSpec !== undefined &&
+      opts.createInstanceSpec !== null
+    ) {
+      postBody['createInstanceSpec'] = opts.createInstanceSpec
     }
 
     let queryParams = {}
@@ -1585,13 +2902,32 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
 
     let returnType = null
 
@@ -1624,13 +2960,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -1641,7 +2977,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
   /**
       *  查询实例
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例id
+      * @param {integer} opts.instanceId - 实例 ID
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1677,13 +3013,32 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
 
     let returnType = null
 
@@ -1716,13 +3071,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -1731,13 +3086,271 @@ JDCloud.IPANTI = class IPANTI extends Service {
   }
 
   /**
-      *  设置实例CC防护
+      *  修改实例名称
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例id
-      * @param {cCSpec} opts.cCSpec - cc参数
+      * @param {integer} opts.instanceId - 实例 ID
+      * @param {renameInstanceSpec} opts.renameInstanceSpec - 修改实例名称请求参数
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param integer code  0: 修改实例名称失败, 1: 修改实例名称成功
+      * @param string message  修改失败时给出具体原因
+      */
+
+  modifyInstanceName (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyInstanceName"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling modifyInstanceName"
+      )
+    }
+    if (
+      opts.renameInstanceSpec === undefined ||
+      opts.renameInstanceSpec === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.renameInstanceSpec' when calling modifyInstanceName"
+      )
+    }
+
+    let postBody = {}
+    if (
+      opts.renameInstanceSpec !== undefined &&
+      opts.renameInstanceSpec !== null
+    ) {
+      postBody['renameInstanceSpec'] = opts.renameInstanceSpec
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyInstanceName with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}:rename',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新实例弹性防护带宽
+      * @param {Object} opts - parameters
+      * @param {integer} opts.instanceId - 实例 ID
+      * @param {modifyInstanceEPBSpec} opts.modifyInstanceEPBSpec - 修改实例名称请求参数
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer code  0: 修改失败, 1: 修改成功
+      * @param string message  修改失败时给出具体原因
+      */
+
+  modifyEPB (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyEPB"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling modifyEPB"
+      )
+    }
+    if (
+      opts.modifyInstanceEPBSpec === undefined ||
+      opts.modifyInstanceEPBSpec === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.modifyInstanceEPBSpec' when calling modifyEPB"
+      )
+    }
+
+    let postBody = {}
+    if (
+      opts.modifyInstanceEPBSpec !== undefined &&
+      opts.modifyInstanceEPBSpec !== null
+    ) {
+      postBody['modifyInstanceEPBSpec'] = opts.modifyInstanceEPBSpec
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyEPB with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}:modifyEPB',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  设置实例 CC 防护
+      * @param {Object} opts - parameters
+      * @param {integer} opts.instanceId - 实例 ID
+      * @param {cCSpec} opts.cCSpec - CC 参数
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer code  0: 设置失败, 1: 设置成功
+      * @param string message  设置失败时给出具体原因
       */
 
   modifyInstanceCC (opts, regionId = this.config.regionId, callback) {
@@ -1778,13 +3391,32 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
 
     let returnType = null
 
@@ -1817,13 +3449,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -1832,12 +3464,14 @@ JDCloud.IPANTI = class IPANTI extends Service {
   }
 
   /**
-      *  开启实例CC防护
+      *  开启实例 CC 防护
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例id
+      * @param {integer} opts.instanceId - 实例 ID
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param integer code  0: 开启实例 CC 防护失败, 1: 开启实例 CC 防护成功
+      * @param string message  开启实例 CC 防护失败时给出具体原因
       */
 
   enableInstanceCC (opts, regionId = this.config.regionId, callback) {
@@ -1870,13 +3504,32 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
 
     let returnType = null
 
@@ -1909,13 +3562,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -1924,12 +3577,14 @@ JDCloud.IPANTI = class IPANTI extends Service {
   }
 
   /**
-      *  关闭实例CC防护
+      *  关闭实例 CC 防护
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例id
+      * @param {integer} opts.instanceId - 实例 ID
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param integer code  0: 关闭实例 CC 防护失败, 1: 关闭实例 CC 防护成功
+      * @param string message  关闭实例 CC 防护失败时给出具体原因
       */
 
   disableInstanceCC (opts, regionId = this.config.regionId, callback) {
@@ -1962,13 +3617,32 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
 
     let returnType = null
 
@@ -2001,13 +3675,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -2016,13 +3690,15 @@ JDCloud.IPANTI = class IPANTI extends Service {
   }
 
   /**
-      *  设置实例url白名单
+      *  设置实例 Url 白名单
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例id
+      * @param {integer} opts.instanceId - 实例 ID
       * @param {array} opts.urlWhiteList - 网站类规则参数
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param integer code  0: 设置实例 Url 白名单失败, 1: 设置实例 Url 白名单成功
+      * @param string message  设置失败时给出具体原因
       */
 
   modifyInstanceUrlWhiteList (opts, regionId = this.config.regionId, callback) {
@@ -2063,13 +3739,32 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
 
     let returnType = null
 
@@ -2102,13 +3797,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -2117,12 +3812,14 @@ JDCloud.IPANTI = class IPANTI extends Service {
   }
 
   /**
-      *  启用实例url白名单
+      *  开启实例 Url 白名单
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例id
+      * @param {integer} opts.instanceId - 实例 ID
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param integer code  0: 开启实例 Url 白名单失败, 1: 开启实例 Url 白名单成功
+      * @param string message  开启实例 Url 白名单失败时给出具体原因
       */
 
   enableInstanceUrlWhiteList (opts, regionId = this.config.regionId, callback) {
@@ -2155,13 +3852,32 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
 
     let returnType = null
 
@@ -2194,13 +3910,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -2209,12 +3925,14 @@ JDCloud.IPANTI = class IPANTI extends Service {
   }
 
   /**
-      *  禁用实例url白名单
+      *  关闭实例 Url 白名单
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例id
+      * @param {integer} opts.instanceId - 实例 ID
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param integer code  0: 关闭实例 Url 白名单失败, 1: 关闭实例 Url 白名单成功
+      * @param string message  关闭实例 Url 白名单失败时给出具体原因
       */
 
   disableInstanceUrlWhiteList (opts, regionId = this.config.regionId, callback) {
@@ -2247,13 +3965,32 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
 
     let returnType = null
 
@@ -2286,13 +4023,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -2301,114 +4038,15 @@ JDCloud.IPANTI = class IPANTI extends Service {
   }
 
   /**
-      *  修改实例名称
+      *  设置实例 IP 黑名单
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例id
-      * @param {string} opts.name - 新的实例名称
+      * @param {integer} opts.instanceId - 实例 ID
+      * @param {ipBwListSpec} opts.ipBwListSpec - 设置 IP 黑名单请求
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      */
-
-  modifyInstanceName (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  modifyInstanceName"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.instanceId === undefined || opts.instanceId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.instanceId' when calling modifyInstanceName"
-      )
-    }
-    if (opts.name === undefined || opts.name === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.name' when calling modifyInstanceName"
-      )
-    }
-
-    let postBody = {}
-    if (opts.name !== undefined && opts.name !== null) {
-      postBody['name'] = opts.name
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      instanceId: opts.instanceId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
-    }
-
-    let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    let returnType = null
-
-    this.config.logger(
-      `call modifyInstanceName with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/instances/{instanceId}:rename',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback) {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback) {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  设置实例ip黑名单
-      * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例id
-      * @param {array} opts.ipBlackList - ip黑名单列表
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
+      * @param integer code  0: 设置 IP 黑名单失败, 1: 设置 IP 黑名单成功
+      * @param string message  对应提示消息
       */
 
   modifyInstanceIpBlackList (opts, regionId = this.config.regionId, callback) {
@@ -2430,15 +4068,15 @@ JDCloud.IPANTI = class IPANTI extends Service {
         "Missing the required parameter 'opts.instanceId' when calling modifyInstanceIpBlackList"
       )
     }
-    if (opts.ipBlackList === undefined || opts.ipBlackList === null) {
+    if (opts.ipBwListSpec === undefined || opts.ipBwListSpec === null) {
       throw new Error(
-        "Missing the required parameter 'opts.ipBlackList' when calling modifyInstanceIpBlackList"
+        "Missing the required parameter 'opts.ipBwListSpec' when calling modifyInstanceIpBlackList"
       )
     }
 
     let postBody = {}
-    if (opts.ipBlackList !== undefined && opts.ipBlackList !== null) {
-      postBody['ipBlackList'] = opts.ipBlackList
+    if (opts.ipBwListSpec !== undefined && opts.ipBwListSpec !== null) {
+      postBody['ipBwListSpec'] = opts.ipBwListSpec
     }
 
     let queryParams = {}
@@ -2449,13 +4087,32 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
 
     let returnType = null
 
@@ -2488,13 +4145,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -2503,12 +4160,14 @@ JDCloud.IPANTI = class IPANTI extends Service {
   }
 
   /**
-      *  启用实例ip黑名单
+      *  开启实例 IP 黑名单
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例id
+      * @param {integer} opts.instanceId - 实例 ID
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param integer code  0: 开启实例 IP 黑名单失败, 1: 开启实例 IP 黑名单成功
+      * @param string message  开启实例 IP 黑名单失败时给出具体原因
       */
 
   enableInstanceIpBlackList (opts, regionId = this.config.regionId, callback) {
@@ -2541,13 +4200,32 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
 
     let returnType = null
 
@@ -2580,13 +4258,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -2595,12 +4273,14 @@ JDCloud.IPANTI = class IPANTI extends Service {
   }
 
   /**
-      *  禁用实例ip黑名单
+      *  关闭实例 IP 黑名单
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例id
+      * @param {integer} opts.instanceId - 实例 ID
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param integer code  0: 关闭实例 IP 黑名单失败, 1: 关闭实例 IP 黑名单成功
+      * @param string message  关闭实例 IP 黑名单失败时给出具体原因
       */
 
   disableInstanceIpBlackList (opts, regionId = this.config.regionId, callback) {
@@ -2633,13 +4313,32 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
 
     let returnType = null
 
@@ -2672,13 +4371,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -2687,13 +4386,15 @@ JDCloud.IPANTI = class IPANTI extends Service {
   }
 
   /**
-      *  设置实例ip白名单
+      *  设置实例 IP 白名单
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例id
-      * @param {array} opts.ipWhiteList - ip白名单列表
+      * @param {integer} opts.instanceId - 实例 ID
+      * @param {ipBwListSpec} opts.ipBwListSpec - 设置 IP 白名单请求参数
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param integer code  0: 设置 IP 白名单成功, 1: 设置 IP 白名单失败
+      * @param string message  对应提示消息
       */
 
   modifyInstanceIpWhiteList (opts, regionId = this.config.regionId, callback) {
@@ -2715,15 +4416,15 @@ JDCloud.IPANTI = class IPANTI extends Service {
         "Missing the required parameter 'opts.instanceId' when calling modifyInstanceIpWhiteList"
       )
     }
-    if (opts.ipWhiteList === undefined || opts.ipWhiteList === null) {
+    if (opts.ipBwListSpec === undefined || opts.ipBwListSpec === null) {
       throw new Error(
-        "Missing the required parameter 'opts.ipWhiteList' when calling modifyInstanceIpWhiteList"
+        "Missing the required parameter 'opts.ipBwListSpec' when calling modifyInstanceIpWhiteList"
       )
     }
 
     let postBody = {}
-    if (opts.ipWhiteList !== undefined && opts.ipWhiteList !== null) {
-      postBody['ipWhiteList'] = opts.ipWhiteList
+    if (opts.ipBwListSpec !== undefined && opts.ipBwListSpec !== null) {
+      postBody['ipBwListSpec'] = opts.ipBwListSpec
     }
 
     let queryParams = {}
@@ -2734,13 +4435,32 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
 
     let returnType = null
 
@@ -2773,13 +4493,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -2788,12 +4508,14 @@ JDCloud.IPANTI = class IPANTI extends Service {
   }
 
   /**
-      *  启用实例ip白名单
+      *  开启实例 IP 白名单
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例id
+      * @param {integer} opts.instanceId - 实例 ID
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param integer code  0: 开启实例 IP 白名单失败, 1: 开启实例 IP 白名单成功
+      * @param string message  开启实例 IP 白名单失败时给出具体原因
       */
 
   enableInstanceIpWhiteList (opts, regionId = this.config.regionId, callback) {
@@ -2826,13 +4548,32 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
 
     let returnType = null
 
@@ -2865,13 +4606,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -2880,12 +4621,14 @@ JDCloud.IPANTI = class IPANTI extends Service {
   }
 
   /**
-      *  禁用实例ip白名单
+      *  关闭实例 IP 白名单
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例id
+      * @param {integer} opts.instanceId - 实例 ID
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param integer code  0: 关闭实例 IP 白名单失败, 1: 关闭实例 IP 白名单成功
+      * @param string message  关闭实例 IP 白名单失败时给出具体原因
       */
 
   disableInstanceIpWhiteList (opts, regionId = this.config.regionId, callback) {
@@ -2918,13 +4661,32 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
 
     let returnType = null
 
@@ -2957,13 +4719,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -2972,15 +4734,17 @@ JDCloud.IPANTI = class IPANTI extends Service {
   }
 
   /**
-      *  开启实例CC防护的观察者模式
+      *  开启实例 CC 防护的观察者模式
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例id
+      * @param {integer} opts.instanceId - 实例 ID
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param integer code  0: 开启实例 CC 防护的观察者模式失败, 1: 开启实例 CC 防护的观察者模式成功
+      * @param string message  开启实例 CC 防护的观察者模式失败时给出具体原因
       */
 
-  enableCcObserverMode (opts, regionId = this.config.regionId, callback) {
+  enableCCObserverMode (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -2988,7 +4752,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  enableCcObserverMode"
+        "Missing the required parameter 'regionId' when calling  enableCCObserverMode"
       )
     }
 
@@ -2996,7 +4760,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     if (opts.instanceId === undefined || opts.instanceId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.instanceId' when calling enableCcObserverMode"
+        "Missing the required parameter 'opts.instanceId' when calling enableCCObserverMode"
       )
     }
 
@@ -3010,18 +4774,37 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
 
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
     let returnType = null
 
     this.config.logger(
-      `call enableCcObserverMode with params:\npathParams:${JSON.stringify(
+      `call enableCCObserverMode with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -3034,7 +4817,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/instances/{instanceId}:enableCcObserverMode',
+      '/regions/{regionId}/instances/{instanceId}:enableCCObserverMode',
       'POST',
       pathParams,
       queryParams,
@@ -3049,13 +4832,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -3064,15 +4847,17 @@ JDCloud.IPANTI = class IPANTI extends Service {
   }
 
   /**
-      *  关闭实例CC防护的观察者模式
+      *  关闭实例 CC 防护的观察者模式
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例id
+      * @param {integer} opts.instanceId - 实例 ID
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param integer code  0: 关闭实例 CC 防护的观察者模式失败, 1: 关闭实例 CC 防护的观察者模式成功
+      * @param string message  关闭实例 CC 防护的观察者模式失败时给出具体原因
       */
 
-  disableCcObserverMode (opts, regionId = this.config.regionId, callback) {
+  disableCCObserverMode (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -3080,7 +4865,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  disableCcObserverMode"
+        "Missing the required parameter 'regionId' when calling  disableCCObserverMode"
       )
     }
 
@@ -3088,7 +4873,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     if (opts.instanceId === undefined || opts.instanceId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.instanceId' when calling disableCcObserverMode"
+        "Missing the required parameter 'opts.instanceId' when calling disableCCObserverMode"
       )
     }
 
@@ -3102,18 +4887,37 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
 
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
     let returnType = null
 
     this.config.logger(
-      `call disableCcObserverMode with params:\npathParams:${JSON.stringify(
+      `call disableCCObserverMode with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -3126,7 +4930,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/instances/{instanceId}:disableCcObserverMode',
+      '/regions/{regionId}/instances/{instanceId}:disableCCObserverMode',
       'POST',
       pathParams,
       queryParams,
@@ -3141,13 +4945,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -3156,15 +4960,17 @@ JDCloud.IPANTI = class IPANTI extends Service {
   }
 
   /**
-      *  开启CC防护每ip的限速
+      *  开启 CC 防护每 IP 的限速
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例id
+      * @param {integer} opts.instanceId - 实例 ID
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param integer code  0: 开启 CC 防护每 IP 的限速失败, 1: 开启 CC 防护每 IP 的限速成功
+      * @param string message  开启 CC 防护每 IP 的限速失败时给出具体原因
       */
 
-  enableCcIpLimit (opts, regionId = this.config.regionId, callback) {
+  enableCCIpLimit (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -3172,7 +4978,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  enableCcIpLimit"
+        "Missing the required parameter 'regionId' when calling  enableCCIpLimit"
       )
     }
 
@@ -3180,7 +4986,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     if (opts.instanceId === undefined || opts.instanceId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.instanceId' when calling enableCcIpLimit"
+        "Missing the required parameter 'opts.instanceId' when calling enableCCIpLimit"
       )
     }
 
@@ -3194,18 +5000,37 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
 
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
     let returnType = null
 
     this.config.logger(
-      `call enableCcIpLimit with params:\npathParams:${JSON.stringify(
+      `call enableCCIpLimit with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -3218,7 +5043,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/instances/{instanceId}:enableCcIpLimit',
+      '/regions/{regionId}/instances/{instanceId}:enableCCIpLimit',
       'POST',
       pathParams,
       queryParams,
@@ -3233,13 +5058,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -3248,15 +5073,17 @@ JDCloud.IPANTI = class IPANTI extends Service {
   }
 
   /**
-      *  关闭CC防护每ip的限速
+      *  关闭 CC 防护每 IP 的限速
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例id
+      * @param {integer} opts.instanceId - 实例 ID
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param integer code  0: 关闭 CC 防护每 IP 的限速失败, 1: 关闭 CC 防护每 IP 的限速成功
+      * @param string message  关闭 CC 防护每 IP 的限速失败时给出具体原因
       */
 
-  disableCcIpLimit (opts, regionId = this.config.regionId, callback) {
+  disableCCIpLimit (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -3264,7 +5091,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  disableCcIpLimit"
+        "Missing the required parameter 'regionId' when calling  disableCCIpLimit"
       )
     }
 
@@ -3272,7 +5099,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     if (opts.instanceId === undefined || opts.instanceId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.instanceId' when calling disableCcIpLimit"
+        "Missing the required parameter 'opts.instanceId' when calling disableCCIpLimit"
       )
     }
 
@@ -3286,18 +5113,37 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
 
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
     let returnType = null
 
     this.config.logger(
-      `call disableCcIpLimit with params:\npathParams:${JSON.stringify(
+      `call disableCCIpLimit with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -3310,7 +5156,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/instances/{instanceId}:disableCcIpLimit',
+      '/regions/{regionId}/instances/{instanceId}:disableCCIpLimit',
       'POST',
       pathParams,
       queryParams,
@@ -3325,13 +5171,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -3340,16 +5186,18 @@ JDCloud.IPANTI = class IPANTI extends Service {
   }
 
   /**
-      *  设置实例CC防护每ip限速
+      *  设置实例 CC 防护每 IP 限速
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例id
-      * @param {ccIpLimitSpec} opts.cCSpec - cc参数
+      * @param {integer} opts.instanceId - 实例 ID
+      * @param {ccIpLimitSpec} opts.cCSpec - CC 参数
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param integer code  0: 设置实例 CC 防护每 IP 限速失败, 1: 设置实例 CC 防护每 IP 限速成功
+      * @param string message  设置实例 CC 防护每 IP 限速失败时给出具体原因
       */
 
-  setCcIpLimit (opts, regionId = this.config.regionId, callback) {
+  setCCIpLimit (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -3357,7 +5205,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  setCcIpLimit"
+        "Missing the required parameter 'regionId' when calling  setCCIpLimit"
       )
     }
 
@@ -3365,12 +5213,12 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     if (opts.instanceId === undefined || opts.instanceId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.instanceId' when calling setCcIpLimit"
+        "Missing the required parameter 'opts.instanceId' when calling setCCIpLimit"
       )
     }
     if (opts.cCSpec === undefined || opts.cCSpec === null) {
       throw new Error(
-        "Missing the required parameter 'opts.cCSpec' when calling setCcIpLimit"
+        "Missing the required parameter 'opts.cCSpec' when calling setCCIpLimit"
       )
     }
 
@@ -3387,18 +5235,37 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
 
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
     let returnType = null
 
     this.config.logger(
-      `call setCcIpLimit with params:\npathParams:${JSON.stringify(
+      `call setCCIpLimit with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -3411,7 +5278,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/instances/{instanceId}:setCcIpLimit',
+      '/regions/{regionId}/instances/{instanceId}:setCCIpLimit',
       'POST',
       pathParams,
       queryParams,
@@ -3426,13 +5293,806 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询告警配置
+      * @param {Object} opts - parameters
+      * @param {integer} opts.instanceId - 实例 ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param alarmConfig data
+      */
+
+  describeAlarmConfig (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeAlarmConfig"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling describeAlarmConfig"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeAlarmConfig with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}:describeAlarmConfig',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新告警配置
+      * @param {Object} opts - parameters
+      * @param {integer} opts.instanceId - 实例 ID
+      * @param {alarmConfigSpec} opts.alarmConfigSpec - 更新告警配置请求参数
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer code  0: 修改失败, 1: 修改成功
+      * @param string message  修改失败时给出具体原因
+      */
+
+  modifyAlarmConfig (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyAlarmConfig"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling modifyAlarmConfig"
+      )
+    }
+    if (opts.alarmConfigSpec === undefined || opts.alarmConfigSpec === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.alarmConfigSpec' when calling modifyAlarmConfig"
+      )
+    }
+
+    let postBody = {}
+    if (opts.alarmConfigSpec !== undefined && opts.alarmConfigSpec !== null) {
+      postBody['alarmConfigSpec'] = opts.alarmConfigSpec
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyAlarmConfig with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}:modifyAlarmConfig',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询高防实例名称列表
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.id] - 高防实例 ID, 为空则查询所有实例名称  optional
+      * @param {string} [opts.name] - 实例名称, 可模糊匹配  optional
+      * @param {integer} [opts.pageNumber] - 页码, 默认为 1  optional
+      * @param {integer} [opts.pageSize] - 分页大小, 默认为 10, 取值范围 [10, 100]  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param instanceIdName dataList
+      * @param integer currentCount  当前页数量
+      * @param integer totalCount  总数
+      * @param integer totalPage  总页数
+      */
+
+  describeNameList (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeNameList"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.id !== undefined && opts.id !== null) {
+      queryParams['id'] = opts.id
+    }
+    if (opts.name !== undefined && opts.name !== null) {
+      queryParams['name'] = opts.name
+    }
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeNameList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/describeNameList',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询高防实例防护统计信息
+      * @param {Object} opts - parameters
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param protectionStatistics data
+      */
+
+  describeProtectionStatistics (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeProtectionStatistics"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeProtectionStatistics with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/describeProtectionStatistics',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  检测实例名称是否合法
+      * @param {Object} opts - parameters
+      * @param {string} opts.name - 待检测实例名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer code  检测结果 code, 0: 不可用, 1: 可用
+      * @param string message  检测结果, 不可用时给出具体原因
+      */
+
+  checkName (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  checkName"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.name === undefined || opts.name === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.name' when calling checkName"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.name !== undefined && opts.name !== null) {
+      queryParams['name'] = opts.name
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call checkName with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/checkName',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询用户的京东云 IP 资源
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码, 默认为 1  optional
+      * @param {integer} [opts.pageSize] - 分页大小, 默认为 10, 取值范围 [0, 100], 0 表示全量  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param vpcIpResource dataList
+      * @param integer currentCount  当前页数量
+      * @param integer totalCount  总数
+      * @param integer totalPage  总页数
+      */
+
+  describeVpcIpList (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeVpcIpList"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeVpcIpList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/describeVpcIpList',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询 CC 自定义默认阈值
+      * @param {Object} opts - parameters
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param cCDefaultThresholds data
+      */
+
+  describeCCDefaultThresholds (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeCCDefaultThresholds"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeCCDefaultThresholds with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/describeCCDefaultThresholds',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -3443,14 +6103,18 @@ JDCloud.IPANTI = class IPANTI extends Service {
   /**
       *  查询某个实例下的网站类规则
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例id
-      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
-      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
+      * @param {integer} opts.instanceId - 高防实例 Id
+      * @param {integer} [opts.pageNumber] - 页码, 默认为1  optional
+      * @param {integer} [opts.pageSize] - 分页大小, 默认为10, 取值范围[10, 100]  optional
+      * @param {string} [opts.searchType] - 查询类型名称, domain:源站域名, ip:源站 IP, rawDomain: 域名  optional
+      * @param {string} [opts.searchValue] - 查询类型值  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       * @param webRule dataList
-      * @param integer totalCount
+      * @param integer currentCount  当前页数量
+      * @param integer totalCount  总数
+      * @param integer totalPage  总页数
       */
 
   describeWebRules (opts, regionId = this.config.regionId, callback) {
@@ -3481,6 +6145,12 @@ JDCloud.IPANTI = class IPANTI extends Service {
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
+    if (opts.searchType !== undefined && opts.searchType !== null) {
+      queryParams['searchType'] = opts.searchType
+    }
+    if (opts.searchValue !== undefined && opts.searchValue !== null) {
+      queryParams['searchValue'] = opts.searchValue
+    }
 
     let pathParams = {
       regionId: regionId,
@@ -3488,13 +6158,32 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
 
     let returnType = null
 
@@ -3527,13 +6216,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -3544,11 +6233,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
   /**
       *  添加网站类规则
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例id
-      * @param {webRuleSpec} opts.webRuleSpec - 网站类规则参数
+      * @param {integer} opts.instanceId - 高防实例 Id
+      * @param {webRuleSpec} opts.webRuleSpec - 添加网站类规则请求参数
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param integer code  0: 添加失败, 1: 添加成功
+      * @param string message  添加失败时给出具体原因
       */
 
   createWebRule (opts, regionId = this.config.regionId, callback) {
@@ -3589,13 +6280,32 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
 
     let returnType = null
 
@@ -3628,13 +6338,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -3643,10 +6353,10 @@ JDCloud.IPANTI = class IPANTI extends Service {
   }
 
   /**
-      *  查询某条网站类规则
+      *  查询网站类规则
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例id
-      * @param {string} opts.webRuleId - 网站规则id
+      * @param {integer} opts.instanceId - 高防实例 Id
+      * @param {integer} opts.webRuleId - 网站规则 Id
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -3688,13 +6398,32 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
 
     let returnType = null
 
@@ -3727,13 +6456,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -3742,14 +6471,16 @@ JDCloud.IPANTI = class IPANTI extends Service {
   }
 
   /**
-      *  更新某条网站类规则
+      *  修改网站类规则
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例id
-      * @param {string} opts.webRuleId - 网站规则id
-      * @param {webRuleSpec} opts.webRuleSpec - 网站类规则参数
+      * @param {integer} opts.instanceId - 高防实例 Id
+      * @param {integer} opts.webRuleId - 网站规则 Id
+      * @param {webRuleSpec} opts.webRuleSpec - 更新网站类规则请求参数
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param integer code  修改网站类规则结果, 0: 修改失败, 1: 修改成功
+      * @param string message  修改失败时给出具体原因
       */
 
   modifyWebRule (opts, regionId = this.config.regionId, callback) {
@@ -3796,13 +6527,32 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
 
     let returnType = null
 
@@ -3835,13 +6585,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -3850,13 +6600,15 @@ JDCloud.IPANTI = class IPANTI extends Service {
   }
 
   /**
-      *  删除某条网站规则
+      *  删除网站规则
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例id
-      * @param {string} opts.webRuleId - 网站规则id
+      * @param {integer} opts.instanceId - 高防实例 Id
+      * @param {integer} opts.webRuleId - 网站规则 Id
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param integer code  删除网站类规则结果, 0: 删除失败, 1: 删除成功
+      * @param string message  删除失败时给出具体原因
       */
 
   deleteWebRule (opts, regionId = this.config.regionId, callback) {
@@ -3894,13 +6646,32 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
 
     let returnType = null
 
@@ -3933,13 +6704,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -3950,11 +6721,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
   /**
       *  网站类规则切换成防御状态
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例id
-      * @param {string} opts.webRuleId - 网站规则id
+      * @param {integer} opts.instanceId - 高防实例 Id
+      * @param {integer} opts.webRuleId - 网站规则 Id
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param integer code  0: 规则切换成防御失败, 1: 规则切换成防御成功
+      * @param string message  规则切换成防御失败时给出具体原因
       */
 
   switchWebRuleProtect (opts, regionId = this.config.regionId, callback) {
@@ -3993,13 +6766,32 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
 
     let returnType = null
 
@@ -4032,13 +6824,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -4049,11 +6841,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
   /**
       *  网站类规则切换成回源状态
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例id
-      * @param {string} opts.webRuleId - 网站规则id
+      * @param {integer} opts.instanceId - 高防实例 Id
+      * @param {integer} opts.webRuleId - 网站规则 Id
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param integer code  0: 规则切换成回源失败, 1: 规则切换成回源成功
+      * @param string message  规则切换成回源失败时给出具体原因
       */
 
   switchWebRuleOrigin (opts, regionId = this.config.regionId, callback) {
@@ -4092,13 +6886,32 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
 
     let returnType = null
 
@@ -4131,13 +6944,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -4146,13 +6959,15 @@ JDCloud.IPANTI = class IPANTI extends Service {
   }
 
   /**
-      *  网站类规则开启CC
+      *  网站类规则开启 CC
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例id
-      * @param {string} opts.webRuleId - 网站规则id
+      * @param {integer} opts.instanceId - 高防实例 Id
+      * @param {integer} opts.webRuleId - 网站规则 Id
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param integer code  0: 开启 CC 失败, 1: 开启 CC 成功
+      * @param string message  开启 CC 失败时给出具体原因
       */
 
   enableWebRuleCC (opts, regionId = this.config.regionId, callback) {
@@ -4191,13 +7006,32 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
 
     let returnType = null
 
@@ -4230,13 +7064,13 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -4245,13 +7079,15 @@ JDCloud.IPANTI = class IPANTI extends Service {
   }
 
   /**
-      *  网站类规则禁用CC
+      *  网站类规则禁用 CC
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例id
-      * @param {string} opts.webRuleId - 网站规则id
+      * @param {integer} opts.instanceId - 高防实例 Id
+      * @param {integer} opts.webRuleId - 网站规则 Id
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param integer code  0: 禁用 CC 失败, 1: 禁用 CC 成功
+      * @param string message  禁用 CC 失败时给出具体原因
       */
 
   disableWebRuleCC (opts, regionId = this.config.regionId, callback) {
@@ -4290,13 +7126,32 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
     }
-
-    let formParams = {}
 
     let contentTypes = ['application/json']
     let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
 
     let returnType = null
 
@@ -4329,13 +7184,415 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除网站规则的 CC 防护规则
+      * @param {Object} opts - parameters
+      * @param {integer} opts.instanceId - 高防实例 Id
+      * @param {integer} opts.webRuleId - 网站规则 Id
+      * @param {integer} opts.ccProtectionRuleId - 网站类规则的 CC 防护规则 Id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer code  0: 删除失败, 1: 删除成功
+      * @param string message  删除失败时给出具体原因
+      */
+
+  deleteCCProtectionRuleOfWebRule (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteCCProtectionRuleOfWebRule"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling deleteCCProtectionRuleOfWebRule"
+      )
+    }
+    if (opts.webRuleId === undefined || opts.webRuleId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.webRuleId' when calling deleteCCProtectionRuleOfWebRule"
+      )
+    }
+    if (
+      opts.ccProtectionRuleId === undefined ||
+      opts.ccProtectionRuleId === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.ccProtectionRuleId' when calling deleteCCProtectionRuleOfWebRule"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      webRuleId: opts.webRuleId,
+      ccProtectionRuleId: opts.ccProtectionRuleId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteCCProtectionRuleOfWebRule with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}/ccProtectionRules/{ccProtectionRuleId}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  编辑网站规则证书信息
+      * @param {Object} opts - parameters
+      * @param {integer} opts.instanceId - 高防实例 Id
+      * @param {integer} opts.webRuleId - 网站规则 Id
+      * @param {certInfoModifySpec} opts.certInfoModifySpec - 编辑网站规则证书信息请求参数
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer code  上传 SSL 证书结果, 0: 删除证书失败, 1: 删除证书成功
+      * @param string message  上传成功时为证书 Id, 失败时给出具体原因
+      */
+
+  modifyCertInfo (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyCertInfo"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling modifyCertInfo"
+      )
+    }
+    if (opts.webRuleId === undefined || opts.webRuleId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.webRuleId' when calling modifyCertInfo"
+      )
+    }
+    if (
+      opts.certInfoModifySpec === undefined ||
+      opts.certInfoModifySpec === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.certInfoModifySpec' when calling modifyCertInfo"
+      )
+    }
+
+    let postBody = {}
+    if (
+      opts.certInfoModifySpec !== undefined &&
+      opts.certInfoModifySpec !== null
+    ) {
+      postBody['certInfoModifySpec'] = opts.certInfoModifySpec
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      webRuleId: opts.webRuleId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyCertInfo with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}:modifyCertInfo',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询证书预览信息
+      * @param {Object} opts - parameters
+      * @param {integer} opts.instanceId - 高防实例 Id
+      * @param {integer} opts.webRuleId - 网站规则 Id
+      * @param {certInfoDescribeSpec} opts.certInfoDescribeSpec - 查询证书预览请求参数
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param certInfo data
+      */
+
+  describeCertInfo (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeCertInfo"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling describeCertInfo"
+      )
+    }
+    if (opts.webRuleId === undefined || opts.webRuleId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.webRuleId' when calling describeCertInfo"
+      )
+    }
+    if (
+      opts.certInfoDescribeSpec === undefined ||
+      opts.certInfoDescribeSpec === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.certInfoDescribeSpec' when calling describeCertInfo"
+      )
+    }
+
+    let postBody = {}
+    if (
+      opts.certInfoDescribeSpec !== undefined &&
+      opts.certInfoDescribeSpec !== null
+    ) {
+      postBody['certInfoDescribeSpec'] = opts.certInfoDescribeSpec
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      webRuleId: opts.webRuleId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeCertInfo with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}:describeCertInfo',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)

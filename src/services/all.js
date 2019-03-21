@@ -1,5 +1,7 @@
 module.exports = {
   RDS: require('./rds'),
+  KUBERNETES: require('./kubernetes'),
+  POD: require('./pod'),
   JKE: require('./jke'),
   AMS: require('./ams'),
   JDRO: require('./jdro'),
@@ -10,6 +12,7 @@ module.exports = {
   OSS: require('./oss'),
   REDIS: require('./redis'),
   BILLING: require('./billing'),
+  DEPLOY: require('./deploy'),
   KMS: require('./kms'),
   ELITE: require('./elite'),
   OSSOPENAPI: require('./ossopenapi'),
@@ -17,6 +20,7 @@ module.exports = {
   SOP: require('./sop'),
   FUNCTION: require('./function'),
   IOTHUB: require('./iothub'),
+  SMS: require('./sms'),
   JCQ: require('./jcq'),
   BASEANTI: require('./baseanti'),
   IAS: require('./ias'),

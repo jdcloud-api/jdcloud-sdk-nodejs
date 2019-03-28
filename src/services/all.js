@@ -20,7 +20,6 @@ module.exports = {
   SOP: require('./sop'),
   FUNCTION: require('./function'),
   IOTHUB: require('./iothub'),
-  SMS: require('./sms'),
   JCQ: require('./jcq'),
   BASEANTI: require('./baseanti'),
   IAS: require('./ias'),

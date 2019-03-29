@@ -23,6 +23,7 @@ module.exports = {
   JCQ: require('./jcq'),
   BASEANTI: require('./baseanti'),
   IAS: require('./ias'),
+  PORTAL: require('./portal'),
   MONGODB: require('./mongodb'),
   LIVE: require('./live'),
   JDFUSION: require('./jdfusion'),

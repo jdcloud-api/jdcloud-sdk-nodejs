@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Vpc-VserverGroup
- * 与服务器组相关的接口
+ * product
+ * 产品页相关接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -24,20 +24,20 @@
 
 const JDCloud = require('../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'jdfusion'
+var serviceId = 'portal'
 Service._services[serviceId] = true
 
 /**
- * jdfusion service.
+ * portal service.
  */
 
-JDCloud.JDFUSION = class JDFUSION {
+JDCloud.PORTAL = class PORTAL {
   constructor (config = {}) {
     this.init(config)
     return new this.service(config)
   }
   init (config) {
-    let serviceName = 'jdfusion'
+    let serviceName = 'portal'
     let version = config.version || JDCloud.config.version
     let versionFlag = 'v1'
     if (version && version[serviceName]) {
@@ -53,4 +53,4 @@ JDCloud.JDFUSION = class JDFUSION {
   }
 }
 
-module.exports = JDCloud.JDFUSION
+module.exports = JDCloud.PORTAL

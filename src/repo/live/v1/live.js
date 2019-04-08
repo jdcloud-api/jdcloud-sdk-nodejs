@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * live service.
- * @version 1.0.3
+ * @version 1.0.4
  */
 
 JDCloud.LIVE = class LIVE extends Service {
@@ -84,7 +84,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -199,7 +199,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -311,7 +311,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -423,7 +423,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -531,7 +531,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -639,7 +639,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -754,7 +754,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -867,7 +867,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -984,7 +984,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -1089,7 +1089,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -1195,7 +1195,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -1297,7 +1297,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -1399,7 +1399,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -1511,7 +1511,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -1660,7 +1660,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -1781,7 +1781,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -1893,7 +1893,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -2012,7 +2012,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -2125,7 +2125,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -2225,7 +2225,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -2340,7 +2340,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -2448,7 +2448,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -2549,7 +2549,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -2648,7 +2648,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -2728,7 +2728,11 @@ JDCloud.LIVE = class LIVE extends Service {
       * @param {string} opts.publishDomain - 推流域名
       * @param {string} opts.appName - 应用名称
       * @param {string} opts.streamName - 流名称
-      * @param {array} [opts.recordTimes] - 录制时间集合 - 最大支持10段,多段合并成一个文件 - 多段时间跨度最小不能小于10s - 多段时间跨度最大不能超过8小时  optional
+      * @param {array} [opts.recordTimes] - 录制时间集合
+- 最大支持10段,多段合并成一个文件
+- 多段时间跨度最小不能小于10s
+- 多段时间跨度最大不能超过8小时
+  optional
       * @param {string} opts.saveBucket - 存储桶
       * @param {string} opts.saveEndpoint - 存储地址
       * @param {string} opts.recordFileType - 录制文件类型:
@@ -2736,7 +2740,9 @@ JDCloud.LIVE = class LIVE extends Service {
 - 不区分大小写
 
       * @param {string} [opts.saveObject] - 录制文件存储路径:
-- 默认地址: record/{Date}/{ServerId}/{AppName}/{StreamName}/{StartTime}_{EndTime}.{format}
+- 默认地址: record/{Date}/{ServerId}/{AppName}/{StreamName}/{StartTime}_{EndTime}
+  optional
+      * @param {string} [opts.taskExternalId] - 打点录制任务外键
   optional
       * @param {string} callback - callback
       @return {Object} result
@@ -2792,6 +2798,9 @@ JDCloud.LIVE = class LIVE extends Service {
     if (opts.saveObject !== undefined && opts.saveObject !== null) {
       postBody['saveObject'] = opts.saveObject
     }
+    if (opts.taskExternalId !== undefined && opts.taskExternalId !== null) {
+      postBody['taskExternalId'] = opts.taskExternalId
+    }
 
     let queryParams = {}
 
@@ -2803,7 +2812,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -2848,6 +2857,1782 @@ JDCloud.LIVE = class LIVE extends Service {
     let request = this.makeRequest(
       '/records/{publishDomain}/appNames/{appName}/streamNames/{streamName}/task',
       'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询推流监控数据
+      * @param {Object} opts - parameters
+      * @param {string} opts.domainName - 推流域名
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.streamName - 流名称
+      * @param {string} opts.startTime - 起始时间
+- UTC时间
+  格式:yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;
+  示例:2018-10-21T10:00:00Z
+
+      * @param {string} [opts.endTime] - 结束时间:
+- UTC时间
+  格式:yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;
+  示例:2018-10-21T10:00:00Z
+- 为空,默认为当前时间
+  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param publishStreamInfoResult dataList
+      */
+
+  describePublishStreamInfoData (opts, callback) {
+    opts = opts || {}
+
+    if (opts.domainName === undefined || opts.domainName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.domainName' when calling describePublishStreamInfoData"
+      )
+    }
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling describePublishStreamInfoData"
+      )
+    }
+    if (opts.streamName === undefined || opts.streamName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.streamName' when calling describePublishStreamInfoData"
+      )
+    }
+    if (opts.startTime === undefined || opts.startTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.startTime' when calling describePublishStreamInfoData"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.domainName !== undefined && opts.domainName !== null) {
+      queryParams['domainName'] = opts.domainName
+    }
+    if (opts.appName !== undefined && opts.appName !== null) {
+      queryParams['appName'] = opts.appName
+    }
+    if (opts.streamName !== undefined && opts.streamName !== null) {
+      queryParams['streamName'] = opts.streamName
+    }
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describePublishStreamInfoData with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/describePublishStreamInfoData',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询直播流历史在线人数
+      * @param {Object} opts - parameters
+      * @param {string} [opts.domainName] - 播放域名  optional
+      * @param {string} [opts.appName] - 应用名称  optional
+      * @param {string} [opts.streamName] - 流名称  optional
+      * @param {string} [opts.ispName] - 运营商
+  optional
+      * @param {string} [opts.locationName] - 查询的区域，如beijing,shanghai。多个用逗号分隔
+  optional
+      * @param {string} [opts.protocolType] - 查询的流协议类型，取值范围：&quot;rtmp,hdl,hls&quot;，多个时以逗号分隔
+  optional
+      * @param {string} [opts.period] - 查询周期，当前取值范围：“oneMin,fiveMin,halfHour,hour,twoHour,sixHour,day,followTime”，分别表示1min，5min，半小时，1小时，2小时，6小时，1天，跟随时间。默认为空，表示fiveMin。当传入followTime时，表示按Endtime-StartTime的周期，只返回一个点
+  optional
+      * @param {string} opts.startTime - 起始时间
+- UTC时间
+  格式:yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;
+  示例:2018-10-21T10:00:00Z
+
+      * @param {string} [opts.endTime] - 结束时间:
+- UTC时间
+  格式:yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;
+  示例:2018-10-21T10:00:00Z
+- 为空,默认为当前时间
+  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param liveStreamUserNumResult dataList
+      */
+
+  describeLiveStreamHistoryUserNum (opts, callback) {
+    opts = opts || {}
+
+    if (opts.startTime === undefined || opts.startTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.startTime' when calling describeLiveStreamHistoryUserNum"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.domainName !== undefined && opts.domainName !== null) {
+      queryParams['domainName'] = opts.domainName
+    }
+    if (opts.appName !== undefined && opts.appName !== null) {
+      queryParams['appName'] = opts.appName
+    }
+    if (opts.streamName !== undefined && opts.streamName !== null) {
+      queryParams['streamName'] = opts.streamName
+    }
+    if (opts.ispName !== undefined && opts.ispName !== null) {
+      queryParams['ispName'] = opts.ispName
+    }
+    if (opts.locationName !== undefined && opts.locationName !== null) {
+      queryParams['locationName'] = opts.locationName
+    }
+    if (opts.protocolType !== undefined && opts.protocolType !== null) {
+      queryParams['protocolType'] = opts.protocolType
+    }
+    if (opts.period !== undefined && opts.period !== null) {
+      queryParams['period'] = opts.period
+    }
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeLiveStreamHistoryUserNum with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/describeLiveStreamHistoryUserNum',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询直播推流数
+      * @param {Object} opts - parameters
+      * @param {string} [opts.domainName] - 播放域名  optional
+      * @param {string} [opts.appName] - 应用名称  optional
+      * @param {string} [opts.protocolType] - 查询的流协议类型，取值范围：&quot;rtmp,hdl,hls&quot;，多个时以逗号分隔
+  optional
+      * @param {string} [opts.period] - 查询周期，当前取值范围：“oneMin,fiveMin,halfHour,hour,twoHour,sixHour,day,followTime”，分别表示1min，5min，半小时，1小时，2小时，6小时，1天，跟随时间。默认为空，表示fiveMin。当传入followTime时，表示按Endtime-StartTime的周期，只返回一个点
+  optional
+      * @param {string} opts.startTime - 起始时间
+- UTC时间
+  格式:yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;
+  示例:2018-10-21T10:00:00Z
+
+      * @param {string} [opts.endTime] - 结束时间:
+- UTC时间
+  格式:yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;
+  示例:2018-10-21T10:00:00Z
+- 为空,默认为当前时间
+  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param liveStreamUserNumResult dataList
+      */
+
+  describeLivePublishStreamNum (opts, callback) {
+    opts = opts || {}
+
+    if (opts.startTime === undefined || opts.startTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.startTime' when calling describeLivePublishStreamNum"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.domainName !== undefined && opts.domainName !== null) {
+      queryParams['domainName'] = opts.domainName
+    }
+    if (opts.appName !== undefined && opts.appName !== null) {
+      queryParams['appName'] = opts.appName
+    }
+    if (opts.protocolType !== undefined && opts.protocolType !== null) {
+      queryParams['protocolType'] = opts.protocolType
+    }
+    if (opts.period !== undefined && opts.period !== null) {
+      queryParams['period'] = opts.period
+    }
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeLivePublishStreamNum with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/describeLivePublishStreamNum',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询直播流播放人数排行
+      * @param {Object} opts - parameters
+      * @param {string} opts.domainName - 推流域名
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.protocolType - 协议，取值范围：&quot;hdl,hls&quot;
+
+      * @param {string} opts.startTime - 起始时间
+- UTC时间
+  格式:yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;
+  示例:2018-10-21T10:00:00Z
+
+      * @param {string} [opts.endTime] - 结束时间:
+- UTC时间
+  格式:yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;
+  示例:2018-10-21T10:00:00Z
+- 为空,默认为当前时间，时间跨度不不超过⼀一天
+  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param liveStreamPlayerRankingResult dataList
+      */
+
+  describeLiveStreamPlayerRankingData (opts, callback) {
+    opts = opts || {}
+
+    if (opts.domainName === undefined || opts.domainName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.domainName' when calling describeLiveStreamPlayerRankingData"
+      )
+    }
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling describeLiveStreamPlayerRankingData"
+      )
+    }
+    if (opts.protocolType === undefined || opts.protocolType === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.protocolType' when calling describeLiveStreamPlayerRankingData"
+      )
+    }
+    if (opts.startTime === undefined || opts.startTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.startTime' when calling describeLiveStreamPlayerRankingData"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.domainName !== undefined && opts.domainName !== null) {
+      queryParams['domainName'] = opts.domainName
+    }
+    if (opts.appName !== undefined && opts.appName !== null) {
+      queryParams['appName'] = opts.appName
+    }
+    if (opts.protocolType !== undefined && opts.protocolType !== null) {
+      queryParams['protocolType'] = opts.protocolType
+    }
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeLiveStreamPlayerRankingData with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/describeLiveStreamPlayerRankingData',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询转码流信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.domainName - 推流域名
+
+      * @param {string} opts.appName - 应用名称
+
+      * @param {string} opts.streamName - 流名称
+
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param liveTranscodeStreamResult dataList
+      */
+
+  describeLiveTranscodeStreamList (opts, callback) {
+    opts = opts || {}
+
+    if (opts.domainName === undefined || opts.domainName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.domainName' when calling describeLiveTranscodeStreamList"
+      )
+    }
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling describeLiveTranscodeStreamList"
+      )
+    }
+    if (opts.streamName === undefined || opts.streamName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.streamName' when calling describeLiveTranscodeStreamList"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.domainName !== undefined && opts.domainName !== null) {
+      queryParams['domainName'] = opts.domainName
+    }
+    if (opts.appName !== undefined && opts.appName !== null) {
+      queryParams['appName'] = opts.appName
+    }
+    if (opts.streamName !== undefined && opts.streamName !== null) {
+      queryParams['streamName'] = opts.streamName
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeLiveTranscodeStreamList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/describeLiveTranscodeStreamList',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询转码流数量
+      * @param {Object} opts - parameters
+      * @param {string} [opts.domainName] - 推流域名  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string datetime  时间
+      * @param integer streamCount  流数量
+      */
+
+  describeLiveTranscodeStreamNum (opts, callback) {
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.domainName !== undefined && opts.domainName !== null) {
+      queryParams['domainName'] = opts.domainName
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeLiveTranscodeStreamNum with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/describeLiveTranscodeStreamNum',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询转码流观看人数
+      * @param {Object} opts - parameters
+      * @param {string} opts.domainName - 推流域名
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.ispName] - 运营商
+  optional
+      * @param {string} [opts.locationName] - 查询的区域，如beijing,shanghai。多个用逗号分隔
+  optional
+      * @param {string} [opts.protocolType] - 查询的流协议类型，取值范围：&quot;rtmp,hdl,hls&quot;，多个时以逗号分隔
+  optional
+      * @param {string} [opts.period] - 查询周期，当前取值范围：“oneMin,fiveMin,halfHour,hour,twoHour,sixHour,day,followTime”，分别表示1min，5min，半小时，1小时，2小时，6小时，1天，跟随时间。默认为空，表示fiveMin。当传入followTime时，表示按Endtime-StartTime的周期，只返回一个点
+  optional
+      * @param {string} opts.startTime - 查询起始时间，UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;
+
+      * @param {string} [opts.endTime] - 查询截至时间，UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;，为空时默认为当前时间
+  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param liveStreamUserNumResult dataList
+      */
+
+  describeLiveTranscodeStreamPlayerUserNum (opts, callback) {
+    opts = opts || {}
+
+    if (opts.domainName === undefined || opts.domainName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.domainName' when calling describeLiveTranscodeStreamPlayerUserNum"
+      )
+    }
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling describeLiveTranscodeStreamPlayerUserNum"
+      )
+    }
+    if (opts.startTime === undefined || opts.startTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.startTime' when calling describeLiveTranscodeStreamPlayerUserNum"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.domainName !== undefined && opts.domainName !== null) {
+      queryParams['domainName'] = opts.domainName
+    }
+    if (opts.appName !== undefined && opts.appName !== null) {
+      queryParams['appName'] = opts.appName
+    }
+    if (opts.ispName !== undefined && opts.ispName !== null) {
+      queryParams['ispName'] = opts.ispName
+    }
+    if (opts.locationName !== undefined && opts.locationName !== null) {
+      queryParams['locationName'] = opts.locationName
+    }
+    if (opts.protocolType !== undefined && opts.protocolType !== null) {
+      queryParams['protocolType'] = opts.protocolType
+    }
+    if (opts.period !== undefined && opts.period !== null) {
+      queryParams['period'] = opts.period
+    }
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeLiveTranscodeStreamPlayerUserNum with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/describeLiveTranscodeStreamPlayerUserNum',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询转码流播放带宽
+      * @param {Object} opts - parameters
+      * @param {string} opts.domainName - 推流域名
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.ispName] - 运营商
+  optional
+      * @param {string} [opts.locationName] - 查询的区域，如beijing,shanghai。多个用逗号分隔
+  optional
+      * @param {string} [opts.protocolType] - 查询的流协议类型，取值范围：&quot;rtmp,hdl,hls&quot;，多个时以逗号分隔
+  optional
+      * @param {string} [opts.period] - 查询周期，当前取值范围：“oneMin,fiveMin,halfHour,hour,twoHour,sixHour,day,followTime”，分别表示1min，5min，半小时，1小时，2小时，6小时，1天，跟随时间。默认为空，表示fiveMin。当传入followTime时，表示按Endtime-StartTime的周期，只返回一个点
+  optional
+      * @param {string} opts.startTime - 查询起始时间，UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;
+
+      * @param {string} [opts.endTime] - 查询截至时间，UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;，为空时默认为当前时间
+  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param liveStreamUserNumResult dataList
+      */
+
+  describeLiveTranscodeStreamBandwidth (opts, callback) {
+    opts = opts || {}
+
+    if (opts.domainName === undefined || opts.domainName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.domainName' when calling describeLiveTranscodeStreamBandwidth"
+      )
+    }
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling describeLiveTranscodeStreamBandwidth"
+      )
+    }
+    if (opts.startTime === undefined || opts.startTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.startTime' when calling describeLiveTranscodeStreamBandwidth"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.domainName !== undefined && opts.domainName !== null) {
+      queryParams['domainName'] = opts.domainName
+    }
+    if (opts.appName !== undefined && opts.appName !== null) {
+      queryParams['appName'] = opts.appName
+    }
+    if (opts.ispName !== undefined && opts.ispName !== null) {
+      queryParams['ispName'] = opts.ispName
+    }
+    if (opts.locationName !== undefined && opts.locationName !== null) {
+      queryParams['locationName'] = opts.locationName
+    }
+    if (opts.protocolType !== undefined && opts.protocolType !== null) {
+      queryParams['protocolType'] = opts.protocolType
+    }
+    if (opts.period !== undefined && opts.period !== null) {
+      queryParams['period'] = opts.period
+    }
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeLiveTranscodeStreamBandwidth with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/describeLiveTranscodeStreamBandwidth',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询转码时长数据
+      * @param {Object} opts - parameters
+      * @param {string} [opts.grade] - 码率档次，可以查询指定档次的转码时长，取值：
+- video_h264_4k_1
+- video_h264_2k_1
+- video_h264_fhd_1
+- video_h264_hd_1
+- video_h264_sd_1
+- video_h265_4k_1
+- video_h265_2k_1
+- video_h265_fhd_1
+- video_h265_hd_1
+- video_h265_sd_1
+  optional
+      * @param {string} [opts.period] - 查询周期，取值范围：“day,month,year,followTime”，分别表示1天，1月，1年，跟随时间。默认为空，表示day。当传入followTime时，表示按Endtime-StartTime的周期，只返回一个点
+  optional
+      * @param {string} opts.startTime - 查询起始时间，UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;
+
+      * @param {string} [opts.endTime] - 查询截至时间，UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;，为空时默认为当前时间
+  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param transcodeDurationStatisticResult dataList
+      */
+
+  describeLiveTranscodingDurationData (opts, callback) {
+    opts = opts || {}
+
+    if (opts.startTime === undefined || opts.startTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.startTime' when calling describeLiveTranscodingDurationData"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.grade !== undefined && opts.grade !== null) {
+      queryParams['grade'] = opts.grade
+    }
+    if (opts.period !== undefined && opts.period !== null) {
+      queryParams['period'] = opts.period
+    }
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeLiveTranscodingDurationData with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/describeLiveTranscodingDurationData',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询带宽数据
+- 查询某个时间段内的带宽数据（平均带宽）
+- 查询时间跨度：30天
+
+      * @param {Object} opts - parameters
+      * @param {string} [opts.domainName] - 播放域名，可以通过指定域名查询该域名下产生的带宽数据。
+  optional
+      * @param {string} [opts.appName] - 推流AppName，将AppName作为查询条件时须指定域名。
+  optional
+      * @param {string} [opts.streamName] - 流名称，将流名称作为查询条件时须指定域名和AppName。
+  optional
+      * @param {string} [opts.ispName] - 运营商
+  optional
+      * @param {string} [opts.locationName] - 查询的区域，如beijing,shanghai。多个用逗号分隔
+  optional
+      * @param {string} [opts.protocolType] - 查询的流协议类型，取值范围：&quot;rtmp,hdl,hls&quot;，多个时以逗号分隔
+  optional
+      * @param {string} [opts.period] - 查询周期，当前取值范围：“oneMin,fiveMin,halfHour,hour,twoHour,sixHour,day,followTime”，分别表示1min，5min，半小时，1小时，2小时，6小时，1天，跟随时间。默认为空，表示fiveMin。当传入followTime时，表示按Endtime-StartTime的周期，只返回一个点
+  optional
+      * @param {string} opts.startTime - 查询起始时间，UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;
+
+      * @param {string} [opts.endTime] - 查询截至时间，UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;，为空时默认为当前时间
+  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param bandwidthStatisticResult dataList
+      */
+
+  describeLiveStreamBandwidthData (opts, callback) {
+    opts = opts || {}
+
+    if (opts.startTime === undefined || opts.startTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.startTime' when calling describeLiveStreamBandwidthData"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.domainName !== undefined && opts.domainName !== null) {
+      queryParams['domainName'] = opts.domainName
+    }
+    if (opts.appName !== undefined && opts.appName !== null) {
+      queryParams['appName'] = opts.appName
+    }
+    if (opts.streamName !== undefined && opts.streamName !== null) {
+      queryParams['streamName'] = opts.streamName
+    }
+    if (opts.ispName !== undefined && opts.ispName !== null) {
+      queryParams['ispName'] = opts.ispName
+    }
+    if (opts.locationName !== undefined && opts.locationName !== null) {
+      queryParams['locationName'] = opts.locationName
+    }
+    if (opts.protocolType !== undefined && opts.protocolType !== null) {
+      queryParams['protocolType'] = opts.protocolType
+    }
+    if (opts.period !== undefined && opts.period !== null) {
+      queryParams['period'] = opts.period
+    }
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeLiveStreamBandwidthData with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/describeLiveStreamBandwidthData',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询推流带宽
+- 查询某个时间段内的推流上行带宽数据
+- 查询时间跨度：30天
+
+      * @param {Object} opts - parameters
+      * @param {string} [opts.domainName] - 推流域名，可以通过指定域名查询该域名下产生的带宽数据。
+  optional
+      * @param {string} [opts.appName] - 推流AppName，将AppName作为查询条件时须指定域名。
+  optional
+      * @param {string} [opts.streamName] - 流名称，将流名称作为查询条件时须指定域名和AppName。
+  optional
+      * @param {string} [opts.ispName] - 运营商
+  optional
+      * @param {string} [opts.locationName] - 查询的区域，如beijing,shanghai。多个用逗号分隔
+  optional
+      * @param {string} [opts.protocolType] - 查询的流协议类型，取值范围：&quot;rtmp,hdl,hls&quot;，多个时以逗号分隔
+  optional
+      * @param {string} [opts.period] - 查询周期，当前取值范围：“oneMin,fiveMin,halfHour,hour,twoHour,sixHour,day,followTime”，分别表示1min，5min，半小时，1小时，2小时，6小时，1天，跟随时间。默认为空，表示fiveMin。当传入followTime时，表示按Endtime-StartTime的周期，只返回一个点
+  optional
+      * @param {string} opts.startTime - 查询起始时间，UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;
+
+      * @param {string} [opts.endTime] - 查询截至时间，UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;，为空时默认为当前时间
+  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param bandwidthStatisticResult dataList
+      */
+
+  describeLiveStreamPublishBandwidthData (opts, callback) {
+    opts = opts || {}
+
+    if (opts.startTime === undefined || opts.startTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.startTime' when calling describeLiveStreamPublishBandwidthData"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.domainName !== undefined && opts.domainName !== null) {
+      queryParams['domainName'] = opts.domainName
+    }
+    if (opts.appName !== undefined && opts.appName !== null) {
+      queryParams['appName'] = opts.appName
+    }
+    if (opts.streamName !== undefined && opts.streamName !== null) {
+      queryParams['streamName'] = opts.streamName
+    }
+    if (opts.ispName !== undefined && opts.ispName !== null) {
+      queryParams['ispName'] = opts.ispName
+    }
+    if (opts.locationName !== undefined && opts.locationName !== null) {
+      queryParams['locationName'] = opts.locationName
+    }
+    if (opts.protocolType !== undefined && opts.protocolType !== null) {
+      queryParams['protocolType'] = opts.protocolType
+    }
+    if (opts.period !== undefined && opts.period !== null) {
+      queryParams['period'] = opts.period
+    }
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeLiveStreamPublishBandwidthData with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/describeLiveStreamPublishBandwidthData',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询流量数据
+- 查询某个时间段内的流量数据。
+- 查询时间跨度：30天
+
+      * @param {Object} opts - parameters
+      * @param {string} [opts.domainName] - 播放域名，可以通过指定域名查询该域名下产生的带宽数据。
+  optional
+      * @param {string} [opts.appName] - 推流AppName，将AppName作为查询条件时须指定域名。
+  optional
+      * @param {string} [opts.streamName] - 流名称
+  optional
+      * @param {string} [opts.ispName] - 运营商
+  optional
+      * @param {string} [opts.locationName] - 查询的区域，如beijing,shanghai。多个用逗号分隔
+  optional
+      * @param {string} [opts.protocolType] - 查询的流协议类型，取值范围：&quot;rtmp,hdl,hls&quot;，多个时以逗号分隔
+  optional
+      * @param {string} [opts.period] - 查询周期，当前取值范围：“oneMin,fiveMin,halfHour,hour,twoHour,sixHour,day,followTime”，分别表示1min，5min，半小时，1小时，2小时，6小时，1天，跟随时间。默认为空，表示fiveMin。当传入followTime时，表示按Endtime-StartTime的周期，只返回一个点
+  optional
+      * @param {string} [opts.startTime] - 查询起始时间，UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;
+  optional
+      * @param {string} opts.endTime - 查询截至时间，UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;，为空时默认为当前时间
+
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param trafficStatisticResult dataList
+      */
+
+  describeLiveStreamTrafficData (opts, callback) {
+    opts = opts || {}
+
+    if (opts.endTime === undefined || opts.endTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.endTime' when calling describeLiveStreamTrafficData"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.domainName !== undefined && opts.domainName !== null) {
+      queryParams['domainName'] = opts.domainName
+    }
+    if (opts.appName !== undefined && opts.appName !== null) {
+      queryParams['appName'] = opts.appName
+    }
+    if (opts.streamName !== undefined && opts.streamName !== null) {
+      queryParams['streamName'] = opts.streamName
+    }
+    if (opts.ispName !== undefined && opts.ispName !== null) {
+      queryParams['ispName'] = opts.ispName
+    }
+    if (opts.locationName !== undefined && opts.locationName !== null) {
+      queryParams['locationName'] = opts.locationName
+    }
+    if (opts.protocolType !== undefined && opts.protocolType !== null) {
+      queryParams['protocolType'] = opts.protocolType
+    }
+    if (opts.period !== undefined && opts.period !== null) {
+      queryParams['period'] = opts.period
+    }
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeLiveStreamTrafficData with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/describeLiveStreamTrafficData',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询推流上行流量数据
+- 查询某个时间段内的流量数据。
+- 查询时间跨度：30天
+
+      * @param {Object} opts - parameters
+      * @param {string} [opts.domainName] - 推流域名，可以通过指定域名查询该域名下产生的带宽数据。
+  optional
+      * @param {string} [opts.appName] - 推流AppName，将AppName作为查询条件时须指定域名。
+  optional
+      * @param {string} [opts.streamName] - 流名称
+  optional
+      * @param {string} [opts.ispName] - 运营商
+  optional
+      * @param {string} [opts.locationName] - 查询的区域，如beijing,shanghai。多个用逗号分隔
+  optional
+      * @param {string} [opts.protocolType] - 查询的流协议类型，取值范围：&quot;rtmp,hdl,hls&quot;，多个时以逗号分隔
+  optional
+      * @param {string} [opts.period] - 查询周期，当前取值范围：“oneMin,fiveMin,halfHour,hour,twoHour,sixHour,day,followTime”，分别表示1min，5min，半小时，1小时，2小时，6小时，1天，跟随时间。默认为空，表示fiveMin。当传入followTime时，表示按Endtime-StartTime的周期，只返回一个点
+  optional
+      * @param {string} [opts.startTime] - 查询起始时间，UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;
+  optional
+      * @param {string} opts.endTime - 查询截至时间，UTC时间，格式：yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;，为空时默认为当前时间
+
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param trafficStatisticResult dataList
+      */
+
+  describeLiveStreamPublishTrafficData (opts, callback) {
+    opts = opts || {}
+
+    if (opts.endTime === undefined || opts.endTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.endTime' when calling describeLiveStreamPublishTrafficData"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.domainName !== undefined && opts.domainName !== null) {
+      queryParams['domainName'] = opts.domainName
+    }
+    if (opts.appName !== undefined && opts.appName !== null) {
+      queryParams['appName'] = opts.appName
+    }
+    if (opts.streamName !== undefined && opts.streamName !== null) {
+      queryParams['streamName'] = opts.streamName
+    }
+    if (opts.ispName !== undefined && opts.ispName !== null) {
+      queryParams['ispName'] = opts.ispName
+    }
+    if (opts.locationName !== undefined && opts.locationName !== null) {
+      queryParams['locationName'] = opts.locationName
+    }
+    if (opts.protocolType !== undefined && opts.protocolType !== null) {
+      queryParams['protocolType'] = opts.protocolType
+    }
+    if (opts.period !== undefined && opts.period !== null) {
+      queryParams['period'] = opts.period
+    }
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeLiveStreamPublishTrafficData with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/describeLiveStreamPublishTrafficData',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -2935,7 +4720,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -3067,7 +4852,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -3258,7 +5043,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -3377,7 +5162,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -3488,7 +5273,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -3610,7 +5395,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -3723,7 +5508,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -3836,7 +5621,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -3936,7 +5721,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -4049,7 +5834,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -4156,7 +5941,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -4257,7 +6042,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -4356,7 +6141,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -4475,7 +6260,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -4594,7 +6379,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -4667,6 +6452,126 @@ JDCloud.LIVE = class LIVE extends Service {
   }
 
   /**
+      *  查询直播实时流信息
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.publishDomain - 推流域名
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.streamName - 流名称
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string publishDomain  推流域名
+      * @param string appName  应用名称
+      * @param string streamName  流名称
+      * @param string status  流状态
+  on: 在线流
+  off: 非在线流
+
+      */
+
+  describeLiveStreamInfo (opts, callback) {
+    opts = opts || {}
+
+    if (opts.publishDomain === undefined || opts.publishDomain === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.publishDomain' when calling describeLiveStreamInfo"
+      )
+    }
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling describeLiveStreamInfo"
+      )
+    }
+    if (opts.streamName === undefined || opts.streamName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.streamName' when calling describeLiveStreamInfo"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      publishDomain: opts.publishDomain,
+      appName: opts.appName,
+      streamName: opts.streamName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeLiveStreamInfo with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/streams/{publishDomain}/appNames/{appName}/streamNames/{streamName}/streamInfo',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  设置直播流状态回调地址
       * @param {Object} opts - parameters
       * @param {string} opts.publishDomain - 推流域名
@@ -4706,7 +6611,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -4806,7 +6711,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -4904,7 +6809,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -5022,7 +6927,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -5168,7 +7073,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -5274,7 +7179,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -5375,7 +7280,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -5493,7 +7398,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -5612,7 +7517,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -5740,7 +7645,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -5954,7 +7859,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -6067,7 +7972,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -6186,7 +8091,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -6293,7 +8198,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -6408,7 +8313,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -6537,7 +8442,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -6638,7 +8543,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -6800,7 +8705,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -6912,7 +8817,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -7033,7 +8938,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -7145,7 +9050,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -7264,7 +9169,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -7365,7 +9270,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -7480,7 +9385,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -7588,7 +9493,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.4'
     }
 
     let contentTypes = ['application/json']

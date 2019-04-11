@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 媒体处理相关接口
- * 多媒体处理服务API，包括截图、转码、媒体处理消息通知等操作。本文档详细说明了媒体处理API及用法，适合开发人员阅读。
+ * Mount-Target
+ * 挂载目标相关接口。
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -24,20 +24,20 @@
 
 const JDCloud = require('../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'mps'
+var serviceId = 'zfs'
 Service._services[serviceId] = true
 
 /**
- * mps service.
+ * zfs service.
  */
 
-JDCloud.MPS = class MPS {
+JDCloud.ZFS = class ZFS {
   constructor (config = {}) {
     this.init(config)
     return new this.service(config)
   }
   init (config) {
-    let serviceName = 'mps'
+    let serviceName = 'zfs'
     let version = config.version || JDCloud.config.version
     let versionFlag = 'v1'
     if (version && version[serviceName]) {
@@ -53,4 +53,4 @@ JDCloud.MPS = class MPS {
   }
 }
 
-module.exports = JDCloud.MPS
+module.exports = JDCloud.ZFS

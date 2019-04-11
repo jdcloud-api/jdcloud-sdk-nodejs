@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 媒体处理相关接口
- * 多媒体处理服务API，包括截图、转码、媒体处理消息通知等操作。本文档详细说明了媒体处理API及用法，适合开发人员阅读。
+ * Mount-Target
+ * 挂载目标相关接口。
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -25,36 +25,44 @@
 require('../../../lib/node_loader')
 var JDCloud = require('../../../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'mps'
+var serviceId = 'zfs'
 Service._services[serviceId] = true
 
 /**
- * mps service.
- * @version 0.4.1
+ * zfs service.
+ * @version 1.0.1
  */
 
-JDCloud.MPS = class MPS extends Service {
+JDCloud.ZFS = class ZFS extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
       options._defaultEndpoint.protocol || 'https'
     options._defaultEndpoint.host =
-      options._defaultEndpoint.host || 'mps.jdcloud-api.com'
+      options._defaultEndpoint.host || 'cfs.jdcloud-api.com'
     options.basePath = '/v1' // 默认要设为空""
     super(serviceId, options)
   }
 
   /**
-      *  获取bucket的图片样式分隔符配置
+      *  -   查询文件系统列表。
+-   filters多个过滤条件之间是逻辑与(AND)，每个条件内部的多个取值是逻辑或(OR)
+
       * @param {Object} opts - parameters
-      * @param {string} opts.bucketName - Bucket名称
+      * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞)  optional
+      * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围：[10,100]  optional
+      * @param {filter} [opts.filters] - fileSystemId - 文件系统ID，精确匹配，支持多个
+name - 文件系统名称，模糊匹配，支持单个
+status - 文件系统状态，精确匹配，支持多个 FileSystem Status/creating、available、in-use
+  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param styleDelimiterConf styleDelimiterConf
+      * @param fileSystem fileSystems
+      * @param integer totalCount  查询的文件系统数目
       */
 
-  getStyleDelimiter (opts, regionId = this.config.regionId, callback) {
+  describeFileSystems (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -62,28 +70,28 @@ JDCloud.MPS = class MPS extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  getStyleDelimiter"
+        "Missing the required parameter 'regionId' when calling  describeFileSystems"
       )
     }
 
     opts = opts || {}
 
-    if (opts.bucketName === undefined || opts.bucketName === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.bucketName' when calling getStyleDelimiter"
-      )
-    }
-
     let postBody = null
     let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
-      regionId: regionId,
-      bucketName: opts.bucketName
+      regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -113,7 +121,7 @@ JDCloud.MPS = class MPS extends Service {
     let returnType = null
 
     this.config.logger(
-      `call getStyleDelimiter with params:\npathParams:${JSON.stringify(
+      `call describeFileSystems with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -126,7 +134,7 @@ JDCloud.MPS = class MPS extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/buckets/{bucketName}/styleDelimiter/',
+      '/regions/{regionId}/fileSystems',
       'GET',
       pathParams,
       queryParams,
@@ -156,16 +164,19 @@ JDCloud.MPS = class MPS extends Service {
   }
 
   /**
-      *  设置图片样式分隔符
+      *  - 创建一个新的文件系统，为这个文件系统分配一个Id
+
       * @param {Object} opts - parameters
-      * @param {string} opts.bucketName - Bucket名称
-      * @param {array} [opts.delimiters] - 图片样式分隔符配置（JSON数组）；支持的分隔符包含：[&quot;-&quot;, &quot;_&quot;, &quot;/&quot;, &quot;!&quot;]  optional
+      * @param {string} opts.name - 文件系统名称
+      * @param {string} opts.description - 文件系统描述
+      * @param {string} opts.clientToken - 幂等性参数(只支持数字、大小写字母，且不能超过64字符)
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param string fileSystemId  文件系统 ID
       */
 
-  setStyleDelimiter (opts, regionId = this.config.regionId, callback) {
+  createFileSystem (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -173,402 +184,37 @@ JDCloud.MPS = class MPS extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  setStyleDelimiter"
+        "Missing the required parameter 'regionId' when calling  createFileSystem"
       )
     }
 
     opts = opts || {}
 
-    if (opts.bucketName === undefined || opts.bucketName === null) {
+    if (opts.name === undefined || opts.name === null) {
       throw new Error(
-        "Missing the required parameter 'opts.bucketName' when calling setStyleDelimiter"
+        "Missing the required parameter 'opts.name' when calling createFileSystem"
+      )
+    }
+    if (opts.description === undefined || opts.description === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.description' when calling createFileSystem"
+      )
+    }
+    if (opts.clientToken === undefined || opts.clientToken === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clientToken' when calling createFileSystem"
       )
     }
 
     let postBody = {}
-    if (opts.delimiters !== undefined && opts.delimiters !== null) {
-      postBody['delimiters'] = opts.delimiters
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
     }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      bucketName: opts.bucketName
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
     }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.1'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call setStyleDelimiter with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/buckets/{bucketName}/styleDelimiter/',
-      'PUT',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  删除bucket的图片样式分隔符配置
-      * @param {Object} opts - parameters
-      * @param {string} opts.bucketName - Bucket名称
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  deleteStyleDelimiter (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  deleteStyleDelimiter"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.bucketName === undefined || opts.bucketName === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.bucketName' when calling deleteStyleDelimiter"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      bucketName: opts.bucketName
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.1'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call deleteStyleDelimiter with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/buckets/{bucketName}/styleDelimiter/',
-      'DELETE',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询截图任务，返回满足查询条件的任务列表。
-      * @param {Object} opts - parameters
-      * @param {string} [opts.status] - task 状态 (PENDING, RUNNING, SUCCESS, FAILED)  optional
-      * @param {string} [opts.begin] - 开始时间 时间格式(GMT): yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSS&#39;Z&#39;  optional
-      * @param {string} [opts.end] - 结束时间 时间格式(GMT): yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSS&#39;Z&#39;  optional
-      * @param {string} [opts.marker] - 查询标记  optional
-      * @param {integer} [opts.limit] - 查询记录数 [1, 1000]  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param thumbnailQuery thumbnailQuery
-      */
-
-  listThumbnailTask (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  listThumbnailTask"
-      )
-    }
-
-    opts = opts || {}
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.status !== undefined && opts.status !== null) {
-      queryParams['status'] = opts.status
-    }
-    if (opts.begin !== undefined && opts.begin !== null) {
-      queryParams['begin'] = opts.begin
-    }
-    if (opts.end !== undefined && opts.end !== null) {
-      queryParams['end'] = opts.end
-    }
-    if (opts.marker !== undefined && opts.marker !== null) {
-      queryParams['marker'] = opts.marker
-    }
-    if (opts.limit !== undefined && opts.limit !== null) {
-      queryParams['limit'] = opts.limit
-    }
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.1'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call listThumbnailTask with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/thumbnail',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  创建截图任务，创建成功时返回任务ID。本接口用于截取指定时间点的画面。
-      * @param {Object} opts - parameters
-      * @param {string} [opts.taskID] - 任务ID (readonly)  optional
-      * @param {string} [opts.status] - 状态 (SUCCESS, ERROR, PENDDING, RUNNING) (readonly)  optional
-      * @param {integer} [opts.errorCode] - 错误码 (readonly)  optional
-      * @param {string} [opts.createdTime] - 任务创建时间 时间格式(GMT): yyyy-MM-dd’T’HH:mm:ss.SSS’Z’  (readonly)  optional
-      * @param {string} [opts.lastUpdatedTime] - 任务创建时间 时间格式(GMT): yyyy-MM-dd’T’HH:mm:ss.SSS’Z’  (readonly)  optional
-      * @param {thumbnailTaskSource} opts.source
-      * @param {thumbnailTaskTarget} opts.target
-      * @param {thumbnailTaskRule} [opts.rule]   optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param thumbnailTaskID thumbnailTaskID
-      */
-
-  createThumbnailTask (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  createThumbnailTask"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.source === undefined || opts.source === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.source' when calling createThumbnailTask"
-      )
-    }
-    if (opts.target === undefined || opts.target === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.target' when calling createThumbnailTask"
-      )
-    }
-
-    let postBody = {}
-    if (opts.taskID !== undefined && opts.taskID !== null) {
-      postBody['taskID'] = opts.taskID
-    }
-    if (opts.status !== undefined && opts.status !== null) {
-      postBody['status'] = opts.status
-    }
-    if (opts.errorCode !== undefined && opts.errorCode !== null) {
-      postBody['errorCode'] = opts.errorCode
-    }
-    if (opts.createdTime !== undefined && opts.createdTime !== null) {
-      postBody['createdTime'] = opts.createdTime
-    }
-    if (opts.lastUpdatedTime !== undefined && opts.lastUpdatedTime !== null) {
-      postBody['lastUpdatedTime'] = opts.lastUpdatedTime
-    }
-    if (opts.source !== undefined && opts.source !== null) {
-      postBody['source'] = opts.source
-    }
-    if (opts.target !== undefined && opts.target !== null) {
-      postBody['target'] = opts.target
-    }
-    if (opts.rule !== undefined && opts.rule !== null) {
-      postBody['rule'] = opts.rule
+    if (opts.clientToken !== undefined && opts.clientToken !== null) {
+      postBody['clientToken'] = opts.clientToken
     }
 
     let queryParams = {}
@@ -578,7 +224,7 @@ JDCloud.MPS = class MPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -608,7 +254,7 @@ JDCloud.MPS = class MPS extends Service {
     let returnType = null
 
     this.config.logger(
-      `call createThumbnailTask with params:\npathParams:${JSON.stringify(
+      `call createFileSystem with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -621,7 +267,7 @@ JDCloud.MPS = class MPS extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/thumbnail',
+      '/regions/{regionId}/fileSystems',
       'POST',
       pathParams,
       queryParams,
@@ -651,16 +297,16 @@ JDCloud.MPS = class MPS extends Service {
   }
 
   /**
-      *  根据任务ID获取截图任务。
+      *  查询文件系统详情
       * @param {Object} opts - parameters
-      * @param {string} opts.taskId - task id
+      * @param {string} opts.fileSystemId - 文件系统ID
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param thumbnailTask thumbnailTask
+      * @param fileSystem fileSystem
       */
 
-  getThumbnailTask (opts, regionId = this.config.regionId, callback) {
+  describeFileSystem (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -668,15 +314,15 @@ JDCloud.MPS = class MPS extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  getThumbnailTask"
+        "Missing the required parameter 'regionId' when calling  describeFileSystem"
       )
     }
 
     opts = opts || {}
 
-    if (opts.taskId === undefined || opts.taskId === null) {
+    if (opts.fileSystemId === undefined || opts.fileSystemId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.taskId' when calling getThumbnailTask"
+        "Missing the required parameter 'opts.fileSystemId' when calling describeFileSystem"
       )
     }
 
@@ -685,11 +331,11 @@ JDCloud.MPS = class MPS extends Service {
 
     let pathParams = {
       regionId: regionId,
-      taskId: opts.taskId
+      fileSystemId: opts.fileSystemId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -719,7 +365,7 @@ JDCloud.MPS = class MPS extends Service {
     let returnType = null
 
     this.config.logger(
-      `call getThumbnailTask with params:\npathParams:${JSON.stringify(
+      `call describeFileSystem with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -732,7 +378,7 @@ JDCloud.MPS = class MPS extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/thumbnail/{taskId}',
+      '/regions/{regionId}/fileSystems/{fileSystemId}',
       'GET',
       pathParams,
       queryParams,
@@ -762,15 +408,17 @@ JDCloud.MPS = class MPS extends Service {
   }
 
   /**
-      *  获取媒体处理通知
+      *  修改文件系统属性(name 和 description 必须要指定一个)
       * @param {Object} opts - parameters
+      * @param {string} opts.fileSystemId - 文件系统ID
+      * @param {string} [opts.name] - 文件系统名称(参数规则：不可为空，只支持中文、数字、大小写字母、英文下划线“_”及中划线“-”，且不能超过32字符)  optional
+      * @param {string} [opts.description] - 文件系统描述(参数规则：不能超过256字符)  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param notification notification
       */
 
-  getNotification (opts, regionId = this.config.regionId, callback) {
+  modifyFileSystemAttribute (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -778,7 +426,242 @@ JDCloud.MPS = class MPS extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  getNotification"
+        "Missing the required parameter 'regionId' when calling  modifyFileSystemAttribute"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.fileSystemId === undefined || opts.fileSystemId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.fileSystemId' when calling modifyFileSystemAttribute"
+      )
+    }
+
+    let postBody = {}
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      fileSystemId: opts.fileSystemId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyFileSystemAttribute with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/fileSystems/{fileSystemId}',
+      'PATCH',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  -   删除一个文件系统，一旦删除，该文件系统将不存在，也无法访问已删除的文件系统里的任何内容。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.fileSystemId - 文件系统ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteFileSystem (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteFileSystem"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.fileSystemId === undefined || opts.fileSystemId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.fileSystemId' when calling deleteFileSystem"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      fileSystemId: opts.fileSystemId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteFileSystem with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/fileSystems/{fileSystemId}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  -   查询挂载目标列表。
+
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞)  optional
+      * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围：[10,100]  optional
+      * @param {filter} [opts.filters] - fileSystemId - 文件系统ID，精确匹配，支持多个
+mountTargetId - 挂载目标ID，精确匹配，支持多个
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param mountTarget mountTargets
+      * @param integer totalCount  查询的挂载目标数目
+      */
+
+  describeMountTargets (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeMountTargets"
       )
     }
 
@@ -786,13 +669,20 @@ JDCloud.MPS = class MPS extends Service {
 
     let postBody = null
     let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -822,7 +712,7 @@ JDCloud.MPS = class MPS extends Service {
     let returnType = null
 
     this.config.logger(
-      `call getNotification with params:\npathParams:${JSON.stringify(
+      `call describeMountTargets with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -835,7 +725,7 @@ JDCloud.MPS = class MPS extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/notification',
+      '/regions/{regionId}/mountTargets',
       'GET',
       pathParams,
       queryParams,
@@ -865,19 +755,22 @@ JDCloud.MPS = class MPS extends Service {
   }
 
   /**
-      *  设置媒体处理通知, 在设置Notification时会对endpoint进行校验, 设置时会对endpoint发一条SubscriptionConfirmation(x-jdcloud-message-type头)的通知, 要求把Message内容进行base64编码返回给系统(body)进行校验
+      *  - 为一个文件系统创建一个挂载目标。通过这个挂载目标,你可以挂载将一个文件系统挂载到主机实例上。
+- 创建一个挂载目标，为这个挂载目标分配一个Id
+
       * @param {Object} opts - parameters
-      * @param {boolean} opts.enabled - 是否启用通知
-      * @param {string} [opts.endpoint] - 通知endpoint, 当前支持http://和https://  optional
-      * @param {array} [opts.events] - 触发通知的事件集合 (mpsTranscodeComplete, mpsThumbnailComplete)  optional
-      * @param {string} [opts.notifyStrategy] - 重试策略, BACKOFF_RETRY: 退避重试策略, 重试 3 次, 每次重试的间隔时间是 10秒 到 20秒 之间的随机值; EXPONENTIAL_DECAY_RETRY: 指数衰减重试, 重试 176 次, 每次重试的间隔时间指数递增至 512秒, 总计重试时间为1天; 每次重试的具体间隔为: 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 512 ... 512 秒(共167个512)  optional
-      * @param {string} [opts.notifyContentFormat] - 描述了向 Endpoint 推送的消息格式, JSON: 包含消息正文和消息属性, SIMPLIFIED: 消息体即用户发布的消息, 不包含任何属性信息  optional
+      * @param {string} opts.fileSystemId - 创建挂载目标的文件系统
+      * @param {string} opts.subnetId - 子网id
+      * @param {string} opts.vpcId - vpcId
+      * @param {string} opts.securityGroupId - 安全组id
+      * @param {string} opts.clientToken - 幂等性参数(只支持数字、大小写字母，且不能超过64字符)
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param string mountTargetId  挂载目标 ID
       */
 
-  setNotification (opts, regionId = this.config.regionId, callback) {
+  createMountTarget (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -885,36 +778,53 @@ JDCloud.MPS = class MPS extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  setNotification"
+        "Missing the required parameter 'regionId' when calling  createMountTarget"
       )
     }
 
     opts = opts || {}
 
-    if (opts.enabled === undefined || opts.enabled === null) {
+    if (opts.fileSystemId === undefined || opts.fileSystemId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.enabled' when calling setNotification"
+        "Missing the required parameter 'opts.fileSystemId' when calling createMountTarget"
+      )
+    }
+    if (opts.subnetId === undefined || opts.subnetId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.subnetId' when calling createMountTarget"
+      )
+    }
+    if (opts.vpcId === undefined || opts.vpcId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.vpcId' when calling createMountTarget"
+      )
+    }
+    if (opts.securityGroupId === undefined || opts.securityGroupId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.securityGroupId' when calling createMountTarget"
+      )
+    }
+    if (opts.clientToken === undefined || opts.clientToken === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clientToken' when calling createMountTarget"
       )
     }
 
     let postBody = {}
-    if (opts.enabled !== undefined && opts.enabled !== null) {
-      postBody['enabled'] = opts.enabled
+    if (opts.fileSystemId !== undefined && opts.fileSystemId !== null) {
+      postBody['fileSystemId'] = opts.fileSystemId
     }
-    if (opts.endpoint !== undefined && opts.endpoint !== null) {
-      postBody['endpoint'] = opts.endpoint
+    if (opts.subnetId !== undefined && opts.subnetId !== null) {
+      postBody['subnetId'] = opts.subnetId
     }
-    if (opts.events !== undefined && opts.events !== null) {
-      postBody['events'] = opts.events
+    if (opts.vpcId !== undefined && opts.vpcId !== null) {
+      postBody['vpcId'] = opts.vpcId
     }
-    if (opts.notifyStrategy !== undefined && opts.notifyStrategy !== null) {
-      postBody['notifyStrategy'] = opts.notifyStrategy
+    if (opts.securityGroupId !== undefined && opts.securityGroupId !== null) {
+      postBody['securityGroupId'] = opts.securityGroupId
     }
-    if (
-      opts.notifyContentFormat !== undefined &&
-      opts.notifyContentFormat !== null
-    ) {
-      postBody['notifyContentFormat'] = opts.notifyContentFormat
+    if (opts.clientToken !== undefined && opts.clientToken !== null) {
+      postBody['clientToken'] = opts.clientToken
     }
 
     let queryParams = {}
@@ -924,7 +834,7 @@ JDCloud.MPS = class MPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -954,7 +864,7 @@ JDCloud.MPS = class MPS extends Service {
     let returnType = null
 
     this.config.logger(
-      `call setNotification with params:\npathParams:${JSON.stringify(
+      `call createMountTarget with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -967,8 +877,230 @@ JDCloud.MPS = class MPS extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/notification',
-      'PUT',
+      '/regions/{regionId}/mountTargets',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询挂载目标详情
+      * @param {Object} opts - parameters
+      * @param {string} opts.mountTargetId - 挂载目标ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param mountTarget mountTarget
+      */
+
+  describeMountTarget (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeMountTarget"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.mountTargetId === undefined || opts.mountTargetId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.mountTargetId' when calling describeMountTarget"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      mountTargetId: opts.mountTargetId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeMountTarget with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/mountTargets/{mountTargetId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  -   删除挂载目标的同时会删除相关的网络接口。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.mountTargetId - 挂载目标ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteMountTarget (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteMountTarget"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.mountTargetId === undefined || opts.mountTargetId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.mountTargetId' when calling deleteMountTarget"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      mountTargetId: opts.mountTargetId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteMountTarget with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/mountTargets/{mountTargetId}',
+      'DELETE',
       pathParams,
       queryParams,
       headerParams,
@@ -996,4 +1128,4 @@ JDCloud.MPS = class MPS extends Service {
     )
   }
 }
-module.exports = JDCloud.MPS
+module.exports = JDCloud.ZFS

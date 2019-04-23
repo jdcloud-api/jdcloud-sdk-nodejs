@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * elite云存服务相关接口
- * elite云存服务相关接口
+ * 镜像仓库认证信息
+ * 关于镜像仓库认证信息的相关接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -24,20 +24,20 @@
 
 const JDCloud = require('../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'elite'
+var serviceId = 'nativecontainer'
 Service._services[serviceId] = true
 
 /**
- * elite service.
+ * nativecontainer service.
  */
 
-JDCloud.ELITE = class ELITE {
+JDCloud.NATIVECONTAINER = class NATIVECONTAINER {
   constructor (config = {}) {
     this.init(config)
     return new this.service(config)
   }
   init (config) {
-    let serviceName = 'elite'
+    let serviceName = 'nativecontainer'
     let version = config.version || JDCloud.config.version
     let versionFlag = 'v1'
     if (version && version[serviceName]) {
@@ -53,4 +53,4 @@ JDCloud.ELITE = class ELITE {
   }
 }
 
-module.exports = JDCloud.ELITE
+module.exports = JDCloud.NATIVECONTAINER

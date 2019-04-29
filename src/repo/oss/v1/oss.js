@@ -80,10 +80,29 @@ JDCloud.OSS = class OSS extends Service {
       'User-Agent': 'JdcloudSdkNode/1.0.0  oss/0.2.2'
     }
 
-    let formParams = {}
-
     let contentTypes = ['application/json']
     let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
 
     let returnType = null
 
@@ -116,13 +135,13 @@ JDCloud.OSS = class OSS extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -173,10 +192,29 @@ JDCloud.OSS = class OSS extends Service {
       'User-Agent': 'JdcloudSdkNode/1.0.0  oss/0.2.2'
     }
 
-    let formParams = {}
-
     let contentTypes = ['application/json']
     let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
 
     let returnType = null
 
@@ -209,13 +247,13 @@ JDCloud.OSS = class OSS extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -265,10 +303,29 @@ JDCloud.OSS = class OSS extends Service {
       'User-Agent': 'JdcloudSdkNode/1.0.0  oss/0.2.2'
     }
 
-    let formParams = {}
-
     let contentTypes = ['application/json']
     let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
 
     let returnType = null
 
@@ -301,13 +358,13 @@ JDCloud.OSS = class OSS extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -357,10 +414,29 @@ JDCloud.OSS = class OSS extends Service {
       'User-Agent': 'JdcloudSdkNode/1.0.0  oss/0.2.2'
     }
 
-    let formParams = {}
-
     let contentTypes = ['application/json']
     let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
 
     let returnType = null
 
@@ -393,13 +469,13 @@ JDCloud.OSS = class OSS extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)

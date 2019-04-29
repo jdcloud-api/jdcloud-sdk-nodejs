@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * DDoS基础防护相关接口
- * DDoS基础防护相关接口
+ * 镜像仓库认证信息
+ * 关于镜像仓库认证信息的相关接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -24,20 +24,20 @@
 
 const JDCloud = require('../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'baseanti'
+var serviceId = 'pod'
 Service._services[serviceId] = true
 
 /**
- * baseanti service.
+ * pod service.
  */
 
-JDCloud.BASEANTI = class BASEANTI {
+JDCloud.POD = class POD {
   constructor (config = {}) {
     this.init(config)
     return new this.service(config)
   }
   init (config) {
-    let serviceName = 'baseanti'
+    let serviceName = 'pod'
     let version = config.version || JDCloud.config.version
     let versionFlag = 'v1'
     if (version && version[serviceName]) {
@@ -53,4 +53,4 @@ JDCloud.BASEANTI = class BASEANTI {
   }
 }
 
-module.exports = JDCloud.BASEANTI
+module.exports = JDCloud.POD

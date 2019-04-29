@@ -39,7 +39,7 @@ JDCloud.JKE = class JKE extends Service {
     options._defaultEndpoint.protocol =
       options._defaultEndpoint.protocol || 'https'
     options._defaultEndpoint.host =
-      options._defaultEndpoint.host || 'openapi.jks.jcloud.com'
+      options._defaultEndpoint.host || 'jke.jdcloud-api.com'
     options.basePath = '/v1' // 默认要设为空""
     super(serviceId, options)
   }
@@ -81,10 +81,29 @@ JDCloud.JKE = class JKE extends Service {
       'User-Agent': 'JdcloudSdkNode/1.0.0  jke/0.1.0'
     }
 
-    let formParams = {}
-
     let contentTypes = ['application/json']
     let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
 
     let returnType = null
 
@@ -117,13 +136,13 @@ JDCloud.JKE = class JKE extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)

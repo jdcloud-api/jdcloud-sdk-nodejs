@@ -2854,7 +2854,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
   }
 
   /**
-      *  新购或升级高防实例, 新购或升级成功时, 需根据订单 id 完成支付流程, 新购或升级实例才会生效
+      *  新购或升级高防实例
       * @param {Object} opts - parameters
       * @param {createInstanceSpec} opts.createInstanceSpec - 新购或升级实例请求参数
       * @param {string} regionId - ID of the region
@@ -7171,139 +7171,6 @@ JDCloud.IPANTI = class IPANTI extends Service {
     let request = this.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}:disableCC',
       'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  删除网站规则的 CC 防护规则
-      * @param {Object} opts - parameters
-      * @param {integer} opts.instanceId - 高防实例 Id
-      * @param {integer} opts.webRuleId - 网站规则 Id
-      * @param {integer} opts.ccProtectionRuleId - 网站类规则的 CC 防护规则 Id
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param integer code  0: 删除失败, 1: 删除成功
-      * @param string message  删除失败时给出具体原因
-      */
-
-  deleteCCProtectionRuleOfWebRule (
-    opts,
-    regionId = this.config.regionId,
-    callback
-  ) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  deleteCCProtectionRuleOfWebRule"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.instanceId === undefined || opts.instanceId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.instanceId' when calling deleteCCProtectionRuleOfWebRule"
-      )
-    }
-    if (opts.webRuleId === undefined || opts.webRuleId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.webRuleId' when calling deleteCCProtectionRuleOfWebRule"
-      )
-    }
-    if (
-      opts.ccProtectionRuleId === undefined ||
-      opts.ccProtectionRuleId === null
-    ) {
-      throw new Error(
-        "Missing the required parameter 'opts.ccProtectionRuleId' when calling deleteCCProtectionRuleOfWebRule"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      instanceId: opts.instanceId,
-      webRuleId: opts.webRuleId,
-      ccProtectionRuleId: opts.ccProtectionRuleId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.3.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call deleteCCProtectionRuleOfWebRule with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}/ccProtectionRules/{ccProtectionRuleId}',
-      'DELETE',
       pathParams,
       queryParams,
       headerParams,

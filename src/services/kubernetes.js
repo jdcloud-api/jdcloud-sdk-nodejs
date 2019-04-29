@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * DDoS基础防护相关接口
- * DDoS基础防护相关接口
+ * ServiceConfig
+ * 查询服务配置信息
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -24,20 +24,20 @@
 
 const JDCloud = require('../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'baseanti'
+var serviceId = 'kubernetes'
 Service._services[serviceId] = true
 
 /**
- * baseanti service.
+ * kubernetes service.
  */
 
-JDCloud.BASEANTI = class BASEANTI {
+JDCloud.KUBERNETES = class KUBERNETES {
   constructor (config = {}) {
     this.init(config)
     return new this.service(config)
   }
   init (config) {
-    let serviceName = 'baseanti'
+    let serviceName = 'kubernetes'
     let version = config.version || JDCloud.config.version
     let versionFlag = 'v1'
     if (version && version[serviceName]) {
@@ -53,4 +53,4 @@ JDCloud.BASEANTI = class BASEANTI {
   }
 }
 
-module.exports = JDCloud.BASEANTI
+module.exports = JDCloud.KUBERNETES

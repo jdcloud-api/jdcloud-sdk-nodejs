@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * DDoS基础防护相关接口
- * DDoS基础防护相关接口
+ * 敏感操作配置
+ * 操作敏感操作配置接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -24,20 +24,20 @@
 
 const JDCloud = require('../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'baseanti'
+var serviceId = 'sop'
 Service._services[serviceId] = true
 
 /**
- * baseanti service.
+ * sop service.
  */
 
-JDCloud.BASEANTI = class BASEANTI {
+JDCloud.SOP = class SOP {
   constructor (config = {}) {
     this.init(config)
     return new this.service(config)
   }
   init (config) {
-    let serviceName = 'baseanti'
+    let serviceName = 'sop'
     let version = config.version || JDCloud.config.version
     let versionFlag = 'v1'
     if (version && version[serviceName]) {
@@ -53,4 +53,4 @@ JDCloud.BASEANTI = class BASEANTI {
   }
 }
 
-module.exports = JDCloud.BASEANTI
+module.exports = JDCloud.SOP

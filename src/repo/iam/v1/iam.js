@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 用户管理接口
- * 用户管理接口
+ * User Management
+ * User Management API
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * iam service.
- * @version 0.1.1
+ * @version 0.1.9
  */
 
 JDCloud.IAM = class IAM extends Service {
@@ -91,7 +91,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -202,7 +202,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -328,7 +328,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -464,7 +464,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -594,7 +594,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -720,7 +720,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -837,7 +837,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -910,265 +910,15 @@ JDCloud.IAM = class IAM extends Service {
   }
 
   /**
-      *  获取SessionToken
+      *  创建子用户
       * @param {Object} opts - parameters
-      * @param {getSessionTokenInfo} opts.getSessionTokenInfo - 获取sessionToken参数
-      * @param {string} regionId - ID of the region
+      * @param {createSubUserInfo} opts.createSubUserInfo - 子用户信息
       * @param {string} callback - callback
       @return {Object} result
-      * @param string sessionToken  安全令牌
+      * @param createSubUserRes subUser
       */
 
-  getSessionToken (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  getSessionToken"
-      )
-    }
-
-    opts = opts || {}
-
-    if (
-      opts.getSessionTokenInfo === undefined ||
-      opts.getSessionTokenInfo === null
-    ) {
-      throw new Error(
-        "Missing the required parameter 'opts.getSessionTokenInfo' when calling getSessionToken"
-      )
-    }
-
-    let postBody = {}
-    if (
-      opts.getSessionTokenInfo !== undefined &&
-      opts.getSessionTokenInfo !== null
-    ) {
-      postBody['getSessionTokenInfo'] = opts.getSessionTokenInfo
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.1'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call getSessionToken with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/securityToken:getSessionToken',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  验证SessionToken有效性
-      * @param {Object} opts - parameters
-      * @param {verifySessionTokenInfo} opts.verifySessionTokenInfo - 验证sessionToken参数
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  verifySessionToken (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  verifySessionToken"
-      )
-    }
-
-    opts = opts || {}
-
-    if (
-      opts.verifySessionTokenInfo === undefined ||
-      opts.verifySessionTokenInfo === null
-    ) {
-      throw new Error(
-        "Missing the required parameter 'opts.verifySessionTokenInfo' when calling verifySessionToken"
-      )
-    }
-
-    let postBody = {}
-    if (
-      opts.verifySessionTokenInfo !== undefined &&
-      opts.verifySessionTokenInfo !== null
-    ) {
-      postBody['verifySessionTokenInfo'] = opts.verifySessionTokenInfo
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.1'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call verifySessionToken with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/securityToken:verifySessionToken',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  创建子账号
-      * @param {Object} opts - parameters
-      * @param {createSubUserInfo} opts.createSubUserInfo - 子账号信息
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  createSubuser (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  createSubuser"
-      )
-    }
-
+  createSubUser (opts, callback) {
     opts = opts || {}
 
     if (
@@ -1176,7 +926,7 @@ JDCloud.IAM = class IAM extends Service {
       opts.createSubUserInfo === null
     ) {
       throw new Error(
-        "Missing the required parameter 'opts.createSubUserInfo' when calling createSubuser"
+        "Missing the required parameter 'opts.createSubUserInfo' when calling createSubUser"
       )
     }
 
@@ -1191,11 +941,11 @@ JDCloud.IAM = class IAM extends Service {
     let queryParams = {}
 
     let pathParams = {
-      regionId: regionId
+      regionId: 'jdcloud'
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -1225,7 +975,7 @@ JDCloud.IAM = class IAM extends Service {
     let returnType = null
 
     this.config.logger(
-      `call createSubuser with params:\npathParams:${JSON.stringify(
+      `call createSubUser with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1238,7 +988,7 @@ JDCloud.IAM = class IAM extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/subUser',
+      '/subUser',
       'POST',
       pathParams,
       queryParams,
@@ -1298,7 +1048,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -1401,7 +1151,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -1512,7 +1262,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -1623,7 +1373,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -1733,7 +1483,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.1.9'
     }
 
     let contentTypes = ['application/json']

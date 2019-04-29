@@ -87,17 +87,29 @@ JDCloud.VM = class VM extends Service {
       'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -130,13 +142,13 @@ JDCloud.VM = class VM extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -187,17 +199,29 @@ JDCloud.VM = class VM extends Service {
       'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -230,13 +254,13 @@ JDCloud.VM = class VM extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -308,17 +332,29 @@ JDCloud.VM = class VM extends Service {
       'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -351,13 +387,13 @@ JDCloud.VM = class VM extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -409,17 +445,29 @@ JDCloud.VM = class VM extends Service {
       'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -452,13 +500,13 @@ JDCloud.VM = class VM extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -508,17 +556,29 @@ JDCloud.VM = class VM extends Service {
       'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -551,13 +611,13 @@ JDCloud.VM = class VM extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -613,17 +673,29 @@ JDCloud.VM = class VM extends Service {
       'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -656,13 +728,13 @@ JDCloud.VM = class VM extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -717,17 +789,29 @@ JDCloud.VM = class VM extends Service {
       'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -760,13 +844,13 @@ JDCloud.VM = class VM extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -817,17 +901,29 @@ JDCloud.VM = class VM extends Service {
       'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -860,13 +956,13 @@ JDCloud.VM = class VM extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -931,17 +1027,29 @@ JDCloud.VM = class VM extends Service {
       'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -974,13 +1082,13 @@ JDCloud.VM = class VM extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -1039,17 +1147,29 @@ JDCloud.VM = class VM extends Service {
       'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -1082,13 +1202,13 @@ JDCloud.VM = class VM extends Service {
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -1154,17 +1274,29 @@ faultDomain - 错误域，支持多个
       'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -1197,13 +1329,13 @@ faultDomain - 错误域，支持多个
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -1316,17 +1448,29 @@ faultDomain - 错误域，支持多个
       'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -1359,13 +1503,13 @@ faultDomain - 错误域，支持多个
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -1416,17 +1560,29 @@ faultDomain - 错误域，支持多个
       'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -1459,13 +1615,13 @@ faultDomain - 错误域，支持多个
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -1518,17 +1674,29 @@ faultDomain - 错误域，支持多个
       'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -1561,13 +1729,13 @@ faultDomain - 错误域，支持多个
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -1628,17 +1796,29 @@ subnetId - 子网ID，精确匹配，支持多个
       'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -1671,13 +1851,13 @@ subnetId - 子网ID，精确匹配，支持多个
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -1742,17 +1922,29 @@ subnetId - 子网ID，精确匹配，支持多个
       'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -1785,13 +1977,13 @@ subnetId - 子网ID，精确匹配，支持多个
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -1842,17 +2034,29 @@ subnetId - 子网ID，精确匹配，支持多个
       'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -1885,13 +2089,13 @@ subnetId - 子网ID，精确匹配，支持多个
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -1943,17 +2147,29 @@ subnetId - 子网ID，精确匹配，支持多个
       'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -1986,13 +2202,13 @@ subnetId - 子网ID，精确匹配，支持多个
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -2043,17 +2259,29 @@ subnetId - 子网ID，精确匹配，支持多个
       'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -2086,13 +2314,13 @@ subnetId - 子网ID，精确匹配，支持多个
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -2166,17 +2394,29 @@ subnetId - 子网ID，精确匹配，支持多个
       'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -2209,13 +2449,13 @@ subnetId - 子网ID，精确匹配，支持多个
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -2283,17 +2523,29 @@ subnetId - 子网ID，精确匹配，支持多个
       'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -2326,13 +2578,13 @@ subnetId - 子网ID，精确匹配，支持多个
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -2392,17 +2644,29 @@ subnetId - 子网ID，精确匹配，支持多个
       'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -2435,13 +2699,13 @@ subnetId - 子网ID，精确匹配，支持多个
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -2502,17 +2766,29 @@ subnetId - 子网ID，精确匹配，支持多个
       'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -2545,13 +2821,13 @@ subnetId - 子网ID，精确匹配，支持多个
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -2611,17 +2887,29 @@ subnetId - 子网ID，精确匹配，支持多个
       'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -2654,13 +2942,13 @@ subnetId - 子网ID，精确匹配，支持多个
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -2737,17 +3025,29 @@ subnetId - 子网ID，精确匹配，支持多个
       'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -2780,13 +3080,13 @@ subnetId - 子网ID，精确匹配，支持多个
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -2856,17 +3156,29 @@ subnetId - 子网ID，精确匹配，支持多个
       'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -2899,13 +3211,13 @@ subnetId - 子网ID，精确匹配，支持多个
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -2969,17 +3281,29 @@ subnetId - 子网ID，精确匹配，支持多个
       'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -3012,13 +3336,13 @@ subnetId - 子网ID，精确匹配，支持多个
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -3073,17 +3397,29 @@ subnetId - 子网ID，精确匹配，支持多个
       'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -3116,13 +3452,13 @@ subnetId - 子网ID，精确匹配，支持多个
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -3181,17 +3517,29 @@ subnetId - 子网ID，精确匹配，支持多个
       'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -3224,13 +3572,13 @@ subnetId - 子网ID，精确匹配，支持多个
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -3291,17 +3639,29 @@ subnetId - 子网ID，精确匹配，支持多个
       'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -3334,13 +3694,13 @@ subnetId - 子网ID，精确匹配，支持多个
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -3392,17 +3752,29 @@ vnc地址的有效期为1个小时，调用接口获取vnc地址后如果1个小
       'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -3435,13 +3807,13 @@ vnc地址的有效期为1个小时，调用接口获取vnc地址后如果1个小
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -3509,17 +3881,29 @@ vnc地址的有效期为1个小时，调用接口获取vnc地址后如果1个小
       'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -3552,13 +3936,13 @@ vnc地址的有效期为1个小时，调用接口获取vnc地址后如果1个小
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -3630,17 +4014,29 @@ vnc地址的有效期为1个小时，调用接口获取vnc地址后如果1个小
       'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -3673,13 +4069,13 @@ vnc地址的有效期为1个小时，调用接口获取vnc地址后如果1个小
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -3728,17 +4124,29 @@ az - 可用区，精确匹配，支持多个
       'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -3771,13 +4179,13 @@ az - 可用区，精确匹配，支持多个
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -3833,17 +4241,29 @@ az - 可用区，精确匹配，支持多个
       'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -3876,13 +4296,13 @@ az - 可用区，精确匹配，支持多个
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -3940,17 +4360,29 @@ az - 可用区，精确匹配，支持多个
       'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -3983,13 +4415,13 @@ az - 可用区，精确匹配，支持多个
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -4055,17 +4487,29 @@ az - 可用区，精确匹配，支持多个
       'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -4098,13 +4542,13 @@ az - 可用区，精确匹配，支持多个
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -4154,17 +4598,29 @@ az - 可用区，精确匹配，支持多个
       'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -4197,13 +4653,13 @@ az - 可用区，精确匹配，支持多个
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)
@@ -4253,17 +4709,29 @@ az - 可用区，精确匹配，支持多个
       'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
     }
 
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
     // 扩展自定义头
     if (opts['x-extra-header']) {
       for (let extraHeader in opts['x-extra-header']) {
         headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
       }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
 
     let formParams = {}
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
 
     let returnType = null
 
@@ -4296,13 +4764,13 @@ az - 可用区，精确匹配，支持多个
 
     return request.then(
       function (result) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(null, result)
         }
         return result
       },
       function (error) {
-        if (callback) {
+        if (callback && typeof callback === 'function') {
           return callback(error)
         }
         return Promise.reject(error)

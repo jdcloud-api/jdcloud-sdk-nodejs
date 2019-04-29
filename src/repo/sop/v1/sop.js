@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 应用管理平台API (仅对授权用户使用)
- * 应用管理平台API
+ * 敏感操作配置
+ * 操作敏感操作配置接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -25,61 +25,74 @@
 require('../../../lib/node_loader')
 var JDCloud = require('../../../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'ams'
+var serviceId = 'sop'
 Service._services[serviceId] = true
 
 /**
- * ams service.
- * @version 1.0.0
+ * sop service.
+ * @version 0.1.0
  */
 
-JDCloud.AMS = class AMS extends Service {
+JDCloud.SOP = class SOP extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
       options._defaultEndpoint.protocol || 'https'
     options._defaultEndpoint.host =
-      options._defaultEndpoint.host || 'ams.jdcloud-api.com'
+      options._defaultEndpoint.host || 'sop.jdcloud-api.com'
     options.basePath = '/v1' // 默认要设为空""
     super(serviceId, options)
   }
 
   /**
-      *  获取收流基础数据查询
+      *  获取Token
       * @param {Object} opts - parameters
-      * @param {string} opts.streamId - 流ID
-      * @param {string} [opts.startTime] - 起始时间  optional
-      * @param {string} [opts.endTime] - 结束时间  optional
+      * @param {getSecurityTokenInfo} opts.getSecurityTokenInfo - 获取SecurityToken参数
+      * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param streamInputData streamInputDatas
+      * @param string securityToken  安全令牌
       */
 
-  describeStreamsInput (opts, callback) {
-    opts = opts || {}
+  getSecurityToken (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
 
-    if (opts.streamId === undefined || opts.streamId === null) {
+    if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.streamId' when calling describeStreamsInput"
+        "Missing the required parameter 'regionId' when calling  getSecurityToken"
       )
     }
 
-    let postBody = null
-    let queryParams = {}
-    if (opts.startTime !== undefined && opts.startTime !== null) {
-      queryParams['startTime'] = opts.startTime
-    }
-    if (opts.endTime !== undefined && opts.endTime !== null) {
-      queryParams['endTime'] = opts.endTime
+    opts = opts || {}
+
+    if (
+      opts.getSecurityTokenInfo === undefined ||
+      opts.getSecurityTokenInfo === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.getSecurityTokenInfo' when calling getSecurityToken"
+      )
     }
 
+    let postBody = {}
+    if (
+      opts.getSecurityTokenInfo !== undefined &&
+      opts.getSecurityTokenInfo !== null
+    ) {
+      postBody['getSecurityTokenInfo'] = opts.getSecurityTokenInfo
+    }
+
+    let queryParams = {}
+
     let pathParams = {
-      regionId: 'jdcloud',
-      streamId: opts.streamId
+      regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ams/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  sop/0.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -109,7 +122,7 @@ JDCloud.AMS = class AMS extends Service {
     let returnType = null
 
     this.config.logger(
-      `call describeStreamsInput with params:\npathParams:${JSON.stringify(
+      `call getSecurityToken with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -122,8 +135,8 @@ JDCloud.AMS = class AMS extends Service {
     )
 
     let request = this.makeRequest(
-      '/streams/{streamId}/inputs',
-      'GET',
+      '/regions/{regionId}/securityToken:getSecurityToken',
+      'POST',
       pathParams,
       queryParams,
       headerParams,
@@ -152,41 +165,49 @@ JDCloud.AMS = class AMS extends Service {
   }
 
   /**
-      *  客户端鉴权查询
+      *  获取操作保护设置信息
       * @param {Object} opts - parameters
-      * @param {string} opts.pId - PinId
-      * @param {integer} [opts.ver] - 版本  optional
+      * @param {string} opts.action - 操作action serviceName:actionName
+      * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param string pId  PinId
-      * @param integer ver  版本
-      * @param number blacklist  集合
-      * @param integer status  状态
-      * @param string license  授权号
+      * @param integer status  操作保护启用状态：0-未启用, 1-已启用
+      * @param integer type  操作保护验证方式：0-无, 1-短信, 2-邮箱, 3-MFA
+      * @param string extInfo  扩展信息，type&#x3D;1时为掩码后的手机号码 type&#x3D;2时为掩码后的邮箱地址
       */
 
-  describeAuthenticate (opts, callback) {
+  getSensitiveOpSetting (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getSensitiveOpSetting"
+      )
+    }
+
     opts = opts || {}
 
-    if (opts.pId === undefined || opts.pId === null) {
+    if (opts.action === undefined || opts.action === null) {
       throw new Error(
-        "Missing the required parameter 'opts.pId' when calling describeAuthenticate"
+        "Missing the required parameter 'opts.action' when calling getSensitiveOpSetting"
       )
     }
 
     let postBody = null
     let queryParams = {}
-    if (opts.ver !== undefined && opts.ver !== null) {
-      queryParams['ver'] = opts.ver
+    if (opts.action !== undefined && opts.action !== null) {
+      queryParams['action'] = opts.action
     }
 
     let pathParams = {
-      regionId: 'jdcloud',
-      pId: opts.pId
+      regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ams/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  sop/0.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -216,7 +237,7 @@ JDCloud.AMS = class AMS extends Service {
     let returnType = null
 
     this.config.logger(
-      `call describeAuthenticate with params:\npathParams:${JSON.stringify(
+      `call getSensitiveOpSetting with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -229,7 +250,7 @@ JDCloud.AMS = class AMS extends Service {
     )
 
     let request = this.makeRequest(
-      '/appManager/{pId}/authenticates',
+      '/regions/{regionId}/sensitiveOpSetting',
       'GET',
       pathParams,
       queryParams,
@@ -258,4 +279,4 @@ JDCloud.AMS = class AMS extends Service {
     )
   }
 }
-module.exports = JDCloud.AMS
+module.exports = JDCloud.SOP

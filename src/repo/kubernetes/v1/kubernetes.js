@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * storage相关 API
- * 流计算storage相关信息接口
+ * ServiceConfig
+ * 查询服务配置信息
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -25,37 +25,41 @@
 require('../../../lib/node_loader')
 var JDCloud = require('../../../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'streamcomputer'
+var serviceId = 'kubernetes'
 Service._services[serviceId] = true
 
 /**
- * streamcomputer service.
- * @version 1.0.1
+ * kubernetes service.
+ * @version 0.3.0
  */
 
-JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
+JDCloud.KUBERNETES = class KUBERNETES extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
       options._defaultEndpoint.protocol || 'https'
     options._defaultEndpoint.host =
-      options._defaultEndpoint.host || 'streamcompute.jdcloud-api.com'
+      options._defaultEndpoint.host || 'kubernetes.jdcloud-api.com'
     options.basePath = '/v1' // 默认要设为空""
     super(serviceId, options)
   }
 
   /**
-      *  查询指定作业详情
+      *  查询集群列表
       * @param {Object} opts - parameters
-      * @param {integer} opts.jobId
-      * @param {integer} opts.namespaceId
+      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
+      * @param {filter} [opts.filters] - name - 集群名称，模糊匹配，仅支持单个
+id - id，支持多个
+  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param jobStr jobStr
+      * @param cluster clusters
+      * @param number totalCount
       */
 
-  describeJob (opts, regionId = this.config.regionId, callback) {
+  describeClusters (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -63,38 +67,28 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeJob"
+        "Missing the required parameter 'regionId' when calling  describeClusters"
       )
     }
 
     opts = opts || {}
 
-    if (opts.jobId === undefined || opts.jobId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.jobId' when calling describeJob"
-      )
-    }
-    if (opts.namespaceId === undefined || opts.namespaceId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.namespaceId' when calling describeJob"
-      )
-    }
-
     let postBody = null
     let queryParams = {}
-    if (opts.jobId !== undefined && opts.jobId !== null) {
-      queryParams['jobId'] = opts.jobId
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
     }
-    if (opts.namespaceId !== undefined && opts.namespaceId !== null) {
-      queryParams['namespaceId'] = opts.namespaceId
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
     }
+    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streamcomputer/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -124,7 +118,7 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     let returnType = null
 
     this.config.logger(
-      `call describeJob with params:\npathParams:${JSON.stringify(
+      `call describeClusters with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -137,7 +131,7 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/job',
+      '/regions/{regionId}/clusters',
       'GET',
       pathParams,
       queryParams,
@@ -167,16 +161,42 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
   }
 
   /**
-      *  添加或者更新job
+      *  - 创建集群
+- 证书
+  - 关于kubernetes的证书，默认生成，不需要用户传入。
+- nodegroup
+  - cluster必须与nodeGroup进行绑定
+  - cluster支持多nodegroup
+  - 状态
+    - pending,reconciling,deleting状态不可以操作更新接口
+    - running，running_with_error状态可以操作nodegroup所有接口
+    - error状态只可以查询，删除
+    - delete状态的cluster在十五分钟内可以查询，十五分钟后无法查询到
+- 状态限制
+  - pending,reconciling,deleting状态不可以操作更新接口
+  - running状态可以操作cluster所有接口
+  - error状态只可以查询，删除
+  - delete状态的cluster在十五分钟内可以查询，十五分钟后无法查询到
+
       * @param {Object} opts - parameters
-      * @param {jobStr} opts.jobStr - 创建作业的详情
+      * @param {string} opts.name - 名称（同一用户的 cluster 允许重名）
+      * @param {string} [opts.description] - 描述  optional
+      * @param {boolean} [opts.basicAuth] - 默认开启 basicAuth与clientCertificate最少选择一个  optional
+      * @param {boolean} [opts.clientCertificate] - 默认开启 clientCertificate  optional
+      * @param {string} [opts.version] - kubernetes的版本  optional
+      * @param {array} [opts.azs] - 集群所在的az  optional
+      * @param {nodeGroupSpec} opts.nodeGroup - pod 创建参数
+      * @param {string} opts.masterCidr - k8s的master的cidr
+      * @param {string} opts.accessKey - 用户的AccessKey，插件调用open-api时的认证凭证
+      * @param {string} opts.secretKey - 用户的SecretKey，插件调用open-api时的认证凭证
+      * @param {boolean} [opts.userMetrics] - 是否启用用户自定义监控，默认不启用  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param okInfo okInfo  成功结果对象
+      * @param string clusterId
       */
 
-  addOrUpdateJob (opts, regionId = this.config.regionId, callback) {
+  createCluster (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -184,21 +204,74 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  addOrUpdateJob"
+        "Missing the required parameter 'regionId' when calling  createCluster"
       )
     }
 
     opts = opts || {}
 
-    if (opts.jobStr === undefined || opts.jobStr === null) {
+    if (opts.name === undefined || opts.name === null) {
       throw new Error(
-        "Missing the required parameter 'opts.jobStr' when calling addOrUpdateJob"
+        "Missing the required parameter 'opts.name' when calling createCluster"
+      )
+    }
+    if (opts.nodeGroup === undefined || opts.nodeGroup === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.nodeGroup' when calling createCluster"
+      )
+    }
+    if (opts.masterCidr === undefined || opts.masterCidr === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.masterCidr' when calling createCluster"
+      )
+    }
+    if (opts.accessKey === undefined || opts.accessKey === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.accessKey' when calling createCluster"
+      )
+    }
+    if (opts.secretKey === undefined || opts.secretKey === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.secretKey' when calling createCluster"
       )
     }
 
     let postBody = {}
-    if (opts.jobStr !== undefined && opts.jobStr !== null) {
-      postBody['jobStr'] = opts.jobStr
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+    if (opts.basicAuth !== undefined && opts.basicAuth !== null) {
+      postBody['basicAuth'] = opts.basicAuth
+    }
+    if (
+      opts.clientCertificate !== undefined &&
+      opts.clientCertificate !== null
+    ) {
+      postBody['clientCertificate'] = opts.clientCertificate
+    }
+    if (opts.version !== undefined && opts.version !== null) {
+      postBody['version'] = opts.version
+    }
+    if (opts.azs !== undefined && opts.azs !== null) {
+      postBody['azs'] = opts.azs
+    }
+    if (opts.nodeGroup !== undefined && opts.nodeGroup !== null) {
+      postBody['nodeGroup'] = opts.nodeGroup
+    }
+    if (opts.masterCidr !== undefined && opts.masterCidr !== null) {
+      postBody['masterCidr'] = opts.masterCidr
+    }
+    if (opts.accessKey !== undefined && opts.accessKey !== null) {
+      postBody['accessKey'] = opts.accessKey
+    }
+    if (opts.secretKey !== undefined && opts.secretKey !== null) {
+      postBody['secretKey'] = opts.secretKey
+    }
+    if (opts.userMetrics !== undefined && opts.userMetrics !== null) {
+      postBody['userMetrics'] = opts.userMetrics
     }
 
     let queryParams = {}
@@ -208,7 +281,7 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streamcomputer/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -238,7 +311,7 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     let returnType = null
 
     this.config.logger(
-      `call addOrUpdateJob with params:\npathParams:${JSON.stringify(
+      `call createCluster with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -251,7 +324,7 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/job',
+      '/regions/{regionId}/clusters',
       'POST',
       pathParams,
       queryParams,
@@ -281,18 +354,16 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
   }
 
   /**
-      *  删除作业
+      *  查询单个集群详情。
       * @param {Object} opts - parameters
-      * @param {string} opts.namespaceId
-      * @param {integer} opts.jobId
+      * @param {string} opts.clusterId - 集群 ID
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param string message  删除job返回信息
-      * @param boolean status
+      * @param cluster cluster
       */
 
-  deleteJob (opts, regionId = this.config.regionId, callback) {
+  describeCluster (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -300,38 +371,28 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  deleteJob"
+        "Missing the required parameter 'regionId' when calling  describeCluster"
       )
     }
 
     opts = opts || {}
 
-    if (opts.namespaceId === undefined || opts.namespaceId === null) {
+    if (opts.clusterId === undefined || opts.clusterId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.namespaceId' when calling deleteJob"
-      )
-    }
-    if (opts.jobId === undefined || opts.jobId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.jobId' when calling deleteJob"
+        "Missing the required parameter 'opts.clusterId' when calling describeCluster"
       )
     }
 
     let postBody = null
     let queryParams = {}
-    if (opts.namespaceId !== undefined && opts.namespaceId !== null) {
-      queryParams['namespaceId'] = opts.namespaceId
-    }
-    if (opts.jobId !== undefined && opts.jobId !== null) {
-      queryParams['jobId'] = opts.jobId
-    }
 
     let pathParams = {
-      regionId: regionId
+      regionId: regionId,
+      clusterId: opts.clusterId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streamcomputer/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -361,7 +422,7 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     let returnType = null
 
     this.config.logger(
-      `call deleteJob with params:\npathParams:${JSON.stringify(
+      `call describeCluster with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -374,7 +435,236 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/job',
+      '/regions/{regionId}/clusters/{clusterId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改集群的 名称 和 描述。
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 集群 ID
+      * @param {string} [opts.name] - 集群名称  optional
+      * @param {string} [opts.description] - 集群 name 和 description 必须要指定一个  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  modifyCluster (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyCluster"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling modifyCluster"
+      )
+    }
+
+    let postBody = {}
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      clusterId: opts.clusterId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.3.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyCluster with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/clusters/{clusterId}',
+      'PATCH',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除集群，以及集群的所有node节点，网络，云盘等所有资源。
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 集群 ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteCluster (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteCluster"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling deleteCluster"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      clusterId: opts.clusterId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.3.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteCluster with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/clusters/{clusterId}',
       'DELETE',
       pathParams,
       queryParams,
@@ -404,16 +694,16 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
   }
 
   /**
-      *  查询指定应用下的所有job
+      *  设置用户自定义监控状态
       * @param {Object} opts - parameters
-      * @param {string} opts.namespaceId
+      * @param {string} opts.clusterId - 集群 ID
+      * @param {boolean} [opts.enabled] - 是否开启自定义监控  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param jobStr data
       */
 
-  getJobList (opts, regionId = this.config.regionId, callback) {
+  setUserMetrics (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -421,608 +711,32 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  getJobList"
+        "Missing the required parameter 'regionId' when calling  setUserMetrics"
       )
     }
 
     opts = opts || {}
 
-    if (opts.namespaceId === undefined || opts.namespaceId === null) {
+    if (opts.clusterId === undefined || opts.clusterId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.namespaceId' when calling getJobList"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.namespaceId !== undefined && opts.namespaceId !== null) {
-      queryParams['namespaceId'] = opts.namespaceId
-    }
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streamcomputer/1.0.1'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call getJobList with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/jobList',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  运行job
-      * @param {Object} opts - parameters
-      * @param {string} opts.namespaceId
-      * @param {integer} opts.jobId
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param string message  是否成功提交作业
-      */
-
-  startJob (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  startJob"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.namespaceId === undefined || opts.namespaceId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.namespaceId' when calling startJob"
-      )
-    }
-    if (opts.jobId === undefined || opts.jobId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.jobId' when calling startJob"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.namespaceId !== undefined && opts.namespaceId !== null) {
-      queryParams['namespaceId'] = opts.namespaceId
-    }
-    if (opts.jobId !== undefined && opts.jobId !== null) {
-      queryParams['jobId'] = opts.jobId
-    }
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streamcomputer/1.0.1'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call startJob with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/job:start',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  停止作业运行job
-      * @param {Object} opts - parameters
-      * @param {string} opts.namespaceId
-      * @param {integer} opts.jobId
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param string message  成功启动作业返回信息
-      */
-
-  stopJob (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  stopJob"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.namespaceId === undefined || opts.namespaceId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.namespaceId' when calling stopJob"
-      )
-    }
-    if (opts.jobId === undefined || opts.jobId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.jobId' when calling stopJob"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.namespaceId !== undefined && opts.namespaceId !== null) {
-      queryParams['namespaceId'] = opts.namespaceId
-    }
-    if (opts.jobId !== undefined && opts.jobId !== null) {
-      queryParams['jobId'] = opts.jobId
-    }
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streamcomputer/1.0.1'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call stopJob with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/job:stop',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询租户下的应用列表
-      * @param {Object} opts - parameters
-      * @param {string} [opts.keyword]   optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param namespace namespaces
-      */
-
-  queryNamespaces (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  queryNamespaces"
-      )
-    }
-
-    opts = opts || {}
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.keyword !== undefined && opts.keyword !== null) {
-      queryParams['keyword'] = opts.keyword
-    }
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streamcomputer/1.0.1'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call queryNamespaces with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/namespaces',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询某个应用详情
-      * @param {Object} opts - parameters
-      * @param {integer} opts.namespaceId
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param namespace namespace  查询出的namespace对象
-      */
-
-  queryNamespaceDetail (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  queryNamespaceDetail"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.namespaceId === undefined || opts.namespaceId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.namespaceId' when calling queryNamespaceDetail"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.namespaceId !== undefined && opts.namespaceId !== null) {
-      queryParams['namespaceId'] = opts.namespaceId
-    }
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streamcomputer/1.0.1'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call queryNamespaceDetail with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/namespaceDetail',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  创建namespace
-      * @param {Object} opts - parameters
-      * @param {namespace} opts.namespaceStr
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param boolean status  创建成功标志
-      */
-
-  createNamespace (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  createNamespace"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.namespaceStr === undefined || opts.namespaceStr === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.namespaceStr' when calling createNamespace"
+        "Missing the required parameter 'opts.clusterId' when calling setUserMetrics"
       )
     }
 
     let postBody = {}
-    if (opts.namespaceStr !== undefined && opts.namespaceStr !== null) {
-      postBody['namespaceStr'] = opts.namespaceStr
+    if (opts.enabled !== undefined && opts.enabled !== null) {
+      postBody['enabled'] = opts.enabled
     }
 
     let queryParams = {}
 
     let pathParams = {
-      regionId: regionId
+      regionId: regionId,
+      clusterId: opts.clusterId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streamcomputer/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -1052,7 +766,7 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     let returnType = null
 
     this.config.logger(
-      `call createNamespace with params:\npathParams:${JSON.stringify(
+      `call setUserMetrics with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1065,7 +779,7 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/namespace',
+      '/regions/{regionId}/clusters/{clusterId}:setUserMetrics',
       'POST',
       pathParams,
       queryParams,
@@ -1095,16 +809,23 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
   }
 
   /**
-      *  更新namespace
+      *  查询节点组列表
       * @param {Object} opts - parameters
-      * @param {namespace} opts.namespaceStr
+      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
+      * @param {filter} [opts.filters] - name - 节点组名称，模糊匹配，支持单个
+id - 节点组 id，支持多个
+clusterId - 根据clusterId查询
+clusterName - 根据名称查询 cluster
+  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param boolean status  更新成功标志
+      * @param nodeGroup nodeGroups
+      * @param number totalCount
       */
 
-  updateNamespace (opts, regionId = this.config.regionId, callback) {
+  describeNodeGroups (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -1112,144 +833,28 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  updateNamespace"
+        "Missing the required parameter 'regionId' when calling  describeNodeGroups"
       )
     }
 
     opts = opts || {}
-
-    if (opts.namespaceStr === undefined || opts.namespaceStr === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.namespaceStr' when calling updateNamespace"
-      )
-    }
-
-    let postBody = {}
-    if (opts.namespaceStr !== undefined && opts.namespaceStr !== null) {
-      postBody['namespaceStr'] = opts.namespaceStr
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streamcomputer/1.0.1'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call updateNamespace with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/namespace',
-      'PUT',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  删除namespace,如果旗下关联有其他资源，不允许删除
-      * @param {Object} opts - parameters
-      * @param {integer} opts.namespaceId
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param boolean status  删除namespace成功标志
-      */
-
-  deleteNamespace (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  deleteNamespace"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.namespaceId === undefined || opts.namespaceId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.namespaceId' when calling deleteNamespace"
-      )
-    }
 
     let postBody = null
     let queryParams = {}
-    if (opts.namespaceId !== undefined && opts.namespaceId !== null) {
-      queryParams['namespaceId'] = opts.namespaceId
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
     }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streamcomputer/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -1279,7 +884,7 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     let returnType = null
 
     this.config.logger(
-      `call deleteNamespace with params:\npathParams:${JSON.stringify(
+      `call describeNodeGroups with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1292,120 +897,7 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/namespace',
-      'DELETE',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询指定输入
-      * @param {Object} opts - parameters
-      * @param {integer} opts.storageId - storageId
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param storage data
-      */
-
-  describeStorage (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeStorage"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.storageId === undefined || opts.storageId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.storageId' when calling describeStorage"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.storageId !== undefined && opts.storageId !== null) {
-      queryParams['storageId'] = opts.storageId
-    }
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streamcomputer/1.0.1'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeStorage with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/storage',
+      '/regions/{regionId}/nodeGroups',
       'GET',
       pathParams,
       queryParams,
@@ -1435,17 +927,25 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
   }
 
   /**
-      *  创建或者更新storage
+      *  创建k8s的nodeGroup
+要求集群状态为running
+
       * @param {Object} opts - parameters
-      * @param {storage} opts.storageStr - 创建或者更新storage的详情
+      * @param {string} opts.name - 名称（同一用户的 cluster 内部唯一）
+      * @param {string} [opts.description] - 描述  optional
+      * @param {string} opts.clusterId - node group所属的cluster
+      * @param {nodeConfigSpec} opts.nodeConfig - 节点组配置
+      * @param {integer} opts.initialNodeCount - nodeGroup初始化大小
+      * @param {string} opts.vpcId - k8s运行的vpc
+      * @param {string} opts.nodeCidr - k8s的node的cidr
+      * @param {boolean} [opts.autoRepair] - 是否开启 node group 的自动修复，默认关闭  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param string message
-      * @param boolean status
+      * @param string nodeGroupId
       */
 
-  addOrUpdateStorage (opts, regionId = this.config.regionId, callback) {
+  createNodeGroup (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -1453,21 +953,67 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  addOrUpdateStorage"
+        "Missing the required parameter 'regionId' when calling  createNodeGroup"
       )
     }
 
     opts = opts || {}
 
-    if (opts.storageStr === undefined || opts.storageStr === null) {
+    if (opts.name === undefined || opts.name === null) {
       throw new Error(
-        "Missing the required parameter 'opts.storageStr' when calling addOrUpdateStorage"
+        "Missing the required parameter 'opts.name' when calling createNodeGroup"
+      )
+    }
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling createNodeGroup"
+      )
+    }
+    if (opts.nodeConfig === undefined || opts.nodeConfig === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.nodeConfig' when calling createNodeGroup"
+      )
+    }
+    if (opts.initialNodeCount === undefined || opts.initialNodeCount === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.initialNodeCount' when calling createNodeGroup"
+      )
+    }
+    if (opts.vpcId === undefined || opts.vpcId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.vpcId' when calling createNodeGroup"
+      )
+    }
+    if (opts.nodeCidr === undefined || opts.nodeCidr === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.nodeCidr' when calling createNodeGroup"
       )
     }
 
     let postBody = {}
-    if (opts.storageStr !== undefined && opts.storageStr !== null) {
-      postBody['storageStr'] = opts.storageStr
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+    if (opts.clusterId !== undefined && opts.clusterId !== null) {
+      postBody['clusterId'] = opts.clusterId
+    }
+    if (opts.nodeConfig !== undefined && opts.nodeConfig !== null) {
+      postBody['nodeConfig'] = opts.nodeConfig
+    }
+    if (opts.initialNodeCount !== undefined && opts.initialNodeCount !== null) {
+      postBody['initialNodeCount'] = opts.initialNodeCount
+    }
+    if (opts.vpcId !== undefined && opts.vpcId !== null) {
+      postBody['vpcId'] = opts.vpcId
+    }
+    if (opts.nodeCidr !== undefined && opts.nodeCidr !== null) {
+      postBody['nodeCidr'] = opts.nodeCidr
+    }
+    if (opts.autoRepair !== undefined && opts.autoRepair !== null) {
+      postBody['autoRepair'] = opts.autoRepair
     }
 
     let queryParams = {}
@@ -1477,7 +1023,7 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streamcomputer/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -1507,7 +1053,7 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     let returnType = null
 
     this.config.logger(
-      `call addOrUpdateStorage with params:\npathParams:${JSON.stringify(
+      `call createNodeGroup with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1520,7 +1066,7 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/storage',
+      '/regions/{regionId}/nodeGroups',
       'POST',
       pathParams,
       queryParams,
@@ -1550,16 +1096,16 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
   }
 
   /**
-      *  删除指定输入
+      *  查询单个节点组详情
       * @param {Object} opts - parameters
-      * @param {integer} opts.storageId - storageId
+      * @param {string} opts.nodeGroupId - 节点组 ID
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param string message
+      * @param nodeGroup nodeGroup
       */
 
-  deleteStorage (opts, regionId = this.config.regionId, callback) {
+  describeNodeGroup (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -1567,30 +1113,28 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  deleteStorage"
+        "Missing the required parameter 'regionId' when calling  describeNodeGroup"
       )
     }
 
     opts = opts || {}
 
-    if (opts.storageId === undefined || opts.storageId === null) {
+    if (opts.nodeGroupId === undefined || opts.nodeGroupId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.storageId' when calling deleteStorage"
+        "Missing the required parameter 'opts.nodeGroupId' when calling describeNodeGroup"
       )
     }
 
     let postBody = null
     let queryParams = {}
-    if (opts.storageId !== undefined && opts.storageId !== null) {
-      queryParams['storageId'] = opts.storageId
-    }
 
     let pathParams = {
-      regionId: regionId
+      regionId: regionId,
+      nodeGroupId: opts.nodeGroupId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streamcomputer/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -1620,7 +1164,7 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     let returnType = null
 
     this.config.logger(
-      `call deleteStorage with params:\npathParams:${JSON.stringify(
+      `call describeNodeGroup with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1633,7 +1177,236 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/storage',
+      '/regions/{regionId}/nodeGroups/{nodeGroupId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改节点组的 名称 和 描述
+      * @param {Object} opts - parameters
+      * @param {string} opts.nodeGroupId - 节点组 ID
+      * @param {string} [opts.name] - 节点组名称  optional
+      * @param {string} [opts.description] - 集群 name 和 description 必须要指定一个  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  modifyNodeGroup (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyNodeGroup"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.nodeGroupId === undefined || opts.nodeGroupId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.nodeGroupId' when calling modifyNodeGroup"
+      )
+    }
+
+    let postBody = {}
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      nodeGroupId: opts.nodeGroupId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.3.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyNodeGroup with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/nodeGroups/{nodeGroupId}',
+      'PATCH',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  cluster 摘除 nodeGroup 并删除 nodeGroup
+      * @param {Object} opts - parameters
+      * @param {string} opts.nodeGroupId - 节点组 ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteNodeGroup (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteNodeGroup"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.nodeGroupId === undefined || opts.nodeGroupId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.nodeGroupId' when calling deleteNodeGroup"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      nodeGroupId: opts.nodeGroupId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.3.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteNodeGroup with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/nodeGroups/{nodeGroupId}',
       'DELETE',
       pathParams,
       queryParams,
@@ -1663,17 +1436,16 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
   }
 
   /**
-      *  创建或者更新storage
+      *  调整节点组实例数量
       * @param {Object} opts - parameters
-      * @param {string} opts.storageType - storage类型
-      * @param {string} opts.namespaceId - namespaceId
+      * @param {string} opts.nodeGroupId - 节点组 ID
+      * @param {integer} opts.expectCount - 创建集群请求参数模型
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param storage storageList
       */
 
-  getStorageList (opts, regionId = this.config.regionId, callback) {
+  setNodeGroupSize (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -1681,38 +1453,37 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  getStorageList"
+        "Missing the required parameter 'regionId' when calling  setNodeGroupSize"
       )
     }
 
     opts = opts || {}
 
-    if (opts.storageType === undefined || opts.storageType === null) {
+    if (opts.nodeGroupId === undefined || opts.nodeGroupId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.storageType' when calling getStorageList"
+        "Missing the required parameter 'opts.nodeGroupId' when calling setNodeGroupSize"
       )
     }
-    if (opts.namespaceId === undefined || opts.namespaceId === null) {
+    if (opts.expectCount === undefined || opts.expectCount === null) {
       throw new Error(
-        "Missing the required parameter 'opts.namespaceId' when calling getStorageList"
+        "Missing the required parameter 'opts.expectCount' when calling setNodeGroupSize"
       )
     }
 
-    let postBody = null
+    let postBody = {}
+    if (opts.expectCount !== undefined && opts.expectCount !== null) {
+      postBody['expectCount'] = opts.expectCount
+    }
+
     let queryParams = {}
-    if (opts.storageType !== undefined && opts.storageType !== null) {
-      queryParams['storageType'] = opts.storageType
-    }
-    if (opts.namespaceId !== undefined && opts.namespaceId !== null) {
-      queryParams['namespaceId'] = opts.namespaceId
-    }
 
     let pathParams = {
-      regionId: regionId
+      regionId: regionId,
+      nodeGroupId: opts.nodeGroupId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  streamcomputer/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -1742,7 +1513,7 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     let returnType = null
 
     this.config.logger(
-      `call getStorageList with params:\npathParams:${JSON.stringify(
+      `call setNodeGroupSize with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1755,7 +1526,554 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/storageList',
+      '/regions/{regionId}/nodeGroups/{nodeGroupId}:setNodeGroupSize',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  设置节点组的自动修复
+      * @param {Object} opts - parameters
+      * @param {string} opts.nodeGroupId - 节点组 ID
+      * @param {boolean} opts.enabled - 是否开启自动修复
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  setAutoRepair (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  setAutoRepair"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.nodeGroupId === undefined || opts.nodeGroupId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.nodeGroupId' when calling setAutoRepair"
+      )
+    }
+    if (opts.enabled === undefined || opts.enabled === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.enabled' when calling setAutoRepair"
+      )
+    }
+
+    let postBody = {}
+    if (opts.enabled !== undefined && opts.enabled !== null) {
+      postBody['enabled'] = opts.enabled
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      nodeGroupId: opts.nodeGroupId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.3.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call setAutoRepair with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/nodeGroups/{nodeGroupId}:setAutoRepair',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询(k8s 集群)配额
+      * @param {Object} opts - parameters
+      * @param {filter} [opts.filters] - resourceTypes - 资源类型，暂时只支持[kubernetes]
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param quota quotas
+      */
+
+  describeQuotas (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeQuotas"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.3.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeQuotas with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/quotas',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询(k8s 集群)服务配置信息
+      * @param {Object} opts - parameters
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param serverConfig serverConfig
+      */
+
+  describeServerConfig (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeServerConfig"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.3.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeServerConfig with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/serverConfig',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询服务配置信息，提供详细的 master 和 node 镜像信息。
+      * @param {Object} opts - parameters
+      * @param {string} [opts.masterVersion] - 集群的大版本，如 1.8.12  optional
+      * @param {string} [opts.masterImageCode] - master 的镜像编码，如 1.8.12-jke  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param masterImage masterImages
+      */
+
+  describeImages (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeImages"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.masterVersion !== undefined && opts.masterVersion !== null) {
+      queryParams['masterVersion'] = opts.masterVersion
+    }
+    if (opts.masterImageCode !== undefined && opts.masterImageCode !== null) {
+      queryParams['masterImageCode'] = opts.masterImageCode
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.3.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeImages with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/images',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询版本信息
+      * @param {Object} opts - parameters
+      * @param {string} [opts.masterVersion] - 集群的大版本，如 1.12.4-jcs.1  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param masterVersion masterVersions
+      */
+
+  describeVersions (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeVersions"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.masterVersion !== undefined && opts.masterVersion !== null) {
+      queryParams['masterVersion'] = opts.masterVersion
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.3.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeVersions with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/versions',
       'GET',
       pathParams,
       queryParams,
@@ -1784,4 +2102,4 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER extends Service {
     )
   }
 }
-module.exports = JDCloud.STREAMCOMPUTER
+module.exports = JDCloud.KUBERNETES

@@ -25,48 +25,37 @@
 require('../../../lib/node_loader')
 var JDCloud = require('../../../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'nc'
+var serviceId = 'pod'
 Service._services[serviceId] = true
 
 /**
- * nc service.
- * @version 0.2.5
+ * pod service.
+ * @version 1.0.0
  */
 
-JDCloud.NC = class NC extends Service {
+JDCloud.POD = class POD extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
       options._defaultEndpoint.protocol || 'https'
     options._defaultEndpoint.host =
-      options._defaultEndpoint.host || 'nc.jdcloud-api.com'
+      options._defaultEndpoint.host || 'pod.jdcloud-api.com'
     options.basePath = '/v1' // 默认要设为空""
     super(serviceId, options)
   }
 
   /**
-      *  批量查询原生容器的详细信息&lt;br&gt;
-此接口支持分页查询，默认每页20条。
-
+      *  获取 pod 中某个容器的详情
       * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
-      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
-      * @param {filter} [opts.filters] - containerId - 实例ID，精确匹配，支持多个
-privateIpAddress - 主网卡IP地址，模糊匹配，支持单个
-az - 可用区，精确匹配，支持多个
-vpcId - 私有网络ID，精确匹配，支持多个
-status - 容器状态，精确匹配，支持多个
-name - 实例名称，模糊匹配，支持单个
-subnetId - 镜像ID，模糊匹配，支持单个
-  optional
+      * @param {string} opts.podId - Pod ID
+      * @param {string} opts.containerName - container name
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param container containers
-      * @param number totalCount
+      * @param container container
       */
 
-  describeContainers (opts, regionId = this.config.regionId, callback) {
+  decribeContainer (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -74,28 +63,34 @@ subnetId - 镜像ID，模糊匹配，支持单个
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeContainers"
+        "Missing the required parameter 'regionId' when calling  decribeContainer"
       )
     }
 
     opts = opts || {}
 
+    if (opts.podId === undefined || opts.podId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.podId' when calling decribeContainer"
+      )
+    }
+    if (opts.containerName === undefined || opts.containerName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.containerName' when calling decribeContainer"
+      )
+    }
+
     let postBody = null
     let queryParams = {}
-    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
-      queryParams['pageNumber'] = opts.pageNumber
-    }
-    if (opts.pageSize !== undefined && opts.pageSize !== null) {
-      queryParams['pageSize'] = opts.pageSize
-    }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
-      regionId: regionId
+      regionId: regionId,
+      podId: opts.podId,
+      containerName: opts.containerName
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -125,7 +120,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     let returnType = null
 
     this.config.logger(
-      `call describeContainers with params:\npathParams:${JSON.stringify(
+      `call decribeContainer with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -138,7 +133,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/containers',
+      '/regions/{regionId}/pods/{podId}/containers/{containerName}',
       'GET',
       pathParams,
       queryParams,
@@ -168,70 +163,17 @@ subnetId - 镜像ID，模糊匹配，支持单个
   }
 
   /**
-      *  创建一台或多台指定配置容器。
-- 创建容器需要通过实名认证
-- 镜像
-    - 容器的镜像通过镜像名称来确定
-    - nginx:tag 或 mysql/mysql-server:tag 这样命名的镜像表示 docker hub 官方镜像
-    - container-registry/image:tag 这样命名的镜像表示私有仓储的镜像
-    - 私有仓储必须兼容 docker registry 认证机制，并通过 secret 来保存机密信息
-- hostname 规范
-    - 支持两种方式：以标签方式书写或以完整主机名方式书写
-    - 标签规范
-        - 0-9，a-z(不分大小写)和 -（减号），其他的都是无效的字符串
-        - 不能以减号开始，也不能以减号结尾
-        - 最小1个字符，最大63个字符
-    - 完整的主机名由一系列标签与点连接组成
-        - 标签与标签之间使用“.”(点)进行连接
-        - 不能以“.”(点)开始，也不能以“.”(点)结尾
-        - 整个主机名（包括标签以及分隔点“.”）最多有63个ASCII字符
-- 网络配置
-    - 指定主网卡配置信息
-        - 必须指定一个子网
-        - 一台云主机创建时必须指定一个安全组，至多指定 5 个安全组
-        - 可以指定 elasticIp 规格来约束创建的弹性 IP，带宽取值范围 [1-200]Mbps，步进 1Mbps
-        - 可以指定网卡的主 IP(primaryIpAddress)，该 IP 需要在子网 IP 范围内且未被占用，指定子网 IP 时 maxCount 只能为1
-        - 安全组 securityGroup 需与子网 Subnet 在同一个私有网络 VPC 内
-        - 主网卡 deviceIndex 设置为 1
-- 存储
-    - volume 分为 root volume 和 data volume，root volume 的挂载目录是 /，data volume 的挂载目录可以随意指定
-    - volume 的底层存储介质当前只支持 cloud 类别，也就是云硬盘
-    - 系统盘
-        - 云硬盘类型可以选择 ssd、premium-hdd
-        - 磁盘大小
-            - ssd：范围 [10, 100]GB，步长为 10G
-            - premium-hdd：范围 [20, 1000]GB，步长为 10G
-        - 自动删除
-            - 云盘默认跟随容器实例自动删除，如果是包年包月的数据盘或共享型数据盘，此参数不生效
-        - 可以选择已存在的云硬盘
-    - 数据盘
-        - 云硬盘类型可以选择 ssd、premium-hdd
-        - 磁盘大小
-            - ssd：范围[20,1000]GB，步长为10G
-            - premium-hdd：范围[20,3000]GB，步长为10G
-        - 自动删除
-            - 默认自动删除
-        - 可以选择已存在的云硬盘
-        - 单个容器最多可以挂载 7 个 data volume
-- 计费
-  - 弹性IP的计费模式，如果选择按用量类型可以单独设置，其它计费模式都以主机为准
-  - 云硬盘的计费模式以主机为准
-- 容器日志
-    - 默认在本地分配10MB的存储空间，自动 rotate
-- 其他
-    - 创建完成后，容器状态为running
-    - maxCount 为最大努力，不保证一定能达到 maxCount
+      *  查询单个容器日志
 
       * @param {Object} opts - parameters
-      * @param {containerSpec} [opts.containerSpec] - 创建容器规格  optional
-      * @param {integer} [opts.maxCount] - 购买实例数量；取值范围：[1,100]  optional
+      * @param {string} opts.podId - Pod ID
+      * @param {string} opts.containerName - container name
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param string containerIds
       */
 
-  createContainers (opts, regionId = this.config.regionId, callback) {
+  attach (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -239,28 +181,34 @@ subnetId - 镜像ID，模糊匹配，支持单个
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  createContainers"
+        "Missing the required parameter 'regionId' when calling  attach"
       )
     }
 
     opts = opts || {}
 
-    let postBody = {}
-    if (opts.containerSpec !== undefined && opts.containerSpec !== null) {
-      postBody['containerSpec'] = opts.containerSpec
+    if (opts.podId === undefined || opts.podId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.podId' when calling attach"
+      )
     }
-    if (opts.maxCount !== undefined && opts.maxCount !== null) {
-      postBody['maxCount'] = opts.maxCount
+    if (opts.containerName === undefined || opts.containerName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.containerName' when calling attach"
+      )
     }
 
+    let postBody = null
     let queryParams = {}
 
     let pathParams = {
-      regionId: regionId
+      regionId: regionId,
+      podId: opts.podId,
+      containerName: opts.containerName
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -290,7 +238,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     let returnType = null
 
     this.config.logger(
-      `call createContainers with params:\npathParams:${JSON.stringify(
+      `call attach with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -303,7 +251,135 @@ subnetId - 镜像ID，模糊匹配，支持单个
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/containers',
+      '/regions/{regionId}/pods/{podId}/containers/{containerName}:attach',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建 exec
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.podId - Pod ID
+      * @param {string} opts.containerName - container name
+      * @param {array} [opts.command] - 执行的命令  optional
+      * @param {boolean} [opts.tty] - 执行命令是否分配tty。默认不分配  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string execId  退出码
+      */
+
+  execCreate (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  execCreate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.podId === undefined || opts.podId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.podId' when calling execCreate"
+      )
+    }
+    if (opts.containerName === undefined || opts.containerName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.containerName' when calling execCreate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.command !== undefined && opts.command !== null) {
+      postBody['command'] = opts.command
+    }
+    if (opts.tty !== undefined && opts.tty !== null) {
+      postBody['tty'] = opts.tty
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      podId: opts.podId,
+      containerName: opts.containerName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call execCreate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/pods/{podId}/containers/{containerName}:execCreate',
       'POST',
       pathParams,
       queryParams,
@@ -333,17 +409,18 @@ subnetId - 镜像ID，模糊匹配，支持单个
   }
 
   /**
-      *  查询一台原生容器的详细信息
-
+      *  获取exec退出码
       * @param {Object} opts - parameters
-      * @param {string} opts.containerId - Container ID
+      * @param {string} opts.podId - Pod ID
+      * @param {string} opts.containerName - container name
+      * @param {string} [opts.execId]   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param container container
+      * @param integer execCode  退出码
       */
 
-  describeContainer (opts, regionId = this.config.regionId, callback) {
+  execGetExitCode (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -351,28 +428,37 @@ subnetId - 镜像ID，模糊匹配，支持单个
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeContainer"
+        "Missing the required parameter 'regionId' when calling  execGetExitCode"
       )
     }
 
     opts = opts || {}
 
-    if (opts.containerId === undefined || opts.containerId === null) {
+    if (opts.podId === undefined || opts.podId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.containerId' when calling describeContainer"
+        "Missing the required parameter 'opts.podId' when calling execGetExitCode"
+      )
+    }
+    if (opts.containerName === undefined || opts.containerName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.containerName' when calling execGetExitCode"
       )
     }
 
     let postBody = null
     let queryParams = {}
+    if (opts.execId !== undefined && opts.execId !== null) {
+      queryParams['execId'] = opts.execId
+    }
 
     let pathParams = {
       regionId: regionId,
-      containerId: opts.containerId
+      podId: opts.podId,
+      containerName: opts.containerName
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -402,7 +488,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     let returnType = null
 
     this.config.logger(
-      `call describeContainer with params:\npathParams:${JSON.stringify(
+      `call execGetExitCode with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -415,7 +501,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/containers/{containerId}',
+      '/regions/{regionId}/pods/{podId}/containers/{containerName}:execGetExitCode',
       'GET',
       pathParams,
       queryParams,
@@ -445,18 +531,17 @@ subnetId - 镜像ID，模糊匹配，支持单个
   }
 
   /**
-      *  容器状态必须为 stopped、running 或 error状态。 &lt;br&gt;
-按量付费的实例，如不主动删除将一直运行，不再使用的实例，可通过本接口主动停用。&lt;br&gt;
-只能支持主动删除按量计费类型的实例。包年包月过期的容器也可以删除，其它的情况还请发工单系统。计费状态异常的容器无法删除。
-
+      *  执行exec，此接口需要升级Http协议到WebSocket
       * @param {Object} opts - parameters
-      * @param {string} opts.containerId - Container ID
+      * @param {string} opts.podId - Pod ID
+      * @param {string} opts.containerName - container name
+      * @param {string} [opts.execId]   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       */
 
-  deleteContainer (opts, regionId = this.config.regionId, callback) {
+  execStart (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -464,28 +549,37 @@ subnetId - 镜像ID，模糊匹配，支持单个
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  deleteContainer"
+        "Missing the required parameter 'regionId' when calling  execStart"
       )
     }
 
     opts = opts || {}
 
-    if (opts.containerId === undefined || opts.containerId === null) {
+    if (opts.podId === undefined || opts.podId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.containerId' when calling deleteContainer"
+        "Missing the required parameter 'opts.podId' when calling execStart"
+      )
+    }
+    if (opts.containerName === undefined || opts.containerName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.containerName' when calling execStart"
       )
     }
 
     let postBody = null
     let queryParams = {}
+    if (opts.execId !== undefined && opts.execId !== null) {
+      queryParams['execId'] = opts.execId
+    }
 
     let pathParams = {
       regionId: regionId,
-      containerId: opts.containerId
+      podId: opts.podId,
+      containerName: opts.containerName
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -515,7 +609,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     let returnType = null
 
     this.config.logger(
-      `call deleteContainer with params:\npathParams:${JSON.stringify(
+      `call execStart with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -528,7 +622,765 @@ subnetId - 镜像ID，模糊匹配，支持单个
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/containers/{containerId}',
+      '/regions/{regionId}/pods/{podId}/containers/{containerName}:execStart',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  设置TTY大小
+      * @param {Object} opts - parameters
+      * @param {string} opts.podId - Pod ID
+      * @param {string} opts.containerName - container name
+      * @param {integer} [opts.height] - tty row，取值范围：[10, 2000]  optional
+      * @param {integer} [opts.width] - tty column，取值范围：[10, 1000]  optional
+      * @param {string} [opts.execId] - tty column，取值范围：[10, 1000]  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  resizeTTY (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  resizeTTY"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.podId === undefined || opts.podId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.podId' when calling resizeTTY"
+      )
+    }
+    if (opts.containerName === undefined || opts.containerName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.containerName' when calling resizeTTY"
+      )
+    }
+
+    let postBody = {}
+    if (opts.height !== undefined && opts.height !== null) {
+      postBody['height'] = opts.height
+    }
+    if (opts.width !== undefined && opts.width !== null) {
+      postBody['width'] = opts.width
+    }
+    if (opts.execId !== undefined && opts.execId !== null) {
+      postBody['execId'] = opts.execId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      podId: opts.podId,
+      containerName: opts.containerName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call resizeTTY with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/pods/{podId}/containers/{containerName}:resizeTTY',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  批量查询 pod 的详细信息&lt;br&gt;
+此接口支持分页查询，默认每页20条。
+
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
+      * @param {filter} [opts.filters] - podId - pod ID，精确匹配，支持多个
+privateIpAddress - 主网卡IP地址，模糊匹配，支持单个
+az - 可用区，精确匹配，支持多个
+vpcId - 私有网络ID，精确匹配，支持多个
+phase - pod 状态，精确匹配，支持多个
+name - 实例名称，模糊匹配，支持单个
+subnetId - 镜像ID，模糊匹配，支持单个
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param pod pods
+      * @param number totalCount
+      */
+
+  describePods (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describePods"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describePods with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/pods',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  - 创建pod需要通过实名认证
+- hostname规范
+    - 支持两种方式：以标签方式书写或以完整主机名方式书写
+    - 标签规范
+        - 0-9，a-z(不分大小写)和-（减号），其他的都是无效的字符串
+        - 不能以减号开始，也不能以减号结尾
+        - 最小1个字符，最大63个字符
+    - 完整的主机名由一系列标签与点连接组成
+        - 标签与标签之间使用“.”(点)进行连接
+        - 不能以“.”(点)开始，也不能以“.”(点)结尾
+        - 整个主机名（包括标签以及分隔点“.”）最多有63个ASCII字符
+    - 正则：&#x60;^([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9])(.([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]))*$&#x60;
+- 网络配置
+    - 指定主网卡配置信息
+        - 必须指定subnetId
+        - 可以指定elasticIp规格来约束创建的弹性IP，带宽取值范围[1-100]Mbps，步进1Mbps
+        - 可以指定网卡的主IP(primaryIpAddress)和辅助IP(secondaryIpAddresses)，此时maxCount只能为1
+        - 可以设置网卡的自动删除autoDelete属性，指明是否删除实例时自动删除网卡
+        - 安全组securityGroup需与子网Subnet在同一个私有网络VPC内
+        - 一个 pod 创建时必须指定一个安全组，至多指定5个安全组
+        - 主网卡deviceIndex设置为1
+- 存储
+    - volume分为root volume和data volume，root volume的挂载目录是/，data volume的挂载目录可以随意指定
+    - volume的底层存储介质当前只支持cloud类别，也就是云硬盘
+    - root volume
+        - root volume只能是cloud类别
+        - 云硬盘类型可以选择ssd、premium-hdd
+        - 磁盘大小
+            - ssd：范围[10,100]GB，步长为10G
+            - premium-hdd：范围[10,100]GB，步长为10G
+        - 自动删除
+            - 默认自动删除
+        - 可以选择已存在的云硬盘
+    - data volume
+        - data volume当前只能选择cloud类别
+        - 云硬盘类型可以选择ssd、premium-hdd
+        - 磁盘大小
+            - ssd：范围[20,1000]GB，步长为10G
+            - premium-hdd：范围[20,3000]GB，步长为10G
+        - 自动删除
+            - 默认自动删除
+        - 可以选择已存在的云硬盘
+        - 可以从快照创建磁盘
+- pod 容器日志
+    - default：默认在本地分配10MB的存储空间，自动rotate
+- 其他
+    - 创建完成后，pod 状态为running
+    - maxCount为最大努力，不保证一定能达到maxCount
+
+      * @param {Object} opts - parameters
+      * @param {podSpec} [opts.podSpec] - pod 创建参数  optional
+      * @param {integer} [opts.maxCount] - 购买实例数量；取值范围：[1,100]  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string podIds
+      */
+
+  createPods (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createPods"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.podSpec !== undefined && opts.podSpec !== null) {
+      postBody['podSpec'] = opts.podSpec
+    }
+    if (opts.maxCount !== undefined && opts.maxCount !== null) {
+      postBody['maxCount'] = opts.maxCount
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createPods with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/pods',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  podName 是否符合命名规范，以及查询指定 podName 区域内是否已经存在。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.podName - 用户定义的 pod 名称，符合 DNS-1123 subdomain 规范。
+      * @param {integer} [opts.maxCount] - 需要创建的 pod 总数，默认创建一个，不同的总数会对校验结果产生影响。  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer code  用户指定 podName 是否通过校验 0 通过 1 名称为空 2 不符合规范 3 重名。
+      * @param string reason  code 字段非零时，给出详细原因。
+      */
+
+  checkPodName (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  checkPodName"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.podName === undefined || opts.podName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.podName' when calling checkPodName"
+      )
+    }
+
+    let postBody = {}
+    if (opts.podName !== undefined && opts.podName !== null) {
+      postBody['podName'] = opts.podName
+    }
+    if (opts.maxCount !== undefined && opts.maxCount !== null) {
+      postBody['maxCount'] = opts.maxCount
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call checkPodName with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/pods:checkPodName',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询一个 pod 的详细信息
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.podId - Pod ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param pod pod
+      */
+
+  describePod (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describePod"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.podId === undefined || opts.podId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.podId' when calling describePod"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      podId: opts.podId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describePod with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/pods/{podId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  pod 状态必须为 stopped、running 或 error状态。 &lt;br&gt;
+按量付费的实例，如不主动删除将一直运行，不再使用的实例，可通过本接口主动停用。&lt;br&gt;
+只能支持主动删除按量计费类型的实例。包年包月过期的 pod 也可以删除，其它的情况还请发工单系统。计费状态异常的容器无法删除。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.podId - Pod ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deletePod (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deletePod"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.podId === undefined || opts.podId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.podId' when calling deletePod"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      podId: opts.podId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deletePod with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/pods/{podId}',
       'DELETE',
       pathParams,
       queryParams,
@@ -558,17 +1410,17 @@ subnetId - 镜像ID，模糊匹配，支持单个
   }
 
   /**
-      *  启动处于关闭状态的单个容器，处在任务执行中的容器无法启动。&lt;br&gt;
-容器实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;br&gt;
+      *  启动处于关闭状态的单个 pod ，处在任务执行中的 pod 无法启动。&lt;br&gt;
+pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;br&gt;
 
       * @param {Object} opts - parameters
-      * @param {string} opts.containerId - Container ID
+      * @param {string} opts.podId - Pod ID
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       */
 
-  startContainer (opts, regionId = this.config.regionId, callback) {
+  startPod (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -576,15 +1428,15 @@ subnetId - 镜像ID，模糊匹配，支持单个
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  startContainer"
+        "Missing the required parameter 'regionId' when calling  startPod"
       )
     }
 
     opts = opts || {}
 
-    if (opts.containerId === undefined || opts.containerId === null) {
+    if (opts.podId === undefined || opts.podId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.containerId' when calling startContainer"
+        "Missing the required parameter 'opts.podId' when calling startPod"
       )
     }
 
@@ -594,11 +1446,11 @@ subnetId - 镜像ID，模糊匹配，支持单个
 
     let pathParams = {
       regionId: regionId,
-      containerId: opts.containerId
+      podId: opts.podId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -628,7 +1480,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     let returnType = null
 
     this.config.logger(
-      `call startContainer with params:\npathParams:${JSON.stringify(
+      `call startPod with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -641,7 +1493,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/containers/{containerId}:startContainer',
+      '/regions/{regionId}/pods/{podId}:startPod',
       'POST',
       pathParams,
       queryParams,
@@ -671,16 +1523,16 @@ subnetId - 镜像ID，模糊匹配，支持单个
   }
 
   /**
-      *  停止处于运行状态的单个实例，处于任务执行中的容器无法启动。
+      *  停止处于运行状态的单个实例，处于任务执行中的 pod 无法启动。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.containerId - Container ID
+      * @param {string} opts.podId - Pod ID
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       */
 
-  stopContainer (opts, regionId = this.config.regionId, callback) {
+  stopPod (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -688,15 +1540,15 @@ subnetId - 镜像ID，模糊匹配，支持单个
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  stopContainer"
+        "Missing the required parameter 'regionId' when calling  stopPod"
       )
     }
 
     opts = opts || {}
 
-    if (opts.containerId === undefined || opts.containerId === null) {
+    if (opts.podId === undefined || opts.podId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.containerId' when calling stopContainer"
+        "Missing the required parameter 'opts.podId' when calling stopPod"
       )
     }
 
@@ -706,11 +1558,11 @@ subnetId - 镜像ID，模糊匹配，支持单个
 
     let pathParams = {
       regionId: regionId,
-      containerId: opts.containerId
+      podId: opts.podId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -740,7 +1592,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     let returnType = null
 
     this.config.logger(
-      `call stopContainer with params:\npathParams:${JSON.stringify(
+      `call stopPod with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -753,7 +1605,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/containers/{containerId}:stopContainer',
+      '/regions/{regionId}/pods/{podId}:stopPod',
       'POST',
       pathParams,
       queryParams,
@@ -783,18 +1635,17 @@ subnetId - 镜像ID，模糊匹配，支持单个
   }
 
   /**
-      *  修改容器的 名称 和 描述。
+      *  修改 pod 的 名称 和 描述。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.containerId - Container ID
-      * @param {string} [opts.name] - 容器名称  optional
-      * @param {string} [opts.description] - 容器描述；和description必须要指定一个  optional
+      * @param {string} opts.podId - Pod ID
+      * @param {string} [opts.description] - pod name 和 description 必须要指定一个  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       */
 
-  modifyContainerAttribute (opts, regionId = this.config.regionId, callback) {
+  modifyPodAttribute (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -802,22 +1653,19 @@ subnetId - 镜像ID，模糊匹配，支持单个
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  modifyContainerAttribute"
+        "Missing the required parameter 'regionId' when calling  modifyPodAttribute"
       )
     }
 
     opts = opts || {}
 
-    if (opts.containerId === undefined || opts.containerId === null) {
+    if (opts.podId === undefined || opts.podId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.containerId' when calling modifyContainerAttribute"
+        "Missing the required parameter 'opts.podId' when calling modifyPodAttribute"
       )
     }
 
     let postBody = {}
-    if (opts.name !== undefined && opts.name !== null) {
-      postBody['name'] = opts.name
-    }
     if (opts.description !== undefined && opts.description !== null) {
       postBody['description'] = opts.description
     }
@@ -826,11 +1674,11 @@ subnetId - 镜像ID，模糊匹配，支持单个
 
     let pathParams = {
       regionId: regionId,
-      containerId: opts.containerId
+      podId: opts.podId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -860,7 +1708,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     let returnType = null
 
     this.config.logger(
-      `call modifyContainerAttribute with params:\npathParams:${JSON.stringify(
+      `call modifyPodAttribute with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -873,7 +1721,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/containers/{containerId}:modifyContainerAttribute',
+      '/regions/{regionId}/pods/{podId}:modifyPodAttribute',
       'PATCH',
       pathParams,
       queryParams,
@@ -903,12 +1751,12 @@ subnetId - 镜像ID，模糊匹配，支持单个
   }
 
   /**
-      *  容器绑定弹性公网 IP，绑定的是主网卡、主内网IP对应的弹性IP. &lt;br&gt;
-一台云主机只能绑定一个弹性公网 IP(主网卡)，若主网卡已存在弹性公网IP，会返回错误。&lt;br&gt;
+      *  pod 绑定弹性公网 IP，绑定的是主网卡、主内网IP对应的弹性IP. &lt;br&gt;
+一个 pod 只能绑定一个弹性公网 IP(主网卡)，若主网卡已存在弹性公网IP，会返回错误。&lt;br&gt;
 如果是黑名单中的用户，会返回错误。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.containerId - Container ID
+      * @param {string} opts.podId - Pod ID
       * @param {string} opts.elasticIpId - 弹性IP ID
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -929,9 +1777,9 @@ subnetId - 镜像ID，模糊匹配，支持单个
 
     opts = opts || {}
 
-    if (opts.containerId === undefined || opts.containerId === null) {
+    if (opts.podId === undefined || opts.podId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.containerId' when calling associateElasticIp"
+        "Missing the required parameter 'opts.podId' when calling associateElasticIp"
       )
     }
     if (opts.elasticIpId === undefined || opts.elasticIpId === null) {
@@ -949,11 +1797,11 @@ subnetId - 镜像ID，模糊匹配，支持单个
 
     let pathParams = {
       regionId: regionId,
-      containerId: opts.containerId
+      podId: opts.podId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -996,7 +1844,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/containers/{containerId}:associateElasticIp',
+      '/regions/{regionId}/pods/{podId}:associateElasticIp',
       'POST',
       pathParams,
       queryParams,
@@ -1026,10 +1874,10 @@ subnetId - 镜像ID，模糊匹配，支持单个
   }
 
   /**
-      *  容器解绑公网 IP，解绑的是主网卡、主内网 IP 对应的弹性 IP.
+      *  pod 解绑公网 IP，解绑的是主网卡、主内网 IP 对应的弹性 IP.
 
       * @param {Object} opts - parameters
-      * @param {string} opts.containerId - Container ID
+      * @param {string} opts.podId - Pod ID
       * @param {string} opts.elasticIpId - 弹性IP ID
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -1050,9 +1898,9 @@ subnetId - 镜像ID，模糊匹配，支持单个
 
     opts = opts || {}
 
-    if (opts.containerId === undefined || opts.containerId === null) {
+    if (opts.podId === undefined || opts.podId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.containerId' when calling disassociateElasticIp"
+        "Missing the required parameter 'opts.podId' when calling disassociateElasticIp"
       )
     }
     if (opts.elasticIpId === undefined || opts.elasticIpId === null) {
@@ -1070,11 +1918,11 @@ subnetId - 镜像ID，模糊匹配，支持单个
 
     let pathParams = {
       regionId: regionId,
-      containerId: opts.containerId
+      podId: opts.podId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -1117,7 +1965,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/containers/{containerId}:disassociateElasticIp',
+      '/regions/{regionId}/pods/{podId}:disassociateElasticIp',
       'POST',
       pathParams,
       queryParams,
@@ -1150,20 +1998,25 @@ subnetId - 镜像ID，模糊匹配，支持单个
       *  查询单个容器日志
 
       * @param {Object} opts - parameters
-      * @param {string} opts.containerId - Container ID
+      * @param {string} opts.podId - Pod ID
+      * @param {string} opts.containerName - container name
       * @param {integer} [opts.tailLines] - 返回日志文件中倒数 tailLines 行，如不指定，默认从容器启动时或 sinceSeconds 指定的时间读取。
   optional
       * @param {integer} [opts.sinceSeconds] - 返回相对于当前时间之前sinceSeconds之内的日志。
   optional
       * @param {integer} [opts.limitBytes] - 限制返回的日志文件内容字节数，取值范围 [1-4]KB，最大 4KB.
   optional
+      * @param {string} [opts.startTime] - 日志时间上限，不传表示不限时间
+  optional
+      * @param {string} [opts.endTime] - 日志时间下限，不传表示不限时间
+  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param object logs
+      * @param logs logs
       */
 
-  getLogs (opts, regionId = this.config.regionId, callback) {
+  getContainerLogs (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -1171,15 +2024,20 @@ subnetId - 镜像ID，模糊匹配，支持单个
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  getLogs"
+        "Missing the required parameter 'regionId' when calling  getContainerLogs"
       )
     }
 
     opts = opts || {}
 
-    if (opts.containerId === undefined || opts.containerId === null) {
+    if (opts.podId === undefined || opts.podId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.containerId' when calling getLogs"
+        "Missing the required parameter 'opts.podId' when calling getContainerLogs"
+      )
+    }
+    if (opts.containerName === undefined || opts.containerName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.containerName' when calling getContainerLogs"
       )
     }
 
@@ -1194,14 +2052,21 @@ subnetId - 镜像ID，模糊匹配，支持单个
     if (opts.limitBytes !== undefined && opts.limitBytes !== null) {
       queryParams['limitBytes'] = opts.limitBytes
     }
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
 
     let pathParams = {
       regionId: regionId,
-      containerId: opts.containerId
+      podId: opts.podId,
+      containerName: opts.containerName
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -1231,7 +2096,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     let returnType = null
 
     this.config.logger(
-      `call getLogs with params:\npathParams:${JSON.stringify(
+      `call getContainerLogs with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1244,7 +2109,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/containers/{containerId}:getLogs',
+      '/regions/{regionId}/pods/{podId}/containers/{containerName}:getContainerLogs',
       'GET',
       pathParams,
       queryParams,
@@ -1316,7 +2181,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -1433,7 +2298,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -1567,7 +2432,7 @@ value 是 Base64 编码的字符串，不能包含换行符（在 linux 下使�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -1679,7 +2544,7 @@ value 是 Base64 编码的字符串，不能包含换行符（在 linux 下使�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -1790,7 +2655,7 @@ value 是 Base64 编码的字符串，不能包含换行符（在 linux 下使�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nc/0.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -1862,4 +2727,4 @@ value 是 Base64 编码的字符串，不能包含换行符（在 linux 下使�
     )
   }
 }
-module.exports = JDCloud.NC
+module.exports = JDCloud.POD

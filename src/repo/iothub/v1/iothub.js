@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 物模型属性API
- * 物模型属性API
+ * RuleEngineAPI
+ * 规则引擎API
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * iothub service.
- * @version 0.4.1
+ * @version 0.5.0
  */
 
 JDCloud.IOTHUB = class IOTHUB extends Service {
@@ -70,7 +70,7 @@ JDCloud.IOTHUB = class IOTHUB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.5.0'
     }
 
     let contentTypes = ['application/json']
@@ -145,7 +145,7 @@ JDCloud.IOTHUB = class IOTHUB extends Service {
   /**
       *  查询设备在线信息
       * @param {Object} opts - parameters
-      * @param {array} [opts.deviceIds] - device标识符array  optional
+      * @param {array} [opts.deviceIds] - 设备Id集合  optional
       * @param {string} callback - callback
       @return {Object} result
       * @param onlineInfo onlineInfos
@@ -166,7 +166,7 @@ JDCloud.IOTHUB = class IOTHUB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.5.0'
     }
 
     let contentTypes = ['application/json']
@@ -266,7 +266,7 @@ JDCloud.IOTHUB = class IOTHUB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.5.0'
     }
 
     let contentTypes = ['application/json']
@@ -367,7 +367,7 @@ JDCloud.IOTHUB = class IOTHUB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.5.0'
     }
 
     let contentTypes = ['application/json']
@@ -467,7 +467,7 @@ JDCloud.IOTHUB = class IOTHUB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.5.0'
     }
 
     let contentTypes = ['application/json']
@@ -572,7 +572,7 @@ JDCloud.IOTHUB = class IOTHUB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.5.0'
     }
 
     let contentTypes = ['application/json']
@@ -672,7 +672,7 @@ JDCloud.IOTHUB = class IOTHUB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.5.0'
     }
 
     let contentTypes = ['application/json']
@@ -777,7 +777,7 @@ JDCloud.IOTHUB = class IOTHUB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.5.0'
     }
 
     let contentTypes = ['application/json']
@@ -894,7 +894,7 @@ JDCloud.IOTHUB = class IOTHUB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.5.0'
     }
 
     let contentTypes = ['application/json']
@@ -999,7 +999,7 @@ JDCloud.IOTHUB = class IOTHUB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.5.0'
     }
 
     let contentTypes = ['application/json']
@@ -1104,7 +1104,7 @@ JDCloud.IOTHUB = class IOTHUB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.5.0'
     }
 
     let contentTypes = ['application/json']
@@ -1209,7 +1209,7 @@ JDCloud.IOTHUB = class IOTHUB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.5.0'
     }
 
     let contentTypes = ['application/json']
@@ -1318,7 +1318,7 @@ JDCloud.IOTHUB = class IOTHUB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.5.0'
     }
 
     let contentTypes = ['application/json']

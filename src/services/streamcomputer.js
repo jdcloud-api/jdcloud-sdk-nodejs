@@ -43,8 +43,9 @@ JDCloud.STREAMCOMPUTER = class STREAMCOMPUTER {
     if (version && version[serviceName]) {
       versionFlag = version[serviceName]
     }
-    this.service = require(`../repo/${serviceName}/${versionFlag}/${serviceName}`)
-    if (!this.service) {
+    try {
+      this.service = require(`../repo/${serviceName}/${versionFlag}/${serviceName}`)
+    } catch (e) {
       throw new Error(
         `The version '${versionFlag}' of API ${serviceName} is undefined!`
       )

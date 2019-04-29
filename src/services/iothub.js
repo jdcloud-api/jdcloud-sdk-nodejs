@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 物模型属性API
- * 物模型属性API
+ * RuleEngineAPI
+ * 规则引擎API
  *
  * OpenAPI spec version: v1
  * Contact:

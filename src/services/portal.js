@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * product
- * 产品页相关接口
+ * search
+ * 搜索相关接口
  *
  * OpenAPI spec version: v1
  * Contact:

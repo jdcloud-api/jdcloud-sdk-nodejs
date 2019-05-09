@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 实例信息
- * 云解析OpenAPI实例信息接口
+ * SSL Certificate Records
+ * SSL证书申购记录相关信息接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -24,20 +24,20 @@
 
 const JDCloud = require('../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'clouddnsservice'
+var serviceId = 'ssl'
 Service._services[serviceId] = true
 
 /**
- * clouddnsservice service.
+ * ssl service.
  */
 
-JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE {
+JDCloud.SSL = class SSL {
   constructor (config = {}) {
     this.init(config)
     return new this.service(config)
   }
   init (config) {
-    let serviceName = 'clouddnsservice'
+    let serviceName = 'ssl'
     let version = config.version || JDCloud.config.version
     let versionFlag = 'v1'
     if (version && version[serviceName]) {
@@ -53,4 +53,4 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE {
   }
 }
 
-module.exports = JDCloud.CLOUDDNSSERVICE
+module.exports = JDCloud.SSL

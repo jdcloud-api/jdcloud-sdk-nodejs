@@ -3,6 +3,7 @@ module.exports = {
   KUBERNETES: require('./kubernetes'),
   STREAMCOMPUTER: require('./streamcomputer'),
   IPANTI: require('./ipanti'),
+  SSL: require('./ssl'),
   OSS: require('./oss'),
   REDIS: require('./redis'),
   BILLING: require('./billing'),

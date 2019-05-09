@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 缓存Redis配额接口
- * 缓存Redis配额相关接口
+ * Redis Quota API
+ * 缓存Redis配额查询、修改接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * redis service.
- * @version 1.0.1
+ * @version 1.1.0
  */
 
 JDCloud.REDIS = class REDIS extends Service {
@@ -45,21 +45,27 @@ JDCloud.REDIS = class REDIS extends Service {
   }
 
   /**
-      *  查询缓存Redis实例列表及其实例信息，可分页查询，查询指定页码，指定分页大小和指定过滤条件
+      *  查询缓存Redis实例列表，可分页、可排序、可搜索、可过滤
       * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNumber] - 请求查询缓存实例的页码；默认为1  optional
-      * @param {integer} [opts.pageSize] - 请求查询缓存实例的分页大小；默认为20；取值范围[10, 100]  optional
-      * @param {filter} [opts.filters] - cacheInstanceId -缓存实例Id，精确匹配，支持多个
-cacheInstanceName - 缓存实例名称，模糊匹配，支持单个
-cacheInstanceStatus - 缓存你实例状态，精确匹配，支持多个(running：运行，error：错误，creating：创建中，changing：变配中，deleting：删除中)
+      * @param {integer} [opts.pageNumber] - 页码：取值范围[1,∞)，默认为1  optional
+      * @param {integer} [opts.pageSize] - 分页大小：取值范围[10, 100]，默认为10  optional
+      * @param {filter} [opts.filters] - 过滤属性：
+cacheInstanceId - 实例Id，精确匹配，可选择多个
+cacheInstanceName - 实例名称，模糊匹配
+cacheInstanceStatus - 实例状态，精确匹配，可选择多个(running：运行中，error：错误，creating：创建中，changing：变配中，configuring：参数修改中，restoring：备份恢复中，deleting：删除中)
+redisVersion - redis引擎版本，精确匹配，可选择2.8和4.0
+instanceType - 实例类型，精确匹配（redis表示主从版，redis_cluster表示集群版）
+chargeMode - 计费类型，精确匹配（prepaid_by_duration表示包年包月预付费，postpaid_by_duration表示按配置后付费）
   optional
-      * @param {sort} [opts.sorts] - createTime - 创建时间(asc：正序，desc：倒序)
+      * @param {tagFilter} [opts.tagFilters] - 标签的过滤条件  optional
+      * @param {sort} [opts.sorts] - 排序属性：
+createTime - 按创建时间排序(asc表示按时间正序，desc表示按时间倒序)
   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       * @param cacheInstance cacheInstances
-      * @param integer totalCount  查询到的缓存实例总个数。
+      * @param integer totalCount  实例总数
       */
 
   describeCacheInstances (opts, regionId = this.config.regionId, callback) {
@@ -85,6 +91,10 @@ cacheInstanceStatus - 缓存你实例状态，精确匹配，支持多个(runnin
       queryParams['pageSize'] = opts.pageSize
     }
     Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(
+      queryParams,
+      this.buildTagFilterParam(opts.tagFilters, 'tagFilters')
+    )
     Object.assign(queryParams, this.buildSortParam(opts.sorts, 'sorts'))
 
     let pathParams = {
@@ -92,7 +102,7 @@ cacheInstanceStatus - 缓存你实例状态，精确匹配，支持多个(runnin
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -165,20 +175,16 @@ cacheInstanceStatus - 缓存你实例状态，精确匹配，支持多个(runnin
   }
 
   /**
-      *  创建一个指定配置的缓存Redis实例
-规格性能：创建缓存Redis实例的规格，分为主从版和集群版两种规格。每种规格都有最大连接数，内网带宽上限，CPU处理能力，规格代码等信息，具体可查看：&lt;a href&#x3D;&quot;https://www.jdcloud.com/help/detail/411/isCatalog/1&quot;&gt;实例规格代码&lt;/a&gt;
-可用区：可用区是指在同一地域下，电力、网络等基础设施互相独立的物理区域。一个地域包含一个或多个可用区，同一地域下的多个可用区可以彼此连通。地域可用区详细信息可查询：&lt;a href&#x3D;&quot;https://www.jdcloud.com/help/detail/2222/isCatalog/1&quot;&gt;地域可用区详情&lt;/a&gt;
-私有网络：简称VPC，自定义的逻辑隔离网络空间，支持自定义网段划分、路由策略等。具体信息可查询：&lt;a href&#x3D;&quot;https://www.jdcloud.com/help/detail/1509/isCatalog/1&quot;&gt;私有网络VPC详情&lt;/a&gt;
-子网：子网是所属VPC IP地址范围内的IP地址块，简称subnet，在VPC下创建子网，同一VPC下子网的网段不可以重叠，不同VPC下子网的网段可以重叠。具体信息可查询：&lt;a href&#x3D;&quot;https://www.jdcloud.com/help/detail/1510/isCatalog/1&quot;&gt;子网subnet详情&lt;/a&gt;
+      *  创建一个指定配置的缓存Redis实例：可选择主从版或集群版，每种类型又分为多种规格（按CPU核数、内存容量、磁盘容量、带宽等划分），具体可参考产品规格代码，https://docs.jdcloud.com/cn/jcs-for-redis/specifications
 
       * @param {Object} opts - parameters
-      * @param {cacheInstanceSpec} opts.cacheInstance - 创建缓存实例的具体属性，包括所属私有网络ID(vpcId)、子网ID(subnetId)、缓存实例名称、缓存实例规格、缓存实例密码、缓存实例所在区域可用区ID信息和缓存实例描述。
-      * @param {chargeSpec} [opts.charge] - 计费信息的相关配置。  optional
+      * @param {cacheInstanceSpec} opts.cacheInstance - 创建实例时输入的信息
+      * @param {chargeSpec} [opts.charge] - 该实例规格的计费信息  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param string cacheInstanceId  创建的缓存实例的ID。
-      * @param string orderNum  创建缓存实例所生成的订单编号。
+      * @param string cacheInstanceId  创建实例后生成的实例ID
+      * @param string orderNum  创建实例后生成的订单编号
       */
 
   createCacheInstance (opts, regionId = this.config.regionId, callback) {
@@ -216,7 +222,7 @@ cacheInstanceStatus - 缓存你实例状态，精确匹配，支持多个(runnin
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -289,13 +295,13 @@ cacheInstanceStatus - 缓存你实例状态，精确匹配，支持多个(runnin
   }
 
   /**
-      *  查询单个缓存Redis实例详情
+      *  查询缓存Redis实例的详细信息
       * @param {Object} opts - parameters
-      * @param {string} opts.cacheInstanceId - 缓存Redis实例ID，是访问实例的唯一标识。
+      * @param {string} opts.cacheInstanceId - 缓存Redis实例ID，是访问实例的唯一标识
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param cacheInstance cacheInstance  要查询目标缓存实例的信息
+      * @param cacheInstance cacheInstance  该实例的详细信息
       */
 
   describeCacheInstance (opts, regionId = this.config.regionId, callback) {
@@ -327,7 +333,7 @@ cacheInstanceStatus - 缓存你实例状态，精确匹配，支持多个(runnin
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -400,11 +406,11 @@ cacheInstanceStatus - 缓存你实例状态，精确匹配，支持多个(runnin
   }
 
   /**
-      *  修改缓存Redis实例的资源名称、描述，二者至少选一
+      *  修改缓存Redis实例的资源名称或描述，二者至少选一
       * @param {Object} opts - parameters
-      * @param {string} opts.cacheInstanceId - 缓存Redis实例ID，是访问实例的唯一标识。
-      * @param {string} [opts.cacheInstanceName] - 缓存Redis实例资源名称，名称只支持数字、字母、英文下划线、中文，且不少于2字符不超过32字符  optional
-      * @param {string} [opts.cacheInstanceDescription] - 缓存Redis实例资源描述，不能超过256个字符  optional
+      * @param {string} opts.cacheInstanceId - 缓存Redis实例ID，是访问实例的唯一标识
+      * @param {string} [opts.cacheInstanceName] - 实例的名称，名称只支持数字、字母、英文下划线、中文，且不少于2字符不超过32字符  optional
+      * @param {string} [opts.cacheInstanceDescription] - 实例的描述，不能超过256个字符  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -456,7 +462,7 @@ cacheInstanceStatus - 缓存你实例状态，精确匹配，支持多个(runnin
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -529,12 +535,12 @@ cacheInstanceStatus - 缓存你实例状态，精确匹配，支持多个(runnin
   }
 
   /**
-      *  删除按配置计费、或包年包月已到期的单个缓存Redis实例，包年包月未到期不可删除
-只有处于运行&lt;b&gt;running&lt;/b&gt;或者错误&lt;b&gt;error&lt;/b&gt;状态的可以删除，其余状态不可以删除
-白名单用户不能删除包年包月已到期的云主机
+      *  删除按配置计费、或包年包月已到期的缓存Redis实例，包年包月未到期不可删除。
+只有处于运行running或者错误error状态才可以删除，其余状态不可以删除。
+白名单用户不能删除包年包月已到期的缓存Redis实例。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.cacheInstanceId - 缓存Redis实例ID，是访问实例的唯一标识。
+      * @param {string} opts.cacheInstanceId - 缓存Redis实例ID，是访问实例的唯一标识
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -569,7 +575,7 @@ cacheInstanceStatus - 缓存你实例状态，精确匹配，支持多个(runnin
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -642,16 +648,16 @@ cacheInstanceStatus - 缓存你实例状态，精确匹配，支持多个(runnin
   }
 
   /**
-      *  变更缓存Redis实例配置，只能变更运行状态的实例配置，变更配置的规格不能与之前的相同
-预付费用户，从集群版变配到主从版，新规格的内存大小要大于老规格的内存大小，从主从版到集群版，新规格的内存大小要不小于老规格的内存大小
+      *  变更缓存Redis实例规格（变配），只能变更运行状态的实例规格，变更的规格不能与之前的相同。
+预付费用户，从集群版变配到主从版，新规格的内存大小要大于老规格的内存大小，从主从版到集群版，新规格的内存大小要不小于老规格的内存大小。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.cacheInstanceId - 缓存Redis实例ID，是访问实例的唯一标识。
-      * @param {string} opts.cacheInstanceClass - 变更后的缓存Redis规格，详细参见：&lt;a href&#x3D;&quot;https://www.jdcloud.com/help/detail/411/isCatalog/1&quot;&gt;实例规格代码&lt;/a&gt;
+      * @param {string} opts.cacheInstanceId - 缓存Redis实例ID，是访问实例的唯一标识
+      * @param {string} opts.cacheInstanceClass - 变更后的实例规格
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param string orderNum  本次变更请求的订单编号。
+      * @param string orderNum  本次变更请求的订单编号
       */
 
   modifyCacheInstanceClass (opts, regionId = this.config.regionId, callback) {
@@ -698,7 +704,7 @@ cacheInstanceStatus - 缓存你实例状态，精确匹配，支持多个(runnin
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -771,10 +777,10 @@ cacheInstanceStatus - 缓存你实例状态，精确匹配，支持多个(runnin
   }
 
   /**
-      *  重置缓存Redis实例密码，支持免密操作
+      *  重置缓存Redis实例的密码，可为空
       * @param {Object} opts - parameters
-      * @param {string} opts.cacheInstanceId - 缓存Redis实例ID，是访问实例的唯一标识。
-      * @param {string} [opts.password] - 密码，为空即为免密，包含且只支持字母及数字，不少于8字符不超过16字符  optional
+      * @param {string} opts.cacheInstanceId - 缓存Redis实例ID，是访问实例的唯一标识
+      * @param {string} [opts.password] - 密码，为空即为免密，不少于8字符不超过16字符  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -813,7 +819,7 @@ cacheInstanceStatus - 缓存你实例状态，精确匹配，支持多个(runnin
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -886,8 +892,9 @@ cacheInstanceStatus - 缓存你实例状态，精确匹配，支持多个(runnin
   }
 
   /**
-      *  查询某区域下的实例规格列表
+      *  查询某区域下的缓存Redis实例规格列表
       * @param {Object} opts - parameters
+      * @param {string} [opts.redisVersion] - 缓存Redis的版本号：目前有2.8和4.0，默认为2.8  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -911,13 +918,16 @@ cacheInstanceStatus - 缓存你实例状态，精确匹配，支持多个(runnin
 
     let postBody = null
     let queryParams = {}
+    if (opts.redisVersion !== undefined && opts.redisVersion !== null) {
+      queryParams['redisVersion'] = opts.redisVersion
+    }
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -990,7 +1000,7 @@ cacheInstanceStatus - 缓存你实例状态，精确匹配，支持多个(runnin
   }
 
   /**
-      *  查询账户配额信息
+      *  查询账户的缓存Redis配额信息
       * @param {Object} opts - parameters
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -1020,7 +1030,7 @@ cacheInstanceStatus - 缓存你实例状态，精确匹配，支持多个(runnin
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.1.0'
     }
 
     let contentTypes = ['application/json']

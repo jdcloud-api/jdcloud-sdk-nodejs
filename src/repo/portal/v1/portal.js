@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * product
- * 产品页相关接口
+ * search
+ * 搜索相关接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * portal service.
- * @version 0.1.2
+ * @version 0.1.4
  */
 
 JDCloud.PORTAL = class PORTAL extends Service {
@@ -42,129 +42,6 @@ JDCloud.PORTAL = class PORTAL extends Service {
       options._defaultEndpoint.host || 'portal.jdcloud-api.com'
     options.basePath = '/v1' // 默认要设为空""
     super(serviceId, options)
-  }
-
-  /**
-      *  产品页列表查询接口
-
-      * @param {Object} opts - parameters
-      * @param {string} opts.lang - 语言类型；中文cn；英文en；
-      * @param {string} opts.ak - 外部使用ak；
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param navigation result
-      */
-
-  describeProducts (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeProducts"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.lang === undefined || opts.lang === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.lang' when calling describeProducts"
-      )
-    }
-    if (opts.ak === undefined || opts.ak === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.ak' when calling describeProducts"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.lang !== undefined && opts.lang !== null) {
-      queryParams['lang'] = opts.lang
-    }
-    if (opts.ak !== undefined && opts.ak !== null) {
-      queryParams['ak'] = opts.ak
-    }
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  portal/0.1.2'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeProducts with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/products',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
   }
 
   /**
@@ -227,7 +104,7 @@ JDCloud.PORTAL = class PORTAL extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  portal/0.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  portal/0.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -350,7 +227,7 @@ JDCloud.PORTAL = class PORTAL extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  portal/0.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  portal/0.1.4'
     }
 
     let contentTypes = ['application/json']

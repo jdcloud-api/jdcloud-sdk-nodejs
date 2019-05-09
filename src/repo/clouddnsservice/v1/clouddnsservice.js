@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 网站监控
- * 云解析OpenAPI网站监控接口
+ * 实例信息
+ * 云解析OpenAPI实例信息接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * clouddnsservice service.
- * @version 1.0.11
+ * @version 1.0.12
  */
 
 JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
@@ -127,7 +127,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.12'
     }
 
     let contentTypes = ['application/json']
@@ -259,7 +259,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.12'
     }
 
     let contentTypes = ['application/json']
@@ -407,7 +407,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.12'
     }
 
     let contentTypes = ['application/json']
@@ -519,7 +519,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.12'
     }
 
     let contentTypes = ['application/json']
@@ -641,7 +641,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.12'
     }
 
     let contentTypes = ['application/json']
@@ -780,7 +780,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.12'
     }
 
     let contentTypes = ['application/json']
@@ -920,7 +920,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.12'
     }
 
     let contentTypes = ['application/json']
@@ -1044,7 +1044,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.12'
     }
 
     let contentTypes = ['application/json']
@@ -1179,7 +1179,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.12'
     }
 
     let contentTypes = ['application/json']
@@ -1300,7 +1300,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.12'
     }
 
     let contentTypes = ['application/json']
@@ -1420,7 +1420,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.12'
     }
 
     let contentTypes = ['application/json']
@@ -1544,7 +1544,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.12'
     }
 
     let contentTypes = ['application/json']
@@ -1654,7 +1654,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.12'
     }
 
     let contentTypes = ['application/json']
@@ -1768,7 +1768,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.12'
     }
 
     let contentTypes = ['application/json']
@@ -1881,7 +1881,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.12'
     }
 
     let contentTypes = ['application/json']
@@ -2028,7 +2028,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.12'
     }
 
     let contentTypes = ['application/json']
@@ -2141,7 +2141,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.12'
     }
 
     let contentTypes = ['application/json']
@@ -2254,7 +2254,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.12'
     }
 
     let contentTypes = ['application/json']
@@ -2401,7 +2401,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.12'
     }
 
     let contentTypes = ['application/json']
@@ -2527,7 +2527,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.12'
     }
 
     let contentTypes = ['application/json']
@@ -2647,7 +2647,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.12'
     }
 
     let contentTypes = ['application/json']
@@ -2767,7 +2767,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.12'
     }
 
     let contentTypes = ['application/json']
@@ -2891,7 +2891,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.12'
     }
 
     let contentTypes = ['application/json']
@@ -3019,7 +3019,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.12'
     }
 
     let contentTypes = ['application/json']
@@ -3139,7 +3139,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.12'
     }
 
     let contentTypes = ['application/json']
@@ -3265,7 +3265,7 @@ JDCloud.CLOUDDNSSERVICE = class CLOUDDNSSERVICE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  clouddnsservice/1.0.12'
     }
 
     let contentTypes = ['application/json']

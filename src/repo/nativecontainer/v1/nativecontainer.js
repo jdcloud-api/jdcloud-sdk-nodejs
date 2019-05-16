@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * nativecontainer service.
- * @version 1.0.0
+ * @version 1.0.1
  */
 
 JDCloud.NATIVECONTAINER = class NATIVECONTAINER extends Service {
@@ -58,6 +58,7 @@ vpcId - 私有网络ID，精确匹配，支持多个
 status - 容器状态，精确匹配，支持多个
 name - 实例名称，模糊匹配，支持单个
 subnetId - 镜像ID，模糊匹配，支持单个
+securityGroups - 安全组 id，精确匹配，支持多个
   optional
       * @param {tagFilter} [opts.tags] - Tag筛选条件  optional
       * @param {string} regionId - ID of the region
@@ -97,7 +98,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -262,7 +263,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -374,7 +375,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -487,7 +488,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -600,7 +601,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -712,7 +713,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -832,7 +833,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -955,7 +956,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -1076,7 +1077,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -1203,7 +1204,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -1295,7 +1296,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
       * @param {array} [opts.args] - 容器执行命令的参数，如果不指定默认是docker镜像的CMD  optional
       * @param {boolean} [opts.tty] - 容器是否分配tty。默认不分配  optional
       * @param {string} [opts.workingDir] - 容器的工作目录。如果不指定，默认是根目录（/）；必须是绝对路径  optional
-      * @param {array} [opts.evns] - 容器执行的环境变量；如果和镜像中的环境变量Key相同，会覆盖镜像中的值；&lt;/br&gt; 最大10对  optional
+      * @param {array} [opts.envs] - 容器执行的环境变量；如果和镜像中的环境变量Key相同，会覆盖镜像中的值；&lt;/br&gt; 最大10对  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1340,8 +1341,8 @@ subnetId - 镜像ID，模糊匹配，支持单个
     if (opts.workingDir !== undefined && opts.workingDir !== null) {
       postBody['workingDir'] = opts.workingDir
     }
-    if (opts.evns !== undefined && opts.evns !== null) {
-      postBody['evns'] = opts.evns
+    if (opts.envs !== undefined && opts.envs !== null) {
+      postBody['envs'] = opts.envs
     }
 
     let queryParams = {}
@@ -1352,7 +1353,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -1425,6 +1426,382 @@ subnetId - 镜像ID，模糊匹配，支持单个
   }
 
   /**
+      *  创建exec
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.containerId - Container ID
+      * @param {array} [opts.command] - 执行命令  optional
+      * @param {boolean} [opts.tty] - 执行命令是否添加tty  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string execId
+      */
+
+  execCreate (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  execCreate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.containerId === undefined || opts.containerId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.containerId' when calling execCreate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.command !== undefined && opts.command !== null) {
+      postBody['command'] = opts.command
+    }
+    if (opts.tty !== undefined && opts.tty !== null) {
+      postBody['tty'] = opts.tty
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      containerId: opts.containerId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call execCreate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/containers/{containerId}:execCreate',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取exec退出码
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.containerId - Container ID
+      * @param {string} opts.execId - exec ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer exitCode
+      */
+
+  execGetExitCode (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  execGetExitCode"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.containerId === undefined || opts.containerId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.containerId' when calling execGetExitCode"
+      )
+    }
+    if (opts.execId === undefined || opts.execId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.execId' when calling execGetExitCode"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.execId !== undefined && opts.execId !== null) {
+      queryParams['execId'] = opts.execId
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      containerId: opts.containerId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call execGetExitCode with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/containers/{containerId}:execGetExitCode',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  调整TTY大小
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.containerId - Container ID
+      * @param {integer} opts.height - tty row
+      * @param {integer} opts.width - tty column
+      * @param {string} [opts.execId] - exec ID  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  resizeTTY (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  resizeTTY"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.containerId === undefined || opts.containerId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.containerId' when calling resizeTTY"
+      )
+    }
+    if (opts.height === undefined || opts.height === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.height' when calling resizeTTY"
+      )
+    }
+    if (opts.width === undefined || opts.width === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.width' when calling resizeTTY"
+      )
+    }
+
+    let postBody = {}
+    if (opts.height !== undefined && opts.height !== null) {
+      postBody['height'] = opts.height
+    }
+    if (opts.width !== undefined && opts.width !== null) {
+      postBody['width'] = opts.width
+    }
+    if (opts.execId !== undefined && opts.execId !== null) {
+      postBody['execId'] = opts.execId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      containerId: opts.containerId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call resizeTTY with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/containers/{containerId}:resizeTTY',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  查询资源的配额，支持：原生容器 pod 和 secret.
 
       * @param {Object} opts - parameters
@@ -1467,7 +1844,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -1584,7 +1961,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -1718,7 +2095,7 @@ value 是 Base64 编码的字符串，不能包含换行符（在 linux 下使�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -1830,7 +2207,7 @@ value 是 Base64 编码的字符串，不能包含换行符（在 linux 下使�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -1941,7 +2318,7 @@ value 是 Base64 编码的字符串，不能包含换行符（在 linux 下使�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.1'
     }
 
     let contentTypes = ['application/json']

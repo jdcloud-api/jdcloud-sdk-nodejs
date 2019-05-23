@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * ServiceConfig
- * 查询服务配置信息
+ * Operation Records APIs
+ * Anti DDoS Protection Package Operation Records APIs
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -25,53 +25,61 @@
 require('../../../lib/node_loader')
 var JDCloud = require('../../../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'kubernetes'
+var serviceId = 'antipro'
 Service._services[serviceId] = true
 
 /**
- * kubernetes service.
- * @version 0.4.0
+ * antipro service.
+ * @version 1.0.0
  */
 
-JDCloud.KUBERNETES = class KUBERNETES extends Service {
+JDCloud.ANTIPRO = class ANTIPRO extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
       options._defaultEndpoint.protocol || 'https'
     options._defaultEndpoint.host =
-      options._defaultEndpoint.host || 'kubernetes.jdcloud-api.com'
+      options._defaultEndpoint.host || 'antipro.jdcloud-api.com'
     options.basePath = '/v1' // 默认要设为空""
     super(serviceId, options)
   }
 
   /**
-      *  查询集群列表
+      *  查询攻击记录, 参数 ip 优先级大于 instanceId
+  - 指定 ip 参数时, 忽略 instanceId 参数, 查询 ip 相关攻击记录
+  - 未指定 ip 时, 查询 instanceId 指定实例相关攻击记录
+  - ip 和 instanceId 均未指定时, 查询用户所有公网 IP 攻击记录
+
       * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
-      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
-      * @param {filter} [opts.filters] - name - 集群名称，模糊匹配，仅支持单个
-id - id，支持多个
+      * @param {integer} [opts.pageNumber] - 页码  optional
+      * @param {integer} [opts.pageSize] - 分页大小  optional
+      * @param {string} opts.startTime - 开始时间, 只能查询最近 90 天以内的数据, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} opts.endTime - 查询的结束时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} [opts.instanceId] - 防护包实例 Id  optional
+      * @param {string} [opts.ip] - DDoS 防护包已防护的公网 IP
+- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-protection-package/api/describeprotectediplist&quot;&gt;describeProtectedIpList&lt;/a&gt; 接口查询 DDoS 防护包已防护的公网 IP
   optional
-      * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param cluster clusters
-      * @param number totalCount
+      * @param attackLog dataList
+      * @param integer currentCount  当前页数量
+      * @param integer totalCount  实例总数
+      * @param integer totalPage  总页数
       */
 
-  describeClusters (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
+  describeAttackLogs (opts, callback) {
+    opts = opts || {}
 
-    if (regionId === undefined || regionId === null) {
+    if (opts.startTime === undefined || opts.startTime === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeClusters"
+        "Missing the required parameter 'opts.startTime' when calling describeAttackLogs"
       )
     }
-
-    opts = opts || {}
+    if (opts.endTime === undefined || opts.endTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.endTime' when calling describeAttackLogs"
+      )
+    }
 
     let postBody = null
     let queryParams = {}
@@ -81,14 +89,23 @@ id - id，支持多个
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+    if (opts.instanceId !== undefined && opts.instanceId !== null) {
+      queryParams['instanceId'] = opts.instanceId
+    }
+    Object.assign(queryParams, this.buildArrayParam(opts.ip, 'ip'))
 
     let pathParams = {
-      regionId: regionId
+      regionId: 'jdcloud'
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  antipro/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -118,7 +135,7 @@ id - id，支持多个
     let returnType = null
 
     this.config.logger(
-      `call describeClusters with params:\npathParams:${JSON.stringify(
+      `call describeAttackLogs with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -131,7 +148,7 @@ id - id，支持多个
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/clusters',
+      '/attacklog',
       'GET',
       pathParams,
       queryParams,
@@ -161,127 +178,59 @@ id - id，支持多个
   }
 
   /**
-      *  - 创建集群
-- 证书
-  - 关于kubernetes的证书，默认生成，不需要用户传入。
-- nodegroup
-  - cluster必须与nodeGroup进行绑定
-  - cluster支持多nodegroup
-  - 状态
-    - pending,reconciling,deleting状态不可以操作更新接口
-    - running，running_with_error状态可以操作nodegroup所有接口
-    - error状态只可以查询，删除
-    - delete状态的cluster在十五分钟内可以查询，十五分钟后无法查询到
-- 状态限制
-  - pending,reconciling,deleting状态不可以操作更新接口
-  - running状态可以操作cluster所有接口
-  - error状态只可以查询，删除
-  - delete状态的cluster在十五分钟内可以查询，十五分钟后无法查询到
+      *  攻击记录统计, 参数 ip 优先级大于 instanceId
+  - 指定 ip 参数时, 忽略 instanceId 参数, 统计 ip 的攻击情况
+  - 未指定 ip 时, 统计 instanceId 指定实例相关攻击情况
+  - ip 和 instanceId 均未指定时, 查询用户所有公网 IP 攻击情况
 
       * @param {Object} opts - parameters
-      * @param {string} opts.name - 名称（同一用户的 cluster 允许重名）
-      * @param {string} [opts.description] - 描述  optional
-      * @param {boolean} [opts.basicAuth] - 默认开启 basicAuth与clientCertificate最少选择一个  optional
-      * @param {boolean} [opts.clientCertificate] - 默认开启 clientCertificate  optional
-      * @param {string} [opts.version] - kubernetes的版本  optional
-      * @param {array} [opts.azs] - 集群所在的az  optional
-      * @param {nodeGroupSpec} opts.nodeGroup - pod 创建参数
-      * @param {string} opts.masterCidr - k8s的master的cidr
-      * @param {string} opts.accessKey - 用户的AccessKey，插件调用open-api时的认证凭证
-      * @param {string} opts.secretKey - 用户的SecretKey，插件调用open-api时的认证凭证
-      * @param {boolean} [opts.userMetrics] - 是否启用用户自定义监控，默认不启用  optional
-      * @param {string} regionId - ID of the region
+      * @param {string} opts.startTime - 开始时间, 只能查询最近 90 天以内的数据, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} opts.endTime - 结束时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} [opts.instanceId] - 防护包实例 Id  optional
+      * @param {string} [opts.ip] - DDoS 防护包已防护的公网 IP
+- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-protection-package/api/describeprotectediplist&quot;&gt;describeProtectedIpList&lt;/a&gt; 接口查询 DDoS 防护包已防护的公网 IP
+  optional
       * @param {string} callback - callback
       @return {Object} result
-      * @param string clusterId
+      * @param integer attackCount  攻击次数
+      * @param integer blackHoleCount  黑洞次数
+      * @param number peak  攻击流量峰值
+      * @param string unit  攻击流量单位
       */
 
-  createCluster (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  createCluster"
-      )
-    }
-
+  describeAttackStatistics (opts, callback) {
     opts = opts || {}
 
-    if (opts.name === undefined || opts.name === null) {
+    if (opts.startTime === undefined || opts.startTime === null) {
       throw new Error(
-        "Missing the required parameter 'opts.name' when calling createCluster"
+        "Missing the required parameter 'opts.startTime' when calling describeAttackStatistics"
       )
     }
-    if (opts.nodeGroup === undefined || opts.nodeGroup === null) {
+    if (opts.endTime === undefined || opts.endTime === null) {
       throw new Error(
-        "Missing the required parameter 'opts.nodeGroup' when calling createCluster"
-      )
-    }
-    if (opts.masterCidr === undefined || opts.masterCidr === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.masterCidr' when calling createCluster"
-      )
-    }
-    if (opts.accessKey === undefined || opts.accessKey === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.accessKey' when calling createCluster"
-      )
-    }
-    if (opts.secretKey === undefined || opts.secretKey === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.secretKey' when calling createCluster"
+        "Missing the required parameter 'opts.endTime' when calling describeAttackStatistics"
       )
     }
 
-    let postBody = {}
-    if (opts.name !== undefined && opts.name !== null) {
-      postBody['name'] = opts.name
-    }
-    if (opts.description !== undefined && opts.description !== null) {
-      postBody['description'] = opts.description
-    }
-    if (opts.basicAuth !== undefined && opts.basicAuth !== null) {
-      postBody['basicAuth'] = opts.basicAuth
-    }
-    if (
-      opts.clientCertificate !== undefined &&
-      opts.clientCertificate !== null
-    ) {
-      postBody['clientCertificate'] = opts.clientCertificate
-    }
-    if (opts.version !== undefined && opts.version !== null) {
-      postBody['version'] = opts.version
-    }
-    if (opts.azs !== undefined && opts.azs !== null) {
-      postBody['azs'] = opts.azs
-    }
-    if (opts.nodeGroup !== undefined && opts.nodeGroup !== null) {
-      postBody['nodeGroup'] = opts.nodeGroup
-    }
-    if (opts.masterCidr !== undefined && opts.masterCidr !== null) {
-      postBody['masterCidr'] = opts.masterCidr
-    }
-    if (opts.accessKey !== undefined && opts.accessKey !== null) {
-      postBody['accessKey'] = opts.accessKey
-    }
-    if (opts.secretKey !== undefined && opts.secretKey !== null) {
-      postBody['secretKey'] = opts.secretKey
-    }
-    if (opts.userMetrics !== undefined && opts.userMetrics !== null) {
-      postBody['userMetrics'] = opts.userMetrics
-    }
-
+    let postBody = null
     let queryParams = {}
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+    if (opts.instanceId !== undefined && opts.instanceId !== null) {
+      queryParams['instanceId'] = opts.instanceId
+    }
+    Object.assign(queryParams, this.buildArrayParam(opts.ip, 'ip'))
 
     let pathParams = {
-      regionId: regionId
+      regionId: 'jdcloud'
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  antipro/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -311,7 +260,7 @@ id - id，支持多个
     let returnType = null
 
     this.config.logger(
-      `call createCluster with params:\npathParams:${JSON.stringify(
+      `call describeAttackStatistics with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -324,7 +273,592 @@ id - id，支持多个
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/clusters',
+      '/describeAttackStatistics',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询各类型攻击次数, 参数 ip 优先级大于 instanceId
+  - 指定 ip 参数时, 忽略 instanceId 参数, 查询 ip 相关攻击记录的各类型攻击次数
+  - 未指定 ip 时, 查询 instanceId 指定实例相关攻击记录的各类型攻击次数
+  - ip 和 instanceId 均未指定时, 查询用户所有公网 IP 攻击记录的各类型攻击次数
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.startTime - 开始时间, 只能查询最近 90 天以内的数据, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} opts.endTime - 结束时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} [opts.instanceId] - 防护包实例 Id  optional
+      * @param {string} [opts.ip] - DDoS 防护包已防护的公网 IP
+- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-protection-package/api/describeprotectediplist&quot;&gt;describeProtectedIpList&lt;/a&gt; 接口查询 DDoS 防护包已防护的公网 IP
+  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param attackTypeCount dataList
+      */
+
+  describeAttackTypeCount (opts, callback) {
+    opts = opts || {}
+
+    if (opts.startTime === undefined || opts.startTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.startTime' when calling describeAttackTypeCount"
+      )
+    }
+    if (opts.endTime === undefined || opts.endTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.endTime' when calling describeAttackTypeCount"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+    if (opts.instanceId !== undefined && opts.instanceId !== null) {
+      queryParams['instanceId'] = opts.instanceId
+    }
+    Object.assign(queryParams, this.buildArrayParam(opts.ip, 'ip'))
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  antipro/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeAttackTypeCount with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/describeAttackTypeCount',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询攻击来源
+      * @param {Object} opts - parameters
+      * @param {string} opts.attackLogId - 攻击记录 Id
+      * @param {string} opts.ip - DDoS 防护包已防护的公网 IP
+- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-protection-package/api/describeprotectediplist&quot;&gt;describeProtectedIpList&lt;/a&gt; 接口查询 DDoS 防护包已防护的公网 IP
+
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string data
+      */
+
+  describeAttackSource (opts, callback) {
+    opts = opts || {}
+
+    if (opts.attackLogId === undefined || opts.attackLogId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.attackLogId' when calling describeAttackSource"
+      )
+    }
+    if (opts.ip === undefined || opts.ip === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.ip' when calling describeAttackSource"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.ip !== undefined && opts.ip !== null) {
+      queryParams['ip'] = opts.ip
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      attackLogId: opts.attackLogId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  antipro/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeAttackSource with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/attacklog/{attackLogId}:describeAttackSource',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询公网 IP 的监控流量
+      * @param {Object} opts - parameters
+      * @param {string} opts.startTime - 开始时间, 只能查询最近 90 天以内的数据, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} opts.endTime - 查询的结束时间, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} [opts.ip] - DDoS 防护包已防护的公网 IP
+- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-protection-package/api/describeprotectediplist&quot;&gt;describeProtectedIpList&lt;/a&gt; 接口查询 DDoS 防护包已防护的公网 IP
+  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param ipResourceFlow bps
+      * @param ipResourceFlow pps
+      */
+
+  describeIpMonitorFlow (opts, callback) {
+    opts = opts || {}
+
+    if (opts.startTime === undefined || opts.startTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.startTime' when calling describeIpMonitorFlow"
+      )
+    }
+    if (opts.endTime === undefined || opts.endTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.endTime' when calling describeIpMonitorFlow"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+    Object.assign(queryParams, this.buildArrayParam(opts.ip, 'ip'))
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  antipro/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeIpMonitorFlow with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/describeIpMonitorFlow',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询防护包实例列表
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码  optional
+      * @param {integer} [opts.pageSize] - 分页大小  optional
+      * @param {string} [opts.name] - 防护包名称, 支持模糊匹配  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param instance dataList
+      * @param integer currentCount  当前页数量
+      * @param integer totalCount  实例总数
+      * @param integer totalPage  总页数
+      */
+
+  describeInstances (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeInstances"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    if (opts.name !== undefined && opts.name !== null) {
+      queryParams['name'] = opts.name
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  antipro/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeInstances with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建防护包实例, 当前支持区域: 华北-北京, 华东-宿迁, 华东-上海
+      * @param {Object} opts - parameters
+      * @param {createInstanceSpec} opts.createInstanceSpec - 创建防护包实例请求参数
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string instanceId  创建的防护包实例 Id
+      */
+
+  createInstance (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createInstance"
+      )
+    }
+
+    opts = opts || {}
+
+    if (
+      opts.createInstanceSpec === undefined ||
+      opts.createInstanceSpec === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.createInstanceSpec' when calling createInstance"
+      )
+    }
+
+    let postBody = {}
+    if (
+      opts.createInstanceSpec !== undefined &&
+      opts.createInstanceSpec !== null
+    ) {
+      postBody['createInstanceSpec'] = opts.createInstanceSpec
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  antipro/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createInstance with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances',
       'POST',
       pathParams,
       queryParams,
@@ -354,16 +888,16 @@ id - id，支持多个
   }
 
   /**
-      *  查询单个集群详情。
+      *  查询防护包实例
       * @param {Object} opts - parameters
-      * @param {string} opts.clusterId - 集群 ID
+      * @param {string} opts.instanceId - 防护包实例 Id
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param cluster cluster
+      * @param instance data
       */
 
-  describeCluster (opts, regionId = this.config.regionId, callback) {
+  describeInstance (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -371,15 +905,15 @@ id - id，支持多个
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeCluster"
+        "Missing the required parameter 'regionId' when calling  describeInstance"
       )
     }
 
     opts = opts || {}
 
-    if (opts.clusterId === undefined || opts.clusterId === null) {
+    if (opts.instanceId === undefined || opts.instanceId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.clusterId' when calling describeCluster"
+        "Missing the required parameter 'opts.instanceId' when calling describeInstance"
       )
     }
 
@@ -388,11 +922,11 @@ id - id，支持多个
 
     let pathParams = {
       regionId: regionId,
-      clusterId: opts.clusterId
+      instanceId: opts.instanceId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  antipro/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -422,7 +956,7 @@ id - id，支持多个
     let returnType = null
 
     this.config.logger(
-      `call describeCluster with params:\npathParams:${JSON.stringify(
+      `call describeInstance with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -435,7 +969,7 @@ id - id，支持多个
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/clusters/{clusterId}',
+      '/regions/{regionId}/instances/{instanceId}',
       'GET',
       pathParams,
       queryParams,
@@ -465,17 +999,17 @@ id - id，支持多个
   }
 
   /**
-      *  修改集群的 名称 和 描述。
+      *  升级防护包实例
       * @param {Object} opts - parameters
-      * @param {string} opts.clusterId - 集群 ID
-      * @param {string} [opts.name] - 集群名称  optional
-      * @param {string} [opts.description] - 集群 name 和 description 必须要指定一个  optional
+      * @param {string} opts.instanceId - 防护包实例 Id
+      * @param {modifyInstanceSpec} opts.modifyInstanceSpec - 升级防护包实例请求参数
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param string instanceId  升级的防护包实例 Id
       */
 
-  modifyCluster (opts, regionId = this.config.regionId, callback) {
+  modifyInstance (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -483,35 +1017,43 @@ id - id，支持多个
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  modifyCluster"
+        "Missing the required parameter 'regionId' when calling  modifyInstance"
       )
     }
 
     opts = opts || {}
 
-    if (opts.clusterId === undefined || opts.clusterId === null) {
+    if (opts.instanceId === undefined || opts.instanceId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.clusterId' when calling modifyCluster"
+        "Missing the required parameter 'opts.instanceId' when calling modifyInstance"
+      )
+    }
+    if (
+      opts.modifyInstanceSpec === undefined ||
+      opts.modifyInstanceSpec === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.modifyInstanceSpec' when calling modifyInstance"
       )
     }
 
     let postBody = {}
-    if (opts.name !== undefined && opts.name !== null) {
-      postBody['name'] = opts.name
-    }
-    if (opts.description !== undefined && opts.description !== null) {
-      postBody['description'] = opts.description
+    if (
+      opts.modifyInstanceSpec !== undefined &&
+      opts.modifyInstanceSpec !== null
+    ) {
+      postBody['modifyInstanceSpec'] = opts.modifyInstanceSpec
     }
 
     let queryParams = {}
 
     let pathParams = {
       regionId: regionId,
-      clusterId: opts.clusterId
+      instanceId: opts.instanceId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  antipro/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -541,7 +1083,7 @@ id - id，支持多个
     let returnType = null
 
     this.config.logger(
-      `call modifyCluster with params:\npathParams:${JSON.stringify(
+      `call modifyInstance with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -554,7 +1096,7 @@ id - id，支持多个
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/clusters/{clusterId}',
+      '/regions/{regionId}/instances/{instanceId}',
       'PATCH',
       pathParams,
       queryParams,
@@ -584,15 +1126,18 @@ id - id，支持多个
   }
 
   /**
-      *  删除集群，以及集群的所有node节点，网络，云盘等所有资源。
+      *  修改防护包实例名称
       * @param {Object} opts - parameters
-      * @param {string} opts.clusterId - 集群 ID
+      * @param {string} opts.instanceId - 防护包实例 Id
+      * @param {modifyInstanceNameSpec} opts.modifyInstanceNameSpec - 修改防护包实例名称请求参数
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param integer code  修改结果, 0: 修改失败, 1: 修改成功
+      * @param string message  修改失败时给出具体原因
       */
 
-  deleteCluster (opts, regionId = this.config.regionId, callback) {
+  modifyInstanceName (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -600,631 +1145,43 @@ id - id，支持多个
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  deleteCluster"
+        "Missing the required parameter 'regionId' when calling  modifyInstanceName"
       )
     }
 
     opts = opts || {}
 
-    if (opts.clusterId === undefined || opts.clusterId === null) {
+    if (opts.instanceId === undefined || opts.instanceId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.clusterId' when calling deleteCluster"
+        "Missing the required parameter 'opts.instanceId' when calling modifyInstanceName"
       )
-    }
-
-    let postBody = null
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      clusterId: opts.clusterId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call deleteCluster with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/clusters/{clusterId}',
-      'DELETE',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  设置用户自定义监控状态
-      * @param {Object} opts - parameters
-      * @param {string} opts.clusterId - 集群 ID
-      * @param {boolean} [opts.enabled] - 是否开启自定义监控  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  setUserMetrics (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  setUserMetrics"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.clusterId === undefined || opts.clusterId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.clusterId' when calling setUserMetrics"
-      )
-    }
-
-    let postBody = {}
-    if (opts.enabled !== undefined && opts.enabled !== null) {
-      postBody['enabled'] = opts.enabled
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      clusterId: opts.clusterId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call setUserMetrics with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/clusters/{clusterId}:setUserMetrics',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  终止升级
-      * @param {Object} opts - parameters
-      * @param {string} opts.clusterId - 集群 ID
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  abortUpgrade (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  abortUpgrade"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.clusterId === undefined || opts.clusterId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.clusterId' when calling abortUpgrade"
-      )
-    }
-
-    let postBody = {}
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      clusterId: opts.clusterId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call abortUpgrade with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/clusters/{clusterId}:abortUpgrade',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询集群操作进度
-      * @param {Object} opts - parameters
-      * @param {string} opts.clusterId - 集群 ID
-      * @param {string} [opts.nodeGroupIds] - 节点组 ID  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param masterProgress masterProgress
-      * @param nodeGroupProgress nodeGroupProgresses
-      */
-
-  describeProgress (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeProgress"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.clusterId === undefined || opts.clusterId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.clusterId' when calling describeProgress"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-    Object.assign(
-      queryParams,
-      this.buildArrayParam(opts.nodeGroupIds, 'nodeGroupIds')
-    )
-
-    let pathParams = {
-      regionId: regionId,
-      clusterId: opts.clusterId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeProgress with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/clusters/{clusterId}/progress',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  设置自动升级
-      * @param {Object} opts - parameters
-      * @param {string} opts.clusterId - 集群 ID
-      * @param {boolean} opts.autoUpgrade - 开启或者关闭集群自动升级，开启时必须指定 maintenancePolicy
-      * @param {maintenanceWindowSpec} [opts.maintenanceWindow] - 开启集群自动升级, 必须配置集群维护策略  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  setAutoUpgrade (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  setAutoUpgrade"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.clusterId === undefined || opts.clusterId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.clusterId' when calling setAutoUpgrade"
-      )
-    }
-    if (opts.autoUpgrade === undefined || opts.autoUpgrade === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.autoUpgrade' when calling setAutoUpgrade"
-      )
-    }
-
-    let postBody = {}
-    if (opts.autoUpgrade !== undefined && opts.autoUpgrade !== null) {
-      postBody['autoUpgrade'] = opts.autoUpgrade
     }
     if (
-      opts.maintenanceWindow !== undefined &&
-      opts.maintenanceWindow !== null
+      opts.modifyInstanceNameSpec === undefined ||
+      opts.modifyInstanceNameSpec === null
     ) {
-      postBody['maintenanceWindow'] = opts.maintenanceWindow
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      clusterId: opts.clusterId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call setAutoUpgrade with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/clusters/{clusterId}:setAutoUpgrade',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  触发升级
-      * @param {Object} opts - parameters
-      * @param {string} opts.clusterId - 集群 ID
-      * @param {string} opts.scope - 升级范围
-      * @param {array} [opts.nodeGroupIds] - 节点组 id  optional
-      * @param {string} opts.verison - 指定升级到的版本
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  upgradeCluster (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  upgradeCluster"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.clusterId === undefined || opts.clusterId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.clusterId' when calling upgradeCluster"
-      )
-    }
-    if (opts.scope === undefined || opts.scope === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.scope' when calling upgradeCluster"
-      )
-    }
-    if (opts.verison === undefined || opts.verison === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.verison' when calling upgradeCluster"
+        "Missing the required parameter 'opts.modifyInstanceNameSpec' when calling modifyInstanceName"
       )
     }
 
     let postBody = {}
-    if (opts.scope !== undefined && opts.scope !== null) {
-      postBody['scope'] = opts.scope
-    }
-    if (opts.nodeGroupIds !== undefined && opts.nodeGroupIds !== null) {
-      postBody['nodeGroupIds'] = opts.nodeGroupIds
-    }
-    if (opts.verison !== undefined && opts.verison !== null) {
-      postBody['verison'] = opts.verison
+    if (
+      opts.modifyInstanceNameSpec !== undefined &&
+      opts.modifyInstanceNameSpec !== null
+    ) {
+      postBody['modifyInstanceNameSpec'] = opts.modifyInstanceNameSpec
     }
 
     let queryParams = {}
 
     let pathParams = {
       regionId: regionId,
-      clusterId: opts.clusterId
+      instanceId: opts.instanceId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  antipro/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -1254,7 +1211,7 @@ id - id，支持多个
     let returnType = null
 
     this.config.logger(
-      `call upgradeCluster with params:\npathParams:${JSON.stringify(
+      `call modifyInstanceName with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1267,526 +1224,7 @@ id - id，支持多个
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/clusters/{clusterId}:upgradeCluster',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询节点组列表
-      * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
-      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
-      * @param {filter} [opts.filters] - name - 节点组名称，模糊匹配，支持单个
-id - 节点组 id，支持多个
-clusterId - 根据clusterId查询
-clusterName - 根据名称查询 cluster
-  optional
-      * @param {tagFilter} [opts.tags] - Tag筛选条件  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param nodeGroup nodeGroups
-      * @param number totalCount
-      */
-
-  describeNodeGroups (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeNodeGroups"
-      )
-    }
-
-    opts = opts || {}
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
-      queryParams['pageNumber'] = opts.pageNumber
-    }
-    if (opts.pageSize !== undefined && opts.pageSize !== null) {
-      queryParams['pageSize'] = opts.pageSize
-    }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
-    Object.assign(queryParams, this.buildTagFilterParam(opts.tags, 'tags'))
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeNodeGroups with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/nodeGroups',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  创建k8s的nodeGroup
-要求集群状态为running
-
-      * @param {Object} opts - parameters
-      * @param {string} opts.name - 名称（同一用户的 cluster 内部唯一）
-      * @param {string} [opts.description] - 描述  optional
-      * @param {string} opts.clusterId - node group所属的cluster
-      * @param {nodeConfigSpec} opts.nodeConfig - 节点组配置
-      * @param {integer} opts.initialNodeCount - nodeGroup初始化大小
-      * @param {string} opts.vpcId - k8s运行的vpc
-      * @param {string} opts.nodeCidr - k8s的node的cidr
-      * @param {boolean} [opts.autoRepair] - 是否开启 node group 的自动修复，默认关闭  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param string nodeGroupId
-      */
-
-  createNodeGroup (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  createNodeGroup"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.name === undefined || opts.name === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.name' when calling createNodeGroup"
-      )
-    }
-    if (opts.clusterId === undefined || opts.clusterId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.clusterId' when calling createNodeGroup"
-      )
-    }
-    if (opts.nodeConfig === undefined || opts.nodeConfig === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.nodeConfig' when calling createNodeGroup"
-      )
-    }
-    if (opts.initialNodeCount === undefined || opts.initialNodeCount === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.initialNodeCount' when calling createNodeGroup"
-      )
-    }
-    if (opts.vpcId === undefined || opts.vpcId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.vpcId' when calling createNodeGroup"
-      )
-    }
-    if (opts.nodeCidr === undefined || opts.nodeCidr === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.nodeCidr' when calling createNodeGroup"
-      )
-    }
-
-    let postBody = {}
-    if (opts.name !== undefined && opts.name !== null) {
-      postBody['name'] = opts.name
-    }
-    if (opts.description !== undefined && opts.description !== null) {
-      postBody['description'] = opts.description
-    }
-    if (opts.clusterId !== undefined && opts.clusterId !== null) {
-      postBody['clusterId'] = opts.clusterId
-    }
-    if (opts.nodeConfig !== undefined && opts.nodeConfig !== null) {
-      postBody['nodeConfig'] = opts.nodeConfig
-    }
-    if (opts.initialNodeCount !== undefined && opts.initialNodeCount !== null) {
-      postBody['initialNodeCount'] = opts.initialNodeCount
-    }
-    if (opts.vpcId !== undefined && opts.vpcId !== null) {
-      postBody['vpcId'] = opts.vpcId
-    }
-    if (opts.nodeCidr !== undefined && opts.nodeCidr !== null) {
-      postBody['nodeCidr'] = opts.nodeCidr
-    }
-    if (opts.autoRepair !== undefined && opts.autoRepair !== null) {
-      postBody['autoRepair'] = opts.autoRepair
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call createNodeGroup with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/nodeGroups',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询单个节点组详情
-      * @param {Object} opts - parameters
-      * @param {string} opts.nodeGroupId - 节点组 ID
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param nodeGroup nodeGroup
-      */
-
-  describeNodeGroup (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeNodeGroup"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.nodeGroupId === undefined || opts.nodeGroupId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.nodeGroupId' when calling describeNodeGroup"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      nodeGroupId: opts.nodeGroupId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeNodeGroup with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/nodeGroups/{nodeGroupId}',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  修改节点组的 名称 和 描述
-      * @param {Object} opts - parameters
-      * @param {string} opts.nodeGroupId - 节点组 ID
-      * @param {string} [opts.name] - 节点组名称  optional
-      * @param {string} [opts.description] - 集群 name 和 description 必须要指定一个  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  modifyNodeGroup (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  modifyNodeGroup"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.nodeGroupId === undefined || opts.nodeGroupId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.nodeGroupId' when calling modifyNodeGroup"
-      )
-    }
-
-    let postBody = {}
-    if (opts.name !== undefined && opts.name !== null) {
-      postBody['name'] = opts.name
-    }
-    if (opts.description !== undefined && opts.description !== null) {
-      postBody['description'] = opts.description
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      nodeGroupId: opts.nodeGroupId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call modifyNodeGroup with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/nodeGroups/{nodeGroupId}',
+      '/regions/{regionId}/instances/{instanceId}:modifyInstanceName',
       'PATCH',
       pathParams,
       queryParams,
@@ -1816,15 +1254,23 @@ clusterName - 根据名称查询 cluster
   }
 
   /**
-      *  cluster 摘除 nodeGroup 并删除 nodeGroup
+      *  添加防护包防护 IP.
+- 防护包仅能防护防护包实例所在区域的公网 IP, 且该公网 IP 未被其他防护包防护, 如果已经被其他防护包防护, 请先调用删除防护包防护 IP 接口删除防护 IP
+- 防护包可添加的防护 IP 个数小于等于防护包的可防护 IP 数量减去已防护的 IP 数量
+- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-protection-package/api/describeelasticipresources&quot;&gt;describeElasticIpResources&lt;/a&gt; 接口查询防护包可防护的弹性公网 IP
+- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-protection-package/api/describecpsipresources&quot;&gt;describeCpsIpResources&lt;/a&gt; 接口查询防护包可防护的云物理服务器公网 IP
+
       * @param {Object} opts - parameters
-      * @param {string} opts.nodeGroupId - 节点组 ID
+      * @param {string} opts.instanceId - 防护包实例 Id
+      * @param {protectedIpSpec} opts.protectedIpSpec - 添加防护包防护 IP 请求参数
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param integer code  添加防护 IP 结果, 0: 添加失败, 1: 添加成功
+      * @param string message  添加失败时给出具体原因
       */
 
-  deleteNodeGroup (opts, regionId = this.config.regionId, callback) {
+  addProtectedIp (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -1832,28 +1278,279 @@ clusterName - 根据名称查询 cluster
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  deleteNodeGroup"
+        "Missing the required parameter 'regionId' when calling  addProtectedIp"
       )
     }
 
     opts = opts || {}
 
-    if (opts.nodeGroupId === undefined || opts.nodeGroupId === null) {
+    if (opts.instanceId === undefined || opts.instanceId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.nodeGroupId' when calling deleteNodeGroup"
+        "Missing the required parameter 'opts.instanceId' when calling addProtectedIp"
+      )
+    }
+    if (opts.protectedIpSpec === undefined || opts.protectedIpSpec === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.protectedIpSpec' when calling addProtectedIp"
+      )
+    }
+
+    let postBody = {}
+    if (opts.protectedIpSpec !== undefined && opts.protectedIpSpec !== null) {
+      postBody['protectedIpSpec'] = opts.protectedIpSpec
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  antipro/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call addProtectedIp with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}:addProtectedIp',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除防护包防护 IP
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 防护包实例 Id
+      * @param {protectedIpSpec} opts.protectedIpSpec - 删除防护包防护 IP 请求参数
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer code  删除防护 IP 结果, 0: 删除失败, 1: 删除成功
+      * @param string message  删除失败时给出具体原因
+      */
+
+  deleteProtectedIp (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteProtectedIp"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling deleteProtectedIp"
+      )
+    }
+    if (opts.protectedIpSpec === undefined || opts.protectedIpSpec === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.protectedIpSpec' when calling deleteProtectedIp"
+      )
+    }
+
+    let postBody = {}
+    if (opts.protectedIpSpec !== undefined && opts.protectedIpSpec !== null) {
+      postBody['protectedIpSpec'] = opts.protectedIpSpec
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  antipro/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteProtectedIp with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}:deleteProtectedIp',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询已防护 IP 列表
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码  optional
+      * @param {integer} [opts.pageSize] - 分页大小  optional
+      * @param {integer} [opts.instanceId] - 实例 Id, 缺省时查询用户所有已防护 IP  optional
+      * @param {integer} opts.type - 被防护 IP类型: 0: 全部, 1: 弹性公网 IP, 2: 云物理服务器公网 IP
+      * @param {string} [opts.ip] - 被防护 IP, 支持模糊查询  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param protectedIp dataList
+      * @param integer currentCount  当前页数量
+      * @param integer totalCount  实例总数
+      * @param integer totalPage  总页数
+      */
+
+  describeProtectedIpList (opts, callback) {
+    opts = opts || {}
+
+    if (opts.type === undefined || opts.type === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.type' when calling describeProtectedIpList"
       )
     }
 
     let postBody = null
     let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    if (opts.instanceId !== undefined && opts.instanceId !== null) {
+      queryParams['instanceId'] = opts.instanceId
+    }
+    if (opts.type !== undefined && opts.type !== null) {
+      queryParams['type'] = opts.type
+    }
+    if (opts.ip !== undefined && opts.ip !== null) {
+      queryParams['ip'] = opts.ip
+    }
 
     let pathParams = {
-      regionId: regionId,
-      nodeGroupId: opts.nodeGroupId
+      regionId: 'jdcloud'
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  antipro/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -1883,7 +1580,7 @@ clusterName - 根据名称查询 cluster
     let returnType = null
 
     this.config.logger(
-      `call deleteNodeGroup with params:\npathParams:${JSON.stringify(
+      `call describeProtectedIpList with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1896,8 +1593,8 @@ clusterName - 根据名称查询 cluster
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/nodeGroups/{nodeGroupId}',
-      'DELETE',
+      '/describeProtectedIpList',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -1926,16 +1623,17 @@ clusterName - 根据名称查询 cluster
   }
 
   /**
-      *  调整节点组实例数量
+      *  获取防护包实例或 IP 的防护规则
       * @param {Object} opts - parameters
-      * @param {string} opts.nodeGroupId - 节点组 ID
-      * @param {integer} opts.expectCount - 创建集群请求参数模型
+      * @param {string} opts.instanceId - 防护包实例 Id
+      * @param {string} [opts.ip] - 被防护 IP, 缺省时获取防护包实例的防护规则  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param protectionRule data
       */
 
-  setNodeGroupSize (opts, regionId = this.config.regionId, callback) {
+  describeProtectionRule (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -1943,37 +1641,31 @@ clusterName - 根据名称查询 cluster
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  setNodeGroupSize"
+        "Missing the required parameter 'regionId' when calling  describeProtectionRule"
       )
     }
 
     opts = opts || {}
 
-    if (opts.nodeGroupId === undefined || opts.nodeGroupId === null) {
+    if (opts.instanceId === undefined || opts.instanceId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.nodeGroupId' when calling setNodeGroupSize"
-      )
-    }
-    if (opts.expectCount === undefined || opts.expectCount === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.expectCount' when calling setNodeGroupSize"
+        "Missing the required parameter 'opts.instanceId' when calling describeProtectionRule"
       )
     }
 
-    let postBody = {}
-    if (opts.expectCount !== undefined && opts.expectCount !== null) {
-      postBody['expectCount'] = opts.expectCount
-    }
-
+    let postBody = null
     let queryParams = {}
+    if (opts.ip !== undefined && opts.ip !== null) {
+      queryParams['ip'] = opts.ip
+    }
 
     let pathParams = {
       regionId: regionId,
-      nodeGroupId: opts.nodeGroupId
+      instanceId: opts.instanceId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  antipro/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -2003,7 +1695,7 @@ clusterName - 根据名称查询 cluster
     let returnType = null
 
     this.config.logger(
-      `call setNodeGroupSize with params:\npathParams:${JSON.stringify(
+      `call describeProtectionRule with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -2016,7 +1708,226 @@ clusterName - 根据名称查询 cluster
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/nodeGroups/{nodeGroupId}:setNodeGroupSize',
+      '/regions/{regionId}/instances/{instanceId}:describeProtectionRule',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询防护规则 Geo 拦截可设置区域
+      * @param {Object} opts - parameters
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param country dataList
+      */
+
+  describeGeoAreas (opts, callback) {
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  antipro/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeGeoAreas with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/describeGeoAreas',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改防护包实例或 IP 的防护规则
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 防护包实例 Id
+      * @param {protectionRuleSpec} opts.protectionRuleSpec - 修改防护规则请求参数
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer code  修改防护规则结果, 0: 修改失败, 1: 修改成功
+      * @param string message  修改失败时给出具体原因
+      */
+
+  modifyProtectionRule (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyProtectionRule"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling modifyProtectionRule"
+      )
+    }
+    if (
+      opts.protectionRuleSpec === undefined ||
+      opts.protectionRuleSpec === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.protectionRuleSpec' when calling modifyProtectionRule"
+      )
+    }
+
+    let postBody = {}
+    if (
+      opts.protectionRuleSpec !== undefined &&
+      opts.protectionRuleSpec !== null
+    ) {
+      postBody['protectionRuleSpec'] = opts.protectionRuleSpec
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  antipro/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyProtectionRule with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}:modifyProtectionRule',
       'POST',
       pathParams,
       queryParams,
@@ -2046,54 +1957,36 @@ clusterName - 根据名称查询 cluster
   }
 
   /**
-      *  设置节点组的自动修复
+      *  检测实例名称是否可用, 防护包实例名称不可重复
       * @param {Object} opts - parameters
-      * @param {string} opts.nodeGroupId - 节点组 ID
-      * @param {boolean} opts.enabled - 是否开启自动修复
-      * @param {string} regionId - ID of the region
+      * @param {string} opts.instanceName - 待检测实例名称, 长度限制为 1-80 个字符, 只允许包含中文, 字母, 数字, -, ., /, _
       * @param {string} callback - callback
       @return {Object} result
+      * @param integer code  检测结果 code, 0: 不可用, 1: 可用
+      * @param string message  检测结果, 不可用时给出具体原因
       */
 
-  setAutoRepair (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  setAutoRepair"
-      )
-    }
-
+  checkInstanceName (opts, callback) {
     opts = opts || {}
 
-    if (opts.nodeGroupId === undefined || opts.nodeGroupId === null) {
+    if (opts.instanceName === undefined || opts.instanceName === null) {
       throw new Error(
-        "Missing the required parameter 'opts.nodeGroupId' when calling setAutoRepair"
-      )
-    }
-    if (opts.enabled === undefined || opts.enabled === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.enabled' when calling setAutoRepair"
+        "Missing the required parameter 'opts.instanceName' when calling checkInstanceName"
       )
     }
 
-    let postBody = {}
-    if (opts.enabled !== undefined && opts.enabled !== null) {
-      postBody['enabled'] = opts.enabled
-    }
-
+    let postBody = null
     let queryParams = {}
+    if (opts.instanceName !== undefined && opts.instanceName !== null) {
+      queryParams['instanceName'] = opts.instanceName
+    }
 
     let pathParams = {
-      regionId: regionId,
-      nodeGroupId: opts.nodeGroupId
+      regionId: 'jdcloud'
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  antipro/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -2123,7 +2016,7 @@ clusterName - 根据名称查询 cluster
     let returnType = null
 
     this.config.logger(
-      `call setAutoRepair with params:\npathParams:${JSON.stringify(
+      `call checkInstanceName with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -2136,8 +2029,8 @@ clusterName - 根据名称查询 cluster
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/nodeGroups/{nodeGroupId}:setAutoRepair',
-      'POST',
+      '/checkInstanceName',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -2166,45 +2059,25 @@ clusterName - 根据名称查询 cluster
   }
 
   /**
-      *  回滚未升级完的节点组
+      *  防护包防护信息概要
       * @param {Object} opts - parameters
-      * @param {string} opts.nodeGroupId - 节点组 ID
-      * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param protectionOutline data
       */
 
-  rollbackNodeGroupUpgrade (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  rollbackNodeGroupUpgrade"
-      )
-    }
-
+  describeProtectionOutline (opts, callback) {
     opts = opts || {}
 
-    if (opts.nodeGroupId === undefined || opts.nodeGroupId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.nodeGroupId' when calling rollbackNodeGroupUpgrade"
-      )
-    }
-
-    let postBody = {}
-
+    let postBody = null
     let queryParams = {}
 
     let pathParams = {
-      regionId: regionId,
-      nodeGroupId: opts.nodeGroupId
+      regionId: 'jdcloud'
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  antipro/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -2234,7 +2107,7 @@ clusterName - 根据名称查询 cluster
     let returnType = null
 
     this.config.logger(
-      `call rollbackNodeGroupUpgrade with params:\npathParams:${JSON.stringify(
+      `call describeProtectionOutline with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -2247,8 +2120,8 @@ clusterName - 根据名称查询 cluster
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/nodeGroups/{nodeGroupId}:rollbackNodeGroupUpgrade',
-      'POST',
+      '/describeProtectionOutline',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -2277,40 +2150,298 @@ clusterName - 根据名称查询 cluster
   }
 
   /**
-      *  查询(k8s 集群)配额
+      *  查询 DDoS 防护包可防护的私有网络弹性公网 IP(不包括运营商级 NAT 保留地址和 IPv6)
       * @param {Object} opts - parameters
-      * @param {filter} [opts.filters] - resourceTypes - 资源类型，暂时只支持[kubernetes]
+      * @param {integer} [opts.pageNumber] - 页码  optional
+      * @param {integer} [opts.pageSize] - 分页大小  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param ipResource dataList
+      * @param integer currentCount  当前页数量
+      * @param integer totalCount  实例总数
+      * @param integer totalPage  总页数
+      */
+
+  describeElasticIpResources (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeElasticIpResources"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  antipro/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeElasticIpResources with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/elasticIpResources',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询 DDoS 防护包可防护的云物理服务器公网 IP(包括云物理服务器弹性公网 IP 及云物理服务器基础网络实例的公网 IP)
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码  optional
+      * @param {integer} [opts.pageSize] - 分页大小  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param ipResource dataList
+      * @param integer currentCount  当前页数量
+      * @param integer totalCount  实例总数
+      * @param integer totalPage  总页数
+      */
+
+  describeCpsIpResources (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeCpsIpResources"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  antipro/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeCpsIpResources with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/cpsIpResources',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询操作日志
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码  optional
+      * @param {integer} [opts.pageSize] - 分页大小  optional
+      * @param {string} opts.startTime - 开始时间, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} opts.endTime - 结束时间, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {integer} [opts.action] - 操作类型, 默认查全部.
+- 0: 全部
+- 1: 套餐变更
+- 2: 防护规则变更
+- 3: 防护对象变更
+- 4: IP 地址变更
+- 5: 防护包名称变更
   optional
-      * @param {string} regionId - ID of the region
+      * @param {string} [opts.name] - 防护包名称, 支持模糊匹配  optional
       * @param {string} callback - callback
       @return {Object} result
-      * @param quota quotas
+      * @param operationRecord dataList
+      * @param integer currentCount  当前页数量
+      * @param integer totalCount  实例总数
+      * @param integer totalPage  总页数
       */
 
-  describeQuotas (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
+  describeOperationRecords (opts, callback) {
+    opts = opts || {}
 
-    if (regionId === undefined || regionId === null) {
+    if (opts.startTime === undefined || opts.startTime === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeQuotas"
+        "Missing the required parameter 'opts.startTime' when calling describeOperationRecords"
+      )
+    }
+    if (opts.endTime === undefined || opts.endTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.endTime' when calling describeOperationRecords"
       )
     }
 
-    opts = opts || {}
-
     let postBody = null
     let queryParams = {}
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+    if (opts.action !== undefined && opts.action !== null) {
+      queryParams['action'] = opts.action
+    }
+    if (opts.name !== undefined && opts.name !== null) {
+      queryParams['name'] = opts.name
+    }
 
     let pathParams = {
-      regionId: regionId
+      regionId: 'jdcloud'
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  antipro/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -2340,7 +2471,7 @@ clusterName - 根据名称查询 cluster
     let returnType = null
 
     this.config.logger(
-      `call describeQuotas with params:\npathParams:${JSON.stringify(
+      `call describeOperationRecords with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -2353,563 +2484,7 @@ clusterName - 根据名称查询 cluster
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/quotas',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询(k8s 集群)服务配置信息
-      * @param {Object} opts - parameters
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param serverConfig serverConfig
-      */
-
-  describeServerConfig (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeServerConfig"
-      )
-    }
-
-    opts = opts || {}
-
-    let postBody = null
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeServerConfig with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/serverConfig',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询版本信息
-      * @param {Object} opts - parameters
-      * @param {string} [opts.masterVersion] - 集群的大版本，如 1.12.4-jcs.1  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param masterVersion masterVersions
-      */
-
-  describeVersions (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeVersions"
-      )
-    }
-
-    opts = opts || {}
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.masterVersion !== undefined && opts.masterVersion !== null) {
-      queryParams['masterVersion'] = opts.masterVersion
-    }
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeVersions with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/versions',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询节点版本
-      * @param {Object} opts - parameters
-      * @param {string} opts.nodeVersion - 节点版本
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param nodeVersion nodeVersion
-      */
-
-  describeNodeVersion (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeNodeVersion"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.nodeVersion === undefined || opts.nodeVersion === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.nodeVersion' when calling describeNodeVersion"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      nodeVersion: opts.nodeVersion
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeNodeVersion with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/nodeVersions/{nodeVersion}',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询可升级的控制节点版本
-      * @param {Object} opts - parameters
-      * @param {string} opts.clusterId - 集群 ID
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param masterVersion masterVersions
-      */
-
-  describeUpgradableMasterVersions (
-    opts,
-    regionId = this.config.regionId,
-    callback
-  ) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeUpgradableMasterVersions"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.clusterId === undefined || opts.clusterId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.clusterId' when calling describeUpgradableMasterVersions"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      clusterId: opts.clusterId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeUpgradableMasterVersions with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/clusters/{clusterId}/upgradableMasterVersions',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询可升级的节点版本
-      * @param {Object} opts - parameters
-      * @param {string} opts.clusterId - 集群 ID
-      * @param {string} [opts.nodeGroupIds] - 节点组 id  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param nodeVersion ndoeVersions
-      */
-
-  describeUpgradableNodeVersions (
-    opts,
-    regionId = this.config.regionId,
-    callback
-  ) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeUpgradableNodeVersions"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.clusterId === undefined || opts.clusterId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.clusterId' when calling describeUpgradableNodeVersions"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-    Object.assign(
-      queryParams,
-      this.buildArrayParam(opts.nodeGroupIds, 'nodeGroupIds')
-    )
-
-    let pathParams = {
-      regionId: regionId,
-      clusterId: opts.clusterId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeUpgradableNodeVersions with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/clusters/{clusterId}/upgradableNodeVersions',
+      '/operationRecords',
       'GET',
       pathParams,
       queryParams,
@@ -2938,4 +2513,4 @@ clusterName - 根据名称查询 cluster
     )
   }
 }
-module.exports = JDCloud.KUBERNETES
+module.exports = JDCloud.ANTIPRO

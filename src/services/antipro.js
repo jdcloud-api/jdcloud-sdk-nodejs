@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 云物理服务器
- * 云物理服务器私有网络操作相关的接口
+ * Operation Records APIs
+ * Anti DDoS Protection Package Operation Records APIs
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -24,20 +24,20 @@
 
 const JDCloud = require('../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'cps'
+var serviceId = 'antipro'
 Service._services[serviceId] = true
 
 /**
- * cps service.
+ * antipro service.
  */
 
-JDCloud.CPS = class CPS {
+JDCloud.ANTIPRO = class ANTIPRO {
   constructor (config = {}) {
     this.init(config)
     return new this.service(config)
   }
   init (config) {
-    let serviceName = 'cps'
+    let serviceName = 'antipro'
     let version = config.version || JDCloud.config.version
     let versionFlag = 'v1'
     if (version && version[serviceName]) {
@@ -53,4 +53,4 @@ JDCloud.CPS = class CPS {
   }
 }
 
-module.exports = JDCloud.CPS
+module.exports = JDCloud.ANTIPRO

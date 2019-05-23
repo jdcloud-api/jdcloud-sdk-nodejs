@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * elite service.
- * @version 1.0.4
+ * @version 1.0.5
  */
 
 JDCloud.ELITE = class ELITE extends Service {
@@ -42,6 +42,237 @@ JDCloud.ELITE = class ELITE extends Service {
       options._defaultEndpoint.host || 'elite.cn-south-1.jdcloud-api.com'
     options.basePath = '/v1' // 默认要设为空""
     super(serviceId, options)
+  }
+
+  /**
+      *  上报订单
+      * @param {Object} opts - parameters
+      * @param {reportOrderInfo} opts.reportOrderInfo - 上报订单信息
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status  true为成功，false为失败
+      * @param string message  描述信息
+      */
+
+  jdxReportOrder (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  jdxReportOrder"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.reportOrderInfo === undefined || opts.reportOrderInfo === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.reportOrderInfo' when calling jdxReportOrder"
+      )
+    }
+
+    let postBody = {}
+    if (opts.reportOrderInfo !== undefined && opts.reportOrderInfo !== null) {
+      postBody['reportOrderInfo'] = opts.reportOrderInfo
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call jdxReportOrder with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/jdxReportOrder',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询价格
+      * @param {Object} opts - parameters
+      * @param {queryPriceParam} opts.queryPriceParam - 查询价格参数
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status  true为成功，false为失败
+      * @param string message  描述信息
+      * @param queryPriceResultVo data  查询数据结果
+      */
+
+  jdxQueryPrice (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  jdxQueryPrice"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.queryPriceParam === undefined || opts.queryPriceParam === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryPriceParam' when calling jdxQueryPrice"
+      )
+    }
+
+    let postBody = {}
+    if (opts.queryPriceParam !== undefined && opts.queryPriceParam !== null) {
+      postBody['queryPriceParam'] = opts.queryPriceParam
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call jdxQueryPrice with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/jdxQueryPrice',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
   }
 
   /**
@@ -112,7 +343,7 @@ JDCloud.ELITE = class ELITE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -231,7 +462,7 @@ JDCloud.ELITE = class ELITE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -352,7 +583,7 @@ JDCloud.ELITE = class ELITE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -480,7 +711,7 @@ JDCloud.ELITE = class ELITE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.5'
     }
 
     let contentTypes = ['application/json']

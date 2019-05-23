@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * iothub service.
- * @version 0.5.0
+ * @version 0.6.4
  */
 
 JDCloud.IOTHUB = class IOTHUB extends Service {
@@ -70,7 +70,7 @@ JDCloud.IOTHUB = class IOTHUB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.5.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.6.4'
     }
 
     let contentTypes = ['application/json']
@@ -166,7 +166,7 @@ JDCloud.IOTHUB = class IOTHUB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.5.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.6.4'
     }
 
     let contentTypes = ['application/json']
@@ -266,7 +266,7 @@ JDCloud.IOTHUB = class IOTHUB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.5.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.6.4'
     }
 
     let contentTypes = ['application/json']
@@ -367,7 +367,7 @@ JDCloud.IOTHUB = class IOTHUB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.5.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.6.4'
     }
 
     let contentTypes = ['application/json']
@@ -467,7 +467,7 @@ JDCloud.IOTHUB = class IOTHUB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.5.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.6.4'
     }
 
     let contentTypes = ['application/json']
@@ -572,7 +572,7 @@ JDCloud.IOTHUB = class IOTHUB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.5.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.6.4'
     }
 
     let contentTypes = ['application/json']
@@ -672,7 +672,7 @@ JDCloud.IOTHUB = class IOTHUB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.5.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.6.4'
     }
 
     let contentTypes = ['application/json']
@@ -777,7 +777,7 @@ JDCloud.IOTHUB = class IOTHUB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.5.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.6.4'
     }
 
     let contentTypes = ['application/json']
@@ -850,51 +850,600 @@ JDCloud.IOTHUB = class IOTHUB extends Service {
   }
 
   /**
-      *  客户用该接口可以登记模块
+      *  验证DeviceId是否可用
 
       * @param {Object} opts - parameters
-      * @param {string} opts.moduleName - moduleName 唯一标识
-      * @param {string} [opts.instanceId]   optional
-      * @param {string} [opts.modelName]   optional
-      * @param {string} [opts.parentDeviceName]   optional
-      * @param {string} [opts.name]   optional
+      * @param {string} opts.deviceId - Device 唯一标识
       * @param {string} callback - callback
       @return {Object} result
-      * @param string data
       */
 
-  moduleEnroll (opts, callback) {
+  checkDeviceId (opts, callback) {
     opts = opts || {}
 
-    if (opts.moduleName === undefined || opts.moduleName === null) {
+    if (opts.deviceId === undefined || opts.deviceId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.moduleName' when calling moduleEnroll"
+        "Missing the required parameter 'opts.deviceId' when calling checkDeviceId"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      deviceId: opts.deviceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.6.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call checkDeviceId with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/device/{deviceId}:check',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  添加边缘计算设备
+      * @param {Object} opts - parameters
+      * @param {string} opts.edgeId - 边缘计算节点编号
+      * @param {string} opts.edgeName - 边缘计算设备显示名称
+      * @param {string} opts.instanceId - IoTHubInstance编号
+      * @param {string} opts.os - 操作系统
+      * @param {string} opts.hardware - 硬件平台版本
+      * @param {string} [opts.edgeDesc] - 边缘说明  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  edgeEnroll (opts, callback) {
+    opts = opts || {}
+
+    if (opts.edgeId === undefined || opts.edgeId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.edgeId' when calling edgeEnroll"
+      )
+    }
+    if (opts.edgeName === undefined || opts.edgeName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.edgeName' when calling edgeEnroll"
+      )
+    }
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling edgeEnroll"
+      )
+    }
+    if (opts.os === undefined || opts.os === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.os' when calling edgeEnroll"
+      )
+    }
+    if (opts.hardware === undefined || opts.hardware === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.hardware' when calling edgeEnroll"
       )
     }
 
     let postBody = {}
+    if (opts.edgeName !== undefined && opts.edgeName !== null) {
+      postBody['edgeName'] = opts.edgeName
+    }
     if (opts.instanceId !== undefined && opts.instanceId !== null) {
       postBody['instanceId'] = opts.instanceId
     }
-    if (opts.modelName !== undefined && opts.modelName !== null) {
-      postBody['modelName'] = opts.modelName
+    if (opts.os !== undefined && opts.os !== null) {
+      postBody['os'] = opts.os
     }
-    if (opts.parentDeviceName !== undefined && opts.parentDeviceName !== null) {
-      postBody['parentDeviceName'] = opts.parentDeviceName
+    if (opts.hardware !== undefined && opts.hardware !== null) {
+      postBody['hardware'] = opts.hardware
     }
-    if (opts.name !== undefined && opts.name !== null) {
-      postBody['name'] = opts.name
+    if (opts.edgeDesc !== undefined && opts.edgeDesc !== null) {
+      postBody['edgeDesc'] = opts.edgeDesc
     }
 
     let queryParams = {}
 
     let pathParams = {
       regionId: 'jdcloud',
-      moduleName: opts.moduleName
+      edgeId: opts.edgeId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.5.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.6.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call edgeEnroll with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/edge/{edgeId}',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  边缘计算设备删除接口
+      * @param {Object} opts - parameters
+      * @param {string} opts.edgeId - 边缘计算节点编号
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteEdge (opts, callback) {
+    opts = opts || {}
+
+    if (opts.edgeId === undefined || opts.edgeId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.edgeId' when calling deleteEdge"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      edgeId: opts.edgeId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.6.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteEdge with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/edge/{edgeId}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  计算模块删除接口
+      * @param {Object} opts - parameters
+      * @param {string} opts.edgeId - 边缘计算节点编号
+      * @param {string} opts.moduleId - 边缘计算模块编号
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteModule (opts, callback) {
+    opts = opts || {}
+
+    if (opts.edgeId === undefined || opts.edgeId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.edgeId' when calling deleteModule"
+      )
+    }
+    if (opts.moduleId === undefined || opts.moduleId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.moduleId' when calling deleteModule"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      edgeId: opts.edgeId,
+      moduleId: opts.moduleId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.6.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteModule with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/edge/{edgeId}/module/{moduleId}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  计算模块部署
+      * @param {Object} opts - parameters
+      * @param {string} opts.edgeId - 边缘计算节点编号
+      * @param {string} opts.moduleId - 边缘计算模块编号
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deployModule (opts, callback) {
+    opts = opts || {}
+
+    if (opts.edgeId === undefined || opts.edgeId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.edgeId' when calling deployModule"
+      )
+    }
+    if (opts.moduleId === undefined || opts.moduleId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.moduleId' when calling deployModule"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      edgeId: opts.edgeId,
+      moduleId: opts.moduleId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.6.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deployModule with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/edge/{edgeId}/module/{moduleId}:deploy',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  计算模块登记
+      * @param {Object} opts - parameters
+      * @param {string} opts.edgeId - 边缘计算节点编号
+      * @param {string} [opts.deviceId] - 待添加的设备编号  optional
+      * @param {string} [opts.moduleId] - 边缘计算模块名称  optional
+      * @param {string} [opts.moduleTypeId] - 边缘计算模块类型编号  optional
+      * @param {string} [opts.moduleConfId] - 边缘计算模块配置编号  optional
+      * @param {integer} [opts.isDeploy] - 是否立即部署[0-立即部署,1-暂不部署]  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  moduleEnroll (opts, callback) {
+    opts = opts || {}
+
+    if (opts.edgeId === undefined || opts.edgeId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.edgeId' when calling moduleEnroll"
+      )
+    }
+
+    let postBody = {}
+    if (opts.deviceId !== undefined && opts.deviceId !== null) {
+      postBody['deviceId'] = opts.deviceId
+    }
+    if (opts.moduleId !== undefined && opts.moduleId !== null) {
+      postBody['moduleId'] = opts.moduleId
+    }
+    if (opts.moduleTypeId !== undefined && opts.moduleTypeId !== null) {
+      postBody['moduleTypeId'] = opts.moduleTypeId
+    }
+    if (opts.moduleConfId !== undefined && opts.moduleConfId !== null) {
+      postBody['moduleConfId'] = opts.moduleConfId
+    }
+    if (opts.isDeploy !== undefined && opts.isDeploy !== null) {
+      postBody['isDeploy'] = opts.isDeploy
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      edgeId: opts.edgeId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.6.4'
     }
 
     let contentTypes = ['application/json']
@@ -925,6 +1474,123 @@ JDCloud.IOTHUB = class IOTHUB extends Service {
 
     this.config.logger(
       `call moduleEnroll with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/edge/{edgeId}/module:enroll',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  客户用该接口可以登记模块
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.moduleName - moduleName 唯一标识
+      * @param {string} [opts.instanceId]   optional
+      * @param {string} [opts.modelName]   optional
+      * @param {string} [opts.parentDeviceName]   optional
+      * @param {string} [opts.name]   optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string data
+      */
+
+  moduleEnrollment (opts, callback) {
+    opts = opts || {}
+
+    if (opts.moduleName === undefined || opts.moduleName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.moduleName' when calling moduleEnrollment"
+      )
+    }
+
+    let postBody = {}
+    if (opts.instanceId !== undefined && opts.instanceId !== null) {
+      postBody['instanceId'] = opts.instanceId
+    }
+    if (opts.modelName !== undefined && opts.modelName !== null) {
+      postBody['modelName'] = opts.modelName
+    }
+    if (opts.parentDeviceName !== undefined && opts.parentDeviceName !== null) {
+      postBody['parentDeviceName'] = opts.parentDeviceName
+    }
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      moduleName: opts.moduleName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.6.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call moduleEnrollment with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -999,7 +1665,7 @@ JDCloud.IOTHUB = class IOTHUB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.5.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.6.4'
     }
 
     let contentTypes = ['application/json']
@@ -1104,7 +1770,7 @@ JDCloud.IOTHUB = class IOTHUB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.5.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.6.4'
     }
 
     let contentTypes = ['application/json']
@@ -1180,8 +1846,8 @@ JDCloud.IOTHUB = class IOTHUB extends Service {
       *  物模型通过文件上传注册接口
 
       * @param {Object} opts - parameters
-      * @param {string} opts.fileName
-      * @param {string} [opts.instanceId]   optional
+      * @param {string} opts.fileName - 物模型文件名称
+      * @param {string} opts.instanceId - 待上传物模型的IoT Hub实例编号
       * @param {string} callback - callback
       @return {Object} result
       * @param string data
@@ -1193,6 +1859,11 @@ JDCloud.IOTHUB = class IOTHUB extends Service {
     if (opts.fileName === undefined || opts.fileName === null) {
       throw new Error(
         "Missing the required parameter 'opts.fileName' when calling omEnrollbyFile"
+      )
+    }
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling omEnrollbyFile"
       )
     }
 
@@ -1209,7 +1880,7 @@ JDCloud.IOTHUB = class IOTHUB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.5.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.6.4'
     }
 
     let contentTypes = ['application/json']
@@ -1318,7 +1989,7 @@ JDCloud.IOTHUB = class IOTHUB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.5.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iothub/0.6.4'
     }
 
     let contentTypes = ['application/json']

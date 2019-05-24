@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Vod Console API
- * 点播控制台管理API
+ * Watermark
+ * 水印管理
  *
  * OpenAPI spec version: v1
  * Contact:

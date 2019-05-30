@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * vod service.
- * @version 1.1.0
+ * @version 1.1.1
  */
 
 JDCloud.VOD = class VOD extends Service {
@@ -72,7 +72,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -180,7 +180,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -279,7 +279,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -378,7 +378,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -498,7 +498,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -596,7 +596,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -696,7 +696,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -792,7 +792,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -893,7 +893,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -992,7 +992,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -1090,7 +1090,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -1189,7 +1189,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -1288,7 +1288,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -1387,7 +1387,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -1460,6 +1460,326 @@ JDCloud.VOD = class VOD extends Service {
   }
 
   /**
+      *  设置域名访问头参数
+      * @param {Object} opts - parameters
+      * @param {integer} opts.domainId - 域名ID
+      * @param {string} [opts.headerName] - 头参数名  optional
+      * @param {string} [opts.headerValue] - 头参数值  optional
+      * @param {string} [opts.headerType] - 头参数类型  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  setHeader (opts, callback) {
+    opts = opts || {}
+
+    if (opts.domainId === undefined || opts.domainId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.domainId' when calling setHeader"
+      )
+    }
+
+    let postBody = {}
+    if (opts.headerName !== undefined && opts.headerName !== null) {
+      postBody['headerName'] = opts.headerName
+    }
+    if (opts.headerValue !== undefined && opts.headerValue !== null) {
+      postBody['headerValue'] = opts.headerValue
+    }
+    if (opts.headerType !== undefined && opts.headerType !== null) {
+      postBody['headerType'] = opts.headerType
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      domainId: opts.domainId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call setHeader with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/domains/{domainId}:setHeader',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询域名访问头参数列表
+      * @param {Object} opts - parameters
+      * @param {integer} opts.domainId - 域名ID
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  listHeaders (opts, callback) {
+    opts = opts || {}
+
+    if (opts.domainId === undefined || opts.domainId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.domainId' when calling listHeaders"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      domainId: opts.domainId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call listHeaders with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/domains/{domainId}:listHeaders',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除域名访问头参数
+      * @param {Object} opts - parameters
+      * @param {integer} opts.domainId - 域名ID
+      * @param {string} [opts.headerName] - 头参数名  optional
+      * @param {string} [opts.headerValue] - 头参数值  optional
+      * @param {string} [opts.headerType] - 头参数类型  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteHeader (opts, callback) {
+    opts = opts || {}
+
+    if (opts.domainId === undefined || opts.domainId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.domainId' when calling deleteHeader"
+      )
+    }
+
+    let postBody = {}
+    if (opts.headerName !== undefined && opts.headerName !== null) {
+      postBody['headerName'] = opts.headerName
+    }
+    if (opts.headerValue !== undefined && opts.headerValue !== null) {
+      postBody['headerValue'] = opts.headerValue
+    }
+    if (opts.headerType !== undefined && opts.headerType !== null) {
+      postBody['headerType'] = opts.headerType
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      domainId: opts.domainId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteHeader with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/domains/{domainId}:deleteHeader',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  设置CDN域名Referer规则
       * @param {Object} opts - parameters
       * @param {integer} opts.domainId - 域名ID
@@ -1498,7 +1818,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -1597,7 +1917,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -1708,7 +2028,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -1807,7 +2127,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -1918,7 +2238,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -2017,7 +2337,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -2121,7 +2441,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -2217,7 +2537,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -2316,7 +2636,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -2414,7 +2734,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -2526,7 +2846,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -2625,7 +2945,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -2749,7 +3069,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -2847,7 +3167,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -2949,7 +3269,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -3048,7 +3368,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -3172,7 +3492,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -3270,7 +3590,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -3366,7 +3686,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -3462,7 +3782,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -3561,7 +3881,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -3664,7 +3984,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -3762,7 +4082,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -3886,7 +4206,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -3985,7 +4305,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -4121,7 +4441,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -4219,7 +4539,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.1'
     }
 
     let contentTypes = ['application/json']

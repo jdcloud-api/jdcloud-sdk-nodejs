@@ -20,6 +20,7 @@ module.exports = {
   CDN: require('./cdn'),
   STREAMBUS: require('./streambus'),
   HTTPDNS: require('./httpdns'),
+  MPS: require('./mps'),
   DISK: require('./disk'),
   STS: require('./sts'),
   NC: require('./nc'),

@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * elite云存服务相关接口
- * elite云存服务相关接口
+ * Quota
+ * 关于高可用组配额的接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -25,37 +25,43 @@
 require('../../../lib/node_loader')
 var JDCloud = require('../../../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'elite'
+var serviceId = 'ag'
 Service._services[serviceId] = true
 
 /**
- * elite service.
- * @version 1.0.5
+ * ag service.
+ * @version 0.4.0
  */
 
-JDCloud.ELITE = class ELITE extends Service {
+JDCloud.AG = class AG extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
       options._defaultEndpoint.protocol || 'https'
     options._defaultEndpoint.host =
-      options._defaultEndpoint.host || 'elite.cn-south-1.jdcloud-api.com'
+      options._defaultEndpoint.host || 'ag.jdcloud-api.com'
     options.basePath = '/v1' // 默认要设为空""
     super(serviceId, options)
   }
 
   /**
-      *  上报订单
+      *  使用过滤条件查询一个或多个高可用组
       * @param {Object} opts - parameters
-      * @param {reportOrderInfo} opts.reportOrderInfo - 上报订单信息
+      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
+      * @param {filter} [opts.filters] - agName - ag名字，支持模糊匹配
+agId - ag id，精确匹配
+instanceTemplateId - 实例模板id，精确匹配
+vpcId - vpc id，精确匹配
+  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param boolean status  true为成功，false为失败
-      * @param string message  描述信息
+      * @param availabilityGroup ags
+      * @param integer totalCount
       */
 
-  jdxReportOrder (opts, regionId = this.config.regionId, callback) {
+  describeAgs (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -63,287 +69,28 @@ JDCloud.ELITE = class ELITE extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  jdxReportOrder"
+        "Missing the required parameter 'regionId' when calling  describeAgs"
       )
     }
 
     opts = opts || {}
-
-    if (opts.reportOrderInfo === undefined || opts.reportOrderInfo === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.reportOrderInfo' when calling jdxReportOrder"
-      )
-    }
-
-    let postBody = {}
-    if (opts.reportOrderInfo !== undefined && opts.reportOrderInfo !== null) {
-      postBody['reportOrderInfo'] = opts.reportOrderInfo
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.5'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call jdxReportOrder with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/jdxReportOrder',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询价格
-      * @param {Object} opts - parameters
-      * @param {queryPriceParam} opts.queryPriceParam - 查询价格参数
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param boolean status  true为成功，false为失败
-      * @param string message  描述信息
-      * @param queryPriceResultVo data  查询数据结果
-      */
-
-  jdxQueryPrice (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  jdxQueryPrice"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.queryPriceParam === undefined || opts.queryPriceParam === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.queryPriceParam' when calling jdxQueryPrice"
-      )
-    }
-
-    let postBody = {}
-    if (opts.queryPriceParam !== undefined && opts.queryPriceParam !== null) {
-      postBody['queryPriceParam'] = opts.queryPriceParam
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.5'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call jdxQueryPrice with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/jdxQueryPrice',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  分页查询交付单信息
-      * @param {Object} opts - parameters
-      * @param {integer} opts.pageNo - 页码（最小1）
-      * @param {integer} opts.pageSize - 每页记录数（最小10，最大100）
-      * @param {string} [opts.deliverNumber] - 交付单号  optional
-      * @param {integer} [opts.deliverStatus] - 交付状态  optional
-      * @param {string} [opts.createDtStart] - 交付单创建起始时间，格式：yyyy-MM-dd HH:mm:ss  optional
-      * @param {string} [opts.createDtEnd] - 交付单创建结束时间，格式：yyyy-MM-dd HH:mm:ss  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param boolean status  true为成功，false为失败
-      * @param string message  描述信息
-      * @param productServiceVoListData data  查询数据结果
-      */
-
-  listSaleService (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  listSaleService"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.pageNo === undefined || opts.pageNo === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.pageNo' when calling listSaleService"
-      )
-    }
-    if (opts.pageSize === undefined || opts.pageSize === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.pageSize' when calling listSaleService"
-      )
-    }
 
     let postBody = null
     let queryParams = {}
-    if (opts.pageNo !== undefined && opts.pageNo !== null) {
-      queryParams['pageNo'] = opts.pageNo
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
     }
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    if (opts.deliverNumber !== undefined && opts.deliverNumber !== null) {
-      queryParams['deliverNumber'] = opts.deliverNumber
-    }
-    if (opts.deliverStatus !== undefined && opts.deliverStatus !== null) {
-      queryParams['deliverStatus'] = opts.deliverStatus
-    }
-    if (opts.createDtStart !== undefined && opts.createDtStart !== null) {
-      queryParams['createDtStart'] = opts.createDtStart
-    }
-    if (opts.createDtEnd !== undefined && opts.createDtEnd !== null) {
-      queryParams['createDtEnd'] = opts.createDtEnd
-    }
+    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -373,7 +120,7 @@ JDCloud.ELITE = class ELITE extends Service {
     let returnType = null
 
     this.config.logger(
-      `call listSaleService with params:\npathParams:${JSON.stringify(
+      `call describeAgs with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -386,7 +133,7 @@ JDCloud.ELITE = class ELITE extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/listSaleService',
+      '/regions/{regionId}/availabilityGroups',
       'GET',
       pathParams,
       queryParams,
@@ -416,22 +163,20 @@ JDCloud.ELITE = class ELITE extends Service {
   }
 
   /**
-      *  根据交付单号查询交付单信息
+      *  创建一个高可用组
       * @param {Object} opts - parameters
-      * @param {string} opts.deliverNumber - 交付单号
+      * @param {array} [opts.azs] - 支持的可用区，最少一个  optional
+      * @param {string} opts.agName - 高可用组名称，只支持中文、数字、大小写字母、英文下划线 “_” 及中划线 “-”，且不能超过 32 字符
+      * @param {string} [opts.agType] - 高可用组类型，支持vm  optional
+      * @param {string} opts.instanceTemplateId - 实例模板的Id
+      * @param {string} [opts.description] - 描述，长度不超过 256 字符  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param boolean status  true为成功，false为失败
-      * @param string message  描述信息
-      * @param productServiceVo data  查询数据结果
+      * @param string agId  创建成功的高可用组 id
       */
 
-  getSaleServiceByDeliverNumber (
-    opts,
-    regionId = this.config.regionId,
-    callback
-  ) {
+  createAg (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -439,141 +184,44 @@ JDCloud.ELITE = class ELITE extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  getSaleServiceByDeliverNumber"
+        "Missing the required parameter 'regionId' when calling  createAg"
       )
     }
 
     opts = opts || {}
 
-    if (opts.deliverNumber === undefined || opts.deliverNumber === null) {
+    if (opts.agName === undefined || opts.agName === null) {
       throw new Error(
-        "Missing the required parameter 'opts.deliverNumber' when calling getSaleServiceByDeliverNumber"
+        "Missing the required parameter 'opts.agName' when calling createAg"
       )
     }
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.deliverNumber !== undefined && opts.deliverNumber !== null) {
-      queryParams['deliverNumber'] = opts.deliverNumber
-    }
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.5'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call getSaleServiceByDeliverNumber with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/getSaleServiceByDeliverNumber',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  确认交付
-      * @param {Object} opts - parameters
-      * @param {confirmDeliveryInfo} opts.confirmDeliveryInfo - 交付信息
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param boolean status  true为成功，false为失败
-      * @param string message  描述信息
-      */
-
-  confirmSaleServiceDelivery (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  confirmSaleServiceDelivery"
-      )
-    }
-
-    opts = opts || {}
-
     if (
-      opts.confirmDeliveryInfo === undefined ||
-      opts.confirmDeliveryInfo === null
+      opts.instanceTemplateId === undefined ||
+      opts.instanceTemplateId === null
     ) {
       throw new Error(
-        "Missing the required parameter 'opts.confirmDeliveryInfo' when calling confirmSaleServiceDelivery"
+        "Missing the required parameter 'opts.instanceTemplateId' when calling createAg"
       )
     }
 
     let postBody = {}
+    if (opts.azs !== undefined && opts.azs !== null) {
+      postBody['azs'] = opts.azs
+    }
+    if (opts.agName !== undefined && opts.agName !== null) {
+      postBody['agName'] = opts.agName
+    }
+    if (opts.agType !== undefined && opts.agType !== null) {
+      postBody['agType'] = opts.agType
+    }
     if (
-      opts.confirmDeliveryInfo !== undefined &&
-      opts.confirmDeliveryInfo !== null
+      opts.instanceTemplateId !== undefined &&
+      opts.instanceTemplateId !== null
     ) {
-      postBody['confirmDeliveryInfo'] = opts.confirmDeliveryInfo
+      postBody['instanceTemplateId'] = opts.instanceTemplateId
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
     }
 
     let queryParams = {}
@@ -583,7 +231,7 @@ JDCloud.ELITE = class ELITE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -613,7 +261,7 @@ JDCloud.ELITE = class ELITE extends Service {
     let returnType = null
 
     this.config.logger(
-      `call confirmSaleServiceDelivery with params:\npathParams:${JSON.stringify(
+      `call createAg with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -626,7 +274,7 @@ JDCloud.ELITE = class ELITE extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/confirmSaleServiceDelivery',
+      '/regions/{regionId}/availabilityGroups',
       'POST',
       pathParams,
       queryParams,
@@ -656,20 +304,16 @@ JDCloud.ELITE = class ELITE extends Service {
   }
 
   /**
-      *  获取云存服务信息
+      *  根据 id 查询高可用组详情
       * @param {Object} opts - parameters
-      * @param {string} opts.buyerPin - 购买用户pin
-      * @param {string} opts.businessData - 业务数据，与下单时的业务数据一致
-      * @param {boolean} [opts.queryAll] - 是否查询全部，如果传入false，则只查询当前时间有效的，否则查询所有的  optional
+      * @param {string} opts.agId - 高可用组 ID
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param boolean status  true为成功，false为失败
-      * @param string message  描述信息
-      * @param storeServiceVo data  查询数据结果
+      * @param availabilityGroup ag
       */
 
-  getStoreService (opts, regionId = this.config.regionId, callback) {
+  describeAg (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -677,41 +321,28 @@ JDCloud.ELITE = class ELITE extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  getStoreService"
+        "Missing the required parameter 'regionId' when calling  describeAg"
       )
     }
 
     opts = opts || {}
 
-    if (opts.buyerPin === undefined || opts.buyerPin === null) {
+    if (opts.agId === undefined || opts.agId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.buyerPin' when calling getStoreService"
-      )
-    }
-    if (opts.businessData === undefined || opts.businessData === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.businessData' when calling getStoreService"
+        "Missing the required parameter 'opts.agId' when calling describeAg"
       )
     }
 
     let postBody = null
     let queryParams = {}
-    if (opts.buyerPin !== undefined && opts.buyerPin !== null) {
-      queryParams['buyerPin'] = opts.buyerPin
-    }
-    if (opts.businessData !== undefined && opts.businessData !== null) {
-      queryParams['businessData'] = opts.businessData
-    }
-    if (opts.queryAll !== undefined && opts.queryAll !== null) {
-      queryParams['queryAll'] = opts.queryAll
-    }
 
     let pathParams = {
-      regionId: regionId
+      regionId: regionId,
+      agId: opts.agId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -741,7 +372,7 @@ JDCloud.ELITE = class ELITE extends Service {
     let returnType = null
 
     this.config.logger(
-      `call getStoreService with params:\npathParams:${JSON.stringify(
+      `call describeAg with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -754,7 +385,583 @@ JDCloud.ELITE = class ELITE extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/getStoreService',
+      '/regions/{regionId}/availabilityGroups/{agId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改一个高可用组的信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.agId - 高可用组 ID
+      * @param {string} [opts.description] - 描述，长度不超过 256 字符  optional
+      * @param {string} [opts.name] - 高可用组名称，只支持中文、数字、大小写字母、英文下划线 “_” 及中划线 “-”，且不能超过 32 字符  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  updateAg (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  updateAg"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.agId === undefined || opts.agId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.agId' when calling updateAg"
+      )
+    }
+
+    let postBody = {}
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      agId: opts.agId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.4.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call updateAg with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/availabilityGroups/{agId}',
+      'PATCH',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  根据 id 删除高可用组，需确保 AG 中云主机实例已全部删除
+      * @param {Object} opts - parameters
+      * @param {string} opts.agId - 高可用组 ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteAg (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteAg"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.agId === undefined || opts.agId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.agId' when calling deleteAg"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      agId: opts.agId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.4.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteAg with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/availabilityGroups/{agId}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  从高可用组中剔除实例
+      * @param {Object} opts - parameters
+      * @param {string} opts.agId - 高可用组 ID
+      * @param {array} [opts.instanceIds] - 准备剔除出高可用组的实例 id  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  abandonInstances (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  abandonInstances"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.agId === undefined || opts.agId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.agId' when calling abandonInstances"
+      )
+    }
+
+    let postBody = {}
+    if (opts.instanceIds !== undefined && opts.instanceIds !== null) {
+      postBody['instanceIds'] = opts.instanceIds
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      agId: opts.agId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.4.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call abandonInstances with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/availabilityGroups/{agId}:abandonInstances',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改高可用组的实例模板
+      * @param {Object} opts - parameters
+      * @param {string} opts.agId - 高可用组 ID
+      * @param {string} opts.instanceTemplateId - 实例模板 id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  setInstanceTemplate (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  setInstanceTemplate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.agId === undefined || opts.agId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.agId' when calling setInstanceTemplate"
+      )
+    }
+    if (
+      opts.instanceTemplateId === undefined ||
+      opts.instanceTemplateId === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceTemplateId' when calling setInstanceTemplate"
+      )
+    }
+
+    let postBody = {}
+    if (
+      opts.instanceTemplateId !== undefined &&
+      opts.instanceTemplateId !== null
+    ) {
+      postBody['instanceTemplateId'] = opts.instanceTemplateId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      agId: opts.agId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.4.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call setInstanceTemplate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/availabilityGroups/{agId}:setInstanceTemplate',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询(ag)配额
+      * @param {Object} opts - parameters
+      * @param {filter} [opts.filters] - resourceTypes - 资源类型，暂时只支持[ag]
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param quota quotas
+      */
+
+  describeQuotas (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeQuotas"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.4.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeQuotas with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/quotas',
       'GET',
       pathParams,
       queryParams,
@@ -783,4 +990,4 @@ JDCloud.ELITE = class ELITE extends Service {
     )
   }
 }
-module.exports = JDCloud.ELITE
+module.exports = JDCloud.AG

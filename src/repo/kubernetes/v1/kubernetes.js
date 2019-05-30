@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * kubernetes service.
- * @version 0.3.0
+ * @version 0.4.0
  */
 
 JDCloud.KUBERNETES = class KUBERNETES extends Service {
@@ -88,7 +88,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -281,7 +281,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -392,7 +392,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -511,7 +511,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -621,7 +621,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -736,7 +736,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -809,6 +809,494 @@ id - id，支持多个
   }
 
   /**
+      *  终止升级
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 集群 ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  abortUpgrade (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  abortUpgrade"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling abortUpgrade"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      clusterId: opts.clusterId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call abortUpgrade with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/clusters/{clusterId}:abortUpgrade',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询集群操作进度
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 集群 ID
+      * @param {string} [opts.nodeGroupIds] - 节点组 ID  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param masterProgress masterProgress
+      * @param nodeGroupProgress nodeGroupProgresses
+      */
+
+  describeProgress (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeProgress"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling describeProgress"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    Object.assign(
+      queryParams,
+      this.buildArrayParam(opts.nodeGroupIds, 'nodeGroupIds')
+    )
+
+    let pathParams = {
+      regionId: regionId,
+      clusterId: opts.clusterId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeProgress with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/clusters/{clusterId}/progress',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  设置自动升级
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 集群 ID
+      * @param {boolean} opts.autoUpgrade - 开启或者关闭集群自动升级，开启时必须指定 maintenancePolicy
+      * @param {maintenanceWindowSpec} [opts.maintenanceWindow] - 开启集群自动升级, 必须配置集群维护策略  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  setAutoUpgrade (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  setAutoUpgrade"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling setAutoUpgrade"
+      )
+    }
+    if (opts.autoUpgrade === undefined || opts.autoUpgrade === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.autoUpgrade' when calling setAutoUpgrade"
+      )
+    }
+
+    let postBody = {}
+    if (opts.autoUpgrade !== undefined && opts.autoUpgrade !== null) {
+      postBody['autoUpgrade'] = opts.autoUpgrade
+    }
+    if (
+      opts.maintenanceWindow !== undefined &&
+      opts.maintenanceWindow !== null
+    ) {
+      postBody['maintenanceWindow'] = opts.maintenanceWindow
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      clusterId: opts.clusterId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call setAutoUpgrade with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/clusters/{clusterId}:setAutoUpgrade',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  触发升级
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 集群 ID
+      * @param {string} opts.scope - 升级范围
+      * @param {array} [opts.nodeGroupIds] - 节点组 id  optional
+      * @param {string} opts.verison - 指定升级到的版本
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  upgradeCluster (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  upgradeCluster"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling upgradeCluster"
+      )
+    }
+    if (opts.scope === undefined || opts.scope === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.scope' when calling upgradeCluster"
+      )
+    }
+    if (opts.verison === undefined || opts.verison === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.verison' when calling upgradeCluster"
+      )
+    }
+
+    let postBody = {}
+    if (opts.scope !== undefined && opts.scope !== null) {
+      postBody['scope'] = opts.scope
+    }
+    if (opts.nodeGroupIds !== undefined && opts.nodeGroupIds !== null) {
+      postBody['nodeGroupIds'] = opts.nodeGroupIds
+    }
+    if (opts.verison !== undefined && opts.verison !== null) {
+      postBody['verison'] = opts.verison
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      clusterId: opts.clusterId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call upgradeCluster with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/clusters/{clusterId}:upgradeCluster',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  查询节点组列表
       * @param {Object} opts - parameters
       * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
@@ -818,6 +1306,7 @@ id - 节点组 id，支持多个
 clusterId - 根据clusterId查询
 clusterName - 根据名称查询 cluster
   optional
+      * @param {tagFilter} [opts.tags] - Tag筛选条件  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -848,13 +1337,14 @@ clusterName - 根据名称查询 cluster
       queryParams['pageSize'] = opts.pageSize
     }
     Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, this.buildTagFilterParam(opts.tags, 'tags'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -1023,7 +1513,7 @@ clusterName - 根据名称查询 cluster
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -1134,7 +1624,7 @@ clusterName - 根据名称查询 cluster
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -1253,7 +1743,7 @@ clusterName - 根据名称查询 cluster
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -1363,7 +1853,7 @@ clusterName - 根据名称查询 cluster
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -1483,7 +1973,7 @@ clusterName - 根据名称查询 cluster
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -1603,7 +2093,7 @@ clusterName - 根据名称查询 cluster
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -1676,6 +2166,117 @@ clusterName - 根据名称查询 cluster
   }
 
   /**
+      *  回滚未升级完的节点组
+      * @param {Object} opts - parameters
+      * @param {string} opts.nodeGroupId - 节点组 ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  rollbackNodeGroupUpgrade (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rollbackNodeGroupUpgrade"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.nodeGroupId === undefined || opts.nodeGroupId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.nodeGroupId' when calling rollbackNodeGroupUpgrade"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      nodeGroupId: opts.nodeGroupId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rollbackNodeGroupUpgrade with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/nodeGroups/{nodeGroupId}:rollbackNodeGroupUpgrade',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  查询(k8s 集群)配额
       * @param {Object} opts - parameters
       * @param {filter} [opts.filters] - resourceTypes - 资源类型，暂时只支持[kubernetes]
@@ -1709,7 +2310,7 @@ clusterName - 根据名称查询 cluster
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -1812,7 +2413,7 @@ clusterName - 根据名称查询 cluster
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -1885,117 +2486,6 @@ clusterName - 根据名称查询 cluster
   }
 
   /**
-      *  查询服务配置信息，提供详细的 master 和 node 镜像信息。
-      * @param {Object} opts - parameters
-      * @param {string} [opts.masterVersion] - 集群的大版本，如 1.8.12  optional
-      * @param {string} [opts.masterImageCode] - master 的镜像编码，如 1.8.12-jke  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param masterImage masterImages
-      */
-
-  describeImages (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeImages"
-      )
-    }
-
-    opts = opts || {}
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.masterVersion !== undefined && opts.masterVersion !== null) {
-      queryParams['masterVersion'] = opts.masterVersion
-    }
-    if (opts.masterImageCode !== undefined && opts.masterImageCode !== null) {
-      queryParams['masterImageCode'] = opts.masterImageCode
-    }
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.3.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeImages with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/images',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
       *  查询版本信息
       * @param {Object} opts - parameters
       * @param {string} [opts.masterVersion] - 集群的大版本，如 1.12.4-jcs.1  optional
@@ -2030,7 +2520,7 @@ clusterName - 根据名称查询 cluster
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -2074,6 +2564,352 @@ clusterName - 根据名称查询 cluster
 
     let request = this.makeRequest(
       '/regions/{regionId}/versions',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询节点版本
+      * @param {Object} opts - parameters
+      * @param {string} opts.nodeVersion - 节点版本
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param nodeVersion nodeVersion
+      */
+
+  describeNodeVersion (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeNodeVersion"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.nodeVersion === undefined || opts.nodeVersion === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.nodeVersion' when calling describeNodeVersion"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      nodeVersion: opts.nodeVersion
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeNodeVersion with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/nodeVersions/{nodeVersion}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询可升级的控制节点版本
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 集群 ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param masterVersion masterVersions
+      */
+
+  describeUpgradableMasterVersions (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeUpgradableMasterVersions"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling describeUpgradableMasterVersions"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      clusterId: opts.clusterId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeUpgradableMasterVersions with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/clusters/{clusterId}/upgradableMasterVersions',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询可升级的节点版本
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 集群 ID
+      * @param {string} [opts.nodeGroupIds] - 节点组 id  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param nodeVersion ndoeVersions
+      */
+
+  describeUpgradableNodeVersions (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeUpgradableNodeVersions"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling describeUpgradableNodeVersions"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    Object.assign(
+      queryParams,
+      this.buildArrayParam(opts.nodeGroupIds, 'nodeGroupIds')
+    )
+
+    let pathParams = {
+      regionId: regionId,
+      clusterId: opts.clusterId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeUpgradableNodeVersions with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/clusters/{clusterId}/upgradableNodeVersions',
       'GET',
       pathParams,
       queryParams,

@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * IP Resource APIs
- * Anti DDoS Basic IP Resource APIs
+ * code api
+ * API related to build
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -25,513 +25,146 @@
 require('../../../lib/node_loader')
 var JDCloud = require('../../../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'baseanti'
+var serviceId = 'compile'
 Service._services[serviceId] = true
 
 /**
- * baseanti service.
- * @version 1.1.0
+ * compile service.
+ * @version 0.2.0
  */
 
-JDCloud.BASEANTI = class BASEANTI extends Service {
+JDCloud.COMPILE = class COMPILE extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
       options._defaultEndpoint.protocol || 'https'
     options._defaultEndpoint.host =
-      options._defaultEndpoint.host || 'baseanti.jdcloud-api.com'
+      options._defaultEndpoint.host || 'compile.jdcloud-api.com'
     options.basePath = '/v1' // 默认要设为空""
     super(serviceId, options)
   }
 
   /**
-      *  查询攻击记录
+      *  创建Demo
       * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNumber] - 页码  optional
-      * @param {integer} [opts.pageSize] - 分页大小  optional
-      * @param {string} opts.startTime - 开始时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-      * @param {string} opts.endTime - 结束时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-      * @param {string} [opts.ip] - 基础防护已防护的公网 IP, ip 不为空时, 查询 ip 对应的攻击记录, ip 为空时, 查询用户所有攻击记录
-- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describeelasticipresources&quot;&gt;describeElasticIpResources&lt;/a&gt; 接口查询基础防护已防护的私有网络弹性公网 IP
-- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describecpsipresources&quot;&gt;describeCpsIpResources&lt;/a&gt; 接口查询基础防护已防护的云物理服务器公网IP 和 弹性公网 IP
-  optional
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param attackLog dataList
-      * @param integer currentCount  当前页数量
-      * @param integer totalCount  实例总数
-      * @param integer totalPage  总页数
-      */
-
-  describeAttackLogs (opts, callback) {
-    opts = opts || {}
-
-    if (opts.startTime === undefined || opts.startTime === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.startTime' when calling describeAttackLogs"
-      )
-    }
-    if (opts.endTime === undefined || opts.endTime === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.endTime' when calling describeAttackLogs"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
-      queryParams['pageNumber'] = opts.pageNumber
-    }
-    if (opts.pageSize !== undefined && opts.pageSize !== null) {
-      queryParams['pageSize'] = opts.pageSize
-    }
-    if (opts.startTime !== undefined && opts.startTime !== null) {
-      queryParams['startTime'] = opts.startTime
-    }
-    if (opts.endTime !== undefined && opts.endTime !== null) {
-      queryParams['endTime'] = opts.endTime
-    }
-    Object.assign(queryParams, this.buildArrayParam(opts.ip, 'ip'))
-
-    let pathParams = {
-      regionId: 'jdcloud'
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.1.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeAttackLogs with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/attacklog',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  攻击情况统计
-      * @param {Object} opts - parameters
-      * @param {string} opts.startTime - 开始时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-      * @param {string} opts.endTime - 结束时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-      * @param {string} [opts.ip] - 基础防护已防护的公网 IP, ip 不为空时, 统计 ip 对应的攻击情况, ip 为空时, 统计用户所有公网 IP 的攻击情况
-- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describeelasticipresources&quot;&gt;describeElasticIpResources&lt;/a&gt; 接口查询基础防护已防护的私有网络弹性公网 IP
-- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describecpsipresources&quot;&gt;describeCpsIpResources&lt;/a&gt; 接口查询基础防护已防护的云物理服务器公网IP 和 弹性公网 IP
-  optional
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param integer attackCount  攻击次数
-      * @param integer blackHoleCount  黑洞次数
-      * @param number peak  攻击流量峰值
-      * @param string unit  攻击流量单位
-      */
-
-  describeAttackStatistics (opts, callback) {
-    opts = opts || {}
-
-    if (opts.startTime === undefined || opts.startTime === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.startTime' when calling describeAttackStatistics"
-      )
-    }
-    if (opts.endTime === undefined || opts.endTime === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.endTime' when calling describeAttackStatistics"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.startTime !== undefined && opts.startTime !== null) {
-      queryParams['startTime'] = opts.startTime
-    }
-    if (opts.endTime !== undefined && opts.endTime !== null) {
-      queryParams['endTime'] = opts.endTime
-    }
-    Object.assign(queryParams, this.buildArrayParam(opts.ip, 'ip'))
-
-    let pathParams = {
-      regionId: 'jdcloud'
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.1.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeAttackStatistics with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/describeAttackStatistics',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询各类型攻击次数
-      * @param {Object} opts - parameters
-      * @param {string} opts.startTime - 开始时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-      * @param {string} opts.endTime - 结束时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-      * @param {string} [opts.ip] - 基础防护已防护的公网 IP, ip 不为空时, 查询 ip 对应的各类型攻击次数, ip 为空时, 查询用户所有公网 IP 的各类型攻击次数
-- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describeelasticipresources&quot;&gt;describeElasticIpResources&lt;/a&gt; 接口查询基础防护已防护的私有网络弹性公网 IP
-- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describecpsipresources&quot;&gt;describeCpsIpResources&lt;/a&gt; 接口查询基础防护已防护的云物理服务器公网IP 和 弹性公网 IP
-  optional
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param attackTypeCount dataList
-      */
-
-  describeAttackTypeCount (opts, callback) {
-    opts = opts || {}
-
-    if (opts.startTime === undefined || opts.startTime === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.startTime' when calling describeAttackTypeCount"
-      )
-    }
-    if (opts.endTime === undefined || opts.endTime === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.endTime' when calling describeAttackTypeCount"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.startTime !== undefined && opts.startTime !== null) {
-      queryParams['startTime'] = opts.startTime
-    }
-    if (opts.endTime !== undefined && opts.endTime !== null) {
-      queryParams['endTime'] = opts.endTime
-    }
-    Object.assign(queryParams, this.buildArrayParam(opts.ip, 'ip'))
-
-    let pathParams = {
-      regionId: 'jdcloud'
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.1.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeAttackTypeCount with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/describeAttackTypeCount',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询多个公网 IP 的监控流量, 支持 ipv4 和 ipv6
-      * @param {Object} opts - parameters
-      * @param {string} opts.startTime - 开始时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-      * @param {string} opts.endTime - 结束时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-      * @param {string} [opts.ip] - 基础防护已防护的公网 IP
-- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describeelasticipresources&quot;&gt;describeElasticIpResources&lt;/a&gt; 接口查询基础防护已防护的私有网络弹性公网 IP
-- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describecpsipresources&quot;&gt;describeCpsIpResources&lt;/a&gt; 接口查询基础防护已防护的云物理服务器公网IP 和 弹性公网 IP
-  optional
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param ipResourceFlow bps
-      * @param ipResourceFlow pps
-      */
-
-  describeIpMonitorFlow (opts, callback) {
-    opts = opts || {}
-
-    if (opts.startTime === undefined || opts.startTime === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.startTime' when calling describeIpMonitorFlow"
-      )
-    }
-    if (opts.endTime === undefined || opts.endTime === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.endTime' when calling describeIpMonitorFlow"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.startTime !== undefined && opts.startTime !== null) {
-      queryParams['startTime'] = opts.startTime
-    }
-    if (opts.endTime !== undefined && opts.endTime !== null) {
-      queryParams['endTime'] = opts.endTime
-    }
-    Object.assign(queryParams, this.buildArrayParam(opts.ip, 'ip'))
-
-    let pathParams = {
-      regionId: 'jdcloud'
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.1.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeIpMonitorFlow with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/describeIpMonitorFlow',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询公网 IP 的安全信息列表. 包括私有网络的弹性公网 IP(运营商级 NAT 保留地址除外), 云物理服务器的公网 IP 和弹性公网 IP. (已废弃, 建议使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describeelasticipresources&quot;&gt;describeElasticIpResources&lt;/a&gt;, &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describecpsipresources&quot;&gt;describeCpsIpResources&lt;/a&gt; 接口)&quot;
-
-      * @param {Object} opts - parameters
-      * @param {string} [opts.ip] - IP 模糊匹配  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param ipResource dataList
+      * @param job job
+      */
+
+  createDemo (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createDemo"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  compile/0.2.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createDemo with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/demo',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询获取编译任务列表，并显示最后一次编译的一些信息
+/v2/regions/cn-south-1/jobs/?sorts.1.name&#x3D;status&amp;sorts.1.direction&#x3D;asc&amp;pageNumber&#x3D;1&amp;pageSize&#x3D;10&amp;filters.1.name&#x3D;name&amp;filters.1.values.1&#x3D;我的job
+
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认为10；取值范围[10, 100]  optional
+      * @param {filter} [opts.filters] - 编译任务名  optional
+      * @param {sort} [opts.sorts] - 对某一列排序  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
       * @param integer totalCount
+      * @param simpleJob jobs
+      * @param string requestId
       */
 
-  describeIpResources (opts, regionId = this.config.regionId, callback) {
+  getJobs (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -539,119 +172,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeIpResources"
-      )
-    }
-
-    opts = opts || {}
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.ip !== undefined && opts.ip !== null) {
-      queryParams['ip'] = opts.ip
-    }
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.1.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeIpResources with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/ipResources',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询私有网络的弹性公网 IP 的安全信息. 包括私有网络的弹性公网 IP(运营商级 NAT 保留地址除外)
-
-      * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNumber] - 页码  optional
-      * @param {integer} [opts.pageSize] - 分页大小  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param ipResource dataList
-      * @param integer currentCount  当前页数量
-      * @param integer totalCount  总数
-      * @param integer totalPage  总页数
-      */
-
-  describeElasticIpResources (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeElasticIpResources"
+        "Missing the required parameter 'regionId' when calling  getJobs"
       )
     }
 
@@ -665,13 +186,15 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
+    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, this.buildSortParam(opts.sorts, 'sorts'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  compile/0.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -701,7 +224,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     let returnType = null
 
     this.config.logger(
-      `call describeElasticIpResources with params:\npathParams:${JSON.stringify(
+      `call getJobs with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -714,7 +237,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/elasticIpResources',
+      '/regions/{regionId}/jobs',
       'GET',
       pathParams,
       queryParams,
@@ -744,21 +267,18 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
   }
 
   /**
-      *  查询云物理服务器公网 IP 的安全信息. 包括云物理服务器的公网 IP 和弹性公网 IP.
-
+      *  新建构建任务
       * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNumber] - 页码  optional
-      * @param {integer} [opts.pageSize] - 分页大小  optional
+      * @param {jobRequest} [opts.data]   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param ipResource dataList
-      * @param integer currentCount  当前页数量
-      * @param integer totalCount  总数
-      * @param integer totalPage  总页数
+      * @param string id  构建任务的uuid
+      * @param string codeRepoUrlLabel  项目所有者/项目名称
+      * @param boolean result  构建成功则是true
       */
 
-  describeCpsIpResources (opts, regionId = this.config.regionId, callback) {
+  createJob (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -766,388 +286,25 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeCpsIpResources"
+        "Missing the required parameter 'regionId' when calling  createJob"
       )
     }
 
     opts = opts || {}
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
-      queryParams['pageNumber'] = opts.pageNumber
-    }
-    if (opts.pageSize !== undefined && opts.pageSize !== null) {
-      queryParams['pageSize'] = opts.pageSize
-    }
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.1.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeCpsIpResources with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/cpsIpResources',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询公网 IP 安全信息, 仅支持 ipv4. (已废弃, 建议使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describeipsafetyinfo&quot;&gt;describeIpSafetyInfo&lt;/a&gt; 接口)
-
-      * @param {Object} opts - parameters
-      * @param {string} opts.ip - 基础防护已防护的公网 IP, 仅支持 ipv4 格式
-- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describeelasticipresources&quot;&gt;describeElasticIpResources&lt;/a&gt; 接口查询基础防护已防护的私有网络弹性公网 IP
-- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describecpsipresources&quot;&gt;describeCpsIpResources&lt;/a&gt; 接口查询基础防护已防护的云物理服务器公网IP 和 弹性公网 IP
-
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param ipResourceInfo data
-      */
-
-  describeIpResourceInfo (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeIpResourceInfo"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.ip === undefined || opts.ip === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.ip' when calling describeIpResourceInfo"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      ip: opts.ip
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.1.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeIpResourceInfo with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/ipResources/{ip}',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询基础防护已防护公网 IP 安全信息, 支持 ipv4 和 ipv6
-      * @param {Object} opts - parameters
-      * @param {string} opts.ip - 基础防护已防护公网 IP.
-- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describeelasticipresources&quot;&gt;describeElasticIpResources&lt;/a&gt; 接口查询基础防护已防护的私有网络弹性公网 IP
-- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describecpsipresources&quot;&gt;describeCpsIpResources&lt;/a&gt; 接口查询基础防护已防护的云物理服务器公网IP 和 弹性公网 IP
-
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param ipSafetyInfo data
-      */
-
-  describeIpSafetyInfo (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeIpSafetyInfo"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.ip === undefined || opts.ip === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.ip' when calling describeIpSafetyInfo"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.ip !== undefined && opts.ip !== null) {
-      queryParams['ip'] = opts.ip
-    }
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.1.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeIpSafetyInfo with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/describeIpSafetyInfo',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  设置基础防护已防护公网 IP 的清洗阈值, 仅支持 ipv4. (已废弃, 建议使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/setipcleanthreshold&quot;&gt;setIpCleanThreshold&lt;/a&gt; 接口)
-
-      * @param {Object} opts - parameters
-      * @param {string} opts.ip - 基础防护已防护的公网 IP, 仅支持 ipv4 格式
-- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describeelasticipresources&quot;&gt;describeElasticIpResources&lt;/a&gt; 接口查询基础防护已防护的私有网络弹性公网 IP
-- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describecpsipresources&quot;&gt;describeCpsIpResources&lt;/a&gt; 接口查询基础防护已防护的云物理服务器公网IP 和 弹性公网 IP
-
-      * @param {cleanThresholdSpec} opts.cleanThresholdSpec - 请求参数
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  setCleanThreshold (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  setCleanThreshold"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.ip === undefined || opts.ip === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.ip' when calling setCleanThreshold"
-      )
-    }
-    if (
-      opts.cleanThresholdSpec === undefined ||
-      opts.cleanThresholdSpec === null
-    ) {
-      throw new Error(
-        "Missing the required parameter 'opts.cleanThresholdSpec' when calling setCleanThreshold"
-      )
-    }
 
     let postBody = {}
-    if (
-      opts.cleanThresholdSpec !== undefined &&
-      opts.cleanThresholdSpec !== null
-    ) {
-      postBody['cleanThresholdSpec'] = opts.cleanThresholdSpec
+    if (opts.data !== undefined && opts.data !== null) {
+      postBody['data'] = opts.data
     }
 
     let queryParams = {}
 
     let pathParams = {
-      regionId: regionId,
-      ip: opts.ip
+      regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  compile/0.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -1177,7 +334,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     let returnType = null
 
     this.config.logger(
-      `call setCleanThreshold with params:\npathParams:${JSON.stringify(
+      `call createJob with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1190,7 +347,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/ipResources/{ip}:setCleanThreshold',
+      '/regions/{regionId}/jobs',
       'POST',
       pathParams,
       queryParams,
@@ -1220,17 +377,17 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
   }
 
   /**
-      *  设置基础防护已防护公网 IP 的清洗阈值, 支持 ipv4 和 ipv6
+      *  批量删除编译任务
       * @param {Object} opts - parameters
-      * @param {ipCleanThresholdSpec} opts.ipCleanThresholdSpec - 请求参数
+      * @param {string} [opts.jobIds] - 待删除job的UUID列表  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param integer code  修改结果, 0: 修改失败, 1: 修改成功
-      * @param string message  修改失败时给出具体原因
+      * @param boolean result  true表示删除成功，false表示删除失败
+      * @param string ids
       */
 
-  setIpCleanThreshold (opts, regionId = this.config.regionId, callback) {
+  deleteJobs (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -1238,37 +395,22 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  setIpCleanThreshold"
+        "Missing the required parameter 'regionId' when calling  deleteJobs"
       )
     }
 
     opts = opts || {}
 
-    if (
-      opts.ipCleanThresholdSpec === undefined ||
-      opts.ipCleanThresholdSpec === null
-    ) {
-      throw new Error(
-        "Missing the required parameter 'opts.ipCleanThresholdSpec' when calling setIpCleanThreshold"
-      )
-    }
-
-    let postBody = {}
-    if (
-      opts.ipCleanThresholdSpec !== undefined &&
-      opts.ipCleanThresholdSpec !== null
-    ) {
-      postBody['ipCleanThresholdSpec'] = opts.ipCleanThresholdSpec
-    }
-
+    let postBody = null
     let queryParams = {}
+    Object.assign(queryParams, this.buildArrayParam(opts.jobIds, 'jobIds'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  compile/0.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -1298,7 +440,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     let returnType = null
 
     this.config.logger(
-      `call setIpCleanThreshold with params:\npathParams:${JSON.stringify(
+      `call deleteJobs with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1311,7 +453,468 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/setIpCleanThreshold',
+      '/regions/{regionId}/jobs',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  根据id获取构建任务的配置信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.id - Job uuid
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param job job
+      */
+
+  getJob (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getJob"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.id === undefined || opts.id === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.id' when calling getJob"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      id: opts.id
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  compile/0.2.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getJob with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/jobs/{id}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新编译任务
+      * @param {Object} opts - parameters
+      * @param {string} opts.id - job uuid
+      * @param {jobRequest} [opts.data]   optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string id  构建任务uuid
+      * @param string codeRepoUrlLabel  项目所有者/项目名称
+      * @param boolean result  更新成功则是true
+      */
+
+  updateJob (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  updateJob"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.id === undefined || opts.id === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.id' when calling updateJob"
+      )
+    }
+
+    let postBody = {}
+    if (opts.data !== undefined && opts.data !== null) {
+      postBody['data'] = opts.data
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      id: opts.id
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  compile/0.2.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call updateJob with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/jobs/{id}',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除一个编译任务
+      * @param {Object} opts - parameters
+      * @param {string} opts.id - 编译任务uuid
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean commitresult  提交任务是否成功
+      */
+
+  deleteJob (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteJob"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.id === undefined || opts.id === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.id' when calling deleteJob"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      id: opts.id
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  compile/0.2.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteJob with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/jobs/{id}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  根据id启动一个编译任务
+      * @param {Object} opts - parameters
+      * @param {string} opts.id - Job uuid
+      * @param {} [opts.category] - 类型branch/commit/tag  optional
+      * @param {} [opts.branch] - 类型对应的值  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean commitresult  提交任务是否成功
+      * @param string buildUuid  提交运行的构建任务的uuid
+      */
+
+  startJob (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  startJob"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.id === undefined || opts.id === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.id' when calling startJob"
+      )
+    }
+
+    let postBody = {}
+    if (opts.category !== undefined && opts.category !== null) {
+      postBody['category'] = opts.category
+    }
+    if (opts.branch !== undefined && opts.branch !== null) {
+      postBody['branch'] = opts.branch
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      id: opts.id
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  compile/0.2.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call startJob with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/jobs/{id}:start',
       'POST',
       pathParams,
       queryParams,
@@ -1341,23 +944,19 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
   }
 
   /**
-      *  查询公网 IP 可设置清洗阈值范围, 支持 ipv4 和 ipv6
+      *  查询构建任务执行日志
       * @param {Object} opts - parameters
-      * @param {string} opts.ip - 基础防护已防护公网 IP.
-- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describeelasticipresources&quot;&gt;describeElasticIpResources&lt;/a&gt; 接口查询基础防护已防护的私有网络弹性公网 IP
-- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describecpsipresources&quot;&gt;describeCpsIpResources&lt;/a&gt; 接口查询基础防护已防护的云物理服务器公网IP 和 弹性公网 IP
-
+      * @param {string} opts.jobid - job uuid
+      * @param {string} opts.id - 构建任务uuid
+      * @param {integer} [opts.offsetNumber] - 查询日志的偏移量, 默认为0  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param ipCleanThresholdRange data
+      * @param string log
+      * @param integer offsetNumber
       */
 
-  describeIpCleanThresholdRange (
-    opts,
-    regionId = this.config.regionId,
-    callback
-  ) {
+  getBuildLog (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -1365,30 +964,37 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeIpCleanThresholdRange"
+        "Missing the required parameter 'regionId' when calling  getBuildLog"
       )
     }
 
     opts = opts || {}
 
-    if (opts.ip === undefined || opts.ip === null) {
+    if (opts.jobid === undefined || opts.jobid === null) {
       throw new Error(
-        "Missing the required parameter 'opts.ip' when calling describeIpCleanThresholdRange"
+        "Missing the required parameter 'opts.jobid' when calling getBuildLog"
+      )
+    }
+    if (opts.id === undefined || opts.id === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.id' when calling getBuildLog"
       )
     }
 
     let postBody = null
     let queryParams = {}
-    if (opts.ip !== undefined && opts.ip !== null) {
-      queryParams['ip'] = opts.ip
+    if (opts.offsetNumber !== undefined && opts.offsetNumber !== null) {
+      queryParams['offsetNumber'] = opts.offsetNumber
     }
 
     let pathParams = {
-      regionId: regionId
+      regionId: regionId,
+      jobid: opts.jobid,
+      id: opts.id
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  compile/0.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -1418,7 +1024,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     let returnType = null
 
     this.config.logger(
-      `call describeIpCleanThresholdRange with params:\npathParams:${JSON.stringify(
+      `call getBuildLog with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1431,7 +1037,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/describeIpCleanThresholdRange',
+      '/regions/{regionId}/jobs/{jobid}/builds/{id}/log',
       'GET',
       pathParams,
       queryParams,
@@ -1461,26 +1067,20 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
   }
 
   /**
-      *  查询公网 IP 的攻击记录, 仅支持 ipv4. (已废弃, 建议使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describeattacklogs&quot;&gt;describeAttackLogs&lt;/a&gt; 接口)
-
+      *  查询构建任务执行的状态
       * @param {Object} opts - parameters
-      * @param {string} opts.ip - 基础防护已防护的公网 IP, 仅支持 ipv4 格式
-- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describeelasticipresources&quot;&gt;describeElasticIpResources&lt;/a&gt; 接口查询基础防护已防护的私有网络弹性公网 IP
-- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describecpsipresources&quot;&gt;describeCpsIpResources&lt;/a&gt; 接口查询基础防护已防护的云物理服务器公网IP 和 弹性公网 IP
-
-      * @param {integer} [opts.start] - 限制查询的开始范围  optional
-      * @param {integer} [opts.limit] - 限制查询的记录数  optional
+      * @param {string} opts.jobid - job uuid
+      * @param {string} opts.id - 构建任务uuid
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param ipResourceProtectInfo dataList
+      * @param string name  执行任务的job名称
+      * @param integer createdAt  开始执行构建的时间
+      * @param string status  执行构建的状态
+      * @param number completionRate  执行构建完成的百分比
       */
 
-  describeIpResourceProtectInfo (
-    opts,
-    regionId = this.config.regionId,
-    callback
-  ) {
+  getBuildStatus (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -1488,34 +1088,34 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeIpResourceProtectInfo"
+        "Missing the required parameter 'regionId' when calling  getBuildStatus"
       )
     }
 
     opts = opts || {}
 
-    if (opts.ip === undefined || opts.ip === null) {
+    if (opts.jobid === undefined || opts.jobid === null) {
       throw new Error(
-        "Missing the required parameter 'opts.ip' when calling describeIpResourceProtectInfo"
+        "Missing the required parameter 'opts.jobid' when calling getBuildStatus"
+      )
+    }
+    if (opts.id === undefined || opts.id === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.id' when calling getBuildStatus"
       )
     }
 
     let postBody = null
     let queryParams = {}
-    if (opts.start !== undefined && opts.start !== null) {
-      queryParams['start'] = opts.start
-    }
-    if (opts.limit !== undefined && opts.limit !== null) {
-      queryParams['limit'] = opts.limit
-    }
 
     let pathParams = {
       regionId: regionId,
-      ip: opts.ip
+      jobid: opts.jobid,
+      id: opts.id
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  compile/0.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -1545,7 +1145,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     let returnType = null
 
     this.config.logger(
-      `call describeIpResourceProtectInfo with params:\npathParams:${JSON.stringify(
+      `call getBuildStatus with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1558,7 +1158,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/ipResources/{ip}/protectInfo',
+      '/regions/{regionId}/jobs/{jobid}/builds/{id}/status',
       'GET',
       pathParams,
       queryParams,
@@ -1588,22 +1188,19 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
   }
 
   /**
-      *  查询公网 IP 的 endTime 之前 15 分钟内监控流量, 仅支持 ipv4. (已废弃, 建议使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describeipmonitorflow&quot;&gt;describeIpMonitorFlow&lt;/a&gt; 接口)
-
+      *  生成带有效期的包地址
       * @param {Object} opts - parameters
-      * @param {string} opts.ip - 基础防护已防护的公网 IP, 仅支持 ipv4 格式
-- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describeelasticipresources&quot;&gt;describeElasticIpResources&lt;/a&gt; 接口查询基础防护已防护的私有网络弹性公网 IP
-- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describecpsipresources&quot;&gt;describeCpsIpResources&lt;/a&gt; 接口查询基础防护已防护的云物理服务器公网IP 和 弹性公网 IP
-
-      * @param {string} [opts.endTime] - 查询的结束时间, UTC时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ, 为空时查询当前时间之前 15 分钟内监控流量  optional
+      * @param {string} opts.jobid - job uuid
+      * @param {string} opts.id - 构建任务uuid
+      * @param {integer} [opts.expires] - 过期时间，单位秒， 默认1800秒  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param ipResourceFlow bps
-      * @param ipResourceFlow pps
+      * @param string url
+      * @param string token
       */
 
-  describeIpResourceFlow (opts, regionId = this.config.regionId, callback) {
+  getExternalLink (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -1611,31 +1208,37 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeIpResourceFlow"
+        "Missing the required parameter 'regionId' when calling  getExternalLink"
       )
     }
 
     opts = opts || {}
 
-    if (opts.ip === undefined || opts.ip === null) {
+    if (opts.jobid === undefined || opts.jobid === null) {
       throw new Error(
-        "Missing the required parameter 'opts.ip' when calling describeIpResourceFlow"
+        "Missing the required parameter 'opts.jobid' when calling getExternalLink"
+      )
+    }
+    if (opts.id === undefined || opts.id === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.id' when calling getExternalLink"
       )
     }
 
     let postBody = null
     let queryParams = {}
-    if (opts.endTime !== undefined && opts.endTime !== null) {
-      queryParams['endTime'] = opts.endTime
+    if (opts.expires !== undefined && opts.expires !== null) {
+      queryParams['expires'] = opts.expires
     }
 
     let pathParams = {
       regionId: regionId,
-      ip: opts.ip
+      jobid: opts.jobid,
+      id: opts.id
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  compile/0.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -1665,7 +1268,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     let returnType = null
 
     this.config.logger(
-      `call describeIpResourceFlow with params:\npathParams:${JSON.stringify(
+      `call getExternalLink with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1678,8 +1281,128 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/ipResources/{ip}/monitorFlow',
+      '/regions/{regionId}/jobs/{jobid}/builds/{id}/externalLink',
       'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  停止构建任务
+      * @param {Object} opts - parameters
+      * @param {string} opts.jobid - job uuid
+      * @param {string} opts.id - 构建任务uuid
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string id
+      * @param boolean result
+      */
+
+  stopBuild (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  stopBuild"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.jobid === undefined || opts.jobid === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.jobid' when calling stopBuild"
+      )
+    }
+    if (opts.id === undefined || opts.id === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.id' when calling stopBuild"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      jobid: opts.jobid,
+      id: opts.id
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  compile/0.2.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call stopBuild with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/jobs/{jobid}/builds/{id}:stop',
+      'POST',
       pathParams,
       queryParams,
       headerParams,
@@ -1707,4 +1430,4 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     )
   }
 }
-module.exports = JDCloud.BASEANTI
+module.exports = JDCloud.COMPILE

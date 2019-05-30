@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * function service.
- * @version 1.0.2
+ * @version 1.0.3
  */
 
 JDCloud.FUNCTION = class FUNCTION extends Service {
@@ -83,7 +83,7 @@ JDCloud.FUNCTION = class FUNCTION extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  function/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  function/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -212,7 +212,7 @@ JDCloud.FUNCTION = class FUNCTION extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  function/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  function/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -330,7 +330,7 @@ JDCloud.FUNCTION = class FUNCTION extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  function/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  function/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -467,7 +467,7 @@ JDCloud.FUNCTION = class FUNCTION extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  function/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  function/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -584,7 +584,7 @@ JDCloud.FUNCTION = class FUNCTION extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  function/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  function/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -659,13 +659,16 @@ JDCloud.FUNCTION = class FUNCTION extends Service {
   /**
       *  查询函数列表
       * @param {Object} opts - parameters
+      * @param {boolean} opts.listAll - 是否返回所有函数
+      * @param {integer} [opts.pageNumber] - 页码  optional
+      * @param {integer} [opts.pageSize] - 分页大小  optional
       * @param {filter} [opts.filters] - functionId -函数ID，精确匹配，支持多个
 functionName  - 函数名称，模糊匹配，支持单个
   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param functionSpec data
+      * @param listFunctionResult data
       */
 
   listFunction (opts, regionId = this.config.regionId, callback) {
@@ -682,8 +685,23 @@ functionName  - 函数名称，模糊匹配，支持单个
 
     opts = opts || {}
 
+    if (opts.listAll === undefined || opts.listAll === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.listAll' when calling listFunction"
+      )
+    }
+
     let postBody = null
     let queryParams = {}
+    if (opts.listAll !== undefined && opts.listAll !== null) {
+      queryParams['listAll'] = opts.listAll
+    }
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
     Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
@@ -691,7 +709,7 @@ functionName  - 函数名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  function/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  function/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -766,14 +784,14 @@ functionName  - 函数名称，模糊匹配，支持单个
   /**
       *  创建函数
       * @param {Object} opts - parameters
-      * @param {string} opts.name - 函数名称
+      * @param {string} [opts.name] - 函数名称  optional
       * @param {string} [opts.description] - 函数描述信息  optional
-      * @param {string} opts.entrance - 函数入口，格式为入口文件.入口函数名
-      * @param {integer} opts.memory - 函数运行最大内存
-      * @param {string} opts.runTime - 函数运行环境
-      * @param {integer} opts.overTime - 函数运行超时时间
+      * @param {string} [opts.entrance] - 函数入口，格式为入口文件.入口函数名  optional
+      * @param {integer} [opts.memory] - 函数运行最大内存  optional
+      * @param {string} [opts.runTime] - 函数运行环境  optional
+      * @param {integer} [opts.overTime] - 函数运行超时时间  optional
       * @param {string} [opts.version] - 函数版本，默认为LATEST  optional
-      * @param {code} opts.code - 函数代码包
+      * @param {code} [opts.code] - 函数代码包  optional
       * @param {env} [opts.environment] - 函数运行时环境变量  optional
       * @param {string} [opts.logSetId] - 函数指定的日志集Id  optional
       * @param {string} [opts.logTopicId] - 函数指定的日志主题Id  optional
@@ -798,37 +816,6 @@ functionName  - 函数名称，模糊匹配，支持单个
     }
 
     opts = opts || {}
-
-    if (opts.name === undefined || opts.name === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.name' when calling createFunction"
-      )
-    }
-    if (opts.entrance === undefined || opts.entrance === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.entrance' when calling createFunction"
-      )
-    }
-    if (opts.memory === undefined || opts.memory === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.memory' when calling createFunction"
-      )
-    }
-    if (opts.runTime === undefined || opts.runTime === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.runTime' when calling createFunction"
-      )
-    }
-    if (opts.overTime === undefined || opts.overTime === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.overTime' when calling createFunction"
-      )
-    }
-    if (opts.code === undefined || opts.code === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.code' when calling createFunction"
-      )
-    }
 
     let postBody = {}
     if (opts.name !== undefined && opts.name !== null) {
@@ -878,7 +865,7 @@ functionName  - 函数名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  function/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  function/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -989,7 +976,7 @@ functionName  - 函数名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  function/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  function/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1065,18 +1052,18 @@ functionName  - 函数名称，模糊匹配，支持单个
       *  更新函数
       * @param {Object} opts - parameters
       * @param {string} opts.functionName - 函数名称
-      * @param {string} opts.description - 函数描述信息
-      * @param {string} opts.entrance - 函数入口，格式为入口文件.入口函数名
-      * @param {integer} opts.memory - 函数运行最大内存
-      * @param {string} opts.runTime - 函数运行环境
-      * @param {integer} opts.overTime - 函数运行超时时间
+      * @param {string} [opts.description] - 函数描述信息  optional
+      * @param {string} [opts.entrance] - 函数入口，格式为入口文件.入口函数名  optional
+      * @param {integer} [opts.memory] - 函数运行最大内存  optional
+      * @param {string} [opts.runTime] - 函数运行环境  optional
+      * @param {integer} [opts.overTime] - 函数运行超时时间  optional
       * @param {string} [opts.version] - 函数版本  optional
-      * @param {code} opts.code - 函数代码包
-      * @param {env} opts.environment - 函数运行时环境变量
-      * @param {string} opts.logSetId - 函数指定的日志集Id
-      * @param {string} opts.logTopicId - 函数指定的日志主题Id
-      * @param {string} opts.vpcId - 函数配置的VPCId
-      * @param {string} opts.subnetId - 函数配置的子网Id
+      * @param {code} [opts.code] - 函数代码包  optional
+      * @param {env} [opts.environment] - 函数运行时环境变量  optional
+      * @param {string} [opts.logSetId] - 函数指定的日志集Id  optional
+      * @param {string} [opts.logTopicId] - 函数指定的日志主题Id  optional
+      * @param {string} [opts.vpcId] - 函数配置的VPCId  optional
+      * @param {string} [opts.subnetId] - 函数配置的子网Id  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1100,61 +1087,6 @@ functionName  - 函数名称，模糊匹配，支持单个
     if (opts.functionName === undefined || opts.functionName === null) {
       throw new Error(
         "Missing the required parameter 'opts.functionName' when calling updateFunction"
-      )
-    }
-    if (opts.description === undefined || opts.description === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.description' when calling updateFunction"
-      )
-    }
-    if (opts.entrance === undefined || opts.entrance === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.entrance' when calling updateFunction"
-      )
-    }
-    if (opts.memory === undefined || opts.memory === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.memory' when calling updateFunction"
-      )
-    }
-    if (opts.runTime === undefined || opts.runTime === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.runTime' when calling updateFunction"
-      )
-    }
-    if (opts.overTime === undefined || opts.overTime === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.overTime' when calling updateFunction"
-      )
-    }
-    if (opts.code === undefined || opts.code === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.code' when calling updateFunction"
-      )
-    }
-    if (opts.environment === undefined || opts.environment === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.environment' when calling updateFunction"
-      )
-    }
-    if (opts.logSetId === undefined || opts.logSetId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.logSetId' when calling updateFunction"
-      )
-    }
-    if (opts.logTopicId === undefined || opts.logTopicId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.logTopicId' when calling updateFunction"
-      )
-    }
-    if (opts.vpcId === undefined || opts.vpcId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.vpcId' when calling updateFunction"
-      )
-    }
-    if (opts.subnetId === undefined || opts.subnetId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.subnetId' when calling updateFunction"
       )
     }
 
@@ -1204,7 +1136,7 @@ functionName  - 函数名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  function/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  function/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1314,7 +1246,7 @@ functionName  - 函数名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  function/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  function/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1442,7 +1374,7 @@ functionName  - 函数名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  function/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  function/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1569,7 +1501,7 @@ functionName  - 函数名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  function/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  function/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1696,7 +1628,7 @@ functionName  - 函数名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  function/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  function/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1769,124 +1701,6 @@ functionName  - 函数名称，模糊匹配，支持单个
   }
 
   /**
-      *  查询触发器列表
-      * @param {Object} opts - parameters
-      * @param {string} opts.functionName - 函数名称
-      * @param {string} opts.versionName - 版本名称
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param trigger data
-      */
-
-  listTrigger (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  listTrigger"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.functionName === undefined || opts.functionName === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.functionName' when calling listTrigger"
-      )
-    }
-    if (opts.versionName === undefined || opts.versionName === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.versionName' when calling listTrigger"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      functionName: opts.functionName,
-      versionName: opts.versionName
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  function/1.0.2'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call listTrigger with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/functions/{functionName}/versions/{versionName}:innerlisttriggers',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
       *  查询版本列表
       * @param {Object} opts - parameters
       * @param {string} opts.functionName - 函数名称
@@ -1925,7 +1739,7 @@ functionName  - 函数名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  function/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  function/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -2041,7 +1855,7 @@ functionName  - 函数名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  function/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  function/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -2159,7 +1973,7 @@ functionName  - 函数名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  function/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  function/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -2276,7 +2090,7 @@ functionName  - 函数名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  function/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  function/1.0.3'
     }
 
     let contentTypes = ['application/json']

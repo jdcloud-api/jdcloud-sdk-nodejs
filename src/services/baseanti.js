@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * DDoS基础防护相关接口
- * DDoS基础防护相关接口
+ * IP Resource APIs
+ * Anti DDoS Basic IP Resource APIs
  *
  * OpenAPI spec version: v1
  * Contact:

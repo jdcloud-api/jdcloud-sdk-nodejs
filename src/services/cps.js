@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * 云物理服务器
- * 云物理服务器子网操作相关的接口
+ * 云物理服务器私有网络操作相关的接口
  *
  * OpenAPI spec version: v1
  * Contact:

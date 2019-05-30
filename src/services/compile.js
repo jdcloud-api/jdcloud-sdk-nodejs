@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Watermark
- * 水印管理
+ * code api
+ * API related to build
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -24,20 +24,20 @@
 
 const JDCloud = require('../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'vod'
+var serviceId = 'compile'
 Service._services[serviceId] = true
 
 /**
- * vod service.
+ * compile service.
  */
 
-JDCloud.VOD = class VOD {
+JDCloud.COMPILE = class COMPILE {
   constructor (config = {}) {
     this.init(config)
     return new this.service(config)
   }
   init (config) {
-    let serviceName = 'vod'
+    let serviceName = 'compile'
     let version = config.version || JDCloud.config.version
     let versionFlag = 'v1'
     if (version && version[serviceName]) {
@@ -53,4 +53,4 @@ JDCloud.VOD = class VOD {
   }
 }
 
-module.exports = JDCloud.VOD
+module.exports = JDCloud.COMPILE

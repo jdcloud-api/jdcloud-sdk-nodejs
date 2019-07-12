@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * pod service.
- * @version 1.0.0
+ * @version 1.0.4
  */
 
 JDCloud.POD = class POD extends Service {
@@ -90,7 +90,7 @@ JDCloud.POD = class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -208,7 +208,7 @@ JDCloud.POD = class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -336,7 +336,7 @@ JDCloud.POD = class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -458,7 +458,7 @@ JDCloud.POD = class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -579,7 +579,7 @@ JDCloud.POD = class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -709,7 +709,7 @@ JDCloud.POD = class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -796,6 +796,7 @@ phase - pod 状态，精确匹配，支持多个
 name - 实例名称，模糊匹配，支持单个
 subnetId - 镜像ID，模糊匹配，支持单个
   optional
+      * @param {tagFilter} [opts.tags] - Tag筛选条件  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -826,13 +827,14 @@ subnetId - 镜像ID，模糊匹配，支持单个
       queryParams['pageSize'] = opts.pageSize
     }
     Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, this.buildTagFilterParam(opts.tags, 'tags'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -992,7 +994,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -1112,7 +1114,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -1224,7 +1226,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -1300,7 +1302,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
       *  pod 状态必须为 stopped、running 或 error状态。 &lt;br&gt;
 按量付费的实例，如不主动删除将一直运行，不再使用的实例，可通过本接口主动停用。&lt;br&gt;
 只能支持主动删除按量计费类型的实例。包年包月过期的 pod 也可以删除，其它的情况还请发工单系统。计费状态异常的容器无法删除。
-
+ [MFA enabled]
       * @param {Object} opts - parameters
       * @param {string} opts.podId - Pod ID
       * @param {string} regionId - ID of the region
@@ -1337,7 +1339,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -1450,7 +1452,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -1562,7 +1564,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -1678,7 +1680,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -1801,7 +1803,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -1922,7 +1924,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -2066,7 +2068,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -2139,6 +2141,122 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
   }
 
   /**
+      *  对 pod 中的容器使用新的镜像进行重置，pod 需要处于关闭状态。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.podId - Pod ID
+      * @param {array} [opts.containers] - 重置容器相关参数  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  rebuildPod (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rebuildPod"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.podId === undefined || opts.podId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.podId' when calling rebuildPod"
+      )
+    }
+
+    let postBody = {}
+    if (opts.containers !== undefined && opts.containers !== null) {
+      postBody['containers'] = opts.containers
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      podId: opts.podId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rebuildPod with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/pods/{podId}:rebuild',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  查询资源的配额，支持：原生容器 pod 和 secret.
 
       * @param {Object} opts - parameters
@@ -2181,7 +2299,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -2298,7 +2416,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -2432,7 +2550,7 @@ value 是 Base64 编码的字符串，不能包含换行符（在 linux 下使�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -2544,7 +2662,7 @@ value 是 Base64 编码的字符串，不能包含换行符（在 linux 下使�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -2655,7 +2773,7 @@ value 是 Base64 编码的字符串，不能包含换行符（在 linux 下使�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/1.0.4'
     }
 
     let contentTypes = ['application/json']

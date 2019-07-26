@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * nativecontainer service.
- * @version 1.0.1
+ * @version 1.0.2
  */
 
 JDCloud.NATIVECONTAINER = class NATIVECONTAINER extends Service {
@@ -98,7 +98,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -263,7 +263,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -375,7 +375,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -488,7 +488,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -601,7 +601,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -713,7 +713,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -833,7 +833,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -956,7 +956,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1077,7 +1077,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1204,7 +1204,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1353,7 +1353,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1474,7 +1474,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1595,7 +1595,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1729,7 +1729,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1844,7 +1844,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1961,7 +1961,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2095,7 +2095,7 @@ value 是 Base64 编码的字符串，不能包含换行符（在 linux 下使�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2207,7 +2207,7 @@ value 是 Base64 编码的字符串，不能包含换行符（在 linux 下使�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2318,7 +2318,7 @@ value 是 Base64 编码的字符串，不能包含换行符（在 linux 下使�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.2'
     }
 
     let contentTypes = ['application/json']

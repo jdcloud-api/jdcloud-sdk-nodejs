@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * vm service.
- * @version 1.0.8
+ * @version 1.2.2
  */
 
 JDCloud.VM = class VM extends Service {
@@ -84,7 +84,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -196,7 +196,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -329,7 +329,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -442,7 +442,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -553,7 +553,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -670,7 +670,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -786,7 +786,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -898,7 +898,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -1024,7 +1024,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -1144,7 +1144,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -1189,6 +1189,329 @@ JDCloud.VM = class VM extends Service {
     let request = this.makeRequest(
       '/regions/{regionId}/images/{imageId}:modifyImageAttribute',
       'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  导入镜像，将外部镜像导入到京东云中
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.architecture - 系统架构，可选值：x86_64,i386
+      * @param {string} opts.osType - 操作系统，可选值：windows,linux
+      * @param {string} opts.platform - 平台名称，可选值：CentOS,Ubuntu,Windows Server,Other Linux,Other Windows
+      * @param {string} opts.diskFormat - 磁盘格式，可选值：qcow2,vhd,vmdk,raw
+      * @param {integer} opts.systemDiskSizeGB - 以此镜像需要制作的系统盘的默认大小，单位GB。最小值40，最大值500，要求值是10的整数倍
+      * @param {string} opts.imageUrl - 要导入镜像的对象存储外链地址
+      * @param {string} [opts.osVersion] - 镜像的操作系统版本  optional
+      * @param {string} opts.imageName - 导入镜像的自定义名称
+      * @param {string} [opts.description] - 导入镜像的描述信息  optional
+      * @param {boolean} [opts.forceImport] - 是否强制导入。强制导入则忽略镜像的合规性检测  optional
+      * @param {string} [opts.clientToken] - 用户导入镜像的幂等性保证。每次创建请传入不同的值，如果传值与某次的clientToken相同，则返还该次的请求结果  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string imageId  镜像id
+      * @param integer importTaskId  导入任务id
+      */
+
+  importImage (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  importImage"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.architecture === undefined || opts.architecture === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.architecture' when calling importImage"
+      )
+    }
+    if (opts.osType === undefined || opts.osType === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.osType' when calling importImage"
+      )
+    }
+    if (opts.platform === undefined || opts.platform === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.platform' when calling importImage"
+      )
+    }
+    if (opts.diskFormat === undefined || opts.diskFormat === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.diskFormat' when calling importImage"
+      )
+    }
+    if (opts.systemDiskSizeGB === undefined || opts.systemDiskSizeGB === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.systemDiskSizeGB' when calling importImage"
+      )
+    }
+    if (opts.imageUrl === undefined || opts.imageUrl === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.imageUrl' when calling importImage"
+      )
+    }
+    if (opts.imageName === undefined || opts.imageName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.imageName' when calling importImage"
+      )
+    }
+
+    let postBody = {}
+    if (opts.architecture !== undefined && opts.architecture !== null) {
+      postBody['architecture'] = opts.architecture
+    }
+    if (opts.osType !== undefined && opts.osType !== null) {
+      postBody['osType'] = opts.osType
+    }
+    if (opts.platform !== undefined && opts.platform !== null) {
+      postBody['platform'] = opts.platform
+    }
+    if (opts.diskFormat !== undefined && opts.diskFormat !== null) {
+      postBody['diskFormat'] = opts.diskFormat
+    }
+    if (opts.systemDiskSizeGB !== undefined && opts.systemDiskSizeGB !== null) {
+      postBody['systemDiskSizeGB'] = opts.systemDiskSizeGB
+    }
+    if (opts.imageUrl !== undefined && opts.imageUrl !== null) {
+      postBody['imageUrl'] = opts.imageUrl
+    }
+    if (opts.osVersion !== undefined && opts.osVersion !== null) {
+      postBody['osVersion'] = opts.osVersion
+    }
+    if (opts.imageName !== undefined && opts.imageName !== null) {
+      postBody['imageName'] = opts.imageName
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+    if (opts.forceImport !== undefined && opts.forceImport !== null) {
+      postBody['forceImport'] = opts.forceImport
+    }
+    if (opts.clientToken !== undefined && opts.clientToken !== null) {
+      postBody['clientToken'] = opts.clientToken
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call importImage with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/images:import',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询镜像导入任务详情
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.taskAction - 任务种类。可选值：ImportImage
+      * @param {string} [opts.taskStatus] - 任务状态。可选值：pending,running,failed,finished  optional
+      * @param {string} [opts.startTime] - 任务开始时间  optional
+      * @param {string} [opts.endTime] - 任务结束时间  optional
+      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
+      * @param {integer} [opts.taskIds] - 任务id  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param taskInfo taskSet
+      * @param integer totalCount  总数量
+      */
+
+  imageTasks (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  imageTasks"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.taskAction === undefined || opts.taskAction === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.taskAction' when calling imageTasks"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.taskAction !== undefined && opts.taskAction !== null) {
+      queryParams['taskAction'] = opts.taskAction
+    }
+    if (opts.taskStatus !== undefined && opts.taskStatus !== null) {
+      queryParams['taskStatus'] = opts.taskStatus
+    }
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, this.buildArrayParam(opts.taskIds, 'taskIds'))
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call imageTasks with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/imageTasks',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -1271,7 +1594,7 @@ faultDomain - 错误域，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -1350,17 +1673,16 @@ faultDomain - 错误域，支持多个
     - 可查询&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/describeinstancetypes&quot;&gt;DescribeInstanceTypes&lt;/a&gt;接口获得指定地域或可用区的规格信息。
     - 不能使用已下线、或已售馨的规格ID
 - 镜像
-    - Windows Server 2012 R2标准版 64位 中文版 SQL Server 2014 标准版 SP2内存需大于1GB；
     - Windows Server所有镜像CPU不可选超过64核CPU。
     - 可查询&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/describeimages&quot;&gt;DescribeImages&lt;/a&gt;接口获得指定地域的镜像信息。
     - 选择的镜像必须支持选择的实例规格。可查询&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/describeimageconstraints&quot;&gt;DescribeImageConstraints&lt;/a&gt;接口获得指定镜像的实例规格限制信息。&lt;br&gt;
 - 网络配置
     - 指定主网卡配置信息
         - 必须指定subnetId
-        - 可以指定elasticIp规格来约束创建的弹性IP，带宽取值范围[1-100]Mbps，步进1Mbps
+        - 可以指定elasticIp规格来约束创建的弹性IP，带宽取值范围[1-200]Mbps，步进1Mbps
         - 可以指定主网卡的内网主IP(primaryIpAddress)，此时maxCount只能为1
         - 安全组securityGroup需与子网Subnet在同一个私有网络VPC内
-        - 一台云主机创建时必须指定一个安全组，至多指定5个安全组，如果没有指定安全组，默认使用默认安全组
+        - 一台云主机创建时必须至少指定一个安全组，至多指定5个安全组，如果没有指定安全组，默认使用默认安全组
         - 主网卡deviceIndex设置为1
 - 存储
     - 系统盘
@@ -1369,17 +1691,18 @@ faultDomain - 错误域，支持多个
             - local：不能指定大小，默认为40GB
             - cloud：取值范围: 40-500GB，并且不能小于镜像的最小系统盘大小，如果没有指定，默认以镜像中的系统盘大小为准
         - 自动删除
-            - 如果是local，默认自动删除，不能修改此属性
-            - 如果是cloud类型的按配置计费的云硬盘，可以指定为True
+            - 如果是local类型，默认自动删除，不可修改
+            - 如果是cloud类型的按配置计费的云硬盘，默认为True，可修改
+            - 如果是cloud类型的包年包月的云硬盘，默认为False，不可修改
     - 数据盘
         - 磁盘分类，数据盘仅支持cloud
-        - 云硬盘类型可以选择ssd、premium-hdd
+        - 云硬盘类型可以选择ssd、premium-hdd、hdd.std1、ssd.gp1、ssd.io1
         - 磁盘大小
             - premium-hdd：范围[20,3000]GB，步长为10G
             - ssd：范围[20,1000]GB，步长为10G
+            - hdd.std1、ssd.gp1、ssd.io1: 范围[20-16000]GB，步长为10GB
         - 自动删除
-            - 默认自动删除，如果是包年包月的数据盘或共享型数据盘，此参数不生效
-            - 可以指定SnapshotId创建云硬盘
+            - 默认自动删除，如果是包年包月的云硬盘，此参数不生效
         - 可以从快照创建磁盘
     - local类型系统的云主机可以挂载8块云硬盘
     - cloud类型系统的云主机可以挂载7块云硬盘
@@ -1445,7 +1768,7 @@ faultDomain - 错误域，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -1557,7 +1880,7 @@ faultDomain - 错误域，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -1632,8 +1955,7 @@ faultDomain - 错误域，支持多个
   /**
       *  删除按配置计费、或包年包月已到期的单个云主机。不能删除没有计费信息的云主机。&lt;br&gt;
 云主机状态必须为运行&lt;b&gt;running&lt;/b&gt;、停止&lt;b&gt;stopped&lt;/b&gt;、错误&lt;b&gt;error&lt;/b&gt;，同时云主机没有正在进行中的任务才可删除。&lt;br&gt;
-包年包月未到期的云主机不能删除。&lt;br&gt;
-如果主机中挂载的数据盘为按配置计费的云硬盘，并且不是共享型云硬盘，并且AutoDelete属性为true，那么数据盘会随主机一起删除。
+如果主机中挂载的数据盘为按配置计费的云硬盘且AutoDelete属性为true，那么数据盘会随主机一起删除。
  [MFA enabled]
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 云主机ID
@@ -1671,7 +1993,7 @@ faultDomain - 错误域，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -1793,7 +2115,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -1919,7 +2241,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -2031,7 +2353,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -2105,7 +2427,7 @@ subnetId - 子网ID，精确匹配，支持多个
 
   /**
       *  启动单个云主机，只能启动&lt;b&gt;stopped&lt;/b&gt;状态的云主机，云主机没有正在进行中的任务才可启动。&lt;br&gt;
-只能启动正常计费状态的云主机。
+只能启动正常计费状态的云主机，若已欠费停服或到期停服则不支持启动。
 
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 云主机ID
@@ -2144,7 +2466,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -2256,7 +2578,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -2329,16 +2651,16 @@ subnetId - 子网ID，精确匹配，支持多个
   }
 
   /**
-      *  云主机挂载一块弹性网卡。&lt;br&gt;
+      *  云主机绑定一块弹性网卡。&lt;br&gt;
 云主机状态必须为&lt;b&gt;running&lt;/b&gt;或&lt;b&gt;stopped&lt;/b&gt;状态，并且没有正在进行中的任务才可操作。&lt;br&gt;
-弹性网卡上如果绑定了公网IP，那么公网IP所在az需要与云主机的az保持一致，或者公网IP属于全可用区，才可挂载。&lt;br&gt;
+弹性网卡上如果绑定了弹性公网IP，那么其所在az需要与云主机的az保持一致，或者为全可用区型弹性公网IP，才可挂载该网卡。&lt;br&gt;
 云主机挂载弹性网卡的数量，不能超过实例规格的限制。可查询&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/describeinstancetypes&quot;&gt;DescribeInstanceTypes&lt;/a&gt;接口获得指定规格可挂载弹性网卡的数量上限。&lt;br&gt;
 弹性网卡与云主机必须在相同vpc下。
 
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 云主机ID
       * @param {string} opts.networkInterfaceId - 弹性网卡ID
-      * @param {boolean} [opts.autoDelete] - 随主机自动删除，默认为False  optional
+      * @param {boolean} [opts.autoDelete] - 随云主机删除而自动删除，默认为False  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -2391,7 +2713,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -2520,7 +2842,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -2641,7 +2963,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -2714,8 +3036,8 @@ subnetId - 子网ID，精确匹配，支持多个
   }
 
   /**
-      *  为云主机主网卡下的主内网IP绑定弹性公网IP。&lt;br&gt;
-一台云主机只能绑定一个弹性公网IP(主网卡)，若主网卡已存在弹性公网IP，会返回错误。&lt;br&gt;
+      *  为云主机主网卡的主内网IP绑定弹性公网IP。&lt;br&gt;
+一台云主机的主网卡的主内网IP只能绑定一个弹性公网IP，若已绑定弹性公网IP，操作绑定会返回错误。&lt;br&gt;
 
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 云主机ID
@@ -2763,7 +3085,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -2884,7 +3206,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -2965,7 +3287,7 @@ subnetId - 子网ID，精确匹配，支持多个
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 云主机ID
       * @param {string} opts.name - 镜像名称，&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/general_parameters&quot;&gt;参考公共参数规范&lt;/a&gt;。
-      * @param {string} opts.description - 镜像描述，&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/general_parameters&quot;&gt;参考公共参数规范&lt;/a&gt;。
+      * @param {string} [opts.description] - 镜像描述，&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/general_parameters&quot;&gt;参考公共参数规范&lt;/a&gt;。  optional
       * @param {array} [opts.dataDisks] - 数据盘列表，可以在实例已挂载数据盘的基础上，额外增加新的快照、空盘、或排除云主机中的数据盘。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -2997,11 +3319,6 @@ subnetId - 子网ID，精确匹配，支持多个
         "Missing the required parameter 'opts.name' when calling createImage"
       )
     }
-    if (opts.description === undefined || opts.description === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.description' when calling createImage"
-      )
-    }
 
     let postBody = {}
     if (opts.name !== undefined && opts.name !== null) {
@@ -3022,7 +3339,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -3095,15 +3412,15 @@ subnetId - 子网ID，精确匹配，支持多个
   }
 
   /**
-      *  为一台云主机挂载一块数据盘(云硬盘)，云主机和云硬盘没有正在进行中的的任务时才可挂载。&lt;br&gt;
+      *  为一台云主机挂载一块云硬盘，云主机和云硬盘没有正在进行中的的任务时才可挂载。&lt;br&gt;
 云主机状态必须是&lt;b&gt;running&lt;/b&gt;或&lt;b&gt;stopped&lt;/b&gt;状态。&lt;br&gt;
-本地盘(local类型)做系统盘的云主机可挂载8块数据盘，云硬盘(cloud类型)做系统盘的云主机可挂载7块数据盘。
+本地盘(local类型)做系统盘的云主机可挂载8块云硬盘，云硬盘(cloud类型)做系统盘的云主机可挂载除系统盘外7块云硬盘。
 
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 云主机ID
       * @param {string} opts.diskId - 云硬盘ID
-      * @param {string} [opts.deviceName] - 数据盘的逻辑挂载点[vda,vdb,vdc,vdd,vde,vdf,vdg,vdh,vdi]，挂载系统盘时vda必传  optional
-      * @param {boolean} [opts.autoDelete] - 自动随主机删除此云硬盘，默认为False。仅按配置计费云硬盘支持修改此参数，包年包月云硬盘默认为False且不可修改。如果是共享型云硬盘，此参数无效。  optional
+      * @param {string} [opts.deviceName] - 设备名[vda,vdb,vdc,vdd,vde,vdf,vdg,vdh,vdi,vmj,vdk,vdl,vdm]，挂载系统盘时必传，且需传vda  optional
+      * @param {boolean} [opts.autoDelete] - 随云主机删除自动删除此云硬盘，默认为False。仅按配置计费云硬盘支持修改此参数，包年包月云硬盘不可修改。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -3153,7 +3470,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -3226,7 +3543,7 @@ subnetId - 子网ID，精确匹配，支持多个
   }
 
   /**
-      *  云主机缷载数据盘，云主机和云硬盘没有正在进行中的任务时才可缷载。&lt;br&gt;
+      *  云主机缷载云硬盘，云主机和云硬盘没有正在进行中的任务时才可缷载。&lt;br&gt;
 
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 云主机ID
@@ -3278,7 +3595,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -3351,7 +3668,8 @@ subnetId - 子网ID，精确匹配，支持多个
   }
 
   /**
-      *  修改云主机挂载的数据盘属性，包括是否随主机删除。
+      *  修改云主机挂载的数据盘属性，包括是否随主机删除。&lt;br&gt;
+仅按配置计费云硬盘支持设置随实例删除属性;包年包月计费云硬盘该属性不生效,实例删除时云硬盘将保留。&lt;br&gt;
 
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 云主机ID
@@ -3394,7 +3712,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -3514,7 +3832,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -3636,7 +3954,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -3749,7 +4067,7 @@ vnc地址的有效期为1个小时，调用接口获取vnc地址后如果1个小
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -3824,10 +4142,10 @@ vnc地址的有效期为1个小时，调用接口获取vnc地址后如果1个小
   /**
       *  云主机变更实例规格&lt;br&gt;
 云主机的状态必须为&lt;b&gt;stopped&lt;/b&gt;状态。&lt;br&gt;
-16年创建的云硬盘做系统盘的主机，一代与二代实例规格不允许相互调整。&lt;br&gt;
-本地盘(local类型)做系统盘的主机，一代与二代实例规格不允许相互调整。&lt;br&gt;
-使用高可用组(Ag)创建的主机，一代与二代实例规格不允许相互调整。&lt;br&gt;
-云硬盘(cloud类型)做系统盘的主机，一代与二代实例规格允许相互调整。&lt;br&gt;
+以下情况的云主机，不允许在一代与二代实例规格间互相调整，例：不允许g.n1与g.n2之间互相调配&lt;br&gt;
+1、16年创建的云硬盘做系统盘的云主机&lt;br&gt;
+2、本地盘(local类型)做系统盘的云主机。&lt;br&gt;
+3、使用高可用组(Ag)创建的云主机。&lt;br&gt;
 如果当前主机中的弹性网卡数量，大于新实例规格允许的弹性网卡数量，会返回错误。可查询&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/describeinstancetypes&quot;&gt;DescribeInstanceTypes&lt;/a&gt;接口获得指定地域及可用区下的实例规格信息。&lt;br&gt;
 当前主机所使用的镜像，需要支持要变更的目标实例规格，否则返回错误。可查询&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/describeimageconstraints&quot;&gt;DescribeImageConstraints&lt;/a&gt;接口获得指定镜像的实例规格限制信息。&lt;br&gt;
 云主机欠费或到期时，无法更改实例规格。
@@ -3878,7 +4196,7 @@ vnc地址的有效期为1个小时，调用接口获取vnc地址后如果1个小
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -3953,8 +4271,8 @@ vnc地址的有效期为1个小时，调用接口获取vnc地址后如果1个小
   /**
       *  云主机使用指定镜像重置云主机系统&lt;br&gt;
 云主机的状态必须为&lt;b&gt;stopped&lt;/b&gt;状态。&lt;br&gt;
-若当前云主机的系统盘类型为local类型，那么更换的镜像必须为localDisk类型的镜像；同理若当前云主机的系统盘为cloud类型，那么更换的镜像必须为cloudDisk类型的镜像。可查询&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/describeimages&quot;&gt;DescribeImages&lt;/a&gt;接口获得指定地域的镜像信息。&lt;br&gt;
 若不指定镜像ID，默认使用当前主机的原镜像重置系统。&lt;br&gt;
+云主机系统盘类型必须与待更换镜像支持的系统盘类型保持一致，若当前云主机系统盘为local类型，则更换镜像的系统盘类型必须为loaclDisk类型；同理，若当前云主机系统盘为cloud类型，则更换镜像的系统盘类型必须为cloudDisk类型。可查询&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/describeimages&quot;&gt;DescribeImages&lt;/a&gt;接口获得指定地域的镜像信息。&lt;br&gt;
 指定的镜像必须能够支持当前主机的实例规格(instanceType)，否则会返回错误。可查询&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/describeimageconstraints&quot;&gt;DescribeImageConstraints&lt;/a&gt;接口获得指定镜像支持的系统盘类型信息。
 
       * @param {Object} opts - parameters
@@ -4011,7 +4329,7 @@ vnc地址的有效期为1个小时，调用接口获取vnc地址后如果1个小
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -4084,9 +4402,730 @@ vnc地址的有效期为1个小时，调用接口获取vnc地址后如果1个小
   }
 
   /**
+      *  查询启动模板列表
+
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
+      * @param {filter} [opts.filters] - name - 启动模板名称，模糊匹配，支持多个
+instanceTemplateId - 启动模板ID，精确匹配，支持多个
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param instanceTemplate instanceTemplates
+      * @param number totalCount
+      */
+
+  describeInstanceTemplates (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeInstanceTemplates"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeInstanceTemplates with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instanceTemplates',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建一个指定参数的启动模板，启动模板中包含创建云主机时的大部分配置参数，避免每次创建云主机时的重复性工作。&lt;br&gt;
+如果是使用启动模板创建云主机，如果指定了某些参数与模板中的参数相冲突，那么新指定的参数会替换模板中的参数。&lt;br&gt;
+如果是使用启动模板创建云主机，如果指定了镜像ID与模板中的镜像ID不一致，那么模板中的dataDisks参数会失效。&lt;br&gt;
+如果使用高可用组(Ag)创建云主机，那么Ag所关联的模板中的参数都不可以被调整，只能以模板为准。
+
+      * @param {Object} opts - parameters
+      * @param {instanceTemplateSpec} opts.instanceTemplateData - 启动模板的数据
+      * @param {string} opts.name - 启动模板的名称，&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/general_parameters&quot;&gt;参考公共参数规范&lt;/a&gt;。
+      * @param {string} [opts.description] - 启动模板的描述，&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/general_parameters&quot;&gt;参考公共参数规范&lt;/a&gt;。  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string instanceTemplateId
+      */
+
+  createInstanceTemplate (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createInstanceTemplate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (
+      opts.instanceTemplateData === undefined ||
+      opts.instanceTemplateData === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceTemplateData' when calling createInstanceTemplate"
+      )
+    }
+    if (opts.name === undefined || opts.name === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.name' when calling createInstanceTemplate"
+      )
+    }
+
+    let postBody = {}
+    if (
+      opts.instanceTemplateData !== undefined &&
+      opts.instanceTemplateData !== null
+    ) {
+      postBody['instanceTemplateData'] = opts.instanceTemplateData
+    }
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createInstanceTemplate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instanceTemplates',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询启动模板详情
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceTemplateId - 启动模板ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param instanceTemplate instanceTemplate
+      */
+
+  describeInstanceTemplate (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeInstanceTemplate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (
+      opts.instanceTemplateId === undefined ||
+      opts.instanceTemplateId === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceTemplateId' when calling describeInstanceTemplate"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceTemplateId: opts.instanceTemplateId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeInstanceTemplate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instanceTemplates/{instanceTemplateId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改一个启动模板的信息，包括名称、描述
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceTemplateId - 启动模板ID
+      * @param {string} [opts.description] - 模板描述，&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/general_parameters&quot;&gt;参考公共参数规范&lt;/a&gt;。  optional
+      * @param {string} [opts.name] - 模板名称，&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/general_parameters&quot;&gt;参考公共参数规范&lt;/a&gt;。  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  updateInstanceTemplate (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  updateInstanceTemplate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (
+      opts.instanceTemplateId === undefined ||
+      opts.instanceTemplateId === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceTemplateId' when calling updateInstanceTemplate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceTemplateId: opts.instanceTemplateId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call updateInstanceTemplate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instanceTemplates/{instanceTemplateId}',
+      'PATCH',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除一个启动模板
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceTemplateId - 启动模板ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteInstanceTemplate (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteInstanceTemplate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (
+      opts.instanceTemplateId === undefined ||
+      opts.instanceTemplateId === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceTemplateId' when calling deleteInstanceTemplate"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceTemplateId: opts.instanceTemplateId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteInstanceTemplate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instanceTemplates/{instanceTemplateId}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  校验启动模板的有效性
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceTemplateId - 启动模板ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  verifyInstanceTemplate (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  verifyInstanceTemplate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (
+      opts.instanceTemplateId === undefined ||
+      opts.instanceTemplateId === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceTemplateId' when calling verifyInstanceTemplate"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceTemplateId: opts.instanceTemplateId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call verifyInstanceTemplate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instanceTemplates/{instanceTemplateId}:verify',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  查询实例规格信息列表
 
       * @param {Object} opts - parameters
+      * @param {string} [opts.serviceName] - 服务类型，取值为{vm、nc}，vm代表虚机、nc代表原生容器  optional
       * @param {filter} [opts.filters] - instanceTypes - 实例规格，精确匹配，支持多个
 az - 可用区，精确匹配，支持多个
   optional
@@ -4114,6 +5153,9 @@ az - 可用区，精确匹配，支持多个
 
     let postBody = null
     let queryParams = {}
+    if (opts.serviceName !== undefined && opts.serviceName !== null) {
+      queryParams['serviceName'] = opts.serviceName
+    }
     Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
@@ -4121,7 +5163,7 @@ az - 可用区，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -4238,7 +5280,7 @@ az - 可用区，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -4357,7 +5399,7 @@ az - 可用区，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -4484,7 +5526,7 @@ az - 可用区，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -4595,7 +5637,7 @@ az - 可用区，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -4668,7 +5710,7 @@ az - 可用区，精确匹配，支持多个
   }
 
   /**
-      *  查询配额，支持：云主机、镜像、密钥、模板、镜像共享
+      *  查询配额，支持的类型：云主机、镜像、密钥、模板、镜像共享。
 
       * @param {Object} opts - parameters
       * @param {string} [opts.imageId] - 私有镜像Id，查询镜像共享(imageShare)配额时，此参数必传  optional
@@ -4706,7 +5748,7 @@ az - 可用区，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.2'
     }
 
     let contentTypes = ['application/json']

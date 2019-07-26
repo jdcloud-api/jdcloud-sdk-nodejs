@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * disk service.
- * @version 0.12.0
+ * @version 0.12.3
  */
 
 JDCloud.DISK = class DISK extends Service {
@@ -99,7 +99,7 @@ encrypted - 云硬盘是否加密，精确匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.3'
     }
 
     let contentTypes = ['application/json']
@@ -238,7 +238,7 @@ encrypted - 云硬盘是否加密，精确匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.3'
     }
 
     let contentTypes = ['application/json']
@@ -349,7 +349,7 @@ encrypted - 云硬盘是否加密，精确匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.3'
     }
 
     let contentTypes = ['application/json']
@@ -468,7 +468,7 @@ encrypted - 云硬盘是否加密，精确匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.3'
     }
 
     let contentTypes = ['application/json']
@@ -581,7 +581,7 @@ encrypted - 云硬盘是否加密，精确匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.3'
     }
 
     let contentTypes = ['application/json']
@@ -704,7 +704,7 @@ encrypted - 云硬盘是否加密，精确匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.3'
     }
 
     let contentTypes = ['application/json']
@@ -783,6 +783,7 @@ encrypted - 云硬盘是否加密，精确匹配，支持单个
       * @param {Object} opts - parameters
       * @param {string} opts.diskId - 云硬盘ID
       * @param {integer} opts.diskSizeGB - 扩容后的云硬盘大小，单位为GiB
+      * @param {integer} [opts.iops] - 修改ssd.io1型云硬盘的iops数量，当且仅当ssd.io1型的云盘类型有效，步长是10.  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -817,6 +818,9 @@ encrypted - 云硬盘是否加密，精确匹配，支持单个
     if (opts.diskSizeGB !== undefined && opts.diskSizeGB !== null) {
       postBody['diskSizeGB'] = opts.diskSizeGB
     }
+    if (opts.iops !== undefined && opts.iops !== null) {
+      postBody['iops'] = opts.iops
+    }
 
     let queryParams = {}
 
@@ -826,7 +830,7 @@ encrypted - 云硬盘是否加密，精确匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.3'
     }
 
     let contentTypes = ['application/json']
@@ -948,7 +952,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.3'
     }
 
     let contentTypes = ['application/json']
@@ -1077,7 +1081,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.3'
     }
 
     let contentTypes = ['application/json']
@@ -1188,7 +1192,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.3'
     }
 
     let contentTypes = ['application/json']
@@ -1307,7 +1311,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.3'
     }
 
     let contentTypes = ['application/json']
@@ -1420,7 +1424,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.3'
     }
 
     let contentTypes = ['application/json']

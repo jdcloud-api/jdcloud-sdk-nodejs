@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * yundingdatapush service.
- * @version 1.0.0
+ * @version 1.0.2
  */
 
 JDCloud.YUNDINGDATAPUSH = class YUNDINGDATAPUSH extends Service {
@@ -42,6 +42,452 @@ JDCloud.YUNDINGDATAPUSH = class YUNDINGDATAPUSH extends Service {
       options._defaultEndpoint.host || 'yundingdatapush.jdcloud-api.com'
     options.basePath = '/v1' // 默认要设为空""
     super(serviceId, options)
+  }
+
+  /**
+      *  查询已经开通的用户
+      * @param {Object} opts - parameters
+      * @param {string} opts.appkey - appkey
+      * @param {integer} [opts.pageNumber] - 页码  optional
+      * @param {integer} [opts.pageSize] - 页大小  optional
+      * @param {string} [opts.ydRdsInstanceId] - 云鼎数据库实例ID  optional
+      * @param {string} [opts.rdsInstanceName] - 数据库实例名称  optional
+      * @param {string} [opts.venderId] - 商家ID  optional
+      * @param {string} [opts.venderName] - 商家店铺名称  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param venderShow venders
+      */
+
+  describeDatapushVenders (opts, callback) {
+    opts = opts || {}
+
+    if (opts.appkey === undefined || opts.appkey === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appkey' when calling describeDatapushVenders"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.appkey !== undefined && opts.appkey !== null) {
+      queryParams['appkey'] = opts.appkey
+    }
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    if (opts.ydRdsInstanceId !== undefined && opts.ydRdsInstanceId !== null) {
+      queryParams['ydRdsInstanceId'] = opts.ydRdsInstanceId
+    }
+    if (opts.rdsInstanceName !== undefined && opts.rdsInstanceName !== null) {
+      queryParams['rdsInstanceName'] = opts.rdsInstanceName
+    }
+    if (opts.venderId !== undefined && opts.venderId !== null) {
+      queryParams['venderId'] = opts.venderId
+    }
+    if (opts.venderName !== undefined && opts.venderName !== null) {
+      queryParams['venderName'] = opts.venderName
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yundingdatapush/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeDatapushVenders with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/datapushVenders',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  添加数据推送用户
+      * @param {Object} opts - parameters
+      * @param {vender} opts.datapushVender - 添加/删除数据推送用户对象
+
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  addDatapushVender (opts, callback) {
+    opts = opts || {}
+
+    if (opts.datapushVender === undefined || opts.datapushVender === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.datapushVender' when calling addDatapushVender"
+      )
+    }
+
+    let postBody = {}
+    if (opts.datapushVender !== undefined && opts.datapushVender !== null) {
+      postBody['datapushVender'] = opts.datapushVender
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yundingdatapush/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call addDatapushVender with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/datapushVenders',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除数据推送用户
+      * @param {Object} opts - parameters
+      * @param {string} opts.appkey - appkey
+      * @param {string} opts.ydRdsInstanceId - 云鼎数据库实例ID
+      * @param {string} opts.venderId - 商家ID
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteDatapushVender (opts, callback) {
+    opts = opts || {}
+
+    if (opts.appkey === undefined || opts.appkey === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appkey' when calling deleteDatapushVender"
+      )
+    }
+    if (opts.ydRdsInstanceId === undefined || opts.ydRdsInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.ydRdsInstanceId' when calling deleteDatapushVender"
+      )
+    }
+    if (opts.venderId === undefined || opts.venderId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.venderId' when calling deleteDatapushVender"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.appkey !== undefined && opts.appkey !== null) {
+      queryParams['appkey'] = opts.appkey
+    }
+    if (opts.ydRdsInstanceId !== undefined && opts.ydRdsInstanceId !== null) {
+      queryParams['ydRdsInstanceId'] = opts.ydRdsInstanceId
+    }
+    if (opts.venderId !== undefined && opts.venderId !== null) {
+      queryParams['venderId'] = opts.venderId
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yundingdatapush/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteDatapushVender with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/datapushVenders',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询开通数据推送的数据库实例
+      * @param {Object} opts - parameters
+      * @param {string} opts.appkey - appkey
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param rdsInstance venders
+      */
+
+  describeRdsInstances (opts, callback) {
+    opts = opts || {}
+
+    if (opts.appkey === undefined || opts.appkey === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appkey' when calling describeRdsInstances"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.appkey !== undefined && opts.appkey !== null) {
+      queryParams['appkey'] = opts.appkey
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yundingdatapush/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeRdsInstances with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/describeRdsInstances',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
   }
 }
 module.exports = JDCloud.YUNDINGDATAPUSH

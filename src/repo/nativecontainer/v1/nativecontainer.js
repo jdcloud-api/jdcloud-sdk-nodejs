@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * nativecontainer service.
- * @version 1.0.2
+ * @version 2.1.0
  */
 
 JDCloud.NATIVECONTAINER = class NATIVECONTAINER extends Service {
@@ -98,7 +98,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -171,63 +171,70 @@ securityGroups - 安全组 id，精确匹配，支持多个
   }
 
   /**
-      *  创建一台或多台指定配置容器。
+      *  创建一台或多台指定配置容器
 - 创建容器需要通过实名认证
 - 镜像
-    - 容器的镜像通过镜像名称来确定
-    - nginx:tag 或 mysql/mysql-server:tag 这样命名的镜像表示 docker hub 官方镜像
-    - container-registry/image:tag 这样命名的镜像表示私有仓储的镜像
-    - 私有仓储必须兼容 docker registry 认证机制，并通过 secret 来保存机密信息
-- hostname 规范
-    - 支持两种方式：以标签方式书写或以完整主机名方式书写
-    - 标签规范
-        - 0-9，a-z(不分大小写)和 -（减号），其他的都是无效的字符串
-        - 不能以减号开始，也不能以减号结尾
-        - 最小1个字符，最大63个字符
-    - 完整的主机名由一系列标签与点连接组成
-        - 标签与标签之间使用“.”(点)进行连接
-        - 不能以“.”(点)开始，也不能以“.”(点)结尾
-        - 整个主机名（包括标签以及分隔点“.”）最多有63个ASCII字符
+  - 容器的镜像通过镜像名称来确定
+  - nginx:tag, mysql/mysql-server:tag这样命名的镜像表示docker hub官方镜像
+  - container-registry/image:tag这样命名的镜像表示私有仓储的镜像
+  - 私有仓储必须兼容docker registry认证机制，并通过secret来保存机密信息
+- hostname规范
+  - 支持两种方式：以标签方式书写或以完整主机名方式书写
+  - 标签规范
+    - 0-9，a-z(不分大小写)和-（减号），其他的都是无效的字符串
+    - 不能以减号开始，也不能以减号结尾
+    - 最小1个字符，最大63个字符
+  - 完整的主机名由一系列标签与点连接组成
+    - 标签与标签之间使用“.”(点)进行连接
+    - 不能以“.”(点)开始，也不能以“.”(点)结尾
+    - 整个主机名（包括标签以及分隔点“.”）最多有63个ASCII字符
+  - 正则表达式
+    - &#x60;^([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9])(\.([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]))*$&#x60;
 - 网络配置
-    - 指定主网卡配置信息
-        - 必须指定一个子网
-        - 一台云主机创建时必须指定一个安全组，至多指定 5 个安全组
-        - 可以指定 elasticIp 规格来约束创建的弹性 IP，带宽取值范围 [1-200]Mbps，步进 1Mbps
-        - 可以指定网卡的主 IP(primaryIpAddress)，该 IP 需要在子网 IP 范围内且未被占用，指定子网 IP 时 maxCount 只能为1
-        - 安全组 securityGroup 需与子网 Subnet 在同一个私有网络 VPC 内
-        - 主网卡 deviceIndex 设置为 1
+  - 指定主网卡配置信息
+    - 必须指定vpcId、subnetId、securityGroupIds
+    - 可以指定elasticIp规格来约束创建的弹性IP，带宽取值范围[1-200]Mbps，步进1Mbps
+    - 可以指定网卡的主IP(primaryIpAddress)和辅助IP(secondaryIpAddresses)，此时maxCount只能为1
+    - 可以指定希望的辅助IP个数(secondaryIpAddressCount)让系统自动创建内网IP
+    - 可以设置网卡的自动删除autoDelete属性，指明是否删除实例时自动删除网卡
+    - 安全组securityGroup需与子网Subnet在同一个私有网络VPC内
+    - 每个容器至多指定5个安全组
+    - 主网卡deviceIndex设置为0
 - 存储
-    - volume 分为 root volume 和 data volume，root volume 的挂载目录是 /，data volume 的挂载目录可以随意指定
-    - volume 的底层存储介质当前只支持 cloud 类别，也就是云硬盘
-    - 系统盘
-        - 云硬盘类型可以选择 ssd、premium-hdd
-        - 磁盘大小
-            - ssd：范围 [10, 100]GB，步长为 10G
-            - premium-hdd：范围 [20, 1000]GB，步长为 10G
-        - 自动删除
-            - 云盘默认跟随容器实例自动删除，如果是包年包月的数据盘或共享型数据盘，此参数不生效
-        - 可以选择已存在的云硬盘
-    - 数据盘
-        - 云硬盘类型可以选择 ssd、premium-hdd
-        - 磁盘大小
-            - ssd：范围[20,1000]GB，步长为10G
-            - premium-hdd：范围[20,3000]GB，步长为10G
-        - 自动删除
-            - 默认自动删除
-        - 可以选择已存在的云硬盘
-        - 单个容器最多可以挂载 7 个 data volume
-- 计费
-  - 弹性IP的计费模式，如果选择按用量类型可以单独设置，其它计费模式都以主机为准
-  - 云硬盘的计费模式以主机为准
+  - volume分为root volume和data volume，root volume的挂载目录是/，data volume的挂载目录可以随意指定
+  - volume的底层存储介质当前只支持cloud类别，也就是云硬盘
+  - 云盘类型为 ssd.io1 时，用户可以指定 iops，其他类型云盘无效，对已经存在的云盘无效，具体规则如下
+    - 步长 10
+    - 范围 [200，min(32000，size*50)]
+    - 默认值 size*30
+  - root volume
+  - root volume只能是cloud类别
+    - 云硬盘类型可以选择hdd.std1、ssd.gp1、ssd.io1
+    - 磁盘大小
+      - 所有类型：范围[10,100]GB，步长为10G
+    - 自动删除
+      - 默认自动删除
+    - 可以选择已存在的云硬盘
+  - data volume
+    - data volume当前只能选择cloud类别
+    - 云硬盘类型可以选择hdd.std1、ssd.gp1、ssd.io1
+    - 磁盘大小
+      - 所有类型：范围[20,4000]GB，步长为10G
+    - 自动删除
+      - 默认自动删除
+    - 可以选择已存在的云硬盘
+    - 可以从快照创建磁盘
+    - 单个容器可以挂载7个data volume
 - 容器日志
-    - 默认在本地分配10MB的存储空间，自动 rotate
+  - default：默认在本地分配10MB的存储空间，自动rotate
 - 其他
-    - 创建完成后，容器状态为running
-    - maxCount 为最大努力，不保证一定能达到 maxCount
+  - 创建完成后，容器状态为running
+  - maxCount为最大努力，不保证一定能达到maxCount
 
       * @param {Object} opts - parameters
-      * @param {containerSpec} [opts.containerSpec] - 创建容器规格  optional
-      * @param {integer} [opts.maxCount] - 购买实例数量；取值范围：[1,100]  optional
+      * @param {containerSpec} opts.containerSpec - 创建容器规格
+      * @param {integer} opts.maxCount - 购买实例数量；取值范围：[1,100]
+      * @param {string} [opts.clientToken] - 保证请求幂等性  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -248,12 +255,26 @@ securityGroups - 安全组 id，精确匹配，支持多个
 
     opts = opts || {}
 
+    if (opts.containerSpec === undefined || opts.containerSpec === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.containerSpec' when calling createContainers"
+      )
+    }
+    if (opts.maxCount === undefined || opts.maxCount === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.maxCount' when calling createContainers"
+      )
+    }
+
     let postBody = {}
     if (opts.containerSpec !== undefined && opts.containerSpec !== null) {
       postBody['containerSpec'] = opts.containerSpec
     }
     if (opts.maxCount !== undefined && opts.maxCount !== null) {
       postBody['maxCount'] = opts.maxCount
+    }
+    if (opts.clientToken !== undefined && opts.clientToken !== null) {
+      postBody['clientToken'] = opts.clientToken
     }
 
     let queryParams = {}
@@ -263,7 +284,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -375,7 +396,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -450,7 +471,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
   /**
       *  容器状态必须为 stopped、running 或 error状态。 &lt;br&gt;
 按量付费的实例，如不主动删除将一直运行，不再使用的实例，可通过本接口主动停用。&lt;br&gt;
-只能支持主动删除按量计费类型的实例。包年包月过期的容器也可以删除，其它的情况还请发工单系统。计费状态异常的容器无法删除。
+只能支持主动删除按配置计费类型的实例。包年包月过期的容器也可以删除，其它的情况还请发工单系统。计费状态异常的容器无法删除。
 
       * @param {Object} opts - parameters
       * @param {string} opts.containerId - Container ID
@@ -488,7 +509,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -601,7 +622,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -713,7 +734,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -786,12 +807,13 @@ securityGroups - 安全组 id，精确匹配，支持多个
   }
 
   /**
-      *  修改容器的 名称 和 描述。
+      *  修改容器的 名称 和 描述。&lt;br&gt;
+name 和 description 必须要指定一个
 
       * @param {Object} opts - parameters
       * @param {string} opts.containerId - Container ID
       * @param {string} [opts.name] - 容器名称  optional
-      * @param {string} [opts.description] - 容器描述；和description必须要指定一个  optional
+      * @param {string} [opts.description] - 容器描述  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -833,7 +855,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -956,7 +978,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -1077,7 +1099,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -1204,7 +1226,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -1290,13 +1312,13 @@ securityGroups - 安全组 id，精确匹配，支持多个
 
       * @param {Object} opts - parameters
       * @param {string} opts.containerId - Container ID
-      * @param {string} [opts.image] - 镜像名称 &lt;/br&gt; 1. Docker Hub官方镜像通过类似nginx, mysql/mysql-server的名字指定 &lt;/br&gt; &lt;/br&gt; repository长度最大256个字符，tag最大128个字符，registry最大255个字符 &lt;/br&gt; 下载镜像超时时间：10分钟  optional
-      * @param {string} [opts.secret] - secret引用名称；使用Docker Hub和京东云CR的镜像不需要secret  optional
-      * @param {array} [opts.command] - 容器执行命令，如果不指定默认是docker镜像的ENTRYPOINT  optional
-      * @param {array} [opts.args] - 容器执行命令的参数，如果不指定默认是docker镜像的CMD  optional
+      * @param {string} opts.image - 镜像名称 &lt;/br&gt; 1. Docker Hub官方镜像通过类似nginx, mysql/mysql-server的名字指定 &lt;/br&gt; &lt;/br&gt; repository长度最大256个字符，tag最大128个字符，registry最大255个字符 &lt;/br&gt; 下载镜像超时时间：10分钟
+      * @param {string} [opts.secret] - 镜像仓库认证信息；使用Docker Hub和京东云CR的镜像不需要secret  optional
+      * @param {array} [opts.command] - 容器启动执行的命令, 如果不指定默认是镜像的ENTRYPOINT. 数组字符总长度范围：[0-256]  optional
+      * @param {array} [opts.args] - 容器启动执行命令的参数, 如果不指定默认是镜像的CMD. 数组字符总长度范围：[0-2048]  optional
       * @param {boolean} [opts.tty] - 容器是否分配tty。默认不分配  optional
-      * @param {string} [opts.workingDir] - 容器的工作目录。如果不指定，默认是根目录（/）；必须是绝对路径  optional
-      * @param {array} [opts.envs] - 容器执行的环境变量；如果和镜像中的环境变量Key相同，会覆盖镜像中的值；&lt;/br&gt; 最大10对  optional
+      * @param {string} [opts.workingDir] - 容器的工作目录。如果不指定，默认是根目录（/），必须是绝对路径。字符长度范围：[0-1024]  optional
+      * @param {array} [opts.envs] - 容器执行的环境变量；如果和镜像中的环境变量Key相同，会覆盖镜像中的值；&lt;/br&gt; 最大100对  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1319,6 +1341,11 @@ securityGroups - 安全组 id，精确匹配，支持多个
     if (opts.containerId === undefined || opts.containerId === null) {
       throw new Error(
         "Missing the required parameter 'opts.containerId' when calling rebuildContainer"
+      )
+    }
+    if (opts.image === undefined || opts.image === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.image' when calling rebuildContainer"
       )
     }
 
@@ -1353,7 +1380,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -1474,7 +1501,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -1595,7 +1622,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -1729,7 +1756,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -1802,6 +1829,116 @@ securityGroups - 安全组 id，精确匹配，支持多个
   }
 
   /**
+      *  查询实例规格信息列表
+
+      * @param {Object} opts - parameters
+      * @param {filter} [opts.filters] - instanceTypes - 实例规格，精确匹配，支持多个
+az - 可用区，精确匹配，支持多个
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param instanceType instanceTypes
+      * @param instanceType specificInstanceTypes
+      * @param integer totalCount  总数量
+      */
+
+  describeInstanceTypes (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeInstanceTypes"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.1.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeInstanceTypes with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/instanceTypes',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  查询资源的配额，支持：原生容器 pod 和 secret.
 
       * @param {Object} opts - parameters
@@ -1844,7 +1981,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -1961,7 +2098,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -2034,18 +2171,16 @@ securityGroups - 安全组 id，精确匹配，支持多个
   }
 
   /**
-      *  创建一个 secret，用于存放镜像仓库机密相关信息。
+      *  创建一个 secret，用于存放镜像仓库认证信息。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.name - 机密数据名称，不能重复
+      * @param {string} opts.name - 镜像仓库认证信息名称，不能重复
 
-      * @param {string} opts.secretType - 机密数据的类型，目前仅支持：docker-registry 类型，用来和docker registry认证的类型。
+      * @param {string} opts.secretType - 镜像仓库认证信息类型，目前仅支持：docker-registry 类型，用来和docker registry认证的类型。
 
-      * @param {dockerRegistryData} [opts.data] - 机密的数据。&lt;br&gt;
-key 的有效字符包括字母、数字、-、_和.； &lt;br&gt;
-value 是 Base64 编码的字符串，不能包含换行符（在 linux 下使用 base64 -w 0选项），每个value长度上限为4KB，整个data的长度不能超过256KB; &lt;br&gt;
+      * @param {dockerRegistryData} opts.data - 镜像仓库认证信息数据。&lt;br&gt;
 必须包含server、username、password 字段，email 字段是可选的。&lt;br&gt;
-  optional
+
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -2076,6 +2211,11 @@ value 是 Base64 编码的字符串，不能包含换行符（在 linux 下使�
         "Missing the required parameter 'opts.secretType' when calling createSecret"
       )
     }
+    if (opts.data === undefined || opts.data === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.data' when calling createSecret"
+      )
+    }
 
     let postBody = {}
     if (opts.name !== undefined && opts.name !== null) {
@@ -2095,7 +2235,7 @@ value 是 Base64 编码的字符串，不能包含换行符（在 linux 下使�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -2207,7 +2347,7 @@ value 是 Base64 编码的字符串，不能包含换行符（在 linux 下使�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -2318,7 +2458,7 @@ value 是 Base64 编码的字符串，不能包含换行符（在 linux 下使�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.1.0'
     }
 
     let contentTypes = ['application/json']

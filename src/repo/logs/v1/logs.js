@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * logs service.
- * @version 1.2.0
+ * @version 1.2.1
  */
 
 JDCloud.LOGS = class LOGS extends Service {
@@ -42,6 +42,695 @@ JDCloud.LOGS = class LOGS extends Service {
       options._defaultEndpoint.host || 'logs.jcloud.com'
     options.basePath = '/v1' // 默认要设为空""
     super(serviceId, options)
+  }
+
+  /**
+      *  采集配置的基本信息。
+      * @param {Object} opts - parameters
+      * @param {string} opts.collectInfoUID - 采集配置 UID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string uID  UID
+      * @param string appCode  日志来源
+      * @param collectTempalteEnd detail
+      * @param integer enabled
+      * @param boolean hasResource  是否存在资源
+      * @param string logsetUID  日志集 UID
+      * @param string logtopicUID  日志主题 UID
+      * @param string resourceType  采集实例类型, 只能是 all/part
+      * @param string serviceCode  产品线
+      * @param string templateName  日志类型名称
+      * @param string templateUID  日志类型
+      */
+
+  describeCollectInfo (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeCollectInfo"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.collectInfoUID === undefined || opts.collectInfoUID === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.collectInfoUID' when calling describeCollectInfo"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      collectInfoUID: opts.collectInfoUID
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeCollectInfo with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/collectinfos/{collectInfoUID}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新采集配置。若传入的实例列表不为空，将覆盖之前的所有实例，而非新增。
+      * @param {Object} opts - parameters
+      * @param {string} opts.collectInfoUID - 采集配置 UID
+      * @param {boolean} opts.enabled - 采集状态，0-禁用，1-启用
+      * @param {string} opts.resourceType - 采集实例类型, 只能是 all/part  当选择all时，传入的实例列表无效
+      * @param {array} [opts.resources] - 采集实例列表（存在上限限制20）  optional
+      * @param {string} [opts.logPath] - 日志路径。当appcode为custom时为必填。目前仅支持对 Linux 云主机上的日志进行采集，路径支持通配符“*”和“？”，文件路径应符合 Linux 的文件路径规则  optional
+      * @param {string} [opts.logFile] - 日志文件名。当appcode为custom时为必填。日志文件名支持正则表达式。  optional
+      * @param {array} [opts.logFilters] - 过滤器。设置过滤器后可根据用户设定的关键词采集部分日志，如仅采集 Error 的日志。目前最大允许5个。  optional
+      * @param {boolean} [opts.filterEnabled] - 过滤器是否启用。当appcode为custom时必填  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  updateCollectInfo (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  updateCollectInfo"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.collectInfoUID === undefined || opts.collectInfoUID === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.collectInfoUID' when calling updateCollectInfo"
+      )
+    }
+    if (opts.enabled === undefined || opts.enabled === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.enabled' when calling updateCollectInfo"
+      )
+    }
+    if (opts.resourceType === undefined || opts.resourceType === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.resourceType' when calling updateCollectInfo"
+      )
+    }
+
+    let postBody = {}
+    if (opts.enabled !== undefined && opts.enabled !== null) {
+      postBody['enabled'] = opts.enabled
+    }
+    if (opts.resourceType !== undefined && opts.resourceType !== null) {
+      postBody['resourceType'] = opts.resourceType
+    }
+    if (opts.resources !== undefined && opts.resources !== null) {
+      postBody['resources'] = opts.resources
+    }
+    if (opts.logPath !== undefined && opts.logPath !== null) {
+      postBody['logPath'] = opts.logPath
+    }
+    if (opts.logFile !== undefined && opts.logFile !== null) {
+      postBody['logFile'] = opts.logFile
+    }
+    if (opts.logFilters !== undefined && opts.logFilters !== null) {
+      postBody['logFilters'] = opts.logFilters
+    }
+    if (opts.filterEnabled !== undefined && opts.filterEnabled !== null) {
+      postBody['filterEnabled'] = opts.filterEnabled
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      collectInfoUID: opts.collectInfoUID
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call updateCollectInfo with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/collectinfos/{collectInfoUID}',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询采集配置的实例列表
+      * @param {Object} opts - parameters
+      * @param {string} opts.collectInfoUID - 采集配置 UID
+      * @param {integer} [opts.pageNumber] - 当前所在页，默认为1  optional
+      * @param {integer} [opts.pageSize] - 页面大小，默认为20；取值范围[1, 100]  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param resourceEnd data
+      * @param integer numberPages  总页数
+      * @param integer numberRecords  总记录数
+      * @param integer pageNumber  当前页码
+      * @param integer pageSize  分页大小
+      */
+
+  describeCollectResources (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeCollectResources"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.collectInfoUID === undefined || opts.collectInfoUID === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.collectInfoUID' when calling describeCollectResources"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      collectInfoUID: opts.collectInfoUID
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeCollectResources with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/collectinfos/{collectInfoUID}/resources',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  增量更新采集实例列表。更新的动作支持 add 、 remove
+      * @param {Object} opts - parameters
+      * @param {string} opts.collectInfoUID - 采集配置 UID
+      * @param {string} opts.action - action
+      * @param {array} [opts.resources] - 采集实例列表（系统日志存在上限限制20）  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  updateCollectResources (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  updateCollectResources"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.collectInfoUID === undefined || opts.collectInfoUID === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.collectInfoUID' when calling updateCollectResources"
+      )
+    }
+    if (opts.action === undefined || opts.action === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.action' when calling updateCollectResources"
+      )
+    }
+
+    let postBody = {}
+    if (opts.action !== undefined && opts.action !== null) {
+      postBody['action'] = opts.action
+    }
+    if (opts.resources !== undefined && opts.resources !== null) {
+      postBody['resources'] = opts.resources
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      collectInfoUID: opts.collectInfoUID
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call updateCollectResources with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/collectinfos/{collectInfoUID}:updateResources',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建采集配置，支持基于云产品模板生成采集模板；支持用于自定义采集配置。
+      * @param {Object} opts - parameters
+      * @param {string} opts.logtopicUID - 日志主题 UID
+      * @param {boolean} opts.enabled - 采集状态，0-禁用，1-启用
+      * @param {string} opts.appCode - 日志来源，只能是 custom/jdcloud
+      * @param {string} opts.serviceCode - 产品线,当日志来源为jdcloud时，必填
+      * @param {string} opts.resourceType - 采集实例类型, 只能是 all/part  当选择all时，传入的实例列表无效；custom类型的采集配置目前仅支持part方式，即用户指定实例列表；
+      * @param {array} [opts.resources] - 采集实例列表：jdcloud类型最多添加20个资源；custom类型支持的资源数量不限；  optional
+      * @param {string} [opts.templateUID] - 日志类型。当appcode为jdcloud时为必填  optional
+      * @param {string} [opts.logPath] - 日志路径。当appcode为custom时为必填。目前仅支持对 Linux 云主机上的日志进行采集，路径支持通配符“*”和“？”，文件路径应符合 Linux 的文件路径规则  optional
+      * @param {string} [opts.logFile] - 日志文件名。当appcode为custom时为必填。日志文件名支持正则表达式。  optional
+      * @param {array} [opts.logFilters] - 过滤器。设置过滤器后可根据用户设定的关键词采集部分日志，如仅采集 Error 的日志。目前最大允许5个。  optional
+      * @param {boolean} [opts.filterEnabled] - 过滤器是否启用。当appcode为custom时必填  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string uID  UID
+      */
+
+  createCollectInfo (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createCollectInfo"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.logtopicUID === undefined || opts.logtopicUID === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.logtopicUID' when calling createCollectInfo"
+      )
+    }
+    if (opts.enabled === undefined || opts.enabled === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.enabled' when calling createCollectInfo"
+      )
+    }
+    if (opts.appCode === undefined || opts.appCode === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appCode' when calling createCollectInfo"
+      )
+    }
+    if (opts.serviceCode === undefined || opts.serviceCode === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.serviceCode' when calling createCollectInfo"
+      )
+    }
+    if (opts.resourceType === undefined || opts.resourceType === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.resourceType' when calling createCollectInfo"
+      )
+    }
+
+    let postBody = {}
+    if (opts.enabled !== undefined && opts.enabled !== null) {
+      postBody['enabled'] = opts.enabled
+    }
+    if (opts.appCode !== undefined && opts.appCode !== null) {
+      postBody['appCode'] = opts.appCode
+    }
+    if (opts.serviceCode !== undefined && opts.serviceCode !== null) {
+      postBody['serviceCode'] = opts.serviceCode
+    }
+    if (opts.resourceType !== undefined && opts.resourceType !== null) {
+      postBody['resourceType'] = opts.resourceType
+    }
+    if (opts.resources !== undefined && opts.resources !== null) {
+      postBody['resources'] = opts.resources
+    }
+    if (opts.templateUID !== undefined && opts.templateUID !== null) {
+      postBody['templateUID'] = opts.templateUID
+    }
+    if (opts.logPath !== undefined && opts.logPath !== null) {
+      postBody['logPath'] = opts.logPath
+    }
+    if (opts.logFile !== undefined && opts.logFile !== null) {
+      postBody['logFile'] = opts.logFile
+    }
+    if (opts.logFilters !== undefined && opts.logFilters !== null) {
+      postBody['logFilters'] = opts.logFilters
+    }
+    if (opts.filterEnabled !== undefined && opts.filterEnabled !== null) {
+      postBody['filterEnabled'] = opts.filterEnabled
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      logtopicUID: opts.logtopicUID
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createCollectInfo with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/logtopics/{logtopicUID}/collectinfos',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
   }
 
   /**
@@ -85,7 +774,7 @@ JDCloud.LOGS = class LOGS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -200,7 +889,7 @@ JDCloud.LOGS = class LOGS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -273,6 +962,1206 @@ JDCloud.LOGS = class LOGS extends Service {
   }
 
   /**
+      *  查询日志集列表。支持按照名称进行模糊查询。结果中包含了该日志集是否存在日志主题的信息。存在日志主题的日志集不允许删除。
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 当前所在页，默认为1  optional
+      * @param {integer} [opts.pageSize] - 页面大小，默认为20；取值范围[1, 100]  optional
+      * @param {string} [opts.name] - 日志集名称  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param logsetEnd data
+      * @param integer numberPages  总页数
+      * @param integer numberRecords  总记录数
+      * @param integer pageNumber  当前页码
+      * @param integer pageSize  分页大小
+      */
+
+  describeLogsets (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeLogsets"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    if (opts.name !== undefined && opts.name !== null) {
+      queryParams['name'] = opts.name
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeLogsets with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/logsets',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建日志集。名称不可重复。
+      * @param {Object} opts - parameters
+      * @param {string} opts.name - 日志集名称
+      * @param {string} [opts.description] - 日志集描述  optional
+      * @param {integer} opts.lifeCycle - 保存周期，只能是 7， 15， 30
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string uID  UID
+      */
+
+  createLogset (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createLogset"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.name === undefined || opts.name === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.name' when calling createLogset"
+      )
+    }
+    if (opts.lifeCycle === undefined || opts.lifeCycle === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.lifeCycle' when calling createLogset"
+      )
+    }
+
+    let postBody = {}
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+    if (opts.lifeCycle !== undefined && opts.lifeCycle !== null) {
+      postBody['lifeCycle'] = opts.lifeCycle
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createLogset with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/logsets',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询日志集详情。
+      * @param {Object} opts - parameters
+      * @param {string} opts.logsetUID - 日志集 UID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string uID  UID
+      * @param string createTime  创建时间
+      * @param string description  描述信息
+      * @param boolean hasTopic  是否存在日志主题
+      * @param integer lifeCycle  保存周期
+      * @param string name  日志集名称
+      * @param string region  地域信息
+      */
+
+  describeLogset (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeLogset"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.logsetUID === undefined || opts.logsetUID === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.logsetUID' when calling describeLogset"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      logsetUID: opts.logsetUID
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeLogset with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/logsets/{logsetUID}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新日志集。日志集名称不可更新。
+      * @param {Object} opts - parameters
+      * @param {string} opts.logsetUID - 日志集 UID
+      * @param {string} [opts.description] - 日志集描述  optional
+      * @param {integer} [opts.lifeCycle] - 保存周期，只能是 7， 15， 30  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  updateLogset (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  updateLogset"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.logsetUID === undefined || opts.logsetUID === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.logsetUID' when calling updateLogset"
+      )
+    }
+
+    let postBody = {}
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+    if (opts.lifeCycle !== undefined && opts.lifeCycle !== null) {
+      postBody['lifeCycle'] = opts.lifeCycle
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      logsetUID: opts.logsetUID
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call updateLogset with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/logsets/{logsetUID}',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除日志集,删除多个日志集时，任意的日志集包含了日志主题的，将导致全部删除失败。
+      * @param {Object} opts - parameters
+      * @param {string} opts.logsetUIDs - 日志集ID，多个日志集ID以逗号分割
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteLogset (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteLogset"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.logsetUIDs === undefined || opts.logsetUIDs === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.logsetUIDs' when calling deleteLogset"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      logsetUIDs: opts.logsetUIDs
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteLogset with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/logsets/{logsetUIDs}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询日志主题列表，支持按照名称模糊查询。
+      * @param {Object} opts - parameters
+      * @param {string} opts.logsetUID - 日志集 UID
+      * @param {integer} [opts.pageNumber] - 当前所在页，默认为1  optional
+      * @param {integer} [opts.pageSize] - 页面大小，默认为20；取值范围[1, 100]  optional
+      * @param {string} [opts.name] - 日志主题名称  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param logtopicDetailEnd data
+      * @param integer numberPages  总页数
+      * @param integer numberRecords  总记录数
+      * @param integer pageNumber  当前页码
+      * @param integer pageSize  分页大小
+      */
+
+  describeLogtopics (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeLogtopics"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.logsetUID === undefined || opts.logsetUID === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.logsetUID' when calling describeLogtopics"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    if (opts.name !== undefined && opts.name !== null) {
+      queryParams['name'] = opts.name
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      logsetUID: opts.logsetUID
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeLogtopics with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/logsets/{logsetUID}/logtopics',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建日志主题，不可与当前日志集下现有日志主题重名。
+      * @param {Object} opts - parameters
+      * @param {string} opts.logsetUID - 日志集 UID
+      * @param {string} opts.name - 日志主题名称
+      * @param {string} [opts.description] - 日志集描述  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string uID  UID
+      */
+
+  createLogtopic (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createLogtopic"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.logsetUID === undefined || opts.logsetUID === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.logsetUID' when calling createLogtopic"
+      )
+    }
+    if (opts.name === undefined || opts.name === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.name' when calling createLogtopic"
+      )
+    }
+
+    let postBody = {}
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      logsetUID: opts.logsetUID
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createLogtopic with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/logsets/{logsetUID}/logtopics',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除日志主题。其采集配置与采集实例配置将一并删除。
+      * @param {Object} opts - parameters
+      * @param {string} opts.logsetUID - 日志集 UID
+      * @param {string} opts.logtopicUIDs - 日志主题ID，多个日志主题ID以逗号分割
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteLogtopic (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteLogtopic"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.logsetUID === undefined || opts.logsetUID === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.logsetUID' when calling deleteLogtopic"
+      )
+    }
+    if (opts.logtopicUIDs === undefined || opts.logtopicUIDs === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.logtopicUIDs' when calling deleteLogtopic"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      logsetUID: opts.logsetUID,
+      logtopicUIDs: opts.logtopicUIDs
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteLogtopic with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/logsets/{logsetUID}/logtopics/{logtopicUIDs}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询日志主题基本信息。如配置了采集配置，将返回采集配置的UID
+      * @param {Object} opts - parameters
+      * @param {string} opts.logtopicUID - 日志主题 UID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string uID  UID
+      * @param string appCode  日志来源,只在查询单个日志主题并且创建了采集配置时返回值
+      * @param string collectInfoUID  采集配置UID
+      * @param string createTime  创建时间
+      * @param string description  描述信息
+      * @param string logsetName  所属日志集名称
+      * @param string logsetUID  所属日志集
+      * @param string name  日志主题名称
+      * @param string region  地域信息
+      */
+
+  describeLogtopic (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeLogtopic"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.logtopicUID === undefined || opts.logtopicUID === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.logtopicUID' when calling describeLogtopic"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      logtopicUID: opts.logtopicUID
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeLogtopic with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/logtopics/{logtopicUID}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新日志主题。日志主题名称不可更新。
+      * @param {Object} opts - parameters
+      * @param {string} opts.logtopicUID - 日志主题 UID
+      * @param {string} opts.description - 日志主题描述
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  updateLogtopic (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  updateLogtopic"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.logtopicUID === undefined || opts.logtopicUID === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.logtopicUID' when calling updateLogtopic"
+      )
+    }
+    if (opts.description === undefined || opts.description === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.description' when calling updateLogtopic"
+      )
+    }
+
+    let postBody = {}
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      logtopicUID: opts.logtopicUID
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call updateLogtopic with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/logtopics/{logtopicUID}',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  自定义日志上报。
       * @param {Object} opts - parameters
       * @param {string} opts.logtopicUID - 日志主题uid
@@ -311,7 +2200,7 @@ JDCloud.LOGS = class LOGS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.1'
     }
 
     let contentTypes = ['application/json']

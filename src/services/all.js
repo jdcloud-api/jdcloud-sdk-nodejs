@@ -29,6 +29,7 @@ module.exports = {
   VM: require('./vm'),
   NATIVECONTAINER: require('./nativecontainer'),
   POD: require('./pod'),
+  IOTCORE: require('./iotcore'),
   JKE: require('./jke'),
   AMS: require('./ams'),
   JDRO: require('./jdro'),
@@ -58,5 +59,7 @@ module.exports = {
   PIPELINE: require('./pipeline'),
   CONTAINERREGISTRY: require('./containerregistry'),
   PARTNER: require('./partner'),
+  IOTCLOUDGATEWAY: require('./iotcloudgateway'),
+  INDUSTRYDATA: require('./industrydata'),
   JDW: require('./jdw')
 }

@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * elite service.
- * @version 1.0.5
+ * @version 1.0.6
  */
 
 JDCloud.ELITE = class ELITE extends Service {
@@ -42,6 +42,121 @@ JDCloud.ELITE = class ELITE extends Service {
       options._defaultEndpoint.host || 'elite.cn-south-1.jdcloud-api.com'
     options.basePath = '/v1' // 默认要设为空""
     super(serviceId, options)
+  }
+
+  /**
+      *  查询交付信息接口
+      * @param {Object} opts - parameters
+      * @param {string} opts.orderNumber - 订单号
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status  true为成功，false为失败
+      * @param string message  描述信息
+      * @param queryDeliveryInfoResultVo data  查询数据结果
+      */
+
+  jdxQueryDeliveryInfo (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  jdxQueryDeliveryInfo"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.orderNumber === undefined || opts.orderNumber === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.orderNumber' when calling jdxQueryDeliveryInfo"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.orderNumber !== undefined && opts.orderNumber !== null) {
+      queryParams['orderNumber'] = opts.orderNumber
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call jdxQueryDeliveryInfo with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/jdxQueryDeliveryInfo',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
   }
 
   /**
@@ -87,7 +202,7 @@ JDCloud.ELITE = class ELITE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -160,6 +275,122 @@ JDCloud.ELITE = class ELITE extends Service {
   }
 
   /**
+      *  下单接口
+      * @param {Object} opts - parameters
+      * @param {createOrderInfo} opts.createOrderInfo - 下单信息
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status  true为成功，false为失败
+      * @param string message  描述信息
+      * @param createOrderResultVo data  下单后生成的订单号
+      */
+
+  jdxCreateOrder (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  jdxCreateOrder"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.createOrderInfo === undefined || opts.createOrderInfo === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.createOrderInfo' when calling jdxCreateOrder"
+      )
+    }
+
+    let postBody = {}
+    if (opts.createOrderInfo !== undefined && opts.createOrderInfo !== null) {
+      postBody['createOrderInfo'] = opts.createOrderInfo
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call jdxCreateOrder with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/jdxCreateOrder',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  查询价格
       * @param {Object} opts - parameters
       * @param {queryPriceParam} opts.queryPriceParam - 查询价格参数
@@ -203,7 +434,7 @@ JDCloud.ELITE = class ELITE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -248,6 +479,130 @@ JDCloud.ELITE = class ELITE extends Service {
     let request = this.makeRequest(
       '/regions/{regionId}/jdxQueryPrice',
       'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  输出商品接口
+      * @param {Object} opts - parameters
+      * @param {integer} opts.pageNo - 页码（最小1）
+      * @param {integer} opts.pageSize - 每页记录数（最小10，最大100）
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status  true为成功，false为失败
+      * @param string message  描述信息
+      * @param jdxProductVoListData data  查询数据结果
+      */
+
+  jdxQueryProduct (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  jdxQueryProduct"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.pageNo === undefined || opts.pageNo === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.pageNo' when calling jdxQueryProduct"
+      )
+    }
+    if (opts.pageSize === undefined || opts.pageSize === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.pageSize' when calling jdxQueryProduct"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNo !== undefined && opts.pageNo !== null) {
+      queryParams['pageNo'] = opts.pageNo
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call jdxQueryProduct with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/jdxQueryProduct',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -343,7 +698,7 @@ JDCloud.ELITE = class ELITE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -462,7 +817,7 @@ JDCloud.ELITE = class ELITE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -583,7 +938,7 @@ JDCloud.ELITE = class ELITE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -711,7 +1066,7 @@ JDCloud.ELITE = class ELITE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.6'
     }
 
     let contentTypes = ['application/json']

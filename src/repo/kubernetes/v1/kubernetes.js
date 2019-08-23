@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * kubernetes service.
- * @version 0.4.0
+ * @version 0.5.1
  */
 
 JDCloud.KUBERNETES = class KUBERNETES extends Service {
@@ -88,7 +88,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -189,7 +189,8 @@ id - id，支持多个
       * @param {string} opts.masterCidr - k8s的master的cidr
       * @param {string} opts.accessKey - 用户的AccessKey，插件调用open-api时的认证凭证
       * @param {string} opts.secretKey - 用户的SecretKey，插件调用open-api时的认证凭证
-      * @param {boolean} [opts.userMetrics] - 是否启用用户自定义监控，默认不启用  optional
+      * @param {boolean} [opts.userMetrics] - deprecated 在addonsConfig中同时指定，将被addonsConfig的设置覆盖 &lt;br&gt;是否启用用户自定义监控  optional
+      * @param {array} [opts.addonsConfig] - 集群组件配置  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -273,6 +274,9 @@ id - id，支持多个
     if (opts.userMetrics !== undefined && opts.userMetrics !== null) {
       postBody['userMetrics'] = opts.userMetrics
     }
+    if (opts.addonsConfig !== undefined && opts.addonsConfig !== null) {
+      postBody['addonsConfig'] = opts.addonsConfig
+    }
 
     let queryParams = {}
 
@@ -281,7 +285,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -392,7 +396,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -511,7 +515,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -621,7 +625,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -694,7 +698,7 @@ id - id，支持多个
   }
 
   /**
-      *  设置用户自定义监控状态
+      *  Deprecated 建议使用 setAddons 接口 &lt;br&gt;设置用户自定义监控状态
       * @param {Object} opts - parameters
       * @param {string} opts.clusterId - 集群 ID
       * @param {boolean} [opts.enabled] - 是否开启自定义监控  optional
@@ -736,7 +740,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -847,7 +851,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -964,7 +968,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -1091,7 +1095,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -1169,7 +1173,7 @@ id - id，支持多个
       * @param {string} opts.clusterId - 集群 ID
       * @param {string} opts.scope - 升级范围
       * @param {array} [opts.nodeGroupIds] - 节点组 id  optional
-      * @param {string} opts.verison - 指定升级到的版本
+      * @param {string} opts.version - 指定升级到的版本
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1199,9 +1203,9 @@ id - id，支持多个
         "Missing the required parameter 'opts.scope' when calling upgradeCluster"
       )
     }
-    if (opts.verison === undefined || opts.verison === null) {
+    if (opts.version === undefined || opts.version === null) {
       throw new Error(
-        "Missing the required parameter 'opts.verison' when calling upgradeCluster"
+        "Missing the required parameter 'opts.version' when calling upgradeCluster"
       )
     }
 
@@ -1212,8 +1216,8 @@ id - id，支持多个
     if (opts.nodeGroupIds !== undefined && opts.nodeGroupIds !== null) {
       postBody['nodeGroupIds'] = opts.nodeGroupIds
     }
-    if (opts.verison !== undefined && opts.verison !== null) {
-      postBody['verison'] = opts.verison
+    if (opts.version !== undefined && opts.version !== null) {
+      postBody['version'] = opts.version
     }
 
     let queryParams = {}
@@ -1224,7 +1228,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -1268,6 +1272,121 @@ id - id，支持多个
 
     let request = this.makeRequest(
       '/regions/{regionId}/clusters/{clusterId}:upgradeCluster',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  设置集群组件
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 集群 ID
+      * @param {array} [opts.addonsConfig] - 需要设置的集群组件配置  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  setAddons (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  setAddons"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling setAddons"
+      )
+    }
+
+    let postBody = {}
+    if (opts.addonsConfig !== undefined && opts.addonsConfig !== null) {
+      postBody['addonsConfig'] = opts.addonsConfig
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      clusterId: opts.clusterId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call setAddons with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/clusters/{clusterId}:setAddons',
       'POST',
       pathParams,
       queryParams,
@@ -1344,7 +1463,7 @@ clusterName - 根据名称查询 cluster
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -1513,7 +1632,7 @@ clusterName - 根据名称查询 cluster
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -1624,7 +1743,7 @@ clusterName - 根据名称查询 cluster
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -1743,7 +1862,7 @@ clusterName - 根据名称查询 cluster
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -1853,7 +1972,7 @@ clusterName - 根据名称查询 cluster
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -1973,7 +2092,7 @@ clusterName - 根据名称查询 cluster
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -2093,7 +2212,7 @@ clusterName - 根据名称查询 cluster
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -2204,7 +2323,7 @@ clusterName - 根据名称查询 cluster
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -2310,7 +2429,7 @@ clusterName - 根据名称查询 cluster
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -2413,7 +2532,7 @@ clusterName - 根据名称查询 cluster
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -2520,7 +2639,7 @@ clusterName - 根据名称查询 cluster
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -2631,7 +2750,7 @@ clusterName - 根据名称查询 cluster
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -2746,7 +2865,7 @@ clusterName - 根据名称查询 cluster
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -2866,7 +2985,7 @@ clusterName - 根据名称查询 cluster
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
     }
 
     let contentTypes = ['application/json']

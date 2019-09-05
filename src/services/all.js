@@ -14,6 +14,7 @@ module.exports = {
   SOP: require('./sop'),
   FUNCTION: require('./function'),
   RMS: require('./rms'),
+  EDCPS: require('./edcps'),
   PORTAL: require('./portal'),
   LOGS: require('./logs'),
   ORDER: require('./order'),

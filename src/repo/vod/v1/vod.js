@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  * Watermark
- * 水印管理
+ * 水印管理相关接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * vod service.
- * @version 1.1.3
+ * @version 1.1.5
  */
 
 JDCloud.VOD = class VOD extends Service {
@@ -45,8 +45,7 @@ JDCloud.VOD = class VOD extends Service {
   }
 
   /**
-      *  查询分类列表，按照分页方式，返回分类列表信息
-
+      *  查询分类列表。按照分页方式，返回分类列表信息。
       * @param {Object} opts - parameters
       * @param {integer} [opts.pageNumber] - 页码；默认值为 1  optional
       * @param {integer} [opts.pageSize] - 分页大小；默认值为 10；取值范围 [10, 100]  optional
@@ -74,7 +73,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -148,7 +147,6 @@ JDCloud.VOD = class VOD extends Service {
 
   /**
       *  添加分类
-
       * @param {Object} opts - parameters
       * @param {string} opts.name - 分类名称
       * @param {integer} [opts.parentId] - 父分类ID，取值为 0 或 null 时，表示该分类为一级分类
@@ -186,7 +184,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -285,7 +283,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -384,7 +382,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -497,7 +495,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -595,7 +593,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -696,7 +694,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -798,7 +796,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -897,7 +895,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -970,7 +968,7 @@ JDCloud.VOD = class VOD extends Service {
   }
 
   /**
-      *  删除域名
+      *  删除域名。执行该操作，需确保域名已被停用。
       * @param {Object} opts - parameters
       * @param {integer} opts.domainId - 域名ID
       * @param {string} callback - callback
@@ -995,7 +993,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -1094,7 +1092,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -1193,7 +1191,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -1292,7 +1290,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -1426,7 +1424,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -1525,7 +1523,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -1650,7 +1648,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -1767,7 +1765,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -1866,7 +1864,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -1983,7 +1981,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -2082,7 +2080,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -2199,7 +2197,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -2298,7 +2296,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -2342,6 +2340,232 @@ JDCloud.VOD = class VOD extends Service {
 
     let request = this.makeRequest(
       '/domains/{domainId}:getIPRule',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  设置CDN域名SSL配置
+      * @param {Object} opts - parameters
+      * @param {integer} opts.domainId - 域名ID
+      * @param {string} [opts.source] - 证书来源。取值范围：default  optional
+      * @param {string} [opts.title] - 证书标题  optional
+      * @param {string} [opts.sslCert] - 证书内容  optional
+      * @param {string} [opts.sslKey] - 证书私钥  optional
+      * @param {string} [opts.jumpType] - 跳转类型。取值范围：
+default - 采用回源域名的默认协议
+http - 强制采用http协议回源
+https - 强制采用https协议回源
+  optional
+      * @param {boolean} [opts.enabled] - SSL配置启用状态  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  setHttpSsl (opts, callback) {
+    opts = opts || {}
+
+    if (opts.domainId === undefined || opts.domainId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.domainId' when calling setHttpSsl"
+      )
+    }
+
+    let postBody = {}
+    if (opts.source !== undefined && opts.source !== null) {
+      postBody['source'] = opts.source
+    }
+    if (opts.title !== undefined && opts.title !== null) {
+      postBody['title'] = opts.title
+    }
+    if (opts.sslCert !== undefined && opts.sslCert !== null) {
+      postBody['sslCert'] = opts.sslCert
+    }
+    if (opts.sslKey !== undefined && opts.sslKey !== null) {
+      postBody['sslKey'] = opts.sslKey
+    }
+    if (opts.jumpType !== undefined && opts.jumpType !== null) {
+      postBody['jumpType'] = opts.jumpType
+    }
+    if (opts.enabled !== undefined && opts.enabled !== null) {
+      postBody['enabled'] = opts.enabled
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      domainId: opts.domainId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call setHttpSsl with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/domains/{domainId}:setHttpSsl',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询CDN域名SSL配置
+      * @param {Object} opts - parameters
+      * @param {integer} opts.domainId - 域名ID
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param getHttpSslResultObject resultObject
+      */
+
+  getHttpSsl (opts, callback) {
+    opts = opts || {}
+
+    if (opts.domainId === undefined || opts.domainId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.domainId' when calling getHttpSsl"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      domainId: opts.domainId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getHttpSsl with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/domains/{domainId}:getHttpSsl',
       'GET',
       pathParams,
       queryParams,
@@ -2433,7 +2657,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -2534,7 +2758,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -2638,7 +2862,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -2711,6 +2935,736 @@ JDCloud.VOD = class VOD extends Service {
   }
 
   /**
+      *  提交质检作业
+      * @param {Object} opts - parameters
+      * @param {string} [opts.mediaId] - 媒资ID  optional
+      * @param {array} [opts.templateIds] - 质检模板ID列表  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  submitQualityDetectionJob (opts, callback) {
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.mediaId !== undefined && opts.mediaId !== null) {
+      postBody['mediaId'] = opts.mediaId
+    }
+    if (opts.templateIds !== undefined && opts.templateIds !== null) {
+      postBody['templateIds'] = opts.templateIds
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call submitQualityDetectionJob with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/qualityDetectionJobs:submit',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  批量提交质检作业
+      * @param {Object} opts - parameters
+      * @param {array} [opts.bulkItems]   optional
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  batchSubmitQualityDetectionJobs (opts, callback) {
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.bulkItems !== undefined && opts.bulkItems !== null) {
+      postBody['bulkItems'] = opts.bulkItems
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call batchSubmitQualityDetectionJobs with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/qualityDetectionJobs:batchSubmit',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询质测模板列表。
+
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码；默认值为 1  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认值为 10；取值范围 [10, 100]  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param listQualityDetectionTemplatesResultObject resultObject
+      */
+
+  listQualityDetectionTemplates (opts, callback) {
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call listQualityDetectionTemplates with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/qualityDetectionTemplates',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建质检模板
+      * @param {Object} opts - parameters
+      * @param {string} opts.name - 模板名称。长度不超过128个字符。UTF-8编码。
+
+      * @param {string} opts.templateType - 模板类型，区分该模板的检测内容。目前只支持 video 。
+      * @param {array} [opts.detections] - 检测项列表。取值范围：
+  blackScreen - 黑场
+  pureColor - 纯色
+  colorCast - 偏色
+  frozenFrame - 静帧
+  brightness - 亮度
+  contrast - 对比度
+  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param qualityDetectionTemplateObject resultObject
+      */
+
+  createQualityDetectionTemplate (opts, callback) {
+    opts = opts || {}
+
+    if (opts.name === undefined || opts.name === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.name' when calling createQualityDetectionTemplate"
+      )
+    }
+    if (opts.templateType === undefined || opts.templateType === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.templateType' when calling createQualityDetectionTemplate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.templateType !== undefined && opts.templateType !== null) {
+      postBody['templateType'] = opts.templateType
+    }
+    if (opts.detections !== undefined && opts.detections !== null) {
+      postBody['detections'] = opts.detections
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createQualityDetectionTemplate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/qualityDetectionTemplates',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询质检模板
+      * @param {Object} opts - parameters
+      * @param {integer} opts.templateId - 模板ID
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param qualityDetectionTemplateObject resultObject
+      */
+
+  getQualityDetectionTemplate (opts, callback) {
+    opts = opts || {}
+
+    if (opts.templateId === undefined || opts.templateId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.templateId' when calling getQualityDetectionTemplate"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      templateId: opts.templateId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getQualityDetectionTemplate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/qualityDetectionTemplates/{templateId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改质检模板
+      * @param {Object} opts - parameters
+      * @param {integer} opts.templateId - 模板ID
+      * @param {string} [opts.name] - 模板名称。长度不超过128个字符。UTF-8编码。
+  optional
+      * @param {array} [opts.detections] - 检测项列表。取值范围：
+  blackScreen - 黑场
+  pureColor - 纯色
+  colorCast - 偏色
+  frozenFrame - 静帧
+  brightness - 亮度
+  contrast - 对比度
+  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param qualityDetectionTemplateObject resultObject
+      */
+
+  updateQualityDetectionTemplate (opts, callback) {
+    opts = opts || {}
+
+    if (opts.templateId === undefined || opts.templateId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.templateId' when calling updateQualityDetectionTemplate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.detections !== undefined && opts.detections !== null) {
+      postBody['detections'] = opts.detections
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      templateId: opts.templateId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call updateQualityDetectionTemplate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/qualityDetectionTemplates/{templateId}',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除质检模板
+      * @param {Object} opts - parameters
+      * @param {integer} opts.templateId - 模板ID
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteQualityDetectionTemplate (opts, callback) {
+    opts = opts || {}
+
+    if (opts.templateId === undefined || opts.templateId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.templateId' when calling deleteQualityDetectionTemplate"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      templateId: opts.templateId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteQualityDetectionTemplate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/qualityDetectionTemplates/{templateId}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  提交转码作业
       * @param {Object} opts - parameters
       * @param {string} [opts.videoId] - 视频ID  optional
@@ -2742,7 +3696,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -2838,7 +3792,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -2911,13 +3865,10 @@ JDCloud.VOD = class VOD extends Service {
   }
 
   /**
-      *  查询转码模板列表。允许通过条件过滤查询，支持的过滤字段如下：
-- source 模板来源。枚举值，取值范围为：
-  - system 系统预置
-  - custom 用户自建
-- templateType 模板类型。枚举值，取值范围：
-  - jdchd 京享超清
-  - jdchs 极速转码
+      *  查询转码模板列表。
+允许通过条件过滤查询，支持的过滤字段如下：
+  - source[eq] 按模板来源精确查询
+  - templateType[eq] 按模板类型精确查询
 
       * @param {Object} opts - parameters
       * @param {integer} [opts.pageNumber] - 页码；默认值为 1  optional
@@ -2946,7 +3897,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -3021,7 +3972,8 @@ JDCloud.VOD = class VOD extends Service {
   /**
       *  创建转码模板
       * @param {Object} opts - parameters
-      * @param {string} opts.name - 模板名称
+      * @param {string} opts.name - 模板名称。长度不超过128个字符。UTF-8编码。
+
       * @param {video} opts.video - 视频参数配置
       * @param {audio} opts.audio - 音频参数配置
       * @param {encapsulation} opts.encapsulation - 封装配置
@@ -3097,7 +4049,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -3196,7 +4148,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -3272,7 +4224,8 @@ JDCloud.VOD = class VOD extends Service {
       *  修改转码模板
       * @param {Object} opts - parameters
       * @param {integer} opts.templateId - 模板ID
-      * @param {string} [opts.name] - 模板名称  optional
+      * @param {string} [opts.name] - 模板名称。长度不超过128个字符。UTF-8编码。
+  optional
       * @param {video} [opts.video] - 视频参数配置  optional
       * @param {audio} [opts.audio] - 音频参数配置  optional
       * @param {encapsulation} [opts.encapsulation] - 封装配置  optional
@@ -3329,7 +4282,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -3427,7 +4380,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -3500,7 +4453,13 @@ JDCloud.VOD = class VOD extends Service {
   }
 
   /**
-      *  查询视频列表信息
+      *  查询视频列表信息。
+允许通过条件过滤查询，支持的过滤字段如下：
+  - status[eq] 按视频状态精确查询
+  - categoryId[eq] 按分类ID精确查询
+  - videoId[eq] 按视频ID精确查询
+  - name[eq] 按视频名称精确查询
+
       * @param {Object} opts - parameters
       * @param {integer} [opts.pageNumber] - 页码；默认值为 1  optional
       * @param {integer} [opts.pageSize] - 分页大小；默认值为 10；取值范围 [10, 100]  optional
@@ -3530,7 +4489,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -3629,7 +4588,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -3706,7 +4665,7 @@ JDCloud.VOD = class VOD extends Service {
       * @param {Object} opts - parameters
       * @param {string} opts.videoId - 视频ID
       * @param {string} [opts.name] - 视频名称  optional
-      * @param {number} [opts.categoryId] - 分类ID  optional
+      * @param {integer} [opts.categoryId] - 分类ID  optional
       * @param {array} [opts.tags] - 标签  optional
       * @param {string} [opts.coverUrl] - 封面地址  optional
       * @param {string} [opts.description] - 视频描述信息  optional
@@ -3749,7 +4708,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -3847,7 +4806,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -3943,7 +4902,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -4039,7 +4998,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -4138,7 +5097,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -4242,7 +5201,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -4341,7 +5300,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -4416,19 +5375,41 @@ JDCloud.VOD = class VOD extends Service {
   /**
       *  添加水印
       * @param {Object} opts - parameters
-      * @param {string} opts.name - 水印名称
+      * @param {string} opts.name - 水印名称。只支持中英文、数字。长度不超过128个字符。UTF-8编码。
+
       * @param {string} opts.imgUrl - 图片地址
-      * @param {integer} opts.width - 水印宽度
-      * @param {integer} opts.height - 水印高度
+      * @param {string} opts.width - 水印宽度。
+当 sizeUnit &#x3D; pixel 时，取值范围为 [8, 4096] 整数
+当 sizeUnit &#x3D; percent 时，取值范围为 [0, 100] 小数
+
+      * @param {string} opts.height - 水印高度。
+当 sizeUnit &#x3D; pixel 时，取值范围为 [8, 4096] 整数
+当 sizeUnit &#x3D; percent 时，取值范围为 [0, 100] 小数
+
+      * @param {string} [opts.sizeUnit] - 尺寸单位。取值范围：
+  pixel - 像素
+  percent - 百分比
+默认值为 pixel
+  optional
       * @param {string} opts.position - 水印位置。取值范围：
   LT - 左上
   RT - 右上
   LB - 左下
   RB - 右下
 
-      * @param {string} [opts.unit] - 偏移单位  optional
-      * @param {integer} opts.offsetX - 水平偏移
-      * @param {integer} opts.offsetY - 竖直偏移
+      * @param {string} opts.offsetX - 水平偏移。
+当 offsetUnit &#x3D; pixel 时，取值范围为 [8, 4088] 整数
+当 offsetUnit &#x3D; percent 时，取值范围为 [0, 100] 小数
+
+      * @param {string} opts.offsetY - 竖直偏移。
+当 offsetUnit &#x3D; pixel 时，取值范围为 [8, 4088] 整数
+当 offsetUnit &#x3D; percent 时，取值范围为 [0, 100] 小数
+
+      * @param {string} [opts.offsetUnit] - 偏移单位。取值范围：
+  pixel - 像素
+  percent - 百分比
+默认值为 pixel
+  optional
       * @param {string} callback - callback
       @return {Object} result
       * @param watermarkObject resultObject
@@ -4486,17 +5467,20 @@ JDCloud.VOD = class VOD extends Service {
     if (opts.height !== undefined && opts.height !== null) {
       postBody['height'] = opts.height
     }
+    if (opts.sizeUnit !== undefined && opts.sizeUnit !== null) {
+      postBody['sizeUnit'] = opts.sizeUnit
+    }
     if (opts.position !== undefined && opts.position !== null) {
       postBody['position'] = opts.position
-    }
-    if (opts.unit !== undefined && opts.unit !== null) {
-      postBody['unit'] = opts.unit
     }
     if (opts.offsetX !== undefined && opts.offsetX !== null) {
       postBody['offsetX'] = opts.offsetX
     }
     if (opts.offsetY !== undefined && opts.offsetY !== null) {
       postBody['offsetY'] = opts.offsetY
+    }
+    if (opts.offsetUnit !== undefined && opts.offsetUnit !== null) {
+      postBody['offsetUnit'] = opts.offsetUnit
     }
 
     let queryParams = {}
@@ -4506,7 +5490,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -4605,7 +5589,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -4681,19 +5665,41 @@ JDCloud.VOD = class VOD extends Service {
       *  修改水印
       * @param {Object} opts - parameters
       * @param {integer} opts.watermarkId - 水印ID
-      * @param {string} [opts.name] - 水印名称  optional
+      * @param {string} [opts.name] - 水印名称。只支持中英文、数字。长度不超过128个字符。UTF-8编码。
+  optional
       * @param {string} [opts.imgUrl] - 图片地址  optional
-      * @param {integer} [opts.width] - 水印宽度  optional
-      * @param {integer} [opts.height] - 水印高度  optional
+      * @param {string} [opts.width] - 水印宽度。
+当 sizeUnit &#x3D; pixel 时，取值范围为 [8, 4096] 整数
+当 sizeUnit &#x3D; percent 时，取值范围为 [0, 100] 小数
+  optional
+      * @param {string} [opts.height] - 水印高度。
+当 sizeUnit &#x3D; pixel 时，取值范围为 [8, 4096] 整数
+当 sizeUnit &#x3D; percent 时，取值范围为 [0, 100] 小数
+  optional
+      * @param {string} [opts.sizeUnit] - 尺寸单位。取值范围：
+  pixel - 像素
+  percent - 百分比
+默认值为 pixel
+  optional
       * @param {string} [opts.position] - 水印位置。取值范围：
   LT - 左上
   RT - 右上
   LB - 左下
   RB - 右下
   optional
-      * @param {string} [opts.unit] - 偏移单位  optional
-      * @param {integer} [opts.offsetX] - 水平偏移  optional
-      * @param {integer} [opts.offsetY] - 竖直偏移  optional
+      * @param {string} [opts.offsetX] - 水平偏移。
+当 offsetUnit &#x3D; pixel 时，取值范围为 [8, 4088] 整数
+当 offsetUnit &#x3D; percent 时，取值范围为 [0, 100] 小数
+  optional
+      * @param {string} [opts.offsetY] - 竖直偏移。
+当 offsetUnit &#x3D; pixel 时，取值范围为 [8, 4088] 整数
+当 offsetUnit &#x3D; percent 时，取值范围为 [0, 100] 小数
+  optional
+      * @param {string} [opts.offsetUnit] - 偏移单位。取值范围：
+  pixel - 像素
+  percent - 百分比
+默认值为 pixel
+  optional
       * @param {string} callback - callback
       @return {Object} result
       * @param watermarkObject resultObject
@@ -4721,17 +5727,20 @@ JDCloud.VOD = class VOD extends Service {
     if (opts.height !== undefined && opts.height !== null) {
       postBody['height'] = opts.height
     }
+    if (opts.sizeUnit !== undefined && opts.sizeUnit !== null) {
+      postBody['sizeUnit'] = opts.sizeUnit
+    }
     if (opts.position !== undefined && opts.position !== null) {
       postBody['position'] = opts.position
-    }
-    if (opts.unit !== undefined && opts.unit !== null) {
-      postBody['unit'] = opts.unit
     }
     if (opts.offsetX !== undefined && opts.offsetX !== null) {
       postBody['offsetX'] = opts.offsetX
     }
     if (opts.offsetY !== undefined && opts.offsetY !== null) {
       postBody['offsetY'] = opts.offsetY
+    }
+    if (opts.offsetUnit !== undefined && opts.offsetUnit !== null) {
+      postBody['offsetUnit'] = opts.offsetUnit
     }
 
     let queryParams = {}
@@ -4742,7 +5751,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -4840,7 +5849,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
     }
 
     let contentTypes = ['application/json']

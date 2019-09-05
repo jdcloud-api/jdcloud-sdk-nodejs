@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * SSL Certificate Records
- * SSL证书申购记录相关信息接口
+ * SSL Certificate Manager
+ * SSL数字证书信息管理接口
  *
  * OpenAPI spec version: v1
  * Contact:

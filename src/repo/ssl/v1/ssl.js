@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * SSL Certificate Records
- * SSL证书申购记录相关信息接口
+ * SSL Certificate Manager
+ * SSL数字证书信息管理接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * ssl service.
- * @version 0.2.9
+ * @version 1.0.1
  */
 
 JDCloud.SSL = class SSL extends Service {
@@ -50,6 +50,7 @@ JDCloud.SSL = class SSL extends Service {
       * @param {integer} [opts.pageNumber] - 第几页，从1开始计数  optional
       * @param {integer} [opts.pageSize] - 每页显示的数目  optional
       * @param {string} [opts.domainName] - 域名，支持按照域名检索证书  optional
+      * @param {string} [opts.certIds] - 证书id/别名  optional
       * @param {string} callback - callback
       @return {Object} result
       * @param certListDetail certListDetails
@@ -70,13 +71,16 @@ JDCloud.SSL = class SSL extends Service {
     if (opts.domainName !== undefined && opts.domainName !== null) {
       queryParams['domainName'] = opts.domainName
     }
+    if (opts.certIds !== undefined && opts.certIds !== null) {
+      queryParams['certIds'] = opts.certIds
+    }
 
     let pathParams = {
       regionId: 'jdcloud'
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ssl/0.2.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ssl/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -152,6 +156,8 @@ JDCloud.SSL = class SSL extends Service {
       *  查看证书详情
       * @param {Object} opts - parameters
       * @param {string} opts.certId - 证书 Id
+      * @param {integer} [opts.pageNumber] - 第几页，从1开始计数  optional
+      * @param {integer} [opts.pageSize] - 每页显示的数目  optional
       * @param {string} callback - callback
       @return {Object} result
       * @param certDescDetail certDescDetail
@@ -168,6 +174,12 @@ JDCloud.SSL = class SSL extends Service {
 
     let postBody = null
     let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
 
     let pathParams = {
       regionId: 'jdcloud',
@@ -175,7 +187,7 @@ JDCloud.SSL = class SSL extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ssl/0.2.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ssl/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -275,7 +287,7 @@ JDCloud.SSL = class SSL extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ssl/0.2.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ssl/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -400,7 +412,7 @@ JDCloud.SSL = class SSL extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ssl/0.2.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ssl/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -475,7 +487,8 @@ JDCloud.SSL = class SSL extends Service {
   /**
       *  下载证书 [MFA enabled]
       * @param {Object} opts - parameters
-      * @param {string} opts.certId - 证书 Id
+      * @param {string} opts.certId - 证书Id,以逗号分隔多个Id
+      * @param {string} opts.serverType - 证书应用的服务器类型(Nginx Apache Tomcat IIS Other)
       * @param {string} callback - callback
       @return {Object} result
       * @param downloadCertDesc certDesc
@@ -489,17 +502,28 @@ JDCloud.SSL = class SSL extends Service {
         "Missing the required parameter 'opts.certId' when calling downloadCert"
       )
     }
+    if (opts.serverType === undefined || opts.serverType === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.serverType' when calling downloadCert"
+      )
+    }
 
-    let postBody = null
+    let postBody = {}
+    if (opts.certId !== undefined && opts.certId !== null) {
+      postBody['certId'] = opts.certId
+    }
+    if (opts.serverType !== undefined && opts.serverType !== null) {
+      postBody['serverType'] = opts.serverType
+    }
+
     let queryParams = {}
 
     let pathParams = {
-      regionId: 'jdcloud',
-      certId: opts.certId
+      regionId: 'jdcloud'
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ssl/0.2.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ssl/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -542,8 +566,241 @@ JDCloud.SSL = class SSL extends Service {
     )
 
     let request = this.makeRequest(
-      '/sslCert/{certId}:download',
-      'GET',
+      '/sslCert:download',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改证书名称
+      * @param {Object} opts - parameters
+      * @param {string} opts.certId - 证书Id
+      * @param {string} opts.certName - 证书名称
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer code  状态码
+      * @param string message  消息
+      */
+
+  updateCertName (opts, callback) {
+    opts = opts || {}
+
+    if (opts.certId === undefined || opts.certId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.certId' when calling updateCertName"
+      )
+    }
+    if (opts.certName === undefined || opts.certName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.certName' when calling updateCertName"
+      )
+    }
+
+    let postBody = {}
+    if (opts.certId !== undefined && opts.certId !== null) {
+      postBody['certId'] = opts.certId
+    }
+    if (opts.certName !== undefined && opts.certName !== null) {
+      postBody['certName'] = opts.certName
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ssl/1.0.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call updateCertName with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/sslCert:updateName',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新证书 [MFA enabled]
+      * @param {Object} opts - parameters
+      * @param {string} opts.certId - 证书ID
+      * @param {string} opts.keyFile - 私钥
+      * @param {string} opts.certFile - 证书
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string certId  待更新证书ID
+      * @param string digest  对私钥文件使用sha256算法计算的摘要信息
+      */
+
+  updateCert (opts, callback) {
+    opts = opts || {}
+
+    if (opts.certId === undefined || opts.certId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.certId' when calling updateCert"
+      )
+    }
+    if (opts.keyFile === undefined || opts.keyFile === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.keyFile' when calling updateCert"
+      )
+    }
+    if (opts.certFile === undefined || opts.certFile === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.certFile' when calling updateCert"
+      )
+    }
+
+    let postBody = {}
+    if (opts.certId !== undefined && opts.certId !== null) {
+      postBody['certId'] = opts.certId
+    }
+    if (opts.keyFile !== undefined && opts.keyFile !== null) {
+      postBody['keyFile'] = opts.keyFile
+    }
+    if (opts.certFile !== undefined && opts.certFile !== null) {
+      postBody['certFile'] = opts.certFile
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ssl/1.0.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call updateCert with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/sslCert:updateCert',
+      'POST',
       pathParams,
       queryParams,
       headerParams,

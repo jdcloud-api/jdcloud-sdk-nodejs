@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * elite service.
- * @version 1.0.6
+ * @version 1.0.7
  */
 
 JDCloud.ELITE = class ELITE extends Service {
@@ -87,7 +87,7 @@ JDCloud.ELITE = class ELITE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -202,7 +202,7 @@ JDCloud.ELITE = class ELITE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -318,7 +318,7 @@ JDCloud.ELITE = class ELITE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -434,7 +434,7 @@ JDCloud.ELITE = class ELITE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -558,7 +558,7 @@ JDCloud.ELITE = class ELITE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -698,7 +698,7 @@ JDCloud.ELITE = class ELITE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -817,7 +817,7 @@ JDCloud.ELITE = class ELITE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -938,7 +938,7 @@ JDCloud.ELITE = class ELITE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -1066,7 +1066,7 @@ JDCloud.ELITE = class ELITE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.7'
     }
 
     let contentTypes = ['application/json']

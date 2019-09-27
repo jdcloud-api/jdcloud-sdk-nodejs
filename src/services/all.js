@@ -17,6 +17,7 @@ module.exports = {
   EDCPS: require('./edcps'),
   PORTAL: require('./portal'),
   LOGS: require('./logs'),
+  JDCCS: require('./jdccs'),
   ORDER: require('./order'),
   CLOUDDNSSERVICE: require('./clouddnsservice'),
   AG: require('./ag'),
@@ -60,6 +61,7 @@ module.exports = {
   PIPELINE: require('./pipeline'),
   CONTAINERREGISTRY: require('./containerregistry'),
   PARTNER: require('./partner'),
+  IOTCARD: require('./iotcard'),
   IOTCLOUDGATEWAY: require('./iotcloudgateway'),
   INDUSTRYDATA: require('./industrydata'),
   JDW: require('./jdw')

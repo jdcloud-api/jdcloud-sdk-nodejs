@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * elite云存服务相关接口
- * elite云存服务相关接口
+ * iot-card-Related-API
+ * 物联网卡服务相关API
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -25,38 +25,38 @@
 require('../../../lib/node_loader')
 var JDCloud = require('../../../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'elite'
+var serviceId = 'iotcard'
 Service._services[serviceId] = true
 
 /**
- * elite service.
- * @version 1.0.8
+ * iotcard service.
+ * @version 1.0.0
  */
 
-JDCloud.ELITE = class ELITE extends Service {
+JDCloud.IOTCARD = class IOTCARD extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
       options._defaultEndpoint.protocol || 'https'
     options._defaultEndpoint.host =
-      options._defaultEndpoint.host || 'elite.cn-south-1.jdcloud-api.com'
+      options._defaultEndpoint.host || 'openapi.myiot.jdcloud.com'
     options.basePath = '/v1' // 默认要设为空""
     super(serviceId, options)
   }
 
   /**
-      *  查询交付信息接口
+      *  根据物联网卡iccid查询该卡的gprs状态信息
       * @param {Object} opts - parameters
-      * @param {string} opts.orderNumber - 订单号
+      * @param {string} opts.iccid - 物联网卡iccid
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param boolean status  true为成功，false为失败
-      * @param string message  描述信息
-      * @param queryDeliveryInfoResultVo data  查询数据结果
+      * @param string status  请求状态(0:成功;1:失败)
+      * @param string message  消息描述
+      * @param gprsStatusResp result  指定物联网卡的gprs状态信息
       */
 
-  jdxQueryDeliveryInfo (opts, regionId = this.config.regionId, callback) {
+  gprsStatus (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -64,22 +64,22 @@ JDCloud.ELITE = class ELITE extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  jdxQueryDeliveryInfo"
+        "Missing the required parameter 'regionId' when calling  gprsStatus"
       )
     }
 
     opts = opts || {}
 
-    if (opts.orderNumber === undefined || opts.orderNumber === null) {
+    if (opts.iccid === undefined || opts.iccid === null) {
       throw new Error(
-        "Missing the required parameter 'opts.orderNumber' when calling jdxQueryDeliveryInfo"
+        "Missing the required parameter 'opts.iccid' when calling gprsStatus"
       )
     }
 
     let postBody = null
     let queryParams = {}
-    if (opts.orderNumber !== undefined && opts.orderNumber !== null) {
-      queryParams['orderNumber'] = opts.orderNumber
+    if (opts.iccid !== undefined && opts.iccid !== null) {
+      queryParams['iccid'] = opts.iccid
     }
 
     let pathParams = {
@@ -87,7 +87,7 @@ JDCloud.ELITE = class ELITE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcard/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -117,7 +117,7 @@ JDCloud.ELITE = class ELITE extends Service {
     let returnType = null
 
     this.config.logger(
-      `call jdxQueryDeliveryInfo with params:\npathParams:${JSON.stringify(
+      `call gprsStatus with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -130,7 +130,7 @@ JDCloud.ELITE = class ELITE extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/jdxQueryDeliveryInfo',
+      '/regions/{regionId}/gprsStatus',
       'GET',
       pathParams,
       queryParams,
@@ -160,17 +160,18 @@ JDCloud.ELITE = class ELITE extends Service {
   }
 
   /**
-      *  上报订单
+      *  根据物联网卡iccid查询该卡的开关机状态信息
       * @param {Object} opts - parameters
-      * @param {reportOrderInfo} opts.reportOrderInfo - 上报订单信息
+      * @param {string} opts.iccid - 物联网卡iccid
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param boolean status  true为成功，false为失败
-      * @param string message  描述信息
+      * @param string status  请求状态(0:成功;1:失败)
+      * @param string message  消息描述
+      * @param onOffStatusResp result  指定物联网卡的开关机状态信息
       */
 
-  jdxReportOrder (opts, regionId = this.config.regionId, callback) {
+  onOffStatus (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -178,31 +179,30 @@ JDCloud.ELITE = class ELITE extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  jdxReportOrder"
+        "Missing the required parameter 'regionId' when calling  onOffStatus"
       )
     }
 
     opts = opts || {}
 
-    if (opts.reportOrderInfo === undefined || opts.reportOrderInfo === null) {
+    if (opts.iccid === undefined || opts.iccid === null) {
       throw new Error(
-        "Missing the required parameter 'opts.reportOrderInfo' when calling jdxReportOrder"
+        "Missing the required parameter 'opts.iccid' when calling onOffStatus"
       )
     }
 
-    let postBody = {}
-    if (opts.reportOrderInfo !== undefined && opts.reportOrderInfo !== null) {
-      postBody['reportOrderInfo'] = opts.reportOrderInfo
-    }
-
+    let postBody = null
     let queryParams = {}
+    if (opts.iccid !== undefined && opts.iccid !== null) {
+      queryParams['iccid'] = opts.iccid
+    }
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcard/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -232,7 +232,7 @@ JDCloud.ELITE = class ELITE extends Service {
     let returnType = null
 
     this.config.logger(
-      `call jdxReportOrder with params:\npathParams:${JSON.stringify(
+      `call onOffStatus with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -245,7 +245,347 @@ JDCloud.ELITE = class ELITE extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/jdxReportOrder',
+      '/regions/{regionId}/onOffStatus',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  根据物联网卡iccid查询该卡的生命周期信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.iccid - 物联网卡iccid
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status  请求状态(0:成功;1:失败)
+      * @param string message  消息描述
+      * @param lifeStatusResp result  指定物联网卡的生命周期信息
+      */
+
+  lifeStatus (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  lifeStatus"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.iccid === undefined || opts.iccid === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.iccid' when calling lifeStatus"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.iccid !== undefined && opts.iccid !== null) {
+      queryParams['iccid'] = opts.iccid
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcard/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call lifeStatus with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/lifeStatus',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  根据物联网卡iccid查询该卡的当月套餐内的GPRS实时使用量
+      * @param {Object} opts - parameters
+      * @param {string} opts.iccid - 物联网卡iccid
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status  请求状态(0:成功;1:失败)
+      * @param string message  消息描述
+      * @param gprsRealtimeInfoResp result  指定物联网卡的当月套餐内的GPRS实时使用量
+      */
+
+  gprsRealtimeInfo (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  gprsRealtimeInfo"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.iccid === undefined || opts.iccid === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.iccid' when calling gprsRealtimeInfo"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.iccid !== undefined && opts.iccid !== null) {
+      queryParams['iccid'] = opts.iccid
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcard/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call gprsRealtimeInfo with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/gprsRealtimeInfo',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  物联网卡开机操作
+      * @param {Object} opts - parameters
+      * @param {array} [opts.iccids] - 物联网卡号码列表(单次提交最多不超过200个号码)  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status  请求状态(0:成功;1:失败)
+      * @param string message  消息描述
+      * @param operationIotCardResp result
+      */
+
+  openIotCard (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  openIotCard"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.iccids !== undefined && opts.iccids !== null) {
+      postBody['iccids'] = opts.iccids
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcard/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call openIotCard with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/openIotCard',
       'POST',
       pathParams,
       queryParams,
@@ -275,18 +615,18 @@ JDCloud.ELITE = class ELITE extends Service {
   }
 
   /**
-      *  下单接口
+      *  物联网卡停机操作
       * @param {Object} opts - parameters
-      * @param {createOrderInfo} opts.createOrderInfo - 下单信息
+      * @param {array} [opts.iccids] - 物联网卡号码列表(单次提交最多不超过200个号码)  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param boolean status  true为成功，false为失败
-      * @param string message  描述信息
-      * @param createOrderResultVo data  下单后生成的订单号
+      * @param string status  请求状态(0:成功;1:失败)
+      * @param string message  消息描述
+      * @param operationIotCardResp result
       */
 
-  jdxCreateOrder (opts, regionId = this.config.regionId, callback) {
+  closeIotCard (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -294,21 +634,15 @@ JDCloud.ELITE = class ELITE extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  jdxCreateOrder"
+        "Missing the required parameter 'regionId' when calling  closeIotCard"
       )
     }
 
     opts = opts || {}
 
-    if (opts.createOrderInfo === undefined || opts.createOrderInfo === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.createOrderInfo' when calling jdxCreateOrder"
-      )
-    }
-
     let postBody = {}
-    if (opts.createOrderInfo !== undefined && opts.createOrderInfo !== null) {
-      postBody['createOrderInfo'] = opts.createOrderInfo
+    if (opts.iccids !== undefined && opts.iccids !== null) {
+      postBody['iccids'] = opts.iccids
     }
 
     let queryParams = {}
@@ -318,7 +652,7 @@ JDCloud.ELITE = class ELITE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcard/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -348,7 +682,7 @@ JDCloud.ELITE = class ELITE extends Service {
     let returnType = null
 
     this.config.logger(
-      `call jdxCreateOrder with params:\npathParams:${JSON.stringify(
+      `call closeIotCard with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -361,7 +695,7 @@ JDCloud.ELITE = class ELITE extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/jdxCreateOrder',
+      '/regions/{regionId}/closeIotCard',
       'POST',
       pathParams,
       queryParams,
@@ -391,18 +725,18 @@ JDCloud.ELITE = class ELITE extends Service {
   }
 
   /**
-      *  查询价格
+      *  物联网卡开启流量操作
       * @param {Object} opts - parameters
-      * @param {queryPriceParam} opts.queryPriceParam - 查询价格参数
+      * @param {array} [opts.iccids] - 物联网卡号码列表(单次提交最多不超过200个号码)  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param boolean status  true为成功，false为失败
-      * @param string message  描述信息
-      * @param queryPriceResultVo data  查询数据结果
+      * @param string status  请求状态(0:成功;1:失败)
+      * @param string message  消息描述
+      * @param operationIotCardResp result
       */
 
-  jdxQueryPrice (opts, regionId = this.config.regionId, callback) {
+  openIotFlow (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -410,21 +744,15 @@ JDCloud.ELITE = class ELITE extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  jdxQueryPrice"
+        "Missing the required parameter 'regionId' when calling  openIotFlow"
       )
     }
 
     opts = opts || {}
 
-    if (opts.queryPriceParam === undefined || opts.queryPriceParam === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.queryPriceParam' when calling jdxQueryPrice"
-      )
-    }
-
     let postBody = {}
-    if (opts.queryPriceParam !== undefined && opts.queryPriceParam !== null) {
-      postBody['queryPriceParam'] = opts.queryPriceParam
+    if (opts.iccids !== undefined && opts.iccids !== null) {
+      postBody['iccids'] = opts.iccids
     }
 
     let queryParams = {}
@@ -434,7 +762,7 @@ JDCloud.ELITE = class ELITE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcard/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -464,7 +792,7 @@ JDCloud.ELITE = class ELITE extends Service {
     let returnType = null
 
     this.config.logger(
-      `call jdxQueryPrice with params:\npathParams:${JSON.stringify(
+      `call openIotFlow with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -477,7 +805,7 @@ JDCloud.ELITE = class ELITE extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/jdxQueryPrice',
+      '/regions/{regionId}/openIotFlow',
       'POST',
       pathParams,
       queryParams,
@@ -507,19 +835,18 @@ JDCloud.ELITE = class ELITE extends Service {
   }
 
   /**
-      *  输出商品接口
+      *  物联网卡停流量操作
       * @param {Object} opts - parameters
-      * @param {integer} opts.pageNo - 页码（最小1）
-      * @param {integer} opts.pageSize - 每页记录数（最小10，最大100）
+      * @param {array} [opts.iccids] - 物联网卡号码列表(单次提交最多不超过200个号码)  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param boolean status  true为成功，false为失败
-      * @param string message  描述信息
-      * @param jdxProductVoListData data  查询数据结果
+      * @param string status  请求状态(0:成功;1:失败)
+      * @param string message  消息描述
+      * @param operationIotCardResp result
       */
 
-  jdxQueryProduct (opts, regionId = this.config.regionId, callback) {
+  closeIotFlow (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -527,408 +854,15 @@ JDCloud.ELITE = class ELITE extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  jdxQueryProduct"
+        "Missing the required parameter 'regionId' when calling  closeIotFlow"
       )
     }
 
     opts = opts || {}
-
-    if (opts.pageNo === undefined || opts.pageNo === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.pageNo' when calling jdxQueryProduct"
-      )
-    }
-    if (opts.pageSize === undefined || opts.pageSize === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.pageSize' when calling jdxQueryProduct"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.pageNo !== undefined && opts.pageNo !== null) {
-      queryParams['pageNo'] = opts.pageNo
-    }
-    if (opts.pageSize !== undefined && opts.pageSize !== null) {
-      queryParams['pageSize'] = opts.pageSize
-    }
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.8'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call jdxQueryProduct with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/jdxQueryProduct',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  分页查询交付单信息
-      * @param {Object} opts - parameters
-      * @param {integer} opts.pageNo - 页码（最小1）
-      * @param {integer} opts.pageSize - 每页记录数（最小10，最大100）
-      * @param {string} [opts.deliverNumber] - 交付单号  optional
-      * @param {integer} [opts.deliverStatus] - 交付状态  optional
-      * @param {string} [opts.createDtStart] - 交付单创建起始时间，格式：yyyy-MM-dd HH:mm:ss  optional
-      * @param {string} [opts.createDtEnd] - 交付单创建结束时间，格式：yyyy-MM-dd HH:mm:ss  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param boolean status  true为成功，false为失败
-      * @param string message  描述信息
-      * @param productServiceVoListData data  查询数据结果
-      */
-
-  listSaleService (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  listSaleService"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.pageNo === undefined || opts.pageNo === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.pageNo' when calling listSaleService"
-      )
-    }
-    if (opts.pageSize === undefined || opts.pageSize === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.pageSize' when calling listSaleService"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.pageNo !== undefined && opts.pageNo !== null) {
-      queryParams['pageNo'] = opts.pageNo
-    }
-    if (opts.pageSize !== undefined && opts.pageSize !== null) {
-      queryParams['pageSize'] = opts.pageSize
-    }
-    if (opts.deliverNumber !== undefined && opts.deliverNumber !== null) {
-      queryParams['deliverNumber'] = opts.deliverNumber
-    }
-    if (opts.deliverStatus !== undefined && opts.deliverStatus !== null) {
-      queryParams['deliverStatus'] = opts.deliverStatus
-    }
-    if (opts.createDtStart !== undefined && opts.createDtStart !== null) {
-      queryParams['createDtStart'] = opts.createDtStart
-    }
-    if (opts.createDtEnd !== undefined && opts.createDtEnd !== null) {
-      queryParams['createDtEnd'] = opts.createDtEnd
-    }
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.8'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call listSaleService with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/listSaleService',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  根据交付单号查询交付单信息
-      * @param {Object} opts - parameters
-      * @param {string} opts.deliverNumber - 交付单号
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param boolean status  true为成功，false为失败
-      * @param string message  描述信息
-      * @param productServiceVo data  查询数据结果
-      */
-
-  getSaleServiceByDeliverNumber (
-    opts,
-    regionId = this.config.regionId,
-    callback
-  ) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  getSaleServiceByDeliverNumber"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.deliverNumber === undefined || opts.deliverNumber === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.deliverNumber' when calling getSaleServiceByDeliverNumber"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.deliverNumber !== undefined && opts.deliverNumber !== null) {
-      queryParams['deliverNumber'] = opts.deliverNumber
-    }
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.8'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call getSaleServiceByDeliverNumber with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/getSaleServiceByDeliverNumber',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  确认交付
-      * @param {Object} opts - parameters
-      * @param {confirmDeliveryInfo} opts.confirmDeliveryInfo - 交付信息
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param boolean status  true为成功，false为失败
-      * @param string message  描述信息
-      */
-
-  confirmSaleServiceDelivery (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  confirmSaleServiceDelivery"
-      )
-    }
-
-    opts = opts || {}
-
-    if (
-      opts.confirmDeliveryInfo === undefined ||
-      opts.confirmDeliveryInfo === null
-    ) {
-      throw new Error(
-        "Missing the required parameter 'opts.confirmDeliveryInfo' when calling confirmSaleServiceDelivery"
-      )
-    }
 
     let postBody = {}
-    if (
-      opts.confirmDeliveryInfo !== undefined &&
-      opts.confirmDeliveryInfo !== null
-    ) {
-      postBody['confirmDeliveryInfo'] = opts.confirmDeliveryInfo
+    if (opts.iccids !== undefined && opts.iccids !== null) {
+      postBody['iccids'] = opts.iccids
     }
 
     let queryParams = {}
@@ -938,7 +872,7 @@ JDCloud.ELITE = class ELITE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcard/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -968,7 +902,7 @@ JDCloud.ELITE = class ELITE extends Service {
     let returnType = null
 
     this.config.logger(
-      `call confirmSaleServiceDelivery with params:\npathParams:${JSON.stringify(
+      `call closeIotFlow with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -981,136 +915,8 @@ JDCloud.ELITE = class ELITE extends Service {
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/confirmSaleServiceDelivery',
+      '/regions/{regionId}/closeIotFlow',
       'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  获取云存服务信息
-      * @param {Object} opts - parameters
-      * @param {string} opts.buyerPin - 购买用户pin
-      * @param {string} opts.businessData - 业务数据，与下单时的业务数据一致
-      * @param {boolean} [opts.queryAll] - 是否查询全部，如果传入false，则只查询当前时间有效的，否则查询所有的  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param boolean status  true为成功，false为失败
-      * @param string message  描述信息
-      * @param storeServiceVo data  查询数据结果
-      */
-
-  getStoreService (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  getStoreService"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.buyerPin === undefined || opts.buyerPin === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.buyerPin' when calling getStoreService"
-      )
-    }
-    if (opts.businessData === undefined || opts.businessData === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.businessData' when calling getStoreService"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.buyerPin !== undefined && opts.buyerPin !== null) {
-      queryParams['buyerPin'] = opts.buyerPin
-    }
-    if (opts.businessData !== undefined && opts.businessData !== null) {
-      queryParams['businessData'] = opts.businessData
-    }
-    if (opts.queryAll !== undefined && opts.queryAll !== null) {
-      queryParams['queryAll'] = opts.queryAll
-    }
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  elite/1.0.8'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call getStoreService with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/getStoreService',
-      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -1138,4 +944,4 @@ JDCloud.ELITE = class ELITE extends Service {
     )
   }
 }
-module.exports = JDCloud.ELITE
+module.exports = JDCloud.IOTCARD

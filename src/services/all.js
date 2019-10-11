@@ -54,6 +54,7 @@ module.exports = {
   LIVE: require('./live'),
   JDFUSION: require('./jdfusion'),
   RENEWAL: require('./renewal'),
+  IOTLINK: require('./iotlink'),
   VPC: require('./vpc'),
   MONITOR: require('./monitor'),
   XDATA: require('./xdata'),

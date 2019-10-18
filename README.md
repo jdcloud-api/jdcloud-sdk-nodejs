@@ -1,3 +1,6 @@
+---
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
 # 简介 #
   欢迎使用京东云开发者Node.js工具套件（Node.js SDK）。使用京东云Node.js SDK，您无需复杂编程就可以访问京东云提供的各种服务。 
 
@@ -19,11 +22,11 @@ npm install jdcloud-sdk-js
 
  
 
-您还可以下载sdk源代码自行使用，源代码地址为：Node.js SDK。
+您还可以下载sdk源代码自行使用，[源代码地址](https://github.com/jdcloud-api/jdcloud-sdk-nodejs)。
 
  
 
-SDK使用中的任何问题，欢迎您在Github SDK使用问题反馈页面交流。
+SDK使用中的任何问题，欢迎您在[SDK使用问题反馈页面](https://github.com/jdcloud-api/jdcloud-sdk-nodejs/issues)交流。
 
 
 
@@ -40,9 +43,10 @@ SDK使用中的任何问题，欢迎您在Github SDK使用问题反馈页面交�
 
 
 
-	var NC = require('jdcloud-sdk-js/services/nc');
+	var NC = require('jdcloud-sdk-js/services/nativecontainer');
 
 这种引用方式只会加载用到的service，此时仍然可以使用var JDCloud = require('jdcloud-sdk-js/global')来引用JDCloud对象
+
 ## 配置方法  ##
 
 对JDCloud的配置为通用配置，所有services共享配置:
@@ -51,8 +55,8 @@ SDK使用中的任何问题，欢迎您在Github SDK使用问题反馈页面交�
 
 对某个service的配置会覆盖通用配置：
 
-	var NC = require('jdcloud-sdk-js/services/nc'); 
-	var nc = new NC({//*配置项/*/});
+	var NC = require('jdcloud-sdk-js/services/nativecontainer'); 
+	var nc = new NATIVECONTAINER({//*配置项/*/});
 
 
 ## 配置项 ##
@@ -145,10 +149,29 @@ SDK使用中的任何问题，欢迎您在Github SDK使用问题反馈页面交�
         } 
     })
 
-如果需要设置额外的header，例如要调用开启了MFA操作保护的接口，需要传递x-jdcloud-security-token，则按照如下方式：
+如果需要设置访问点，配置超时,额外请求头等，请参考如下更复杂的例子：
 
-    vm.deleteInstances({ 
-            instanceId: 'xxx', x-jdcloud-security-token: 'xxx' 
-        }, 
-        'cn-north-1'
-    )	
+```
+    var nc = new NATIVECONTAINER({
+        credentials: {
+            accessKeyId: global.accessKeyId,
+            secretAccessKey: global.secretAccessKey
+        },
+        endpoint: {
+            host: 'nativecontainer.internal.cn-north-1.jdcloud-api.com', //指定非默认Endpoint
+            protocol: 'http' //设置使用HTTP而不是HTTPS，vpc专用域名不支持HTTPS
+        },
+        'x-extra-header': { //指定额外header
+            "x-jdcloud-security-token" : "xxx", //要调用开启了MFA操作保护的接口需要传递
+            "x-jdcloud-content-sha256" : "xxx", //body过大，希望用此value替代对body进行哈希的过程
+            "MyOwn" : "xxx"
+        },
+        version: {
+            nativecontainer: 'v1'
+        }
+    })
+```
+    
+
+更多调用示例参考  [SDK使用Demo](https://github.com/jdcloud-api/jdcloud-sdk-nodejs/tree/master/test)
+

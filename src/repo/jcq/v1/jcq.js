@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * jcq service.
- * @version 1.0.1
+ * @version 1.0.2
  */
 
 JDCloud.JCQ = class JCQ extends Service {
@@ -83,7 +83,7 @@ JDCloud.JCQ = class JCQ extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -186,7 +186,7 @@ JDCloud.JCQ = class JCQ extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -263,7 +263,7 @@ JDCloud.JCQ = class JCQ extends Service {
       * @param {Object} opts - parameters
       * @param {string} [opts.consumerGroupId] - consumerGroupId为空则显示该用户所有订阅关系里的死信数量  optional
       * @param {integer} [opts.pageNumber] - 页码  optional
-      * @param {integer} [opts.pageSize] - 每页数  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认为10；取值范围[10, 100]  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -302,7 +302,7 @@ JDCloud.JCQ = class JCQ extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -380,7 +380,7 @@ JDCloud.JCQ = class JCQ extends Service {
       * @param {string} opts.topicName - topic 名称
       * @param {string} [opts.consumerGroupId] - consumerGroupId为空则显示该Topic下所有订阅关系里的死信数量  optional
       * @param {integer} [opts.pageNumber] - 页码  optional
-      * @param {integer} [opts.pageSize] - 每页数  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认为10；取值范围[10, 100]  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -430,7 +430,7 @@ JDCloud.JCQ = class JCQ extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -507,8 +507,8 @@ JDCloud.JCQ = class JCQ extends Service {
       * @param {Object} opts - parameters
       * @param {string} opts.topicName - topic 名称
       * @param {string} opts.consumerGroupId - consumerGroupId
-      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
-      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
+      * @param {integer} [opts.pageNumber] - 页码  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认为10；取值范围[10, 100]  optional
       * @param {string} opts.startTime - 开始时间
       * @param {string} opts.endTime - 结束时间
       * @param {string} regionId - ID of the region
@@ -575,7 +575,7 @@ JDCloud.JCQ = class JCQ extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -697,7 +697,7 @@ JDCloud.JCQ = class JCQ extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -820,7 +820,7 @@ JDCloud.JCQ = class JCQ extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -898,6 +898,8 @@ JDCloud.JCQ = class JCQ extends Service {
       * @param {string} opts.topicName - topic 名称
       * @param {string} opts.startTime - 开始时间
       * @param {string} opts.endTime - 结束时间
+      * @param {integer} [opts.pageSize] - 分页大小；默认为10；取值范围[10, 100]  optional
+      * @param {integer} [opts.pageNumber] - 页码  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -942,6 +944,12 @@ JDCloud.JCQ = class JCQ extends Service {
     if (opts.endTime !== undefined && opts.endTime !== null) {
       queryParams['endTime'] = opts.endTime
     }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
 
     let pathParams = {
       regionId: regionId,
@@ -949,7 +957,7 @@ JDCloud.JCQ = class JCQ extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1067,7 +1075,7 @@ JDCloud.JCQ = class JCQ extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1140,6 +1148,249 @@ JDCloud.JCQ = class JCQ extends Service {
   }
 
   /**
+      *  查询消息轨迹
+      * @param {Object} opts - parameters
+      * @param {string} opts.topicName - topic 名称
+      * @param {string} opts.messageId - message Id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param messageTraceInfo messageTraceInfo  消息轨迹信息
+      */
+
+  describeMessageTrace (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeMessageTrace"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.topicName === undefined || opts.topicName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.topicName' when calling describeMessageTrace"
+      )
+    }
+    if (opts.messageId === undefined || opts.messageId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.messageId' when calling describeMessageTrace"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      topicName: opts.topicName,
+      messageId: opts.messageId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeMessageTrace with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/topics/{topicName}/messageTrace/{messageId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  根据businessId查询消息
+      * @param {Object} opts - parameters
+      * @param {string} opts.topicName - topic 名称
+      * @param {string} opts.businessId - business id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param message messages
+      */
+
+  describeMessagesByBusinessId (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeMessagesByBusinessId"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.topicName === undefined || opts.topicName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.topicName' when calling describeMessagesByBusinessId"
+      )
+    }
+    if (opts.businessId === undefined || opts.businessId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.businessId' when calling describeMessagesByBusinessId"
+      )
+    }
+
+    let postBody = {}
+    if (opts.businessId !== undefined && opts.businessId !== null) {
+      postBody['businessId'] = opts.businessId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      topicName: opts.topicName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeMessagesByBusinessId with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/topics/{topicName}/messagesWithBusinessId',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  查看当前topic授予了哪些用户哪些权限
       * @param {Object} opts - parameters
       * @param {string} opts.topicName - topic 名称
@@ -1178,7 +1429,7 @@ JDCloud.JCQ = class JCQ extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1307,7 +1558,7 @@ JDCloud.JCQ = class JCQ extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1435,7 +1686,7 @@ JDCloud.JCQ = class JCQ extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1512,8 +1763,8 @@ JDCloud.JCQ = class JCQ extends Service {
       * @param {Object} opts - parameters
       * @param {string} opts.topicName - topic 名称
       * @param {string} [opts.consumerGroupFilter] - consumerGroupFilter，consumerGroupId的过滤条件  optional
-      * @param {integer} [opts.pageSize] - 分页之中的每页大小  optional
-      * @param {integer} [opts.pageNumber] - 分页之中的页码  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认为10；取值范围[10, 100]  optional
+      * @param {integer} [opts.pageNumber] - 页码  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1562,7 +1813,7 @@ JDCloud.JCQ = class JCQ extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1639,6 +1890,9 @@ JDCloud.JCQ = class JCQ extends Service {
       * @param {Object} opts - parameters
       * @param {string} opts.topicName - topic 名称
       * @param {string} opts.consumerGroupId - consumerGroupId
+      * @param {integer} [opts.messageInvisibleTimeInSeconds] - 消息隐藏时间单位秒  optional
+      * @param {boolean} [opts.dlqEnable] - 是否开启死信队列[true, false]  optional
+      * @param {integer} [opts.maxRetryTimes] - 最大重试次数dlqEnable为true必填,范围[0,16]  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1673,6 +1927,19 @@ JDCloud.JCQ = class JCQ extends Service {
     if (opts.consumerGroupId !== undefined && opts.consumerGroupId !== null) {
       postBody['consumerGroupId'] = opts.consumerGroupId
     }
+    if (
+      opts.messageInvisibleTimeInSeconds !== undefined &&
+      opts.messageInvisibleTimeInSeconds !== null
+    ) {
+      postBody['messageInvisibleTimeInSeconds'] =
+        opts.messageInvisibleTimeInSeconds
+    }
+    if (opts.dlqEnable !== undefined && opts.dlqEnable !== null) {
+      postBody['dlqEnable'] = opts.dlqEnable
+    }
+    if (opts.maxRetryTimes !== undefined && opts.maxRetryTimes !== null) {
+      postBody['maxRetryTimes'] = opts.maxRetryTimes
+    }
 
     let queryParams = {}
 
@@ -1682,7 +1949,7 @@ JDCloud.JCQ = class JCQ extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1800,7 +2067,7 @@ JDCloud.JCQ = class JCQ extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1873,6 +2140,140 @@ JDCloud.JCQ = class JCQ extends Service {
   }
 
   /**
+      *  修改订阅
+      * @param {Object} opts - parameters
+      * @param {string} opts.topicName - topic 名称
+      * @param {string} opts.consumerGroupId - consumerGroupId
+      * @param {integer} [opts.maxRetryTimes] - 最大重试次数  optional
+      * @param {integer} [opts.messageInvisibleTimeInSeconds] - 消息ack超时时间  optional
+      * @param {boolean} [opts.dlqEnable] - 是否开启死信队列[true, false]  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  modifySubscriptionAttribute (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifySubscriptionAttribute"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.topicName === undefined || opts.topicName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.topicName' when calling modifySubscriptionAttribute"
+      )
+    }
+    if (opts.consumerGroupId === undefined || opts.consumerGroupId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.consumerGroupId' when calling modifySubscriptionAttribute"
+      )
+    }
+
+    let postBody = {}
+    if (opts.maxRetryTimes !== undefined && opts.maxRetryTimes !== null) {
+      postBody['maxRetryTimes'] = opts.maxRetryTimes
+    }
+    if (
+      opts.messageInvisibleTimeInSeconds !== undefined &&
+      opts.messageInvisibleTimeInSeconds !== null
+    ) {
+      postBody['messageInvisibleTimeInSeconds'] =
+        opts.messageInvisibleTimeInSeconds
+    }
+    if (opts.dlqEnable !== undefined && opts.dlqEnable !== null) {
+      postBody['dlqEnable'] = opts.dlqEnable
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      topicName: opts.topicName,
+      consumerGroupId: opts.consumerGroupId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifySubscriptionAttribute with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/topics/{topicName}/subscriptions/{consumerGroupId}',
+      'PATCH',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  删除订阅
       * @param {Object} opts - parameters
       * @param {string} opts.topicName - topic 名称
@@ -1917,7 +2318,7 @@ JDCloud.JCQ = class JCQ extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2035,7 +2436,7 @@ JDCloud.JCQ = class JCQ extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2162,7 +2563,7 @@ JDCloud.JCQ = class JCQ extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2237,8 +2638,8 @@ JDCloud.JCQ = class JCQ extends Service {
   /**
       *  查询topic列表
       * @param {Object} opts - parameters
-      * @param {integer} [opts.pageSize] - 分页之中的每页大小  optional
-      * @param {integer} [opts.pageNumber] - 分页之中的页码  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认为10；取值范围[10, 100]  optional
+      * @param {integer} [opts.pageNumber] - 页码  optional
       * @param {string} [opts.topicFilter] - topic名称的过滤条件，大小写不敏感  optional
       * @param {tagFilter} [opts.tagFilters] - 标签过滤条件  optional
       * @param {string} regionId - ID of the region
@@ -2283,7 +2684,7 @@ JDCloud.JCQ = class JCQ extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2409,7 +2810,7 @@ JDCloud.JCQ = class JCQ extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2520,7 +2921,7 @@ JDCloud.JCQ = class JCQ extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2630,7 +3031,7 @@ JDCloud.JCQ = class JCQ extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jcq/1.0.2'
     }
 
     let contentTypes = ['application/json']

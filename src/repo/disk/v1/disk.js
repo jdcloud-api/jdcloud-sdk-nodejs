@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * disk service.
- * @version 0.12.3
+ * @version 0.12.4
  */
 
 JDCloud.DISK = class DISK extends Service {
@@ -99,7 +99,7 @@ encrypted - 云硬盘是否加密，精确匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.4'
     }
 
     let contentTypes = ['application/json']
@@ -238,7 +238,7 @@ encrypted - 云硬盘是否加密，精确匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.4'
     }
 
     let contentTypes = ['application/json']
@@ -349,7 +349,7 @@ encrypted - 云硬盘是否加密，精确匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.4'
     }
 
     let contentTypes = ['application/json']
@@ -468,7 +468,7 @@ encrypted - 云硬盘是否加密，精确匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.4'
     }
 
     let contentTypes = ['application/json']
@@ -581,7 +581,7 @@ encrypted - 云硬盘是否加密，精确匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.4'
     }
 
     let contentTypes = ['application/json']
@@ -704,7 +704,7 @@ encrypted - 云硬盘是否加密，精确匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.4'
     }
 
     let contentTypes = ['application/json']
@@ -830,7 +830,7 @@ encrypted - 云硬盘是否加密，精确匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.4'
     }
 
     let contentTypes = ['application/json']
@@ -952,7 +952,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.4'
     }
 
     let contentTypes = ['application/json']
@@ -1081,7 +1081,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.4'
     }
 
     let contentTypes = ['application/json']
@@ -1192,7 +1192,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.4'
     }
 
     let contentTypes = ['application/json']
@@ -1311,7 +1311,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.4'
     }
 
     let contentTypes = ['application/json']
@@ -1424,7 +1424,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.4'
     }
 
     let contentTypes = ['application/json']

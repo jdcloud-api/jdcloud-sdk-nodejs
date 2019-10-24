@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * ssl service.
- * @version 1.0.1
+ * @version 1.0.2
  */
 
 JDCloud.SSL = class SSL extends Service {
@@ -80,7 +80,7 @@ JDCloud.SSL = class SSL extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ssl/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ssl/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -187,7 +187,7 @@ JDCloud.SSL = class SSL extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ssl/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ssl/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -287,7 +287,7 @@ JDCloud.SSL = class SSL extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ssl/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ssl/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -412,7 +412,7 @@ JDCloud.SSL = class SSL extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ssl/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ssl/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -487,7 +487,7 @@ JDCloud.SSL = class SSL extends Service {
   /**
       *  下载证书 [MFA enabled]
       * @param {Object} opts - parameters
-      * @param {string} opts.certId - 证书Id,以逗号分隔多个Id
+      * @param {string} opts.certId - 证书 Id
       * @param {string} opts.serverType - 证书应用的服务器类型(Nginx Apache Tomcat IIS Other)
       * @param {string} callback - callback
       @return {Object} result
@@ -508,22 +508,19 @@ JDCloud.SSL = class SSL extends Service {
       )
     }
 
-    let postBody = {}
-    if (opts.certId !== undefined && opts.certId !== null) {
-      postBody['certId'] = opts.certId
-    }
-    if (opts.serverType !== undefined && opts.serverType !== null) {
-      postBody['serverType'] = opts.serverType
-    }
-
+    let postBody = null
     let queryParams = {}
+    if (opts.serverType !== undefined && opts.serverType !== null) {
+      queryParams['serverType'] = opts.serverType
+    }
 
     let pathParams = {
-      regionId: 'jdcloud'
+      regionId: 'jdcloud',
+      certId: opts.certId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ssl/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ssl/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -566,8 +563,8 @@ JDCloud.SSL = class SSL extends Service {
     )
 
     let request = this.makeRequest(
-      '/sslCert:download',
-      'POST',
+      '/sslCert/{certId}:download',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -635,7 +632,7 @@ JDCloud.SSL = class SSL extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ssl/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ssl/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -756,7 +753,7 @@ JDCloud.SSL = class SSL extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ssl/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ssl/1.0.2'
     }
 
     let contentTypes = ['application/json']

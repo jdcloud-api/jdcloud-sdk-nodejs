@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * zfs service.
- * @version 1.0.1
+ * @version 1.0.5
  */
 
 JDCloud.ZFS = class ZFS extends Service {
@@ -55,6 +55,7 @@ JDCloud.ZFS = class ZFS extends Service {
 name - 文件系统名称，模糊匹配，支持单个
 status - 文件系统状态，精确匹配，支持多个 FileSystem Status/creating、available、in-use
   optional
+      * @param {tagFilter} [opts.tags] - Tag筛选条件  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -85,13 +86,14 @@ status - 文件系统状态，精确匹配，支持多个 FileSystem Status/crea
       queryParams['pageSize'] = opts.pageSize
     }
     Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, this.buildTagFilterParam(opts.tags, 'tags'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -170,6 +172,7 @@ status - 文件系统状态，精确匹配，支持多个 FileSystem Status/crea
       * @param {string} opts.name - 文件系统名称
       * @param {string} opts.description - 文件系统描述
       * @param {string} opts.clientToken - 幂等性参数(只支持数字、大小写字母，且不能超过64字符)
+      * @param {string} [opts.fileSystemType] - 文件系统类型(通用型:gp1,容量型:std1),默认为通用型  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -216,6 +219,9 @@ status - 文件系统状态，精确匹配，支持多个 FileSystem Status/crea
     if (opts.clientToken !== undefined && opts.clientToken !== null) {
       postBody['clientToken'] = opts.clientToken
     }
+    if (opts.fileSystemType !== undefined && opts.fileSystemType !== null) {
+      postBody['fileSystemType'] = opts.fileSystemType
+    }
 
     let queryParams = {}
 
@@ -224,7 +230,7 @@ status - 文件系统状态，精确匹配，支持多个 FileSystem Status/crea
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -335,7 +341,7 @@ status - 文件系统状态，精确匹配，支持多个 FileSystem Status/crea
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -454,7 +460,7 @@ status - 文件系统状态，精确匹配，支持多个 FileSystem Status/crea
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -528,7 +534,7 @@ status - 文件系统状态，精确匹配，支持多个 FileSystem Status/crea
 
   /**
       *  -   删除一个文件系统，一旦删除，该文件系统将不存在，也无法访问已删除的文件系统里的任何内容。
-
+ [MFA enabled]
       * @param {Object} opts - parameters
       * @param {string} opts.fileSystemId - 文件系统ID
       * @param {string} regionId - ID of the region
@@ -565,7 +571,7 @@ status - 文件系统状态，精确匹配，支持多个 FileSystem Status/crea
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -682,7 +688,7 @@ mountTargetId - 挂载目标ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -762,7 +768,7 @@ mountTargetId - 挂载目标ID，精确匹配，支持多个
       * @param {string} opts.fileSystemId - 创建挂载目标的文件系统
       * @param {string} opts.subnetId - 子网id
       * @param {string} opts.vpcId - vpcId
-      * @param {string} opts.securityGroupId - 安全组id
+      * @param {string} [opts.securityGroupId] - 安全组id  optional
       * @param {string} opts.clientToken - 幂等性参数(只支持数字、大小写字母，且不能超过64字符)
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -799,11 +805,6 @@ mountTargetId - 挂载目标ID，精确匹配，支持多个
         "Missing the required parameter 'opts.vpcId' when calling createMountTarget"
       )
     }
-    if (opts.securityGroupId === undefined || opts.securityGroupId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.securityGroupId' when calling createMountTarget"
-      )
-    }
     if (opts.clientToken === undefined || opts.clientToken === null) {
       throw new Error(
         "Missing the required parameter 'opts.clientToken' when calling createMountTarget"
@@ -834,7 +835,7 @@ mountTargetId - 挂载目标ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -945,7 +946,7 @@ mountTargetId - 挂载目标ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -1056,7 +1057,7 @@ mountTargetId - 挂载目标ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.5'
     }
 
     let contentTypes = ['application/json']

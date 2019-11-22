@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * vm service.
- * @version 1.2.4
+ * @version 1.2.5
  */
 
 JDCloud.VM = class VM extends Service {
@@ -84,7 +84,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -196,7 +196,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -333,7 +333,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -446,7 +446,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -557,7 +557,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -674,7 +674,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -790,7 +790,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -902,7 +902,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -1014,7 +1014,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -1126,7 +1126,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -1252,7 +1252,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -1372,7 +1372,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -1558,7 +1558,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -1695,7 +1695,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -1822,7 +1822,7 @@ faultDomain - 错误域，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -1996,7 +1996,7 @@ faultDomain - 错误域，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -2108,7 +2108,7 @@ faultDomain - 错误域，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -2221,7 +2221,7 @@ faultDomain - 错误域，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -2343,7 +2343,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -2469,7 +2469,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -2581,7 +2581,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -2694,7 +2694,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -2806,7 +2806,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -2941,7 +2941,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -3070,7 +3070,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -3191,7 +3191,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -3313,7 +3313,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -3434,7 +3434,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -3567,7 +3567,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -3698,7 +3698,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -3823,7 +3823,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -3940,7 +3940,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -4060,7 +4060,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -4182,7 +4182,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -4295,7 +4295,7 @@ vnc地址的有效期为1个小时，调用接口获取vnc地址后如果1个小
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -4424,7 +4424,7 @@ vnc地址的有效期为1个小时，调用接口获取vnc地址后如果1个小
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -4557,7 +4557,7 @@ vnc地址的有效期为1个小时，调用接口获取vnc地址后如果1个小
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -4674,7 +4674,7 @@ instanceTemplateId - 启动模板ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -4811,7 +4811,7 @@ instanceTemplateId - 启动模板ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -4926,7 +4926,7 @@ instanceTemplateId - 启动模板ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -5049,7 +5049,7 @@ instanceTemplateId - 启动模板ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -5163,7 +5163,7 @@ instanceTemplateId - 启动模板ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -5277,7 +5277,7 @@ instanceTemplateId - 启动模板ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -5391,7 +5391,7 @@ az - 可用区，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -5508,7 +5508,7 @@ az - 可用区，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -5627,7 +5627,7 @@ az - 可用区，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -5754,7 +5754,7 @@ az - 可用区，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -5865,7 +5865,7 @@ az - 可用区，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']
@@ -5976,7 +5976,7 @@ az - 可用区，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
     }
 
     let contentTypes = ['application/json']

@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Redis Quota API
- * 缓存Redis配额查询、修改接口
+ * tools
+ * API OF tools Create|Update|Read|Delete|Execute
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -25,50 +25,36 @@
 require('../../../lib/node_loader')
 var JDCloud = require('../../../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'redis'
+var serviceId = 'pipeline'
 Service._services[serviceId] = true
 
 /**
- * redis service.
- * @version 1.7.0
+ * pipeline service.
+ * @version 1.0.0
  */
 
-JDCloud.REDIS = class REDIS extends Service {
+JDCloud.PIPELINE = class PIPELINE extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
       options._defaultEndpoint.protocol || 'https'
     options._defaultEndpoint.host =
-      options._defaultEndpoint.host || 'redis.jdcloud-api.com'
+      options._defaultEndpoint.host || 'pipeline.jdcloud-api.com'
     options.basePath = '/v1' // 默认要设为空""
     super(serviceId, options)
   }
 
   /**
-      *  查询缓存Redis实例列表，可分页、可排序、可搜索、可过滤
+      *  查询用户限制
       * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNumber] - 页码：取值范围[1,∞)，默认为1  optional
-      * @param {integer} [opts.pageSize] - 分页大小：取值范围[10, 100]，默认为10  optional
-      * @param {filter} [opts.filters] - 过滤属性：
-cacheInstanceId - 实例Id，精确匹配，可选择多个
-cacheInstanceName - 实例名称，模糊匹配
-cacheInstanceStatus - 实例状态，精确匹配，可选择多个(running：运行中，error：错误，creating：创建中，changing：变配中，configuring：参数修改中，restoring：备份恢复中，deleting：删除中)
-redisVersion - redis引擎版本，精确匹配，可选择2.8和4.0
-instanceType - 实例类型，精确匹配（redis表示主从版，redis_cluster表示集群版）
-chargeMode - 计费类型，精确匹配（prepaid_by_duration表示包年包月预付费，postpaid_by_duration表示按配置后付费）
-  optional
-      * @param {tagFilter} [opts.tagFilters] - 标签的过滤条件  optional
-      * @param {sort} [opts.sorts] - 排序属性：
-createTime - 按创建时间排序(asc表示按时间正序，desc表示按时间倒序)
-  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param cacheInstance cacheInstances
-      * @param integer totalCount  实例总数
+      * @param integer numberLimit  流水线数量限制
+      * @param boolean canCreate  是否可以创建
       */
 
-  describeCacheInstances (opts, regionId = this.config.regionId, callback) {
+  getLimits (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -76,7 +62,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeCacheInstances"
+        "Missing the required parameter 'regionId' when calling  getLimits"
       )
     }
 
@@ -84,25 +70,13 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
 
     let postBody = null
     let queryParams = {}
-    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
-      queryParams['pageNumber'] = opts.pageNumber
-    }
-    if (opts.pageSize !== undefined && opts.pageSize !== null) {
-      queryParams['pageSize'] = opts.pageSize
-    }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
-    Object.assign(
-      queryParams,
-      this.buildTagFilterParam(opts.tagFilters, 'tagFilters')
-    )
-    Object.assign(queryParams, this.buildSortParam(opts.sorts, 'sorts'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pipeline/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -132,7 +106,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     let returnType = null
 
     this.config.logger(
-      `call describeCacheInstances with params:\npathParams:${JSON.stringify(
+      `call getLimits with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -145,7 +119,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/cacheInstance',
+      '/regions/{regionId}/limits',
       'GET',
       pathParams,
       queryParams,
@@ -175,19 +149,16 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
   }
 
   /**
-      *  创建一个指定配置的缓存Redis实例：可选择主从版或集群版，每种类型又分为多种规格（按CPU核数、内存容量、磁盘容量、带宽等划分），具体可参考产品规格代码，https://docs.jdcloud.com/cn/jcs-for-redis/specifications
-
+      *  获取可选的源提供商
       * @param {Object} opts - parameters
-      * @param {cacheInstanceSpec} opts.cacheInstance - 创建实例时指定的信息
-      * @param {chargeSpec} [opts.charge] - 实例的计费类型  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param string cacheInstanceId  实例ID
-      * @param string orderNum  订单编号
+      * @param integer totalCount  记录数
+      * @param nameLabelPair providers
       */
 
-  createCacheInstance (opts, regionId = this.config.regionId, callback) {
+  getSourceProviders (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -195,26 +166,13 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  createCacheInstance"
+        "Missing the required parameter 'regionId' when calling  getSourceProviders"
       )
     }
 
     opts = opts || {}
 
-    if (opts.cacheInstance === undefined || opts.cacheInstance === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.cacheInstance' when calling createCacheInstance"
-      )
-    }
-
-    let postBody = {}
-    if (opts.cacheInstance !== undefined && opts.cacheInstance !== null) {
-      postBody['cacheInstance'] = opts.cacheInstance
-    }
-    if (opts.charge !== undefined && opts.charge !== null) {
-      postBody['charge'] = opts.charge
-    }
-
+    let postBody = null
     let queryParams = {}
 
     let pathParams = {
@@ -222,7 +180,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pipeline/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -252,7 +210,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     let returnType = null
 
     this.config.logger(
-      `call createCacheInstance with params:\npathParams:${JSON.stringify(
+      `call getSourceProviders with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -265,7 +223,450 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/cacheInstance',
+      '/regions/{regionId}/options/sourceProviders',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  操作提供商
+      * @param {Object} opts - parameters
+      * @param {string} [opts.type] - 源提供商类型  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer totalCount  记录数
+      * @param nameLabelPair providers
+      */
+
+  getOperationProviders (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getOperationProviders"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.type !== undefined && opts.type !== null) {
+      queryParams['type'] = opts.type
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pipeline/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getOperationProviders with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/options/operationProviders',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  可选地域
+      * @param {Object} opts - parameters
+      * @param {string} [opts.type] - 源提供商类型  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer totalCount  可选地域总数
+      * @param nameLabelPair regions
+      */
+
+  getRegions (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getRegions"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.type !== undefined && opts.type !== null) {
+      queryParams['type'] = opts.type
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pipeline/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getRegions with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/options/regions',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询获取流水线任务列表，并显示最后一次执行的状态或结果信息
+/v1/regions/cn-south-1?sorts.1.name&#x3D;startedAt&amp;sorts.1.direction&#x3D;desc&amp;pageNumber&#x3D;1&amp;pageSize&#x3D;10&amp;filters.1.name&#x3D;name&amp;filters.1.values.1&#x3D;我的pipeline
+
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认为10；取值范围[10, 100]  optional
+      * @param {filter} [opts.filters] - 根据流水线名称查询  optional
+      * @param {sort} [opts.sorts]   optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer totalCount
+      * @param simplePipeline pipelines
+      */
+
+  getPipelines (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getPipelines"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, this.buildSortParam(opts.sorts, 'sorts'))
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pipeline/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getPipelines with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/pipeline',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  新建流水线任务
+      * @param {Object} opts - parameters
+      * @param {pipelineParams} [opts.data]   optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string uuid  流水线任务uuid
+      * @param boolean result  创建成功则是true
+      */
+
+  createPipeline (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createPipeline"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.data !== undefined && opts.data !== null) {
+      postBody['data'] = opts.data
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pipeline/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createPipeline with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/pipeline',
       'POST',
       pathParams,
       queryParams,
@@ -295,16 +696,16 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
   }
 
   /**
-      *  查询缓存Redis实例的详细信息
+      *  根据uuid获取流水线任务的配置信息
       * @param {Object} opts - parameters
-      * @param {string} opts.cacheInstanceId - 缓存Redis实例ID，是访问实例的唯一标识
+      * @param {string} opts.uuid - 流水线 uuid
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param cacheInstance cacheInstance  该实例的详细信息
+      * @param pipeline pipeline
       */
 
-  describeCacheInstance (opts, regionId = this.config.regionId, callback) {
+  getPipeline (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -312,15 +713,15 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeCacheInstance"
+        "Missing the required parameter 'regionId' when calling  getPipeline"
       )
     }
 
     opts = opts || {}
 
-    if (opts.cacheInstanceId === undefined || opts.cacheInstanceId === null) {
+    if (opts.uuid === undefined || opts.uuid === null) {
       throw new Error(
-        "Missing the required parameter 'opts.cacheInstanceId' when calling describeCacheInstance"
+        "Missing the required parameter 'opts.uuid' when calling getPipeline"
       )
     }
 
@@ -329,11 +730,11 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
 
     let pathParams = {
       regionId: regionId,
-      cacheInstanceId: opts.cacheInstanceId
+      uuid: opts.uuid
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pipeline/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -363,7 +764,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     let returnType = null
 
     this.config.logger(
-      `call describeCacheInstance with params:\npathParams:${JSON.stringify(
+      `call getPipeline with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -376,7 +777,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/cacheInstance/{cacheInstanceId}',
+      '/regions/{regionId}/pipeline/{uuid}',
       'GET',
       pathParams,
       queryParams,
@@ -406,21 +807,18 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
   }
 
   /**
-      *  修改缓存Redis实例的资源名称或描述，二者至少选一
+      *  更新流水线任务
       * @param {Object} opts - parameters
-      * @param {string} opts.cacheInstanceId - 缓存Redis实例ID，是访问实例的唯一标识
-      * @param {string} [opts.cacheInstanceName] - 实例的名称，名称只支持数字、字母、英文下划线、中文，且不少于2字符不超过32字符  optional
-      * @param {string} [opts.cacheInstanceDescription] - 实例的描述，不能超过256个字符  optional
+      * @param {string} opts.uuid - 流水线任务 uuid
+      * @param {pipelineParams} [opts.data]   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param string uuid  流水线任务uuid
+      * @param boolean result  更新成功则是true
       */
 
-  modifyCacheInstanceAttribute (
-    opts,
-    regionId = this.config.regionId,
-    callback
-  ) {
+  updatePipeline (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -428,41 +826,32 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  modifyCacheInstanceAttribute"
+        "Missing the required parameter 'regionId' when calling  updatePipeline"
       )
     }
 
     opts = opts || {}
 
-    if (opts.cacheInstanceId === undefined || opts.cacheInstanceId === null) {
+    if (opts.uuid === undefined || opts.uuid === null) {
       throw new Error(
-        "Missing the required parameter 'opts.cacheInstanceId' when calling modifyCacheInstanceAttribute"
+        "Missing the required parameter 'opts.uuid' when calling updatePipeline"
       )
     }
 
     let postBody = {}
-    if (
-      opts.cacheInstanceName !== undefined &&
-      opts.cacheInstanceName !== null
-    ) {
-      postBody['cacheInstanceName'] = opts.cacheInstanceName
-    }
-    if (
-      opts.cacheInstanceDescription !== undefined &&
-      opts.cacheInstanceDescription !== null
-    ) {
-      postBody['cacheInstanceDescription'] = opts.cacheInstanceDescription
+    if (opts.data !== undefined && opts.data !== null) {
+      postBody['data'] = opts.data
     }
 
     let queryParams = {}
 
     let pathParams = {
       regionId: regionId,
-      cacheInstanceId: opts.cacheInstanceId
+      uuid: opts.uuid
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pipeline/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -492,7 +881,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     let returnType = null
 
     this.config.logger(
-      `call modifyCacheInstanceAttribute with params:\npathParams:${JSON.stringify(
+      `call updatePipeline with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -505,8 +894,8 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/cacheInstance/{cacheInstanceId}',
-      'PATCH',
+      '/regions/{regionId}/pipeline/{uuid}',
+      'PUT',
       pathParams,
       queryParams,
       headerParams,
@@ -535,18 +924,17 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
   }
 
   /**
-      *  删除按配置计费、或包年包月已到期的缓存Redis实例，包年包月未到期不可删除。
-只有处于运行running或者错误error状态才可以删除，其余状态不可以删除。
-白名单用户不能删除包年包月已到期的缓存Redis实例。
-
+      *  删除一个流水线任务
       * @param {Object} opts - parameters
-      * @param {string} opts.cacheInstanceId - 缓存Redis实例ID，是访问实例的唯一标识
+      * @param {string} opts.uuid - 流水线任务uuid
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param string uuid  流水线任务uuid
+      * @param boolean result  删除成功则是true
       */
 
-  deleteCacheInstance (opts, regionId = this.config.regionId, callback) {
+  deletePipeline (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -554,15 +942,15 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  deleteCacheInstance"
+        "Missing the required parameter 'regionId' when calling  deletePipeline"
       )
     }
 
     opts = opts || {}
 
-    if (opts.cacheInstanceId === undefined || opts.cacheInstanceId === null) {
+    if (opts.uuid === undefined || opts.uuid === null) {
       throw new Error(
-        "Missing the required parameter 'opts.cacheInstanceId' when calling deleteCacheInstance"
+        "Missing the required parameter 'opts.uuid' when calling deletePipeline"
       )
     }
 
@@ -571,11 +959,11 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
 
     let pathParams = {
       regionId: regionId,
-      cacheInstanceId: opts.cacheInstanceId
+      uuid: opts.uuid
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pipeline/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -605,7 +993,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     let returnType = null
 
     this.config.logger(
-      `call deleteCacheInstance with params:\npathParams:${JSON.stringify(
+      `call deletePipeline with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -618,7 +1006,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/cacheInstance/{cacheInstanceId}',
+      '/regions/{regionId}/pipeline/{uuid}',
       'DELETE',
       pathParams,
       queryParams,
@@ -648,19 +1036,18 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
   }
 
   /**
-      *  变更缓存Redis实例规格（变配），只能变更运行状态的实例规格，变更的规格不能与之前的相同。
-预付费用户，从集群版变配到主从版，新规格的内存大小要大于老规格的内存大小，从主从版到集群版，新规格的内存大小要不小于老规格的内存大小。
-
+      *  根据uuid启动一个流水线任务
       * @param {Object} opts - parameters
-      * @param {string} opts.cacheInstanceId - 缓存Redis实例ID，是访问实例的唯一标识
-      * @param {string} opts.cacheInstanceClass - 变更后的实例规格
+      * @param {string} opts.uuid - 流水线uuid
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param string orderNum  本次变更请求的订单编号
+      * @param string instanceUuid  本次执行生成的实例的uuid
+      * @param string uuid  提交运行的流水线uuid
+      * @param boolean result  提交任务是否成功
       */
 
-  modifyCacheInstanceClass (opts, regionId = this.config.regionId, callback) {
+  startPipeline (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -668,43 +1055,29 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  modifyCacheInstanceClass"
+        "Missing the required parameter 'regionId' when calling  startPipeline"
       )
     }
 
     opts = opts || {}
 
-    if (opts.cacheInstanceId === undefined || opts.cacheInstanceId === null) {
+    if (opts.uuid === undefined || opts.uuid === null) {
       throw new Error(
-        "Missing the required parameter 'opts.cacheInstanceId' when calling modifyCacheInstanceClass"
-      )
-    }
-    if (
-      opts.cacheInstanceClass === undefined ||
-      opts.cacheInstanceClass === null
-    ) {
-      throw new Error(
-        "Missing the required parameter 'opts.cacheInstanceClass' when calling modifyCacheInstanceClass"
+        "Missing the required parameter 'opts.uuid' when calling startPipeline"
       )
     }
 
     let postBody = {}
-    if (
-      opts.cacheInstanceClass !== undefined &&
-      opts.cacheInstanceClass !== null
-    ) {
-      postBody['cacheInstanceClass'] = opts.cacheInstanceClass
-    }
 
     let queryParams = {}
 
     let pathParams = {
       regionId: regionId,
-      cacheInstanceId: opts.cacheInstanceId
+      uuid: opts.uuid
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pipeline/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -734,7 +1107,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     let returnType = null
 
     this.config.logger(
-      `call modifyCacheInstanceClass with params:\npathParams:${JSON.stringify(
+      `call startPipeline with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -747,7 +1120,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/cacheInstance/{cacheInstanceId}:modifyCacheInstanceClass',
+      '/regions/{regionId}/pipeline/{uuid}:start',
       'POST',
       pathParams,
       queryParams,
@@ -777,16 +1150,21 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
   }
 
   /**
-      *  重置缓存Redis实例的密码，可为空
+      *  查询多个指定流水线执行及状态信息
+
       * @param {Object} opts - parameters
-      * @param {string} opts.cacheInstanceId - 缓存Redis实例ID，是访问实例的唯一标识
-      * @param {string} [opts.password] - 密码，为空即为免密，不少于8字符不超过16字符  optional
+      * @param {string} opts.uuid - 流水线uuid
+      * @param {string} opts.instanceUuid - 流水线实例uuid
+      * @param {string} opts.actionUuid - 动作UUID
+      * @param {string} opts.status - 手动设置的状态，如SUCCESS,FAILED
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param string instanceUuid
+      * @param string actionUuid
       */
 
-  resetCacheInstancePassword (opts, regionId = this.config.regionId, callback) {
+  manualAction (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -794,32 +1172,49 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  resetCacheInstancePassword"
+        "Missing the required parameter 'regionId' when calling  manualAction"
       )
     }
 
     opts = opts || {}
 
-    if (opts.cacheInstanceId === undefined || opts.cacheInstanceId === null) {
+    if (opts.uuid === undefined || opts.uuid === null) {
       throw new Error(
-        "Missing the required parameter 'opts.cacheInstanceId' when calling resetCacheInstancePassword"
+        "Missing the required parameter 'opts.uuid' when calling manualAction"
+      )
+    }
+    if (opts.instanceUuid === undefined || opts.instanceUuid === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceUuid' when calling manualAction"
+      )
+    }
+    if (opts.actionUuid === undefined || opts.actionUuid === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.actionUuid' when calling manualAction"
+      )
+    }
+    if (opts.status === undefined || opts.status === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.status' when calling manualAction"
       )
     }
 
     let postBody = {}
-    if (opts.password !== undefined && opts.password !== null) {
-      postBody['password'] = opts.password
+    if (opts.status !== undefined && opts.status !== null) {
+      postBody['status'] = opts.status
     }
 
     let queryParams = {}
 
     let pathParams = {
       regionId: regionId,
-      cacheInstanceId: opts.cacheInstanceId
+      uuid: opts.uuid,
+      instanceUuid: opts.instanceUuid,
+      actionUuid: opts.actionUuid
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pipeline/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -849,7 +1244,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     let returnType = null
 
     this.config.logger(
-      `call resetCacheInstancePassword with params:\npathParams:${JSON.stringify(
+      `call manualAction with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -862,7 +1257,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/cacheInstance/{cacheInstanceId}:resetCacheInstancePassword',
+      '/regions/{regionId}/pipeline/{uuid}/instances/{instanceUuid}/actions/{actionUuid}:manual',
       'POST',
       pathParams,
       queryParams,
@@ -892,253 +1287,22 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
   }
 
   /**
-      *  查看缓存Redis实例的当前配置参数
+      *  根据条件查询流水线执行历史
+
       * @param {Object} opts - parameters
-      * @param {string} opts.cacheInstanceId - 缓存Redis实例ID，是访问实例的唯一标识
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param configItem instanceConfig
-      */
-
-  describeInstanceConfig (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeInstanceConfig"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.cacheInstanceId === undefined || opts.cacheInstanceId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.cacheInstanceId' when calling describeInstanceConfig"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      cacheInstanceId: opts.cacheInstanceId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.7.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeInstanceConfig with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/cacheInstance/{cacheInstanceId}/instanceConfig',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  修改缓存Redis实例的配置参数，支持部分参数修改
-      * @param {Object} opts - parameters
-      * @param {string} opts.cacheInstanceId - 缓存Redis实例ID，是访问实例的唯一标识
-      * @param {array} opts.instanceConfig - 要修改的配置参数名和参数值
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  modifyInstanceConfig (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  modifyInstanceConfig"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.cacheInstanceId === undefined || opts.cacheInstanceId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.cacheInstanceId' when calling modifyInstanceConfig"
-      )
-    }
-    if (opts.instanceConfig === undefined || opts.instanceConfig === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.instanceConfig' when calling modifyInstanceConfig"
-      )
-    }
-
-    let postBody = {}
-    if (opts.instanceConfig !== undefined && opts.instanceConfig !== null) {
-      postBody['instanceConfig'] = opts.instanceConfig
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      cacheInstanceId: opts.cacheInstanceId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.7.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call modifyInstanceConfig with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/cacheInstance/{cacheInstanceId}/instanceConfig',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询缓存Redis实例的备份结果（备份文件列表），可分页、可指定起止时间或备份任务ID
-      * @param {Object} opts - parameters
-      * @param {string} opts.cacheInstanceId - 缓存Redis实例ID，是访问实例的唯一标识
+      * @param {string} opts.uuids - 流水线执行实例ID，多个ID用逗号分隔
+      * @param {boolean} [opts.isSimple] - 流水线执行的状态，如果isSimple是true，只显示每个stage的状态, 而stage中的action状态将被忽略  optional
       * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
       * @param {integer} [opts.pageSize] - 分页大小；默认为10；取值范围[10, 100]  optional
-      * @param {string} [opts.startTime] - 开始时间  optional
-      * @param {string} [opts.endTime] - 结束时间  optional
-      * @param {string} [opts.baseId] - 备份任务ID  optional
+      * @param {filter} [opts.filters] - 根据流水线名称查询  optional
+      * @param {sort} [opts.sorts]   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param backup backups
-      * @param integer totalCount  备份结果总数
+      * @param pipelineInstance pipelineInstances
       */
 
-  describeBackups (opts, regionId = this.config.regionId, callback) {
+  getPipelineInstancesByUuids (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -1146,43 +1310,41 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeBackups"
+        "Missing the required parameter 'regionId' when calling  getPipelineInstancesByUuids"
       )
     }
 
     opts = opts || {}
 
-    if (opts.cacheInstanceId === undefined || opts.cacheInstanceId === null) {
+    if (opts.uuids === undefined || opts.uuids === null) {
       throw new Error(
-        "Missing the required parameter 'opts.cacheInstanceId' when calling describeBackups"
+        "Missing the required parameter 'opts.uuids' when calling getPipelineInstancesByUuids"
       )
     }
 
     let postBody = null
     let queryParams = {}
+    if (opts.uuids !== undefined && opts.uuids !== null) {
+      queryParams['uuids'] = opts.uuids
+    }
+    if (opts.isSimple !== undefined && opts.isSimple !== null) {
+      queryParams['isSimple'] = opts.isSimple
+    }
     if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
       queryParams['pageNumber'] = opts.pageNumber
     }
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    if (opts.startTime !== undefined && opts.startTime !== null) {
-      queryParams['startTime'] = opts.startTime
-    }
-    if (opts.endTime !== undefined && opts.endTime !== null) {
-      queryParams['endTime'] = opts.endTime
-    }
-    if (opts.baseId !== undefined && opts.baseId !== null) {
-      queryParams['baseId'] = opts.baseId
-    }
+    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, this.buildSortParam(opts.sorts, 'sorts'))
 
     let pathParams = {
-      regionId: regionId,
-      cacheInstanceId: opts.cacheInstanceId
+      regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pipeline/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -1212,7 +1374,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     let returnType = null
 
     this.config.logger(
-      `call describeBackups with params:\npathParams:${JSON.stringify(
+      `call getPipelineInstancesByUuids with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1225,7 +1387,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/cacheInstance/{cacheInstanceId}/backup',
+      '/regions/{regionId}/instances',
       'GET',
       pathParams,
       queryParams,
@@ -1255,872 +1417,19 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
   }
 
   /**
-      *  创建并执行缓存Redis实例的备份任务，只能为手动备份，可设置备份文件名称
+      *  查询流水线执行历史列表
       * @param {Object} opts - parameters
-      * @param {string} opts.cacheInstanceId - 缓存Redis实例ID，是访问实例的唯一标识
-      * @param {string} opts.fileName - 备份文件名称，只支持英文数字和下划线的组合，长度不超过32个字符
-      * @param {integer} opts.backupType - 备份类型：手动备份为1，只能为手动备份
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param string baseId  本次备份任务ID，可用于查询本次备份任务的结果
-      */
-
-  createBackup (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  createBackup"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.cacheInstanceId === undefined || opts.cacheInstanceId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.cacheInstanceId' when calling createBackup"
-      )
-    }
-    if (opts.fileName === undefined || opts.fileName === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.fileName' when calling createBackup"
-      )
-    }
-    if (opts.backupType === undefined || opts.backupType === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.backupType' when calling createBackup"
-      )
-    }
-
-    let postBody = {}
-    if (opts.fileName !== undefined && opts.fileName !== null) {
-      postBody['fileName'] = opts.fileName
-    }
-    if (opts.backupType !== undefined && opts.backupType !== null) {
-      postBody['backupType'] = opts.backupType
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      cacheInstanceId: opts.cacheInstanceId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.7.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call createBackup with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/cacheInstance/{cacheInstanceId}/backup',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询缓存Redis实例的自动备份策略
-      * @param {Object} opts - parameters
-      * @param {string} opts.cacheInstanceId - 缓存Redis实例ID，是访问实例的唯一标识
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param string backupPeriod  备份周期，包括：Monday，Tuesday，Wednesday，Thursday，Friday，Saturday，Sunday，多个用逗号分隔
-      * @param string backupTime  备份时间，格式为：HH:mm-HH:mm 时区，例如&quot;01:00-02:00 +0800&quot;，表示东八区的1点到2点
-      * @param string nextBackupTime  下次自动备份时间段，ISO 8601标准的UTC时间，格式为：YYYY-MM-DDTHH:mm:ssZ~YYYY-MM-DDTHH:mm:ssZ
-      */
-
-  describeBackupPolicy (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeBackupPolicy"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.cacheInstanceId === undefined || opts.cacheInstanceId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.cacheInstanceId' when calling describeBackupPolicy"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      cacheInstanceId: opts.cacheInstanceId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.7.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeBackupPolicy with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/cacheInstance/{cacheInstanceId}/backupPolicy',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  修改缓存Redis实例的自动备份策略，可修改备份周期和备份时间
-      * @param {Object} opts - parameters
-      * @param {string} opts.cacheInstanceId - 缓存Redis实例ID，是访问实例的唯一标识
-      * @param {string} opts.backupTime - 备份时间，格式为：HH:mm-HH:mm 时区，例如&quot;01:00-02:00 +0800&quot;，表示东八区的1点到2点
-      * @param {string} opts.backupPeriod - 备份周期，包括：Monday，Tuesday，Wednesday，Thursday，Friday，Saturday，Sunday，多个用逗号分隔
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  modifyBackupPolicy (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  modifyBackupPolicy"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.cacheInstanceId === undefined || opts.cacheInstanceId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.cacheInstanceId' when calling modifyBackupPolicy"
-      )
-    }
-    if (opts.backupTime === undefined || opts.backupTime === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.backupTime' when calling modifyBackupPolicy"
-      )
-    }
-    if (opts.backupPeriod === undefined || opts.backupPeriod === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.backupPeriod' when calling modifyBackupPolicy"
-      )
-    }
-
-    let postBody = {}
-    if (opts.backupTime !== undefined && opts.backupTime !== null) {
-      postBody['backupTime'] = opts.backupTime
-    }
-    if (opts.backupPeriod !== undefined && opts.backupPeriod !== null) {
-      postBody['backupPeriod'] = opts.backupPeriod
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      cacheInstanceId: opts.cacheInstanceId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.7.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call modifyBackupPolicy with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/cacheInstance/{cacheInstanceId}/backupPolicy',
-      'PATCH',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  恢复缓存Redis实例的某次备份
-      * @param {Object} opts - parameters
-      * @param {string} opts.cacheInstanceId - 缓存Redis实例ID，是访问实例的唯一标识
-      * @param {string} opts.baseId - 备份任务ID
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  restoreInstance (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  restoreInstance"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.cacheInstanceId === undefined || opts.cacheInstanceId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.cacheInstanceId' when calling restoreInstance"
-      )
-    }
-    if (opts.baseId === undefined || opts.baseId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.baseId' when calling restoreInstance"
-      )
-    }
-
-    let postBody = {}
-    if (opts.baseId !== undefined && opts.baseId !== null) {
-      postBody['baseId'] = opts.baseId
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      cacheInstanceId: opts.cacheInstanceId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.7.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call restoreInstance with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/cacheInstance/{cacheInstanceId}/restore',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  获取缓存Redis实例的备份文件临时下载地址
-      * @param {Object} opts - parameters
-      * @param {string} opts.cacheInstanceId - 缓存Redis实例ID，是访问实例的唯一标识
-      * @param {string} opts.baseId - 备份任务ID
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param downloadUrl downloadUrls
-      */
-
-  describeDownloadUrl (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeDownloadUrl"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.cacheInstanceId === undefined || opts.cacheInstanceId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.cacheInstanceId' when calling describeDownloadUrl"
-      )
-    }
-    if (opts.baseId === undefined || opts.baseId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.baseId' when calling describeDownloadUrl"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.baseId !== undefined && opts.baseId !== null) {
-      queryParams['baseId'] = opts.baseId
-    }
-
-    let pathParams = {
-      regionId: regionId,
-      cacheInstanceId: opts.cacheInstanceId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.7.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeDownloadUrl with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/cacheInstance/{cacheInstanceId}/backup:describeDownloadUrl',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询Redis实例的集群内部信息
-      * @param {Object} opts - parameters
-      * @param {string} opts.cacheInstanceId - 缓存Redis实例ID，是访问实例的唯一标识
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param clusterInfo info  集群内部信息
-      */
-
-  describeClusterInfo (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeClusterInfo"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.cacheInstanceId === undefined || opts.cacheInstanceId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.cacheInstanceId' when calling describeClusterInfo"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      cacheInstanceId: opts.cacheInstanceId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.7.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeClusterInfo with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/cacheInstance/{cacheInstanceId}/clusterInfo',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  获取缓存Redis实例的慢查询日志
-      * @param {Object} opts - parameters
-      * @param {string} opts.cacheInstanceId - 缓存Redis实例ID，是访问实例的唯一标识
+      * @param {string} opts.uuid - 流水线uuid
       * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
       * @param {integer} [opts.pageSize] - 分页大小；默认为10；取值范围[10, 100]  optional
-      * @param {string} [opts.startTime] - 开始时间  optional
-      * @param {string} [opts.endTime] - 结束时间  optional
-      * @param {string} [opts.shardId] - 分片id  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param slowLog slowLogs
-      * @param integer totalCount  慢查询日志总条数
-      */
-
-  describeSlowLog (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeSlowLog"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.cacheInstanceId === undefined || opts.cacheInstanceId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.cacheInstanceId' when calling describeSlowLog"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
-      queryParams['pageNumber'] = opts.pageNumber
-    }
-    if (opts.pageSize !== undefined && opts.pageSize !== null) {
-      queryParams['pageSize'] = opts.pageSize
-    }
-    if (opts.startTime !== undefined && opts.startTime !== null) {
-      queryParams['startTime'] = opts.startTime
-    }
-    if (opts.endTime !== undefined && opts.endTime !== null) {
-      queryParams['endTime'] = opts.endTime
-    }
-    if (opts.shardId !== undefined && opts.shardId !== null) {
-      queryParams['shardId'] = opts.shardId
-    }
-
-    let pathParams = {
-      regionId: regionId,
-      cacheInstanceId: opts.cacheInstanceId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.7.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeSlowLog with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = this.makeRequest(
-      '/regions/{regionId}/cacheInstance/{cacheInstanceId}/slowLog',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询某区域下的缓存Redis实例规格列表
-      * @param {Object} opts - parameters
-      * @param {string} [opts.redisVersion] - 缓存Redis的版本号：目前有2.8和4.0，默认为2.8  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param instanceClass instanceClasses
       * @param integer totalCount
+      * @param pipelineInstance instances
       */
 
-  describeInstanceClass (opts, regionId = this.config.regionId, callback) {
+  getPipelineInstances (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -2128,24 +1437,34 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeInstanceClass"
+        "Missing the required parameter 'regionId' when calling  getPipelineInstances"
       )
     }
 
     opts = opts || {}
 
+    if (opts.uuid === undefined || opts.uuid === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.uuid' when calling getPipelineInstances"
+      )
+    }
+
     let postBody = null
     let queryParams = {}
-    if (opts.redisVersion !== undefined && opts.redisVersion !== null) {
-      queryParams['redisVersion'] = opts.redisVersion
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
     }
 
     let pathParams = {
-      regionId: regionId
+      regionId: regionId,
+      uuid: opts.uuid
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pipeline/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -2175,7 +1494,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     let returnType = null
 
     this.config.logger(
-      `call describeInstanceClass with params:\npathParams:${JSON.stringify(
+      `call getPipelineInstances with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -2188,7 +1507,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/instanceClass',
+      '/regions/{regionId}/pipeline/{uuid}/instances',
       'GET',
       pathParams,
       queryParams,
@@ -2218,15 +1537,18 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
   }
 
   /**
-      *  查询账户的缓存Redis配额信息
+      *  查询流水线执行结果及状态信息
       * @param {Object} opts - parameters
+      * @param {string} opts.uuid - 流水线uuid
+      * @param {string} opts.instanceUuid - 流水线uuid执行历史记录的uuid, 也可以用 latest 字符串代替uuid, 来取得最近的状态
+      * @param {boolean} [opts.isSimple] - 流水线执行的状态，如果isSimple是true，只显示每个stage的状态, 而stage中的action状态将被忽略  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param quota quota
+      * @param pipelineInstance pipelineInstance
       */
 
-  describeUserQuota (opts, regionId = this.config.regionId, callback) {
+  getPipelineInstance (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -2234,21 +1556,37 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeUserQuota"
+        "Missing the required parameter 'regionId' when calling  getPipelineInstance"
       )
     }
 
     opts = opts || {}
 
+    if (opts.uuid === undefined || opts.uuid === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.uuid' when calling getPipelineInstance"
+      )
+    }
+    if (opts.instanceUuid === undefined || opts.instanceUuid === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceUuid' when calling getPipelineInstance"
+      )
+    }
+
     let postBody = null
     let queryParams = {}
+    if (opts.isSimple !== undefined && opts.isSimple !== null) {
+      queryParams['isSimple'] = opts.isSimple
+    }
 
     let pathParams = {
-      regionId: regionId
+      regionId: regionId,
+      uuid: opts.uuid,
+      instanceUuid: opts.instanceUuid
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pipeline/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -2278,7 +1616,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     let returnType = null
 
     this.config.logger(
-      `call describeUserQuota with params:\npathParams:${JSON.stringify(
+      `call getPipelineInstance with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -2291,8 +1629,233 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/quota',
+      '/regions/{regionId}/pipeline/{uuid}/instance/{instanceUuid}',
       'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  停止流水线的一次执行
+      * @param {Object} opts - parameters
+      * @param {string} opts.uuid - 流水线uuid
+      * @param {string} opts.instanceUuid - 流水线执行的uuid
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string instanceUuid
+      * @param string actionUuid
+      */
+
+  stopPipelineInstance (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  stopPipelineInstance"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.uuid === undefined || opts.uuid === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.uuid' when calling stopPipelineInstance"
+      )
+    }
+    if (opts.instanceUuid === undefined || opts.instanceUuid === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceUuid' when calling stopPipelineInstance"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      uuid: opts.uuid,
+      instanceUuid: opts.instanceUuid
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pipeline/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call stopPipelineInstance with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/pipeline/{uuid}/instance/{instanceUuid}:stop',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  上传文件，返回文件内容
+      * @param {Object} opts - parameters
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean result
+      * @param string contents
+      */
+
+  readFile (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  readFile"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pipeline/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call readFile with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/file',
+      'POST',
       pathParams,
       queryParams,
       headerParams,
@@ -2320,4 +1883,4 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     )
   }
 }
-module.exports = JDCloud.REDIS
+module.exports = JDCloud.PIPELINE

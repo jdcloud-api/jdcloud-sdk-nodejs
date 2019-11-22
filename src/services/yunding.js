@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Message-Content-APIs
- * 富媒体模板内容创建、查询相关接口
+ * yunding-rds
+ * 云鼎-RDS相关接口
  *
  * OpenAPI spec version: v2
  * Contact:
@@ -24,20 +24,20 @@
 
 const JDCloud = require('../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'rms'
+var serviceId = 'yunding'
 Service._services[serviceId] = true
 
 /**
- * rms service.
+ * yunding service.
  */
 
-JDCloud.RMS = class RMS {
+JDCloud.YUNDING = class YUNDING {
   constructor (config = {}) {
     this.init(config)
     return new this.service(config)
   }
   init (config) {
-    let serviceName = 'rms'
+    let serviceName = 'yunding'
     let version = config.version || JDCloud.config.version
     let versionFlag = 'v2'
     if (version && version[serviceName]) {
@@ -53,4 +53,4 @@ JDCloud.RMS = class RMS {
   }
 }
 
-module.exports = JDCloud.RMS
+module.exports = JDCloud.YUNDING

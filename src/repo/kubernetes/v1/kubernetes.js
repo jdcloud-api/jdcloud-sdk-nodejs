@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * kubernetes service.
- * @version 0.5.1
+ * @version 0.6.1
  */
 
 JDCloud.KUBERNETES = class KUBERNETES extends Service {
@@ -88,7 +88,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -185,7 +185,7 @@ id - id，支持多个
       * @param {boolean} [opts.clientCertificate] - 默认开启 clientCertificate  optional
       * @param {string} [opts.version] - kubernetes的版本  optional
       * @param {array} [opts.azs] - 集群所在的az  optional
-      * @param {nodeGroupSpec} opts.nodeGroup - pod 创建参数
+      * @param {nodeGroupSpec} opts.nodeGroup - 集群节点组
       * @param {string} opts.masterCidr - k8s的master的cidr
       * @param {string} opts.accessKey - 用户的AccessKey，插件调用open-api时的认证凭证
       * @param {string} opts.secretKey - 用户的SecretKey，插件调用open-api时的认证凭证
@@ -285,7 +285,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -396,7 +396,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -469,11 +469,11 @@ id - id，支持多个
   }
 
   /**
-      *  修改集群的 名称 和 描述。
+      *  修改集群的 名称 和 描述。&lt;br&gt;集群 name 和 description 必须要指定一个
       * @param {Object} opts - parameters
       * @param {string} opts.clusterId - 集群 ID
       * @param {string} [opts.name] - 集群名称  optional
-      * @param {string} [opts.description] - 集群 name 和 description 必须要指定一个  optional
+      * @param {string} [opts.description] - 集群描述  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -515,7 +515,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -625,7 +625,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -740,7 +740,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -851,7 +851,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -968,7 +968,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -1095,7 +1095,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -1228,7 +1228,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -1343,7 +1343,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -1416,14 +1416,14 @@ id - id，支持多个
   }
 
   /**
-      *  查询节点组列表
+      *  查询工作节点组列表
       * @param {Object} opts - parameters
       * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
       * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
       * @param {filter} [opts.filters] - name - 节点组名称，模糊匹配，支持单个
 id - 节点组 id，支持多个
-clusterId - 根据clusterId查询
-clusterName - 根据名称查询 cluster
+clusterId - 根据 clusterId 查询
+clusterName - 根据 cluster 名称查询
   optional
       * @param {tagFilter} [opts.tags] - Tag筛选条件  optional
       * @param {string} regionId - ID of the region
@@ -1463,7 +1463,7 @@ clusterName - 根据名称查询 cluster
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -1536,18 +1536,19 @@ clusterName - 根据名称查询 cluster
   }
 
   /**
-      *  创建k8s的nodeGroup
-要求集群状态为running
+      *  创建工作节点组&lt;br&gt;
+- 要求集群状态为running
 
       * @param {Object} opts - parameters
       * @param {string} opts.name - 名称（同一用户的 cluster 内部唯一）
       * @param {string} [opts.description] - 描述  optional
-      * @param {string} opts.clusterId - node group所属的cluster
-      * @param {nodeConfigSpec} opts.nodeConfig - 节点组配置
-      * @param {integer} opts.initialNodeCount - nodeGroup初始化大小
-      * @param {string} opts.vpcId - k8s运行的vpc
-      * @param {string} opts.nodeCidr - k8s的node的cidr
-      * @param {boolean} [opts.autoRepair] - 是否开启 node group 的自动修复，默认关闭  optional
+      * @param {string} opts.clusterId - 工作节点所属的集群
+      * @param {nodeConfigSpec} opts.nodeConfig - 工作节点配置信息
+      * @param {array} [opts.azs] - 工作节点组的 az，必须为集群az的子集，默认为集群az  optional
+      * @param {integer} opts.initialNodeCount - 工作节点组初始化大小
+      * @param {string} opts.vpcId - 工作节点组初始化大小运行的VPC
+      * @param {string} opts.nodeCidr - 工作节点组的cidr
+      * @param {boolean} [opts.autoRepair] - 是否开启工作节点组的自动修复，默认关闭  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1612,6 +1613,9 @@ clusterName - 根据名称查询 cluster
     if (opts.nodeConfig !== undefined && opts.nodeConfig !== null) {
       postBody['nodeConfig'] = opts.nodeConfig
     }
+    if (opts.azs !== undefined && opts.azs !== null) {
+      postBody['azs'] = opts.azs
+    }
     if (opts.initialNodeCount !== undefined && opts.initialNodeCount !== null) {
       postBody['initialNodeCount'] = opts.initialNodeCount
     }
@@ -1632,7 +1636,7 @@ clusterName - 根据名称查询 cluster
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -1705,9 +1709,9 @@ clusterName - 根据名称查询 cluster
   }
 
   /**
-      *  查询单个节点组详情
+      *  查询单个工作节点组详情
       * @param {Object} opts - parameters
-      * @param {string} opts.nodeGroupId - 节点组 ID
+      * @param {string} opts.nodeGroupId - 工作节点组 ID
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1743,7 +1747,7 @@ clusterName - 根据名称查询 cluster
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -1816,11 +1820,11 @@ clusterName - 根据名称查询 cluster
   }
 
   /**
-      *  修改节点组的 名称 和 描述
+      *  修改工作节点组的 名称 和 描述&lt;br&gt;name 和 description 必须要指定一个
       * @param {Object} opts - parameters
-      * @param {string} opts.nodeGroupId - 节点组 ID
-      * @param {string} [opts.name] - 节点组名称  optional
-      * @param {string} [opts.description] - 集群 name 和 description 必须要指定一个  optional
+      * @param {string} opts.nodeGroupId - 工作节点组 ID
+      * @param {string} [opts.name] - 工作节点组名称  optional
+      * @param {string} [opts.description] - 工作节点组描述  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1862,7 +1866,7 @@ clusterName - 根据名称查询 cluster
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -1935,9 +1939,9 @@ clusterName - 根据名称查询 cluster
   }
 
   /**
-      *  cluster 摘除 nodeGroup 并删除 nodeGroup
+      *  集群摘除工作节点组并删除工作节点组
       * @param {Object} opts - parameters
-      * @param {string} opts.nodeGroupId - 节点组 ID
+      * @param {string} opts.nodeGroupId - 工作节点组 ID
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1972,7 +1976,7 @@ clusterName - 根据名称查询 cluster
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -2045,10 +2049,10 @@ clusterName - 根据名称查询 cluster
   }
 
   /**
-      *  调整节点组实例数量
+      *  调整工作节点组实例数量
       * @param {Object} opts - parameters
-      * @param {string} opts.nodeGroupId - 节点组 ID
-      * @param {integer} opts.expectCount - 创建集群请求参数模型
+      * @param {string} opts.nodeGroupId - 工作节点组 ID
+      * @param {integer} opts.expectCount - 预期目标节点数量
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -2092,7 +2096,7 @@ clusterName - 根据名称查询 cluster
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -2165,9 +2169,9 @@ clusterName - 根据名称查询 cluster
   }
 
   /**
-      *  设置节点组的自动修复
+      *  设置工作节点组的自动修复
       * @param {Object} opts - parameters
-      * @param {string} opts.nodeGroupId - 节点组 ID
+      * @param {string} opts.nodeGroupId - 工作节点组 ID
       * @param {boolean} opts.enabled - 是否开启自动修复
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -2212,7 +2216,7 @@ clusterName - 根据名称查询 cluster
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -2285,9 +2289,9 @@ clusterName - 根据名称查询 cluster
   }
 
   /**
-      *  回滚未升级完的节点组
+      *  回滚未升级完的工作节点组
       * @param {Object} opts - parameters
-      * @param {string} opts.nodeGroupId - 节点组 ID
+      * @param {string} opts.nodeGroupId - 工作节点组 ID
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -2323,7 +2327,7 @@ clusterName - 根据名称查询 cluster
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -2396,7 +2400,7 @@ clusterName - 根据名称查询 cluster
   }
 
   /**
-      *  查询(k8s 集群)配额
+      *  查询 kubernetes 集群配额
       * @param {Object} opts - parameters
       * @param {filter} [opts.filters] - resourceTypes - 资源类型，暂时只支持[kubernetes]
   optional
@@ -2429,7 +2433,7 @@ clusterName - 根据名称查询 cluster
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -2502,7 +2506,7 @@ clusterName - 根据名称查询 cluster
   }
 
   /**
-      *  查询(k8s 集群)服务配置信息
+      *  查询 kubernetes 集群服务配置信息
       * @param {Object} opts - parameters
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -2532,7 +2536,7 @@ clusterName - 根据名称查询 cluster
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -2639,7 +2643,7 @@ clusterName - 根据名称查询 cluster
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -2750,7 +2754,7 @@ clusterName - 根据名称查询 cluster
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -2865,7 +2869,7 @@ clusterName - 根据名称查询 cluster
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -2985,7 +2989,7 @@ clusterName - 根据名称查询 cluster
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
     }
 
     let contentTypes = ['application/json']

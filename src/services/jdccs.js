@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Resource API
- * 云托管服务的资源API
+ * Ticket API
+ * 云托管服务的工单API
  *
  * OpenAPI spec version: v1
  * Contact:

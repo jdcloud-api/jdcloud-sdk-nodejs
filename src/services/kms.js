@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Secret Management Service
- * 基于硬件保护机密的安全数据托管服务
+ * Statistics Service
+ * 基于硬件保护密钥的安全数据托管服务
  *
  * OpenAPI spec version: v1
  * Contact:

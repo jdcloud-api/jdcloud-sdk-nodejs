@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * kubernetes service.
- * @version 0.6.1
+ * @version 0.7.1
  */
 
 JDCloud.KUBERNETES = class KUBERNETES extends Service {
@@ -88,7 +88,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
     }
 
     let contentTypes = ['application/json']
@@ -285,7 +285,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
     }
 
     let contentTypes = ['application/json']
@@ -396,7 +396,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
     }
 
     let contentTypes = ['application/json']
@@ -515,7 +515,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
     }
 
     let contentTypes = ['application/json']
@@ -625,7 +625,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
     }
 
     let contentTypes = ['application/json']
@@ -740,7 +740,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
     }
 
     let contentTypes = ['application/json']
@@ -851,7 +851,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
     }
 
     let contentTypes = ['application/json']
@@ -968,7 +968,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
     }
 
     let contentTypes = ['application/json']
@@ -1095,7 +1095,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
     }
 
     let contentTypes = ['application/json']
@@ -1228,7 +1228,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
     }
 
     let contentTypes = ['application/json']
@@ -1343,7 +1343,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
     }
 
     let contentTypes = ['application/json']
@@ -1463,7 +1463,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
     }
 
     let contentTypes = ['application/json']
@@ -1549,6 +1549,7 @@ clusterName - 根据 cluster 名称查询
       * @param {string} opts.vpcId - 工作节点组初始化大小运行的VPC
       * @param {string} opts.nodeCidr - 工作节点组的cidr
       * @param {boolean} [opts.autoRepair] - 是否开启工作节点组的自动修复，默认关闭  optional
+      * @param {cAConfigSpec} [opts.caConfig] - 自动伸缩配置  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1628,6 +1629,9 @@ clusterName - 根据 cluster 名称查询
     if (opts.autoRepair !== undefined && opts.autoRepair !== null) {
       postBody['autoRepair'] = opts.autoRepair
     }
+    if (opts.caConfig !== undefined && opts.caConfig !== null) {
+      postBody['caConfig'] = opts.caConfig
+    }
 
     let queryParams = {}
 
@@ -1636,7 +1640,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
     }
 
     let contentTypes = ['application/json']
@@ -1747,7 +1751,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
     }
 
     let contentTypes = ['application/json']
@@ -1866,7 +1870,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
     }
 
     let contentTypes = ['application/json']
@@ -1976,7 +1980,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
     }
 
     let contentTypes = ['application/json']
@@ -2096,7 +2100,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
     }
 
     let contentTypes = ['application/json']
@@ -2216,7 +2220,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
     }
 
     let contentTypes = ['application/json']
@@ -2327,7 +2331,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
     }
 
     let contentTypes = ['application/json']
@@ -2400,6 +2404,243 @@ clusterName - 根据 cluster 名称查询
   }
 
   /**
+      *  设置工作节点组自动扩容
+      * @param {Object} opts - parameters
+      * @param {string} opts.nodeGroupId - 工作节点组 ID
+      * @param {cAConfigSpec} opts.caConfig - 自动伸缩配置，其中 enable 必须指定
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  setNodeGroupCA (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  setNodeGroupCA"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.nodeGroupId === undefined || opts.nodeGroupId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.nodeGroupId' when calling setNodeGroupCA"
+      )
+    }
+    if (opts.caConfig === undefined || opts.caConfig === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.caConfig' when calling setNodeGroupCA"
+      )
+    }
+
+    let postBody = {}
+    if (opts.caConfig !== undefined && opts.caConfig !== null) {
+      postBody['caConfig'] = opts.caConfig
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      nodeGroupId: opts.nodeGroupId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call setNodeGroupCA with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/nodeGroups/{nodeGroupId}:setNodeGroupCA',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  从工作节点组中删除指定实例
+      * @param {Object} opts - parameters
+      * @param {string} opts.nodeGroupId - 工作节点组 ID
+      * @param {array} [opts.instanceIds] - 需要从工作节点组中删除的实例
+- 不可将一个集群中的实例全部删除
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteNodeInstances (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteNodeInstances"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.nodeGroupId === undefined || opts.nodeGroupId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.nodeGroupId' when calling deleteNodeInstances"
+      )
+    }
+
+    let postBody = {}
+    if (opts.instanceIds !== undefined && opts.instanceIds !== null) {
+      postBody['instanceIds'] = opts.instanceIds
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      nodeGroupId: opts.nodeGroupId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteNodeInstances with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/regions/{regionId}/nodeGroups/{nodeGroupId}:deleteNodeInstances',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  查询 kubernetes 集群配额
       * @param {Object} opts - parameters
       * @param {filter} [opts.filters] - resourceTypes - 资源类型，暂时只支持[kubernetes]
@@ -2433,7 +2674,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
     }
 
     let contentTypes = ['application/json']
@@ -2536,7 +2777,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
     }
 
     let contentTypes = ['application/json']
@@ -2643,7 +2884,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
     }
 
     let contentTypes = ['application/json']
@@ -2754,7 +2995,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
     }
 
     let contentTypes = ['application/json']
@@ -2869,7 +3110,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
     }
 
     let contentTypes = ['application/json']
@@ -2989,7 +3230,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.6.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
     }
 
     let contentTypes = ['application/json']

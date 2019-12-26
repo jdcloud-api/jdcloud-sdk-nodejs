@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * edcps service.
- * @version 1.1.1
+ * @version 1.1.2
  */
 
 JDCloud.EDCPS = class EDCPS extends Service {
@@ -52,6 +52,8 @@ JDCloud.EDCPS = class EDCPS extends Service {
       * @param {string} [opts.subnetId] - 子网ID  optional
       * @param {string} [opts.instanceId] - 实例ID  optional
       * @param {string} [opts.cidr] - CIDR段，模糊搜索  optional
+      * @param {filter} [opts.filters] - aliasIpId - 别名IP id&lt;br/&gt;
+  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -92,13 +94,14 @@ JDCloud.EDCPS = class EDCPS extends Service {
     if (opts.cidr !== undefined && opts.cidr !== null) {
       queryParams['cidr'] = opts.cidr
     }
+    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -219,7 +222,7 @@ JDCloud.EDCPS = class EDCPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -336,7 +339,7 @@ JDCloud.EDCPS = class EDCPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -460,7 +463,7 @@ elasticIp - 弹性公网IP，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -581,7 +584,7 @@ elasticIp - 弹性公网IP，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -692,7 +695,7 @@ elasticIp - 弹性公网IP，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -810,7 +813,7 @@ elasticIp - 弹性公网IP，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -945,7 +948,7 @@ elasticIp - 弹性公网IP，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -1051,7 +1054,7 @@ elasticIp - 弹性公网IP，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -1158,7 +1161,7 @@ elasticIp - 弹性公网IP，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -1275,7 +1278,7 @@ elasticIp - 弹性公网IP，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -1392,7 +1395,7 @@ elasticIp - 弹性公网IP，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -1499,7 +1502,7 @@ elasticIp - 弹性公网IP，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -1610,7 +1613,7 @@ elasticIp - 弹性公网IP，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -1729,7 +1732,7 @@ elasticIp - 弹性公网IP，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -1814,9 +1817,9 @@ elasticIp - 弹性公网IP，精确匹配，支持多个
       * @param {string} [opts.deviceType] - 实例类型，精确匹配，调用接口（describeDeviceTypes）获取实例类型  optional
       * @param {string} [opts.subnetId] - 子网ID  optional
       * @param {string} [opts.enableInternet] - 是否启用外网, yes/no  optional
+      * @param {string} [opts.privateIp] - 内网ip  optional
       * @param {string} [opts.keypairId] - 密钥对id  optional
       * @param {filter} [opts.filters] - instanceId - 分布式云物理服务器ID，精确匹配，支持多个&lt;br/&gt;
-privateIp - 分布式云物理服务器内网IP，精确匹配，支持多个&lt;br/&gt;
 status - 分布式云物理服务器状态，参考分布式云物理服务器状态，精确匹配，支持多个
   optional
       * @param {string} regionId - ID of the region
@@ -1868,6 +1871,9 @@ status - 分布式云物理服务器状态，参考分布式云物理服务器�
     if (opts.enableInternet !== undefined && opts.enableInternet !== null) {
       queryParams['enableInternet'] = opts.enableInternet
     }
+    if (opts.privateIp !== undefined && opts.privateIp !== null) {
+      queryParams['privateIp'] = opts.privateIp
+    }
     if (opts.keypairId !== undefined && opts.keypairId !== null) {
       queryParams['keypairId'] = opts.keypairId
     }
@@ -1878,7 +1884,7 @@ status - 分布式云物理服务器状态，参考分布式云物理服务器�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -2015,7 +2021,7 @@ status - 分布式云物理服务器状态，参考分布式云物理服务器�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -2126,7 +2132,7 @@ status - 分布式云物理服务器状态，参考分布式云物理服务器�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -2247,7 +2253,7 @@ status - 分布式云物理服务器状态，参考分布式云物理服务器�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -2361,7 +2367,7 @@ status - 分布式云物理服务器状态，参考分布式云物理服务器�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -2475,7 +2481,7 @@ status - 分布式云物理服务器状态，参考分布式云物理服务器�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -2593,7 +2599,7 @@ status - 分布式云物理服务器状态，参考分布式云物理服务器�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -2711,7 +2717,7 @@ status - 分布式云物理服务器状态，参考分布式云物理服务器�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -2829,7 +2835,7 @@ status - 分布式云物理服务器状态，参考分布式云物理服务器�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -2958,7 +2964,7 @@ status - 分布式云物理服务器状态，参考分布式云物理服务器�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -3090,7 +3096,7 @@ status - 分布式云物理服务器状态，参考分布式云物理服务器�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -3218,7 +3224,7 @@ status - 分布式云物理服务器状态，参考分布式云物理服务器�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -3346,7 +3352,7 @@ status - 分布式云物理服务器状态，参考分布式云物理服务器�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -3425,6 +3431,7 @@ status - 分布式云物理服务器状态，参考分布式云物理服务器�
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param string availablePrivateIps
       */
 
   describeAvailablePrivateIp (opts, regionId = this.config.regionId, callback) {
@@ -3456,7 +3463,7 @@ status - 分布式云物理服务器状态，参考分布式云物理服务器�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -3539,7 +3546,7 @@ status - 分布式云物理服务器状态，参考分布式云物理服务器�
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param keypair servers
+      * @param keypair keypairs
       * @param integer pageNumber  页码；默认为1
       * @param integer pageSize  分页大小；默认为20；取值范围[20, 100]
       * @param integer totalCount  查询结果总数
@@ -3577,7 +3584,7 @@ status - 分布式云物理服务器状态，参考分布式云物理服务器�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -3704,7 +3711,7 @@ status - 分布式云物理服务器状态，参考分布式云物理服务器�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -3839,7 +3846,7 @@ status - 分布式云物理服务器状态，参考分布式云物理服务器�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -3918,7 +3925,7 @@ status - 分布式云物理服务器状态，参考分布式云物理服务器�
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param keypair server  密钥对详细信息
+      * @param keypair keypair  密钥对详细信息
       */
 
   describeKeypair (opts, regionId = this.config.regionId, callback) {
@@ -3950,7 +3957,7 @@ status - 分布式云物理服务器状态，参考分布式云物理服务器�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -4061,7 +4068,7 @@ status - 分布式云物理服务器状态，参考分布式云物理服务器�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -4164,7 +4171,7 @@ status - 分布式云物理服务器状态，参考分布式云物理服务器�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -4255,7 +4262,7 @@ status - 分布式云物理服务器状态，参考分布式云物理服务器�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -4368,7 +4375,7 @@ status - 分布式云物理服务器状态，参考分布式云物理服务器�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -4494,7 +4501,7 @@ status - 分布式云物理服务器状态，参考分布式云物理服务器�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -4611,7 +4618,7 @@ status - 分布式云物理服务器状态，参考分布式云物理服务器�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -4740,7 +4747,7 @@ status - 分布式云物理服务器状态，参考分布式云物理服务器�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -4860,7 +4867,7 @@ status - 分布式云物理服务器状态，参考分布式云物理服务器�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -4971,7 +4978,7 @@ status - 分布式云物理服务器状态，参考分布式云物理服务器�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -5091,7 +5098,7 @@ status - 分布式云物理服务器状态，参考分布式云物理服务器�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -5208,7 +5215,7 @@ status - 分布式云物理服务器状态，参考分布式云物理服务器�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -5319,7 +5326,7 @@ status - 分布式云物理服务器状态，参考分布式云物理服务器�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -5440,7 +5447,7 @@ status - 分布式云物理服务器状态，参考分布式云物理服务器�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -5558,7 +5565,7 @@ status - 分布式云物理服务器状态，参考分布式云物理服务器�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -5679,7 +5686,7 @@ status - 分布式云物理服务器状态，参考分布式云物理服务器�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']
@@ -5799,7 +5806,7 @@ status - 分布式云物理服务器状态，参考分布式云物理服务器�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  edcps/1.1.2'
     }
 
     let contentTypes = ['application/json']

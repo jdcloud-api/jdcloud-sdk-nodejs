@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * yundingdatapush service.
- * @version 1.0.2
+ * @version 1.0.3
  */
 
 JDCloud.YUNDINGDATAPUSH = class YUNDINGDATAPUSH extends Service {
@@ -97,7 +97,7 @@ JDCloud.YUNDINGDATAPUSH = class YUNDINGDATAPUSH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yundingdatapush/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yundingdatapush/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -172,10 +172,11 @@ JDCloud.YUNDINGDATAPUSH = class YUNDINGDATAPUSH extends Service {
   /**
       *  添加数据推送用户
       * @param {Object} opts - parameters
-      * @param {vender} opts.datapushVender - 添加/删除数据推送用户对象
+      * @param {vender} opts.datapushVender - 添加数据推送用户对象
 
       * @param {string} callback - callback
       @return {Object} result
+      * @param boolean success  操作是否成功
       */
 
   addDatapushVender (opts, callback) {
@@ -199,7 +200,7 @@ JDCloud.YUNDINGDATAPUSH = class YUNDINGDATAPUSH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yundingdatapush/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yundingdatapush/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -279,6 +280,7 @@ JDCloud.YUNDINGDATAPUSH = class YUNDINGDATAPUSH extends Service {
       * @param {string} opts.venderId - 商家ID
       * @param {string} callback - callback
       @return {Object} result
+      * @param boolean success  操作是否成功
       */
 
   deleteDatapushVender (opts, callback) {
@@ -317,7 +319,7 @@ JDCloud.YUNDINGDATAPUSH = class YUNDINGDATAPUSH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yundingdatapush/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yundingdatapush/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -390,12 +392,12 @@ JDCloud.YUNDINGDATAPUSH = class YUNDINGDATAPUSH extends Service {
   }
 
   /**
-      *  查询开通数据推送的数据库实例
+      *  查询已绑定数据推送的数据库实例
       * @param {Object} opts - parameters
       * @param {string} opts.appkey - appkey
       * @param {string} callback - callback
       @return {Object} result
-      * @param rdsInstance venders
+      * @param rdsInstance rdsInstances
       */
 
   describeRdsInstances (opts, callback) {
@@ -418,7 +420,7 @@ JDCloud.YUNDINGDATAPUSH = class YUNDINGDATAPUSH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yundingdatapush/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yundingdatapush/1.0.3'
     }
 
     let contentTypes = ['application/json']

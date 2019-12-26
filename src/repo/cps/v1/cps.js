@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * cps service.
- * @version 2.2.0
+ * @version 2.2.1
  */
 
 JDCloud.CPS = class CPS extends Service {
@@ -52,6 +52,7 @@ JDCloud.CPS = class CPS extends Service {
       * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
       * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[20, 100]  optional
       * @param {string} [opts.status] - 弹性公网IP状态，取值范围：associate、disassociate  optional
+      * @param {string} [opts.includeLB] - 是否包含负载均衡  optional
       * @param {filter} [opts.filters] - elasticIpId - 弹性公网IPID，精确匹配，支持多个&lt;br/&gt;
 elasticIp - 弹性公网IP，精确匹配，支持多个
   optional
@@ -89,6 +90,9 @@ elasticIp - 弹性公网IP，精确匹配，支持多个
     if (opts.status !== undefined && opts.status !== null) {
       queryParams['status'] = opts.status
     }
+    if (opts.includeLB !== undefined && opts.includeLB !== null) {
+      queryParams['includeLB'] = opts.includeLB
+    }
     Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
@@ -96,7 +100,7 @@ elasticIp - 弹性公网IP，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -217,7 +221,7 @@ elasticIp - 弹性公网IP，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -328,7 +332,7 @@ elasticIp - 弹性公网IP，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -456,7 +460,7 @@ elasticIp - 弹性公网IP，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -563,7 +567,7 @@ elasticIp - 弹性公网IP，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -680,7 +684,7 @@ elasticIp - 弹性公网IP，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -797,7 +801,7 @@ elasticIp - 弹性公网IP，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -908,7 +912,7 @@ elasticIp - 弹性公网IP，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -994,8 +998,8 @@ elasticIp - 弹性公网IP，精确匹配，支持多个
       * @param {string} [opts.subnetId] - 子网ID  optional
       * @param {string} [opts.keypairId] - 密钥对ID  optional
       * @param {string} [opts.enableInternet] - 是否启用外网, yes/no  optional
+      * @param {string} [opts.privateIp] - 内网ip  optional
       * @param {filter} [opts.filters] - instanceId - 云物理服务器ID，精确匹配，支持多个&lt;br/&gt;
-privateIp - 云物理服务器内网IP，精确匹配，支持多个&lt;br/&gt;
 status - 云物理服务器状态，参考云物理服务器状态，精确匹配，支持多个
   optional
       * @param {string} regionId - ID of the region
@@ -1050,6 +1054,9 @@ status - 云物理服务器状态，参考云物理服务器状态，精确匹�
     if (opts.enableInternet !== undefined && opts.enableInternet !== null) {
       queryParams['enableInternet'] = opts.enableInternet
     }
+    if (opts.privateIp !== undefined && opts.privateIp !== null) {
+      queryParams['privateIp'] = opts.privateIp
+    }
     Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
@@ -1057,7 +1064,7 @@ status - 云物理服务器状态，参考云物理服务器状态，精确匹�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -1194,7 +1201,7 @@ status - 云物理服务器状态，参考云物理服务器状态，精确匹�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -1305,7 +1312,7 @@ status - 云物理服务器状态，参考云物理服务器状态，精确匹�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -1426,7 +1433,7 @@ status - 云物理服务器状态，参考云物理服务器状态，精确匹�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -1540,7 +1547,7 @@ status - 云物理服务器状态，参考云物理服务器状态，精确匹�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -1654,7 +1661,7 @@ status - 云物理服务器状态，参考云物理服务器状态，精确匹�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -1772,7 +1779,7 @@ status - 云物理服务器状态，参考云物理服务器状态，精确匹�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -1890,7 +1897,7 @@ status - 云物理服务器状态，参考云物理服务器状态，精确匹�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -2008,7 +2015,7 @@ status - 云物理服务器状态，参考云物理服务器状态，精确匹�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -2137,7 +2144,7 @@ status - 云物理服务器状态，参考云物理服务器状态，精确匹�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -2267,7 +2274,7 @@ status - 云物理服务器状态，参考云物理服务器状态，精确匹�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -2395,7 +2402,7 @@ status - 云物理服务器状态，参考云物理服务器状态，精确匹�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -2523,7 +2530,7 @@ status - 云物理服务器状态，参考云物理服务器状态，精确匹�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -2651,7 +2658,7 @@ status - 云物理服务器状态，参考云物理服务器状态，精确匹�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -2729,7 +2736,8 @@ status - 云物理服务器状态，参考云物理服务器状态，精确匹�
       * @param {string} opts.instanceId - 云物理服务器ID
       * @param {integer} [opts.startTime] - 开始时间的时间戳，格式：1562915166551  optional
       * @param {integer} [opts.endTime] - 结束时间的时间戳，格式：1562915166551  optional
-      * @param {string} [opts.metrics] - cps.cpu.util - CPU使用率&lt;br/&gt;
+      * @param {filter} [opts.filters] - metric - 监控指标，精确匹配，支持多个，具体如下&lt;br/&gt;
+cps.cpu.util - CPU使用率&lt;br/&gt;
 cps.memory.util - 内存使用率&lt;br/&gt;
 cps.memory.used - 内存使用量&lt;br/&gt;
 cps.disk.used - 磁盘使用量&lt;br/&gt;
@@ -2752,7 +2760,7 @@ cps.process.total - 总进程数
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param metricData metricDatas  云物理服务器监控信息
+      * @param metricData metricDatas
       */
 
   describeInstanceMonitorInfo (opts, regionId = this.config.regionId, callback) {
@@ -2783,7 +2791,7 @@ cps.process.total - 总进程数
     if (opts.endTime !== undefined && opts.endTime !== null) {
       queryParams['endTime'] = opts.endTime
     }
-    Object.assign(queryParams, this.buildArrayParam(opts.metrics, 'metrics'))
+    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId,
@@ -2791,7 +2799,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -2874,13 +2882,13 @@ cps.process.total - 总进程数
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param keypair servers
+      * @param keypair keypairs
       * @param integer pageNumber  页码；默认为1
       * @param integer pageSize  分页大小；默认为20；取值范围[20, 100]
       * @param integer totalCount  查询结果总数
       */
 
-  queryKeypairs (opts, regionId = this.config.regionId, callback) {
+  describeKeypairs (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -2888,7 +2896,7 @@ cps.process.total - 总进程数
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  queryKeypairs"
+        "Missing the required parameter 'regionId' when calling  describeKeypairs"
       )
     }
 
@@ -2912,7 +2920,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -2942,7 +2950,7 @@ cps.process.total - 总进程数
     let returnType = null
 
     this.config.logger(
-      `call queryKeypairs with params:\npathParams:${JSON.stringify(
+      `call describeKeypairs with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -3039,7 +3047,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -3174,7 +3182,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -3253,10 +3261,10 @@ cps.process.total - 总进程数
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param keypair server  密钥对详细信息
+      * @param keypair keypair  密钥对详细信息
       */
 
-  queryKeypair (opts, regionId = this.config.regionId, callback) {
+  describeKeypair (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -3264,7 +3272,7 @@ cps.process.total - 总进程数
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  queryKeypair"
+        "Missing the required parameter 'regionId' when calling  describeKeypair"
       )
     }
 
@@ -3272,7 +3280,7 @@ cps.process.total - 总进程数
 
     if (opts.keypairId === undefined || opts.keypairId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.keypairId' when calling queryKeypair"
+        "Missing the required parameter 'opts.keypairId' when calling describeKeypair"
       )
     }
 
@@ -3285,7 +3293,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -3315,7 +3323,7 @@ cps.process.total - 总进程数
     let returnType = null
 
     this.config.logger(
-      `call queryKeypair with params:\npathParams:${JSON.stringify(
+      `call describeKeypair with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -3396,7 +3404,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -3486,7 +3494,7 @@ cps.process.total - 总进程数
       * @param integer totalCount  查询结果总数
       */
 
-  queryListeners (opts, regionId = this.config.regionId, callback) {
+  describeListeners (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -3494,7 +3502,7 @@ cps.process.total - 总进程数
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  queryListeners"
+        "Missing the required parameter 'regionId' when calling  describeListeners"
       )
     }
 
@@ -3521,7 +3529,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -3551,7 +3559,7 @@ cps.process.total - 总进程数
     let returnType = null
 
     this.config.logger(
-      `call queryListeners with params:\npathParams:${JSON.stringify(
+      `call describeListeners with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -3599,7 +3607,7 @@ cps.process.total - 总进程数
       * @param {string} [opts.clientToken] - 由客户端生成，用于保证请求的幂等性，长度不能超过36个字符；&lt;br/&gt;
 如果多个请求使用了相同的clientToken，只会执行第一个请求，之后的请求直接返回第一个请求的结果&lt;br/&gt;
   optional
-      * @param {listenerSpec} opts.loadBalancerSpec - 监听器配置
+      * @param {listenerSpec} opts.listenerSpec - 监听器配置
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -3620,9 +3628,9 @@ cps.process.total - 总进程数
 
     opts = opts || {}
 
-    if (opts.loadBalancerSpec === undefined || opts.loadBalancerSpec === null) {
+    if (opts.listenerSpec === undefined || opts.listenerSpec === null) {
       throw new Error(
-        "Missing the required parameter 'opts.loadBalancerSpec' when calling createListener"
+        "Missing the required parameter 'opts.listenerSpec' when calling createListener"
       )
     }
 
@@ -3630,8 +3638,8 @@ cps.process.total - 总进程数
     if (opts.clientToken !== undefined && opts.clientToken !== null) {
       postBody['clientToken'] = opts.clientToken
     }
-    if (opts.loadBalancerSpec !== undefined && opts.loadBalancerSpec !== null) {
-      postBody['loadBalancerSpec'] = opts.loadBalancerSpec
+    if (opts.listenerSpec !== undefined && opts.listenerSpec !== null) {
+      postBody['listenerSpec'] = opts.listenerSpec
     }
 
     let queryParams = {}
@@ -3641,7 +3649,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -3731,7 +3739,7 @@ cps.process.total - 总进程数
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param listener loadBalancer  监听器详细信息
+      * @param listener listener  监听器详细信息
       */
 
   modifyListener (opts, regionId = this.config.regionId, callback) {
@@ -3806,7 +3814,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -3849,7 +3857,7 @@ cps.process.total - 总进程数
     )
 
     let request = this.makeRequest(
-      '/regions/{regionId}/listeners/{listenerId}:modifylistenerAttributes',
+      '/regions/{regionId}/listeners/{listenerId}:modifyListenerAttributes',
       'POST',
       pathParams,
       queryParams,
@@ -3888,7 +3896,7 @@ cps.process.total - 总进程数
       * @param listener listener  监听器详细信息
       */
 
-  queryListener (opts, regionId = this.config.regionId, callback) {
+  describeListener (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -3896,7 +3904,7 @@ cps.process.total - 总进程数
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  queryListener"
+        "Missing the required parameter 'regionId' when calling  describeListener"
       )
     }
 
@@ -3904,7 +3912,7 @@ cps.process.total - 总进程数
 
     if (opts.listenerId === undefined || opts.listenerId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.listenerId' when calling queryListener"
+        "Missing the required parameter 'opts.listenerId' when calling describeListener"
       )
     }
 
@@ -3917,7 +3925,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -3947,7 +3955,7 @@ cps.process.total - 总进程数
     let returnType = null
 
     this.config.logger(
-      `call queryListener with params:\npathParams:${JSON.stringify(
+      `call describeListener with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -4028,7 +4036,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -4146,7 +4154,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -4264,7 +4272,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -4356,7 +4364,7 @@ cps.process.total - 总进程数
       * @param integer totalCount  查询结果总数
       */
 
-  queryLoadBalancers (opts, regionId = this.config.regionId, callback) {
+  describeLoadBalancers (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -4364,7 +4372,7 @@ cps.process.total - 总进程数
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  queryLoadBalancers"
+        "Missing the required parameter 'regionId' when calling  describeLoadBalancers"
       )
     }
 
@@ -4397,7 +4405,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -4427,7 +4435,7 @@ cps.process.total - 总进程数
     let returnType = null
 
     this.config.logger(
-      `call queryLoadBalancers with params:\npathParams:${JSON.stringify(
+      `call describeLoadBalancers with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -4517,7 +4525,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -4637,7 +4645,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -4719,7 +4727,7 @@ cps.process.total - 总进程数
       * @param loadBalancer loadBalancer  负载均衡实例详细信息
       */
 
-  queryLoadBalancer (opts, regionId = this.config.regionId, callback) {
+  describeLoadBalancer (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -4727,7 +4735,7 @@ cps.process.total - 总进程数
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  queryLoadBalancer"
+        "Missing the required parameter 'regionId' when calling  describeLoadBalancer"
       )
     }
 
@@ -4735,7 +4743,7 @@ cps.process.total - 总进程数
 
     if (opts.loadBalancerId === undefined || opts.loadBalancerId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.loadBalancerId' when calling queryLoadBalancer"
+        "Missing the required parameter 'opts.loadBalancerId' when calling describeLoadBalancer"
       )
     }
 
@@ -4748,7 +4756,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -4778,7 +4786,7 @@ cps.process.total - 总进程数
     let returnType = null
 
     this.config.logger(
-      `call queryLoadBalancer with params:\npathParams:${JSON.stringify(
+      `call describeLoadBalancer with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -4866,7 +4874,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -4984,7 +4992,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -5111,7 +5119,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -5238,7 +5246,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -5333,7 +5341,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -5413,7 +5421,7 @@ cps.process.total - 总进程数
       * @param region regions
       */
 
-  queryCPSLBRegions (opts, callback) {
+  describeCPSLBRegions (opts, callback) {
     opts = opts || {}
 
     let postBody = null
@@ -5424,7 +5432,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -5454,7 +5462,7 @@ cps.process.total - 总进程数
     let returnType = null
 
     this.config.logger(
-      `call queryCPSLBRegions with params:\npathParams:${JSON.stringify(
+      `call describeCPSLBRegions with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -5506,7 +5514,7 @@ cps.process.total - 总进程数
       * @param routeTable routeTable  路由表详细信息
       */
 
-  queryRouteTable (opts, regionId = this.config.regionId, callback) {
+  describeRouteTable (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -5514,7 +5522,7 @@ cps.process.total - 总进程数
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  queryRouteTable"
+        "Missing the required parameter 'regionId' when calling  describeRouteTable"
       )
     }
 
@@ -5522,7 +5530,7 @@ cps.process.total - 总进程数
 
     if (opts.routeTableId === undefined || opts.routeTableId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.routeTableId' when calling queryRouteTable"
+        "Missing the required parameter 'opts.routeTableId' when calling describeRouteTable"
       )
     }
 
@@ -5535,7 +5543,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -5565,7 +5573,7 @@ cps.process.total - 总进程数
     let returnType = null
 
     this.config.logger(
-      `call queryRouteTable with params:\npathParams:${JSON.stringify(
+      `call describeRouteTable with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -5625,7 +5633,7 @@ cps.process.total - 总进程数
       * @param integer totalCount  查询结果总数
       */
 
-  queryRouteTables (opts, regionId = this.config.regionId, callback) {
+  describeRouteTables (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -5633,7 +5641,7 @@ cps.process.total - 总进程数
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  queryRouteTables"
+        "Missing the required parameter 'regionId' when calling  describeRouteTables"
       )
     }
 
@@ -5660,7 +5668,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -5690,7 +5698,7 @@ cps.process.total - 总进程数
     let returnType = null
 
     this.config.logger(
-      `call queryRouteTables with params:\npathParams:${JSON.stringify(
+      `call describeRouteTables with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -5750,7 +5758,7 @@ cps.process.total - 总进程数
       * @param integer totalCount  查询结果总数
       */
 
-  queryServers (opts, regionId = this.config.regionId, callback) {
+  describeServers (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -5758,7 +5766,7 @@ cps.process.total - 总进程数
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  queryServers"
+        "Missing the required parameter 'regionId' when calling  describeServers"
       )
     }
 
@@ -5766,7 +5774,7 @@ cps.process.total - 总进程数
 
     if (opts.serverGroupId === undefined || opts.serverGroupId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.serverGroupId' when calling queryServers"
+        "Missing the required parameter 'opts.serverGroupId' when calling describeServers"
       )
     }
 
@@ -5789,7 +5797,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -5819,7 +5827,7 @@ cps.process.total - 总进程数
     let returnType = null
 
     this.config.logger(
-      `call queryServers with params:\npathParams:${JSON.stringify(
+      `call describeServers with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -5911,7 +5919,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -6038,7 +6046,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -6156,7 +6164,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -6240,13 +6248,13 @@ cps.process.total - 总进程数
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param serverGroup servers
+      * @param serverGroup serverGroups
       * @param integer pageNumber  页码；默认为1
       * @param integer pageSize  分页大小；默认为20；取值范围[20, 100]
       * @param integer totalCount  查询结果总数
       */
 
-  queryServerGroups (opts, regionId = this.config.regionId, callback) {
+  describeServerGroups (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -6254,7 +6262,7 @@ cps.process.total - 总进程数
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  queryServerGroups"
+        "Missing the required parameter 'regionId' when calling  describeServerGroups"
       )
     }
 
@@ -6281,7 +6289,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -6311,7 +6319,7 @@ cps.process.total - 总进程数
     let returnType = null
 
     this.config.logger(
-      `call queryServerGroups with params:\npathParams:${JSON.stringify(
+      `call describeServerGroups with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -6401,7 +6409,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -6483,7 +6491,7 @@ cps.process.total - 总进程数
       * @param serverGroup serverGroup  服务器组详细信息
       */
 
-  queryServerGroup (opts, regionId = this.config.regionId, callback) {
+  describeServerGroup (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -6491,7 +6499,7 @@ cps.process.total - 总进程数
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  queryServerGroup"
+        "Missing the required parameter 'regionId' when calling  describeServerGroup"
       )
     }
 
@@ -6499,7 +6507,7 @@ cps.process.total - 总进程数
 
     if (opts.serverGroupId === undefined || opts.serverGroupId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.serverGroupId' when calling queryServerGroup"
+        "Missing the required parameter 'opts.serverGroupId' when calling describeServerGroup"
       )
     }
 
@@ -6512,7 +6520,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -6542,7 +6550,7 @@ cps.process.total - 总进程数
     let returnType = null
 
     this.config.logger(
-      `call queryServerGroup with params:\npathParams:${JSON.stringify(
+      `call describeServerGroup with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -6630,7 +6638,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -6741,7 +6749,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -6854,7 +6862,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -6983,7 +6991,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -7103,7 +7111,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -7214,7 +7222,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -7334,7 +7342,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -7451,7 +7459,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -7562,7 +7570,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -7683,7 +7691,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -7801,7 +7809,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -7922,7 +7930,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -8042,7 +8050,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.2.1'
     }
 
     let contentTypes = ['application/json']

@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Resource API
- * 云托管服务的资源API
+ * Ticket API
+ * 云托管服务的工单API
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * jdccs service.
- * @version 1.0.2
+ * @version 1.0.4
  */
 
 JDCloud.JDCCS = class JDCCS extends Service {
@@ -63,7 +63,7 @@ JDCloud.JDCCS = class JDCCS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -138,12 +138,14 @@ JDCloud.JDCCS = class JDCCS extends Service {
   /**
       *  查看某资源单个监控项数据
       * @param {Object} opts - parameters
-      * @param {string} opts.idc - 机房名称（英文标识）
+      * @param {string} opts.idc - IDC机房ID
       * @param {string} opts.metric - 监控项英文标识(id)
-      * @param {string} opts.resourceId - 资源的uuid
+      * @param {string} opts.resourceId - 资源ID
       * @param {integer} opts.startTime - 查询时间范围的开始时间， UNIX时间戳，（最多支持最近90天数据查询）
       * @param {integer} opts.endTime - 查询时间范围的结束时间， UNIX时间戳，（最多支持最近90天数据查询）
       * @param {string} [opts.timeInterval] - 时间间隔：分钟m、小时h、天d，如： 10分钟&#x3D;10m、1小时&#x3D;1h，3天&#x3D;3d；默认5m，最小支持5m，最大90d  optional
+      * @param {string} [opts.ip] - 交换机IP，指定ip时须同时指定port  optional
+      * @param {string} [opts.port] - 端口，指定port时须同时指定ip  optional
       * @param {string} callback - callback
       @return {Object} result
       * @param metricData metricData
@@ -192,6 +194,12 @@ JDCloud.JDCCS = class JDCCS extends Service {
     if (opts.timeInterval !== undefined && opts.timeInterval !== null) {
       queryParams['timeInterval'] = opts.timeInterval
     }
+    if (opts.ip !== undefined && opts.ip !== null) {
+      queryParams['ip'] = opts.ip
+    }
+    if (opts.port !== undefined && opts.port !== null) {
+      queryParams['port'] = opts.port
+    }
 
     let pathParams = {
       regionId: 'jdcloud',
@@ -200,7 +208,7 @@ JDCloud.JDCCS = class JDCCS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -273,11 +281,11 @@ JDCloud.JDCCS = class JDCCS extends Service {
   }
 
   /**
-      *  查看某资源的最后一个监控数据点
+      *  查看某资源的最后一个监控数据点（目前只支持机柜电流）
       * @param {Object} opts - parameters
-      * @param {string} opts.idc - 机房名称（英文标识）
+      * @param {string} opts.idc - IDC机房ID
       * @param {string} opts.metric - 监控项英文标识(id)
-      * @param {string} opts.resourceId - 资源的uuid，支持多个resourceId批量查询，每个id用竖线 | 分隔
+      * @param {string} opts.resourceId - 资源ID，支持多个resourceId批量查询，每个id用竖线 | 分隔
       * @param {string} callback - callback
       @return {Object} result
       * @param lastDownsampleRespItem items
@@ -315,7 +323,7 @@ JDCloud.JDCCS = class JDCCS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -388,10 +396,226 @@ JDCloud.JDCCS = class JDCCS extends Service {
   }
 
   /**
+      *  查询带宽（出口）流量列表
+      * @param {Object} opts - parameters
+      * @param {string} opts.idc - IDC机房ID
+      * @param {integer} [opts.pageNumber] - 页码, 默认为1  optional
+      * @param {integer} [opts.pageSize] - 分页大小，默认为20  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param describeBandwidthTraffic bandwidthTraffics
+      * @param integer pageNumber  页码
+      * @param integer pageSize  分页大小
+      * @param integer totalCount  总数量
+      */
+
+  describeBandwidthTraffics (opts, callback) {
+    opts = opts || {}
+
+    if (opts.idc === undefined || opts.idc === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.idc' when calling describeBandwidthTraffics"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      idc: opts.idc
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeBandwidthTraffics with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/idcs/{idc}/bandwidthTraffics',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询带宽（出口）流量（资源）详情
+      * @param {Object} opts - parameters
+      * @param {string} opts.idc - IDC机房ID
+      * @param {string} opts.bandwidthId - 带宽（出口）实例ID
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param bandwidthTraffic bandwidthTraffic  带宽（出口）流量（资源）详情
+      */
+
+  describeBandwidthTraffic (opts, callback) {
+    opts = opts || {}
+
+    if (opts.idc === undefined || opts.idc === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.idc' when calling describeBandwidthTraffic"
+      )
+    }
+    if (opts.bandwidthId === undefined || opts.bandwidthId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.bandwidthId' when calling describeBandwidthTraffic"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      idc: opts.idc,
+      bandwidthId: opts.bandwidthId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeBandwidthTraffic with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = this.makeRequest(
+      '/idcs/{idc}/bandwidthTraffics/{bandwidthId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  查询IDC机房列表
       * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞)  optional
-      * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围：[10,100]  optional
+      * @param {integer} [opts.pageNumber] - 页码, 默认为1  optional
+      * @param {integer} [opts.pageSize] - 分页大小，默认为20  optional
       * @param {string} callback - callback
       @return {Object} result
       * @param idc idcs
@@ -417,7 +641,7 @@ JDCloud.JDCCS = class JDCCS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -492,9 +716,9 @@ JDCloud.JDCCS = class JDCCS extends Service {
   /**
       *  查询机房房间号列表
       * @param {Object} opts - parameters
-      * @param {string} opts.idc - IDC机房id
-      * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞)  optional
-      * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围：[10,100]  optional
+      * @param {string} opts.idc - IDC机房ID
+      * @param {integer} [opts.pageNumber] - 页码, 默认为1  optional
+      * @param {integer} [opts.pageSize] - 分页大小，默认为20  optional
       * @param {filter} [opts.filters] - roomNo - 房间号，精确匹配，支持多个
   optional
       * @param {string} callback - callback
@@ -530,7 +754,7 @@ JDCloud.JDCCS = class JDCCS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -605,15 +829,15 @@ JDCloud.JDCCS = class JDCCS extends Service {
   /**
       *  查询机柜列表
       * @param {Object} opts - parameters
-      * @param {string} opts.idc - IDC机房id
-      * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞)  optional
-      * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围：[10,100]  optional
+      * @param {string} opts.idc - IDC机房ID
+      * @param {integer} [opts.pageNumber] - 页码, 默认为1  optional
+      * @param {integer} [opts.pageSize] - 分页大小，默认为20  optional
       * @param {filter} [opts.filters] - roomNo - 房间号，精确匹配，支持多个
 cabinetId - 机柜ID，精确匹配，支持多个
   optional
       * @param {string} callback - callback
       @return {Object} result
-      * @param cabinet cabinets
+      * @param describeCabinet cabinets
       * @param integer pageNumber  页码
       * @param integer pageSize  分页大小
       * @param integer totalCount  总数量
@@ -644,7 +868,7 @@ cabinetId - 机柜ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.4'
     }
 
     let contentTypes = ['application/json']

@@ -1,6 +1,7 @@
 module.exports = {
   RDS: require('./rds'),
   KUBERNETES: require('./kubernetes'),
+  VQD: require('./vqd'),
   STREAMCOMPUTER: require('./streamcomputer'),
   SSL: require('./ssl'),
   IPANTI: require('./ipanti'),

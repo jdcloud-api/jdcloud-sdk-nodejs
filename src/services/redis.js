@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Redis Quota API
- * 缓存Redis配额查询、修改接口
+ * Redis SpecConfig API
+ * 缓存Redis实例规格配置接口
  *
  * OpenAPI spec version: v1
  * Contact:

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * iot-link-Related-API
+ * Iotlink-Related-API
  * 物联网卡服务相关API
  *
  * OpenAPI spec version: v1
@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * iotlink service.
- * @version 1.0.1
+ * @version 1.0.4
  */
 
 JDCloud.IOTLINK = class IOTLINK extends Service {
@@ -39,7 +39,7 @@ JDCloud.IOTLINK = class IOTLINK extends Service {
     options._defaultEndpoint.protocol =
       options._defaultEndpoint.protocol || 'https'
     options._defaultEndpoint.host =
-      options._defaultEndpoint.host || 'openapi.myiot.jdcloud.com'
+      options._defaultEndpoint.host || 'iotlink.jdcloud-api.com'
     options.basePath = '/v1' // 默认要设为空""
     super(serviceId, options)
   }
@@ -87,7 +87,7 @@ JDCloud.IOTLINK = class IOTLINK extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -129,7 +129,7 @@ JDCloud.IOTLINK = class IOTLINK extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/gprsStatus',
       'GET',
       pathParams,
@@ -202,7 +202,7 @@ JDCloud.IOTLINK = class IOTLINK extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -244,7 +244,7 @@ JDCloud.IOTLINK = class IOTLINK extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/onOffStatus',
       'GET',
       pathParams,
@@ -317,7 +317,7 @@ JDCloud.IOTLINK = class IOTLINK extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -359,7 +359,7 @@ JDCloud.IOTLINK = class IOTLINK extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/lifeStatus',
       'GET',
       pathParams,
@@ -432,7 +432,7 @@ JDCloud.IOTLINK = class IOTLINK extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -474,7 +474,7 @@ JDCloud.IOTLINK = class IOTLINK extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/gprsRealtimeInfo',
       'GET',
       pathParams,
@@ -542,7 +542,7 @@ JDCloud.IOTLINK = class IOTLINK extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -584,7 +584,7 @@ JDCloud.IOTLINK = class IOTLINK extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/openIotCard',
       'POST',
       pathParams,
@@ -652,7 +652,7 @@ JDCloud.IOTLINK = class IOTLINK extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -694,7 +694,7 @@ JDCloud.IOTLINK = class IOTLINK extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/closeIotCard',
       'POST',
       pathParams,
@@ -762,7 +762,7 @@ JDCloud.IOTLINK = class IOTLINK extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -804,7 +804,7 @@ JDCloud.IOTLINK = class IOTLINK extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/openIotFlow',
       'POST',
       pathParams,
@@ -872,7 +872,7 @@ JDCloud.IOTLINK = class IOTLINK extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -914,8 +914,258 @@ JDCloud.IOTLINK = class IOTLINK extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/closeIotFlow',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  物联网卡查询通用操作
+      * @param {Object} opts - parameters
+      * @param {string} opts.requestType - 物联网卡查询请求类型
+      * @param {string} opts.requestParam - 物联网卡查询请求参数json串
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status  请求状态(0:成功;1:失败)
+      * @param string message  消息描述
+      * @param string result  物联网卡查询返回结果集
+      */
+
+  search (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  search"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.requestType === undefined || opts.requestType === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.requestType' when calling search"
+      )
+    }
+    if (opts.requestParam === undefined || opts.requestParam === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.requestParam' when calling search"
+      )
+    }
+
+    let postBody = {}
+    if (opts.requestType !== undefined && opts.requestType !== null) {
+      postBody['requestType'] = opts.requestType
+    }
+    if (opts.requestParam !== undefined && opts.requestParam !== null) {
+      postBody['requestParam'] = opts.requestParam
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call search with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/search',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  物联网卡卡操作通用操作
+      * @param {Object} opts - parameters
+      * @param {string} opts.requestType - 物联网卡操作请求类型
+      * @param {string} opts.requestParam - 物联网卡操作请求参数json串
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status  请求状态(0:成功;1:失败)
+      * @param string message  消息描述
+      * @param string result  物联网卡操作返回结果集
+      */
+
+  operate (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  operate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.requestType === undefined || opts.requestType === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.requestType' when calling operate"
+      )
+    }
+    if (opts.requestParam === undefined || opts.requestParam === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.requestParam' when calling operate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.requestType !== undefined && opts.requestType !== null) {
+      postBody['requestType'] = opts.requestType
+    }
+    if (opts.requestParam !== undefined && opts.requestParam !== null) {
+      postBody['requestParam'] = opts.requestParam
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call operate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/operate',
       'POST',
       pathParams,
       queryParams,

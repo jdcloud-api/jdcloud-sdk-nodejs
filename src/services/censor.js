@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * ES Snapshot API
- * es快照创建、查询，自动快照的设置、查询接口
+ * 视频检测相关接口
+ * API related to video scan
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -24,20 +24,20 @@
 
 const JDCloud = require('../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'es'
+var serviceId = 'censor'
 Service._services[serviceId] = true
 
 /**
- * es service.
+ * censor service.
  */
 
-JDCloud.ES = class ES {
+JDCloud.CENSOR = class CENSOR {
   constructor (config = {}) {
     this.init(config)
     return new this.service(config)
   }
   init (config) {
-    let serviceName = 'es'
+    let serviceName = 'censor'
     let version = config.version || JDCloud.config.version
     let versionFlag = 'v1'
     if (version && version[serviceName]) {
@@ -53,4 +53,4 @@ JDCloud.ES = class ES {
   }
 }
 
-module.exports = JDCloud.ES
+module.exports = JDCloud.CENSOR

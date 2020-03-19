@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * nativecontainer service.
- * @version 2.1.0
+ * @version 2.2.1
  */
 
 JDCloud.NATIVECONTAINER = class NATIVECONTAINER extends Service {
@@ -90,15 +90,15 @@ securityGroups - 安全组 id，精确匹配，支持多个
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
-    Object.assign(queryParams, this.buildTagFilterParam(opts.tags, 'tags'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildTagFilterParam(opts.tags, 'tags'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -140,7 +140,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/containers',
       'GET',
       pathParams,
@@ -188,8 +188,6 @@ securityGroups - 安全组 id，精确匹配，支持多个
     - 标签与标签之间使用“.”(点)进行连接
     - 不能以“.”(点)开始，也不能以“.”(点)结尾
     - 整个主机名（包括标签以及分隔点“.”）最多有63个ASCII字符
-  - 正则表达式
-    - &#x60;^([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9])(\.([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]))*$&#x60;
 - 网络配置
   - 指定主网卡配置信息
     - 必须指定vpcId、subnetId、securityGroupIds
@@ -284,7 +282,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -326,7 +324,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/containers',
       'POST',
       pathParams,
@@ -396,7 +394,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -438,7 +436,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/containers/{containerId}',
       'GET',
       pathParams,
@@ -509,7 +507,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -551,7 +549,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/containers/{containerId}',
       'DELETE',
       pathParams,
@@ -622,7 +620,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -664,7 +662,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/containers/{containerId}:startContainer',
       'POST',
       pathParams,
@@ -734,7 +732,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -776,7 +774,7 @@ securityGroups - 安全组 id，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/containers/{containerId}:stopContainer',
       'POST',
       pathParams,
@@ -855,7 +853,7 @@ name 和 description 必须要指定一个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -897,7 +895,7 @@ name 和 description 必须要指定一个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/containers/{containerId}:modifyContainerAttribute',
       'PATCH',
       pathParams,
@@ -978,7 +976,7 @@ name 和 description 必须要指定一个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -1020,7 +1018,7 @@ name 和 description 必须要指定一个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/containers/{containerId}:associateElasticIp',
       'POST',
       pathParams,
@@ -1099,7 +1097,7 @@ name 和 description 必须要指定一个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -1141,7 +1139,7 @@ name 和 description 必须要指定一个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/containers/{containerId}:disassociateElasticIp',
       'POST',
       pathParams,
@@ -1226,7 +1224,7 @@ name 和 description 必须要指定一个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -1268,7 +1266,7 @@ name 和 description 必须要指定一个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/containers/{containerId}:getLogs',
       'GET',
       pathParams,
@@ -1380,7 +1378,7 @@ name 和 description 必须要指定一个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -1422,8 +1420,134 @@ name 和 description 必须要指定一个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/containers/{containerId}:rebuild',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  调整原生容器实例类型配置。
+- 原生容器状态为停止;
+- 支持升配、降配；**不支持原有规格**
+- 计费类型不变
+    - 包年包月：需要计算配置差价，如果所选配置价格高，需要补齐到期前的差价，到期时间不变；如果所选配置价格低，需要延长到期时间
+    - 按配置：按照所选规格，进行计费
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.containerId - Container ID
+      * @param {string} opts.instanceType - 新实例类型，不可与原实例类型相同
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  resizeContainer (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  resizeContainer"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.containerId === undefined || opts.containerId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.containerId' when calling resizeContainer"
+      )
+    }
+    if (opts.instanceType === undefined || opts.instanceType === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceType' when calling resizeContainer"
+      )
+    }
+
+    let postBody = {}
+    if (opts.instanceType !== undefined && opts.instanceType !== null) {
+      postBody['instanceType'] = opts.instanceType
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      containerId: opts.containerId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.2.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call resizeContainer with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/containers/{containerId}:resize',
       'POST',
       pathParams,
       queryParams,
@@ -1501,7 +1625,7 @@ name 和 description 必须要指定一个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -1543,7 +1667,7 @@ name 和 description 必须要指定一个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/containers/{containerId}:execCreate',
       'POST',
       pathParams,
@@ -1622,7 +1746,7 @@ name 和 description 必须要指定一个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -1664,7 +1788,7 @@ name 和 description 必须要指定一个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/containers/{containerId}:execGetExitCode',
       'GET',
       pathParams,
@@ -1756,7 +1880,7 @@ name 和 description 必须要指定一个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -1798,7 +1922,7 @@ name 和 description 必须要指定一个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/containers/{containerId}:resizeTTY',
       'POST',
       pathParams,
@@ -1859,14 +1983,14 @@ az - 可用区，精确匹配，支持多个
 
     let postBody = null
     let queryParams = {}
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -1908,7 +2032,7 @@ az - 可用区，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instanceTypes',
       'GET',
       pathParams,
@@ -1981,7 +2105,7 @@ az - 可用区，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -2023,7 +2147,7 @@ az - 可用区，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/quotas',
       'GET',
       pathParams,
@@ -2091,14 +2215,14 @@ az - 可用区，精确匹配，支持多个
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -2140,7 +2264,7 @@ az - 可用区，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/secrets',
       'GET',
       pathParams,
@@ -2235,7 +2359,7 @@ az - 可用区，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -2277,7 +2401,7 @@ az - 可用区，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/secrets',
       'POST',
       pathParams,
@@ -2347,7 +2471,7 @@ az - 可用区，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -2389,7 +2513,7 @@ az - 可用区，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/secrets/{name}',
       'GET',
       pathParams,
@@ -2458,7 +2582,7 @@ az - 可用区，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  nativecontainer/2.2.1'
     }
 
     let contentTypes = ['application/json']
@@ -2500,7 +2624,7 @@ az - 可用区，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/secrets/{name}',
       'DELETE',
       pathParams,

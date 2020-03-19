@@ -74,6 +74,7 @@ module.exports = {
   PARTNER: require('./partner'),
   LB: require('./lb'),
   IOTCARD: require('./iotcard'),
+  CENSOR: require('./censor'),
   IOTCLOUDGATEWAY: require('./iotcloudgateway'),
   INDUSTRYDATA: require('./industrydata'),
   JDW: require('./jdw')

@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * jdccs service.
- * @version 1.0.7
+ * @version 1.0.8
  */
 
 JDCloud.JDCCS = class JDCCS extends Service {
@@ -82,7 +82,7 @@ JDCloud.JDCCS = class JDCCS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -181,7 +181,7 @@ JDCloud.JDCCS = class JDCCS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -295,7 +295,7 @@ JDCloud.JDCCS = class JDCCS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -386,7 +386,7 @@ JDCloud.JDCCS = class JDCCS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -531,7 +531,7 @@ JDCloud.JDCCS = class JDCCS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -608,7 +608,7 @@ JDCloud.JDCCS = class JDCCS extends Service {
       * @param {Object} opts - parameters
       * @param {string} opts.idc - IDC机房ID
       * @param {string} opts.metric - 监控项英文标识(id)
-      * @param {string} opts.resourceId - 资源ID，支持多个resourceId批量查询，每个id用竖线 | 分隔
+      * @param {string} opts.resourceId - 资源ID，支持多个resourceId批量查询，每个id用英文竖线分隔
       * @param {string} callback - callback
       @return {Object} result
       * @param lastDownsampleRespItem items
@@ -646,7 +646,7 @@ JDCloud.JDCCS = class JDCCS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -756,7 +756,7 @@ JDCloud.JDCCS = class JDCCS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -862,7 +862,7 @@ JDCloud.JDCCS = class JDCCS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -935,6 +935,125 @@ JDCloud.JDCCS = class JDCCS extends Service {
   }
 
   /**
+      *  根据IP网段查询流量采样数据
+      * @param {Object} opts - parameters
+      * @param {string} opts.resourceId - 资源ID，支持多个resourceId批量查询，每个id用英文竖线分隔
+      * @param {integer} opts.startTime - 查询时间范围的开始时间， UNIX时间戳，（支持查询最近30分钟数据且时间范围不超过5分钟）
+      * @param {integer} opts.endTime - 查询时间范围的结束时间， UNIX时间戳，（支持查询最近30分钟数据且时间范围不超过5分钟）
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param trafficSamplingData data
+      */
+
+  describeTrafficSampling (opts, callback) {
+    opts = opts || {}
+
+    if (opts.resourceId === undefined || opts.resourceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.resourceId' when calling describeTrafficSampling"
+      )
+    }
+    if (opts.startTime === undefined || opts.startTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.startTime' when calling describeTrafficSampling"
+      )
+    }
+    if (opts.endTime === undefined || opts.endTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.endTime' when calling describeTrafficSampling"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.resourceId !== undefined && opts.resourceId !== null) {
+      queryParams['resourceId'] = opts.resourceId
+    }
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.8'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeTrafficSampling with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/trafficSampling',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  查询IDC机房列表
       * @param {Object} opts - parameters
       * @param {integer} [opts.pageNumber] - 页码, 默认为1  optional
@@ -964,7 +1083,7 @@ JDCloud.JDCCS = class JDCCS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -1077,7 +1196,7 @@ JDCloud.JDCCS = class JDCCS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -1191,7 +1310,7 @@ cabinetId - 机柜ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -1297,7 +1416,7 @@ cabinetId - 机柜ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -1415,7 +1534,7 @@ snNo - 设备SN号，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -1521,7 +1640,7 @@ snNo - 设备SN号，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -1634,7 +1753,7 @@ snNo - 设备SN号，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -1747,7 +1866,7 @@ snNo - 设备SN号，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -1853,7 +1972,7 @@ snNo - 设备SN号，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -1959,7 +2078,7 @@ snNo - 设备SN号，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -2058,7 +2177,7 @@ snNo - 设备SN号，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.0.8'
     }
 
     let contentTypes = ['application/json']

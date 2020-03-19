@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * iotcore service.
- * @version 1.1.0
+ * @version 1.1.4
  */
 
 JDCloud.IOTCORE = class IOTCORE extends Service {
@@ -118,7 +118,7 @@ JDCloud.IOTCORE = class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -160,7 +160,7 @@ JDCloud.IOTCORE = class IOTCORE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/products/{productKey}/devices/{identifier}/topic',
       'POST',
       pathParams,
@@ -246,7 +246,7 @@ JDCloud.IOTCORE = class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -288,7 +288,7 @@ JDCloud.IOTCORE = class IOTCORE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/products/{productKey}/devices/{identifier}/shadow',
       'GET',
       pathParams,
@@ -385,7 +385,7 @@ JDCloud.IOTCORE = class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -427,7 +427,7 @@ JDCloud.IOTCORE = class IOTCORE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/products/{productKey}/devices/{identifier}/shadow',
       'PATCH',
       pathParams,
@@ -528,7 +528,7 @@ JDCloud.IOTCORE = class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -570,8 +570,136 @@ JDCloud.IOTCORE = class IOTCORE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/products/{productKey}/devices/{identifier}/services',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  建立设备间的父子关系
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 设备归属的实例ID
+      * @param {string} opts.parentId - 父级设备Id，只允许网关设备作为父级设备
+      * @param {string} [opts.productKey] - 将此产品下所有设备都设置为parentId的子设备，只允许普通设备类型的productKey  optional
+      * @param {array} [opts.children] - 子设备Id集合，children和productKey二者至少填一个，二者都填写则同时生效，只允许普通设备类型的deviceId  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  addDeviceLinks (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  addDeviceLinks"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling addDeviceLinks"
+      )
+    }
+    if (opts.parentId === undefined || opts.parentId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.parentId' when calling addDeviceLinks"
+      )
+    }
+
+    let postBody = {}
+    if (opts.parentId !== undefined && opts.parentId !== null) {
+      postBody['parentId'] = opts.parentId
+    }
+    if (opts.productKey !== undefined && opts.productKey !== null) {
+      postBody['productKey'] = opts.productKey
+    }
+    if (opts.children !== undefined && opts.children !== null) {
+      postBody['children'] = opts.children
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call addDeviceLinks with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/devices:addLinks',
       'POST',
       pathParams,
       queryParams,
@@ -679,7 +807,7 @@ JDCloud.IOTCORE = class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -721,7 +849,7 @@ JDCloud.IOTCORE = class IOTCORE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/devices:queryPage',
       'GET',
       pathParams,
@@ -814,7 +942,7 @@ JDCloud.IOTCORE = class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -856,7 +984,7 @@ JDCloud.IOTCORE = class IOTCORE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/device/{deviceId}:update',
       'POST',
       pathParams,
@@ -948,7 +1076,7 @@ JDCloud.IOTCORE = class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -990,7 +1118,7 @@ JDCloud.IOTCORE = class IOTCORE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/device:add',
       'POST',
       pathParams,
@@ -1089,7 +1217,7 @@ JDCloud.IOTCORE = class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -1131,7 +1259,7 @@ JDCloud.IOTCORE = class IOTCORE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/products/{productKey}/device/{deviceName}:detail',
       'GET',
       pathParams,
@@ -1213,7 +1341,7 @@ JDCloud.IOTCORE = class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -1255,7 +1383,7 @@ JDCloud.IOTCORE = class IOTCORE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/products/{productKey}/device/{deviceName}:delete',
       'DELETE',
       pathParams,
@@ -1291,9 +1419,10 @@ JDCloud.IOTCORE = class IOTCORE extends Service {
       * @param {string} opts.instanceId - IoT Engine实例ID信息
       * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞)  optional
       * @param {integer} [opts.pageSize] - 分页大小，默认为10，取值范围：[10,100]  optional
-      * @param {filter} [opts.filters] - productName-产品名称，精确匹配，支持单个
+      * @param {filter} [opts.filters] - productName-产品名称，模糊匹配，支持单个
 productKey-产品key，精确匹配，支持单个
 productType-产品类型，精确匹配，支持单个
+templateName-模板名称，精确匹配，支持多个
   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -1330,7 +1459,7 @@ productType-产品类型，精确匹配，支持单个
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId,
@@ -1338,7 +1467,7 @@ productType-产品类型，精确匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -1380,7 +1509,7 @@ productType-产品类型，精确匹配，支持单个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/products',
       'GET',
       pathParams,
@@ -1486,7 +1615,7 @@ productType-产品类型，精确匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -1528,7 +1657,7 @@ productType-产品类型，精确匹配，支持单个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/products',
       'POST',
       pathParams,
@@ -1615,7 +1744,7 @@ productType-产品类型，精确匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -1657,7 +1786,7 @@ productType-产品类型，精确匹配，支持单个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/products/{productKey}',
       'GET',
       pathParams,
@@ -1748,7 +1877,7 @@ productType-产品类型，精确匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -1790,7 +1919,7 @@ productType-产品类型，精确匹配，支持单个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/products/{productKey}',
       'PATCH',
       pathParams,
@@ -1865,7 +1994,7 @@ productType-产品类型，精确匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -1907,7 +2036,7 @@ productType-产品类型，精确匹配，支持单个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/products/{productKey}',
       'DELETE',
       pathParams,
@@ -1987,7 +2116,7 @@ abilityType-功能类型，精确匹配
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId,
@@ -1996,7 +2125,7 @@ abilityType-功能类型，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -2038,7 +2167,7 @@ abilityType-功能类型，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/products/{productKey}/abilities',
       'GET',
       pathParams,
@@ -2123,7 +2252,7 @@ abilityType-功能类型，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -2165,7 +2294,7 @@ abilityType-功能类型，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/products/{productKey}/abilities:importThingModel',
       'PUT',
       pathParams,
@@ -2241,7 +2370,7 @@ abilityType-功能类型，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -2283,7 +2412,7 @@ abilityType-功能类型，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/products/{productKey}/abilities:exportThingModel',
       'GET',
       pathParams,
@@ -2314,14 +2443,147 @@ abilityType-功能类型，精确匹配
   }
 
   /**
-      *  新建产品Topic
+      *  查看产品自定义Topic列表
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - IoT Engine实例ID信息
+      * @param {string} opts.instanceId - IoTCore实例ID信息
       * @param {string} opts.productKey - 产品Key
-      * @param {string} opts.topicShortName - 自定义类目名称, /user/{productKey}/{identifier}/topicShortName
-      * @param {string} opts.topicOperation - 设备对该Topic类的操作权限，取值
-sub:订阅
+      * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞)  optional
+      * @param {integer} [opts.pageSize] - 分页大小，默认为10，取值范围：[10,100]  optional
+      * @param {filter} [opts.filters] - topicShortName-topic名称，模糊匹配，支持单个
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param pageinfoVO page  分页信息
+      * @param productTopic productTopics
+      */
+
+  describeProductTopics (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeProductTopics"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling describeProductTopics"
+      )
+    }
+    if (opts.productKey === undefined || opts.productKey === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.productKey' when calling describeProductTopics"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      productKey: opts.productKey
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeProductTopics with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/products/{productKey}/topics',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  新建产品自定义Topic
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - IoTCore实例ID信息
+      * @param {string} opts.productKey - 产品Key
+      * @param {string} opts.topicShortName - Topic名称为必填，同一个产品下的Topic名称不能重复
+只能包含字母，数字和下划线，最多64个字符，每个层级都不能为空
+不能以/结尾
+
+      * @param {string} opts.topicOperation - 操作权限，设备对该Topic类的操作权限，取值
 pub:发布
+sub:订阅
 
       * @param {string} [opts.topicDescription] - 描述, 0-50个字符  optional
       * @param {string} regionId - ID of the region
@@ -2385,7 +2647,7 @@ pub:发布
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -2427,9 +2689,144 @@ pub:发布
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/products/{productKey}/topics',
       'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查看产品自定义Topic
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - IoTCore实例ID信息
+      * @param {string} opts.productKey - 产品Key
+      * @param {string} opts.topicId - 自定义topic唯一标识
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string topicShortName  Topic名称为必填，同一个产品下的Topic名称不能重复
+只能包含字母，数字和下划线，最多64个字符，每个层级都不能为空
+不能以/结尾
+
+      * @param string topicOperation  操作权限，设备对该Topic类的操作权限，取值
+pub:发布
+sub:订阅
+
+      * @param string topicDescription  描述, 0-50个字符
+      * @param integer createdTime  创建时间,时间为东八区（UTC/GMT+08:00）
+      * @param integer udpatedTime  修改时间,时间为东八区（UTC/GMT+08:00）
+      */
+
+  describeProductTopic (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeProductTopic"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling describeProductTopic"
+      )
+    }
+    if (opts.productKey === undefined || opts.productKey === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.productKey' when calling describeProductTopic"
+      )
+    }
+    if (opts.topicId === undefined || opts.topicId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.topicId' when calling describeProductTopic"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      productKey: opts.productKey,
+      topicId: opts.topicId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeProductTopic with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/products/{productKey}/topics/{topicId}',
+      'GET',
       pathParams,
       queryParams,
       headerParams,

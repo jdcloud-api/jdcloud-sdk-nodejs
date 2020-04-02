@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * mongodb service.
- * @version 1.0.5
+ * @version 1.1.9
  */
 
 JDCloud.MONGODB = class MONGODB extends Service {
@@ -87,19 +87,19 @@ chargeMode - 计费类型，精确匹配
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
     Object.assign(
       queryParams,
-      this.buildTagFilterParam(opts.tagFilters, 'tagFilters')
+      super.buildTagFilterParam(opts.tagFilters, 'tagFilters')
     )
-    Object.assign(queryParams, this.buildSortParam(opts.sorts, 'sorts'))
+    Object.assign(queryParams, super.buildSortParam(opts.sorts, 'sorts'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -141,7 +141,7 @@ chargeMode - 计费类型，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances',
       'GET',
       pathParams,
@@ -218,7 +218,7 @@ chargeMode - 计费类型，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -260,7 +260,7 @@ chargeMode - 计费类型，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances',
       'POST',
       pathParams,
@@ -328,7 +328,7 @@ chargeMode - 计费类型，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -370,7 +370,7 @@ chargeMode - 计费类型，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}',
       'DELETE',
       pathParams,
@@ -448,7 +448,7 @@ chargeMode - 计费类型，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -490,7 +490,7 @@ chargeMode - 计费类型，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}:resetPassword',
       'POST',
       pathParams,
@@ -585,7 +585,7 @@ chargeMode - 计费类型，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -627,7 +627,7 @@ chargeMode - 计费类型，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}:modifyInstanceSpec',
       'POST',
       pathParams,
@@ -705,7 +705,7 @@ chargeMode - 计费类型，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -747,7 +747,7 @@ chargeMode - 计费类型，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}:modifyInstanceName',
       'POST',
       pathParams,
@@ -818,7 +818,7 @@ chargeMode - 计费类型，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -860,7 +860,7 @@ chargeMode - 计费类型，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/backupPolicy',
       'GET',
       pathParams,
@@ -947,7 +947,7 @@ chargeMode - 计费类型，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -989,7 +989,7 @@ chargeMode - 计费类型，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/backupPolicy',
       'POST',
       pathParams,
@@ -1067,7 +1067,7 @@ chargeMode - 计费类型，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -1109,7 +1109,7 @@ chargeMode - 计费类型，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/restoreInstance',
       'POST',
       pathParams,
@@ -1170,7 +1170,7 @@ chargeMode - 计费类型，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -1212,7 +1212,7 @@ chargeMode - 计费类型，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/flavors',
       'GET',
       pathParams,
@@ -1273,7 +1273,7 @@ chargeMode - 计费类型，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -1315,9 +1315,497 @@ chargeMode - 计费类型，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/availableZones',
       'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  重启实例
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - Instance ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string instanceId
+      */
+
+  restartInstance (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  restartInstance"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling restartInstance"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.1.9'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call restartInstance with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}:restartInstance',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建分片集群
+      * @param {Object} opts - parameters
+      * @param {shardingDBInstanceSpec} opts.shardingInstanceSpec - 实例规格
+      * @param {chargeSpec} [opts.chargeSpec] - 付费方式  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string instanceId
+      * @param string orderId
+      */
+
+  createShardingInstance (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createShardingInstance"
+      )
+    }
+
+    opts = opts || {}
+
+    if (
+      opts.shardingInstanceSpec === undefined ||
+      opts.shardingInstanceSpec === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.shardingInstanceSpec' when calling createShardingInstance"
+      )
+    }
+
+    let postBody = {}
+    if (
+      opts.shardingInstanceSpec !== undefined &&
+      opts.shardingInstanceSpec !== null
+    ) {
+      postBody['shardingInstanceSpec'] = opts.shardingInstanceSpec
+    }
+    if (opts.chargeSpec !== undefined && opts.chargeSpec !== null) {
+      postBody['chargeSpec'] = opts.chargeSpec
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.1.9'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createShardingInstance with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/shardingInstances',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  变更分片集群的节点规格，支持Mognos、Shard节点。
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - Instance ID
+      * @param {string} opts.nodeId - Node ID
+      * @param {} opts.nodeType - Shard节点或Mongos节点的规格，不允许小于当前规格。
+      * @param {} [opts.nodeStorageGB] - Shard存储空间，当前节点为Shard时可用，不允许小于当前规格。  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string nodeId
+      */
+
+  modifyNodeSpec (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyNodeSpec"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling modifyNodeSpec"
+      )
+    }
+    if (opts.nodeId === undefined || opts.nodeId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.nodeId' when calling modifyNodeSpec"
+      )
+    }
+    if (opts.nodeType === undefined || opts.nodeType === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.nodeType' when calling modifyNodeSpec"
+      )
+    }
+
+    let postBody = {}
+    if (opts.nodeType !== undefined && opts.nodeType !== null) {
+      postBody['nodeType'] = opts.nodeType
+    }
+    if (opts.nodeStorageGB !== undefined && opts.nodeStorageGB !== null) {
+      postBody['nodeStorageGB'] = opts.nodeStorageGB
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      nodeId: opts.nodeId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.1.9'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyNodeSpec with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/nodes/{nodeId}:modifyNodeSpec',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  重启MongoDB分片集群节点，支持重启Mongos、Shard。
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - Instance ID
+      * @param {string} opts.nodeId - Node ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string nodeId
+      */
+
+  restartNode (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  restartNode"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling restartNode"
+      )
+    }
+    if (opts.nodeId === undefined || opts.nodeId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.nodeId' when calling restartNode"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      nodeId: opts.nodeId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.1.9'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call restartNode with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/nodes/{nodeId}:restartNode',
+      'POST',
       pathParams,
       queryParams,
       headerParams,
@@ -1383,14 +1871,14 @@ backupId - 备份ID, 精确匹配
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -1432,7 +1920,7 @@ backupId - 备份ID, 精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/backups',
       'GET',
       pathParams,
@@ -1467,6 +1955,7 @@ backupId - 备份ID, 精确匹配
       * @param {Object} opts - parameters
       * @param {} opts.instanceId - 实例ID
       * @param {} [opts.backupName] - 备份名称  optional
+      * @param {} [opts.backupMethod] - 备份方式，Logical - 逻辑备份、Physical - 物理备份  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1500,6 +1989,9 @@ backupId - 备份ID, 精确匹配
     if (opts.backupName !== undefined && opts.backupName !== null) {
       postBody['backupName'] = opts.backupName
     }
+    if (opts.backupMethod !== undefined && opts.backupMethod !== null) {
+      postBody['backupMethod'] = opts.backupMethod
+    }
 
     let queryParams = {}
 
@@ -1508,7 +2000,7 @@ backupId - 备份ID, 精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -1550,7 +2042,7 @@ backupId - 备份ID, 精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/backups',
       'POST',
       pathParams,
@@ -1618,7 +2110,7 @@ backupId - 备份ID, 精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -1660,7 +2152,7 @@ backupId - 备份ID, 精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/backups/{backupId}',
       'DELETE',
       pathParams,
@@ -1729,7 +2221,7 @@ backupId - 备份ID, 精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -1771,9 +2263,371 @@ backupId - 备份ID, 精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/backups/{backupId}/downloadURL',
       'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询跨区域备份同步服务
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码；默认为1，取值范围：[1,∞)  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认为10；取值范围[1, 100]  optional
+      * @param {filter} [opts.filters] - null  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param backupSynchronicity backupSynchronicities
+      * @param integer totalCount
+      * @param integer pageNumber
+      */
+
+  describeBackupSynchronicities (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeBackupSynchronicities"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.1.9'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeBackupSynchronicities with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/backupSynchronicities',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建跨区域备份同步服务
+      * @param {Object} opts - parameters
+      * @param {} opts.instanceId - 源实例ID
+      * @param {} opts.srcRegion - 源实例所在地域
+      * @param {} opts.dstRegion - 备份同步的目标地域
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string serviceId
+      */
+
+  createBackupSynchronicity (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createBackupSynchronicity"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling createBackupSynchronicity"
+      )
+    }
+    if (opts.srcRegion === undefined || opts.srcRegion === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.srcRegion' when calling createBackupSynchronicity"
+      )
+    }
+    if (opts.dstRegion === undefined || opts.dstRegion === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.dstRegion' when calling createBackupSynchronicity"
+      )
+    }
+
+    let postBody = {}
+    if (opts.instanceId !== undefined && opts.instanceId !== null) {
+      postBody['instanceId'] = opts.instanceId
+    }
+    if (opts.srcRegion !== undefined && opts.srcRegion !== null) {
+      postBody['srcRegion'] = opts.srcRegion
+    }
+    if (opts.dstRegion !== undefined && opts.dstRegion !== null) {
+      postBody['dstRegion'] = opts.dstRegion
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.1.9'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createBackupSynchronicity with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/backupSynchronicities',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除跨地域备份同步服务
+      * @param {Object} opts - parameters
+      * @param {string} opts.serviceId - service ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string serviceId
+      */
+
+  deleteBackupSynchronicities (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteBackupSynchronicities"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.serviceId === undefined || opts.serviceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.serviceId' when calling deleteBackupSynchronicities"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      serviceId: opts.serviceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.1.9'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteBackupSynchronicities with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/backupSynchronicities/{serviceId}',
+      'DELETE',
       pathParams,
       queryParams,
       headerParams,
@@ -1840,7 +2694,7 @@ backupId - 备份ID, 精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -1882,7 +2736,7 @@ backupId - 备份ID, 精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/securityIps',
       'GET',
       pathParams,
@@ -1969,7 +2823,7 @@ backupId - 备份ID, 精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mongodb/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -2011,7 +2865,7 @@ backupId - 备份ID, 精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/securityIps',
       'POST',
       pathParams,

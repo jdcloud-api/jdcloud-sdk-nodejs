@@ -35,6 +35,7 @@ module.exports = {
   STS: require('./sts'),
   NC: require('./nc'),
   VM: require('./vm'),
+  KAFKA: require('./kafka'),
   NATIVECONTAINER: require('./nativecontainer'),
   CLOUDAUTH: require('./cloudauth'),
   POD: require('./pod'),

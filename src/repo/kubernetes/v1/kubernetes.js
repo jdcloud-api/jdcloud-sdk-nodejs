@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * kubernetes service.
- * @version 0.7.1
+ * @version 0.8.0
  */
 
 JDCloud.KUBERNETES = class KUBERNETES extends Service {
@@ -81,14 +81,14 @@ id - id，支持多个
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -130,7 +130,7 @@ id - id，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/clusters',
       'GET',
       pathParams,
@@ -285,7 +285,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -327,7 +327,7 @@ id - id，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/clusters',
       'POST',
       pathParams,
@@ -396,7 +396,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -438,7 +438,7 @@ id - id，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/clusters/{clusterId}',
       'GET',
       pathParams,
@@ -515,7 +515,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -557,7 +557,7 @@ id - id，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/clusters/{clusterId}',
       'PATCH',
       pathParams,
@@ -625,7 +625,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -667,7 +667,7 @@ id - id，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/clusters/{clusterId}',
       'DELETE',
       pathParams,
@@ -740,7 +740,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -782,7 +782,7 @@ id - id，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/clusters/{clusterId}:setUserMetrics',
       'POST',
       pathParams,
@@ -851,7 +851,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -893,7 +893,7 @@ id - id，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/clusters/{clusterId}:abortUpgrade',
       'POST',
       pathParams,
@@ -959,7 +959,7 @@ id - id，支持多个
     let queryParams = {}
     Object.assign(
       queryParams,
-      this.buildArrayParam(opts.nodeGroupIds, 'nodeGroupIds')
+      super.buildArrayParam(opts.nodeGroupIds, 'nodeGroupIds')
     )
 
     let pathParams = {
@@ -968,7 +968,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -1010,7 +1010,7 @@ id - id，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/clusters/{clusterId}/progress',
       'GET',
       pathParams,
@@ -1095,7 +1095,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -1137,7 +1137,7 @@ id - id，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/clusters/{clusterId}:setAutoUpgrade',
       'POST',
       pathParams,
@@ -1228,7 +1228,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -1270,7 +1270,7 @@ id - id，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/clusters/{clusterId}:upgradeCluster',
       'POST',
       pathParams,
@@ -1343,7 +1343,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -1385,7 +1385,7 @@ id - id，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/clusters/{clusterId}:setAddons',
       'POST',
       pathParams,
@@ -1455,15 +1455,15 @@ clusterName - 根据 cluster 名称查询
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
-    Object.assign(queryParams, this.buildTagFilterParam(opts.tags, 'tags'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildTagFilterParam(opts.tags, 'tags'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -1505,7 +1505,7 @@ clusterName - 根据 cluster 名称查询
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/nodeGroups',
       'GET',
       pathParams,
@@ -1547,9 +1547,10 @@ clusterName - 根据 cluster 名称查询
       * @param {array} [opts.azs] - 工作节点组的 az，必须为集群az的子集，默认为集群az  optional
       * @param {integer} opts.initialNodeCount - 工作节点组初始化大小
       * @param {string} opts.vpcId - 工作节点组初始化大小运行的VPC
-      * @param {string} opts.nodeCidr - 工作节点组的cidr
+      * @param {string} [opts.nodeCidr] - 工作节点组的cidr  optional
       * @param {boolean} [opts.autoRepair] - 是否开启工作节点组的自动修复，默认关闭  optional
       * @param {cAConfigSpec} [opts.caConfig] - 自动伸缩配置  optional
+      * @param {nodeGroupNetworkSpec} [opts.nodeGroupNetwork] - 节点组的网络配置，如果集群的类型customized类型，则必须指定该参数，如果是auto，则不是必须  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1595,11 +1596,6 @@ clusterName - 根据 cluster 名称查询
         "Missing the required parameter 'opts.vpcId' when calling createNodeGroup"
       )
     }
-    if (opts.nodeCidr === undefined || opts.nodeCidr === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.nodeCidr' when calling createNodeGroup"
-      )
-    }
 
     let postBody = {}
     if (opts.name !== undefined && opts.name !== null) {
@@ -1632,6 +1628,9 @@ clusterName - 根据 cluster 名称查询
     if (opts.caConfig !== undefined && opts.caConfig !== null) {
       postBody['caConfig'] = opts.caConfig
     }
+    if (opts.nodeGroupNetwork !== undefined && opts.nodeGroupNetwork !== null) {
+      postBody['nodeGroupNetwork'] = opts.nodeGroupNetwork
+    }
 
     let queryParams = {}
 
@@ -1640,7 +1639,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -1682,7 +1681,7 @@ clusterName - 根据 cluster 名称查询
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/nodeGroups',
       'POST',
       pathParams,
@@ -1751,7 +1750,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -1793,7 +1792,7 @@ clusterName - 根据 cluster 名称查询
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/nodeGroups/{nodeGroupId}',
       'GET',
       pathParams,
@@ -1870,7 +1869,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -1912,7 +1911,7 @@ clusterName - 根据 cluster 名称查询
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/nodeGroups/{nodeGroupId}',
       'PATCH',
       pathParams,
@@ -1980,7 +1979,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -2022,7 +2021,7 @@ clusterName - 根据 cluster 名称查询
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/nodeGroups/{nodeGroupId}',
       'DELETE',
       pathParams,
@@ -2100,7 +2099,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -2142,7 +2141,7 @@ clusterName - 根据 cluster 名称查询
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/nodeGroups/{nodeGroupId}:setNodeGroupSize',
       'POST',
       pathParams,
@@ -2220,7 +2219,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -2262,7 +2261,7 @@ clusterName - 根据 cluster 名称查询
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/nodeGroups/{nodeGroupId}:setAutoRepair',
       'POST',
       pathParams,
@@ -2331,7 +2330,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -2373,7 +2372,7 @@ clusterName - 根据 cluster 名称查询
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/nodeGroups/{nodeGroupId}:rollbackNodeGroupUpgrade',
       'POST',
       pathParams,
@@ -2451,7 +2450,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -2493,7 +2492,7 @@ clusterName - 根据 cluster 名称查询
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/nodeGroups/{nodeGroupId}:setNodeGroupCA',
       'POST',
       pathParams,
@@ -2568,7 +2567,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -2610,7 +2609,7 @@ clusterName - 根据 cluster 名称查询
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/nodeGroups/{nodeGroupId}:deleteNodeInstances',
       'POST',
       pathParams,
@@ -2667,14 +2666,14 @@ clusterName - 根据 cluster 名称查询
 
     let postBody = null
     let queryParams = {}
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -2716,7 +2715,7 @@ clusterName - 根据 cluster 名称查询
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/quotas',
       'GET',
       pathParams,
@@ -2777,7 +2776,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -2819,7 +2818,7 @@ clusterName - 根据 cluster 名称查询
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/serverConfig',
       'GET',
       pathParams,
@@ -2884,7 +2883,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -2926,7 +2925,7 @@ clusterName - 根据 cluster 名称查询
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/versions',
       'GET',
       pathParams,
@@ -2995,7 +2994,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -3037,7 +3036,7 @@ clusterName - 根据 cluster 名称查询
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/nodeVersions/{nodeVersion}',
       'GET',
       pathParams,
@@ -3110,7 +3109,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -3152,7 +3151,7 @@ clusterName - 根据 cluster 名称查询
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/clusters/{clusterId}/upgradableMasterVersions',
       'GET',
       pathParams,
@@ -3221,7 +3220,7 @@ clusterName - 根据 cluster 名称查询
     let queryParams = {}
     Object.assign(
       queryParams,
-      this.buildArrayParam(opts.nodeGroupIds, 'nodeGroupIds')
+      super.buildArrayParam(opts.nodeGroupIds, 'nodeGroupIds')
     )
 
     let pathParams = {
@@ -3230,7 +3229,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.7.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/0.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -3272,7 +3271,7 @@ clusterName - 根据 cluster 名称查询
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/clusters/{clusterId}/upgradableNodeVersions',
       'GET',
       pathParams,

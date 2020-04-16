@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * baseanti service.
- * @version 1.2.0
+ * @version 1.2.3
  */
 
 JDCloud.BASEANTI = class BASEANTI extends Service {
@@ -51,10 +51,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
       * @param {integer} [opts.pageSize] - 分页大小  optional
       * @param {string} opts.startTime - 开始时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
       * @param {string} opts.endTime - 结束时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-      * @param {string} [opts.ip] - 基础防护已防护的公网 IP, ip 不为空时, 查询 ip 对应的攻击记录, ip 为空时, 查询用户所有攻击记录
-- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describeelasticipresources&quot;&gt;describeElasticIpResources&lt;/a&gt; 接口查询基础防护已防护的私有网络弹性公网 IP
-- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describecpsipresources&quot;&gt;describeCpsIpResources&lt;/a&gt; 接口查询基础防护已防护的云物理服务器公网IP 和 弹性公网 IP
-  optional
+      * @param {string} [opts.ip] - 基础防护已防护的公网 IP, ip 不为空时, 查询 ip 对应的攻击记录, ip 为空时, 查询用户所有攻击记录&lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describeelasticipresources&#39;&gt;describeElasticIpResources&lt;/a&gt; 接口查询基础防护已防护的私有网络弹性公网 IP&lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describecpsipresources&#39;&gt;describeCpsIpResources&lt;/a&gt; 接口查询基础防护已防护的云物理服务器公网IP 和 弹性公网 IP&lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describeccsipresources&#39;&gt;describeCcsIpResources&lt;/a&gt; 接口查询基础防护已防护的托管区公网 IP  optional
       * @param {string} callback - callback
       @return {Object} result
       * @param attackLog dataList
@@ -91,14 +88,14 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     if (opts.endTime !== undefined && opts.endTime !== null) {
       queryParams['endTime'] = opts.endTime
     }
-    Object.assign(queryParams, this.buildArrayParam(opts.ip, 'ip'))
+    Object.assign(queryParams, super.buildArrayParam(opts.ip, 'ip'))
 
     let pathParams = {
       regionId: 'jdcloud'
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -140,7 +137,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/attacklog',
       'GET',
       pathParams,
@@ -175,10 +172,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
       * @param {Object} opts - parameters
       * @param {string} opts.startTime - 开始时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
       * @param {string} opts.endTime - 结束时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-      * @param {string} [opts.ip] - 基础防护已防护的公网 IP, ip 不为空时, 统计 ip 对应的攻击情况, ip 为空时, 统计用户所有公网 IP 的攻击情况
-- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describeelasticipresources&quot;&gt;describeElasticIpResources&lt;/a&gt; 接口查询基础防护已防护的私有网络弹性公网 IP
-- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describecpsipresources&quot;&gt;describeCpsIpResources&lt;/a&gt; 接口查询基础防护已防护的云物理服务器公网IP 和 弹性公网 IP
-  optional
+      * @param {string} [opts.ip] - 基础防护已防护的公网 IP, ip 不为空时, 统计 ip 对应的攻击情况, ip 为空时, 统计用户所有公网 IP 的攻击情况. &lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describeelasticipresources&#39;&gt;describeElasticIpResources&lt;/a&gt; 接口查询基础防护已防护的私有网络弹性公网 IP. &lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describecpsipresources&#39;&gt;describeCpsIpResources&lt;/a&gt; 接口查询基础防护已防护的云物理服务器公网IP 和 弹性公网 IP. &lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describeccsipresources&#39;&gt;describeCcsIpResources&lt;/a&gt; 接口查询基础防护已防护的托管区公网 IP  optional
       * @param {string} callback - callback
       @return {Object} result
       * @param integer attackCount  攻击次数
@@ -209,14 +203,14 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     if (opts.endTime !== undefined && opts.endTime !== null) {
       queryParams['endTime'] = opts.endTime
     }
-    Object.assign(queryParams, this.buildArrayParam(opts.ip, 'ip'))
+    Object.assign(queryParams, super.buildArrayParam(opts.ip, 'ip'))
 
     let pathParams = {
       regionId: 'jdcloud'
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -258,7 +252,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/describeAttackStatistics',
       'GET',
       pathParams,
@@ -293,10 +287,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
       * @param {Object} opts - parameters
       * @param {string} opts.startTime - 开始时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
       * @param {string} opts.endTime - 结束时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-      * @param {string} [opts.ip] - 基础防护已防护的公网 IP, ip 不为空时, 查询 ip 对应的各类型攻击次数, ip 为空时, 查询用户所有公网 IP 的各类型攻击次数
-- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describeelasticipresources&quot;&gt;describeElasticIpResources&lt;/a&gt; 接口查询基础防护已防护的私有网络弹性公网 IP
-- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describecpsipresources&quot;&gt;describeCpsIpResources&lt;/a&gt; 接口查询基础防护已防护的云物理服务器公网IP 和 弹性公网 IP
-  optional
+      * @param {string} [opts.ip] - 基础防护已防护的公网 IP, ip 不为空时, 查询 ip 对应的各类型攻击次数, ip 为空时, 查询用户所有公网 IP 的各类型攻击次数. &lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describeelasticipresources&#39;&gt;describeElasticIpResources&lt;/a&gt; 接口查询基础防护已防护的私有网络弹性公网 IP. &lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describecpsipresources&#39;&gt;describeCpsIpResources&lt;/a&gt; 接口查询基础防护已防护的云物理服务器公网IP 和 弹性公网 IP. &lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describeccsipresources&#39;&gt;describeCcsIpResources&lt;/a&gt; 接口查询基础防护已防护的托管区公网 IP  optional
       * @param {string} callback - callback
       @return {Object} result
       * @param attackTypeCount dataList
@@ -324,14 +315,14 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     if (opts.endTime !== undefined && opts.endTime !== null) {
       queryParams['endTime'] = opts.endTime
     }
-    Object.assign(queryParams, this.buildArrayParam(opts.ip, 'ip'))
+    Object.assign(queryParams, super.buildArrayParam(opts.ip, 'ip'))
 
     let pathParams = {
       regionId: 'jdcloud'
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -373,7 +364,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/describeAttackTypeCount',
       'GET',
       pathParams,
@@ -408,10 +399,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
       * @param {Object} opts - parameters
       * @param {string} opts.startTime - 开始时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
       * @param {string} opts.endTime - 结束时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-      * @param {string} [opts.ip] - 基础防护已防护的公网 IP
-- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describeelasticipresources&quot;&gt;describeElasticIpResources&lt;/a&gt; 接口查询基础防护已防护的私有网络弹性公网 IP
-- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describecpsipresources&quot;&gt;describeCpsIpResources&lt;/a&gt; 接口查询基础防护已防护的云物理服务器公网IP 和 弹性公网 IP
-  optional
+      * @param {string} [opts.ip] - 基础防护已防护的公网 IP. &lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describeelasticipresources&#39;&gt;describeElasticIpResources&lt;/a&gt; 接口查询基础防护已防护的私有网络弹性公网 IP. &lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describecpsipresources&#39;&gt;describeCpsIpResources&lt;/a&gt; 接口查询基础防护已防护的云物理服务器公网IP 和 弹性公网 IP. &lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describeccsipresources&#39;&gt;describeCcsIpResources&lt;/a&gt; 接口查询基础防护已防护的托管区公网 IP  optional
       * @param {string} callback - callback
       @return {Object} result
       * @param ipResourceFlow bps
@@ -440,14 +428,14 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     if (opts.endTime !== undefined && opts.endTime !== null) {
       queryParams['endTime'] = opts.endTime
     }
-    Object.assign(queryParams, this.buildArrayParam(opts.ip, 'ip'))
+    Object.assign(queryParams, super.buildArrayParam(opts.ip, 'ip'))
 
     let pathParams = {
       regionId: 'jdcloud'
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -489,7 +477,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/describeIpMonitorFlow',
       'GET',
       pathParams,
@@ -520,8 +508,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
   }
 
   /**
-      *  查询基础防护已防护的公网 IP 的安全信息列表. 包括私有网络的弹性公网 IP(运营商级 NAT 保留地址除外), 云物理服务器的公网 IP 和弹性公网 IP. (已废弃, 建议使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describeelasticipresources&quot;&gt;describeElasticIpResources&lt;/a&gt;, &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describecpsipresources&quot;&gt;describeCpsIpResources&lt;/a&gt; 接口)&quot;
-
+      *  查询基础防护已防护的公网 IP 的安全信息列表. 包括私有网络的弹性公网 IP(运营商级 NAT 保留地址除外), 云物理服务器的公网 IP 和弹性公网 IP. (已废弃, 建议使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describeelasticipresources&#39;&gt;describeElasticIpResources&lt;/a&gt;, &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describecpsipresources&#39;&gt;describeCpsIpResources&lt;/a&gt; 接口)
       * @param {Object} opts - parameters
       * @param {string} [opts.ip] - IP 模糊匹配  optional
       * @param {string} regionId - ID of the region
@@ -556,7 +543,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -598,7 +585,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/ipResources',
       'GET',
       pathParams,
@@ -671,7 +658,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -713,7 +700,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/elasticIpResources',
       'GET',
       pathParams,
@@ -786,7 +773,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -828,7 +815,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/cpsIpResources',
       'GET',
       pathParams,
@@ -900,7 +887,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -942,7 +929,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/ccsIpResources',
       'GET',
       pathParams,
@@ -973,13 +960,10 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
   }
 
   /**
-      *  查询公网 IP 安全信息, 仅支持 ipv4. (已废弃, 建议使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describeipsafetyinfo&quot;&gt;describeIpSafetyInfo&lt;/a&gt; 接口)
+      *  查询公网 IP 安全信息, 仅支持 ipv4. (已废弃, 建议使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describeipsafetyinfo&#39;&gt;describeIpSafetyInfo&lt;/a&gt; 接口)
 
       * @param {Object} opts - parameters
-      * @param {string} opts.ip - 基础防护已防护的公网 IP, 仅支持 ipv4 格式
-- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describeelasticipresources&quot;&gt;describeElasticIpResources&lt;/a&gt; 接口查询基础防护已防护的私有网络弹性公网 IP
-- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describecpsipresources&quot;&gt;describeCpsIpResources&lt;/a&gt; 接口查询基础防护已防护的云物理服务器公网IP 和 弹性公网 IP
-
+      * @param {string} opts.ip - 基础防护已防护的公网 IP, 仅支持 ipv4 格式. &lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describeelasticipresources&#39;&gt;describeElasticIpResources&lt;/a&gt; 接口查询基础防护已防护的私有网络弹性公网 IP&lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describecpsipresources&#39;&gt;describeCpsIpResources&lt;/a&gt; 接口查询基础防护已防护的云物理服务器公网 IP 和 弹性公网 IP&lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describeccsipresources&#39;&gt;describeCcsIpResources&lt;/a&gt; 接口查询基础防护已防护的托管区公网 IP
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1015,7 +999,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -1057,7 +1041,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/ipResources/{ip}',
       'GET',
       pathParams,
@@ -1090,10 +1074,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
   /**
       *  查询基础防护已防护公网 IP 安全信息, 支持 ipv4 和 ipv6
       * @param {Object} opts - parameters
-      * @param {string} opts.ip - 基础防护已防护公网 IP.
-- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describeelasticipresources&quot;&gt;describeElasticIpResources&lt;/a&gt; 接口查询基础防护已防护的私有网络弹性公网 IP
-- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describecpsipresources&quot;&gt;describeCpsIpResources&lt;/a&gt; 接口查询基础防护已防护的云物理服务器公网IP 和 弹性公网 IP
-
+      * @param {string} opts.ip - 基础防护已防护公网 IP. &lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describeelasticipresources&#39;&gt;describeElasticIpResources&lt;/a&gt; 接口查询基础防护已防护的私有网络弹性公网 IP &lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describecpsipresources&#39;&gt;describeCpsIpResources&lt;/a&gt; 接口查询基础防护已防护的云物理服务器公网IP 和 弹性公网 IP &lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describeccsipresources&#39;&gt;describeCcsIpResources&lt;/a&gt; 接口查询基础防护已防护的托管区公网 IP
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1131,7 +1112,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -1173,7 +1154,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/describeIpSafetyInfo',
       'GET',
       pathParams,
@@ -1204,13 +1185,10 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
   }
 
   /**
-      *  设置基础防护已防护公网 IP 的清洗阈值, 仅支持 ipv4. (已废弃, 建议使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/setipcleanthreshold&quot;&gt;setIpCleanThreshold&lt;/a&gt; 接口)
+      *  设置基础防护已防护公网 IP 的清洗阈值, 仅支持 ipv4. (已废弃, 建议使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/setipcleanthreshold&#39;&gt;setIpCleanThreshold&lt;/a&gt; 接口)
 
       * @param {Object} opts - parameters
-      * @param {string} opts.ip - 基础防护已防护的公网 IP, 仅支持 ipv4 格式
-- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describeelasticipresources&quot;&gt;describeElasticIpResources&lt;/a&gt; 接口查询基础防护已防护的私有网络弹性公网 IP
-- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describecpsipresources&quot;&gt;describeCpsIpResources&lt;/a&gt; 接口查询基础防护已防护的云物理服务器公网IP 和 弹性公网 IP
-
+      * @param {string} opts.ip - 基础防护已防护的公网 IP, 仅支持 ipv4 格式. &lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describeelasticipresources&#39;&gt;describeElasticIpResources&lt;/a&gt; 接口查询基础防护已防护的私有网络弹性公网 IP&lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describecpsipresources&#39;&gt;describeCpsIpResources&lt;/a&gt; 接口查询基础防护已防护的云物理服务器公网 IP 和 弹性公网 IP&lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describeccsipresources&#39;&gt;describeCcsIpResources&lt;/a&gt; 接口查询基础防护已防护的托管区公网 IP
       * @param {cleanThresholdSpec} opts.cleanThresholdSpec - 请求参数
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -1261,7 +1239,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -1303,7 +1281,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/ipResources/{ip}:setCleanThreshold',
       'POST',
       pathParams,
@@ -1382,7 +1360,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -1424,7 +1402,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/setIpCleanThreshold',
       'POST',
       pathParams,
@@ -1457,10 +1435,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
   /**
       *  查询公网 IP 可设置清洗阈值范围, 支持 ipv4 和 ipv6
       * @param {Object} opts - parameters
-      * @param {string} opts.ip - 基础防护已防护公网 IP.
-- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describeelasticipresources&quot;&gt;describeElasticIpResources&lt;/a&gt; 接口查询基础防护已防护的私有网络弹性公网 IP
-- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describecpsipresources&quot;&gt;describeCpsIpResources&lt;/a&gt; 接口查询基础防护已防护的云物理服务器公网IP 和 弹性公网 IP
-
+      * @param {string} opts.ip - 基础防护已防护公网 IP. &lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describeelasticipresources&#39;&gt;describeElasticIpResources&lt;/a&gt; 接口查询基础防护已防护的私有网络弹性公网 IP &lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describecpsipresources&#39;&gt;describeCpsIpResources&lt;/a&gt; 接口查询基础防护已防护的云物理服务器公网IP 和 弹性公网 IP &lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describeccsipresources&#39;&gt;describeCcsIpResources&lt;/a&gt; 接口查询基础防护已防护的托管区公网 IP
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1502,7 +1477,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -1544,7 +1519,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/describeIpCleanThresholdRange',
       'GET',
       pathParams,
@@ -1575,13 +1550,10 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
   }
 
   /**
-      *  查询公网 IP 的攻击记录, 仅支持 ipv4. (已废弃, 建议使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describeattacklogs&quot;&gt;describeAttackLogs&lt;/a&gt; 接口)
+      *  查询公网 IP 的攻击记录, 仅支持 ipv4. (已废弃, 建议使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describeattacklogs&#39;&gt;describeAttackLogs&lt;/a&gt; 接口)
 
       * @param {Object} opts - parameters
-      * @param {string} opts.ip - 基础防护已防护的公网 IP, 仅支持 ipv4 格式
-- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describeelasticipresources&quot;&gt;describeElasticIpResources&lt;/a&gt; 接口查询基础防护已防护的私有网络弹性公网 IP
-- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describecpsipresources&quot;&gt;describeCpsIpResources&lt;/a&gt; 接口查询基础防护已防护的云物理服务器公网IP 和 弹性公网 IP
-
+      * @param {string} opts.ip - 基础防护已防护的公网 IP, 仅支持 ipv4 格式. &lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describeelasticipresources&#39;&gt;describeElasticIpResources&lt;/a&gt; 接口查询基础防护已防护的私有网络弹性公网 IP&lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describecpsipresources&#39;&gt;describeCpsIpResources&lt;/a&gt; 接口查询基础防护已防护的云物理服务器公网 IP 和 弹性公网 IP&lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describeccsipresources&#39;&gt;describeCcsIpResources&lt;/a&gt; 接口查询基础防护已防护的托管区公网 IP
       * @param {integer} [opts.start] - 限制查询的开始范围  optional
       * @param {integer} [opts.limit] - 限制查询的记录数  optional
       * @param {string} regionId - ID of the region
@@ -1629,7 +1601,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -1671,7 +1643,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/ipResources/{ip}/protectInfo',
       'GET',
       pathParams,
@@ -1702,13 +1674,10 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
   }
 
   /**
-      *  查询公网 IP 的 endTime 之前 15 分钟内监控流量, 仅支持 ipv4. (已废弃, 建议使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describeipmonitorflow&quot;&gt;describeIpMonitorFlow&lt;/a&gt; 接口)
+      *  查询公网 IP 的 endTime 之前 15 分钟内监控流量, 仅支持 ipv4. (已废弃, 建议使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describeipmonitorflow&#39;&gt;describeIpMonitorFlow&lt;/a&gt; 接口)
 
       * @param {Object} opts - parameters
-      * @param {string} opts.ip - 基础防护已防护的公网 IP, 仅支持 ipv4 格式
-- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describeelasticipresources&quot;&gt;describeElasticIpResources&lt;/a&gt; 接口查询基础防护已防护的私有网络弹性公网 IP
-- 使用 &lt;a href&#x3D;&quot;http://docs.jdcloud.com/anti-ddos-basic/api/describecpsipresources&quot;&gt;describeCpsIpResources&lt;/a&gt; 接口查询基础防护已防护的云物理服务器公网IP 和 弹性公网 IP
-
+      * @param {string} opts.ip - 基础防护已防护的公网 IP, 仅支持 ipv4 格式. &lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describeelasticipresources&#39;&gt;describeElasticIpResources&lt;/a&gt; 接口查询基础防护已防护的私有网络弹性公网 IP&lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describecpsipresources&#39;&gt;describeCpsIpResources&lt;/a&gt; 接口查询基础防护已防护的云物理服务器公网 IP 和 弹性公网 IP&lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describeccsipresources&#39;&gt;describeCcsIpResources&lt;/a&gt; 接口查询基础防护已防护的托管区公网 IP
       * @param {string} [opts.endTime] - 查询的结束时间, UTC时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ, 为空时查询当前时间之前 15 分钟内监控流量  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -1749,7 +1718,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -1791,7 +1760,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/ipResources/{ip}/monitorFlow',
       'GET',
       pathParams,

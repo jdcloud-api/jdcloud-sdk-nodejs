@@ -78,5 +78,6 @@ module.exports = {
   CENSOR: require('./censor'),
   IOTCLOUDGATEWAY: require('./iotcloudgateway'),
   INDUSTRYDATA: require('./industrydata'),
-  JDW: require('./jdw')
+  JDW: require('./jdw'),
+  USER: require('./user')
 }

@@ -30,10 +30,10 @@ Service._services[serviceId] = true
 
 /**
  * sms service.
- * @version 1.2.0
+ * @version 1.3.2
  */
 
-JDCloud.SMS = class SMS extends Service {
+class SMS extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
@@ -45,18 +45,18 @@ JDCloud.SMS = class SMS extends Service {
   }
 
   /**
-      *  指定模板群发短信
+      *  指定模板群发短信接口。接口调用需要使用京东云统一鉴权的SDK方式接入，以下文档仅是接口出参、入参描述，并不是最终程序实现逻辑的范例，具体接口实现请查看SDK参考：https://docs.jdcloud.com/cn/text-message/java
       * @param {Object} opts - parameters
       * @param {string} opts.templateId - 模板Id
       * @param {string} opts.signId - 签名Id
-      * @param {array} [opts.phoneList] - 群发的国内电话号码,群发时一次最多不要超过200个手机号  optional
+      * @param {array} [opts.phoneList] - 群发的国内电话号码,群发时一次最多不要超过100个手机号  optional
       * @param {array} [opts.params] - 短信模板变量对应的数据值,Array格式  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       * @param batchSendResp data  指定短信Id群发短信响应参数
       * @param boolean status  请求状态
-      * @param string code  错误码
+      * @param integer code  错误码
       * @param string message  错误消息
       */
 
@@ -106,7 +106,7 @@ JDCloud.SMS = class SMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  sms/1.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  sms/1.3.2'
     }
 
     let contentTypes = ['application/json']
@@ -148,7 +148,7 @@ JDCloud.SMS = class SMS extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/batchSend',
       'POST',
       pathParams,
@@ -179,7 +179,7 @@ JDCloud.SMS = class SMS extends Service {
   }
 
   /**
-      *  短信发送回执接口
+      *  短信发送回执接口。接口调用需要使用京东云统一鉴权的SDK方式接入，以下文档仅是接口出参、入参描述，并不是最终程序实现逻辑的范例，具体接口实现请查看SDK参考：https://docs.jdcloud.com/cn/text-message/java
       * @param {Object} opts - parameters
       * @param {string} opts.sequenceNumber - 发送短信的序列号
       * @param {array} [opts.phoneList] - 需要获取回执的手机号码列表，选填  optional
@@ -188,7 +188,7 @@ JDCloud.SMS = class SMS extends Service {
       @return {Object} result
       * @param statusReportResp data
       * @param boolean status  请求状态
-      * @param string code  错误码
+      * @param integer code  错误码
       * @param string message  错误消息
       */
 
@@ -227,7 +227,7 @@ JDCloud.SMS = class SMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  sms/1.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  sms/1.3.2'
     }
 
     let contentTypes = ['application/json']
@@ -269,7 +269,7 @@ JDCloud.SMS = class SMS extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/statusReport',
       'POST',
       pathParams,
@@ -300,7 +300,7 @@ JDCloud.SMS = class SMS extends Service {
   }
 
   /**
-      *  短信回复接口
+      *  短信回复接口。 接口调用需要使用京东云统一鉴权的SDK方式接入，以下文档仅是接口出参、入参描述，并不是最终程序实现逻辑的范例，具体接口实现请查看SDK参考：https://docs.jdcloud.com/cn/text-message/java
       * @param {Object} opts - parameters
       * @param {string} opts.appId - 应用Id
       * @param {string} opts.dataDate - 查询时间
@@ -310,7 +310,7 @@ JDCloud.SMS = class SMS extends Service {
       @return {Object} result
       * @param replyResp data
       * @param boolean status  请求状态
-      * @param string code  错误码
+      * @param integer code  错误码
       * @param string message  错误消息
       */
 
@@ -357,7 +357,7 @@ JDCloud.SMS = class SMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  sms/1.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  sms/1.3.2'
     }
 
     let contentTypes = ['application/json']
@@ -399,7 +399,7 @@ JDCloud.SMS = class SMS extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/reply',
       'POST',
       pathParams,
@@ -429,4 +429,4 @@ JDCloud.SMS = class SMS extends Service {
     )
   }
 }
-module.exports = JDCloud.SMS
+module.exports = SMS

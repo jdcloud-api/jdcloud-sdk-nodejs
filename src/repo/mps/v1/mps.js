@@ -30,10 +30,10 @@ Service._services[serviceId] = true
 
 /**
  * mps service.
- * @version 0.4.9
+ * @version 0.4.10
  */
 
-JDCloud.MPS = class MPS extends Service {
+class MPS extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
@@ -42,6 +42,1355 @@ JDCloud.MPS = class MPS extends Service {
       options._defaultEndpoint.host || 'mps.jdcloud-api.com'
     options.basePath = '/v1' // 默认要设为空""
     super(serviceId, options)
+  }
+
+  /**
+      *  设置回调配置
+      * @param {Object} opts - parameters
+      * @param {array} [opts.callbackEvents] - 回调事件列表。取值范围：
+- snapshot_complete 截图完成，包括成功和失败
+  optional
+      * @param {string} opts.callbackType - 回调方式，目前只支持 http
+      * @param {string} [opts.httpUrl] - 回调方式为 http 时，此为必须参数  optional
+      * @param {string} [opts.disabled] - 是否禁用回调，默认值为 false，即开启回调  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  setCallbackSettings (opts, callback) {
+    opts = opts || {}
+
+    if (opts.callbackType === undefined || opts.callbackType === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.callbackType' when calling setCallbackSettings"
+      )
+    }
+
+    let postBody = {}
+    if (opts.callbackEvents !== undefined && opts.callbackEvents !== null) {
+      postBody['callbackEvents'] = opts.callbackEvents
+    }
+    if (opts.callbackType !== undefined && opts.callbackType !== null) {
+      postBody['callbackType'] = opts.callbackType
+    }
+    if (opts.httpUrl !== undefined && opts.httpUrl !== null) {
+      postBody['httpUrl'] = opts.httpUrl
+    }
+    if (opts.disabled !== undefined && opts.disabled !== null) {
+      postBody['disabled'] = opts.disabled
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.10'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call setCallbackSettings with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/settings:setCallbackSettings',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询回调配置
+      * @param {Object} opts - parameters
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param callbackSettings resultObject
+      */
+
+  queryCallbackSettings (opts, callback) {
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.10'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call queryCallbackSettings with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/settings:queryCallbackSettings',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  提交视频截图任务
+      * @param {Object} opts - parameters
+      * @param {string} opts.templateId - 截图模板ID
+      * @param {input} opts.input
+      * @param {output} opts.output
+      * @param {output} [opts.spriteOutput]   optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param submitSnapshotTaskResultObject resultObject
+      */
+
+  submitSnapshotTask (opts, callback) {
+    opts = opts || {}
+
+    if (opts.templateId === undefined || opts.templateId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.templateId' when calling submitSnapshotTask"
+      )
+    }
+    if (opts.input === undefined || opts.input === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.input' when calling submitSnapshotTask"
+      )
+    }
+    if (opts.output === undefined || opts.output === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.output' when calling submitSnapshotTask"
+      )
+    }
+
+    let postBody = {}
+    if (opts.templateId !== undefined && opts.templateId !== null) {
+      postBody['templateId'] = opts.templateId
+    }
+    if (opts.input !== undefined && opts.input !== null) {
+      postBody['input'] = opts.input
+    }
+    if (opts.output !== undefined && opts.output !== null) {
+      postBody['output'] = opts.output
+    }
+    if (opts.spriteOutput !== undefined && opts.spriteOutput !== null) {
+      postBody['spriteOutput'] = opts.spriteOutput
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.10'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call submitSnapshotTask with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/snapshotTasks:submit',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询视频截图任务列表
+支持过滤查询：
+  - createTime,ge 最早任务创建时间
+  - createTime,le 最晚任务创建时间
+  - status,in 任务状态IN查询
+  - taskId,eq 任务ID精确查询
+
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码；默认值为 1  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认值为 10；取值范围 [10, 100]  optional
+      * @param {filter} [opts.filters]   optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param listSnapshotTasksResultObject resultObject
+      */
+
+  listSnapshotTasks (opts, callback) {
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.10'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call listSnapshotTasks with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/snapshotTasks',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取视频截图任务详细信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.taskId - 任务ID，路径参数
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param snapshotTaskObject snapshotTaskObject
+      */
+
+  getSnapshotTask (opts, callback) {
+    opts = opts || {}
+
+    if (opts.taskId === undefined || opts.taskId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.taskId' when calling getSnapshotTask"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      taskId: opts.taskId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.10'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getSnapshotTask with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/snapshotTasks/{taskId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除视频截图任务。删除任务时，会同时删除任务相关的数据，如任务执行结果等
+      * @param {Object} opts - parameters
+      * @param {string} opts.taskId - 任务ID，路径参数
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteSnapshotTask (opts, callback) {
+    opts = opts || {}
+
+    if (opts.taskId === undefined || opts.taskId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.taskId' when calling deleteSnapshotTask"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      taskId: opts.taskId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.10'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteSnapshotTask with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/snapshotTasks/{taskId}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询视频截图任务结果
+      * @param {Object} opts - parameters
+      * @param {string} opts.taskId - 任务ID，路径参数
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param snapshotTaskResultObject snapshotTaskResultObject
+      */
+
+  querySnapshotTaskResult (opts, callback) {
+    opts = opts || {}
+
+    if (opts.taskId === undefined || opts.taskId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.taskId' when calling querySnapshotTaskResult"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      taskId: opts.taskId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.10'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call querySnapshotTaskResult with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/snapshotTasks/{taskId}:queryResult',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询截图模板列表。
+允许通过条件过滤查询，支持的过滤字段如下：
+  - templateId[eq] 按模板ID精确查询
+
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码；默认值为 1  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认值为 10；取值范围 [10, 100]  optional
+      * @param {filter} [opts.filters]   optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param listSnapshotTemplatesResultInfo resultObject
+      */
+
+  listSnapshotTemplates (opts, callback) {
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.10'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call listSnapshotTemplates with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/snapshotTemplates',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建截图模板
+      * @param {Object} opts - parameters
+      * @param {string} opts.title - 模板标题。长度不超过 128 个字节。UTF-8 编码。
+      * @param {integer} [opts.startTime] - 截图起始时间，取值范围单位为秒，缺省值为 0
+  optional
+      * @param {string} [opts.frameType] - 截图帧类型。取值范围：
+  any - 任意帧
+  intra - 关键帧
+缺省值为 any
+  optional
+      * @param {string} [opts.format] - 截图格式。取值范围：
+  jpg - 对应的截图或雪碧图输出文件扩展名为 jpg
+  png - 对应的截图或雪碧图输出文件扩展名为 png
+缺省值为 jpg
+  optional
+      * @param {integer} [opts.number] - 截图数量。取值范围：[1, 3600]
+缺省值为 10
+若雪碧图配置不为空，则生成雪碧图，提交的截图任务中，此字段会被雪碧图的行列积所覆盖。
+  optional
+      * @param {integer} [opts.interval] - 截图时间间隔。取值范围：[1, 100]，单位为秒
+若未设置，则对于普通截图，按照截图张数做平均截图；对于雪碧图，则按照行列数乘积做平均截图
+  optional
+      * @param {integer} [opts.width] - 截图宽度，取值范围：[8, 4096]
+若宽度和高度同时设置，则按照设置的宽高截图；
+若宽度和高度均未设置，则截图保持与源视频相同的宽高值；
+若宽度和高度其中一项未设置，则截图保持与源视频相同的宽高比；
+  optional
+      * @param {integer} [opts.height] - 截图高度，取值范围：[8, 4096]
+若宽度和高度同时设置，则按照设置的宽高截图；
+若宽度和高度均未设置，则截图保持与源视频相同的宽高值；
+若宽度和高度其中一项未设置，则截图保持与源视频相同的宽高比；
+  optional
+      * @param {string} [opts.fillType] - 填充方式，当视频宽高与截图宽高指定值不能匹配时的填充处理方式。取值范围：
+  stretch - 伸缩
+  black - 留黑
+  white - 留白
+  gauss - 高斯模糊
+缺省值为 black
+  optional
+      * @param {spriteConfig} [opts.spriteConfig] - 雪碧图配置。若此字段有值，则生成雪碧图。
+  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param snapshotTemplateInfo resultObject
+      */
+
+  createSnapshotTemplate (opts, callback) {
+    opts = opts || {}
+
+    if (opts.title === undefined || opts.title === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.title' when calling createSnapshotTemplate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.title !== undefined && opts.title !== null) {
+      postBody['title'] = opts.title
+    }
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      postBody['startTime'] = opts.startTime
+    }
+    if (opts.frameType !== undefined && opts.frameType !== null) {
+      postBody['frameType'] = opts.frameType
+    }
+    if (opts.format !== undefined && opts.format !== null) {
+      postBody['format'] = opts.format
+    }
+    if (opts.number !== undefined && opts.number !== null) {
+      postBody['number'] = opts.number
+    }
+    if (opts.interval !== undefined && opts.interval !== null) {
+      postBody['interval'] = opts.interval
+    }
+    if (opts.width !== undefined && opts.width !== null) {
+      postBody['width'] = opts.width
+    }
+    if (opts.height !== undefined && opts.height !== null) {
+      postBody['height'] = opts.height
+    }
+    if (opts.fillType !== undefined && opts.fillType !== null) {
+      postBody['fillType'] = opts.fillType
+    }
+    if (opts.spriteConfig !== undefined && opts.spriteConfig !== null) {
+      postBody['spriteConfig'] = opts.spriteConfig
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.10'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createSnapshotTemplate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/snapshotTemplates',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询截图模板
+      * @param {Object} opts - parameters
+      * @param {string} opts.templateId - 模板ID
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param snapshotTemplateInfo resultObject
+      */
+
+  getSnapshotTemplate (opts, callback) {
+    opts = opts || {}
+
+    if (opts.templateId === undefined || opts.templateId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.templateId' when calling getSnapshotTemplate"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      templateId: opts.templateId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.10'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getSnapshotTemplate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/snapshotTemplates/{templateId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改截图模板
+      * @param {Object} opts - parameters
+      * @param {string} opts.templateId - 模板ID
+      * @param {string} [opts.title] - 模板标题。长度不超过 128 个字节。UTF-8 编码。  optional
+      * @param {integer} [opts.startTime] - 截图起始时间，单位为秒，缺省值为 0  optional
+      * @param {string} [opts.frameType] - 截图帧类型。取值范围：normal、intra  optional
+      * @param {string} [opts.format] - 截图格式。取值范围：jpg、png  optional
+      * @param {integer} [opts.number] - 截图数量，缺省值为 10  optional
+      * @param {integer} [opts.interval] - 截图间隔  optional
+      * @param {integer} [opts.width] - 截图宽度，取值范围：[8, 4096]
+  optional
+      * @param {integer} [opts.height] - 截图高度，取值范围：[8, 4096]
+  optional
+      * @param {string} [opts.fillType] - 填充方式，当视频宽高与截图宽高指定值不能匹配时的填充处理方式。取值范围：
+  stretch - 伸缩
+  black - 留黑
+  white - 留白
+  gauss - 高斯模糊
+缺省值为 black
+  optional
+      * @param {spriteConfig} [opts.spriteConfig] - 雪碧图配置  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param snapshotTemplateInfo resultObject
+      */
+
+  modifySnapshotTemplate (opts, callback) {
+    opts = opts || {}
+
+    if (opts.templateId === undefined || opts.templateId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.templateId' when calling modifySnapshotTemplate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.title !== undefined && opts.title !== null) {
+      postBody['title'] = opts.title
+    }
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      postBody['startTime'] = opts.startTime
+    }
+    if (opts.frameType !== undefined && opts.frameType !== null) {
+      postBody['frameType'] = opts.frameType
+    }
+    if (opts.format !== undefined && opts.format !== null) {
+      postBody['format'] = opts.format
+    }
+    if (opts.number !== undefined && opts.number !== null) {
+      postBody['number'] = opts.number
+    }
+    if (opts.interval !== undefined && opts.interval !== null) {
+      postBody['interval'] = opts.interval
+    }
+    if (opts.width !== undefined && opts.width !== null) {
+      postBody['width'] = opts.width
+    }
+    if (opts.height !== undefined && opts.height !== null) {
+      postBody['height'] = opts.height
+    }
+    if (opts.fillType !== undefined && opts.fillType !== null) {
+      postBody['fillType'] = opts.fillType
+    }
+    if (opts.spriteConfig !== undefined && opts.spriteConfig !== null) {
+      postBody['spriteConfig'] = opts.spriteConfig
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      templateId: opts.templateId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.10'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifySnapshotTemplate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/snapshotTemplates/{templateId}',
+      'PATCH',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除截图模板
+      * @param {Object} opts - parameters
+      * @param {string} opts.templateId - 模板ID
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteSnapshotTemplate (opts, callback) {
+    opts = opts || {}
+
+    if (opts.templateId === undefined || opts.templateId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.templateId' when calling deleteSnapshotTemplate"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      templateId: opts.templateId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.10'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteSnapshotTemplate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/snapshotTemplates/{templateId}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
   }
 
   /**
@@ -144,7 +1493,7 @@ JDCloud.MPS = class MPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.10'
     }
 
     let contentTypes = ['application/json']
@@ -248,7 +1597,7 @@ JDCloud.MPS = class MPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.10'
     }
 
     let contentTypes = ['application/json']
@@ -348,7 +1697,7 @@ JDCloud.MPS = class MPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.10'
     }
 
     let contentTypes = ['application/json']
@@ -452,7 +1801,7 @@ JDCloud.MPS = class MPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.10'
     }
 
     let contentTypes = ['application/json']
@@ -610,7 +1959,7 @@ JDCloud.MPS = class MPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.10'
     }
 
     let contentTypes = ['application/json']
@@ -709,7 +2058,7 @@ JDCloud.MPS = class MPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.10'
     }
 
     let contentTypes = ['application/json']
@@ -848,7 +2197,7 @@ JDCloud.MPS = class MPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.10'
     }
 
     let contentTypes = ['application/json']
@@ -987,7 +2336,7 @@ JDCloud.MPS = class MPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.10'
     }
 
     let contentTypes = ['application/json']
@@ -1085,7 +2434,7 @@ JDCloud.MPS = class MPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.10'
     }
 
     let contentTypes = ['application/json']
@@ -1196,7 +2545,7 @@ JDCloud.MPS = class MPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.10'
     }
 
     let contentTypes = ['application/json']
@@ -1311,7 +2660,7 @@ JDCloud.MPS = class MPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.10'
     }
 
     let contentTypes = ['application/json']
@@ -1421,7 +2770,7 @@ JDCloud.MPS = class MPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.10'
     }
 
     let contentTypes = ['application/json']
@@ -1544,7 +2893,7 @@ JDCloud.MPS = class MPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.10'
     }
 
     let contentTypes = ['application/json']
@@ -1696,7 +3045,7 @@ JDCloud.MPS = class MPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.10'
     }
 
     let contentTypes = ['application/json']
@@ -1814,7 +3163,7 @@ JDCloud.MPS = class MPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.10'
     }
 
     let contentTypes = ['application/json']
@@ -1972,7 +3321,7 @@ JDCloud.MPS = class MPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.10'
     }
 
     let contentTypes = ['application/json']
@@ -2089,7 +3438,7 @@ JDCloud.MPS = class MPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.10'
     }
 
     let contentTypes = ['application/json']
@@ -2204,7 +3553,7 @@ JDCloud.MPS = class MPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.10'
     }
 
     let contentTypes = ['application/json']
@@ -2327,7 +3676,7 @@ JDCloud.MPS = class MPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.10'
     }
 
     let contentTypes = ['application/json']
@@ -2474,7 +3823,7 @@ JDCloud.MPS = class MPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.10'
     }
 
     let contentTypes = ['application/json']
@@ -2585,7 +3934,7 @@ JDCloud.MPS = class MPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.10'
     }
 
     let contentTypes = ['application/json']
@@ -2688,7 +4037,7 @@ JDCloud.MPS = class MPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.10'
     }
 
     let contentTypes = ['application/json']
@@ -2820,7 +4169,7 @@ JDCloud.MPS = class MPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  mps/0.4.10'
     }
 
     let contentTypes = ['application/json']
@@ -2892,4 +4241,4 @@ JDCloud.MPS = class MPS extends Service {
     )
   }
 }
-module.exports = JDCloud.MPS
+module.exports = MPS

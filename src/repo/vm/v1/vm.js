@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 配额
- * 与配额相关的接口
+ * Task
+ * 与任务相关的接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -30,10 +30,10 @@ Service._services[serviceId] = true
 
 /**
  * vm service.
- * @version 1.2.5
+ * @version 1.3.0
  */
 
-JDCloud.VM = class VM extends Service {
+class VM extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
@@ -84,7 +84,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -126,7 +126,7 @@ JDCloud.VM = class VM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/images/{imageId}',
       'GET',
       pathParams,
@@ -196,7 +196,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -238,7 +238,7 @@ JDCloud.VM = class VM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/images/{imageId}',
       'DELETE',
       pathParams,
@@ -275,6 +275,8 @@ JDCloud.VM = class VM extends Service {
 
       * @param {Object} opts - parameters
       * @param {string} [opts.imageSource] - 镜像来源，如果没有指定ids参数，此参数必传；取值范围：public、shared、thirdparty、private、community  optional
+      * @param {string} [opts.serviceCode] - 产品线标识，非必传，不传的时候返回全部产品线镜像  optional
+      * @param {boolean} [opts.offline] - 是否下线，默认值为false；imageSource为public或者thirdparty时，此参数才有意义，其它情况下此参数无效；指定镜像ID查询时，此参数无效  optional
       * @param {string} [opts.platform] - 操作系统平台，取值范围：Windows Server、CentOS、Ubuntu  optional
       * @param {string} [opts.rootDeviceType] - 镜像支持的系统盘类型，[localDisk,cloudDisk]  optional
       * @param {string} [opts.launchPermission] - 镜像的使用权限[all, specifiedUsers，ownerOnly]，可选参数，仅当imageSource取值private时有效  optional
@@ -308,6 +310,12 @@ JDCloud.VM = class VM extends Service {
     if (opts.imageSource !== undefined && opts.imageSource !== null) {
       queryParams['imageSource'] = opts.imageSource
     }
+    if (opts.serviceCode !== undefined && opts.serviceCode !== null) {
+      queryParams['serviceCode'] = opts.serviceCode
+    }
+    if (opts.offline !== undefined && opts.offline !== null) {
+      queryParams['offline'] = opts.offline
+    }
     if (opts.platform !== undefined && opts.platform !== null) {
       queryParams['platform'] = opts.platform
     }
@@ -326,14 +334,14 @@ JDCloud.VM = class VM extends Service {
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildArrayParam(opts.ids, 'ids'))
+    Object.assign(queryParams, super.buildArrayParam(opts.ids, 'ids'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -375,7 +383,7 @@ JDCloud.VM = class VM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/images',
       'GET',
       pathParams,
@@ -446,7 +454,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -488,7 +496,7 @@ JDCloud.VM = class VM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/images/{imageId}/constraints',
       'GET',
       pathParams,
@@ -550,14 +558,14 @@ JDCloud.VM = class VM extends Service {
 
     let postBody = null
     let queryParams = {}
-    Object.assign(queryParams, this.buildArrayParam(opts.ids, 'ids'))
+    Object.assign(queryParams, super.buildArrayParam(opts.ids, 'ids'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -599,7 +607,7 @@ JDCloud.VM = class VM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/imageConstraints',
       'GET',
       pathParams,
@@ -674,7 +682,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -716,7 +724,7 @@ JDCloud.VM = class VM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/images/{imageId}:share',
       'POST',
       pathParams,
@@ -790,7 +798,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -832,7 +840,7 @@ JDCloud.VM = class VM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/images/{imageId}:unshare',
       'POST',
       pathParams,
@@ -902,7 +910,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -944,7 +952,7 @@ JDCloud.VM = class VM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/images/{imageId}:release',
       'POST',
       pathParams,
@@ -1014,7 +1022,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -1056,7 +1064,7 @@ JDCloud.VM = class VM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/images/{imageId}:unrelease',
       'POST',
       pathParams,
@@ -1126,7 +1134,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -1168,7 +1176,7 @@ JDCloud.VM = class VM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/images/{imageId}/members',
       'GET',
       pathParams,
@@ -1252,7 +1260,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -1294,7 +1302,7 @@ JDCloud.VM = class VM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/images:copyImages',
       'POST',
       pathParams,
@@ -1372,7 +1380,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -1414,7 +1422,7 @@ JDCloud.VM = class VM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/images/{imageId}:modifyImageAttribute',
       'POST',
       pathParams,
@@ -1558,7 +1566,7 @@ JDCloud.VM = class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -1600,7 +1608,7 @@ JDCloud.VM = class VM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/images:import',
       'POST',
       pathParams,
@@ -1631,10 +1639,149 @@ JDCloud.VM = class VM extends Service {
   }
 
   /**
-      *  查询镜像导入任务详情
+      *  导出镜像，将京东云私有镜像导出至京东云以外环境
 
       * @param {Object} opts - parameters
-      * @param {string} opts.taskAction - 任务种类。可选值：ImportImage
+      * @param {string} opts.imageId - 镜像ID
+      * @param {string} opts.roleName - 用户创建的服务角色名称
+      * @param {string} opts.ossUrl - 存储导出镜像文件的oss bucket的域名，请填写以 https:// 开头的完整url
+      * @param {string} [opts.ossPrefix] - 导出镜像文件名前缀，仅支持英文字母和数字，不能超过32个字符  optional
+      * @param {string} [opts.clientToken] - 用户导出镜像的幂等性保证。每次导出请传入不同的值，如果传值与某次的clientToken相同，则返还同一个请求结果，不能超过64个字符  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer exportTaskId  导出任务id
+      */
+
+  exportImage (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  exportImage"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.imageId === undefined || opts.imageId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.imageId' when calling exportImage"
+      )
+    }
+    if (opts.roleName === undefined || opts.roleName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.roleName' when calling exportImage"
+      )
+    }
+    if (opts.ossUrl === undefined || opts.ossUrl === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.ossUrl' when calling exportImage"
+      )
+    }
+
+    let postBody = {}
+    if (opts.roleName !== undefined && opts.roleName !== null) {
+      postBody['roleName'] = opts.roleName
+    }
+    if (opts.ossUrl !== undefined && opts.ossUrl !== null) {
+      postBody['ossUrl'] = opts.ossUrl
+    }
+    if (opts.ossPrefix !== undefined && opts.ossPrefix !== null) {
+      postBody['ossPrefix'] = opts.ossPrefix
+    }
+    if (opts.clientToken !== undefined && opts.clientToken !== null) {
+      postBody['clientToken'] = opts.clientToken
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      imageId: opts.imageId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call exportImage with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/images/{imageId}:exportImage',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询镜像导入导出任务详情
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.taskAction - 任务种类。可选值：ImportImage， ExportImage
       * @param {string} [opts.taskStatus] - 任务状态。可选值：pending,running,failed,finished  optional
       * @param {string} [opts.startTime] - 任务开始时间  optional
       * @param {string} [opts.endTime] - 任务结束时间  optional
@@ -1688,14 +1835,14 @@ JDCloud.VM = class VM extends Service {
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildArrayParam(opts.taskIds, 'taskIds'))
+    Object.assign(queryParams, super.buildArrayParam(opts.taskIds, 'taskIds'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -1737,7 +1884,7 @@ JDCloud.VM = class VM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/imageTasks',
       'GET',
       pathParams,
@@ -1785,6 +1932,10 @@ networkInterfaceId - 弹性网卡ID，精确匹配，支持多个
 subnetId - 子网ID，精确匹配，支持多个
 agId - 使用可用组id，支持单个
 faultDomain - 错误域，支持多个
+dedicatedHostId - 专有宿主机ID，精确匹配，支持多个
+dedicatedPoolId - 专有宿主机池ID，精确匹配，支持多个
+instanceType - 实例规格，精确匹配，支持多个
+elasticIpAddress - 公网IP地址，精确匹配，支持单个
   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -1815,14 +1966,14 @@ faultDomain - 错误域，支持多个
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -1864,7 +2015,7 @@ faultDomain - 错误域，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances',
       'GET',
       pathParams,
@@ -1932,6 +2083,8 @@ faultDomain - 错误域，支持多个
         - 自动删除
             - 默认自动删除，如果是包年包月的云硬盘，此参数不生效
         - 可以从快照创建磁盘
+    - iops
+        - 仅当云盘类型为ssd.io1时，可指定iops值，范围为【200， min（32000，size * 50 ）】，步长为10，若不指定则按此公式计算默认值
     - local类型系统的云主机可以挂载8块云硬盘
     - cloud类型系统的云主机可以挂载7块云硬盘
 - 计费
@@ -1996,7 +2149,7 @@ faultDomain - 错误域，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -2038,8 +2191,146 @@ faultDomain - 错误域，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  批量查询云主机信息的轻量接口，不返回云盘、网络、计费、标签等信息。如果不需要关联资源属性，尽量选择使用该接口。&lt;br&gt;
+此接口支持分页查询，默认每页20条。
+
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
+      * @param {array} [opts.tags] - Tag筛选条件  optional
+      * @param {array} [opts.filters] - instanceId - 云主机ID，精确匹配，支持多个
+privateIpAddress - 主网卡内网主IP地址，模糊匹配，支持多个
+az - 可用区，精确匹配，支持多个
+vpcId - 私有网络ID，精确匹配，支持多个
+status - 云主机状态，精确匹配，支持多个，&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/vm_status&quot;&gt;参考云主机状态&lt;/a&gt;
+name - 云主机名称，模糊匹配，支持单个
+imageId - 镜像ID，精确匹配，支持多个
+networkInterfaceId - 弹性网卡ID，精确匹配，支持多个
+subnetId - 子网ID，精确匹配，支持多个
+agId - 使用可用组id，支持单个
+faultDomain - 错误域，支持多个
+dedicatedHostId - 专有宿主机ID，精确匹配，支持多个
+dedicatedPoolId - 专有宿主机池ID，精确匹配，支持多个
+instanceType - 实例规格，精确匹配，支持多个
+elasticIpAddress - 公网IP地址，精确匹配，支持单个
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param briefInstance instances
+      * @param number totalCount
+      */
+
+  describeBriefInstances (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeBriefInstances"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      postBody['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+    if (opts.tags !== undefined && opts.tags !== null) {
+      postBody['tags'] = opts.tags
+    }
+    if (opts.filters !== undefined && opts.filters !== null) {
+      postBody['filters'] = opts.filters
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeBriefInstances with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances:describeBriefInstances',
       'POST',
       pathParams,
       queryParams,
@@ -2108,7 +2399,7 @@ faultDomain - 错误域，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -2150,7 +2441,7 @@ faultDomain - 错误域，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}',
       'GET',
       pathParams,
@@ -2221,7 +2512,7 @@ faultDomain - 错误域，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -2263,7 +2554,7 @@ faultDomain - 错误域，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}',
       'DELETE',
       pathParams,
@@ -2336,14 +2627,14 @@ subnetId - 子网ID，精确匹配，支持多个
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -2385,7 +2676,7 @@ subnetId - 子网ID，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instanceStatus',
       'GET',
       pathParams,
@@ -2428,6 +2719,7 @@ name - 云主机名称，模糊匹配，支持单个
 imageId - 镜像ID，精确匹配，支持多个
 networkInterfaceId - 弹性网卡ID，精确匹配，支持多个
 subnetId - 子网ID，精确匹配，支持多个
+chargeOnStopped - 停机不计费标志，keepCharging、stopCharging 或者 notApplicable
   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -2462,14 +2754,14 @@ subnetId - 子网ID，精确匹配，支持多个
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -2511,7 +2803,7 @@ subnetId - 子网ID，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instancePrivateIpAddress',
       'GET',
       pathParams,
@@ -2546,6 +2838,7 @@ subnetId - 子网ID，精确匹配，支持多个
 
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 云主机ID
+      * @param {string} [opts.chargeOnStopped] - 关机模式，只支持云盘做系统盘的按配置计费云主机keepCharging：关机后继续计费；stopCharging：关机后停止计费。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -2572,6 +2865,9 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let postBody = {}
+    if (opts.chargeOnStopped !== undefined && opts.chargeOnStopped !== null) {
+      postBody['chargeOnStopped'] = opts.chargeOnStopped
+    }
 
     let queryParams = {}
 
@@ -2581,7 +2877,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -2623,7 +2919,7 @@ subnetId - 子网ID，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}:stopInstance',
       'POST',
       pathParams,
@@ -2694,7 +2990,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -2736,7 +3032,7 @@ subnetId - 子网ID，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}:startInstance',
       'POST',
       pathParams,
@@ -2806,7 +3102,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -2848,7 +3144,7 @@ subnetId - 子网ID，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}:rebootInstance',
       'POST',
       pathParams,
@@ -2941,7 +3237,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -2983,7 +3279,7 @@ subnetId - 子网ID，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}:attachNetworkInterface',
       'POST',
       pathParams,
@@ -3070,7 +3366,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -3112,7 +3408,7 @@ subnetId - 子网ID，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}:detachNetworkInterface',
       'POST',
       pathParams,
@@ -3191,7 +3487,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -3233,7 +3529,7 @@ subnetId - 子网ID，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}:modifyInstanceNetworkAttribute',
       'POST',
       pathParams,
@@ -3313,7 +3609,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -3355,7 +3651,7 @@ subnetId - 子网ID，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}:associateElasticIp',
       'POST',
       pathParams,
@@ -3434,7 +3730,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -3476,7 +3772,7 @@ subnetId - 子网ID，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}:disassociateElasticIp',
       'POST',
       pathParams,
@@ -3567,7 +3863,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -3609,7 +3905,7 @@ subnetId - 子网ID，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}:createImage',
       'POST',
       pathParams,
@@ -3698,7 +3994,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -3740,7 +4036,7 @@ subnetId - 子网ID，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}:attachDisk',
       'POST',
       pathParams,
@@ -3823,7 +4119,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -3865,7 +4161,7 @@ subnetId - 子网ID，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}:detachDisk',
       'POST',
       pathParams,
@@ -3940,7 +4236,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -3982,7 +4278,7 @@ subnetId - 子网ID，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}:modifyInstanceDiskAttribute',
       'POST',
       pathParams,
@@ -4060,7 +4356,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -4102,7 +4398,7 @@ subnetId - 子网ID，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}:modifyInstanceAttribute',
       'POST',
       pathParams,
@@ -4182,7 +4478,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -4224,7 +4520,7 @@ subnetId - 子网ID，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}:modifyInstancePassword',
       'POST',
       pathParams,
@@ -4295,7 +4591,7 @@ vnc地址的有效期为1个小时，调用接口获取vnc地址后如果1个小
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -4337,7 +4633,7 @@ vnc地址的有效期为1个小时，调用接口获取vnc地址后如果1个小
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/vnc',
       'GET',
       pathParams,
@@ -4381,6 +4677,7 @@ vnc地址的有效期为1个小时，调用接口获取vnc地址后如果1个小
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 云主机ID
       * @param {string} opts.instanceType - 实例规格，可查询&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/describeinstancetypes&quot;&gt;DescribeInstanceTypes&lt;/a&gt;接口获得指定地域或可用区的规格信息。
+      * @param {boolean} [opts.force] - 是否强制调配，默认为false；如果指定为true, 将会清除本地数据盘。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -4415,6 +4712,9 @@ vnc地址的有效期为1个小时，调用接口获取vnc地址后如果1个小
     if (opts.instanceType !== undefined && opts.instanceType !== null) {
       postBody['instanceType'] = opts.instanceType
     }
+    if (opts.force !== undefined && opts.force !== null) {
+      postBody['force'] = opts.force
+    }
 
     let queryParams = {}
 
@@ -4424,7 +4724,7 @@ vnc地址的有效期为1个小时，调用接口获取vnc地址后如果1个小
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -4466,7 +4766,7 @@ vnc地址的有效期为1个小时，调用接口获取vnc地址后如果1个小
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}:resizeInstance',
       'POST',
       pathParams,
@@ -4557,7 +4857,7 @@ vnc地址的有效期为1个小时，调用接口获取vnc地址后如果1个小
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -4599,7 +4899,7 @@ vnc地址的有效期为1个小时，调用接口获取vnc地址后如果1个小
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}:rebuildInstance',
       'POST',
       pathParams,
@@ -4667,14 +4967,14 @@ instanceTemplateId - 启动模板ID，精确匹配，支持多个
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -4716,7 +5016,7 @@ instanceTemplateId - 启动模板ID，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instanceTemplates',
       'GET',
       pathParams,
@@ -4811,7 +5111,7 @@ instanceTemplateId - 启动模板ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -4853,7 +5153,7 @@ instanceTemplateId - 启动模板ID，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instanceTemplates',
       'POST',
       pathParams,
@@ -4926,7 +5226,7 @@ instanceTemplateId - 启动模板ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -4968,7 +5268,7 @@ instanceTemplateId - 启动模板ID，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instanceTemplates/{instanceTemplateId}',
       'GET',
       pathParams,
@@ -5049,7 +5349,7 @@ instanceTemplateId - 启动模板ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -5091,7 +5391,7 @@ instanceTemplateId - 启动模板ID，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instanceTemplates/{instanceTemplateId}',
       'PATCH',
       pathParams,
@@ -5163,7 +5463,7 @@ instanceTemplateId - 启动模板ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -5205,7 +5505,7 @@ instanceTemplateId - 启动模板ID，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instanceTemplates/{instanceTemplateId}',
       'DELETE',
       pathParams,
@@ -5277,7 +5577,7 @@ instanceTemplateId - 启动模板ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -5319,7 +5619,7 @@ instanceTemplateId - 启动模板ID，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instanceTemplates/{instanceTemplateId}:verify',
       'GET',
       pathParams,
@@ -5384,14 +5684,14 @@ az - 可用区，精确匹配，支持多个
     if (opts.serviceName !== undefined && opts.serviceName !== null) {
       queryParams['serviceName'] = opts.serviceName
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -5433,7 +5733,7 @@ az - 可用区，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instanceTypes',
       'GET',
       pathParams,
@@ -5501,14 +5801,14 @@ az - 可用区，精确匹配，支持多个
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -5550,7 +5850,7 @@ az - 可用区，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/keypairs',
       'GET',
       pathParams,
@@ -5627,7 +5927,7 @@ az - 可用区，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -5669,7 +5969,7 @@ az - 可用区，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/keypairs',
       'POST',
       pathParams,
@@ -5754,7 +6054,7 @@ az - 可用区，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -5796,7 +6096,7 @@ az - 可用区，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/keypairs:import',
       'POST',
       pathParams,
@@ -5865,7 +6165,7 @@ az - 可用区，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -5907,7 +6207,7 @@ az - 可用区，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/keypairs/{keyName}',
       'DELETE',
       pathParams,
@@ -5969,14 +6269,14 @@ az - 可用区，精确匹配，支持多个
     if (opts.imageId !== undefined && opts.imageId !== null) {
       queryParams['imageId'] = opts.imageId
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -6018,7 +6318,7 @@ az - 可用区，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/quotas',
       'GET',
       pathParams,
@@ -6048,4 +6348,4 @@ az - 可用区，精确匹配，支持多个
     )
   }
 }
-module.exports = JDCloud.VM
+module.exports = VM

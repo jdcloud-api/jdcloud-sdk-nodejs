@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 配额
- * 与配额相关的接口
+ * Task
+ * 与任务相关的接口
  *
  * OpenAPI spec version: v1
  * Contact:

@@ -30,10 +30,10 @@ Service._services[serviceId] = true
 
 /**
  * vod service.
- * @version 1.1.5
+ * @version 1.1.7
  */
 
-JDCloud.VOD = class VOD extends Service {
+class VOD extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
@@ -66,14 +66,14 @@ JDCloud.VOD = class VOD extends Service {
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildSortParam(opts.sorts, 'sorts'))
+    Object.assign(queryParams, super.buildSortParam(opts.sorts, 'sorts'))
 
     let pathParams = {
       regionId: 'jdcloud'
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -115,7 +115,7 @@ JDCloud.VOD = class VOD extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/categories',
       'GET',
       pathParams,
@@ -184,7 +184,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -226,7 +226,7 @@ JDCloud.VOD = class VOD extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/categories',
       'POST',
       pathParams,
@@ -283,7 +283,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -325,7 +325,7 @@ JDCloud.VOD = class VOD extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/categories/{categoryId}:getWithChildren',
       'GET',
       pathParams,
@@ -382,7 +382,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -424,7 +424,7 @@ JDCloud.VOD = class VOD extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/categories/{categoryId}',
       'GET',
       pathParams,
@@ -495,7 +495,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -537,7 +537,7 @@ JDCloud.VOD = class VOD extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/categories/{categoryId}',
       'PUT',
       pathParams,
@@ -593,7 +593,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -635,7 +635,7 @@ JDCloud.VOD = class VOD extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/categories/{categoryId}',
       'DELETE',
       pathParams,
@@ -687,14 +687,14 @@ JDCloud.VOD = class VOD extends Service {
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildSortParam(opts.sorts, 'sorts'))
+    Object.assign(queryParams, super.buildSortParam(opts.sorts, 'sorts'))
 
     let pathParams = {
       regionId: 'jdcloud'
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -736,7 +736,7 @@ JDCloud.VOD = class VOD extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/domains',
       'GET',
       pathParams,
@@ -796,7 +796,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -838,7 +838,7 @@ JDCloud.VOD = class VOD extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/domains',
       'POST',
       pathParams,
@@ -895,7 +895,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -937,7 +937,7 @@ JDCloud.VOD = class VOD extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/domains/{domainId}',
       'GET',
       pathParams,
@@ -993,7 +993,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -1035,7 +1035,7 @@ JDCloud.VOD = class VOD extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/domains/{domainId}',
       'DELETE',
       pathParams,
@@ -1092,7 +1092,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -1134,7 +1134,7 @@ JDCloud.VOD = class VOD extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/domains/{domainId}:enable',
       'POST',
       pathParams,
@@ -1191,7 +1191,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -1233,7 +1233,7 @@ JDCloud.VOD = class VOD extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/domains/{domainId}:disable',
       'POST',
       pathParams,
@@ -1290,7 +1290,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -1332,7 +1332,7 @@ JDCloud.VOD = class VOD extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/domains/{domainId}:setDefault',
       'POST',
       pathParams,
@@ -1424,7 +1424,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -1466,7 +1466,7 @@ JDCloud.VOD = class VOD extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/domains/{domainId}:setHeader',
       'POST',
       pathParams,
@@ -1523,7 +1523,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -1565,7 +1565,7 @@ JDCloud.VOD = class VOD extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/domains/{domainId}:listHeaders',
       'GET',
       pathParams,
@@ -1648,7 +1648,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -1690,7 +1690,7 @@ JDCloud.VOD = class VOD extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/domains/{domainId}:deleteHeader',
       'POST',
       pathParams,
@@ -1765,7 +1765,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -1807,7 +1807,7 @@ JDCloud.VOD = class VOD extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/domains/{domainId}:setRefererRule',
       'POST',
       pathParams,
@@ -1864,7 +1864,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -1906,7 +1906,7 @@ JDCloud.VOD = class VOD extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/domains/{domainId}:getRefererRule',
       'GET',
       pathParams,
@@ -1981,7 +1981,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -2023,7 +2023,7 @@ JDCloud.VOD = class VOD extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/domains/{domainId}:setURLRule',
       'POST',
       pathParams,
@@ -2080,7 +2080,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -2122,7 +2122,7 @@ JDCloud.VOD = class VOD extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/domains/{domainId}:getURLRule',
       'GET',
       pathParams,
@@ -2197,7 +2197,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -2239,7 +2239,7 @@ JDCloud.VOD = class VOD extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/domains/{domainId}:setIPRule',
       'POST',
       pathParams,
@@ -2296,7 +2296,7 @@ JDCloud.VOD = class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -2338,7 +2338,7 @@ JDCloud.VOD = class VOD extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/domains/{domainId}:getIPRule',
       'GET',
       pathParams,
@@ -2423,7 +2423,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -2465,7 +2465,7 @@ https - 强制采用https协议回源
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/domains/{domainId}:setHttpSsl',
       'POST',
       pathParams,
@@ -2522,7 +2522,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -2564,7 +2564,7 @@ https - 强制采用https协议回源
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/domains/{domainId}:getHttpSsl',
       'GET',
       pathParams,
@@ -2595,11 +2595,10 @@ https - 强制采用https协议回源
   }
 
   /**
-      *  获取视频上传地址和凭证
+      *  创建直播转点播任务
       * @param {Object} opts - parameters
-      * @param {string} [opts.httpMethod] - HTTP 请求方法，取值范围：GET、POST、PUT、DELETE、HEAD、PATCH，默认值为 PUT  optional
-      * @param {string} [opts.title] - 视频标题  optional
-      * @param {string} [opts.fileName] - 文件名称  optional
+      * @param {string} opts.title - 视频标题
+      * @param {string} opts.fileName - 文件名称
       * @param {integer} [opts.fileSize] - 文件大小  optional
       * @param {string} [opts.coverUrl] - 封面地址  optional
       * @param {string} [opts.description] - 视频描述  optional
@@ -2607,6 +2606,209 @@ https - 强制采用https协议回源
       * @param {array} [opts.tags] - 视频标签集合  optional
       * @param {array} [opts.transcodeTemplateIds] - 转码模板ID集合  optional
       * @param {array} [opts.watermarkIds] - 水印ID集合  optional
+      * @param {string} opts.publishDomain - 推流域名
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.streamName - 流名称
+      * @param {array} [opts.recordTimes] - 录制时间段集合
+- 支持自定义1-10个时间段,拼接成一个文件
+- 每个时间段不小于10s
+- 总跨度不超过12小时
+- 时间段按升序排列且无重叠
+  optional
+      * @param {string} opts.recordFileType - 录制文件类型:
+- 取值: ts, flv, mp4
+- 不区分大小写
+
+      * @param {string} [opts.taskExternalId] - 直播录制任务外键  optional
+      * @param {string} [opts.priority] - 任务优先级:
+- 取值: low, medium, high
+- 不区分大小写
+  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string flowId  业务流ID
+      */
+
+  createLiveToVodTask (opts, callback) {
+    opts = opts || {}
+
+    if (opts.title === undefined || opts.title === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.title' when calling createLiveToVodTask"
+      )
+    }
+    if (opts.fileName === undefined || opts.fileName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.fileName' when calling createLiveToVodTask"
+      )
+    }
+    if (opts.publishDomain === undefined || opts.publishDomain === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.publishDomain' when calling createLiveToVodTask"
+      )
+    }
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling createLiveToVodTask"
+      )
+    }
+    if (opts.streamName === undefined || opts.streamName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.streamName' when calling createLiveToVodTask"
+      )
+    }
+    if (opts.recordFileType === undefined || opts.recordFileType === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.recordFileType' when calling createLiveToVodTask"
+      )
+    }
+
+    let postBody = {}
+    if (opts.title !== undefined && opts.title !== null) {
+      postBody['title'] = opts.title
+    }
+    if (opts.fileName !== undefined && opts.fileName !== null) {
+      postBody['fileName'] = opts.fileName
+    }
+    if (opts.fileSize !== undefined && opts.fileSize !== null) {
+      postBody['fileSize'] = opts.fileSize
+    }
+    if (opts.coverUrl !== undefined && opts.coverUrl !== null) {
+      postBody['coverUrl'] = opts.coverUrl
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+    if (opts.categoryId !== undefined && opts.categoryId !== null) {
+      postBody['categoryId'] = opts.categoryId
+    }
+    if (opts.tags !== undefined && opts.tags !== null) {
+      postBody['tags'] = opts.tags
+    }
+    if (
+      opts.transcodeTemplateIds !== undefined &&
+      opts.transcodeTemplateIds !== null
+    ) {
+      postBody['transcodeTemplateIds'] = opts.transcodeTemplateIds
+    }
+    if (opts.watermarkIds !== undefined && opts.watermarkIds !== null) {
+      postBody['watermarkIds'] = opts.watermarkIds
+    }
+    if (opts.publishDomain !== undefined && opts.publishDomain !== null) {
+      postBody['publishDomain'] = opts.publishDomain
+    }
+    if (opts.appName !== undefined && opts.appName !== null) {
+      postBody['appName'] = opts.appName
+    }
+    if (opts.streamName !== undefined && opts.streamName !== null) {
+      postBody['streamName'] = opts.streamName
+    }
+    if (opts.recordTimes !== undefined && opts.recordTimes !== null) {
+      postBody['recordTimes'] = opts.recordTimes
+    }
+    if (opts.recordFileType !== undefined && opts.recordFileType !== null) {
+      postBody['recordFileType'] = opts.recordFileType
+    }
+    if (opts.taskExternalId !== undefined && opts.taskExternalId !== null) {
+      postBody['taskExternalId'] = opts.taskExternalId
+    }
+    if (opts.priority !== undefined && opts.priority !== null) {
+      postBody['priority'] = opts.priority
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createLiveToVodTask with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/createLiveToVodTask',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取视频上传地址和凭证
+      * @param {Object} opts - parameters
+      * @param {string} [opts.httpMethod] - HTTP 请求方法，上传只支持 PUT 方法，默认值为 PUT  optional
+      * @param {string} opts.title - 视频标题
+      * @param {string} opts.fileName - 文件名称
+      * @param {integer} [opts.fileSize] - 文件大小  optional
+      * @param {string} [opts.coverUrl] - 封面地址  optional
+      * @param {string} [opts.description] - 视频描述  optional
+      * @param {integer} [opts.categoryId] - 分类ID  optional
+      * @param {array} [opts.tags] - 视频标签集合  optional
+      * @param {array} [opts.transcodeTemplateIds] - 转码模板ID集合  optional
+      * @param {array} [opts.watermarkIds] - 水印ID集合  optional
+      * @param {string} [opts.userData] - 自定义数据  optional
       * @param {string} callback - callback
       @return {Object} result
       * @param videoUploadTaskObject resultObject
@@ -2614,6 +2816,17 @@ https - 强制采用https协议回源
 
   createVideoUploadTask (opts, callback) {
     opts = opts || {}
+
+    if (opts.title === undefined || opts.title === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.title' when calling createVideoUploadTask"
+      )
+    }
+    if (opts.fileName === undefined || opts.fileName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.fileName' when calling createVideoUploadTask"
+      )
+    }
 
     let postBody = {}
     if (opts.httpMethod !== undefined && opts.httpMethod !== null) {
@@ -2649,6 +2862,9 @@ https - 强制采用https协议回源
     if (opts.watermarkIds !== undefined && opts.watermarkIds !== null) {
       postBody['watermarkIds'] = opts.watermarkIds
     }
+    if (opts.userData !== undefined && opts.userData !== null) {
+      postBody['userData'] = opts.userData
+    }
 
     let queryParams = {}
 
@@ -2657,7 +2873,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -2699,7 +2915,7 @@ https - 强制采用https协议回源
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/videoUploadTask',
       'POST',
       pathParams,
@@ -2758,7 +2974,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -2800,7 +3016,7 @@ https - 强制采用https协议回源
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/videoUploadTask:refresh',
       'GET',
       pathParams,
@@ -2833,8 +3049,8 @@ https - 强制采用https协议回源
   /**
       *  获取图片上传地址和凭证
       * @param {Object} opts - parameters
-      * @param {string} [opts.httpMethod] - HTTP 请求方法，取值范围：GET、POST、PUT、DELETE、HEAD、PATCH，默认值为 PUT  optional
-      * @param {string} [opts.fileName] - 文件名称  optional
+      * @param {string} [opts.httpMethod] - HTTP 请求方法，上传只支持 PUT 方法，默认值为 PUT  optional
+      * @param {string} opts.fileName - 文件名称
       * @param {integer} [opts.fileSize] - 文件大小  optional
       * @param {string} callback - callback
       @return {Object} result
@@ -2843,6 +3059,12 @@ https - 强制采用https协议回源
 
   createImageUploadTask (opts, callback) {
     opts = opts || {}
+
+    if (opts.fileName === undefined || opts.fileName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.fileName' when calling createImageUploadTask"
+      )
+    }
 
     let postBody = {}
     if (opts.httpMethod !== undefined && opts.httpMethod !== null) {
@@ -2862,7 +3084,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -2904,7 +3126,7 @@ https - 强制采用https协议回源
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/imageUploadTask',
       'POST',
       pathParams,
@@ -2961,7 +3183,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -3003,7 +3225,7 @@ https - 强制采用https协议回源
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/qualityDetectionJobs:submit',
       'POST',
       pathParams,
@@ -3056,7 +3278,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -3098,7 +3320,7 @@ https - 强制采用https协议回源
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/qualityDetectionJobs:batchSubmit',
       'POST',
       pathParams,
@@ -3156,7 +3378,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -3198,7 +3420,7 @@ https - 强制采用https协议回源
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/qualityDetectionTemplates',
       'GET',
       pathParams,
@@ -3279,7 +3501,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -3321,7 +3543,7 @@ https - 强制采用https协议回源
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/qualityDetectionTemplates',
       'POST',
       pathParams,
@@ -3378,7 +3600,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -3420,7 +3642,7 @@ https - 强制采用https协议回源
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/qualityDetectionTemplates/{templateId}',
       'GET',
       pathParams,
@@ -3494,7 +3716,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -3536,7 +3758,7 @@ https - 强制采用https协议回源
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/qualityDetectionTemplates/{templateId}',
       'PUT',
       pathParams,
@@ -3592,7 +3814,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -3634,7 +3856,7 @@ https - 强制采用https协议回源
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/qualityDetectionTemplates/{templateId}',
       'DELETE',
       pathParams,
@@ -3696,7 +3918,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -3738,7 +3960,7 @@ https - 强制采用https协议回源
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/transcodeTasks:submitJob',
       'POST',
       pathParams,
@@ -3792,7 +4014,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -3834,7 +4056,7 @@ https - 强制采用https协议回源
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/transcodeTasks:batchSubmitJobs',
       'POST',
       pathParams,
@@ -3890,14 +4112,14 @@ https - 强制采用https协议回源
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: 'jdcloud'
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -3939,7 +4161,7 @@ https - 强制采用https协议回源
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/transcodeTemplates',
       'GET',
       pathParams,
@@ -4049,7 +4271,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -4091,7 +4313,7 @@ https - 强制采用https协议回源
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/transcodeTemplates',
       'POST',
       pathParams,
@@ -4148,7 +4370,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -4190,7 +4412,7 @@ https - 强制采用https协议回源
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/transcodeTemplates/{templateId}',
       'GET',
       pathParams,
@@ -4282,7 +4504,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -4324,7 +4546,7 @@ https - 强制采用https协议回源
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/transcodeTemplates/{templateId}',
       'PUT',
       pathParams,
@@ -4380,7 +4602,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -4422,7 +4644,7 @@ https - 强制采用https协议回源
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/transcodeTemplates/{templateId}',
       'DELETE',
       pathParams,
@@ -4481,15 +4703,15 @@ https - 强制采用https协议回源
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
-    Object.assign(queryParams, this.buildSortParam(opts.sorts, 'sorts'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildSortParam(opts.sorts, 'sorts'))
 
     let pathParams = {
       regionId: 'jdcloud'
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -4531,7 +4753,7 @@ https - 强制采用https协议回源
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/videos',
       'GET',
       pathParams,
@@ -4588,7 +4810,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -4630,7 +4852,7 @@ https - 强制采用https协议回源
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/videos/{videoId}',
       'GET',
       pathParams,
@@ -4708,7 +4930,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -4750,7 +4972,7 @@ https - 强制采用https协议回源
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/videos/{videoId}',
       'PUT',
       pathParams,
@@ -4806,7 +5028,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -4848,7 +5070,7 @@ https - 强制采用https协议回源
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/videos/{videoId}',
       'DELETE',
       pathParams,
@@ -4902,7 +5124,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -4944,7 +5166,7 @@ https - 强制采用https协议回源
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/videos:batchDelete',
       'POST',
       pathParams,
@@ -4998,7 +5220,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -5040,7 +5262,7 @@ https - 强制采用https协议回源
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/videos:batchUpdate',
       'POST',
       pathParams,
@@ -5097,7 +5319,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -5139,7 +5361,7 @@ https - 强制采用https协议回源
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/videos/{videoId}:getPlayInfo',
       'GET',
       pathParams,
@@ -5201,7 +5423,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -5243,8 +5465,121 @@ https - 强制采用https协议回源
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/videos/{videoId}:deleteStreams',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  视频审核
+视频在上传中或者转码中不允许更改视频审核状态，即视频只有在正常或屏蔽状态下才可以调用此接口设置审核状态
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.videoId - 视频ID
+      * @param {string} opts.auditResult - 审核结果，取值范围:
+ block(封禁)
+ unblock(解封)
+
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  videoAudit (opts, callback) {
+    opts = opts || {}
+
+    if (opts.videoId === undefined || opts.videoId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.videoId' when calling videoAudit"
+      )
+    }
+    if (opts.auditResult === undefined || opts.auditResult === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.auditResult' when calling videoAudit"
+      )
+    }
+
+    let postBody = {}
+    if (opts.auditResult !== undefined && opts.auditResult !== null) {
+      postBody['auditResult'] = opts.auditResult
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      videoId: opts.videoId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call videoAudit with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/videos/{videoId}:audit',
       'POST',
       pathParams,
       queryParams,
@@ -5300,7 +5635,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -5342,7 +5677,7 @@ https - 强制采用https协议回源
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/watermarks',
       'GET',
       pathParams,
@@ -5490,7 +5825,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -5532,7 +5867,7 @@ https - 强制采用https协议回源
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/watermarks',
       'POST',
       pathParams,
@@ -5589,7 +5924,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -5631,7 +5966,7 @@ https - 强制采用https协议回源
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/watermarks/{watermarkId}',
       'GET',
       pathParams,
@@ -5751,7 +6086,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -5793,7 +6128,7 @@ https - 强制采用https协议回源
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/watermarks/{watermarkId}',
       'PUT',
       pathParams,
@@ -5849,7 +6184,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -5891,7 +6226,7 @@ https - 强制采用https协议回源
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/watermarks/{watermarkId}',
       'DELETE',
       pathParams,
@@ -5921,4 +6256,4 @@ https - 强制采用https协议回源
     )
   }
 }
-module.exports = JDCloud.VOD
+module.exports = VOD

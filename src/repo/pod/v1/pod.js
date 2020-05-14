@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 镜像仓库认证信息
- * 关于镜像仓库认证信息的相关接口
+ * 用户设置
+ * 查询用户设置接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -30,10 +30,10 @@ Service._services[serviceId] = true
 
 /**
  * pod service.
- * @version 2.2.1
+ * @version 2.2.3
  */
 
-JDCloud.POD = class POD extends Service {
+class POD extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
@@ -90,7 +90,7 @@ JDCloud.POD = class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -208,7 +208,7 @@ JDCloud.POD = class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -336,7 +336,7 @@ JDCloud.POD = class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -463,7 +463,7 @@ JDCloud.POD = class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -589,7 +589,7 @@ JDCloud.POD = class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -729,7 +729,7 @@ JDCloud.POD = class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -839,7 +839,7 @@ az - 可用区，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -919,12 +919,12 @@ az - 可用区，精确匹配，支持多个
       * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
       * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
       * @param {filter} [opts.filters] - podId - pod ID，精确匹配，支持多个
-privateIpAddress - 主网卡IP地址，模糊匹配，支持单个
+privateIpAddress - 主网卡IP地址，精确匹配，支持单个
 az - 可用区，精确匹配，支持多个
 vpcId - 私有网络ID，精确匹配，支持多个
 phase - pod 状态，精确匹配，支持多个
 name - 实例名称，模糊匹配，支持单个
-subnetId - 镜像ID，模糊匹配，支持单个
+subnetId - 镜像ID，精确匹配，支持多个
   optional
       * @param {tagFilter} [opts.tags] - Tag筛选条件  optional
       * @param {string} regionId - ID of the region
@@ -964,7 +964,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -1061,7 +1061,6 @@ subnetId - 镜像ID，模糊匹配，支持单个
 - 存储
     - volume分为container system disk和pod data volume，container system disk的挂载目录是/，data volume的挂载目录可以随意指定
     - container system disk
-        - 只能是cloud类别
         - 云硬盘类型可以选择hdd.std1、ssd.gp1、ssd.io1
         - 磁盘大小
             - 所有类型：范围[20,100]GB，步长为10G
@@ -1072,7 +1071,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
         - 当前只能选择cloud类别
         - 云硬盘类型可以选择hdd.std1、ssd.gp1、ssd.io1
         - 磁盘大小
-            - 所有类型：范围[20,4000]GB，步长为10G
+            - 所有类型：范围[20,2000]GB，步长为10G
         - 自动删除
             - 默认自动删除
         - 可以选择已存在的云硬盘
@@ -1142,7 +1141,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -1262,7 +1261,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -1374,7 +1373,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -1487,7 +1486,7 @@ subnetId - 镜像ID，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -1600,7 +1599,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -1712,7 +1711,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -1828,7 +1827,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -1951,7 +1950,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -2072,7 +2071,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -2216,7 +2215,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -2332,7 +2331,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -2468,7 +2467,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -2583,7 +2582,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -2700,7 +2699,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -2839,7 +2838,7 @@ value 是 Base64 编码的字符串，不能包含换行符（在 linux 下使�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -2951,7 +2950,7 @@ value 是 Base64 编码的字符串，不能包含换行符（在 linux 下使�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -3062,7 +3061,7 @@ value 是 Base64 编码的字符串，不能包含换行符（在 linux 下使�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -3134,4 +3133,4 @@ value 是 Base64 编码的字符串，不能包含换行符（在 linux 下使�
     )
   }
 }
-module.exports = JDCloud.POD
+module.exports = POD

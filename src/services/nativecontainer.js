@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 镜像仓库认证信息
- * 关于镜像仓库认证信息的相关接口
+ * 用户设置
+ * 查询用户设置接口
  *
  * OpenAPI spec version: v1
  * Contact:

@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * iotcore service.
- * @version 1.1.17
+ * @version 1.1.18
  */
 
 class IOTCORE extends Service {
@@ -92,7 +92,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -227,7 +227,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -342,7 +342,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -469,7 +469,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -589,7 +589,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -708,7 +708,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -827,7 +827,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -947,7 +947,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -1067,7 +1067,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -1198,7 +1198,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -1329,7 +1329,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -1475,7 +1475,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -1603,7 +1603,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -1742,7 +1742,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -1885,7 +1885,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -2013,7 +2013,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -2098,6 +2098,8 @@ class IOTCORE extends Service {
       * @param {string} [opts.order] - 排序关键字--name,type,productKey,status--最多支持一个字段  optional
       * @param {string} [opts.direction] - 顺序，升序降序--asc,desc  optional
       * @param {string} [opts.parentId] - 父设备Id  optional
+      * @param {integer} [opts.orderId] - 订单号  optional
+      * @param {string} [opts.deviceCollectorType] - 设备采集器类型  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -2157,6 +2159,15 @@ class IOTCORE extends Service {
     if (opts.parentId !== undefined && opts.parentId !== null) {
       queryParams['parentId'] = opts.parentId
     }
+    if (opts.orderId !== undefined && opts.orderId !== null) {
+      queryParams['orderId'] = opts.orderId
+    }
+    if (
+      opts.deviceCollectorType !== undefined &&
+      opts.deviceCollectorType !== null
+    ) {
+      queryParams['deviceCollectorType'] = opts.deviceCollectorType
+    }
 
     let pathParams = {
       regionId: regionId,
@@ -2164,7 +2175,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -2299,7 +2310,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -2433,7 +2444,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -2574,7 +2585,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -2698,7 +2709,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -2814,7 +2825,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -2890,12 +2901,63 @@ class IOTCORE extends Service {
       *  获取协议信息
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - Hub实例Id
-      * @param {string} [opts.identifier] - 当前的链接码  optional
-      * @param {string} [opts.protocol] - 当前的协议类型  optional
+      * @param {string} opts.identifier - 当前的链接码
+      * @param {string} opts.protocol - 当前的协议类型：
+语音播报控制器-输入端子,0X00000~X0007：inputTerminal
+语音播报控制器-播放信息,0X00024~X0027：playInfo
+LR001-516-5B边缘数据采集器-传感器管理：sensor
+LR001-516-5B边缘数据采集器-采集器属性：collectorProperty
+LR001-516-5B边缘数据采集器-电梯属性：elevatorProperty
+
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param object readData
+      * @param object readData  读取寄存器值，key：寄存器地址 value:寄存器值
+如读取语音播报控制器-输入端子的响应为
+{
+  &quot;0&quot;:0,
+  &quot;1&quot;:0,
+  &quot;2&quot;:0,
+  &quot;3&quot;:0,
+  &quot;4&quot;:0,
+  &quot;5&quot;:0,
+  &quot;6&quot;:0,
+  &quot;7&quot;:0
+}
+如读取语音播报控制器-播放信息的响应为
+{
+  &quot;36&quot;:0,
+  &quot;37&quot;:0,
+  &quot;38&quot;:0,
+  &quot;39&quot;:0,
+  &quot;40&quot;:0,
+  &quot;41&quot;:0,
+  &quot;42&quot;:0,
+  &quot;43&quot;:0,
+  &quot;44&quot;:1,
+  &quot;45&quot;:3,
+  &quot;46&quot;:0,
+  &quot;47&quot;:0
+}
+如读取LR001-516-5B边缘数据采集器-传感器管理的响应为
+{
+  &quot;40426&quot;:1,
+  &quot;40427&quot;:1,
+  &quot;40428&quot;:2,
+  &quot;40429&quot;:1,
+  &quot;40430&quot;:1,
+  &quot;40431&quot;:1,
+  &quot;40432&quot;:1,
+  &quot;40433&quot;:2,
+  &quot;40434&quot;:1,
+  &quot;40435&quot;:1,
+  &quot;40436&quot;:1,
+  &quot;40437&quot;:1,
+  &quot;40438&quot;:1,
+  &quot;40439&quot;:1,
+  &quot;40440&quot;:1
+}
+
       */
 
   collectorReadMessage (opts, regionId = this.config.regionId, callback) {
@@ -2917,6 +2979,16 @@ class IOTCORE extends Service {
         "Missing the required parameter 'opts.instanceId' when calling collectorReadMessage"
       )
     }
+    if (opts.identifier === undefined || opts.identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.identifier' when calling collectorReadMessage"
+      )
+    }
+    if (opts.protocol === undefined || opts.protocol === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.protocol' when calling collectorReadMessage"
+      )
+    }
 
     let postBody = null
     let queryParams = {}
@@ -2933,7 +3005,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -3009,12 +3081,55 @@ class IOTCORE extends Service {
       *  写入采集器数据
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - Hub实例Id
-      * @param {string} [opts.identifier] - 当前的链接码  optional
-      * @param {string} [opts.protocol] - 当前的协议类型  optional
-      * @param {object} [opts.data] - 当前待写入的数据  optional
+      * @param {string} opts.identifier - 当前的链接码
+      * @param {string} [opts.protocol] - 当前的协议类型,非必填项
+  optional
+      * @param {object} opts.data - 当前待写入的数据
+如指定播放设备，寄存地址：13对应16进制0x0D，寄存器值:2
+{
+  &quot;13&quot;:2
+}
+如播放控制，寄存地址：14对应16进制0x0E，寄存器值:1
+{
+  &quot;14&quot;: 1
+}
+如音量设置，寄存地址：15对应16进制0x0F，寄存器值:10，取值范围0~30
+{
+  &quot;15&quot;: 10
+}
+如指定文件夹和文件播放,寄存地址：16对应16进制0x10，寄存器值:1
+寄存器值为两字节，第一个字节为文件夹，第二个字节为文件名
+如0x01文件夹,0x03文件名，0x0103换算为10进制为259
+{
+  &quot;16&quot;: 259
+}
+如组合播放，寄存器地址：17、18和19，寄存器值：257、258和259，寄存器值的算法和指定文件夹和文件播放是一致的，如259可换算为0x01文件夹,0x03文件名
+{
+  &quot;17&quot;: 257,
+  &quot;18&quot;: 258,
+  &quot;19&quot;: 259
+}
+如播放广告，寄存地址：32对应16进制0x20，寄存器值:259，寄存器值的算法和指定文件夹和文件播放是一致的，如259可换算为0x01文件夹,0x03文件名
+{
+  &quot;32&quot;: 259
+}
+如指定文件夹循环播放，寄存地址：33对应16进制0x21，寄存器值:256，寄存器值的算法，如256可换算为0x0100文件夹
+{
+  &quot;33&quot;: 256
+}
+如指定文件夹随机播放，寄存地址：34对应16进制0x22，寄存器值:256，寄存器值的算法，如256可换算为0x0100文件夹
+{
+  &quot;34&quot;: 256
+}
+如指定曲目播放，寄存地址：35对应16进制0x23，寄存器值:13,歌曲选择范围为0~3000
+{
+  &quot;35&quot;: 13
+}
+
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param string writeStatus
       */
 
   collectorWriteMessage (opts, regionId = this.config.regionId, callback) {
@@ -3034,6 +3149,16 @@ class IOTCORE extends Service {
     if (opts.instanceId === undefined || opts.instanceId === null) {
       throw new Error(
         "Missing the required parameter 'opts.instanceId' when calling collectorWriteMessage"
+      )
+    }
+    if (opts.identifier === undefined || opts.identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.identifier' when calling collectorWriteMessage"
+      )
+    }
+    if (opts.data === undefined || opts.data === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.data' when calling collectorWriteMessage"
       )
     }
 
@@ -3056,7 +3181,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -3208,7 +3333,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -3371,7 +3496,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -3456,6 +3581,8 @@ class IOTCORE extends Service {
       * @param {string} [opts.order] - 排序关键字--name,type,productKey,status--最多支持一个字段  optional
       * @param {string} [opts.direction] - 顺序，升序降序--asc,desc  optional
       * @param {string} [opts.parentId] - 父设备Id  optional
+      * @param {integer} [opts.orderId] - 订单号  optional
+      * @param {string} [opts.deviceCollectorType] - 设备采集器类型  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -3515,6 +3642,15 @@ class IOTCORE extends Service {
     if (opts.parentId !== undefined && opts.parentId !== null) {
       queryParams['parentId'] = opts.parentId
     }
+    if (opts.orderId !== undefined && opts.orderId !== null) {
+      queryParams['orderId'] = opts.orderId
+    }
+    if (
+      opts.deviceCollectorType !== undefined &&
+      opts.deviceCollectorType !== null
+    ) {
+      queryParams['deviceCollectorType'] = opts.deviceCollectorType
+    }
 
     let pathParams = {
       regionId: regionId,
@@ -3522,7 +3658,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -3646,7 +3782,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -3775,7 +3911,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -3908,7 +4044,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -4025,7 +4161,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -4151,7 +4287,7 @@ templateName-模板名称，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -4299,7 +4435,7 @@ templateName-模板名称，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -4425,7 +4561,7 @@ templateName-模板名称，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -4573,7 +4709,7 @@ templateName-模板名称，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -4702,7 +4838,7 @@ templateName-模板名称，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -4835,7 +4971,7 @@ templateName-模板名称，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -4952,7 +5088,7 @@ templateName-模板名称，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -5083,7 +5219,7 @@ abilityType-功能类型，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -5210,7 +5346,7 @@ abilityType-功能类型，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -5328,7 +5464,7 @@ abilityType-功能类型，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -5458,7 +5594,7 @@ abilityType-功能类型，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -5605,7 +5741,7 @@ sub:订阅
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -5740,7 +5876,7 @@ sub:订阅
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']

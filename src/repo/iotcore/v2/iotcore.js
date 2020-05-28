@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * iotcore service.
- * @version 1.1.15
+ * @version 1.1.18
  */
 
 class IOTCORE extends Service {
@@ -42,6 +42,1363 @@ class IOTCORE extends Service {
       options._defaultEndpoint.host || 'iotcore.jdcloud-api.com'
     options.basePath = '/v2' // 默认要设为空""
     super(serviceId, options)
+  }
+
+  /**
+      *  查询单个设备详细信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例Id
+      * @param {string} opts.deviceId - 设备ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param deviceInfoVO deviceInfoVO
+      */
+
+  deviceQuery (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deviceQuery"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling deviceQuery"
+      )
+    }
+    if (opts.deviceId === undefined || opts.deviceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.deviceId' when calling deviceQuery"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.deviceId !== undefined && opts.deviceId !== null) {
+      queryParams['deviceId'] = opts.deviceId
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deviceQuery with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/coreinstances/{instanceId}/device:query',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询物类型列表
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例Id
+      * @param {string} [opts.deviceMetaId] - 设备型号标识  optional
+      * @param {string} [opts.deviceMetaName] - 设备型号名称  optional
+      * @param {integer} [opts.nodeType] - 节点类型  optional
+      * @param {integer} [opts.pageNo] - 页码  optional
+      * @param {integer} [opts.pageSize] - 每页显示条数  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer pageSize
+      * @param integer currentPage
+      * @param integer totalSize
+      * @param integer totalPage
+      * @param thingTypeInfoVO data
+      */
+
+  thingTypeList (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  thingTypeList"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling thingTypeList"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.deviceMetaId !== undefined && opts.deviceMetaId !== null) {
+      queryParams['deviceMetaId'] = opts.deviceMetaId
+    }
+    if (opts.deviceMetaName !== undefined && opts.deviceMetaName !== null) {
+      queryParams['deviceMetaName'] = opts.deviceMetaName
+    }
+    if (opts.nodeType !== undefined && opts.nodeType !== null) {
+      queryParams['nodeType'] = opts.nodeType
+    }
+    if (opts.pageNo !== undefined && opts.pageNo !== null) {
+      queryParams['pageNo'] = opts.pageNo
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call thingTypeList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/coreinstances/{instanceId}/thingType:list',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询物类型列表
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例Id
+      * @param {string} [opts.deviceMetaId] - 设备型号标识  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param thingTypeInfoVO thingTypeInfoVO
+      */
+
+  thingTypeDescribe (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  thingTypeDescribe"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling thingTypeDescribe"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.deviceMetaId !== undefined && opts.deviceMetaId !== null) {
+      queryParams['deviceMetaId'] = opts.deviceMetaId
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call thingTypeDescribe with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/coreinstances/{instanceId}/thingType:thingTypeDescribe',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  根据模型ID查看物模型完整信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例Id
+      * @param {string} opts.thingModelId - 物模型ID编号
+      * @param {string} [opts.thingModelVersion] - 版本号。如果为空，则返回最新版本  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param thingModelRespTO thingModelRespTO
+      */
+
+  discribeThingModel (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  discribeThingModel"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling discribeThingModel"
+      )
+    }
+    if (opts.thingModelId === undefined || opts.thingModelId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.thingModelId' when calling discribeThingModel"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.thingModelId !== undefined && opts.thingModelId !== null) {
+      queryParams['thingModelId'] = opts.thingModelId
+    }
+    if (
+      opts.thingModelVersion !== undefined &&
+      opts.thingModelVersion !== null
+    ) {
+      queryParams['thingModelVersion'] = opts.thingModelVersion
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call discribeThingModel with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/coreinstances/{instanceId}/thingModel:discribeThingModel',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  设备注册接口
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例Id
+      * @param {deviceInfoVO} opts.deviceInfoVO - 物模型ID编号
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deviceRegister (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deviceRegister"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling deviceRegister"
+      )
+    }
+    if (opts.deviceInfoVO === undefined || opts.deviceInfoVO === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.deviceInfoVO' when calling deviceRegister"
+      )
+    }
+
+    let postBody = {}
+    if (opts.deviceInfoVO !== undefined && opts.deviceInfoVO !== null) {
+      postBody['deviceInfoVO'] = opts.deviceInfoVO
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deviceRegister with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/coreinstances/{instanceId}/device:register',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  下载设备证书接口
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例Id
+      * @param {string} opts.deviceId - 设备ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  downloadCertificate (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  downloadCertificate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling downloadCertificate"
+      )
+    }
+    if (opts.deviceId === undefined || opts.deviceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.deviceId' when calling downloadCertificate"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.deviceId !== undefined && opts.deviceId !== null) {
+      queryParams['deviceId'] = opts.deviceId
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call downloadCertificate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/coreinstances/{instanceId}/device:downloadCertificate',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  设备删除接口
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例Id
+      * @param {string} opts.deviceId - 设备ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteDevice (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteDevice"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling deleteDevice"
+      )
+    }
+    if (opts.deviceId === undefined || opts.deviceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.deviceId' when calling deleteDevice"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.deviceId !== undefined && opts.deviceId !== null) {
+      queryParams['deviceId'] = opts.deviceId
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteDevice with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/coreinstances/{instanceId}/device:delete',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  设备控制接口
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例Id
+      * @param {devicePropertyVO} opts.devicePropertyVO - 设备ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  devicePropertySet (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  devicePropertySet"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling devicePropertySet"
+      )
+    }
+    if (opts.devicePropertyVO === undefined || opts.devicePropertyVO === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.devicePropertyVO' when calling devicePropertySet"
+      )
+    }
+
+    let postBody = {}
+    if (opts.devicePropertyVO !== undefined && opts.devicePropertyVO !== null) {
+      postBody['devicePropertyVO'] = opts.devicePropertyVO
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call devicePropertySet with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/coreinstances/{instanceId}/deviceProperty:set',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  设备方法执行
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例Id
+      * @param {deviceFunctionVO} opts.deviceFunctionVO - 设备ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  invokeFunction (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  invokeFunction"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling invokeFunction"
+      )
+    }
+    if (opts.deviceFunctionVO === undefined || opts.deviceFunctionVO === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.deviceFunctionVO' when calling invokeFunction"
+      )
+    }
+
+    let postBody = {}
+    if (opts.deviceFunctionVO !== undefined && opts.deviceFunctionVO !== null) {
+      postBody['deviceFunctionVO'] = opts.deviceFunctionVO
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call invokeFunction with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/coreinstances/{instanceId}/function:invokeFunction',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  设备事件查询
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例Id
+      * @param {eventReportPageBo} opts.eventReportPageBo - 事件查询请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer pageSize
+      * @param integer currentPage
+      * @param integer totalSize
+      * @param integer totalPage
+      * @param eventReportVo data
+      */
+
+  eventList (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  eventList"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling eventList"
+      )
+    }
+    if (
+      opts.eventReportPageBo === undefined ||
+      opts.eventReportPageBo === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.eventReportPageBo' when calling eventList"
+      )
+    }
+
+    let postBody = {}
+    if (
+      opts.eventReportPageBo !== undefined &&
+      opts.eventReportPageBo !== null
+    ) {
+      postBody['eventReportPageBo'] = opts.eventReportPageBo
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call eventList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/coreinstances/{instanceId}/event:list',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询方法调用列表信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例Id
+      * @param {functionCallPageBo} opts.functionCallPageBo - 方法查询请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer pageSize
+      * @param integer currentPage
+      * @param integer totalSize
+      * @param integer totalPage
+      * @param functionCallRecordVo data
+      */
+
+  functionList (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  functionList"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling functionList"
+      )
+    }
+    if (
+      opts.functionCallPageBo === undefined ||
+      opts.functionCallPageBo === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.functionCallPageBo' when calling functionList"
+      )
+    }
+
+    let postBody = {}
+    if (
+      opts.functionCallPageBo !== undefined &&
+      opts.functionCallPageBo !== null
+    ) {
+      postBody['functionCallPageBo'] = opts.functionCallPageBo
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call functionList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/coreinstances/{instanceId}/function:list',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
   }
 
   /**
@@ -118,7 +1475,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -246,7 +1603,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -385,7 +1742,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -528,7 +1885,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -656,7 +2013,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -741,6 +2098,8 @@ class IOTCORE extends Service {
       * @param {string} [opts.order] - 排序关键字--name,type,productKey,status--最多支持一个字段  optional
       * @param {string} [opts.direction] - 顺序，升序降序--asc,desc  optional
       * @param {string} [opts.parentId] - 父设备Id  optional
+      * @param {integer} [opts.orderId] - 订单号  optional
+      * @param {string} [opts.deviceCollectorType] - 设备采集器类型  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -800,6 +2159,15 @@ class IOTCORE extends Service {
     if (opts.parentId !== undefined && opts.parentId !== null) {
       queryParams['parentId'] = opts.parentId
     }
+    if (opts.orderId !== undefined && opts.orderId !== null) {
+      queryParams['orderId'] = opts.orderId
+    }
+    if (
+      opts.deviceCollectorType !== undefined &&
+      opts.deviceCollectorType !== null
+    ) {
+      queryParams['deviceCollectorType'] = opts.deviceCollectorType
+    }
 
     let pathParams = {
       regionId: regionId,
@@ -807,7 +2175,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -942,7 +2310,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -1076,7 +2444,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -1217,7 +2585,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -1341,7 +2709,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -1414,6 +2782,478 @@ class IOTCORE extends Service {
   }
 
   /**
+      *  获取电梯运行状态
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - Hub实例Id
+      * @param {string} [opts.identifier] - 电梯连接码  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param registerValue data
+      * @param integer totalCount  统计数据
+      */
+
+  elevatorOperatingStatus (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  elevatorOperatingStatus"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling elevatorOperatingStatus"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.identifier !== undefined && opts.identifier !== null) {
+      queryParams['identifier'] = opts.identifier
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call elevatorOperatingStatus with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/loongrayinstances/{instanceId}/registerElevatorOperatingStatus',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取协议信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - Hub实例Id
+      * @param {string} opts.identifier - 当前的链接码
+      * @param {string} opts.protocol - 当前的协议类型：
+语音播报控制器-输入端子,0X00000~X0007：inputTerminal
+语音播报控制器-播放信息,0X00024~X0027：playInfo
+LR001-516-5B边缘数据采集器-传感器管理：sensor
+LR001-516-5B边缘数据采集器-采集器属性：collectorProperty
+LR001-516-5B边缘数据采集器-电梯属性：elevatorProperty
+
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param object readData  读取寄存器值，key：寄存器地址 value:寄存器值
+如读取语音播报控制器-输入端子的响应为
+{
+  &quot;0&quot;:0,
+  &quot;1&quot;:0,
+  &quot;2&quot;:0,
+  &quot;3&quot;:0,
+  &quot;4&quot;:0,
+  &quot;5&quot;:0,
+  &quot;6&quot;:0,
+  &quot;7&quot;:0
+}
+如读取语音播报控制器-播放信息的响应为
+{
+  &quot;36&quot;:0,
+  &quot;37&quot;:0,
+  &quot;38&quot;:0,
+  &quot;39&quot;:0,
+  &quot;40&quot;:0,
+  &quot;41&quot;:0,
+  &quot;42&quot;:0,
+  &quot;43&quot;:0,
+  &quot;44&quot;:1,
+  &quot;45&quot;:3,
+  &quot;46&quot;:0,
+  &quot;47&quot;:0
+}
+如读取LR001-516-5B边缘数据采集器-传感器管理的响应为
+{
+  &quot;40426&quot;:1,
+  &quot;40427&quot;:1,
+  &quot;40428&quot;:2,
+  &quot;40429&quot;:1,
+  &quot;40430&quot;:1,
+  &quot;40431&quot;:1,
+  &quot;40432&quot;:1,
+  &quot;40433&quot;:2,
+  &quot;40434&quot;:1,
+  &quot;40435&quot;:1,
+  &quot;40436&quot;:1,
+  &quot;40437&quot;:1,
+  &quot;40438&quot;:1,
+  &quot;40439&quot;:1,
+  &quot;40440&quot;:1
+}
+
+      */
+
+  collectorReadMessage (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  collectorReadMessage"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling collectorReadMessage"
+      )
+    }
+    if (opts.identifier === undefined || opts.identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.identifier' when calling collectorReadMessage"
+      )
+    }
+    if (opts.protocol === undefined || opts.protocol === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.protocol' when calling collectorReadMessage"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.identifier !== undefined && opts.identifier !== null) {
+      queryParams['identifier'] = opts.identifier
+    }
+    if (opts.protocol !== undefined && opts.protocol !== null) {
+      queryParams['protocol'] = opts.protocol
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call collectorReadMessage with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/loongrayinstances/{instanceId}/readCollectorProperty',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  写入采集器数据
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - Hub实例Id
+      * @param {string} opts.identifier - 当前的链接码
+      * @param {string} [opts.protocol] - 当前的协议类型,非必填项
+  optional
+      * @param {object} opts.data - 当前待写入的数据
+如指定播放设备，寄存地址：13对应16进制0x0D，寄存器值:2
+{
+  &quot;13&quot;:2
+}
+如播放控制，寄存地址：14对应16进制0x0E，寄存器值:1
+{
+  &quot;14&quot;: 1
+}
+如音量设置，寄存地址：15对应16进制0x0F，寄存器值:10，取值范围0~30
+{
+  &quot;15&quot;: 10
+}
+如指定文件夹和文件播放,寄存地址：16对应16进制0x10，寄存器值:1
+寄存器值为两字节，第一个字节为文件夹，第二个字节为文件名
+如0x01文件夹,0x03文件名，0x0103换算为10进制为259
+{
+  &quot;16&quot;: 259
+}
+如组合播放，寄存器地址：17、18和19，寄存器值：257、258和259，寄存器值的算法和指定文件夹和文件播放是一致的，如259可换算为0x01文件夹,0x03文件名
+{
+  &quot;17&quot;: 257,
+  &quot;18&quot;: 258,
+  &quot;19&quot;: 259
+}
+如播放广告，寄存地址：32对应16进制0x20，寄存器值:259，寄存器值的算法和指定文件夹和文件播放是一致的，如259可换算为0x01文件夹,0x03文件名
+{
+  &quot;32&quot;: 259
+}
+如指定文件夹循环播放，寄存地址：33对应16进制0x21，寄存器值:256，寄存器值的算法，如256可换算为0x0100文件夹
+{
+  &quot;33&quot;: 256
+}
+如指定文件夹随机播放，寄存地址：34对应16进制0x22，寄存器值:256，寄存器值的算法，如256可换算为0x0100文件夹
+{
+  &quot;34&quot;: 256
+}
+如指定曲目播放，寄存地址：35对应16进制0x23，寄存器值:13,歌曲选择范围为0~3000
+{
+  &quot;35&quot;: 13
+}
+
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string writeStatus
+      */
+
+  collectorWriteMessage (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  collectorWriteMessage"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling collectorWriteMessage"
+      )
+    }
+    if (opts.identifier === undefined || opts.identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.identifier' when calling collectorWriteMessage"
+      )
+    }
+    if (opts.data === undefined || opts.data === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.data' when calling collectorWriteMessage"
+      )
+    }
+
+    let postBody = {}
+    if (opts.identifier !== undefined && opts.identifier !== null) {
+      postBody['identifier'] = opts.identifier
+    }
+    if (opts.protocol !== undefined && opts.protocol !== null) {
+      postBody['protocol'] = opts.protocol
+    }
+    if (opts.data !== undefined && opts.data !== null) {
+      postBody['data'] = opts.data
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call collectorWriteMessage with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/loongrayinstances/{instanceId}/writeCollectorProperty',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  修改设备详情
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 设备归属的实例ID
@@ -1424,6 +3264,7 @@ class IOTCORE extends Service {
       * @param {integer} [opts.status] - 设备状态  optional
       * @param {string} [opts.identifier] - 连接码  optional
       * @param {string} [opts.deviceName] - 心跳  optional
+      * @param {string} opts.deviceType - 设备类型
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1454,6 +3295,11 @@ class IOTCORE extends Service {
         "Missing the required parameter 'opts.deviceId' when calling updateLooDevice"
       )
     }
+    if (opts.deviceType === undefined || opts.deviceType === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.deviceType' when calling updateLooDevice"
+      )
+    }
 
     let postBody = {}
     if (opts.model !== undefined && opts.model !== null) {
@@ -1474,6 +3320,9 @@ class IOTCORE extends Service {
     if (opts.deviceName !== undefined && opts.deviceName !== null) {
       postBody['deviceName'] = opts.deviceName
     }
+    if (opts.deviceType !== undefined && opts.deviceType !== null) {
+      postBody['deviceType'] = opts.deviceType
+    }
 
     let queryParams = {}
 
@@ -1484,7 +3333,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -1568,6 +3417,7 @@ class IOTCORE extends Service {
       * @param {string} [opts.manufacturer] - 厂商  optional
       * @param {string} [opts.identifier] - 连接码  optional
       * @param {string} [opts.description] - 设备名  optional
+      * @param {string} opts.deviceType - 设备类型
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1605,6 +3455,11 @@ class IOTCORE extends Service {
         "Missing the required parameter 'opts.userPinParam' when calling addLooDevice"
       )
     }
+    if (opts.deviceType === undefined || opts.deviceType === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.deviceType' when calling addLooDevice"
+      )
+    }
 
     let postBody = {}
     if (opts.userPinParam !== undefined && opts.userPinParam !== null) {
@@ -1628,6 +3483,9 @@ class IOTCORE extends Service {
     if (opts.description !== undefined && opts.description !== null) {
       postBody['description'] = opts.description
     }
+    if (opts.deviceType !== undefined && opts.deviceType !== null) {
+      postBody['deviceType'] = opts.deviceType
+    }
 
     let queryParams = {}
 
@@ -1638,7 +3496,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -1723,6 +3581,8 @@ class IOTCORE extends Service {
       * @param {string} [opts.order] - 排序关键字--name,type,productKey,status--最多支持一个字段  optional
       * @param {string} [opts.direction] - 顺序，升序降序--asc,desc  optional
       * @param {string} [opts.parentId] - 父设备Id  optional
+      * @param {integer} [opts.orderId] - 订单号  optional
+      * @param {string} [opts.deviceCollectorType] - 设备采集器类型  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1782,6 +3642,15 @@ class IOTCORE extends Service {
     if (opts.parentId !== undefined && opts.parentId !== null) {
       queryParams['parentId'] = opts.parentId
     }
+    if (opts.orderId !== undefined && opts.orderId !== null) {
+      queryParams['orderId'] = opts.orderId
+    }
+    if (
+      opts.deviceCollectorType !== undefined &&
+      opts.deviceCollectorType !== null
+    ) {
+      queryParams['deviceCollectorType'] = opts.deviceCollectorType
+    }
 
     let pathParams = {
       regionId: regionId,
@@ -1789,7 +3658,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -1913,7 +3782,7 @@ class IOTCORE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -1958,6 +3827,659 @@ class IOTCORE extends Service {
     let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/products/{productKey}/device/{deviceName}:loongraydelete',
       'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查看产品
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - IoT Engine实例ID信息
+      * @param {string} opts.productKey - 产品Key
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string productName  产品名称
+      * @param integer productType  节点类型，取值：
+0：设备。设备不能挂载子设备。可以直连物联网平台，也可以作为网关的子设备连接物联网平台
+1：网关。网关可以挂载子设备，具有子设备管理模块，维持子设备的拓扑关系，和将拓扑关系同步到物联网平台
+
+      * @param string productKey  产品key
+      * @param string productSecret  产品秘钥
+      * @param integer createdTime  创建时间,时间为东八区（UTC/GMT+08:00）
+      * @param integer deviceCount  包含设备数
+      * @param integer dynamicRegister  动态注册,0:关闭，1:开启
+      * @param string productDescription  产品描述信息
+      * @param string templateName  产品类型,如自定义等
+      */
+
+  describeProductWithAdmin (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeProductWithAdmin"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling describeProductWithAdmin"
+      )
+    }
+    if (opts.productKey === undefined || opts.productKey === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.productKey' when calling describeProductWithAdmin"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      productKey: opts.productKey
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeProductWithAdmin with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/loongrayinstances/{instanceId}/products/{productKey}/admin',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改产品
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - IoT Engine实例ID信息
+      * @param {string} opts.productKey - 产品Key
+      * @param {string} [opts.productName] - 产品名称，名称不可为空，3-30个字符，只支持汉字、英文字母、数字、下划线“_”及中划线“-”，必须以汉字、英文字母及数字开头结尾  optional
+      * @param {string} [opts.productDescription] - 产品描述，80字符以内  optional
+      * @param {integer} [opts.dynamicRegister] - 动态注册,0:关闭，1:开启  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  updateProductWithAdmin (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  updateProductWithAdmin"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling updateProductWithAdmin"
+      )
+    }
+    if (opts.productKey === undefined || opts.productKey === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.productKey' when calling updateProductWithAdmin"
+      )
+    }
+
+    let postBody = {}
+    if (opts.productName !== undefined && opts.productName !== null) {
+      postBody['productName'] = opts.productName
+    }
+    if (
+      opts.productDescription !== undefined &&
+      opts.productDescription !== null
+    ) {
+      postBody['productDescription'] = opts.productDescription
+    }
+    if (opts.dynamicRegister !== undefined && opts.dynamicRegister !== null) {
+      postBody['dynamicRegister'] = opts.dynamicRegister
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      productKey: opts.productKey
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call updateProductWithAdmin with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/loongrayinstances/{instanceId}/products/{productKey}/admin',
+      'PATCH',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除产品
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - IoT Engine实例ID信息
+      * @param {string} opts.productKey - 产品Key
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteProductWithAdmin (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteProductWithAdmin"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling deleteProductWithAdmin"
+      )
+    }
+    if (opts.productKey === undefined || opts.productKey === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.productKey' when calling deleteProductWithAdmin"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      productKey: opts.productKey
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteProductWithAdmin with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/loongrayinstances/{instanceId}/products/{productKey}/admin',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查看所有产品的列表
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - IoT Engine实例ID信息
+      * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞)  optional
+      * @param {integer} [opts.pageSize] - 分页大小，默认为10，取值范围：[10,100]  optional
+      * @param {filter} [opts.filters] - productName-产品名称，模糊匹配，支持单个
+productKey-产品key，精确匹配，支持单个
+productType-产品类型，精确匹配，支持单个
+templateName-模板名称，精确匹配，支持多个
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param pageinfoVO page  分页信息
+      * @param product products
+      */
+
+  listProductsWithAdmin (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  listProductsWithAdmin"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling listProductsWithAdmin"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call listProductsWithAdmin with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/loongrayinstances/{instanceId}/products:describeAll',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  新建产品
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - IoT Engine实例ID信息
+      * @param {string} opts.productName - 产品名称，名称不可为空，3-30个字符，只支持汉字、英文字母、数字、下划线“_”及中划线“-”，必须以汉字、英文字母及数字开头结尾
+      * @param {integer} opts.productType - 节点类型，取值：
+0：设备。设备不能挂载子设备。可以直连物联网平台，也可以作为网关的子设备连接物联网平台
+1：网关。网关可以挂载子设备，具有子设备管理模块，维持子设备的拓扑关系，和将拓扑关系同步到物联网平台
+
+      * @param {string} [opts.productDescription] - 产品描述，80字符以内  optional
+      * @param {string} [opts.templateId] - 物模型模板ID，内部参数，用户不可见，默认为自定义  optional
+      * @param {object} [opts.internalTags] - 内部标签，内部参数，用户不可见，隐藏标签：hidden:true  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string productKey
+      */
+
+  createAdminProduct (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createAdminProduct"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling createAdminProduct"
+      )
+    }
+    if (opts.productName === undefined || opts.productName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.productName' when calling createAdminProduct"
+      )
+    }
+    if (opts.productType === undefined || opts.productType === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.productType' when calling createAdminProduct"
+      )
+    }
+
+    let postBody = {}
+    if (opts.productName !== undefined && opts.productName !== null) {
+      postBody['productName'] = opts.productName
+    }
+    if (opts.productType !== undefined && opts.productType !== null) {
+      postBody['productType'] = opts.productType
+    }
+    if (
+      opts.productDescription !== undefined &&
+      opts.productDescription !== null
+    ) {
+      postBody['productDescription'] = opts.productDescription
+    }
+    if (opts.templateId !== undefined && opts.templateId !== null) {
+      postBody['templateId'] = opts.templateId
+    }
+    if (opts.internalTags !== undefined && opts.internalTags !== null) {
+      postBody['internalTags'] = opts.internalTags
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createAdminProduct with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/loongrayinstances/{instanceId}/productsAdmin',
+      'POST',
       pathParams,
       queryParams,
       headerParams,
@@ -2039,7 +4561,7 @@ templateName-模板名称，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -2187,7 +4709,7 @@ templateName-模板名称，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -2316,7 +4838,7 @@ templateName-模板名称，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -2449,7 +4971,7 @@ templateName-模板名称，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -2566,7 +5088,7 @@ templateName-模板名称，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -2697,7 +5219,7 @@ abilityType-功能类型，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -2824,7 +5346,7 @@ abilityType-功能类型，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -2942,7 +5464,7 @@ abilityType-功能类型，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -3072,7 +5594,7 @@ abilityType-功能类型，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -3219,7 +5741,7 @@ sub:订阅
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -3354,7 +5876,7 @@ sub:订阅
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotcore/1.1.18'
     }
 
     let contentTypes = ['application/json']

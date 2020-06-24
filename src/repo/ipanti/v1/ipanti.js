@@ -30,10 +30,10 @@ Service._services[serviceId] = true
 
 /**
  * ipanti service.
- * @version 1.4.9
+ * @version 1.7.0
  */
 
-JDCloud.IPANTI = class IPANTI extends Service {
+class IPANTI extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
@@ -49,8 +49,8 @@ JDCloud.IPANTI = class IPANTI extends Service {
       * @param {Object} opts - parameters
       * @param {integer} [opts.pageNumber] - 页码, 默认为1  optional
       * @param {integer} [opts.pageSize] - 分页大小, 默认为10, 取值范围[10, 100]  optional
-      * @param {string} opts.startTime - 开始时间, 只能查询最近 60 天以内的数据, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-      * @param {string} opts.endTime - 查询的结束时间, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} opts.startTime - 开始时间, 只能查询最近 90 天以内的数据, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} [opts.endTime] - 查询的结束时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ  optional
       * @param {string} [opts.instanceId] - 高防实例 ID  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -80,11 +80,6 @@ JDCloud.IPANTI = class IPANTI extends Service {
         "Missing the required parameter 'opts.startTime' when calling describeDDoSAttackLogs"
       )
     }
-    if (opts.endTime === undefined || opts.endTime === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.endTime' when calling describeDDoSAttackLogs"
-      )
-    }
 
     let postBody = null
     let queryParams = {}
@@ -102,7 +97,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
     Object.assign(
       queryParams,
-      this.buildArrayParam(opts.instanceId, 'instanceId')
+      super.buildArrayParam(opts.instanceId, 'instanceId')
     )
 
     let pathParams = {
@@ -110,7 +105,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -152,7 +147,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/attacklog:describeDDoSAttackLogs',
       'GET',
       pathParams,
@@ -187,8 +182,8 @@ JDCloud.IPANTI = class IPANTI extends Service {
       * @param {Object} opts - parameters
       * @param {integer} [opts.pageNumber] - 页码, 默认为1  optional
       * @param {integer} [opts.pageSize] - 分页大小, 默认为10, 取值范围[10, 100]  optional
-      * @param {string} opts.startTime - 开始时间, 只能查询最近 60 天以内的数据, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-      * @param {string} opts.endTime - 查询的结束时间, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} opts.startTime - 开始时间, 只能查询最近 90 天以内的数据, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} [opts.endTime] - 查询的结束时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ  optional
       * @param {string} [opts.instanceId] - 高防实例 ID  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -218,11 +213,6 @@ JDCloud.IPANTI = class IPANTI extends Service {
         "Missing the required parameter 'opts.startTime' when calling describeCCAttackLogs"
       )
     }
-    if (opts.endTime === undefined || opts.endTime === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.endTime' when calling describeCCAttackLogs"
-      )
-    }
 
     let postBody = null
     let queryParams = {}
@@ -240,7 +230,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
     Object.assign(
       queryParams,
-      this.buildArrayParam(opts.instanceId, 'instanceId')
+      super.buildArrayParam(opts.instanceId, 'instanceId')
     )
 
     let pathParams = {
@@ -248,7 +238,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -290,7 +280,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/attacklog:describeCCAttackLogs',
       'GET',
       pathParams,
@@ -327,11 +317,11 @@ JDCloud.IPANTI = class IPANTI extends Service {
       * @param {Object} opts - parameters
       * @param {integer} [opts.pageNumber] - 页码, 默认为1  optional
       * @param {integer} [opts.pageSize] - 分页大小, 默认为10, 取值范围[10, 100]  optional
-      * @param {string} opts.startTime - 开始时间, 只能查询最近 60 天以内的数据, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-      * @param {string} opts.endTime - 查询的结束时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} [opts.startTime] - 开始时间, 只能查询最近 90 天以内的数据, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ, attackId 为空时必传  optional
+      * @param {string} [opts.endTime] - 查询的结束时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ  optional
       * @param {string} [opts.instanceId] - 高防实例 ID  optional
-      * @param {string} [opts.attackId] - CC 攻击记录Id  optional
-      * @param {string} [opts.subDomain] - 查询的子域名，只有选中某一个实例后才能多选子域名  optional
+      * @param {string} [opts.attackId] - CC 攻击记录 Id, 不为空时忽略 startTime, endTime  optional
+      * @param {string} [opts.subDomain] - 查询的子域名, 只有选中某一个实例后才能多选子域名  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -355,17 +345,6 @@ JDCloud.IPANTI = class IPANTI extends Service {
 
     opts = opts || {}
 
-    if (opts.startTime === undefined || opts.startTime === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.startTime' when calling describeCCAttackLogDetails"
-      )
-    }
-    if (opts.endTime === undefined || opts.endTime === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.endTime' when calling describeCCAttackLogDetails"
-      )
-    }
-
     let postBody = null
     let queryParams = {}
     if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
@@ -388,7 +367,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
     Object.assign(
       queryParams,
-      this.buildArrayParam(opts.subDomain, 'subDomain')
+      super.buildArrayParam(opts.subDomain, 'subDomain')
     )
 
     let pathParams = {
@@ -396,7 +375,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -438,7 +417,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/attacklog:describeCCAttackLogDetails',
       'GET',
       pathParams,
@@ -471,8 +450,8 @@ JDCloud.IPANTI = class IPANTI extends Service {
   /**
       *  查询攻击次数及流量峰值
       * @param {Object} opts - parameters
-      * @param {string} opts.startTime - 开始时间, 只能查询最近 60 天以内的数据, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-      * @param {string} opts.endTime - 查询的结束时间, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} opts.startTime - 开始时间, 只能查询最近 90 天以内的数据, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} [opts.endTime] - 查询的结束时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ  optional
       * @param {integer} opts.type - 攻击类型, 0 为 DDoS, 1 为 CC
       * @param {string} [opts.instanceId] - 高防实例 ID  optional
       * @param {string} regionId - ID of the region
@@ -502,11 +481,6 @@ JDCloud.IPANTI = class IPANTI extends Service {
         "Missing the required parameter 'opts.startTime' when calling describeAttackStatistics"
       )
     }
-    if (opts.endTime === undefined || opts.endTime === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.endTime' when calling describeAttackStatistics"
-      )
-    }
     if (opts.type === undefined || opts.type === null) {
       throw new Error(
         "Missing the required parameter 'opts.type' when calling describeAttackStatistics"
@@ -526,7 +500,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
     Object.assign(
       queryParams,
-      this.buildArrayParam(opts.instanceId, 'instanceId')
+      super.buildArrayParam(opts.instanceId, 'instanceId')
     )
 
     let pathParams = {
@@ -534,7 +508,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -576,7 +550,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/attacklog:describeAttackStatistics',
       'GET',
       pathParams,
@@ -609,8 +583,8 @@ JDCloud.IPANTI = class IPANTI extends Service {
   /**
       *  查询各类型攻击次数
       * @param {Object} opts - parameters
-      * @param {string} opts.startTime - 开始时间, 只能查询最近 60 天以内的数据, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-      * @param {string} opts.endTime - 查询的结束时间, UTC 时间, 格式：yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} opts.startTime - 开始时间, 只能查询最近 90 天以内的数据, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} [opts.endTime] - 查询的结束时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ  optional
       * @param {string} [opts.instanceId] - 高防实例 ID  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -637,11 +611,6 @@ JDCloud.IPANTI = class IPANTI extends Service {
         "Missing the required parameter 'opts.startTime' when calling describeAttackTypeCount"
       )
     }
-    if (opts.endTime === undefined || opts.endTime === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.endTime' when calling describeAttackTypeCount"
-      )
-    }
 
     let postBody = null
     let queryParams = {}
@@ -653,7 +622,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
     Object.assign(
       queryParams,
-      this.buildArrayParam(opts.instanceId, 'instanceId')
+      super.buildArrayParam(opts.instanceId, 'instanceId')
     )
 
     let pathParams = {
@@ -661,7 +630,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -703,7 +672,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/attacklog:describeAttackTypeCount',
       'GET',
       pathParams,
@@ -736,8 +705,8 @@ JDCloud.IPANTI = class IPANTI extends Service {
   /**
       *  DDos 防护流量报表
       * @param {Object} opts - parameters
-      * @param {string} opts.startTime - 开始时间, 最多查最近 60 天, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-      * @param {string} opts.endTime - 查询的结束时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} opts.startTime - 开始时间, 只能查询最近 90 天以内的数据, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} [opts.endTime] - 查询的结束时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ  optional
       * @param {string} [opts.instanceId] - 高防实例 Id 列表  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -767,11 +736,6 @@ JDCloud.IPANTI = class IPANTI extends Service {
         "Missing the required parameter 'opts.startTime' when calling describeDDoSGraph"
       )
     }
-    if (opts.endTime === undefined || opts.endTime === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.endTime' when calling describeDDoSGraph"
-      )
-    }
 
     let postBody = null
     let queryParams = {}
@@ -783,7 +747,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
     Object.assign(
       queryParams,
-      this.buildArrayParam(opts.instanceId, 'instanceId')
+      super.buildArrayParam(opts.instanceId, 'instanceId')
     )
 
     let pathParams = {
@@ -791,7 +755,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -833,7 +797,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/charts:DDoSGraph',
       'GET',
       pathParams,
@@ -866,8 +830,8 @@ JDCloud.IPANTI = class IPANTI extends Service {
   /**
       *  转发流量报表
       * @param {Object} opts - parameters
-      * @param {string} opts.startTime - 开始时间, 最多查最近 60 天, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-      * @param {string} opts.endTime - 查询的结束时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} opts.startTime - 开始时间, 只能查询最近 90 天以内的数据, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} [opts.endTime] - 查询的结束时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ  optional
       * @param {string} [opts.instanceId] - 高防实例 Id 列表  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -896,11 +860,6 @@ JDCloud.IPANTI = class IPANTI extends Service {
         "Missing the required parameter 'opts.startTime' when calling describeFwdGraph"
       )
     }
-    if (opts.endTime === undefined || opts.endTime === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.endTime' when calling describeFwdGraph"
-      )
-    }
 
     let postBody = null
     let queryParams = {}
@@ -912,7 +871,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
     Object.assign(
       queryParams,
-      this.buildArrayParam(opts.instanceId, 'instanceId')
+      super.buildArrayParam(opts.instanceId, 'instanceId')
     )
 
     let pathParams = {
@@ -920,7 +879,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -962,7 +921,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/charts:fwdGraph',
       'GET',
       pathParams,
@@ -995,8 +954,8 @@ JDCloud.IPANTI = class IPANTI extends Service {
   /**
       *  CC 防护流量报表
       * @param {Object} opts - parameters
-      * @param {string} opts.startTime - 开始时间, 最多查最近 60 天, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
-      * @param {string} opts.endTime - 查询的结束时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} opts.startTime - 开始时间, 只能查询最近 90 天以内的数据, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ
+      * @param {string} [opts.endTime] - 查询的结束时间, UTC 时间, 格式: yyyy-MM-dd&#39;T&#39;HH:mm:ssZ  optional
       * @param {string} [opts.instanceId] - 高防实例 Id 列表  optional
       * @param {string} [opts.subDomain] - 规则域名列表  optional
       * @param {string} regionId - ID of the region
@@ -1027,11 +986,6 @@ JDCloud.IPANTI = class IPANTI extends Service {
         "Missing the required parameter 'opts.startTime' when calling describeCCGraph"
       )
     }
-    if (opts.endTime === undefined || opts.endTime === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.endTime' when calling describeCCGraph"
-      )
-    }
 
     let postBody = null
     let queryParams = {}
@@ -1043,11 +997,11 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
     Object.assign(
       queryParams,
-      this.buildArrayParam(opts.instanceId, 'instanceId')
+      super.buildArrayParam(opts.instanceId, 'instanceId')
     )
     Object.assign(
       queryParams,
-      this.buildArrayParam(opts.subDomain, 'subDomain')
+      super.buildArrayParam(opts.subDomain, 'subDomain')
     )
 
     let pathParams = {
@@ -1055,7 +1009,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -1097,7 +1051,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/charts:CCGraph',
       'GET',
       pathParams,
@@ -1133,7 +1087,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       * @param {string} opts.instanceId - 高防实例 Id
       * @param {integer} [opts.pageNumber] - 页码, 默认为1  optional
       * @param {integer} [opts.pageSize] - 分页大小, 默认为10, 取值范围[10, 100]  optional
-      * @param {string} [opts.searchType] - 查询类型名称, domain:源站域名, ip:源站 IP, port: 转发端口, originPort: 源站端口  optional
+      * @param {string} [opts.searchType] - 查询类型名称, domain:源站域名, ip:源站 IP, port: 转发端口, originPort: 源站端口, serviceIp: 高防IP(仅支持BGP线路的实例)  optional
       * @param {string} [opts.searchValue] - 查询类型值  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -1185,7 +1139,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -1227,7 +1181,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/forwardRules',
       'GET',
       pathParams,
@@ -1307,7 +1261,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -1349,7 +1303,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/forwardRules',
       'POST',
       pathParams,
@@ -1425,7 +1379,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -1467,7 +1421,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/forwardRules/{forwardRuleId}',
       'GET',
       pathParams,
@@ -1554,7 +1508,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -1596,7 +1550,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/forwardRules/{forwardRuleId}',
       'PATCH',
       pathParams,
@@ -1673,7 +1627,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -1715,7 +1669,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/forwardRules/{forwardRuleId}',
       'DELETE',
       pathParams,
@@ -1793,7 +1747,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -1835,7 +1789,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/forwardRules/{forwardRuleId}:protect',
       'POST',
       pathParams,
@@ -1913,7 +1867,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -1955,7 +1909,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/forwardRules/{forwardRuleId}:origin',
       'POST',
       pathParams,
@@ -2035,7 +1989,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -2077,7 +2031,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/forwardRules/{forwardRuleId}:describeProtectionRule',
       'GET',
       pathParams,
@@ -2174,7 +2128,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -2216,7 +2170,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/forwardRules/{forwardRuleId}:modifyProtectionRule',
       'POST',
       pathParams,
@@ -2277,7 +2231,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -2319,7 +2273,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/describeGeoAreas',
       'GET',
       pathParams,
@@ -2399,7 +2353,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -2441,7 +2395,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/forwardRules/{forwardRuleId}/forwardBlackListRule',
       'GET',
       pathParams,
@@ -2532,7 +2486,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -2574,7 +2528,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/forwardRules/{forwardRuleId}/forwardBlackListRule',
       'PATCH',
       pathParams,
@@ -2656,7 +2610,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -2698,7 +2652,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/forwardRules/{forwardRuleId}:enableBlackListRuleOfForwardRule',
       'POST',
       pathParams,
@@ -2780,7 +2734,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -2822,7 +2776,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/forwardRules/{forwardRuleId}:disableBlackListRuleOfForwardRule',
       'POST',
       pathParams,
@@ -2902,7 +2856,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -2944,7 +2898,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/forwardRules/{forwardRuleId}/forwardWhiteListRule',
       'GET',
       pathParams,
@@ -3035,7 +2989,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -3077,7 +3031,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/forwardRules/{forwardRuleId}/forwardWhiteListRule',
       'PATCH',
       pathParams,
@@ -3159,7 +3113,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -3201,7 +3155,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/forwardRules/{forwardRuleId}:enableWhiteListRuleOfForwardRule',
       'POST',
       pathParams,
@@ -3283,7 +3237,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -3325,7 +3279,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/forwardRules/{forwardRuleId}:disableWhiteListRuleOfForwardRule',
       'POST',
       pathParams,
@@ -3360,7 +3314,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       * @param {Object} opts - parameters
       * @param {integer} [opts.pageNumber] - 页码, 默认为 1  optional
       * @param {integer} [opts.pageSize] - 分页大小, 默认为 10, 取值范围[10, 100], 0 表示全量  optional
-      * @param {string} [opts.name] - 实例名称，可模糊匹配  optional
+      * @param {string} [opts.name] - 实例名称, 可模糊匹配  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -3401,7 +3355,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -3443,7 +3397,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances',
       'GET',
       pathParams,
@@ -3477,6 +3431,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       *  新购或升级高防实例
       * @param {Object} opts - parameters
       * @param {createInstanceSpec} opts.createInstanceSpec - 新购或升级实例请求参数
+      * @param {autoRenewalSpec} [opts.autoRenewalSpec] - 自动续费配置, 默认不开通, 仅新购实例时可设置  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -3514,6 +3469,9 @@ JDCloud.IPANTI = class IPANTI extends Service {
     ) {
       postBody['createInstanceSpec'] = opts.createInstanceSpec
     }
+    if (opts.autoRenewalSpec !== undefined && opts.autoRenewalSpec !== null) {
+      postBody['autoRenewalSpec'] = opts.autoRenewalSpec
+    }
 
     let queryParams = {}
 
@@ -3522,7 +3480,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -3564,7 +3522,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances',
       'POST',
       pathParams,
@@ -3633,7 +3591,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -3675,7 +3633,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}',
       'GET',
       pathParams,
@@ -3761,7 +3719,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -3803,7 +3761,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}:rename',
       'POST',
       pathParams,
@@ -3889,7 +3847,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -3931,7 +3889,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}:modifyEPB',
       'POST',
       pathParams,
@@ -4000,7 +3958,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -4042,7 +4000,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}:describeAlarmConfig',
       'GET',
       pathParams,
@@ -4122,7 +4080,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -4164,9 +4122,131 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}:modifyAlarmConfig',
       'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询实例高防 IP 列表
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例 ID
+      * @param {integer} [opts.pageNumber] - 页码, 默认为 1  optional
+      * @param {integer} [opts.pageSize] - 分页大小, 默认为 10, 取值范围[10, 100]  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param serviceIp dataList
+      * @param integer currentCount  当前页数量
+      * @param integer totalCount  总数
+      * @param integer totalPage  总页数
+      */
+
+  describeServiceIpList (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeServiceIpList"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling describeServiceIpList"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeServiceIpList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}:describeServiceIpList',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -4244,7 +4324,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -4286,7 +4366,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/describeNameList',
       'GET',
       pathParams,
@@ -4351,7 +4431,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -4393,7 +4473,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/describeProtectionStatistics',
       'GET',
       pathParams,
@@ -4465,7 +4545,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -4507,7 +4587,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/checkName',
       'GET',
       pathParams,
@@ -4579,7 +4659,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -4621,7 +4701,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/describeVpcIpList',
       'GET',
       pathParams,
@@ -4693,7 +4773,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -4735,7 +4815,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/cpsIpResources',
       'GET',
       pathParams,
@@ -4815,7 +4895,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -4857,7 +4937,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/ipSets',
       'GET',
       pathParams,
@@ -4937,7 +5017,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -4979,7 +5059,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/ipSets',
       'POST',
       pathParams,
@@ -5055,7 +5135,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -5097,7 +5177,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/ipSets/{ipSetId}',
       'GET',
       pathParams,
@@ -5173,7 +5253,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -5215,7 +5295,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/ipSets/{ipSetId}',
       'DELETE',
       pathParams,
@@ -5286,7 +5366,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -5328,7 +5408,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}:describeIpSetUsage',
       'GET',
       pathParams,
@@ -5364,7 +5444,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       * @param {string} opts.instanceId - 高防实例 Id
       * @param {integer} [opts.pageNumber] - 页码, 默认为1  optional
       * @param {integer} [opts.pageSize] - 分页大小, 默认为10, 取值范围[10, 100]  optional
-      * @param {string} [opts.searchType] - 查询类型名称, domain:源站域名, ip:源站 IP, rawDomain: 域名  optional
+      * @param {string} [opts.searchType] - 查询类型名称, domain:源站域名, ip:源站 IP, rawDomain: 域名, serviceIp: 高防IP(仅支持BGP线路的实例)  optional
       * @param {string} [opts.searchValue] - 查询类型值  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -5416,7 +5496,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -5458,7 +5538,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules',
       'GET',
       pathParams,
@@ -5538,7 +5618,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -5580,7 +5660,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules',
       'POST',
       pathParams,
@@ -5656,7 +5736,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -5698,7 +5778,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}',
       'GET',
       pathParams,
@@ -5785,7 +5865,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -5827,7 +5907,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}',
       'PATCH',
       pathParams,
@@ -5904,7 +5984,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -5946,9 +6026,138 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}',
       'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  网站类规则绑定 SSL 证书
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 高防实例 Id
+      * @param {string} opts.webRuleId - 网站规则 Id
+      * @param {string} opts.certId - 证书 Id. 使用 &lt;a href&#x3D;&#39;https://docs.jdcloud.com/cn/ssl-certificate/api/describecerts&#39;&gt;describeCerts&lt;/a&gt; 接口, 按照域名检索可绑定的证书, 域名不匹配将导致证书配置失败
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer code  0: 绑定失败, 1: 绑定成功
+      * @param string message  绑定失败时给出具体原因
+      */
+
+  bindCert (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  bindCert"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling bindCert"
+      )
+    }
+    if (opts.webRuleId === undefined || opts.webRuleId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.webRuleId' when calling bindCert"
+      )
+    }
+    if (opts.certId === undefined || opts.certId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.certId' when calling bindCert"
+      )
+    }
+
+    let postBody = {}
+    if (opts.certId !== undefined && opts.certId !== null) {
+      postBody['certId'] = opts.certId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      webRuleId: opts.webRuleId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call bindCert with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}:bindCert',
+      'POST',
       pathParams,
       queryParams,
       headerParams,
@@ -6024,7 +6233,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -6066,7 +6275,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}:protect',
       'POST',
       pathParams,
@@ -6144,7 +6353,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -6186,7 +6395,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}:origin',
       'POST',
       pathParams,
@@ -6264,7 +6473,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -6306,7 +6515,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}:enableCC',
       'POST',
       pathParams,
@@ -6384,7 +6593,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -6426,7 +6635,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}:disableCC',
       'POST',
       pathParams,
@@ -6457,7 +6666,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
   }
 
   /**
-      *  开启网站类规则 CC 观察者模式, 观察模式下，CC 防护只告警不防御。支持批量操作, 批量操作时 webRuleId 传多个, 以 &#39;,&#39; 分隔, 返回 result.code 为 1 表示操作成功, 为 0 时可能全部失败, 也可能部分失败
+      *  开启网站类规则 CC 观察者模式, 观察模式下, CC 防护只告警不防御。支持批量操作, 批量操作时 webRuleId 传多个, 以 &#39;,&#39; 分隔, 返回 result.code 为 1 表示操作成功, 为 0 时可能全部失败, 也可能部分失败
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 高防实例 Id
       * @param {string} opts.webRuleId - 网站规则 Id
@@ -6504,7 +6713,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -6546,7 +6755,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}:enableCCObserverMode',
       'POST',
       pathParams,
@@ -6628,7 +6837,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -6670,7 +6879,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}:disableCCObserverMode',
       'POST',
       pathParams,
@@ -6753,7 +6962,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -6795,7 +7004,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}/ccProtectionRules',
       'GET',
       pathParams,
@@ -6892,7 +7101,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -6934,7 +7143,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}/ccProtectionRules',
       'POST',
       pathParams,
@@ -7024,7 +7233,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -7066,7 +7275,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}/ccProtectionRules/{ccProtectionRuleId}',
       'GET',
       pathParams,
@@ -7173,7 +7382,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -7215,7 +7424,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}/ccProtectionRules/{ccProtectionRuleId}',
       'PATCH',
       pathParams,
@@ -7306,7 +7515,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -7348,7 +7557,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}/ccProtectionRules/{ccProtectionRuleId}',
       'DELETE',
       pathParams,
@@ -7440,7 +7649,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -7482,7 +7691,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}/ccProtectionRules/{ccProtectionRuleId}:enable',
       'POST',
       pathParams,
@@ -7574,7 +7783,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -7616,7 +7825,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}/ccProtectionRules/{ccProtectionRuleId}:disable',
       'POST',
       pathParams,
@@ -7696,7 +7905,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -7738,7 +7947,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}:ccProtectionConfig',
       'GET',
       pathParams,
@@ -7835,7 +8044,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -7877,7 +8086,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}:ccProtectionConfig',
       'PATCH',
       pathParams,
@@ -7957,7 +8166,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -7999,7 +8208,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}:ccProtectionDefaultConfig',
       'GET',
       pathParams,
@@ -8092,7 +8301,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -8134,7 +8343,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}:modifyCertInfo',
       'POST',
       pathParams,
@@ -8217,7 +8426,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -8259,7 +8468,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}:describeWebRuleBlackListUsage',
       'GET',
       pathParams,
@@ -8350,7 +8559,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -8392,7 +8601,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}/webBlackListRules',
       'GET',
       pathParams,
@@ -8489,7 +8698,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -8531,7 +8740,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}/webBlackListRules',
       'POST',
       pathParams,
@@ -8621,7 +8830,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -8663,7 +8872,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}/webBlackListRules/{webBlackListRuleId}',
       'GET',
       pathParams,
@@ -8770,7 +8979,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -8812,7 +9021,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}/webBlackListRules/{webBlackListRuleId}',
       'PATCH',
       pathParams,
@@ -8903,7 +9112,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -8945,7 +9154,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}/webBlackListRules/{webBlackListRuleId}',
       'DELETE',
       pathParams,
@@ -9023,7 +9232,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -9065,7 +9274,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}:enableWebRuleBlackList',
       'POST',
       pathParams,
@@ -9157,7 +9366,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -9199,7 +9408,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}/webBlackListRules/{webBlackListRuleId}:enable',
       'POST',
       pathParams,
@@ -9277,7 +9486,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -9319,7 +9528,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}:disableWebRuleBlackList',
       'POST',
       pathParams,
@@ -9411,7 +9620,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -9453,7 +9662,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}/webBlackListRules/{webBlackListRuleId}:disable',
       'POST',
       pathParams,
@@ -9536,7 +9745,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -9578,7 +9787,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}:describeWebRuleWhiteListUsage',
       'GET',
       pathParams,
@@ -9669,7 +9878,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -9711,7 +9920,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}/webWhiteListRules',
       'GET',
       pathParams,
@@ -9808,7 +10017,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -9850,7 +10059,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}/webWhiteListRules',
       'POST',
       pathParams,
@@ -9940,7 +10149,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -9982,7 +10191,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}/webWhiteListRules/{webWhiteListRuleId}',
       'GET',
       pathParams,
@@ -10089,7 +10298,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -10131,7 +10340,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}/webWhiteListRules/{webWhiteListRuleId}',
       'PATCH',
       pathParams,
@@ -10222,7 +10431,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -10264,7 +10473,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}/webWhiteListRules/{webWhiteListRuleId}',
       'DELETE',
       pathParams,
@@ -10342,7 +10551,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -10384,7 +10593,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}:enableWebRuleWhiteList',
       'POST',
       pathParams,
@@ -10476,7 +10685,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -10518,7 +10727,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}/webWhiteListRules/{webWhiteListRuleId}:enable',
       'POST',
       pathParams,
@@ -10596,7 +10805,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -10638,7 +10847,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}:disableWebRuleWhiteList',
       'POST',
       pathParams,
@@ -10730,7 +10939,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -10772,7 +10981,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}/webWhiteListRules/{webWhiteListRuleId}:disable',
       'POST',
       pathParams,
@@ -10837,7 +11046,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -10879,7 +11088,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/describeWebRuleBlackListGeoAreas',
       'GET',
       pathParams,
@@ -10944,7 +11153,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.4.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
     }
 
     let contentTypes = ['application/json']
@@ -10986,7 +11195,7 @@ JDCloud.IPANTI = class IPANTI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/describeWebRuleWhiteListGeoAreas',
       'GET',
       pathParams,
@@ -11015,5 +11224,108 @@ JDCloud.IPANTI = class IPANTI extends Service {
       }
     )
   }
+
+  /**
+      *  查询网站类转发规则按地域回源配置 geoRsRoute 可设置的区域
+      * @param {Object} opts - parameters
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param country dataList
+      */
+
+  describeWebRuleRSGeoAreas (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeWebRuleRSGeoAreas"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeWebRuleRSGeoAreas with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/describeWebRuleRSGeoAreas',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
 }
-module.exports = JDCloud.IPANTI
+module.exports = IPANTI

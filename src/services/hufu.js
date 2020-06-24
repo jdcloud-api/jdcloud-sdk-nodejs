@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * hufu-scene
- * 场景相关接口
+ * hufu-wx
+ * 虎符商业化相关接口
  *
  * OpenAPI spec version: v1
  * Contact:

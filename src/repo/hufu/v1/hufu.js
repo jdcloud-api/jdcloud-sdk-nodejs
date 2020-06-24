@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * hufu-scene
- * 场景相关接口
+ * hufu-wx
+ * 虎符商业化相关接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -30,10 +30,10 @@ Service._services[serviceId] = true
 
 /**
  * hufu service.
- * @version 1.0.2
+ * @version 1.0.7
  */
 
-JDCloud.HUFU = class HUFU extends Service {
+class HUFU extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
@@ -45,56 +45,78 @@ JDCloud.HUFU = class HUFU extends Service {
   }
 
   /**
-      *  查询api列表
+      *  发布版本
       * @param {Object} opts - parameters
-      * @param {integer} opts.sceneId - 场景id
-      * @param {string} opts.revision - 版本号
-      * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞)  optional
-      * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围：[10,100]  optional
-      * @param {filter} [opts.filters] - apiName - API名称，模糊匹配，支持单个
-action - 动作，精确匹配，支持多个
-backServiceType- 后端服务类型，精确匹配，支持多个
-path - 路径，模糊匹配，支持单个
-description - 描述，模糊匹配，支持单个
-  optional
+      * @param {integer} opts.sceneId - 场景ID
+      * @param {string} opts.revision - 发布的修订版本号
+      * @param {string} opts.environment - 环境：test、preview、online
+      * @param {string} [opts.backendServiceType] - 后端服务类型：mock、unique、vpc  optional
+      * @param {string} [opts.backendUrl] - 后端地址  optional
+      * @param {string} [opts.description] - 描述  optional
+      * @param {string} [opts.jdsfName] - 微服务网关名称  optional
+      * @param {string} [opts.jdsfRegistryName] - 微服务注册中心ID  optional
+      * @param {string} [opts.jdsfId] - 微服务ID  optional
       * @param {string} callback - callback
       @return {Object} result
-      * @param api apis
-      * @param integer totalCount  查询的数目
       */
 
-  queryApis (opts, callback) {
+  deploy (opts, callback) {
     opts = opts || {}
 
     if (opts.sceneId === undefined || opts.sceneId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.sceneId' when calling queryApis"
+        "Missing the required parameter 'opts.sceneId' when calling deploy"
       )
     }
     if (opts.revision === undefined || opts.revision === null) {
       throw new Error(
-        "Missing the required parameter 'opts.revision' when calling queryApis"
+        "Missing the required parameter 'opts.revision' when calling deploy"
+      )
+    }
+    if (opts.environment === undefined || opts.environment === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.environment' when calling deploy"
       )
     }
 
-    let postBody = null
+    let postBody = {}
+    if (opts.revision !== undefined && opts.revision !== null) {
+      postBody['revision'] = opts.revision
+    }
+    if (opts.environment !== undefined && opts.environment !== null) {
+      postBody['environment'] = opts.environment
+    }
+    if (
+      opts.backendServiceType !== undefined &&
+      opts.backendServiceType !== null
+    ) {
+      postBody['backendServiceType'] = opts.backendServiceType
+    }
+    if (opts.backendUrl !== undefined && opts.backendUrl !== null) {
+      postBody['backendUrl'] = opts.backendUrl
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+    if (opts.jdsfName !== undefined && opts.jdsfName !== null) {
+      postBody['jdsfName'] = opts.jdsfName
+    }
+    if (opts.jdsfRegistryName !== undefined && opts.jdsfRegistryName !== null) {
+      postBody['jdsfRegistryName'] = opts.jdsfRegistryName
+    }
+    if (opts.jdsfId !== undefined && opts.jdsfId !== null) {
+      postBody['jdsfId'] = opts.jdsfId
+    }
+
     let queryParams = {}
-    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
-      queryParams['pageNumber'] = opts.pageNumber
-    }
-    if (opts.pageSize !== undefined && opts.pageSize !== null) {
-      queryParams['pageSize'] = opts.pageSize
-    }
-    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: 'jdcloud',
-      sceneId: opts.sceneId,
-      revision: opts.revision
+      sceneId: opts.sceneId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hufu/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hufu/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -124,7 +146,7 @@ description - 描述，模糊匹配，支持单个
     let returnType = null
 
     this.config.logger(
-      `call queryApis with params:\npathParams:${JSON.stringify(
+      `call deploy with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -137,8 +159,8 @@ description - 描述，模糊匹配，支持单个
     )
 
     let request = super.makeRequest(
-      '/scenes/{sceneId}/revisions/{revision}/apis',
-      'GET',
+      '/scenes/{sceneId}/deployments',
+      'POST',
       pathParams,
       queryParams,
       headerParams,
@@ -167,52 +189,40 @@ description - 描述，模糊匹配，支持单个
   }
 
   /**
-      *  下游更新路由信息
+      *  查询该版本的部署详情
       * @param {Object} opts - parameters
-      * @param {number} opts.accessId - 申请接入id
-      * @param {string} opts.customerId - 商家编码
-      * @param {string} opts.backendUrl - 商家服务后端地址
+      * @param {integer} opts.sceneId - 场景ID
+      * @param {string} opts.deploymentId - 部署ID
       * @param {string} callback - callback
       @return {Object} result
-      * @param boolean success  操作是否成功
+      * @param deployment apiGroup
       */
 
-  modifyRouterByLower (opts, callback) {
+  describeDeployment (opts, callback) {
     opts = opts || {}
 
-    if (opts.accessId === undefined || opts.accessId === null) {
+    if (opts.sceneId === undefined || opts.sceneId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.accessId' when calling modifyRouterByLower"
+        "Missing the required parameter 'opts.sceneId' when calling describeDeployment"
       )
     }
-    if (opts.customerId === undefined || opts.customerId === null) {
+    if (opts.deploymentId === undefined || opts.deploymentId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.customerId' when calling modifyRouterByLower"
-      )
-    }
-    if (opts.backendUrl === undefined || opts.backendUrl === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.backendUrl' when calling modifyRouterByLower"
+        "Missing the required parameter 'opts.deploymentId' when calling describeDeployment"
       )
     }
 
-    let postBody = {}
-    if (opts.customerId !== undefined && opts.customerId !== null) {
-      postBody['customerId'] = opts.customerId
-    }
-    if (opts.backendUrl !== undefined && opts.backendUrl !== null) {
-      postBody['backendUrl'] = opts.backendUrl
-    }
-
+    let postBody = null
     let queryParams = {}
 
     let pathParams = {
       regionId: 'jdcloud',
-      accessId: opts.accessId
+      sceneId: opts.sceneId,
+      deploymentId: opts.deploymentId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hufu/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hufu/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -242,7 +252,7 @@ description - 描述，模糊匹配，支持单个
     let returnType = null
 
     this.config.logger(
-      `call modifyRouterByLower with params:\npathParams:${JSON.stringify(
+      `call describeDeployment with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -255,8 +265,8 @@ description - 描述，模糊匹配，支持单个
     )
 
     let request = super.makeRequest(
-      '/accesses/{accessId}:update',
-      'POST',
+      '/scenes/{sceneId}/deployments/{deploymentId}',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -308,7 +318,7 @@ description - 描述，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hufu/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hufu/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -379,5 +389,240 @@ description - 描述，模糊匹配，支持单个
       }
     )
   }
+
+  /**
+      *  加密
+      * @param {Object} opts - parameters
+      * @param {string} [opts.cipher] - 密文  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean encryptData  是否是虎符密文
+      */
+
+  isEncryptData (opts, callback) {
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.cipher !== undefined && opts.cipher !== null) {
+      postBody['cipher'] = opts.cipher
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hufu/1.0.7'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call isEncryptData with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/isEncryptData',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询access日志
+      * @param {Object} opts - parameters
+      * @param {string} [opts.call_pin] - 调用者pin  optional
+      * @param {string} [opts.response_status] - 响应码  optional
+      * @param {string} [opts.api_name] - api名称  optional
+      * @param {string} [opts.access_key] - 调用者accessKey  optional
+      * @param {string} [opts.host] - 请求虎符网关的域名  optional
+      * @param {string} opts.startTime - 开始时间，utc格式，例如：2020-05-19T00:00:05+0800
+      * @param {string} opts.endTime - 结束时间，utc格式，例如：2020-05-19T00:00:05+0800
+      * @param {integer} [opts.pageNumber] - 页码  optional
+      * @param {integer} [opts.pageSize] - 分页大小  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param accessLog data
+      * @param integer total
+      */
+
+  queryAccessLog (opts, callback) {
+    opts = opts || {}
+
+    if (opts.startTime === undefined || opts.startTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.startTime' when calling queryAccessLog"
+      )
+    }
+    if (opts.endTime === undefined || opts.endTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.endTime' when calling queryAccessLog"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.call_pin !== undefined && opts.call_pin !== null) {
+      queryParams['call_pin'] = opts.call_pin
+    }
+    if (opts.response_status !== undefined && opts.response_status !== null) {
+      queryParams['response_status'] = opts.response_status
+    }
+    if (opts.api_name !== undefined && opts.api_name !== null) {
+      queryParams['api_name'] = opts.api_name
+    }
+    if (opts.access_key !== undefined && opts.access_key !== null) {
+      queryParams['access_key'] = opts.access_key
+    }
+    if (opts.host !== undefined && opts.host !== null) {
+      queryParams['host'] = opts.host
+    }
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hufu/1.0.7'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call queryAccessLog with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/access',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
 }
-module.exports = JDCloud.HUFU
+module.exports = HUFU

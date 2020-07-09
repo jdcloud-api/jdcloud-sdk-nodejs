@@ -79,5 +79,6 @@ module.exports = {
   IOTCLOUDGATEWAY: require('./iotcloudgateway'),
   INDUSTRYDATA: require('./industrydata'),
   JDW: require('./jdw'),
+  ASSET: require('./asset'),
   USER: require('./user')
 }

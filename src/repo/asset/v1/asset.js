@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * asset service.
- * @version 0.0.2
+ * @version 0.0.3
  */
 
 class ASSET extends Service {
@@ -39,7 +39,7 @@ class ASSET extends Service {
     options._defaultEndpoint.protocol =
       options._defaultEndpoint.protocol || 'https'
     options._defaultEndpoint.host =
-      options._defaultEndpoint.host || 'asset.jcloud.com'
+      options._defaultEndpoint.host || 'asset.jdcloud-api.com'
     options.basePath = '/v1' // 默认要设为空""
     super(serviceId, options)
   }
@@ -79,7 +79,7 @@ class ASSET extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  asset/0.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  asset/0.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -199,7 +199,7 @@ class ASSET extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  asset/0.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  asset/0.0.3'
     }
 
     let contentTypes = ['application/json']

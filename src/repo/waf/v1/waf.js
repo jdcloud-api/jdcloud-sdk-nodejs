@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Forwarding-Rules-Group
- * 转发规则组相关接口
+ * 告警类接口
+ * 京东云WAF-OpenAPI告警类接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -25,45 +25,36 @@
 require('../../../lib/node_loader')
 var JDCloud = require('../../../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'lb'
+var serviceId = 'waf'
 Service._services[serviceId] = true
 
 /**
- * lb service.
- * @version 0.5.3
+ * waf service.
+ * @version 1.0.0
  */
 
-class LB extends Service {
+class WAF extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
       options._defaultEndpoint.protocol || 'https'
     options._defaultEndpoint.host =
-      options._defaultEndpoint.host || 'lb.jdcloud-api.com'
+      options._defaultEndpoint.host || 'waf.jdcloud-api.com'
     options.basePath = '/v1' // 默认要设为空""
     super(serviceId, options)
   }
 
   /**
-      *  查询后端服务列表
+      *  createInstance
       * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞), 页码超过总页数时, 显示最后一页  optional
-      * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围：[10,100]  optional
-      * @param {filter} [opts.filters] - backendIds - 后端服务Id列表，支持多个
-backendNames - 后端服务名字列表，支持多个
-loadBalancerId - 负载均衡器Id，支持单个
-agId - 可用性组Id，支持单个
-loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb，支持单个
-protocol - 后端服务的协议【alb】支持Http、Tcp，【nlb】支持Tcp，默认查询所有，支持单个
-  optional
+      * @param {orderReq} opts.req - 请求
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param backend backends
-      * @param integer totalCount  总数量
+      * @param string buyId  buyId
       */
 
-  describeBackends (opts, regionId = this.config.regionId, callback) {
+  createInstance (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -71,241 +62,21 @@ protocol - 后端服务的协议【alb】支持Http、Tcp，【nlb】支持Tcp�
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeBackends"
+        "Missing the required parameter 'regionId' when calling  createInstance"
       )
     }
 
     opts = opts || {}
 
-    let postBody = null
-    let queryParams = {}
-    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
-      queryParams['pageNumber'] = opts.pageNumber
-    }
-    if (opts.pageSize !== undefined && opts.pageSize !== null) {
-      queryParams['pageSize'] = opts.pageSize
-    }
-    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeBackends with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/backends/',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  创建一个后端服务
-      * @param {Object} opts - parameters
-      * @param {string} opts.backendName - 后端服务名字,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符
-      * @param {string} opts.loadBalancerId - 后端服务所属负载均衡的Id
-      * @param {string} opts.protocol - 后端服务的协议 &lt;br&gt;【alb】取值范围：Http、Tcp &lt;br&gt;【nlb】取值范围：Tcp &lt;br&gt;【dnlb】取值范围：Tcp
-      * @param {integer} opts.port - 后端服务的端口，取值范围为[1, 65535]，如指定了TargetSpec中的port，实际按照target指定的port进行转发
-      * @param {healthCheckSpec} opts.healthCheckSpec - 健康检查信息
-      * @param {string} [opts.algorithm] - 调度算法 &lt;br&gt;【alb,nlb】取值范围为[IpHash, RoundRobin, LeastConn]（取值范围的含义：加权源Ip哈希，加权轮询和加权最小连接），alb和nlb默认为加权轮询 &lt;br&gt;【dnlb】取值范围为[IpHash, QuintupleHash]（取值范围的含义分别为：加权源Ip哈希和加权五元组哈希），dnlb默认为加权源Ip哈希  optional
-      * @param {array} [opts.targetGroupIds] - 虚拟服务器组的Id列表，目前只支持一个，且与agIds不能同时存在  optional
-      * @param {array} [opts.agIds] - 高可用组的Id列表，目前只支持一个，且与targetGroupIds不能同时存在  optional
-      * @param {boolean} [opts.proxyProtocol] - 【alb Tcp协议】获取真实ip, 取值为False(不获取)或者True(获取,支持Proxy Protocol v1版本)，默认为False  optional
-      * @param {string} [opts.description] - 描述,允许输入UTF-8编码下的全部字符，不超过256字符  optional
-      * @param {boolean} [opts.sessionStickiness] - 会话保持, 取值为false(不开启)或者true(开启)，默认为false &lt;br&gt;【alb Http协议，RoundRobin算法】支持基于cookie的会话保持 &lt;br&gt;【nlb】支持基于报文源目的IP的会话保持  optional
-      * @param {integer} [opts.sessionStickyTimeout] - 【nlb】会话保持超时时间，sessionStickiness开启时生效，默认300s, 取值范围[1-3600]  optional
-      * @param {integer} [opts.connectionDrainingSeconds] - 【nlb】连接耗尽超时。移除target前，连接的最大保持时间，默认300s，取值范围[0-3600]  optional
-      * @param {integer} [opts.httpCookieExpireSeconds] - 【alb Http协议】cookie的过期时间,sessionStickiness开启时生效，取值范围为[0-86400], 默认为0（表示cookie与浏览器同生命周期）  optional
-      * @param {boolean} [opts.httpForwardedProtocol] - 【alb Http协议】获取负载均衡的协议, 取值为False(不获取)或True(获取), 默认为False  optional
-      * @param {boolean} [opts.httpForwardedPort] - 【alb Http协议】获取负载均衡的端口, 取值为False(不获取)或True(获取), 默认为False  optional
-      * @param {boolean} [opts.httpForwardedHost] - 【alb Http协议】获取负载均衡的host信息, 取值为False(不获取)或True(获取), 默认为False  optional
-      * @param {boolean} [opts.httpForwardedVip] - 【alb Http协议】获取负载均衡的vip, 取值为False(不获取)或True(获取), 默认为False  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param string backendId  后端服务id
-      */
-
-  createBackend (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
+    if (opts.req === undefined || opts.req === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  createBackend"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.backendName === undefined || opts.backendName === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.backendName' when calling createBackend"
-      )
-    }
-    if (opts.loadBalancerId === undefined || opts.loadBalancerId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.loadBalancerId' when calling createBackend"
-      )
-    }
-    if (opts.protocol === undefined || opts.protocol === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.protocol' when calling createBackend"
-      )
-    }
-    if (opts.port === undefined || opts.port === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.port' when calling createBackend"
-      )
-    }
-    if (opts.healthCheckSpec === undefined || opts.healthCheckSpec === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.healthCheckSpec' when calling createBackend"
+        "Missing the required parameter 'opts.req' when calling createInstance"
       )
     }
 
     let postBody = {}
-    if (opts.backendName !== undefined && opts.backendName !== null) {
-      postBody['backendName'] = opts.backendName
-    }
-    if (opts.loadBalancerId !== undefined && opts.loadBalancerId !== null) {
-      postBody['loadBalancerId'] = opts.loadBalancerId
-    }
-    if (opts.protocol !== undefined && opts.protocol !== null) {
-      postBody['protocol'] = opts.protocol
-    }
-    if (opts.port !== undefined && opts.port !== null) {
-      postBody['port'] = opts.port
-    }
-    if (opts.healthCheckSpec !== undefined && opts.healthCheckSpec !== null) {
-      postBody['healthCheckSpec'] = opts.healthCheckSpec
-    }
-    if (opts.algorithm !== undefined && opts.algorithm !== null) {
-      postBody['algorithm'] = opts.algorithm
-    }
-    if (opts.targetGroupIds !== undefined && opts.targetGroupIds !== null) {
-      postBody['targetGroupIds'] = opts.targetGroupIds
-    }
-    if (opts.agIds !== undefined && opts.agIds !== null) {
-      postBody['agIds'] = opts.agIds
-    }
-    if (opts.proxyProtocol !== undefined && opts.proxyProtocol !== null) {
-      postBody['proxyProtocol'] = opts.proxyProtocol
-    }
-    if (opts.description !== undefined && opts.description !== null) {
-      postBody['description'] = opts.description
-    }
-    if (
-      opts.sessionStickiness !== undefined &&
-      opts.sessionStickiness !== null
-    ) {
-      postBody['sessionStickiness'] = opts.sessionStickiness
-    }
-    if (
-      opts.sessionStickyTimeout !== undefined &&
-      opts.sessionStickyTimeout !== null
-    ) {
-      postBody['sessionStickyTimeout'] = opts.sessionStickyTimeout
-    }
-    if (
-      opts.connectionDrainingSeconds !== undefined &&
-      opts.connectionDrainingSeconds !== null
-    ) {
-      postBody['connectionDrainingSeconds'] = opts.connectionDrainingSeconds
-    }
-    if (
-      opts.httpCookieExpireSeconds !== undefined &&
-      opts.httpCookieExpireSeconds !== null
-    ) {
-      postBody['httpCookieExpireSeconds'] = opts.httpCookieExpireSeconds
-    }
-    if (
-      opts.httpForwardedProtocol !== undefined &&
-      opts.httpForwardedProtocol !== null
-    ) {
-      postBody['httpForwardedProtocol'] = opts.httpForwardedProtocol
-    }
-    if (
-      opts.httpForwardedPort !== undefined &&
-      opts.httpForwardedPort !== null
-    ) {
-      postBody['httpForwardedPort'] = opts.httpForwardedPort
-    }
-    if (
-      opts.httpForwardedHost !== undefined &&
-      opts.httpForwardedHost !== null
-    ) {
-      postBody['httpForwardedHost'] = opts.httpForwardedHost
-    }
-    if (opts.httpForwardedVip !== undefined && opts.httpForwardedVip !== null) {
-      postBody['httpForwardedVip'] = opts.httpForwardedVip
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
     }
 
     let queryParams = {}
@@ -315,7 +86,7 @@ protocol - 后端服务的协议【alb】支持Http、Tcp，【nlb】支持Tcp�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -345,7 +116,7 @@ protocol - 后端服务的协议【alb】支持Http、Tcp，【nlb】支持Tcp�
     let returnType = null
 
     this.config.logger(
-      `call createBackend with params:\npathParams:${JSON.stringify(
+      `call createInstance with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -358,7 +129,7 @@ protocol - 后端服务的协议【alb】支持Http、Tcp，【nlb】支持Tcp�
     )
 
     let request = super.makeRequest(
-      '/regions/{regionId}/backends/',
+      '/regions/{regionId}/billing:createInstance',
       'POST',
       pathParams,
       queryParams,
@@ -388,16 +159,22 @@ protocol - 后端服务的协议【alb】支持Http、Tcp，【nlb】支持Tcp�
   }
 
   /**
-      *  查询后端服务详情
+      *  获取域名可用证书列表
       * @param {Object} opts - parameters
-      * @param {string} opts.backendId - Backend Id
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {getAvailableCertReq} opts.req - 请求
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param backend backend  后端服务的信息
+      * @param string bindCertId  现绑定证书id
+      * @param string bindCertName  现绑定证书名称
+      * @param string certIds
+      * @param string certNames
+      * @param integer count  可用证书个数
+      * @param string domain  域名
       */
 
-  describeBackend (opts, regionId = this.config.regionId, callback) {
+  getAvailableCertForDomain (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -405,224 +182,37 @@ protocol - 后端服务的协议【alb】支持Http、Tcp，【nlb】支持Tcp�
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeBackend"
+        "Missing the required parameter 'regionId' when calling  getAvailableCertForDomain"
       )
     }
 
     opts = opts || {}
 
-    if (opts.backendId === undefined || opts.backendId === null) {
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.backendId' when calling describeBackend"
+        "Missing the required parameter 'opts.wafInstanceId' when calling getAvailableCertForDomain"
       )
     }
-
-    let postBody = null
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      backendId: opts.backendId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeBackend with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/backends/{backendId}',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  修改一个后端服务的信息
-      * @param {Object} opts - parameters
-      * @param {string} opts.backendId - Backend Id
-      * @param {string} [opts.backendName] - 后端服务名称,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符  optional
-      * @param {healthCheckSpec} [opts.healthCheckSpec] - 健康检查信息  optional
-      * @param {string} [opts.algorithm] - 调度算法 &lt;br&gt;【alb,nlb】取值范围为[IpHash, RoundRobin, LeastConn]（含义分别为：加权源Ip哈希，加权轮询和加权最小连接） &lt;br&gt;【dnlb】取值范围为[IpHash, QuintupleHash]（含义分别为：加权源Ip哈希和加权五元组哈希）  optional
-      * @param {array} [opts.targetGroupIds] - 虚拟服务器组的Id列表，目前只支持一个，且与agIds不能同时存在  optional
-      * @param {array} [opts.agIds] - 高可用组的Id列表，目前只支持一个，且与targetGroupIds不能同时存在  optional
-      * @param {boolean} [opts.proxyProtocol] - 【alb Tcp协议】是否启用Proxy ProtocolV1协议获取真实源ip, 取值为false(不开启)或者true(开启), 默认为false  optional
-      * @param {string} [opts.description] - 描述,允许输入UTF-8编码下的全部字符，不超过256字符  optional
-      * @param {boolean} [opts.sessionStickiness] - 会话保持, 取值为false(不开启)或者true(开启)，默认为false &lt;br&gt;【alb Http协议，RoundRobin算法】支持基于cookie的会话保持 &lt;br&gt;【nlb】支持基于报文源目的IP的会话保持  optional
-      * @param {integer} [opts.sessionStickyTimeout] - 【nlb】会话保持超时时间，sessionStickiness开启时生效, 取值范围[1-3600]  optional
-      * @param {integer} [opts.connectionDrainingSeconds] - 【nlb】连接耗尽超时，移除target前，连接的最大保持时间，默认300s，取值范围[0-3600]  optional
-      * @param {integer} [opts.httpCookieExpireSeconds] - 【alb Http协议】cookie的过期时间,sessionStickiness开启时生效，取值范围为[0-86400], 0表示cookie与浏览器同生命周期  optional
-      * @param {boolean} [opts.httpForwardedProtocol] - 【alb Http协议】获取负载均衡的协议, 取值为False(不获取)或True(获取)  optional
-      * @param {boolean} [opts.httpForwardedPort] - 【alb Http协议】获取负载均衡的端口, 取值为False(不获取)或True(获取)  optional
-      * @param {boolean} [opts.httpForwardedHost] - 【alb Http协议】获取负载均衡的host信息, 取值为False(不获取)或True(获取)  optional
-      * @param {boolean} [opts.httpForwardedVip] - 【alb Http协议】获取负载均衡的vip, 取值为False(不获取)或True(获取)  optional
-      * @param {boolean} [opts.closeHealthCheck] - 【alb,dnlb】关闭健康检查，取值为false(不关闭)或true(关闭)  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  updateBackend (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
+    if (opts.req === undefined || opts.req === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  updateBackend"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.backendId === undefined || opts.backendId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.backendId' when calling updateBackend"
+        "Missing the required parameter 'opts.req' when calling getAvailableCertForDomain"
       )
     }
 
     let postBody = {}
-    if (opts.backendName !== undefined && opts.backendName !== null) {
-      postBody['backendName'] = opts.backendName
-    }
-    if (opts.healthCheckSpec !== undefined && opts.healthCheckSpec !== null) {
-      postBody['healthCheckSpec'] = opts.healthCheckSpec
-    }
-    if (opts.algorithm !== undefined && opts.algorithm !== null) {
-      postBody['algorithm'] = opts.algorithm
-    }
-    if (opts.targetGroupIds !== undefined && opts.targetGroupIds !== null) {
-      postBody['targetGroupIds'] = opts.targetGroupIds
-    }
-    if (opts.agIds !== undefined && opts.agIds !== null) {
-      postBody['agIds'] = opts.agIds
-    }
-    if (opts.proxyProtocol !== undefined && opts.proxyProtocol !== null) {
-      postBody['proxyProtocol'] = opts.proxyProtocol
-    }
-    if (opts.description !== undefined && opts.description !== null) {
-      postBody['description'] = opts.description
-    }
-    if (
-      opts.sessionStickiness !== undefined &&
-      opts.sessionStickiness !== null
-    ) {
-      postBody['sessionStickiness'] = opts.sessionStickiness
-    }
-    if (
-      opts.sessionStickyTimeout !== undefined &&
-      opts.sessionStickyTimeout !== null
-    ) {
-      postBody['sessionStickyTimeout'] = opts.sessionStickyTimeout
-    }
-    if (
-      opts.connectionDrainingSeconds !== undefined &&
-      opts.connectionDrainingSeconds !== null
-    ) {
-      postBody['connectionDrainingSeconds'] = opts.connectionDrainingSeconds
-    }
-    if (
-      opts.httpCookieExpireSeconds !== undefined &&
-      opts.httpCookieExpireSeconds !== null
-    ) {
-      postBody['httpCookieExpireSeconds'] = opts.httpCookieExpireSeconds
-    }
-    if (
-      opts.httpForwardedProtocol !== undefined &&
-      opts.httpForwardedProtocol !== null
-    ) {
-      postBody['httpForwardedProtocol'] = opts.httpForwardedProtocol
-    }
-    if (
-      opts.httpForwardedPort !== undefined &&
-      opts.httpForwardedPort !== null
-    ) {
-      postBody['httpForwardedPort'] = opts.httpForwardedPort
-    }
-    if (
-      opts.httpForwardedHost !== undefined &&
-      opts.httpForwardedHost !== null
-    ) {
-      postBody['httpForwardedHost'] = opts.httpForwardedHost
-    }
-    if (opts.httpForwardedVip !== undefined && opts.httpForwardedVip !== null) {
-      postBody['httpForwardedVip'] = opts.httpForwardedVip
-    }
-    if (opts.closeHealthCheck !== undefined && opts.closeHealthCheck !== null) {
-      postBody['closeHealthCheck'] = opts.closeHealthCheck
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
     }
 
     let queryParams = {}
 
     let pathParams = {
       regionId: regionId,
-      backendId: opts.backendId
+      wafInstanceId: opts.wafInstanceId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -652,7 +242,7 @@ protocol - 后端服务的协议【alb】支持Http、Tcp，【nlb】支持Tcp�
     let returnType = null
 
     this.config.logger(
-      `call updateBackend with params:\npathParams:${JSON.stringify(
+      `call getAvailableCertForDomain with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -665,8 +255,8 @@ protocol - 后端服务的协议【alb】支持Http、Tcp，【nlb】支持Tcp�
     )
 
     let request = super.makeRequest(
-      '/regions/{regionId}/backends/{backendId}',
-      'PATCH',
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/cert:availableForDomain',
+      'POST',
       pathParams,
       queryParams,
       headerParams,
@@ -695,15 +285,16 @@ protocol - 后端服务的协议【alb】支持Http、Tcp，【nlb】支持Tcp�
   }
 
   /**
-      *  删除一个后端服务
+      *  绑定证书
       * @param {Object} opts - parameters
-      * @param {string} opts.backendId - Backend Id
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {assignCertReq} opts.req - 请求
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       */
 
-  deleteBackend (opts, regionId = this.config.regionId, callback) {
+  bindCert (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -711,421 +302,142 @@ protocol - 后端服务的协议【alb】支持Http、Tcp，【nlb】支持Tcp�
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  deleteBackend"
+        "Missing the required parameter 'regionId' when calling  bindCert"
       )
     }
 
     opts = opts || {}
 
-    if (opts.backendId === undefined || opts.backendId === null) {
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.backendId' when calling deleteBackend"
+        "Missing the required parameter 'opts.wafInstanceId' when calling bindCert"
       )
     }
-
-    let postBody = null
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      backendId: opts.backendId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call deleteBackend with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/backends/{backendId}',
-      'DELETE',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询后端服务下的target的健康状态
-      * @param {Object} opts - parameters
-      * @param {string} opts.backendId - Backend Id
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param targetHealth targetHealths
-      */
-
-  describeTargetHealth (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
+    if (opts.req === undefined || opts.req === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeTargetHealth"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.backendId === undefined || opts.backendId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.backendId' when calling describeTargetHealth"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      backendId: opts.backendId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeTargetHealth with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/backends/{backendId}/health',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询监听器列表
-      * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞), 页码超过总页数时, 显示最后一页  optional
-      * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围：[10,100]  optional
-      * @param {filter} [opts.filters] - listenerNames - 监听器名称列表，支持多个
-listenerIds - 监听器Id列表，支持多个
-loadBalancerId - 负载均衡器Id，支持单个
-loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb，支持单个
-urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
-  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param listener listeners
-      * @param integer totalCount  总数量
-      */
-
-  describeListeners (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeListeners"
-      )
-    }
-
-    opts = opts || {}
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
-      queryParams['pageNumber'] = opts.pageNumber
-    }
-    if (opts.pageSize !== undefined && opts.pageSize !== null) {
-      queryParams['pageSize'] = opts.pageSize
-    }
-    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeListeners with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/listeners/',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  创建一个监听器
-      * @param {Object} opts - parameters
-      * @param {string} opts.listenerName - Listener的名字,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符
-      * @param {string} opts.protocol - 监听协议, 取值为Tcp, Tls, Http, Https &lt;br&gt;【alb】支持Http, Https，Tcp和Tls &lt;br&gt;【nlb】支持Tcp  &lt;br&gt;【dnlb】支持Tcp
-      * @param {integer} opts.port - 监听端口，取值范围为[1, 65535]
-      * @param {string} opts.backendId - 默认的后端服务Id
-      * @param {string} opts.loadBalancerId - Listener所属loadBalancer的Id
-      * @param {string} [opts.urlMapId] - 【alb Https和Http协议】转发规则组Id  optional
-      * @param {string} [opts.action] - 默认后端服务的转发策略,取值为Forward或Redirect, 现只支持Forward, 默认为Forward  optional
-      * @param {array} [opts.certificateSpecs] - 【alb Https和Tls协议】Listener绑定的默认证书，只支持一个证书  optional
-      * @param {integer} [opts.connectionIdleTimeSeconds] - 【alb、nlb】空闲连接超时时间, 范围为[1,86400]。 &lt;br&gt;（Tcp和Tls协议）默认为：1800s &lt;br&gt;（Http和Https协议）默认为：60s &lt;br&gt;【dnlb】不支持  optional
-      * @param {string} [opts.description] - 描述,允许输入UTF-8编码下的全部字符，不超过256字符  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param string listenerId  监听器id
-      */
-
-  createListener (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  createListener"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.listenerName === undefined || opts.listenerName === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.listenerName' when calling createListener"
-      )
-    }
-    if (opts.protocol === undefined || opts.protocol === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.protocol' when calling createListener"
-      )
-    }
-    if (opts.port === undefined || opts.port === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.port' when calling createListener"
-      )
-    }
-    if (opts.backendId === undefined || opts.backendId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.backendId' when calling createListener"
-      )
-    }
-    if (opts.loadBalancerId === undefined || opts.loadBalancerId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.loadBalancerId' when calling createListener"
+        "Missing the required parameter 'opts.req' when calling bindCert"
       )
     }
 
     let postBody = {}
-    if (opts.listenerName !== undefined && opts.listenerName !== null) {
-      postBody['listenerName'] = opts.listenerName
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
     }
-    if (opts.protocol !== undefined && opts.protocol !== null) {
-      postBody['protocol'] = opts.protocol
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
     }
-    if (opts.port !== undefined && opts.port !== null) {
-      postBody['port'] = opts.port
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
     }
-    if (opts.backendId !== undefined && opts.backendId !== null) {
-      postBody['backendId'] = opts.backendId
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
     }
-    if (opts.loadBalancerId !== undefined && opts.loadBalancerId !== null) {
-      postBody['loadBalancerId'] = opts.loadBalancerId
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call bindCert with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/cert:bindCert',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取网站在一定时间内的bps信息。
+      * @param {Object} opts - parameters
+      * @param {getChartReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer timeScope
+      * @param bps bps  bps数据
+      */
+
+  getBpsData (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
     }
-    if (opts.urlMapId !== undefined && opts.urlMapId !== null) {
-      postBody['urlMapId'] = opts.urlMapId
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getBpsData"
+      )
     }
-    if (opts.action !== undefined && opts.action !== null) {
-      postBody['action'] = opts.action
+
+    opts = opts || {}
+
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling getBpsData"
+      )
     }
-    if (opts.certificateSpecs !== undefined && opts.certificateSpecs !== null) {
-      postBody['certificateSpecs'] = opts.certificateSpecs
-    }
-    if (
-      opts.connectionIdleTimeSeconds !== undefined &&
-      opts.connectionIdleTimeSeconds !== null
-    ) {
-      postBody['connectionIdleTimeSeconds'] = opts.connectionIdleTimeSeconds
-    }
-    if (opts.description !== undefined && opts.description !== null) {
-      postBody['description'] = opts.description
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
     }
 
     let queryParams = {}
@@ -1135,7 +447,7 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -1165,7 +477,7 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
     let returnType = null
 
     this.config.logger(
-      `call createListener with params:\npathParams:${JSON.stringify(
+      `call getBpsData with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1178,7 +490,7 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
     )
 
     let request = super.makeRequest(
-      '/regions/{regionId}/listeners/',
+      '/regions/{regionId}/chart:getBpsData',
       'POST',
       pathParams,
       queryParams,
@@ -1208,16 +520,17 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
   }
 
   /**
-      *  查询监听器详情
+      *  获取网站在一定时间内的qps信息。
       * @param {Object} opts - parameters
-      * @param {string} opts.listenerId - 监听器ID
+      * @param {getChartReq} opts.req - 请求
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param listener listener  监听器的信息
+      * @param integer timeScope
+      * @param qps qps  qps数据
       */
 
-  describeListener (opts, regionId = this.config.regionId, callback) {
+  getQpsData (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -1225,893 +538,21 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeListener"
+        "Missing the required parameter 'regionId' when calling  getQpsData"
       )
     }
 
     opts = opts || {}
 
-    if (opts.listenerId === undefined || opts.listenerId === null) {
+    if (opts.req === undefined || opts.req === null) {
       throw new Error(
-        "Missing the required parameter 'opts.listenerId' when calling describeListener"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      listenerId: opts.listenerId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeListener with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/listeners/{listenerId}',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  修改一个监听器的信息
-      * @param {Object} opts - parameters
-      * @param {string} opts.listenerId - 监听器ID
-      * @param {string} [opts.listenerName] - 监听器名称,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符  optional
-      * @param {string} [opts.status] - Listener状态, 取值为On或者为Off  optional
-      * @param {array} [opts.certificateSpecs] - 【alb Https和Tls协议】Listener绑定的默认证书，只支持一个证书  optional
-      * @param {integer} [opts.connectionIdleTimeSeconds] - 【alb、nlb】空闲连接超时时间, 范围为[1,86400]。 &lt;br&gt;（Tcp和Tls协议）默认为：1800s &lt;br&gt;（Http和Https协议）默认为：60s &lt;br&gt;【dnlb】不支持该功能  optional
-      * @param {string} [opts.backendId] - 默认后端服务Id  optional
-      * @param {string} [opts.urlMapId] - 【alb Https和Http协议】转发规则组Id  optional
-      * @param {string} [opts.description] - 监听器描述,允许输入UTF-8编码下的全部字符，不超过256字符  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  updateListener (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  updateListener"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.listenerId === undefined || opts.listenerId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.listenerId' when calling updateListener"
+        "Missing the required parameter 'opts.req' when calling getQpsData"
       )
     }
 
     let postBody = {}
-    if (opts.listenerName !== undefined && opts.listenerName !== null) {
-      postBody['listenerName'] = opts.listenerName
-    }
-    if (opts.status !== undefined && opts.status !== null) {
-      postBody['status'] = opts.status
-    }
-    if (opts.certificateSpecs !== undefined && opts.certificateSpecs !== null) {
-      postBody['certificateSpecs'] = opts.certificateSpecs
-    }
-    if (
-      opts.connectionIdleTimeSeconds !== undefined &&
-      opts.connectionIdleTimeSeconds !== null
-    ) {
-      postBody['connectionIdleTimeSeconds'] = opts.connectionIdleTimeSeconds
-    }
-    if (opts.backendId !== undefined && opts.backendId !== null) {
-      postBody['backendId'] = opts.backendId
-    }
-    if (opts.urlMapId !== undefined && opts.urlMapId !== null) {
-      postBody['urlMapId'] = opts.urlMapId
-    }
-    if (opts.description !== undefined && opts.description !== null) {
-      postBody['description'] = opts.description
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      listenerId: opts.listenerId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call updateListener with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/listeners/{listenerId}',
-      'PATCH',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  删除一个监听器
-      * @param {Object} opts - parameters
-      * @param {string} opts.listenerId - 监听器ID
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  deleteListener (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  deleteListener"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.listenerId === undefined || opts.listenerId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.listenerId' when calling deleteListener"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      listenerId: opts.listenerId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call deleteListener with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/listeners/{listenerId}',
-      'DELETE',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  listener批量添加扩展证书
-      * @param {Object} opts - parameters
-      * @param {string} opts.listenerId - 监听器ID
-      * @param {array} [opts.certificates] - 【alb Https和Tls协议】ssl server证书列表  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  addListenerCertificates (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  addListenerCertificates"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.listenerId === undefined || opts.listenerId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.listenerId' when calling addListenerCertificates"
-      )
-    }
-
-    let postBody = {}
-    if (opts.certificates !== undefined && opts.certificates !== null) {
-      postBody['certificates'] = opts.certificates
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      listenerId: opts.listenerId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call addListenerCertificates with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/listeners/{listenerId}:addListenerCertificates',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  listener批量修改扩展证书
-      * @param {Object} opts - parameters
-      * @param {string} opts.listenerId - 监听器ID
-      * @param {array} [opts.certificates] - 【alb Https和Tls协议】Listener绑定的扩展证书列表  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  updateListenerCertificates (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  updateListenerCertificates"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.listenerId === undefined || opts.listenerId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.listenerId' when calling updateListenerCertificates"
-      )
-    }
-
-    let postBody = {}
-    if (opts.certificates !== undefined && opts.certificates !== null) {
-      postBody['certificates'] = opts.certificates
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      listenerId: opts.listenerId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call updateListenerCertificates with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/listeners/{listenerId}:updateListenerCertificates',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  listener批量删除扩展证书
-      * @param {Object} opts - parameters
-      * @param {string} opts.listenerId - 监听器ID
-      * @param {array} [opts.certificateBindIds] - 【alb Https和Tls协议】扩展证书绑定Id  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  deleteListenerCertificates (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  deleteListenerCertificates"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.listenerId === undefined || opts.listenerId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.listenerId' when calling deleteListenerCertificates"
-      )
-    }
-
-    let postBody = {}
-    if (
-      opts.certificateBindIds !== undefined &&
-      opts.certificateBindIds !== null
-    ) {
-      postBody['certificateBindIds'] = opts.certificateBindIds
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      listenerId: opts.listenerId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call deleteListenerCertificates with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/listeners/{listenerId}:deleteListenerCertificates',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询负载均衡列表详情
-      * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞), 页码超过总页数时, 显示最后一页  optional
-      * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围：[10,100]  optional
-      * @param {filter} [opts.filters] - loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb，支持单个
-loadBalancerIds - 负载均衡ID列表，支持多个
-loadBalancerNames - 负载均衡名称列表，支持多个
-vpcId - 负载均衡所在Vpc的Id，支持单个
-  optional
-      * @param {tagFilter} [opts.tags] - Tag筛选条件  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param loadBalancer loadBalancers
-      * @param integer totalCount  总数量
-      */
-
-  describeLoadBalancers (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeLoadBalancers"
-      )
-    }
-
-    opts = opts || {}
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
-      queryParams['pageNumber'] = opts.pageNumber
-    }
-    if (opts.pageSize !== undefined && opts.pageSize !== null) {
-      queryParams['pageSize'] = opts.pageSize
-    }
-    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
-    Object.assign(queryParams, super.buildTagFilterParam(opts.tags, 'tags'))
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeLoadBalancers with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/loadBalancers/',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  创建负载均衡
-      * @param {Object} opts - parameters
-      * @param {string} opts.loadBalancerName - LoadBalancer的名称,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符
-      * @param {string} opts.subnetId - LoadBalancer所属子网的Id
-      * @param {string} [opts.type] - LoadBalancer的类型，取值：alb、nlb、dnlb，默认为alb  optional
-      * @param {array} [opts.azs] - 【alb，nlb】LoadBalancer所属availability Zone列表,对于alb,nlb是必选参数 &lt;br&gt;【dnlb】全可用区可用，不必传该参数  optional
-      * @param {chargeSpec} [opts.chargeSpec] - 【alb】支持按用量计费，默认为按用量。【nlb】支持按用量计费。【dnlb】支持按配置计费  optional
-      * @param {elasticIpSpec} [opts.elasticIp] - 负载均衡关联的弹性IP规格  optional
-      * @param {array} [opts.securityGroupIds] - 【alb】 安全组 ID列表  optional
-      * @param {string} [opts.description] - LoadBalancer的描述信息,允许输入UTF-8编码下的全部字符，不超过256字符  optional
-      * @param {boolean} [opts.deleteProtection] - 删除保护，取值为True(开启)或False(关闭)，默认为False  optional
-      * @param {array} [opts.userTags] - 用户tag 信息  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param string loadBalancerId  负载均衡id
-      */
-
-  createLoadBalancer (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  createLoadBalancer"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.loadBalancerName === undefined || opts.loadBalancerName === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.loadBalancerName' when calling createLoadBalancer"
-      )
-    }
-    if (opts.subnetId === undefined || opts.subnetId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.subnetId' when calling createLoadBalancer"
-      )
-    }
-
-    let postBody = {}
-    if (opts.loadBalancerName !== undefined && opts.loadBalancerName !== null) {
-      postBody['loadBalancerName'] = opts.loadBalancerName
-    }
-    if (opts.subnetId !== undefined && opts.subnetId !== null) {
-      postBody['subnetId'] = opts.subnetId
-    }
-    if (opts.type !== undefined && opts.type !== null) {
-      postBody['type'] = opts.type
-    }
-    if (opts.azs !== undefined && opts.azs !== null) {
-      postBody['azs'] = opts.azs
-    }
-    if (opts.chargeSpec !== undefined && opts.chargeSpec !== null) {
-      postBody['chargeSpec'] = opts.chargeSpec
-    }
-    if (opts.elasticIp !== undefined && opts.elasticIp !== null) {
-      postBody['elasticIp'] = opts.elasticIp
-    }
-    if (opts.securityGroupIds !== undefined && opts.securityGroupIds !== null) {
-      postBody['securityGroupIds'] = opts.securityGroupIds
-    }
-    if (opts.description !== undefined && opts.description !== null) {
-      postBody['description'] = opts.description
-    }
-    if (opts.deleteProtection !== undefined && opts.deleteProtection !== null) {
-      postBody['deleteProtection'] = opts.deleteProtection
-    }
-    if (opts.userTags !== undefined && opts.userTags !== null) {
-      postBody['userTags'] = opts.userTags
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
     }
 
     let queryParams = {}
@@ -2121,7 +562,7 @@ vpcId - 负载均衡所在Vpc的Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -2151,7 +592,7 @@ vpcId - 负载均衡所在Vpc的Id，支持单个
     let returnType = null
 
     this.config.logger(
-      `call createLoadBalancer with params:\npathParams:${JSON.stringify(
+      `call getQpsData with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -2164,7 +605,7 @@ vpcId - 负载均衡所在Vpc的Id，支持单个
     )
 
     let request = super.makeRequest(
-      '/regions/{regionId}/loadBalancers/',
+      '/regions/{regionId}/chart:getQpsData',
       'POST',
       pathParams,
       queryParams,
@@ -2194,16 +635,18 @@ vpcId - 负载均衡所在Vpc的Id，支持单个
   }
 
   /**
-      *  查询负载均衡详情
+      *  获取网站lb配置
       * @param {Object} opts - parameters
-      * @param {string} opts.loadBalancerId - LB ID
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {commonReq} opts.req - 请求
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param loadBalancer loadBalancer  负载均衡的信息
+      * @param string wafInstanceId  实例id
+      * @param lbConfig config  网站lb配置
       */
 
-  describeLoadBalancer (opts, regionId = this.config.regionId, callback) {
+  getDomainLbConfig (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -2211,853 +654,1028 @@ vpcId - 负载均衡所在Vpc的Id，支持单个
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeLoadBalancer"
+        "Missing the required parameter 'regionId' when calling  getDomainLbConfig"
       )
     }
 
     opts = opts || {}
 
-    if (opts.loadBalancerId === undefined || opts.loadBalancerId === null) {
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.loadBalancerId' when calling describeLoadBalancer"
+        "Missing the required parameter 'opts.wafInstanceId' when calling getDomainLbConfig"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling getDomainLbConfig"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getDomainLbConfig with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/domain:getDomainLbConfig',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  新增网站
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {addDomain} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  addDomain (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  addDomain"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling addDomain"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling addDomain"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call addDomain with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/domain:add',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新网站
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {addDomain} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  updateDomain (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  updateDomain"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling updateDomain"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling updateDomain"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call updateDomain with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/domain:update',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除网站
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {commonReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteDomain (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteDomain"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling deleteDomain"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling deleteDomain"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteDomain with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/domain:delete',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取网站列表
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {listDomains} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string wafInstanceId  实例id
+      * @param string list
+      * @param integer pageIndex  页码
+      * @param integer pageSize  页大小
+      * @param integer totalCount  该实例下总共的域名数量
+      * @param integer maxLimit  最大支持的数目
+      */
+
+  listDomains (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  listDomains"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling listDomains"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling listDomains"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call listDomains with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/domain:list',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取域名防护配置
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {commonReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string domain  域名
+      * @param integer disableWaf  waf状态 1表示关闭waf
+      * @param aclConf aclConf  网站waf防护配置
+      * @param enableConf antispiderConf  网站防爬虫防护配置
+      * @param ccConf ccConf  网站cc防护配置
+      * @param denyConf denyConf  网站黑名单防护配置
+      * @param intSemConf intSemConf  网站智能语义引擎防护配置
+      * @param ipbanConf ipbanConf  网站恶意ip防护配置
+      * @param ratelimitConf ratelimitConf  网站限速规则防护配置
+      * @param enableConf threatinfoConf  网站威胁情报防护配置
+      * @param userDefPageConf userDefPageConf  网站自定义页面配置
+      * @param wafConf wafConf  网站waf防护配置
+      * @param webUserdefConf webUserdefConf  网站web自定义规则防护配置
+      * @param enableConf webcacheConf  网站防篡改防护配置
+      * @param skipConf skipConf  网站白名单防护配置
+      * @param filterHeaderConf filterHeaderConf  网站请求头管理防护配置
+      * @param filterSenseConf filterSenseConf  网站敏感信息防护配置
+      * @param statusConf statusConf  状态码修改配置
+      * @param uriRewriteConf uriRewriteConf  网站uri重写规则配置
+      * @param enableConf proxycacheConf  proxy缓存配置
+      * @param enableConf riskConf  risk配置
+      */
+
+  getDomainAntiConfig (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getDomainAntiConfig"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling getDomainAntiConfig"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling getDomainAntiConfig"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getDomainAntiConfig with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/domain:getAntiConfig',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取网站
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {listDomains} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string wafInstanceId  实例id
+      * @param domainMainConfig list
+      * @param integer pageIndex  页码
+      * @param integer pageSize  页大小
+      * @param integer maxLimit  最大支持的数目
+      */
+
+  listMainCfg (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  listMainCfg"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling listMainCfg"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling listMainCfg"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call listMainCfg with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/domain:listMainCfg',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  规则开关
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {disableRulesReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string wafInstanceId  实例id
+      * @param domainMainConfig list
+      * @param integer pageIndex  页码
+      * @param integer pageSize  页大小
+      * @param integer totalCount  该实例下总共的域名数量
+      * @param integer maxLimit  最大支持的数目
+      */
+
+  disableRules (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  disableRules"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling disableRules"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling disableRules"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call disableRules with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/domain:disableRules',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取ip的域名信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.ip - ip列表，多个以逗号分隔
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param ipDomainInfo list
+      */
+
+  describeIpDomainInfo (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeIpDomainInfo"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.ip === undefined || opts.ip === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.ip' when calling describeIpDomainInfo"
       )
     }
 
     let postBody = null
     let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      loadBalancerId: opts.loadBalancerId
+    if (opts.ip !== undefined && opts.ip !== null) {
+      queryParams['ip'] = opts.ip
     }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeLoadBalancer with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/loadBalancers/{loadBalancerId}',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  更新负载均衡信息
-      * @param {Object} opts - parameters
-      * @param {string} opts.loadBalancerId - LB ID
-      * @param {string} [opts.loadBalancerName] - LoadBalancer的名称,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符  optional
-      * @param {string} [opts.action] - 启用或停止LoadBalancer，取值为Start(启用)或Stop(停止)  optional
-      * @param {string} [opts.description] - LoadBalancer的描述信息,允许输入UTF-8编码下的全部字符，不超过256字符  optional
-      * @param {boolean} [opts.deleteProtection] - 删除保护，取值为True(开启)或False(关闭)，默认为False  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  updateLoadBalancer (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  updateLoadBalancer"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.loadBalancerId === undefined || opts.loadBalancerId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.loadBalancerId' when calling updateLoadBalancer"
-      )
-    }
-
-    let postBody = {}
-    if (opts.loadBalancerName !== undefined && opts.loadBalancerName !== null) {
-      postBody['loadBalancerName'] = opts.loadBalancerName
-    }
-    if (opts.action !== undefined && opts.action !== null) {
-      postBody['action'] = opts.action
-    }
-    if (opts.description !== undefined && opts.description !== null) {
-      postBody['description'] = opts.description
-    }
-    if (opts.deleteProtection !== undefined && opts.deleteProtection !== null) {
-      postBody['deleteProtection'] = opts.deleteProtection
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      loadBalancerId: opts.loadBalancerId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call updateLoadBalancer with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/loadBalancers/{loadBalancerId}',
-      'PATCH',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  删除负载均衡，负载均衡下的监听器，转发规则组(仅alb支持)，后端服务，服务器组会一起删除
-      * @param {Object} opts - parameters
-      * @param {string} opts.loadBalancerId - LB ID
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  deleteLoadBalancer (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  deleteLoadBalancer"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.loadBalancerId === undefined || opts.loadBalancerId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.loadBalancerId' when calling deleteLoadBalancer"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      loadBalancerId: opts.loadBalancerId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call deleteLoadBalancer with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/loadBalancers/{loadBalancerId}',
-      'DELETE',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  负载均衡绑定弹性公网IP
-      * @param {Object} opts - parameters
-      * @param {string} opts.loadBalancerId - LB ID
-      * @param {string} opts.elasticIpId - 弹性公网IP ID
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  associateElasticIp (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  associateElasticIp"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.loadBalancerId === undefined || opts.loadBalancerId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.loadBalancerId' when calling associateElasticIp"
-      )
-    }
-    if (opts.elasticIpId === undefined || opts.elasticIpId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.elasticIpId' when calling associateElasticIp"
-      )
-    }
-
-    let postBody = {}
-    if (opts.elasticIpId !== undefined && opts.elasticIpId !== null) {
-      postBody['elasticIpId'] = opts.elasticIpId
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      loadBalancerId: opts.loadBalancerId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call associateElasticIp with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/loadBalancers/{loadBalancerId}:associateElasticIp',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  负载均衡解绑弹性公网IP
-      * @param {Object} opts - parameters
-      * @param {string} opts.loadBalancerId - LB ID
-      * @param {string} opts.elasticIpId - 弹性公网IP ID
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  disassociateElasticIp (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  disassociateElasticIp"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.loadBalancerId === undefined || opts.loadBalancerId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.loadBalancerId' when calling disassociateElasticIp"
-      )
-    }
-    if (opts.elasticIpId === undefined || opts.elasticIpId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.elasticIpId' when calling disassociateElasticIp"
-      )
-    }
-
-    let postBody = {}
-    if (opts.elasticIpId !== undefined && opts.elasticIpId !== null) {
-      postBody['elasticIpId'] = opts.elasticIpId
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      loadBalancerId: opts.loadBalancerId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call disassociateElasticIp with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/loadBalancers/{loadBalancerId}:disassociateElasticIp',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  负载均衡绑定安全组
-      * @param {Object} opts - parameters
-      * @param {string} opts.loadBalancerId - LB ID
-      * @param {array} [opts.securityGroupIds] - 安全组 ID列表  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  associateSecurityGroup (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  associateSecurityGroup"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.loadBalancerId === undefined || opts.loadBalancerId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.loadBalancerId' when calling associateSecurityGroup"
-      )
-    }
-
-    let postBody = {}
-    if (opts.securityGroupIds !== undefined && opts.securityGroupIds !== null) {
-      postBody['securityGroupIds'] = opts.securityGroupIds
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      loadBalancerId: opts.loadBalancerId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call associateSecurityGroup with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/loadBalancers/{loadBalancerId}:associateSecurityGroup',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  负载均衡解绑安全组
-      * @param {Object} opts - parameters
-      * @param {string} opts.loadBalancerId - LB ID
-      * @param {array} [opts.securityGroupIds] - 安全组 ID列表  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  disassociateSecurityGroup (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  disassociateSecurityGroup"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.loadBalancerId === undefined || opts.loadBalancerId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.loadBalancerId' when calling disassociateSecurityGroup"
-      )
-    }
-
-    let postBody = {}
-    if (opts.securityGroupIds !== undefined && opts.securityGroupIds !== null) {
-      postBody['securityGroupIds'] = opts.securityGroupIds
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      loadBalancerId: opts.loadBalancerId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call disassociateSecurityGroup with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/loadBalancers/{loadBalancerId}:disassociateSecurityGroup',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询虚拟服务器组列表详情，返回target详情功能3个月后将会下线，建议用户直接使用describeTargets接口查询target详情
-      * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞), 页码超过总页数时, 显示最后一页  optional
-      * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围：[10,100]  optional
-      * @param {filter} [opts.filters] - targetGroupIds - TargetGroup ID列表，支持多个
-targetGroupNames - TargetGroup名称列表，支持多个
-loadBalancerId － TargetGroup所属负载均衡的Id，支持单个
-loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb，支持单个
-  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param targetGroup targetGroups
-      * @param integer totalCount  总数量
-      */
-
-  describeTargetGroups (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeTargetGroups"
-      )
-    }
-
-    opts = opts || {}
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
-      queryParams['pageNumber'] = opts.pageNumber
-    }
-    if (opts.pageSize !== undefined && opts.pageSize !== null) {
-      queryParams['pageSize'] = opts.pageSize
-    }
-    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -3087,7 +1705,7 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
     let returnType = null
 
     this.config.logger(
-      `call describeTargetGroups with params:\npathParams:${JSON.stringify(
+      `call describeIpDomainInfo with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -3100,7 +1718,7 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
     )
 
     let request = super.makeRequest(
-      '/regions/{regionId}/targetGroups/',
+      '/regions/{regionId}/ip:domainInfo',
       'GET',
       pathParams,
       queryParams,
@@ -3130,19 +1748,16 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
   }
 
   /**
-      *  创建一个虚拟服务器组
+      *  判断IP是否为waf的vip
       * @param {Object} opts - parameters
-      * @param {string} opts.targetGroupName - 虚拟服务器组名称,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符
-      * @param {string} opts.loadBalancerId - 负载均衡的Id
-      * @param {string} [opts.description] - 描述,允许输入UTF-8编码下的全部字符，不超过256字符  optional
-      * @param {string} [opts.type] - 类型，取值为instance或ip  optional
+      * @param {string} opts.ip - ip列表，多个以逗号分隔
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param string targetGroupId  虚拟服务器组Id
+      * @param ipVipInfo list
       */
 
-  createTargetGroup (opts, regionId = this.config.regionId, callback) {
+  isWafVip (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -3150,45 +1765,30 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  createTargetGroup"
+        "Missing the required parameter 'regionId' when calling  isWafVip"
       )
     }
 
     opts = opts || {}
 
-    if (opts.targetGroupName === undefined || opts.targetGroupName === null) {
+    if (opts.ip === undefined || opts.ip === null) {
       throw new Error(
-        "Missing the required parameter 'opts.targetGroupName' when calling createTargetGroup"
-      )
-    }
-    if (opts.loadBalancerId === undefined || opts.loadBalancerId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.loadBalancerId' when calling createTargetGroup"
+        "Missing the required parameter 'opts.ip' when calling isWafVip"
       )
     }
 
-    let postBody = {}
-    if (opts.targetGroupName !== undefined && opts.targetGroupName !== null) {
-      postBody['targetGroupName'] = opts.targetGroupName
-    }
-    if (opts.loadBalancerId !== undefined && opts.loadBalancerId !== null) {
-      postBody['loadBalancerId'] = opts.loadBalancerId
-    }
-    if (opts.description !== undefined && opts.description !== null) {
-      postBody['description'] = opts.description
-    }
-    if (opts.type !== undefined && opts.type !== null) {
-      postBody['type'] = opts.type
-    }
-
+    let postBody = null
     let queryParams = {}
+    if (opts.ip !== undefined && opts.ip !== null) {
+      queryParams['ip'] = opts.ip
+    }
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -3218,7 +1818,7 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
     let returnType = null
 
     this.config.logger(
-      `call createTargetGroup with params:\npathParams:${JSON.stringify(
+      `call isWafVip with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -3231,118 +1831,7 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
     )
 
     let request = super.makeRequest(
-      '/regions/{regionId}/targetGroups/',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询TargetGroup详情，返回target详情功能3个月后将会下线，建议用户直接使用describeTargets接口查询target详情
-      * @param {Object} opts - parameters
-      * @param {string} opts.targetGroupId - TargetGroup Id
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param targetGroup targetGroup  TargetGroup资源信息
-      */
-
-  describeTargetGroup (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeTargetGroup"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.targetGroupId === undefined || opts.targetGroupId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.targetGroupId' when calling describeTargetGroup"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      targetGroupId: opts.targetGroupId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeTargetGroup with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/targetGroups/{targetGroupId}',
+      '/regions/{regionId}/ip:isWafVip',
       'GET',
       pathParams,
       queryParams,
@@ -3372,17 +1861,16 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
   }
 
   /**
-      *  修改一个虚拟服务器组的信息
+      *  激活waf
       * @param {Object} opts - parameters
-      * @param {string} opts.targetGroupId - TargetGroup Id
-      * @param {string} [opts.description] - 虚拟服务器组描述,允许输入UTF-8编码下的全部字符，不超过256字符  optional
-      * @param {string} [opts.targetGroupName] - 虚拟服务器组名称,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符  optional
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {enableReq} opts.req - 请求
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       */
 
-  updateTargetGroup (opts, regionId = this.config.regionId, callback) {
+  enableWaf (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -3390,35 +1878,37 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  updateTargetGroup"
+        "Missing the required parameter 'regionId' when calling  enableWaf"
       )
     }
 
     opts = opts || {}
 
-    if (opts.targetGroupId === undefined || opts.targetGroupId === null) {
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.targetGroupId' when calling updateTargetGroup"
+        "Missing the required parameter 'opts.wafInstanceId' when calling enableWaf"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling enableWaf"
       )
     }
 
     let postBody = {}
-    if (opts.description !== undefined && opts.description !== null) {
-      postBody['description'] = opts.description
-    }
-    if (opts.targetGroupName !== undefined && opts.targetGroupName !== null) {
-      postBody['targetGroupName'] = opts.targetGroupName
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
     }
 
     let queryParams = {}
 
     let pathParams = {
       regionId: regionId,
-      targetGroupId: opts.targetGroupId
+      wafInstanceId: opts.wafInstanceId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -3448,7 +1938,7 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
     let returnType = null
 
     this.config.logger(
-      `call updateTargetGroup with params:\npathParams:${JSON.stringify(
+      `call enableWaf with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -3461,237 +1951,7 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
     )
 
     let request = super.makeRequest(
-      '/regions/{regionId}/targetGroups/{targetGroupId}',
-      'PATCH',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  删除一个虚拟服务器组
-      * @param {Object} opts - parameters
-      * @param {string} opts.targetGroupId - TargetGroup Id
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  deleteTargetGroup (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  deleteTargetGroup"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.targetGroupId === undefined || opts.targetGroupId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.targetGroupId' when calling deleteTargetGroup"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      targetGroupId: opts.targetGroupId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call deleteTargetGroup with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/targetGroups/{targetGroupId}',
-      'DELETE',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  往TargetGroup中加入Target
-      * @param {Object} opts - parameters
-      * @param {string} opts.targetGroupId - TargetGroup Id
-      * @param {array} opts.targetSpecs - 注册Target列表
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  registerTargets (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  registerTargets"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.targetGroupId === undefined || opts.targetGroupId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.targetGroupId' when calling registerTargets"
-      )
-    }
-    if (opts.targetSpecs === undefined || opts.targetSpecs === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.targetSpecs' when calling registerTargets"
-      )
-    }
-
-    let postBody = {}
-    if (opts.targetSpecs !== undefined && opts.targetSpecs !== null) {
-      postBody['targetSpecs'] = opts.targetSpecs
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      targetGroupId: opts.targetGroupId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call registerTargets with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/targetGroups/{targetGroupId}:registerTargets',
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/waf:enable',
       'POST',
       pathParams,
       queryParams,
@@ -3721,16 +1981,16 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
   }
 
   /**
-      *  从TargetGroup中移除一个或多个Target，失败则全部回滚。 成功移除的target将不会再接收来自loadbalancer新建连接的流量
+      *  设置waf防护模式
       * @param {Object} opts - parameters
-      * @param {string} opts.targetGroupId - TargetGroup Id
-      * @param {array} opts.targetIds - Target Id列表
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {antiModeWafReq} opts.req - 请求
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       */
 
-  deRegisterTargets (opts, regionId = this.config.regionId, callback) {
+  antiModeWaf (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -3738,37 +1998,37 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  deRegisterTargets"
+        "Missing the required parameter 'regionId' when calling  antiModeWaf"
       )
     }
 
     opts = opts || {}
 
-    if (opts.targetGroupId === undefined || opts.targetGroupId === null) {
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.targetGroupId' when calling deRegisterTargets"
+        "Missing the required parameter 'opts.wafInstanceId' when calling antiModeWaf"
       )
     }
-    if (opts.targetIds === undefined || opts.targetIds === null) {
+    if (opts.req === undefined || opts.req === null) {
       throw new Error(
-        "Missing the required parameter 'opts.targetIds' when calling deRegisterTargets"
+        "Missing the required parameter 'opts.req' when calling antiModeWaf"
       )
     }
 
     let postBody = {}
-    if (opts.targetIds !== undefined && opts.targetIds !== null) {
-      postBody['targetIds'] = opts.targetIds
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
     }
 
     let queryParams = {}
 
     let pathParams = {
       regionId: regionId,
-      targetGroupId: opts.targetGroupId
+      wafInstanceId: opts.wafInstanceId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -3798,7 +2058,7 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
     let returnType = null
 
     this.config.logger(
-      `call deRegisterTargets with params:\npathParams:${JSON.stringify(
+      `call antiModeWaf with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -3811,7 +2071,7 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
     )
 
     let request = super.makeRequest(
-      '/regions/{regionId}/targetGroups/{targetGroupId}:deregisterTargets',
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/waf:antiMode',
       'POST',
       pathParams,
       queryParams,
@@ -3841,16 +2101,16 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
   }
 
   /**
-      *  修改target信息
+      *  设置waf策略等级
       * @param {Object} opts - parameters
-      * @param {string} opts.targetGroupId - TargetGroup Id
-      * @param {array} opts.targetUpdateSpecs - 修改target信息
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {antiLevelWafReq} opts.req - 请求
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       */
 
-  updateTargets (opts, regionId = this.config.regionId, callback) {
+  antiLevelWaf (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -3858,43 +2118,37 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  updateTargets"
+        "Missing the required parameter 'regionId' when calling  antiLevelWaf"
       )
     }
 
     opts = opts || {}
 
-    if (opts.targetGroupId === undefined || opts.targetGroupId === null) {
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.targetGroupId' when calling updateTargets"
+        "Missing the required parameter 'opts.wafInstanceId' when calling antiLevelWaf"
       )
     }
-    if (
-      opts.targetUpdateSpecs === undefined ||
-      opts.targetUpdateSpecs === null
-    ) {
+    if (opts.req === undefined || opts.req === null) {
       throw new Error(
-        "Missing the required parameter 'opts.targetUpdateSpecs' when calling updateTargets"
+        "Missing the required parameter 'opts.req' when calling antiLevelWaf"
       )
     }
 
     let postBody = {}
-    if (
-      opts.targetUpdateSpecs !== undefined &&
-      opts.targetUpdateSpecs !== null
-    ) {
-      postBody['targetUpdateSpecs'] = opts.targetUpdateSpecs
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
     }
 
     let queryParams = {}
 
     let pathParams = {
       regionId: regionId,
-      targetGroupId: opts.targetGroupId
+      wafInstanceId: opts.wafInstanceId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -3924,7 +2178,7 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
     let returnType = null
 
     this.config.logger(
-      `call updateTargets with params:\npathParams:${JSON.stringify(
+      `call antiLevelWaf with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -3937,7 +2191,7 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
     )
 
     let request = super.makeRequest(
-      '/regions/{regionId}/targetGroups/{targetGroupId}:updateTargets',
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/waf:antiLevel',
       'POST',
       pathParams,
       queryParams,
@@ -3967,25 +2221,16 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
   }
 
   /**
-      *  查询Target列表详情
+      *  激活waf自定义规则
       * @param {Object} opts - parameters
-      * @param {string} opts.targetGroupId - TargetGroup Id
-      * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞), 页码超过总页数时, 显示最后一页  optional
-      * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围：[10,100]  optional
-      * @param {filter} [opts.filters] - targetIds - Target ID列表，支持多个
-instanceId - Instance ID,仅支持单个
-type － vm, container, ip,仅支持单个
-port - 端口,仅支持单个
-ipAddress - ip地址,仅支持单个
-  optional
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {setWafUserDefineReq} opts.req - 请求
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param target targets
-      * @param integer totalCount  总数量
       */
 
-  describeTargets (opts, regionId = this.config.regionId, callback) {
+  enableWafUserDefine (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -3993,279 +2238,37 @@ ipAddress - ip地址,仅支持单个
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeTargets"
+        "Missing the required parameter 'regionId' when calling  enableWafUserDefine"
       )
     }
 
     opts = opts || {}
 
-    if (opts.targetGroupId === undefined || opts.targetGroupId === null) {
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.targetGroupId' when calling describeTargets"
+        "Missing the required parameter 'opts.wafInstanceId' when calling enableWafUserDefine"
       )
     }
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
-      queryParams['pageNumber'] = opts.pageNumber
-    }
-    if (opts.pageSize !== undefined && opts.pageSize !== null) {
-      queryParams['pageSize'] = opts.pageSize
-    }
-    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
-
-    let pathParams = {
-      regionId: regionId,
-      targetGroupId: opts.targetGroupId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeTargets with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/targetGroups/{targetGroupId}:describeTargets',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询转发规则组列表详情
-      * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞), 页码超过总页数时, 显示最后一页  optional
-      * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围：[10,100]  optional
-      * @param {filter} [opts.filters] - urlMapIds - 转发规则组Id列表，支持多个
-urlMapNames -转发规则组名称列表，支持多个
-loadBalancerId - 负载均衡器Id，支持单个
-  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param urlMap urlMaps
-      * @param integer totalCount  总数量
-      */
-
-  describeUrlMaps (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
+    if (opts.req === undefined || opts.req === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeUrlMaps"
-      )
-    }
-
-    opts = opts || {}
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
-      queryParams['pageNumber'] = opts.pageNumber
-    }
-    if (opts.pageSize !== undefined && opts.pageSize !== null) {
-      queryParams['pageSize'] = opts.pageSize
-    }
-    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeUrlMaps with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/urlMaps/',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  创建转发规则组,仅alb支持
-      * @param {Object} opts - parameters
-      * @param {string} opts.urlMapName - 转发规则组名称，同一个负载均衡下，名称不能重复,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符
-      * @param {string} opts.loadBalancerId - 转发规则组所属负载均衡的Id
-      * @param {string} [opts.description] - 描述,允许输入UTF-8编码下的全部字符，不超过256字符  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param string urlMapId  转发规则组id
-      */
-
-  createUrlMap (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  createUrlMap"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.urlMapName === undefined || opts.urlMapName === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.urlMapName' when calling createUrlMap"
-      )
-    }
-    if (opts.loadBalancerId === undefined || opts.loadBalancerId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.loadBalancerId' when calling createUrlMap"
+        "Missing the required parameter 'opts.req' when calling enableWafUserDefine"
       )
     }
 
     let postBody = {}
-    if (opts.urlMapName !== undefined && opts.urlMapName !== null) {
-      postBody['urlMapName'] = opts.urlMapName
-    }
-    if (opts.loadBalancerId !== undefined && opts.loadBalancerId !== null) {
-      postBody['loadBalancerId'] = opts.loadBalancerId
-    }
-    if (opts.description !== undefined && opts.description !== null) {
-      postBody['description'] = opts.description
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
     }
 
     let queryParams = {}
 
     let pathParams = {
-      regionId: regionId
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -4295,7 +2298,7 @@ loadBalancerId - 负载均衡器Id，支持单个
     let returnType = null
 
     this.config.logger(
-      `call createUrlMap with params:\npathParams:${JSON.stringify(
+      `call enableWafUserDefine with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -4308,7 +2311,7 @@ loadBalancerId - 负载均衡器Id，支持单个
     )
 
     let request = super.makeRequest(
-      '/regions/{regionId}/urlMaps/',
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/waf:setWafUserDefine',
       'POST',
       pathParams,
       queryParams,
@@ -4338,16 +2341,16 @@ loadBalancerId - 负载均衡器Id，支持单个
   }
 
   /**
-      *  查询转发规则组详情
+      *  设置waf自定义规则
       * @param {Object} opts - parameters
-      * @param {string} opts.urlMapId - 转发规则组Id
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {setWafRuleReq} opts.req - 请求
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param urlMap urlMap  转发规则组的信息
       */
 
-  describeUrlMap (opts, regionId = this.config.regionId, callback) {
+  setWafRule (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -4355,147 +2358,37 @@ loadBalancerId - 负载均衡器Id，支持单个
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeUrlMap"
+        "Missing the required parameter 'regionId' when calling  setWafRule"
       )
     }
 
     opts = opts || {}
 
-    if (opts.urlMapId === undefined || opts.urlMapId === null) {
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.urlMapId' when calling describeUrlMap"
+        "Missing the required parameter 'opts.wafInstanceId' when calling setWafRule"
       )
     }
-
-    let postBody = null
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      urlMapId: opts.urlMapId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeUrlMap with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/urlMaps/{urlMapId}',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  修改转发规则组
-      * @param {Object} opts - parameters
-      * @param {string} opts.urlMapId - 转发规则组Id
-      * @param {string} [opts.description] - 转发规则组描述,允许输入UTF-8编码下的全部字符，不超过256字符  optional
-      * @param {string} [opts.urlMapName] - 转发规则组名称，同一个负载均衡下，名称不能重复,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  updateUrlMap (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
+    if (opts.req === undefined || opts.req === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  updateUrlMap"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.urlMapId === undefined || opts.urlMapId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.urlMapId' when calling updateUrlMap"
+        "Missing the required parameter 'opts.req' when calling setWafRule"
       )
     }
 
     let postBody = {}
-    if (opts.description !== undefined && opts.description !== null) {
-      postBody['description'] = opts.description
-    }
-    if (opts.urlMapName !== undefined && opts.urlMapName !== null) {
-      postBody['urlMapName'] = opts.urlMapName
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
     }
 
     let queryParams = {}
 
     let pathParams = {
       regionId: regionId,
-      urlMapId: opts.urlMapId
+      wafInstanceId: opts.wafInstanceId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -4525,7 +2418,7 @@ loadBalancerId - 负载均衡器Id，支持单个
     let returnType = null
 
     this.config.logger(
-      `call updateUrlMap with params:\npathParams:${JSON.stringify(
+      `call setWafRule with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -4538,232 +2431,7 @@ loadBalancerId - 负载均衡器Id，支持单个
     )
 
     let request = super.makeRequest(
-      '/regions/{regionId}/urlMaps/{urlMapId}',
-      'PATCH',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  删除转发规则组
-      * @param {Object} opts - parameters
-      * @param {string} opts.urlMapId - 转发规则组Id
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  deleteUrlMap (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  deleteUrlMap"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.urlMapId === undefined || opts.urlMapId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.urlMapId' when calling deleteUrlMap"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      urlMapId: opts.urlMapId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call deleteUrlMap with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/urlMaps/{urlMapId}',
-      'DELETE',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  往转发规则组加入转发规则
-      * @param {Object} opts - parameters
-      * @param {string} opts.urlMapId - 转发规则组Id
-      * @param {array} [opts.ruleSpecs] - 转发规则的信息  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  addRules (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  addRules"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.urlMapId === undefined || opts.urlMapId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.urlMapId' when calling addRules"
-      )
-    }
-
-    let postBody = {}
-    if (opts.ruleSpecs !== undefined && opts.ruleSpecs !== null) {
-      postBody['ruleSpecs'] = opts.ruleSpecs
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      urlMapId: opts.urlMapId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call addRules with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/urlMaps/{urlMapId}:addRules',
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/waf:setRule',
       'POST',
       pathParams,
       queryParams,
@@ -4793,16 +2461,16 @@ loadBalancerId - 负载均衡器Id，支持单个
   }
 
   /**
-      *  修改转发规则
+      *  删除waf自定义规则
       * @param {Object} opts - parameters
-      * @param {string} opts.urlMapId - 转发规则组Id
-      * @param {array} [opts.ruleUpdateSpecs] - 更新转发规则rules信息  optional
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {delRulesReq} opts.req - 请求
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       */
 
-  updateRules (opts, regionId = this.config.regionId, callback) {
+  delWafRule (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -4810,32 +2478,37 @@ loadBalancerId - 负载均衡器Id，支持单个
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  updateRules"
+        "Missing the required parameter 'regionId' when calling  delWafRule"
       )
     }
 
     opts = opts || {}
 
-    if (opts.urlMapId === undefined || opts.urlMapId === null) {
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.urlMapId' when calling updateRules"
+        "Missing the required parameter 'opts.wafInstanceId' when calling delWafRule"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling delWafRule"
       )
     }
 
     let postBody = {}
-    if (opts.ruleUpdateSpecs !== undefined && opts.ruleUpdateSpecs !== null) {
-      postBody['ruleUpdateSpecs'] = opts.ruleUpdateSpecs
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
     }
 
     let queryParams = {}
 
     let pathParams = {
       regionId: regionId,
-      urlMapId: opts.urlMapId
+      wafInstanceId: opts.wafInstanceId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -4865,7 +2538,7 @@ loadBalancerId - 负载均衡器Id，支持单个
     let returnType = null
 
     this.config.logger(
-      `call updateRules with params:\npathParams:${JSON.stringify(
+      `call delWafRule with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -4878,8 +2551,8 @@ loadBalancerId - 负载均衡器Id，支持单个
     )
 
     let request = super.makeRequest(
-      '/regions/{regionId}/urlMaps/{urlMapId}:updateRules',
-      'PATCH',
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/waf:delRule',
+      'POST',
       pathParams,
       queryParams,
       headerParams,
@@ -4908,16 +2581,20 @@ loadBalancerId - 负载均衡器Id，支持单个
   }
 
   /**
-      *  删除转发规则
+      *  获取网站的waf自定义规则
       * @param {Object} opts - parameters
-      * @param {string} opts.urlMapId - 转发规则组Id
-      * @param {array} [opts.ruleIds] - rule Id列表  optional
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {listRulesReq} opts.req - 请求
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param integer pageIndex  页码
+      * @param integer pageSize  页大小
+      * @param integer totalCount  配置总数
+      * @param listWafRuleCfg data  网站waf自定义规则
       */
 
-  deleteRules (opts, regionId = this.config.regionId, callback) {
+  listWafRules (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -4925,32 +2602,37 @@ loadBalancerId - 负载均衡器Id，支持单个
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  deleteRules"
+        "Missing the required parameter 'regionId' when calling  listWafRules"
       )
     }
 
     opts = opts || {}
 
-    if (opts.urlMapId === undefined || opts.urlMapId === null) {
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.urlMapId' when calling deleteRules"
+        "Missing the required parameter 'opts.wafInstanceId' when calling listWafRules"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling listWafRules"
       )
     }
 
     let postBody = {}
-    if (opts.ruleIds !== undefined && opts.ruleIds !== null) {
-      postBody['ruleIds'] = opts.ruleIds
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
     }
 
     let queryParams = {}
 
     let pathParams = {
       regionId: regionId,
-      urlMapId: opts.urlMapId
+      wafInstanceId: opts.wafInstanceId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -4980,7 +2662,7 @@ loadBalancerId - 负载均衡器Id，支持单个
     let returnType = null
 
     this.config.logger(
-      `call deleteRules with params:\npathParams:${JSON.stringify(
+      `call listWafRules with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -4993,7 +2675,3162 @@ loadBalancerId - 负载均衡器Id，支持单个
     )
 
     let request = super.makeRequest(
-      '/regions/{regionId}/urlMaps/{urlMapId}:deleteRules',
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/waf:listRules',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  设置网站黑白名单ip配置
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {setIpReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  addIps (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  addIps"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling addIps"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling addIps"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call addIps with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/userdefine:addIps',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新网站黑白名单ip配置
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {setIpReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  updateIps (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  updateIps"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling updateIps"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling updateIps"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call updateIps with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/userdefine:updateIps',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取网站黑白名单ip配置
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {listDenySkipRulesReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string wafInstanceId  实例id
+      * @param string domain  域名
+      * @param string iswhite  0表示黑名单 1表示白名单
+      * @param integer pageIndex  页码，[1-100]
+      * @param integer pageSize  页大小，[1-100]
+      * @param integer count  总数
+      * @param ipListCfg data  网站过滤器status配置
+      */
+
+  listIps (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  listIps"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling listIps"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling listIps"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call listIps with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/userdefine:listIps',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除网站黑白名单ip配置
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {delRulesReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  delIps (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  delIps"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling delIps"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling delIps"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call delIps with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/userdefine:delIps',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  设置网站waf自定义防护条件
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {setWafConditionReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  setWafCondition (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  setWafCondition"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling setWafCondition"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling setWafCondition"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call setWafCondition with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/waf:setCondition',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除网站waf自定义防护条件
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {delRulesReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  delWafCondition (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  delWafCondition"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling delWafCondition"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling delWafCondition"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call delWafCondition with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/waf:delCondition',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取网站waf自定义防护条件
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {listWafConditionsReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer pageIndex  页码
+      * @param integer pageSize  页大小
+      * @param integer totalCount  配置总数
+      * @param listWafConditionCfg list  网站waf自定义防护条件配置
+      */
+
+  listWafConditions (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  listWafConditions"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling listWafConditions"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling listWafConditions"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call listWafConditions with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/waf:listConditions',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取网站waf自定义防护过滤器
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {listWafFilterReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer pageIndex  页码
+      * @param integer pageSize  页大小
+      * @param integer totalCount  配置总数
+      * @param listWafFilterCfg list  网站waf自定义防护过滤器设置
+      */
+
+  listWafFilter (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  listWafFilter"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling listWafFilter"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling listWafFilter"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call listWafFilter with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/waf:listFilter',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  激活bot
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {enableReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  enableBot (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  enableBot"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling enableBot"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling enableBot"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call enableBot with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/bot:setBot',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  激活自定义bot
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {enableReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  enableUsrBot (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  enableUsrBot"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling enableUsrBot"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling enableUsrBot"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call enableUsrBot with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/bot:setUserDefineBot',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  设置网站已知类型bot规则
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {setBotStdRuleReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  setBotStdRules (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  setBotStdRules"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling setBotStdRules"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling setBotStdRules"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call setBotStdRules with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/bot:setStdRule',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取网站已知类型bot规则
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {listBotStdRuleReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer pageIndex  页码
+      * @param integer pageSize  页大小
+      * @param integer totalCount  配置总数
+      * @param stdBotRules list  已知类型bot规则
+      */
+
+  listBotStdRules (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  listBotStdRules"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling listBotStdRules"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling listBotStdRules"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call listBotStdRules with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/bot:listStdRule',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  新增网站自定义类型bot规则
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {setBotUsrRuleReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  addBotUsrRule (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  addBotUsrRule"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling addBotUsrRule"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling addBotUsrRule"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call addBotUsrRule with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/bot:addUsrRule',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新网站自定义类型bot规则
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {setBotUsrRuleReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  updateBotUsrRule (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  updateBotUsrRule"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling updateBotUsrRule"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling updateBotUsrRule"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call updateBotUsrRule with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/bot:updateUsrRule',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取网站自定义类型bot规则
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {listRulesReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer pageIndex  页码
+      * @param integer pageSize  页大小
+      * @param integer totalCount  配置总数
+      * @param usrBotRules list  自定义类型bot规则
+      */
+
+  listBotUsrRules (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  listBotUsrRules"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling listBotUsrRules"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling listBotUsrRules"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call listBotUsrRules with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/bot:listUsrRule',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除网站自定义类型bot规则
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {delRulesReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  delBotUsrRule (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  delBotUsrRule"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling delBotUsrRule"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling delBotUsrRule"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call delBotUsrRule with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/bot:delUsrRule',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  使能risk
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {enableReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  enableRisk (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  enableRisk"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling enableRisk"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling enableRisk"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call enableRisk with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/risk:enable',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  新增网站业务风控防护规则
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {setRiskRuleReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  setRiskRule (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  setRiskRule"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling setRiskRule"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling setRiskRule"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call setRiskRule with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/risk:setRiskRule',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取网站业务风控规则
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {listRulesReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer pageIndex  页码
+      * @param integer pageSize  页大小
+      * @param integer count  配置总数
+      * @param riskRuleCfg data  规则
+      */
+
+  listRiskRules (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  listRiskRules"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling listRiskRules"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling listRiskRules"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call listRiskRules with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/risk:listRiskRules',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除网站业务防控规则
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {delRulesReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  delRiskRule (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  delRiskRule"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling delRiskRule"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling delRiskRule"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call delRiskRule with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/risk:delRiskRule',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  设置网站业务风控js插入页面
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {setRiskJsReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  setRiskJs (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  setRiskJs"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling setRiskJs"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling setRiskJs"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call setRiskJs with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/risk:setRiskJs',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取网站业务风控js插入页面
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {listRiskJsReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer pageIndex  页码
+      * @param integer pageSize  页大小
+      * @param integer count  配置总数
+      * @param riskJsCfg data  js页面
+      */
+
+  listRiskJs (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  listRiskJs"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling listRiskJs"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling listRiskJs"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call listRiskJs with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/risk:listRiskJs',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除网站业务防控js页面
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {delRulesReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  delRiskJs (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  delRiskJs"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling delRiskJs"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling delRiskJs"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call delRiskJs with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/risk:delRiskJs',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  设置js插入页面
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {setJsPageReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  setJsPage (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  setJsPage"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling setJsPage"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling setJsPage"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call setJsPage with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/js:setPage',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取js插入页面
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {listJsPageReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer pageIndex  页码
+      * @param integer pageSize  页大小
+      * @param integer count  配置总数
+      * @param jsPage data  js页面
+      */
+
+  describeJsPages (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeJsPages"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling describeJsPages"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling describeJsPages"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeJsPages with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/js:listPage',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除js页面
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {delRulesReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  delJsPage (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  delJsPage"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling delJsPage"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling delJsPage"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call delJsPage with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/js:delPage',
       'POST',
       pathParams,
       queryParams,
@@ -5022,4 +5859,4 @@ loadBalancerId - 负载均衡器Id，支持单个
     )
   }
 }
-module.exports = LB
+module.exports = WAF

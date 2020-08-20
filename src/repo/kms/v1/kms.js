@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Secret Management Service
- * 基于硬件保护机密的安全数据托管服务
+ * Statistics Service
+ * 基于硬件保护密钥的安全数据托管服务
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -30,10 +30,10 @@ Service._services[serviceId] = true
 
 /**
  * kms service.
- * @version 0.1.1
+ * @version 0.3.1
  */
 
-JDCloud.KMS = class KMS extends Service {
+class KMS extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
@@ -72,7 +72,7 @@ JDCloud.KMS = class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
     }
 
     let contentTypes = ['application/json']
@@ -114,7 +114,7 @@ JDCloud.KMS = class KMS extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/key',
       'GET',
       pathParams,
@@ -150,6 +150,7 @@ JDCloud.KMS = class KMS extends Service {
       * @param {keyCfg} opts.keyCfg
       * @param {string} callback - callback
       @return {Object} result
+      * @param string keyId  创建的密钥ID
       */
 
   createKey (opts, callback) {
@@ -173,7 +174,7 @@ JDCloud.KMS = class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
     }
 
     let contentTypes = ['application/json']
@@ -215,7 +216,7 @@ JDCloud.KMS = class KMS extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/key:create',
       'POST',
       pathParams,
@@ -272,7 +273,7 @@ JDCloud.KMS = class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
     }
 
     let contentTypes = ['application/json']
@@ -314,7 +315,7 @@ JDCloud.KMS = class KMS extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/key/{keyId}',
       'GET',
       pathParams,
@@ -345,7 +346,9 @@ JDCloud.KMS = class KMS extends Service {
   }
 
   /**
-      *  修改密钥配置，包括key的名称、用途、是否自动轮换和轮换周期等
+      *  -   修改对称密钥配置，包括key的名称、用途、是否自动轮换和轮换周期等;
+-   修改非对称密钥配置，包括key的名称、用途等。
+
       * @param {Object} opts - parameters
       * @param {string} opts.keyId - 密钥ID
       * @param {keyCfg} opts.keyCfg
@@ -380,7 +383,7 @@ JDCloud.KMS = class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
     }
 
     let contentTypes = ['application/json']
@@ -422,7 +425,7 @@ JDCloud.KMS = class KMS extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/key/{keyId}',
       'PATCH',
       pathParams,
@@ -479,7 +482,7 @@ JDCloud.KMS = class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
     }
 
     let contentTypes = ['application/json']
@@ -521,7 +524,7 @@ JDCloud.KMS = class KMS extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/key/{keyId}:enable',
       'PATCH',
       pathParams,
@@ -578,7 +581,7 @@ JDCloud.KMS = class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
     }
 
     let contentTypes = ['application/json']
@@ -620,7 +623,7 @@ JDCloud.KMS = class KMS extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/key/{keyId}:disable',
       'PATCH',
       pathParams,
@@ -680,7 +683,7 @@ JDCloud.KMS = class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
     }
 
     let contentTypes = ['application/json']
@@ -722,7 +725,7 @@ JDCloud.KMS = class KMS extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/key/{keyId}:delete',
       'DELETE',
       pathParams,
@@ -779,7 +782,7 @@ JDCloud.KMS = class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
     }
 
     let contentTypes = ['application/json']
@@ -821,7 +824,7 @@ JDCloud.KMS = class KMS extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/key/{keyId}:cancelDelete',
       'PATCH',
       pathParams,
@@ -852,7 +855,7 @@ JDCloud.KMS = class KMS extends Service {
   }
 
   /**
-      *  立即轮换密钥，自动轮换周期顺延
+      *  立即轮换密钥，自动轮换周期顺延-支持对称密钥
       * @param {Object} opts - parameters
       * @param {string} opts.keyId - 密钥ID
       * @param {string} callback - callback
@@ -878,7 +881,7 @@ JDCloud.KMS = class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
     }
 
     let contentTypes = ['application/json']
@@ -920,7 +923,7 @@ JDCloud.KMS = class KMS extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/key/{keyId}:rotate',
       'PATCH',
       pathParams,
@@ -951,7 +954,7 @@ JDCloud.KMS = class KMS extends Service {
   }
 
   /**
-      *  使用密钥对数据进行加密
+      *  使用密钥对数据进行加密，针对非对称密钥：使用公钥进行加密，仅支持RSA_PKCS1_PADDING填充方式，最大加密数据长度为245字节
       * @param {Object} opts - parameters
       * @param {string} opts.keyId - 密钥ID
       * @param {} [opts.plaintext] - 明文数据 Base64-encoded binary data object  optional
@@ -982,7 +985,7 @@ JDCloud.KMS = class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
     }
 
     let contentTypes = ['application/json']
@@ -1024,7 +1027,7 @@ JDCloud.KMS = class KMS extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/key/{keyId}:Encrypt',
       'POST',
       pathParams,
@@ -1055,7 +1058,7 @@ JDCloud.KMS = class KMS extends Service {
   }
 
   /**
-      *  使用密钥对数据进行解密
+      *  使用密钥对数据进行解密，针对非对称密钥：使用私钥进行加密
       * @param {Object} opts - parameters
       * @param {string} opts.keyId - 密钥ID
       * @param {} [opts.ciphertextBlob] - 密文数据 Base64-encoded binary data object  optional
@@ -1086,7 +1089,7 @@ JDCloud.KMS = class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
     }
 
     let contentTypes = ['application/json']
@@ -1128,8 +1131,319 @@ JDCloud.KMS = class KMS extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/key/{keyId}:Decrypt',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取非对称密钥的公钥
+      * @param {Object} opts - parameters
+      * @param {string} opts.keyId - 密钥ID
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string publicKeyBlob  公钥，PEM格式
+      */
+
+  getPublicKey (opts, callback) {
+    opts = opts || {}
+
+    if (opts.keyId === undefined || opts.keyId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.keyId' when calling getPublicKey"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      keyId: opts.keyId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getPublicKey with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/key/{keyId}:GetPublicKey',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  使用非对称密钥的私钥签名,签名算法仅支持RSA_PKCS1_PADDING填充方式,最大签名数据长度为4K字节
+      * @param {Object} opts - parameters
+      * @param {string} opts.keyId - 密钥ID
+      * @param {} [opts.plaintext] - 需要签名的数据 Base64-encoded binary data object  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string signature  签名
+      */
+
+  sign (opts, callback) {
+    opts = opts || {}
+
+    if (opts.keyId === undefined || opts.keyId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.keyId' when calling sign"
+      )
+    }
+
+    let postBody = {}
+    if (opts.plaintext !== undefined && opts.plaintext !== null) {
+      postBody['plaintext'] = opts.plaintext
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      keyId: opts.keyId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call sign with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/key/{keyId}:Sign',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  使用非对称密钥的公钥验证签名
+      * @param {Object} opts - parameters
+      * @param {string} opts.keyId - 密钥ID
+      * @param {} [opts.plaintext] - 需要签名的数据 Base64-encoded binary data object  optional
+      * @param {} [opts.signature] - 签名  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean validated  校验签名结果，true为成功，false为失败
+      */
+
+  validate (opts, callback) {
+    opts = opts || {}
+
+    if (opts.keyId === undefined || opts.keyId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.keyId' when calling validate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.plaintext !== undefined && opts.plaintext !== null) {
+      postBody['plaintext'] = opts.plaintext
+    }
+    if (opts.signature !== undefined && opts.signature !== null) {
+      postBody['signature'] = opts.signature
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      keyId: opts.keyId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call validate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/key/{keyId}:Validate',
       'POST',
       pathParams,
       queryParams,
@@ -1186,7 +1500,7 @@ JDCloud.KMS = class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
     }
 
     let contentTypes = ['application/json']
@@ -1228,7 +1542,7 @@ JDCloud.KMS = class KMS extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/key/{keyId}:GenerateDataKey',
       'GET',
       pathParams,
@@ -1293,7 +1607,7 @@ JDCloud.KMS = class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
     }
 
     let contentTypes = ['application/json']
@@ -1335,7 +1649,7 @@ JDCloud.KMS = class KMS extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/key/{keyId}:describeKeyDetail',
       'GET',
       pathParams,
@@ -1399,7 +1713,7 @@ JDCloud.KMS = class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
     }
 
     let contentTypes = ['application/json']
@@ -1441,7 +1755,7 @@ JDCloud.KMS = class KMS extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/key/{keyId}/version/{version}:enable',
       'PATCH',
       pathParams,
@@ -1505,7 +1819,7 @@ JDCloud.KMS = class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
     }
 
     let contentTypes = ['application/json']
@@ -1547,7 +1861,7 @@ JDCloud.KMS = class KMS extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/key/{keyId}/version/{version}:disable',
       'PATCH',
       pathParams,
@@ -1614,7 +1928,7 @@ JDCloud.KMS = class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
     }
 
     let contentTypes = ['application/json']
@@ -1656,7 +1970,7 @@ JDCloud.KMS = class KMS extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/key/{keyId}/version/{version}:delete',
       'DELETE',
       pathParams,
@@ -1720,7 +2034,7 @@ JDCloud.KMS = class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
     }
 
     let contentTypes = ['application/json']
@@ -1762,7 +2076,7 @@ JDCloud.KMS = class KMS extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/key/{keyId}/version/{version}:cancelDelete',
       'PATCH',
       pathParams,
@@ -1820,7 +2134,7 @@ JDCloud.KMS = class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
     }
 
     let contentTypes = ['application/json']
@@ -1862,7 +2176,7 @@ JDCloud.KMS = class KMS extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/secret',
       'GET',
       pathParams,
@@ -1898,6 +2212,7 @@ JDCloud.KMS = class KMS extends Service {
       * @param {secretCfg} opts.secretCfg
       * @param {string} callback - callback
       @return {Object} result
+      * @param string secretId  secretId
       */
 
   createSecret (opts, callback) {
@@ -1921,7 +2236,7 @@ JDCloud.KMS = class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
     }
 
     let contentTypes = ['application/json']
@@ -1963,7 +2278,7 @@ JDCloud.KMS = class KMS extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/secret:create',
       'POST',
       pathParams,
@@ -2016,7 +2331,7 @@ JDCloud.KMS = class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
     }
 
     let contentTypes = ['application/json']
@@ -2058,7 +2373,7 @@ JDCloud.KMS = class KMS extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/secret:import',
       'POST',
       pathParams,
@@ -2123,7 +2438,7 @@ JDCloud.KMS = class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
     }
 
     let contentTypes = ['application/json']
@@ -2165,7 +2480,7 @@ JDCloud.KMS = class KMS extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/secret/{secretId}',
       'GET',
       pathParams,
@@ -2231,7 +2546,7 @@ JDCloud.KMS = class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
     }
 
     let contentTypes = ['application/json']
@@ -2273,7 +2588,7 @@ JDCloud.KMS = class KMS extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/secret/{secretId}',
       'PATCH',
       pathParams,
@@ -2330,7 +2645,7 @@ JDCloud.KMS = class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
     }
 
     let contentTypes = ['application/json']
@@ -2372,7 +2687,7 @@ JDCloud.KMS = class KMS extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/secret/{secretId}:enable',
       'PATCH',
       pathParams,
@@ -2429,7 +2744,7 @@ JDCloud.KMS = class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
     }
 
     let contentTypes = ['application/json']
@@ -2471,7 +2786,7 @@ JDCloud.KMS = class KMS extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/secret/{secretId}:disable',
       'PATCH',
       pathParams,
@@ -2527,7 +2842,7 @@ JDCloud.KMS = class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
     }
 
     let contentTypes = ['application/json']
@@ -2569,7 +2884,7 @@ JDCloud.KMS = class KMS extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/secret/{secretId}:delete',
       'DELETE',
       pathParams,
@@ -2635,7 +2950,7 @@ JDCloud.KMS = class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
     }
 
     let contentTypes = ['application/json']
@@ -2677,7 +2992,7 @@ JDCloud.KMS = class KMS extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/secret/{secretId}:createSecretVersion',
       'POST',
       pathParams,
@@ -2734,7 +3049,7 @@ JDCloud.KMS = class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
     }
 
     let contentTypes = ['application/json']
@@ -2776,7 +3091,7 @@ JDCloud.KMS = class KMS extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/secret/{secretId}:export',
       'GET',
       pathParams,
@@ -2840,7 +3155,7 @@ JDCloud.KMS = class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
     }
 
     let contentTypes = ['application/json']
@@ -2882,7 +3197,7 @@ JDCloud.KMS = class KMS extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/secret/{secretId}/version/{version}',
       'GET',
       pathParams,
@@ -2955,7 +3270,7 @@ JDCloud.KMS = class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
     }
 
     let contentTypes = ['application/json']
@@ -2997,7 +3312,7 @@ JDCloud.KMS = class KMS extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/secret/{secretId}/version/{version}',
       'PATCH',
       pathParams,
@@ -3061,7 +3376,7 @@ JDCloud.KMS = class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
     }
 
     let contentTypes = ['application/json']
@@ -3103,7 +3418,7 @@ JDCloud.KMS = class KMS extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/secret/{secretId}/version/{version}:enable',
       'PATCH',
       pathParams,
@@ -3167,7 +3482,7 @@ JDCloud.KMS = class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
     }
 
     let contentTypes = ['application/json']
@@ -3209,7 +3524,7 @@ JDCloud.KMS = class KMS extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/secret/{secretId}/version/{version}:disable',
       'PATCH',
       pathParams,
@@ -3272,7 +3587,7 @@ JDCloud.KMS = class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.1.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
     }
 
     let contentTypes = ['application/json']
@@ -3314,7 +3629,7 @@ JDCloud.KMS = class KMS extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/secret/{secretId}/version/{version}:delete',
       'DELETE',
       pathParams,
@@ -3344,4 +3659,4 @@ JDCloud.KMS = class KMS extends Service {
     )
   }
 }
-module.exports = JDCloud.KMS
+module.exports = KMS

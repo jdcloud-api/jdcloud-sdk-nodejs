@@ -60,6 +60,7 @@ module.exports = {
   BASEANTI: require('./baseanti'),
   IAS: require('./ias'),
   MONGODB: require('./mongodb'),
+  WAF: require('./waf'),
   LIVE: require('./live'),
   JDFUSION: require('./jdfusion'),
   DETECTION: require('./detection'),

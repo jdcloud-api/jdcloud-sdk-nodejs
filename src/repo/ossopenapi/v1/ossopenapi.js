@@ -30,10 +30,10 @@ Service._services[serviceId] = true
 
 /**
  * ossopenapi service.
- * @version 0.8.0
+ * @version 0.8.5
  */
 
-JDCloud.OSSOPENAPI = class OSSOPENAPI extends Service {
+class OSSOPENAPI extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
@@ -110,7 +110,7 @@ JDCloud.OSSOPENAPI = class OSSOPENAPI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.8.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.8.5'
     }
 
     let contentTypes = ['application/json']
@@ -152,7 +152,7 @@ JDCloud.OSSOPENAPI = class OSSOPENAPI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/capacity/{bucketName}',
       'POST',
       pathParams,
@@ -221,7 +221,7 @@ JDCloud.OSSOPENAPI = class OSSOPENAPI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.8.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.8.5'
     }
 
     let contentTypes = ['application/json']
@@ -263,7 +263,7 @@ JDCloud.OSSOPENAPI = class OSSOPENAPI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/buckets/{bucketName}/backSource',
       'GET',
       pathParams,
@@ -336,7 +336,7 @@ JDCloud.OSSOPENAPI = class OSSOPENAPI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.8.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.8.5'
     }
 
     let contentTypes = ['application/json']
@@ -378,7 +378,7 @@ JDCloud.OSSOPENAPI = class OSSOPENAPI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/buckets/{bucketName}/backSource',
       'PUT',
       pathParams,
@@ -450,7 +450,7 @@ JDCloud.OSSOPENAPI = class OSSOPENAPI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.8.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.8.5'
     }
 
     let contentTypes = ['application/json']
@@ -492,7 +492,7 @@ JDCloud.OSSOPENAPI = class OSSOPENAPI extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/buckets/{bucketName}/backSource',
       'DELETE',
       pathParams,
@@ -521,5 +521,540 @@ JDCloud.OSSOPENAPI = class OSSOPENAPI extends Service {
       }
     )
   }
+
+  /**
+      *  根据bucket名称获取该bucket下的同步任务
+      * @param {Object} opts - parameters
+      * @param {string} opts.bucketName - Bucket名称
+      * @param {string} opts.taskId - 任务ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param historyReplicationTaskInfo historyReplicationTaskInfo
+      */
+
+  getHistoricalReplicatTask (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getHistoricalReplicatTask"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.bucketName === undefined || opts.bucketName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.bucketName' when calling getHistoricalReplicatTask"
+      )
+    }
+    if (opts.taskId === undefined || opts.taskId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.taskId' when calling getHistoricalReplicatTask"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      bucketName: opts.bucketName,
+      taskId: opts.taskId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.8.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getHistoricalReplicatTask with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/buckets/{bucketName}/historical_replicat_task/{taskId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  停止bucket名称获取该bucket下的同步任务
+      * @param {Object} opts - parameters
+      * @param {string} opts.bucketName - Bucket名称
+      * @param {string} opts.taskId - 任务ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  abortHistoricalReplicatTask (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  abortHistoricalReplicatTask"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.bucketName === undefined || opts.bucketName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.bucketName' when calling abortHistoricalReplicatTask"
+      )
+    }
+    if (opts.taskId === undefined || opts.taskId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.taskId' when calling abortHistoricalReplicatTask"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      bucketName: opts.bucketName,
+      taskId: opts.taskId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.8.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call abortHistoricalReplicatTask with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/buckets/{bucketName}/historical_replicat_task/{taskId}/abort',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  根据bucket名称获取该bucket下的同步任务列表
+      * @param {Object} opts - parameters
+      * @param {string} opts.bucketName - Bucket名称
+      * @param {string} [opts.marker] - 同步任务列表开始的key  optional
+      * @param {integer} [opts.limit] - 每次查询返回的结果数，默认为1000  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param listResult listResult
+      */
+
+  listHistoricalReplicatTasks (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  listHistoricalReplicatTasks"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.bucketName === undefined || opts.bucketName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.bucketName' when calling listHistoricalReplicatTasks"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.marker !== undefined && opts.marker !== null) {
+      queryParams['marker'] = opts.marker
+    }
+    if (opts.limit !== undefined && opts.limit !== null) {
+      queryParams['limit'] = opts.limit
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      bucketName: opts.bucketName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.8.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call listHistoricalReplicatTasks with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/buckets/{bucketName}/historical_replicat_task/',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建历史同步任务
+      * @param {Object} opts - parameters
+      * @param {string} opts.bucketName - Bucket名称
+      * @param {string} opts.action - 是否覆盖
+      * @param {string} opts.bucketName - bucket名称
+      * @param {string} opts.bucketRegion - bucket所属区域
+      * @param {string} opts.targetBucketName - 目标bucket名称
+      * @param {string} opts.targetBucketRegion - 目标bucket所属区域
+      * @param {string} opts.storageClass - 存储类型
+      * @param {array} [opts.prefixSet]   optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param historyReplicationTask historyReplicationTask
+      */
+
+  createHistoricalReplicatTask (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createHistoricalReplicatTask"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.bucketName === undefined || opts.bucketName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.bucketName' when calling createHistoricalReplicatTask"
+      )
+    }
+    if (opts.action === undefined || opts.action === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.action' when calling createHistoricalReplicatTask"
+      )
+    }
+    if (opts.bucketName === undefined || opts.bucketName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.bucketName' when calling createHistoricalReplicatTask"
+      )
+    }
+    if (opts.bucketRegion === undefined || opts.bucketRegion === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.bucketRegion' when calling createHistoricalReplicatTask"
+      )
+    }
+    if (opts.targetBucketName === undefined || opts.targetBucketName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.targetBucketName' when calling createHistoricalReplicatTask"
+      )
+    }
+    if (
+      opts.targetBucketRegion === undefined ||
+      opts.targetBucketRegion === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.targetBucketRegion' when calling createHistoricalReplicatTask"
+      )
+    }
+    if (opts.storageClass === undefined || opts.storageClass === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.storageClass' when calling createHistoricalReplicatTask"
+      )
+    }
+
+    let postBody = {}
+    if (opts.action !== undefined && opts.action !== null) {
+      postBody['action'] = opts.action
+    }
+    if (opts.bucketName !== undefined && opts.bucketName !== null) {
+      postBody['bucketName'] = opts.bucketName
+    }
+    if (opts.bucketRegion !== undefined && opts.bucketRegion !== null) {
+      postBody['bucketRegion'] = opts.bucketRegion
+    }
+    if (opts.targetBucketName !== undefined && opts.targetBucketName !== null) {
+      postBody['targetBucketName'] = opts.targetBucketName
+    }
+    if (
+      opts.targetBucketRegion !== undefined &&
+      opts.targetBucketRegion !== null
+    ) {
+      postBody['targetBucketRegion'] = opts.targetBucketRegion
+    }
+    if (opts.storageClass !== undefined && opts.storageClass !== null) {
+      postBody['storageClass'] = opts.storageClass
+    }
+    if (opts.prefixSet !== undefined && opts.prefixSet !== null) {
+      postBody['prefixSet'] = opts.prefixSet
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      bucketName: opts.bucketName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.8.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createHistoricalReplicatTask with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/buckets/{bucketName}/historical_replicat_task/',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
 }
-module.exports = JDCloud.OSSOPENAPI
+module.exports = OSSOPENAPI

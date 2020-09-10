@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * cdn service.
- * @version 0.10.20
+ * @version 0.10.22
  */
 
 class CDN extends Service {
@@ -84,7 +84,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -210,7 +210,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -302,7 +302,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -397,7 +397,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -470,6 +470,254 @@ class CDN extends Service {
   }
 
   /**
+      *  dash鉴权设置
+      * @param {Object} opts - parameters
+      * @param {string} opts.domain - 用户域名
+      * @param {} [opts.enableUrlAuth] - 是否开启鉴权[on,off]  optional
+      * @param {} [opts.authKey] - 鉴权key  optional
+      * @param {} [opts.age] - 鉴权时间戳过期时间，默认为0  optional
+      * @param {} [opts.encAlgorithm] - 鉴权参数加密算法，默认为md5且只支持md5  optional
+      * @param {} [opts.timeFormat] - 时间戳格式[hex,dec]  optional
+      * @param {} [opts.uriType] - 加密算法版本[dash,dashv2,video],默认dashv2  optional
+      * @param {} [opts.rule] - 鉴权key生成顺序  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string taskId  任务的id
+      */
+
+  setAuthConfig (opts, callback) {
+    opts = opts || {}
+
+    if (opts.domain === undefined || opts.domain === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.domain' when calling setAuthConfig"
+      )
+    }
+
+    let postBody = {}
+    if (opts.enableUrlAuth !== undefined && opts.enableUrlAuth !== null) {
+      postBody['enableUrlAuth'] = opts.enableUrlAuth
+    }
+    if (opts.authKey !== undefined && opts.authKey !== null) {
+      postBody['authKey'] = opts.authKey
+    }
+    if (opts.age !== undefined && opts.age !== null) {
+      postBody['age'] = opts.age
+    }
+    if (opts.encAlgorithm !== undefined && opts.encAlgorithm !== null) {
+      postBody['encAlgorithm'] = opts.encAlgorithm
+    }
+    if (opts.timeFormat !== undefined && opts.timeFormat !== null) {
+      postBody['timeFormat'] = opts.timeFormat
+    }
+    if (opts.uriType !== undefined && opts.uriType !== null) {
+      postBody['uriType'] = opts.uriType
+    }
+    if (opts.rule !== undefined && opts.rule !== null) {
+      postBody['rule'] = opts.rule
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      domain: opts.domain
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call setAuthConfig with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/domain/{domain}/setAuthConfig',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  回源鉴权设置
+      * @param {Object} opts - parameters
+      * @param {string} opts.domain - 用户域名
+      * @param {} [opts.enable] - 是否开启鉴权[on,off]  optional
+      * @param {} [opts.originRole] - 回源为主/备[master,slave]  optional
+      * @param {} [opts.authType] - 鉴权类型[oss,aws,tos],aws暂不支持  optional
+      * @param {} [opts.tosAuthInfo] - tos类型鉴权参数,authType为tos是不能为空  optional
+      * @param {} [opts.ossAuthInfo] - oss类型鉴权参数,authType为oss是不能为空  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string taskId  任务的id
+      */
+
+  setSourceAuthConfig (opts, callback) {
+    opts = opts || {}
+
+    if (opts.domain === undefined || opts.domain === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.domain' when calling setSourceAuthConfig"
+      )
+    }
+
+    let postBody = {}
+    if (opts.enable !== undefined && opts.enable !== null) {
+      postBody['enable'] = opts.enable
+    }
+    if (opts.originRole !== undefined && opts.originRole !== null) {
+      postBody['originRole'] = opts.originRole
+    }
+    if (opts.authType !== undefined && opts.authType !== null) {
+      postBody['authType'] = opts.authType
+    }
+    if (opts.tosAuthInfo !== undefined && opts.tosAuthInfo !== null) {
+      postBody['tosAuthInfo'] = opts.tosAuthInfo
+    }
+    if (opts.ossAuthInfo !== undefined && opts.ossAuthInfo !== null) {
+      postBody['ossAuthInfo'] = opts.ossAuthInfo
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      domain: opts.domain
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call setSourceAuthConfig with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/domain/{domain}/setSourceAuthConfig',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  带宽查询接口
       * @param {Object} opts - parameters
       * @param {} [opts.startTime] - 查询起始时间,UTC时间，格式为:yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;，示例:2018-10-21T10:00:00Z  optional
@@ -513,7 +761,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -629,7 +877,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -728,7 +976,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -827,7 +1075,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -936,7 +1184,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -1058,7 +1306,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -1173,7 +1421,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -1285,7 +1533,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -1394,7 +1642,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -1486,7 +1734,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -1588,7 +1836,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -1695,7 +1943,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -1798,7 +2046,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -1899,7 +2147,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -2002,7 +2250,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -2118,7 +2366,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -2237,7 +2485,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -2339,7 +2587,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -2439,7 +2687,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -2550,7 +2798,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -2657,7 +2905,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -2760,7 +3008,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -2863,7 +3111,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -2966,7 +3214,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -3073,7 +3321,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -3174,7 +3422,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -3276,7 +3524,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -3383,7 +3631,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -3484,7 +3732,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -3595,7 +3843,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -3716,7 +3964,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -3818,7 +4066,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -3933,7 +4181,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -4032,7 +4280,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -4163,7 +4411,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -4266,7 +4514,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -4398,7 +4646,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -4498,7 +4746,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -4601,7 +4849,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -4701,7 +4949,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -4805,7 +5053,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -4929,7 +5177,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -5028,7 +5276,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -5132,7 +5380,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -5232,7 +5480,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -5339,7 +5587,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -5442,7 +5690,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -5545,7 +5793,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -5652,7 +5900,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -5759,7 +6007,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -5860,7 +6108,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -5967,7 +6215,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -6068,7 +6316,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -6171,7 +6419,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -6271,7 +6519,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -6374,7 +6622,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -6474,7 +6722,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -6577,7 +6825,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -6691,7 +6939,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -6793,7 +7041,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -6884,7 +7132,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -6999,7 +7247,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -7106,7 +7354,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -7207,7 +7455,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -7325,7 +7573,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -7448,7 +7696,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -7580,7 +7828,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -7671,6 +7919,7 @@ class CDN extends Service {
       * @param {} [opts.domainSource]   optional
       * @param {} [opts.ossSource]   optional
       * @param {} [opts.accelerateRegion] - 加速区域:(mainLand:中国大陆，nonMainLand:海外加港澳台，all:全球)默认为中国大陆  optional
+      * @param {} [opts.tempInstId]   optional
       * @param {string} callback - callback
       @return {Object} result
       */
@@ -7733,6 +7982,9 @@ class CDN extends Service {
     if (opts.accelerateRegion !== undefined && opts.accelerateRegion !== null) {
       postBody['accelerateRegion'] = opts.accelerateRegion
     }
+    if (opts.tempInstId !== undefined && opts.tempInstId !== null) {
+      postBody['tempInstId'] = opts.tempInstId
+    }
 
     let queryParams = {}
 
@@ -7742,7 +7994,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -7840,7 +8092,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -7939,7 +8191,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -8038,7 +8290,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -8130,7 +8382,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -8221,6 +8473,7 @@ class CDN extends Service {
       * @param {} [opts.domainSource]   optional
       * @param {} [opts.ossSource]   optional
       * @param {} [opts.accelerateRegion] - 加速区域 (mainLand:中国大陆，nonMainLand:海外加港澳台，all:全球)默认为中国大陆  optional
+      * @param {} [opts.tempInstId]   optional
       * @param {string} callback - callback
       @return {Object} result
       */
@@ -8280,6 +8533,9 @@ class CDN extends Service {
     if (opts.accelerateRegion !== undefined && opts.accelerateRegion !== null) {
       postBody['accelerateRegion'] = opts.accelerateRegion
     }
+    if (opts.tempInstId !== undefined && opts.tempInstId !== null) {
+      postBody['tempInstId'] = opts.tempInstId
+    }
 
     let queryParams = {}
 
@@ -8288,7 +8544,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -8402,7 +8658,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -8508,7 +8764,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -8599,7 +8855,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -8706,7 +8962,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -8808,7 +9064,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -8906,7 +9162,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -9002,7 +9258,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -9075,102 +9331,6 @@ class CDN extends Service {
   }
 
   /**
-      *  获取所有上层节点的ip
-      * @param {Object} opts - parameters
-      * @param {} [opts.ips]   optional
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param checkWhetherIpBelongToJCloudItem ipList
-      */
-
-  checkWhetherIpBelongToJCloudV2 (opts, callback) {
-    opts = opts || {}
-
-    let postBody = {}
-    if (opts.ips !== undefined && opts.ips !== null) {
-      postBody['ips'] = opts.ips
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: 'jdcloud'
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call checkWhetherIpBelongToJCloudV2 with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/ip:whetherBelongToJCloudV2',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
       *  查询一个域名的全部调度ip
       * @param {Object} opts - parameters
       * @param {} [opts.domainList]   optional
@@ -9194,7 +9354,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -9316,7 +9476,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -9423,7 +9583,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -9544,7 +9704,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -9647,7 +9807,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -9750,7 +9910,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -9861,7 +10021,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -9988,7 +10148,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -10091,7 +10251,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -10202,7 +10362,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -10303,7 +10463,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -10437,7 +10597,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -10591,7 +10751,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -10691,7 +10851,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -10794,7 +10954,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -10890,7 +11050,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -10985,7 +11145,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -11092,7 +11252,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -11224,7 +11384,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -11327,7 +11487,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -11426,7 +11586,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -11546,7 +11706,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -11652,7 +11812,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -11752,7 +11912,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -11851,7 +12011,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -11952,7 +12112,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -12053,7 +12213,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -12177,7 +12337,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -12278,7 +12438,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -12378,7 +12538,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -12517,7 +12677,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -12608,7 +12768,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -12703,7 +12863,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -12794,7 +12954,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -12894,7 +13054,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -12995,7 +13155,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -13114,7 +13274,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -13205,7 +13365,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -13324,7 +13484,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -13423,7 +13583,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -13527,7 +13687,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -13626,7 +13786,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -13751,7 +13911,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -13878,7 +14038,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -14001,7 +14161,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -14128,7 +14288,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -14259,7 +14419,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -14398,7 +14558,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -14533,7 +14693,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -14680,7 +14840,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -14831,7 +14991,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -14982,7 +15142,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -15101,7 +15261,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -15220,7 +15380,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -15333,7 +15493,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -15442,7 +15602,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -15565,7 +15725,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -15678,7 +15838,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -15753,15 +15913,15 @@ class CDN extends Service {
   /**
       *  无线宝按条件查询的统计接口
       * @param {Object} opts - parameters
-      * @param {} [opts.startTime] - 查询起始时间,UTC时间，格式为:yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;，示例:2018-10-21T10:00:00Z  optional
-      * @param {} [opts.endTime] - 查询截止时间,UTC时间，格式为:yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;，示例:2018-10-21T10:00:00Z  optional
-      * @param {} [opts.fields] - 查询的字段，决定了查询结果中出现哪些字段，取值范围见&quot;统计字段说明&quot;。多个用逗号分隔。默认为空，表示查询带宽流量 pv  optional
+      * @param {} [opts.startTime] - 查询起始时间,时间戳  optional
+      * @param {} [opts.endTime] - 查询截止时间,时间戳  optional
+      * @param {} [opts.fields] - 查询的字段，取值范围(avgbandwidth,pv,flow)。多个用逗号分隔。默认为空，表示查询带宽流量  optional
       * @param {} [opts.area]   optional
       * @param {} [opts.isp]   optional
-      * @param {} [opts.period] - 查询周期，当前取值范围：“oneMin,fiveMin,halfHour,hour,twoHour,sixHour,day,followTime”，分别表示1min，5min，半小时，1小时，2小时，6小时，1天，跟随时间。默认为空，表示fiveMin。当传入followTime时，表示按Endtime-StartTime的周期，只返回一个点  optional
-      * @param {} [opts.groupBy] - 取值范围[area,isp,mac_addr,category]  按区域、运营商、设备、业务类型分组，默认为isp  optional
+      * @param {} [opts.period] - 查询周期，当前取值范围：“oneMin,fiveMin”，分别表示1min，5min。默认为空，表示fiveMin  optional
       * @param {} [opts.category] - 业务类型  optional
       * @param {} [opts.macAddr] - 设备id  optional
+      * @param {} [opts.pluginPin] - 插件pin  optional
       * @param {string} callback - callback
       @return {Object} result
       * @param string startTime
@@ -15791,14 +15951,14 @@ class CDN extends Service {
     if (opts.period !== undefined && opts.period !== null) {
       postBody['period'] = opts.period
     }
-    if (opts.groupBy !== undefined && opts.groupBy !== null) {
-      postBody['groupBy'] = opts.groupBy
-    }
     if (opts.category !== undefined && opts.category !== null) {
       postBody['category'] = opts.category
     }
     if (opts.macAddr !== undefined && opts.macAddr !== null) {
       postBody['macAddr'] = opts.macAddr
+    }
+    if (opts.pluginPin !== undefined && opts.pluginPin !== null) {
+      postBody['pluginPin'] = opts.pluginPin
     }
 
     let queryParams = {}
@@ -15808,7 +15968,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -15907,7 +16067,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -16010,7 +16170,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -16109,7 +16269,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -16212,7 +16372,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -16332,7 +16492,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -16447,7 +16607,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -16569,7 +16729,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -16676,7 +16836,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -16783,7 +16943,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -16897,7 +17057,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -16996,7 +17156,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -17099,7 +17259,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -17219,7 +17379,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -17338,7 +17498,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -17464,7 +17624,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -17571,7 +17731,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -17678,7 +17838,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -17792,7 +17952,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -17891,7 +18051,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -17994,7 +18154,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -18105,7 +18265,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -18224,7 +18384,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -18350,7 +18510,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -18453,7 +18613,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -18556,7 +18716,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -18661,7 +18821,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -18760,7 +18920,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -18863,7 +19023,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -18964,7 +19124,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -19075,7 +19235,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -19177,7 +19337,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -19276,7 +19436,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -19380,7 +19540,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -19486,7 +19646,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']
@@ -19607,7 +19767,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.20'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.22'
     }
 
     let contentTypes = ['application/json']

@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 工作流管理
- * JMR工作流相关接口
+ * 集群管理
+ * JMR集群管理相关接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -43,8 +43,9 @@ JDCloud.JMR = class JMR {
     if (version && version[serviceName]) {
       versionFlag = version[serviceName]
     }
-    this.service = require(`../repo/${serviceName}/${versionFlag}/${serviceName}`)
-    if (!this.service) {
+    try {
+      this.service = require(`../repo/${serviceName}/${versionFlag}/${serviceName}`)
+    } catch (e) {
       throw new Error(
         `The version '${versionFlag}' of API ${serviceName} is undefined!`
       )

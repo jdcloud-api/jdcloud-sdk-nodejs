@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Warning
- * Warning API
+ * 页面测试检测接口
+ * 京东云信用评分-OpenAPI页面测试检测接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -24,20 +24,20 @@
 
 const JDCloud = require('../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'waf'
+var serviceId = 'bri'
 Service._services[serviceId] = true
 
 /**
- * waf service.
+ * bri service.
  */
 
-JDCloud.WAF = class WAF {
+JDCloud.BRI = class BRI {
   constructor (config = {}) {
     this.init(config)
     return new this.service(config)
   }
   init (config) {
-    let serviceName = 'waf'
+    let serviceName = 'bri'
     let version = config.version || JDCloud.config.version
     let versionFlag = 'v1'
     if (version && version[serviceName]) {
@@ -53,4 +53,4 @@ JDCloud.WAF = class WAF {
   }
 }
 
-module.exports = JDCloud.WAF
+module.exports = JDCloud.BRI

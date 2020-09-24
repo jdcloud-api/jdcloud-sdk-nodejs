@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 集群管理
- * JMR集群管理相关接口
+ * Instance-Voucher
+ * 实例抵扣券相关接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -25,594 +25,47 @@
 require('../../../lib/node_loader')
 var JDCloud = require('../../../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'jmr'
+var serviceId = 'instancevoucher'
 Service._services[serviceId] = true
 
 /**
- * jmr service.
- * @version 1.1.3
+ * instancevoucher service.
+ * @version 0.0.3
  */
 
-class JMR extends Service {
+class INSTANCEVOUCHER extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
       options._defaultEndpoint.protocol || 'https'
     options._defaultEndpoint.host =
-      options._defaultEndpoint.host || 'jmr.jdcloud-api.com'
+      options._defaultEndpoint.host || 'instancevoucher.jdcloud-api.com'
     options.basePath = '/v1' // 默认要设为空""
     super(serviceId, options)
   }
 
   /**
-      *  查询用户指定clusterId对应的集群列表及相关服务的一些信息
-      * @param {Object} opts - parameters
-      * @param {string} opts.clusterId - 集群ID
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param object data  包括集群信息列表
-      * @param boolean status
-      */
-
-  idataCluster (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  idataCluster"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.clusterId === undefined || opts.clusterId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.clusterId' when calling idataCluster"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      clusterId: opts.clusterId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.3'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call idataCluster with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/idata',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  获取对应版本的软件清单信息
-      * @param {Object} opts - parameters
-      * @param {string} opts.ver - JMR软件版本号
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param string data  对应的软件清单信息
-      * @param boolean status
-      */
-
-  getSoftwareInfo (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  getSoftwareInfo"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.ver === undefined || opts.ver === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.ver' when calling getSoftwareInfo"
-      )
-    }
-
-    let postBody = {}
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      ver: opts.ver
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.3'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call getSoftwareInfo with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/softwareInfo',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询JMR的版本信息
-      * @param {Object} opts - parameters
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param string data
-      * @param boolean status
-      */
-
-  getJmrVersionList (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  getJmrVersionList"
-      )
-    }
-
-    opts = opts || {}
-
-    let postBody = null
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.3'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call getJmrVersionList with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/jmrVersions',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询指定集群的详细信息
+      *  查询实例规格信息列表
 
       * @param {Object} opts - parameters
-      * @param {string} opts.clusterId - 集群ID
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param cluster cluster
-      * @param boolean status
-      */
-
-  describeCluster (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeCluster"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.clusterId === undefined || opts.clusterId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.clusterId' when calling describeCluster"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      clusterId: opts.clusterId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.3'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeCluster with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/clusters/{clusterId}',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  释放集群
-
-      * @param {Object} opts - parameters
-      * @param {string} opts.clusterId - 集群ID
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param boolean status  是否开始释放集群
-      */
-
-  releaseCluster (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  releaseCluster"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.clusterId === undefined || opts.clusterId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.clusterId' when calling releaseCluster"
-      )
-    }
-
-    let postBody = {}
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      clusterId: opts.clusterId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.3'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call releaseCluster with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/clusters/{clusterId}:release',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  扩容集群
-      * @param {Object} opts - parameters
-      * @param {clusterExpansion} opts.clusterSpec - 描述集群配置
-      * @param {string} [opts.clientToken] - 用于保证请求的幂等性。由客户端生成，长度不能超过64个字符。
+      * @param {string} [opts.resourceType] - 产品类型 支持[vm, nativecontainer, pod]，默认为vm  optional
+      * @param {string} [opts.reservedType] - 资源分配方式，支持[nonReserved]  optional
+      * @param {filter} [opts.filters] - Filter names: (仅支持eq)
+instanceType - 实例规格，精确匹配，支持多个
+instanceTypeFamily - 实例规格族，精确匹配，支持多个
+az - 可用区，精确匹配，支持多个
   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param boolean status  是否开始创建集群
-      * @param string clusterId  集群ID
+      * @param instanceVoucherType instanceVoucherTypes
       */
 
-  clusterExpansion (opts, regionId = this.config.regionId, callback) {
+  describeInstanceVoucherTypes (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -620,34 +73,28 @@ class JMR extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  clusterExpansion"
+        "Missing the required parameter 'regionId' when calling  describeInstanceVoucherTypes"
       )
     }
 
     opts = opts || {}
 
-    if (opts.clusterSpec === undefined || opts.clusterSpec === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.clusterSpec' when calling clusterExpansion"
-      )
-    }
-
-    let postBody = {}
-    if (opts.clusterSpec !== undefined && opts.clusterSpec !== null) {
-      postBody['clusterSpec'] = opts.clusterSpec
-    }
-    if (opts.clientToken !== undefined && opts.clientToken !== null) {
-      postBody['clientToken'] = opts.clientToken
-    }
-
+    let postBody = null
     let queryParams = {}
+    if (opts.resourceType !== undefined && opts.resourceType !== null) {
+      queryParams['resourceType'] = opts.resourceType
+    }
+    if (opts.reservedType !== undefined && opts.reservedType !== null) {
+      queryParams['reservedType'] = opts.reservedType
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  instancevoucher/0.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -677,7 +124,7 @@ class JMR extends Service {
     let returnType = null
 
     this.config.logger(
-      `call clusterExpansion with params:\npathParams:${JSON.stringify(
+      `call describeInstanceVoucherTypes with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -690,8 +137,8 @@ class JMR extends Service {
     )
 
     let request = super.makeRequest(
-      '/regions/{regionId}/cluster:expansion',
-      'POST',
+      '/regions/{regionId}/instanceVoucherTypes',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -720,19 +167,20 @@ class JMR extends Service {
   }
 
   /**
-      *  查询集群列表
+      *  查询配额
+
       * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
-      * @param {integer} [opts.pageSize] - 分页大小；默认为10；取值范围[10, 100]  optional
+      * @param {filter} [opts.filters] - Filter names: (仅支持eq)
+resourceType - 产品类型，精确匹配，支持多个 支持[vm, nativecontainer, pod]
+reservedType - 资源分配方式，精确匹配，支持多个 支持[nonReserved]
+  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param cluster clusters
-      * @param number totalCount
-      * @param boolean status
+      * @param quota quotas
       */
 
-  describeClusters (opts, regionId = this.config.regionId, callback) {
+  describeQuotas (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -740,7 +188,124 @@ class JMR extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeClusters"
+        "Missing the required parameter 'regionId' when calling  describeQuotas"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  instancevoucher/0.0.3'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeQuotas with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/quotas',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  批量查询实例抵扣券的详细信息&lt;br&gt;
+此接口支持分页查询，默认每页20条。
+
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
+      * @param {filter} [opts.filters] - Filter names: (仅支持eq)
+instanceVoucherId - 实例ID，精确匹配，支持多个
+name - 实例名称，模糊匹配，支持多个
+resourceType - 产品类型，精确匹配，支持多个 支持[vm nativecontainer pod]
+reservedType - 资源分配方式，精确匹配，支持多个 支持[nonReserved]
+status - 实例抵扣券状态，精确匹配，支持多个
+instanceTypeFamily - 实例规格族，精确匹配，支持多个（适用于非预留型）
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param instanceVoucher instanceVouchers
+      * @param integer totalCount
+      */
+
+  describeInstanceVouchers (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeInstanceVouchers"
       )
     }
 
@@ -754,13 +319,14 @@ class JMR extends Service {
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  instancevoucher/0.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -790,7 +356,7 @@ class JMR extends Service {
     let returnType = null
 
     this.config.logger(
-      `call describeClusters with params:\npathParams:${JSON.stringify(
+      `call describeInstanceVouchers with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -803,7 +369,7 @@ class JMR extends Service {
     )
 
     let request = super.makeRequest(
-      '/regions/{regionId}/cluster:create',
+      '/regions/{regionId}/instanceVouchers',
       'GET',
       pathParams,
       queryParams,
@@ -833,20 +399,18 @@ class JMR extends Service {
   }
 
   /**
-      *  创建集群
+      *  创建实例抵扣券
+
       * @param {Object} opts - parameters
-      * @param {clusterSpec} opts.clusterSpec - 描述集群配置
-      * @param {string} [opts.clientToken] - 用于保证请求的幂等性。由客户端生成，长度不能超过64个字符。
-  optional
+      * @param {instanceVoucherSpec} opts.instanceVoucherSpec - 创建实例抵扣券规格
+      * @param {string} [opts.clientToken] - 保证请求幂等性  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param boolean status  是否开始创建集群
-      * @param string clusterId  集群ID
-      * @param string message  创建集群的信息
+      * @param string instanceVoucherId  实例抵扣券 ID
       */
 
-  createCluster (opts, regionId = this.config.regionId, callback) {
+  createInstanceVoucher (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -854,21 +418,27 @@ class JMR extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  createCluster"
+        "Missing the required parameter 'regionId' when calling  createInstanceVoucher"
       )
     }
 
     opts = opts || {}
 
-    if (opts.clusterSpec === undefined || opts.clusterSpec === null) {
+    if (
+      opts.instanceVoucherSpec === undefined ||
+      opts.instanceVoucherSpec === null
+    ) {
       throw new Error(
-        "Missing the required parameter 'opts.clusterSpec' when calling createCluster"
+        "Missing the required parameter 'opts.instanceVoucherSpec' when calling createInstanceVoucher"
       )
     }
 
     let postBody = {}
-    if (opts.clusterSpec !== undefined && opts.clusterSpec !== null) {
-      postBody['clusterSpec'] = opts.clusterSpec
+    if (
+      opts.instanceVoucherSpec !== undefined &&
+      opts.instanceVoucherSpec !== null
+    ) {
+      postBody['instanceVoucherSpec'] = opts.instanceVoucherSpec
     }
     if (opts.clientToken !== undefined && opts.clientToken !== null) {
       postBody['clientToken'] = opts.clientToken
@@ -881,7 +451,7 @@ class JMR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  instancevoucher/0.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -911,7 +481,7 @@ class JMR extends Service {
     let returnType = null
 
     this.config.logger(
-      `call createCluster with params:\npathParams:${JSON.stringify(
+      `call createInstanceVoucher with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -924,8 +494,365 @@ class JMR extends Service {
     )
 
     let request = super.makeRequest(
-      '/regions/{regionId}/cluster:create',
+      '/regions/{regionId}/instanceVouchers',
       'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询实例抵扣券的详细信息
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceVoucherId - 实例抵扣券 ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param instanceVoucher instanceVoucher
+      */
+
+  describeInstanceVoucher (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeInstanceVoucher"
+      )
+    }
+
+    opts = opts || {}
+
+    if (
+      opts.instanceVoucherId === undefined ||
+      opts.instanceVoucherId === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceVoucherId' when calling describeInstanceVoucher"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceVoucherId: opts.instanceVoucherId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  instancevoucher/0.0.3'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeInstanceVoucher with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instanceVouchers/{instanceVoucherId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除实例抵扣券
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceVoucherId - 实例抵扣券 ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteInstanceVoucher (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteInstanceVoucher"
+      )
+    }
+
+    opts = opts || {}
+
+    if (
+      opts.instanceVoucherId === undefined ||
+      opts.instanceVoucherId === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceVoucherId' when calling deleteInstanceVoucher"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceVoucherId: opts.instanceVoucherId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  instancevoucher/0.0.3'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteInstanceVoucher with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instanceVouchers/{instanceVoucherId}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改实例抵扣券的 名称 和 描述。&lt;br&gt;
+name 和 description 必须要指定一个
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceVoucherId - 实例抵扣券 ID
+      * @param {string} [opts.name] - 实例抵扣券名称  optional
+      * @param {string} [opts.description] - 实例抵扣券描述  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  modifyInstanceVoucherAttribute (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyInstanceVoucherAttribute"
+      )
+    }
+
+    opts = opts || {}
+
+    if (
+      opts.instanceVoucherId === undefined ||
+      opts.instanceVoucherId === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceVoucherId' when calling modifyInstanceVoucherAttribute"
+      )
+    }
+
+    let postBody = {}
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceVoucherId: opts.instanceVoucherId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  instancevoucher/0.0.3'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyInstanceVoucherAttribute with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instanceVouchers/{instanceVoucherId}:modifyInstanceVoucherAttribute',
+      'PATCH',
       pathParams,
       queryParams,
       headerParams,
@@ -953,4 +880,4 @@ class JMR extends Service {
     )
   }
 }
-module.exports = JMR
+module.exports = INSTANCEVOUCHER

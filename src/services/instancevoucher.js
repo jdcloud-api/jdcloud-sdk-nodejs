@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Warning
- * Warning API
+ * Instance-Voucher
+ * 实例抵扣券相关接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -24,20 +24,20 @@
 
 const JDCloud = require('../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'waf'
+var serviceId = 'instancevoucher'
 Service._services[serviceId] = true
 
 /**
- * waf service.
+ * instancevoucher service.
  */
 
-JDCloud.WAF = class WAF {
+JDCloud.INSTANCEVOUCHER = class INSTANCEVOUCHER {
   constructor (config = {}) {
     this.init(config)
     return new this.service(config)
   }
   init (config) {
-    let serviceName = 'waf'
+    let serviceName = 'instancevoucher'
     let version = config.version || JDCloud.config.version
     let versionFlag = 'v1'
     if (version && version[serviceName]) {
@@ -53,4 +53,4 @@ JDCloud.WAF = class WAF {
   }
 }
 
-module.exports = JDCloud.WAF
+module.exports = JDCloud.INSTANCEVOUCHER

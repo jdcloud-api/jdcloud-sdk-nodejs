@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * dbaudit service.
- * @version 1.0.1
+ * @version 1.0.2
  */
 
 class DBAUDIT extends Service {
@@ -86,7 +86,7 @@ class DBAUDIT extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -200,7 +200,7 @@ class DBAUDIT extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -313,7 +313,7 @@ class DBAUDIT extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -436,7 +436,7 @@ class DBAUDIT extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -559,7 +559,7 @@ class DBAUDIT extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -669,7 +669,7 @@ class DBAUDIT extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -791,7 +791,7 @@ class DBAUDIT extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -908,7 +908,7 @@ class DBAUDIT extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1021,7 +1021,7 @@ class DBAUDIT extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1141,7 +1141,7 @@ class DBAUDIT extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1259,7 +1259,7 @@ class DBAUDIT extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1377,7 +1377,7 @@ class DBAUDIT extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1495,7 +1495,7 @@ class DBAUDIT extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1622,7 +1622,7 @@ class DBAUDIT extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1739,7 +1739,7 @@ class DBAUDIT extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1862,7 +1862,7 @@ filters: 按instanceId 查询，只支持eq，单个instanceId匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1973,7 +1973,7 @@ filters: 按instanceId 查询，只支持eq，单个instanceId匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2092,7 +2092,7 @@ filters: 按instanceId 查询，只支持eq，单个instanceId匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2204,7 +2204,7 @@ filters: 按instanceId 查询，只支持eq，单个instanceId匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2277,7 +2277,7 @@ filters: 按instanceId 查询，只支持eq，单个instanceId匹配
   }
 
   /**
-      *  添加一条IP白名单记录，仅支持IPv4地址
+      *  添加一条IP白名单记录
       * @param {Object} opts - parameters
       * @param {string} opts.insId - 审计实例ID
       * @param {string} opts.cidr - IP白名单记录，支持掩码
@@ -2324,7 +2324,7 @@ filters: 按instanceId 查询，只支持eq，单个instanceId匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2443,7 +2443,7 @@ filters: 按instanceId 查询，只支持eq，单个instanceId匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2581,7 +2581,7 @@ filters: 按instanceId 查询，只支持eq，单个instanceId匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2699,7 +2699,7 @@ filters: 按instanceId 查询，只支持eq，单个instanceId匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2826,7 +2826,7 @@ filters: 按instanceId 查询，只支持eq，单个instanceId匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2953,7 +2953,7 @@ filters: 按instanceId 查询，只支持eq，单个instanceId匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3087,7 +3087,7 @@ filters: 按instanceId 查询，只支持eq，单个instanceId匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3211,7 +3211,7 @@ filters: 按instanceId 查询，只支持eq，单个instanceId匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3325,7 +3325,7 @@ filters: 按instanceId 查询，只支持eq，单个instanceId匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3439,7 +3439,7 @@ filters: 按instanceId 查询，只支持eq，单个instanceId匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3559,7 +3559,7 @@ filters: 按instanceId 查询，只支持eq，单个instanceId匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3679,7 +3679,7 @@ filters: 按instanceId 查询，只支持eq，单个instanceId匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3808,7 +3808,7 @@ filters: 按instanceId 查询，只支持eq，单个instanceId匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3928,7 +3928,7 @@ filters: 按instanceId 查询，只支持eq，单个instanceId匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -4047,7 +4047,7 @@ filters: 按instanceId 查询，只支持eq，单个instanceId匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -4164,7 +4164,7 @@ filters: 按instanceId 查询，只支持eq，单个instanceId匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -4281,7 +4281,7 @@ filters: 按instanceId 查询，只支持eq，单个instanceId匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -4397,7 +4397,7 @@ filters: 按instanceId 查询，只支持eq，单个instanceId匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -4522,7 +4522,7 @@ filters: 按instanceId 查询，只支持eq，单个instanceId匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -4645,7 +4645,7 @@ filters: 按instanceId 查询，只支持eq，单个instanceId匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -4776,7 +4776,7 @@ filters: 按instanceId 查询，只支持eq，单个instanceId匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -4897,7 +4897,7 @@ filters: 按instanceId 查询，只支持eq，单个instanceId匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -5026,7 +5026,7 @@ filters: 按instanceId 查询，只支持eq，单个instanceId匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -5164,7 +5164,7 @@ filters: 按instanceId 查询，只支持eq，单个instanceId匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -5292,7 +5292,7 @@ filters: 按instanceId 查询，只支持eq，单个instanceId匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -5414,7 +5414,7 @@ filters: 按instanceId 查询，只支持eq，单个instanceId匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -5536,7 +5536,7 @@ filters: 按instanceId 查询，只支持eq，单个instanceId匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -5663,7 +5663,7 @@ filters: 按instanceId 查询，只支持eq，单个instanceId匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dbaudit/1.0.2'
     }
 
     let contentTypes = ['application/json']

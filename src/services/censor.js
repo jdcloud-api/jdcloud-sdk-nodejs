@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 视频检测相关接口
- * API related to video scan
+ * 站点检测类接口
+ * 京东云内容安全-OpenAPI站点检测类接口
  *
  * OpenAPI spec version: v1
  * Contact:

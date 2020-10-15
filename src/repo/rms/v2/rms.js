@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * rms service.
- * @version 1.2.0
+ * @version 1.3.0
  */
 
 class RMS extends Service {
@@ -245,7 +245,7 @@ class RMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -527,7 +527,7 @@ class RMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -653,7 +653,7 @@ class RMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -788,7 +788,7 @@ class RMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -895,7 +895,7 @@ class RMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -1029,7 +1029,7 @@ class RMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -1159,7 +1159,7 @@ class RMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -1249,7 +1249,7 @@ class RMS extends Service {
       * @param string message  错误消息
       */
 
-  addTemplate (opts, regionId = this.config.regionId, callback) {
+  addTemplateNew (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -1257,7 +1257,7 @@ class RMS extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  addTemplate"
+        "Missing the required parameter 'regionId' when calling  addTemplateNew"
       )
     }
 
@@ -1265,27 +1265,27 @@ class RMS extends Service {
 
     if (opts.appId === undefined || opts.appId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.appId' when calling addTemplate"
+        "Missing the required parameter 'opts.appId' when calling addTemplateNew"
       )
     }
     if (opts.aptitudesId === undefined || opts.aptitudesId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.aptitudesId' when calling addTemplate"
+        "Missing the required parameter 'opts.aptitudesId' when calling addTemplateNew"
       )
     }
     if (opts.title === undefined || opts.title === null) {
       throw new Error(
-        "Missing the required parameter 'opts.title' when calling addTemplate"
+        "Missing the required parameter 'opts.title' when calling addTemplateNew"
       )
     }
     if (opts.description === undefined || opts.description === null) {
       throw new Error(
-        "Missing the required parameter 'opts.description' when calling addTemplate"
+        "Missing the required parameter 'opts.description' when calling addTemplateNew"
       )
     }
     if (opts.signContent === undefined || opts.signContent === null) {
       throw new Error(
-        "Missing the required parameter 'opts.signContent' when calling addTemplate"
+        "Missing the required parameter 'opts.signContent' when calling addTemplateNew"
       )
     }
 
@@ -1316,7 +1316,7 @@ class RMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -1346,7 +1346,7 @@ class RMS extends Service {
     let returnType = null
 
     this.config.logger(
-      `call addTemplate with params:\npathParams:${JSON.stringify(
+      `call addTemplateNew with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1359,7 +1359,7 @@ class RMS extends Service {
     )
 
     let request = super.makeRequest(
-      '/regions/{regionId}/addTemplate',
+      '/regions/{regionId}/addTemplateNew',
       'POST',
       pathParams,
       queryParams,
@@ -1482,7 +1482,7 @@ class RMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -1608,7 +1608,7 @@ class RMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -1725,7 +1725,7 @@ class RMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -1876,7 +1876,7 @@ class RMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.3.0'
     }
 
     let contentTypes = ['application/json']

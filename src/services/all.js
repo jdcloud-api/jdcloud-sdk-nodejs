@@ -41,6 +41,7 @@ module.exports = {
   YDSMS: require('./ydsms'),
   VM: require('./vm'),
   KAFKA: require('./kafka'),
+  DOMAIN: require('./domain'),
   NATIVECONTAINER: require('./nativecontainer'),
   CLOUDAUTH: require('./cloudauth'),
   POD: require('./pod'),

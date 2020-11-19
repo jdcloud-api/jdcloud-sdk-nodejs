@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * ipanti service.
- * @version 1.7.0
+ * @version 1.8.0
  */
 
 class IPANTI extends Service {
@@ -105,7 +105,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -238,7 +238,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -375,7 +375,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -508,7 +508,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -630,7 +630,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -755,7 +755,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -879,7 +879,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -1009,7 +1009,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -1089,6 +1089,9 @@ class IPANTI extends Service {
       * @param {integer} [opts.pageSize] - 分页大小, 默认为10, 取值范围[10, 100]  optional
       * @param {string} [opts.searchType] - 查询类型名称, domain:源站域名, ip:源站 IP, port: 转发端口, originPort: 源站端口, serviceIp: 高防IP(仅支持BGP线路的实例)  optional
       * @param {string} [opts.searchValue] - 查询类型值  optional
+      * @param {sort} [opts.sorts] - 排序属性：
+port - 按转发端口排序，默认不排序,asc表示按转发端口升序，desc表示按转发端口降序
+  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1132,6 +1135,7 @@ class IPANTI extends Service {
     if (opts.searchValue !== undefined && opts.searchValue !== null) {
       queryParams['searchValue'] = opts.searchValue
     }
+    Object.assign(queryParams, super.buildSortParam(opts.sorts, 'sorts'))
 
     let pathParams = {
       regionId: regionId,
@@ -1139,7 +1143,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -1261,7 +1265,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -1305,6 +1309,134 @@ class IPANTI extends Service {
 
     let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/forwardRules',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  批量添加非网站类规则
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 高防实例 Id
+      * @param {array} opts.forwardRuleSpecList - 批量添加非网站类规则请求参数
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string forwardRuleIds
+      * @param failedPort failedPorts
+      */
+
+  createForwardRules (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createForwardRules"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling createForwardRules"
+      )
+    }
+    if (
+      opts.forwardRuleSpecList === undefined ||
+      opts.forwardRuleSpecList === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.forwardRuleSpecList' when calling createForwardRules"
+      )
+    }
+
+    let postBody = {}
+    if (
+      opts.forwardRuleSpecList !== undefined &&
+      opts.forwardRuleSpecList !== null
+    ) {
+      postBody['forwardRuleSpecList'] = opts.forwardRuleSpecList
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createForwardRules with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}:createForwardRules',
       'POST',
       pathParams,
       queryParams,
@@ -1379,7 +1511,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -1508,7 +1640,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -1627,7 +1759,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -1700,7 +1832,7 @@ class IPANTI extends Service {
   }
 
   /**
-      *  非网站类规则切换成防御状态
+      *  非网站类规则切换成防御状态。支持批量操作, 批量操作时 forwardRuleId 传多个, 以 &#39;,&#39; 分隔, 返回 result.code 为 1 表示操作成功, 为 0 时可能全部失败, 也可能部分失败
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 高防实例 Id
       * @param {string} opts.forwardRuleId - 转发规则 Id
@@ -1747,7 +1879,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -1820,7 +1952,7 @@ class IPANTI extends Service {
   }
 
   /**
-      *  非网站类规则切换成回源状态
+      *  非网站类规则切换成回源状态。支持批量操作, 批量操作时 forwardRuleId 传多个, 以 &#39;,&#39; 分隔, 返回 result.code 为 1 表示操作成功, 为 0 时可能全部失败, 也可能部分失败
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 高防实例 Id
       * @param {string} opts.forwardRuleId - 转发规则 Id
@@ -1867,7 +1999,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -1989,7 +2121,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -2128,7 +2260,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -2231,7 +2363,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -2353,7 +2485,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -2486,7 +2618,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -2610,7 +2742,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -2734,7 +2866,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -2856,7 +2988,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -2989,7 +3121,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -3113,7 +3245,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -3237,7 +3369,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -3355,7 +3487,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -3480,7 +3612,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -3591,7 +3723,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -3719,7 +3851,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -3847,7 +3979,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -3958,7 +4090,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -4080,7 +4212,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -4202,7 +4334,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -4324,7 +4456,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -4431,7 +4563,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -4545,7 +4677,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -4659,7 +4791,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -4773,7 +4905,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -4895,7 +5027,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -5017,7 +5149,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -5135,7 +5267,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -5253,7 +5385,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -5366,7 +5498,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -5496,7 +5628,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -5618,7 +5750,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -5662,6 +5794,128 @@ class IPANTI extends Service {
 
     let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  批量添加网站类规则
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 高防实例 Id
+      * @param {array} opts.webRuleSpecList - 批量添加网站类规则请求参数
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string webRuleIdIds
+      * @param failedDomain failedDomains
+      */
+
+  createWebRules (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createWebRules"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling createWebRules"
+      )
+    }
+    if (opts.webRuleSpecList === undefined || opts.webRuleSpecList === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.webRuleSpecList' when calling createWebRules"
+      )
+    }
+
+    let postBody = {}
+    if (opts.webRuleSpecList !== undefined && opts.webRuleSpecList !== null) {
+      postBody['webRuleSpecList'] = opts.webRuleSpecList
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createWebRules with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}:createWebRules',
       'POST',
       pathParams,
       queryParams,
@@ -5736,7 +5990,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -5865,7 +6119,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -5984,7 +6238,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -6113,7 +6367,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -6186,7 +6440,7 @@ class IPANTI extends Service {
   }
 
   /**
-      *  网站类规则切换成防御状态
+      *  网站类规则切换成防御状态。支持批量操作, 批量操作时 webRuleId 传多个, 以 &#39;,&#39; 分隔, 返回 result.code 为 1 表示操作成功, 为 0 时可能全部失败, 也可能部分失败
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 高防实例 Id
       * @param {string} opts.webRuleId - 网站规则 Id
@@ -6233,7 +6487,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -6306,7 +6560,7 @@ class IPANTI extends Service {
   }
 
   /**
-      *  网站类规则切换成回源状态
+      *  网站类规则切换成回源状态。支持批量操作, 批量操作时 webRuleId 传多个, 以 &#39;,&#39; 分隔, 返回 result.code 为 1 表示操作成功, 为 0 时可能全部失败, 也可能部分失败
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 高防实例 Id
       * @param {string} opts.webRuleId - 网站规则 Id
@@ -6353,7 +6607,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -6473,7 +6727,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -6593,7 +6847,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -6713,7 +6967,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -6837,7 +7091,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -6881,6 +7135,1135 @@ class IPANTI extends Service {
 
     let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}:disableCCObserverMode',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询网站类规则允许插入JS指纹的页面
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 高防实例 Id
+      * @param {string} opts.webRuleId - 网站规则 Id
+      * @param {integer} [opts.pageNumber] - 页码, 默认为1  optional
+      * @param {integer} [opts.pageSize] - 分页大小, 默认为10, 取值范围[10, 100]  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param jsPage dataList
+      * @param integer currentCount  当前页数量
+      * @param integer totalCount  总数
+      * @param integer totalPage  总页数
+      */
+
+  describeJsPagesOfWebRule (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeJsPagesOfWebRule"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling describeJsPagesOfWebRule"
+      )
+    }
+    if (opts.webRuleId === undefined || opts.webRuleId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.webRuleId' when calling describeJsPagesOfWebRule"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      webRuleId: opts.webRuleId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeJsPagesOfWebRule with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}/jsPages',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  添加网站类规则允许插入JS指纹的页面
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 高防实例 Id
+      * @param {string} opts.webRuleId - 网站规则 Id
+      * @param {jsPageSpec} opts.jsPageSpec - 添加 JS 指纹页面请求参数
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer code  0: 添加失败, 1: 添加成功
+      * @param string message  添加失败时给出具体原因
+      */
+
+  createJsPageOfWebRule (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createJsPageOfWebRule"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling createJsPageOfWebRule"
+      )
+    }
+    if (opts.webRuleId === undefined || opts.webRuleId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.webRuleId' when calling createJsPageOfWebRule"
+      )
+    }
+    if (opts.jsPageSpec === undefined || opts.jsPageSpec === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.jsPageSpec' when calling createJsPageOfWebRule"
+      )
+    }
+
+    let postBody = {}
+    if (opts.jsPageSpec !== undefined && opts.jsPageSpec !== null) {
+      postBody['jsPageSpec'] = opts.jsPageSpec
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      webRuleId: opts.webRuleId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createJsPageOfWebRule with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}/jsPages',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  批量添加网站类规则允许插入JS指纹的页面
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 高防实例 Id
+      * @param {string} opts.webRuleId - 网站规则 Id
+      * @param {jsPagesSpec} opts.jsPagesSpec - 添加 JS 指纹页面请求参数
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer code  0: 添加失败, 1: 添加成功
+      * @param string message  添加失败时给出具体原因
+      */
+
+  createJsPagesOfWebRule (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createJsPagesOfWebRule"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling createJsPagesOfWebRule"
+      )
+    }
+    if (opts.webRuleId === undefined || opts.webRuleId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.webRuleId' when calling createJsPagesOfWebRule"
+      )
+    }
+    if (opts.jsPagesSpec === undefined || opts.jsPagesSpec === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.jsPagesSpec' when calling createJsPagesOfWebRule"
+      )
+    }
+
+    let postBody = {}
+    if (opts.jsPagesSpec !== undefined && opts.jsPagesSpec !== null) {
+      postBody['jsPagesSpec'] = opts.jsPagesSpec
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      webRuleId: opts.webRuleId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createJsPagesOfWebRule with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}:createJsPagesOfWebRule',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改网站类规则允许插入 JS 指纹的页面
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 高防实例 Id
+      * @param {string} opts.webRuleId - 网站规则 Id
+      * @param {string} opts.jsPageId - 支持插入JS指纹的页面 Id
+      * @param {jsPageSpec} opts.jsPageSpec - 修改网站类规则允许插入 JS 指纹的页面请求参数
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer code  0: 修改失败, 1: 修改成功
+      * @param string message  修改失败时给出具体原因
+      */
+
+  modifyJsPageOfWebRule (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyJsPageOfWebRule"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling modifyJsPageOfWebRule"
+      )
+    }
+    if (opts.webRuleId === undefined || opts.webRuleId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.webRuleId' when calling modifyJsPageOfWebRule"
+      )
+    }
+    if (opts.jsPageId === undefined || opts.jsPageId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.jsPageId' when calling modifyJsPageOfWebRule"
+      )
+    }
+    if (opts.jsPageSpec === undefined || opts.jsPageSpec === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.jsPageSpec' when calling modifyJsPageOfWebRule"
+      )
+    }
+
+    let postBody = {}
+    if (opts.jsPageSpec !== undefined && opts.jsPageSpec !== null) {
+      postBody['jsPageSpec'] = opts.jsPageSpec
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      webRuleId: opts.webRuleId,
+      jsPageId: opts.jsPageId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyJsPageOfWebRule with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}/jsPages/{jsPageId}',
+      'PATCH',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除网站类规则允许插入 JS 指纹的页面。支持批量操作, 批量操作时 jsPageId 传多个, 以 &#39;,&#39; 分隔
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 高防实例 Id
+      * @param {string} opts.webRuleId - 网站规则 Id
+      * @param {string} opts.jsPageId - 支持插入JS指纹的页面 Id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer code  0: 删除失败, 1: 删除成功
+      * @param string message  删除失败时给出具体原因
+      */
+
+  deleteJsPageOfWebRule (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteJsPageOfWebRule"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling deleteJsPageOfWebRule"
+      )
+    }
+    if (opts.webRuleId === undefined || opts.webRuleId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.webRuleId' when calling deleteJsPageOfWebRule"
+      )
+    }
+    if (opts.jsPageId === undefined || opts.jsPageId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.jsPageId' when calling deleteJsPageOfWebRule"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      webRuleId: opts.webRuleId,
+      jsPageId: opts.jsPageId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteJsPageOfWebRule with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}/jsPages/{jsPageId}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  关闭网站类规则的JS指纹开关
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 高防实例 Id
+      * @param {string} opts.webRuleId - 网站规则 Id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer code  0: 关闭失败, 1: 关闭成功
+      * @param string message  关闭失败时给出具体原因
+      */
+
+  disableWebRuleJsPage (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  disableWebRuleJsPage"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling disableWebRuleJsPage"
+      )
+    }
+    if (opts.webRuleId === undefined || opts.webRuleId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.webRuleId' when calling disableWebRuleJsPage"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      webRuleId: opts.webRuleId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call disableWebRuleJsPage with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}:disableWebRuleJsPage',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  打开网站类规则的JS指纹开关
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 高防实例 Id
+      * @param {string} opts.webRuleId - 网站规则 Id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer code  0: 打开失败, 1: 打开成功
+      * @param string message  打开失败时给出具体原因
+      */
+
+  enableWebRuleJsPage (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  enableWebRuleJsPage"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling enableWebRuleJsPage"
+      )
+    }
+    if (opts.webRuleId === undefined || opts.webRuleId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.webRuleId' when calling enableWebRuleJsPage"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      webRuleId: opts.webRuleId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call enableWebRuleJsPage with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}:enableWebRuleJsPage',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  插入JS指纹到所有页面, 需要打开网站类规则的JS指纹开关
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 高防实例 Id
+      * @param {string} opts.webRuleId - 网站规则 Id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer code  0: 修改失败, 1: 修改成功
+      * @param string message  修改失败时给出具体原因
+      */
+
+  modifyWebRuleJsPageToAll (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyWebRuleJsPageToAll"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling modifyWebRuleJsPageToAll"
+      )
+    }
+    if (opts.webRuleId === undefined || opts.webRuleId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.webRuleId' when calling modifyWebRuleJsPageToAll"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      webRuleId: opts.webRuleId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyWebRuleJsPageToAll with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}:modifyWebRuleJsPageToAll',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  插入JS指纹到配置的自定义页面, 需要打开网站类规则的JS指纹开关
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 高防实例 Id
+      * @param {string} opts.webRuleId - 网站规则 Id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer code  0: 修改失败, 1: 修改成功
+      * @param string message  修改失败时给出具体原因
+      */
+
+  modifyWebRuleJsPageToCustom (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyWebRuleJsPageToCustom"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling modifyWebRuleJsPageToCustom"
+      )
+    }
+    if (opts.webRuleId === undefined || opts.webRuleId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.webRuleId' when calling modifyWebRuleJsPageToCustom"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      webRuleId: opts.webRuleId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyWebRuleJsPageToCustom with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}:modifyWebRuleJsPageToCustom',
       'POST',
       pathParams,
       queryParams,
@@ -6962,7 +8345,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -7101,7 +8484,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -7233,7 +8616,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -7382,7 +8765,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -7515,7 +8898,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -7649,7 +9032,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -7783,7 +9166,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -7827,6 +9210,254 @@ class IPANTI extends Service {
 
     let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}/ccProtectionRules/{ccProtectionRuleId}:disable',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  开启网站类规则的自定义 CC 防护规则总开关, 状态为开启的自定义 CC 防护规则生效
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 高防实例 Id
+      * @param {string} opts.webRuleId - 网站规则 Id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer code  0: 开启失败, 1: 开启成功
+      * @param string message  开启失败时给出具体原因
+      */
+
+  enableWebRuleCCProtectionRule (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  enableWebRuleCCProtectionRule"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling enableWebRuleCCProtectionRule"
+      )
+    }
+    if (opts.webRuleId === undefined || opts.webRuleId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.webRuleId' when calling enableWebRuleCCProtectionRule"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      webRuleId: opts.webRuleId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call enableWebRuleCCProtectionRule with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}:enableWebRuleCCProtectionRule',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  关闭网站类规则的自定义 CC 防护规则总开关, 所有自定义 CC 防护规则失效
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 高防实例 Id
+      * @param {string} opts.webRuleId - 网站规则 Id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer code  0: 关闭失败, 1: 关闭成功
+      * @param string message  关闭失败时给出具体原因
+      */
+
+  disableWebRuleCCProtectionRule (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  disableWebRuleCCProtectionRule"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling disableWebRuleCCProtectionRule"
+      )
+    }
+    if (opts.webRuleId === undefined || opts.webRuleId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.webRuleId' when calling disableWebRuleCCProtectionRule"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      webRuleId: opts.webRuleId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call disableWebRuleCCProtectionRule with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/webRules/{webRuleId}:disableWebRuleCCProtectionRule',
       'POST',
       pathParams,
       queryParams,
@@ -7905,7 +9536,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -8044,7 +9675,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -8166,7 +9797,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -8301,7 +9932,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -8426,7 +10057,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -8559,7 +10190,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -8698,7 +10329,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -8830,7 +10461,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -8979,7 +10610,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -9112,7 +10743,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -9232,7 +10863,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -9366,7 +10997,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -9486,7 +11117,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -9620,7 +11251,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -9745,7 +11376,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -9878,7 +11509,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -10017,7 +11648,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -10149,7 +11780,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -10298,7 +11929,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -10431,7 +12062,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -10551,7 +12182,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -10685,7 +12316,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -10805,7 +12436,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -10939,7 +12570,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -11046,7 +12677,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -11153,7 +12784,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -11256,7 +12887,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.7.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.8.0'
     }
 
     let contentTypes = ['application/json']

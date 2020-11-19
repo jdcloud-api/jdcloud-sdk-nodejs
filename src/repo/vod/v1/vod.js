@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * vod service.
- * @version 1.1.8
+ * @version 1.1.9
  */
 
 class VOD extends Service {
@@ -73,7 +73,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -184,7 +184,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -283,7 +283,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -382,7 +382,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -495,7 +495,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -593,7 +593,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -694,7 +694,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -796,7 +796,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -895,7 +895,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -993,7 +993,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -1092,7 +1092,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -1191,7 +1191,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -1290,7 +1290,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -1424,7 +1424,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -1523,7 +1523,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -1648,7 +1648,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -1765,7 +1765,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -1864,7 +1864,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -1981,7 +1981,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -2080,7 +2080,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -2197,7 +2197,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -2296,7 +2296,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -2423,7 +2423,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -2522,7 +2522,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -2723,7 +2723,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -2875,7 +2875,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -2976,7 +2976,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -3086,7 +3086,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -3185,7 +3185,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -3280,7 +3280,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -3380,7 +3380,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -3503,7 +3503,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -3602,7 +3602,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -3718,7 +3718,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -3816,7 +3816,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -3920,7 +3920,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -4046,7 +4046,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -4145,7 +4145,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -4253,7 +4253,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -4351,7 +4351,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -4455,7 +4455,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -4551,7 +4551,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -4644,7 +4644,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -4737,7 +4737,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -4830,7 +4830,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -4934,7 +4934,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -5030,7 +5030,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -5135,7 +5135,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -5291,7 +5291,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -5390,7 +5390,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -5528,7 +5528,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -5626,7 +5626,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -5735,7 +5735,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -5834,7 +5834,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -5954,7 +5954,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -6052,7 +6052,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -6148,7 +6148,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -6244,7 +6244,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -6343,7 +6343,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -6447,7 +6447,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -6560,7 +6560,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -6633,6 +6633,105 @@ https - 强制采用https协议回源
   }
 
   /**
+      *  获取视频源文件信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.videoId - 视频ID
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param getPlayInfoResultObject resultObject
+      */
+
+  getVideoSourceInfo (opts, callback) {
+    opts = opts || {}
+
+    if (opts.videoId === undefined || opts.videoId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.videoId' when calling getVideoSourceInfo"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      videoId: opts.videoId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getVideoSourceInfo with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/videos/{videoId}:getSourceInfo',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  查询水印列表
       * @param {Object} opts - parameters
       * @param {integer} [opts.pageNumber] - 页码；默认值为 1  optional
@@ -6659,7 +6758,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -6865,7 +6964,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -6964,7 +7063,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -7142,7 +7241,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -7240,7 +7339,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
     }
 
     let contentTypes = ['application/json']

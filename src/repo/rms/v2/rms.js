@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * rms service.
- * @version 1.3.0
+ * @version 1.4.0
  */
 
 class RMS extends Service {
@@ -245,7 +245,7 @@ class RMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -527,7 +527,7 @@ class RMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -653,7 +653,7 @@ class RMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -788,7 +788,7 @@ class RMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -895,7 +895,7 @@ class RMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -1029,7 +1029,7 @@ class RMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -1159,7 +1159,7 @@ class RMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -1316,7 +1316,7 @@ class RMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -1482,7 +1482,7 @@ class RMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -1608,7 +1608,7 @@ class RMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -1725,7 +1725,7 @@ class RMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -1876,7 +1876,7 @@ class RMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rms/1.4.0'
     }
 
     let contentTypes = ['application/json']

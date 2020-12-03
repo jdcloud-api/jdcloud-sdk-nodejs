@@ -30,10 +30,10 @@ Service._services[serviceId] = true
 
 /**
  * live service.
- * @version 1.0.15
+ * @version 1.0.18
  */
 
-JDCloud.LIVE = class LIVE extends Service {
+class LIVE extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
@@ -77,14 +77,14 @@ JDCloud.LIVE = class LIVE extends Service {
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: 'jdcloud'
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -126,7 +126,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/apps',
       'GET',
       pathParams,
@@ -199,7 +199,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -241,7 +241,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/apps',
       'POST',
       pathParams,
@@ -311,7 +311,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -353,7 +353,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/apps:stop',
       'PUT',
       pathParams,
@@ -419,7 +419,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -461,7 +461,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/livePlayAuthKey',
       'GET',
       pathParams,
@@ -534,7 +534,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -576,7 +576,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/livePlayAuthKey',
       'POST',
       pathParams,
@@ -642,7 +642,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -684,7 +684,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/liveRestartAuthKey',
       'GET',
       pathParams,
@@ -757,7 +757,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -799,9 +799,116 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/liveRestartAuthKey',
       'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询直播计费账单用量数据
+允许通过条件过滤查询，支持的过滤字段如下：
+  - startTime[eq]  账单开始时间
+  - endTime[eq]    账单结束时间
+  - billType[eq]   账单计费类型
+  - userPin[like]  用户PIN
+
+      * @param {Object} opts - parameters
+      * @param {filter} [opts.filters] - 传参字段描述:
+  startTime(必填) : 2019-08-21T16:15:10Z
+  endTime(必填)   : 2019-08-21T18:10:10Z
+  billType(非必填)  :
+    enum:
+      - 1   (online)
+      - 2   (offline)
+  userPin(非必填)   : mt_test
+  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param billDataResultObject resultObject
+      */
+
+  describeLiveBillData (opts, callback) {
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeLiveBillData with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/liveBillDatas',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -866,7 +973,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -908,7 +1015,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/liveDomainCertificate',
       'GET',
       pathParams,
@@ -1002,7 +1109,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -1044,7 +1151,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/liveDomainCertificate',
       'POST',
       pathParams,
@@ -1111,7 +1218,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -1153,7 +1260,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/liveRestartDomainCertificate',
       'GET',
       pathParams,
@@ -1247,7 +1354,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -1289,7 +1396,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/liveRestartDomainCertificate',
       'POST',
       pathParams,
@@ -1360,7 +1467,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -1402,7 +1509,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/domains',
       'GET',
       pathParams,
@@ -1477,7 +1584,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -1519,7 +1626,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/domains',
       'POST',
       pathParams,
@@ -1582,7 +1689,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -1624,7 +1731,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/domains:start',
       'PUT',
       pathParams,
@@ -1688,7 +1795,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -1730,7 +1837,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/domains:stop',
       'PUT',
       pathParams,
@@ -1791,7 +1898,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -1833,7 +1940,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/domains/{publishDomain}',
       'GET',
       pathParams,
@@ -1893,7 +2000,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -1935,7 +2042,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/domains/{publishDomain}',
       'DELETE',
       pathParams,
@@ -2008,7 +2115,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -2050,7 +2157,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/domains:restart',
       'PUT',
       pathParams,
@@ -2121,7 +2228,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -2163,7 +2270,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/qualityDetectionCustoms:template',
       'POST',
       pathParams,
@@ -2225,14 +2332,14 @@ JDCloud.LIVE = class LIVE extends Service {
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: 'jdcloud'
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -2274,7 +2381,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/qualityDetectionCustoms',
       'GET',
       pathParams,
@@ -2354,7 +2461,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -2396,7 +2503,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/qualityDetectionApps:template',
       'POST',
       pathParams,
@@ -2467,7 +2574,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -2509,7 +2616,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/qualityDetectionDomains:template',
       'POST',
       pathParams,
@@ -2580,7 +2687,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -2622,7 +2729,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/qualityDetectionNotifys:config',
       'POST',
       pathParams,
@@ -2680,7 +2787,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -2722,7 +2829,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/qualityDetectionCustoms/{template}',
       'DELETE',
       pathParams,
@@ -2794,7 +2901,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -2836,7 +2943,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/qualityDetectionApps/{publishDomain}/appNames/{appName}/templates/{template}',
       'DELETE',
       pathParams,
@@ -2901,7 +3008,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -2943,7 +3050,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/qualityDetectionDomains/{publishDomain}/templates/{template}',
       'DELETE',
       pathParams,
@@ -3002,7 +3109,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -3044,7 +3151,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/qualityDetectionNotifys/{publishDomain}:config',
       'GET',
       pathParams,
@@ -3101,7 +3208,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -3143,7 +3250,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/qualityDetectionNotifys/{publishDomain}:config',
       'DELETE',
       pathParams,
@@ -3201,7 +3308,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -3243,9 +3350,116 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/qualityDetectionTemplates/{template}:binding',
       'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除录制文件
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.fileUrl - 需要删除的录制文件在oss的url
+
+      * @param {boolean} [opts.completely] - 是否深度删除所有的ts文件，仅对.m3u8录制文件生效。默认: true
+  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteLiveRecordings (opts, callback) {
+    opts = opts || {}
+
+    if (opts.fileUrl === undefined || opts.fileUrl === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.fileUrl' when calling deleteLiveRecordings"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.fileUrl !== undefined && opts.fileUrl !== null) {
+      queryParams['fileUrl'] = opts.fileUrl
+    }
+    if (opts.completely !== undefined && opts.completely !== null) {
+      queryParams['completely'] = opts.completely
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteLiveRecordings with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/recordings:delete',
+      'DELETE',
       pathParams,
       queryParams,
       headerParams,
@@ -3297,7 +3511,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -3339,7 +3553,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/liveP2p:open',
       'PUT',
       pathParams,
@@ -3392,7 +3606,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -3434,7 +3648,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/liveP2p:close',
       'PUT',
       pathParams,
@@ -3507,7 +3721,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -3549,7 +3763,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/liveP2p:configs',
       'GET',
       pathParams,
@@ -3612,14 +3826,14 @@ JDCloud.LIVE = class LIVE extends Service {
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: 'jdcloud'
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -3661,7 +3875,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/recordCustoms:template',
       'GET',
       pathParams,
@@ -3764,7 +3978,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -3806,7 +4020,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/recordCustoms:template',
       'POST',
       pathParams,
@@ -3885,7 +4099,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -3927,7 +4141,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/recordApps:config',
       'POST',
       pathParams,
@@ -3997,7 +4211,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -4039,7 +4253,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/recordDomains:config',
       'POST',
       pathParams,
@@ -4109,14 +4323,14 @@ JDCloud.LIVE = class LIVE extends Service {
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: 'jdcloud'
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -4158,7 +4372,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/records:config',
       'GET',
       pathParams,
@@ -4229,7 +4443,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -4271,7 +4485,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/recordNotifys:config',
       'POST',
       pathParams,
@@ -4329,7 +4543,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -4371,7 +4585,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/recordCustoms/{template}',
       'DELETE',
       pathParams,
@@ -4444,7 +4658,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -4486,7 +4700,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/recordApps/{publishDomain}/appNames/{appName}/templates/{template}',
       'DELETE',
       pathParams,
@@ -4552,7 +4766,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -4594,7 +4808,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/recordDomains/{publishDomain}/templates/{template}',
       'DELETE',
       pathParams,
@@ -4653,7 +4867,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -4695,7 +4909,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/recordNotifys/{publishDomain}',
       'GET',
       pathParams,
@@ -4752,7 +4966,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -4794,7 +5008,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/recordNotifys/{publishDomain}',
       'DELETE',
       pathParams,
@@ -4837,16 +5051,16 @@ JDCloud.LIVE = class LIVE extends Service {
 - 多段时间跨度最小不能小于10s
 - 多段时间跨度最大不能超过8小时
   optional
-      * @param {string} [opts.saveBucket] - 存储桶  optional
-      * @param {string} [opts.saveEndpoint] - 存储地址  optional
+      * @param {string} opts.saveBucket - 存储桶
+      * @param {string} opts.saveEndpoint - 存储地址
       * @param {string} opts.recordFileType - 录制文件类型:
-- 取值: ts,flv,mp4 (多种类型之前用;隔开)
+- 取值: ts,flv,mp4 (多种类型之间用;隔开)
 - 不区分大小写
 
-      * @param {string} [opts.saveObject] - 录制文件存储路径:
-- 默认地址: record/{Date}/{ServerId}/{AppName}/{StreamName}/{StartTime}_{EndTime}
+      * @param {string} [opts.saveObject] - 录制文件存储Object:
+- 默认: /record/{Date}/{ServerId}/{AppName}/{StreamName}/{StartTime}_{EndTime}
   optional
-      * @param {string} [opts.taskExternalId] - 打点录制任务外键
+      * @param {string} [opts.taskExternalId] - 打点录制任务外部id(可传入您的id,在回调时会在该字段返回)
   optional
       * @param {string} callback - callback
       @return {Object} result
@@ -4868,6 +5082,16 @@ JDCloud.LIVE = class LIVE extends Service {
     if (opts.streamName === undefined || opts.streamName === null) {
       throw new Error(
         "Missing the required parameter 'opts.streamName' when calling addLiveRecordTask"
+      )
+    }
+    if (opts.saveBucket === undefined || opts.saveBucket === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.saveBucket' when calling addLiveRecordTask"
+      )
+    }
+    if (opts.saveEndpoint === undefined || opts.saveEndpoint === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.saveEndpoint' when calling addLiveRecordTask"
       )
     }
     if (opts.recordFileType === undefined || opts.recordFileType === null) {
@@ -4906,7 +5130,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -4948,7 +5172,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/records/{publishDomain}/appNames/{appName}/streamNames/{streamName}/task',
       'POST',
       pathParams,
@@ -5006,7 +5230,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -5048,7 +5272,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/recordTemplates/{template}:binding',
       'GET',
       pathParams,
@@ -5081,9 +5305,9 @@ JDCloud.LIVE = class LIVE extends Service {
   /**
       *  查询流分组统计数据
       * @param {Object} opts - parameters
-      * @param {string} opts.domainName - 播放域名
-      * @param {string} opts.appName - 应用名称
-      * @param {string} opts.streamName - 流名称
+      * @param {string} [opts.domainName] - 播放域名  optional
+      * @param {string} [opts.appName] - 应用名称  optional
+      * @param {string} [opts.streamName] - 流名称  optional
       * @param {string} [opts.ispName] - 运营商
   optional
       * @param {string} [opts.locationName] - 查询的区域，如beijing,shanghai。多个用逗号分隔
@@ -5109,21 +5333,6 @@ JDCloud.LIVE = class LIVE extends Service {
   describeLiveStatisticGroupByStream (opts, callback) {
     opts = opts || {}
 
-    if (opts.domainName === undefined || opts.domainName === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.domainName' when calling describeLiveStatisticGroupByStream"
-      )
-    }
-    if (opts.appName === undefined || opts.appName === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.appName' when calling describeLiveStatisticGroupByStream"
-      )
-    }
-    if (opts.streamName === undefined || opts.streamName === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.streamName' when calling describeLiveStatisticGroupByStream"
-      )
-    }
     if (opts.startTime === undefined || opts.startTime === null) {
       throw new Error(
         "Missing the required parameter 'opts.startTime' when calling describeLiveStatisticGroupByStream"
@@ -5162,7 +5371,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -5204,7 +5413,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/describeLiveStatisticGroupByStream',
       'GET',
       pathParams,
@@ -5318,7 +5527,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -5360,7 +5569,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/describeLiveStatisticGroupByArea',
       'GET',
       pathParams,
@@ -5394,8 +5603,8 @@ JDCloud.LIVE = class LIVE extends Service {
       *  查询地域/运营商分组统计数据
       * @param {Object} opts - parameters
       * @param {string} opts.domainName - 播放域名
-      * @param {string} opts.appName - 应用名称
-      * @param {string} opts.streamName - 流名称
+      * @param {string} [opts.appName] - 应用名称  optional
+      * @param {string} [opts.streamName] - 流名称  optional
       * @param {string} [opts.ispName] - 运营商
   optional
       * @param {string} [opts.locationName] - 查询的区域，如beijing,shanghai。多个用逗号分隔
@@ -5426,16 +5635,6 @@ JDCloud.LIVE = class LIVE extends Service {
     if (opts.domainName === undefined || opts.domainName === null) {
       throw new Error(
         "Missing the required parameter 'opts.domainName' when calling describeLiveStatisticGroupByAreaIsp"
-      )
-    }
-    if (opts.appName === undefined || opts.appName === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.appName' when calling describeLiveStatisticGroupByAreaIsp"
-      )
-    }
-    if (opts.streamName === undefined || opts.streamName === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.streamName' when calling describeLiveStatisticGroupByAreaIsp"
       )
     }
     if (opts.startTime === undefined || opts.startTime === null) {
@@ -5479,7 +5678,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -5521,8 +5720,149 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/describeLiveStatisticGroupByAreaIsp',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询流分组统计数据(上行)
+      * @param {Object} opts - parameters
+      * @param {string} [opts.domainName] - 播放域名  optional
+      * @param {string} [opts.appName] - 应用名称  optional
+      * @param {string} [opts.streamName] - 流名称  optional
+      * @param {string} [opts.ispName] - 运营商
+  optional
+      * @param {string} [opts.locationName] - 查询的区域，如beijing,shanghai。多个用逗号分隔
+  optional
+      * @param {string} [opts.period] - 查询周期，当前取值范围：“oneMin,fiveMin,halfHour,hour,twoHour,sixHour,day,followTime”，分别表示1min，5min，半小时，1小时，2小时，6小时，1天，跟随时间。默认为空，表示fiveMin。当传入followTime时，表示按Endtime-StartTime的周期，只返回一个点
+  optional
+      * @param {string} opts.startTime - 起始时间
+- UTC时间
+  格式:yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;
+  示例:2018-10-21T10:00:00Z
+
+      * @param {string} [opts.endTime] - 结束时间:
+- UTC时间
+  格式:yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;
+  示例:2018-10-21T10:00:00Z
+- 为空,默认为当前时间，查询时间跨度不超过1天
+  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param liveStatisticGroupByStreamResult dataList
+      */
+
+  describeLivePublishStatisticGroupByStream (opts, callback) {
+    opts = opts || {}
+
+    if (opts.startTime === undefined || opts.startTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.startTime' when calling describeLivePublishStatisticGroupByStream"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.domainName !== undefined && opts.domainName !== null) {
+      queryParams['domainName'] = opts.domainName
+    }
+    if (opts.appName !== undefined && opts.appName !== null) {
+      queryParams['appName'] = opts.appName
+    }
+    if (opts.streamName !== undefined && opts.streamName !== null) {
+      queryParams['streamName'] = opts.streamName
+    }
+    if (opts.ispName !== undefined && opts.ispName !== null) {
+      queryParams['ispName'] = opts.ispName
+    }
+    if (opts.locationName !== undefined && opts.locationName !== null) {
+      queryParams['locationName'] = opts.locationName
+    }
+    if (opts.period !== undefined && opts.period !== null) {
+      queryParams['period'] = opts.period
+    }
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeLivePublishStatisticGroupByStream with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/describeLivePublishStatisticGroupByStream',
       'GET',
       pathParams,
       queryParams,
@@ -5620,7 +5960,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -5662,7 +6002,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/describePublishStreamInfoData',
       'GET',
       pathParams,
@@ -5766,7 +6106,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -5808,7 +6148,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/describeLiveStreamHistoryUserNum',
       'GET',
       pathParams,
@@ -5908,7 +6248,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -5950,7 +6290,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/describeLivePublishStreamNum',
       'GET',
       pathParams,
@@ -6050,7 +6390,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -6092,7 +6432,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/describeLiveStreamPlayerRankingData',
       'GET',
       pathParams,
@@ -6172,7 +6512,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -6214,7 +6554,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/describeLiveTranscodeStreamList',
       'GET',
       pathParams,
@@ -6268,7 +6608,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -6310,7 +6650,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/describeLiveTranscodeStreamNum',
       'GET',
       pathParams,
@@ -6413,7 +6753,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -6455,7 +6795,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/describeLiveTranscodeStreamPlayerUserNum',
       'GET',
       pathParams,
@@ -6560,7 +6900,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -6602,7 +6942,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/describeLiveTranscodeStreamBandwidth',
       'GET',
       pathParams,
@@ -6702,7 +7042,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -6744,7 +7084,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/describeDomainOnlineStream',
       'GET',
       pathParams,
@@ -6832,7 +7172,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -6874,7 +7214,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/describeDomainsLog',
       'GET',
       pathParams,
@@ -6967,7 +7307,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -7009,7 +7349,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/describeUrlRanking',
       'GET',
       pathParams,
@@ -7042,6 +7382,7 @@ JDCloud.LIVE = class LIVE extends Service {
   /**
       *  查询转码时长数据
       * @param {Object} opts - parameters
+      * @param {string} [opts.domainName] - 播放域名  optional
       * @param {string} [opts.grade] - 码率档次，可以查询指定档次的转码时长，取值：
 - video_h264_4k_1
 - video_h264_2k_1
@@ -7076,6 +7417,9 @@ JDCloud.LIVE = class LIVE extends Service {
 
     let postBody = null
     let queryParams = {}
+    if (opts.domainName !== undefined && opts.domainName !== null) {
+      queryParams['domainName'] = opts.domainName
+    }
     if (opts.grade !== undefined && opts.grade !== null) {
       queryParams['grade'] = opts.grade
     }
@@ -7094,7 +7438,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -7136,7 +7480,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/describeLiveTranscodingDurationData',
       'GET',
       pathParams,
@@ -7206,7 +7550,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -7248,7 +7592,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/describeLiveFileStorageData',
       'GET',
       pathParams,
@@ -7351,7 +7695,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -7393,7 +7737,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/describeLiveStreamBandwidthData',
       'GET',
       pathParams,
@@ -7496,7 +7840,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -7538,7 +7882,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/describeLiveStreamPublishBandwidthData',
       'GET',
       pathParams,
@@ -7641,7 +7985,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -7683,7 +8027,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/describeLiveStreamTrafficData',
       'GET',
       pathParams,
@@ -7786,7 +8130,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -7828,7 +8172,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/describeLiveStreamPublishTrafficData',
       'GET',
       pathParams,
@@ -7913,7 +8257,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -7955,7 +8299,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/liveSnapshotData',
       'GET',
       pathParams,
@@ -8040,7 +8384,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -8082,7 +8426,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/livePornData',
       'GET',
       pathParams,
@@ -8227,7 +8571,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -8269,7 +8613,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/snapshotCustoms:template',
       'POST',
       pathParams,
@@ -8339,14 +8683,14 @@ JDCloud.LIVE = class LIVE extends Service {
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: 'jdcloud'
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -8388,7 +8732,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/snapshotCustoms:config',
       'GET',
       pathParams,
@@ -8450,14 +8794,14 @@ JDCloud.LIVE = class LIVE extends Service {
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: 'jdcloud'
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -8499,7 +8843,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/snapshotCustoms',
       'GET',
       pathParams,
@@ -8579,7 +8923,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -8621,7 +8965,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/snapshotApps:template',
       'POST',
       pathParams,
@@ -8692,7 +9036,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -8734,7 +9078,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/snapshotDomains:template',
       'POST',
       pathParams,
@@ -8805,7 +9149,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -8847,7 +9191,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/snapshotNotifys:config',
       'POST',
       pathParams,
@@ -8905,7 +9249,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -8947,7 +9291,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/snapshotCustoms/{template}',
       'DELETE',
       pathParams,
@@ -9018,7 +9362,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -9060,7 +9404,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/snapshotApps/{publishDomain}/appNames/{appName}/templates/{template}',
       'DELETE',
       pathParams,
@@ -9125,7 +9469,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -9167,7 +9511,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/snapshotDomains/{publishDomain}/templates/{template}',
       'DELETE',
       pathParams,
@@ -9226,7 +9570,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -9268,7 +9612,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/snapshotNotifys/{publishDomain}:config',
       'GET',
       pathParams,
@@ -9325,7 +9669,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -9367,7 +9711,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/snapshotNotifys/{publishDomain}:config',
       'DELETE',
       pathParams,
@@ -9425,7 +9769,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -9467,7 +9811,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/snapshotTemplates/{template}:binding',
       'GET',
       pathParams,
@@ -9548,7 +9892,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -9590,7 +9934,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/streams:forbid',
       'PUT',
       pathParams,
@@ -9667,7 +10011,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -9709,7 +10053,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/streams:resume',
       'PUT',
       pathParams,
@@ -9788,7 +10132,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -9830,7 +10174,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/streams:interrupt',
       'PUT',
       pathParams,
@@ -9908,7 +10252,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -9950,7 +10294,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/streams/{publishDomain}/appNames/{appName}/streamNames/{streamName}/streamInfo',
       'GET',
       pathParams,
@@ -10020,7 +10364,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -10062,7 +10406,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/streamNotifys',
       'POST',
       pathParams,
@@ -10120,7 +10464,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -10162,7 +10506,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/streamNotifys/{publishDomain}',
       'GET',
       pathParams,
@@ -10218,7 +10562,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -10260,7 +10604,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/streamNotifys/{publishDomain}',
       'DELETE',
       pathParams,
@@ -10336,7 +10680,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -10378,7 +10722,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/streams/{publishDomain}/onlineList',
       'GET',
       pathParams,
@@ -10482,7 +10826,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -10524,7 +10868,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/streams/{publishDomain}/publishList',
       'GET',
       pathParams,
@@ -10588,7 +10932,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -10630,7 +10974,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/liveRestart:open',
       'PUT',
       pathParams,
@@ -10689,7 +11033,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -10731,7 +11075,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/liveRestart:close',
       'PUT',
       pathParams,
@@ -10801,7 +11145,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -10843,7 +11187,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/liveRestart:configs',
       'GET',
       pathParams,
@@ -10907,7 +11251,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -10949,7 +11293,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/liveTimeshift:open',
       'PUT',
       pathParams,
@@ -11008,7 +11352,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -11050,7 +11394,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/liveTimeshift:close',
       'PUT',
       pathParams,
@@ -11126,7 +11470,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -11168,7 +11512,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/liveTimeshift:configs',
       'GET',
       pathParams,
@@ -11249,7 +11593,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -11291,7 +11635,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/transcodeDomains:config',
       'POST',
       pathParams,
@@ -11381,7 +11725,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -11423,7 +11767,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/transcodeApps:config',
       'POST',
       pathParams,
@@ -11624,7 +11968,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -11666,7 +12010,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/transcodeCustoms:template',
       'POST',
       pathParams,
@@ -11707,7 +12051,7 @@ JDCloud.LIVE = class LIVE extends Service {
 - 取值范围 [10, 100]
   optional
       * @param {filter} [opts.filters] - 转码模板查询过滤条件:
-  - name:   template 录制模板自定义名称
+  - name:   template 转码模板自定义名称
   - value:  如果参数为空，则查询全部
   - 如果为空,则表示查询该用下所有自定义的转码模板
   optional
@@ -11730,14 +12074,14 @@ JDCloud.LIVE = class LIVE extends Service {
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: 'jdcloud'
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -11779,7 +12123,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/transcodeCustoms',
       'GET',
       pathParams,
@@ -11820,7 +12164,7 @@ JDCloud.LIVE = class LIVE extends Service {
 - 取值范围 [10, 100]
   optional
       * @param {filter} [opts.filters] - 转码模板查询过滤条件:
-  - name:   template 录制模板自定义名称
+  - name:   template 转码模板自定义名称
   - value:  如果参数为空，则查询全部
   - 如果为空,则表示查询该用下所有自定义的转码模板
   optional
@@ -11843,14 +12187,14 @@ JDCloud.LIVE = class LIVE extends Service {
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: 'jdcloud'
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -11892,7 +12236,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/transcodeSystem',
       'GET',
       pathParams,
@@ -11962,14 +12306,14 @@ JDCloud.LIVE = class LIVE extends Service {
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: 'jdcloud'
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -12011,7 +12355,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/transcodes:config',
       'GET',
       pathParams,
@@ -12076,7 +12420,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -12118,7 +12462,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/transcodeDomains/{publishDomain}/templates/{template}:config',
       'DELETE',
       pathParams,
@@ -12191,7 +12535,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -12233,7 +12577,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/transcodeApps/{publishDomain}/appNames/{appName}/templates/{template}',
       'DELETE',
       pathParams,
@@ -12332,7 +12676,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -12374,7 +12718,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/transcodeCustoms/{template}',
       'GET',
       pathParams,
@@ -12433,7 +12777,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -12475,7 +12819,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/transcodeCustoms/{template}',
       'DELETE',
       pathParams,
@@ -12533,7 +12877,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -12575,7 +12919,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/transcodeTemplates/{template}:binding',
       'GET',
       pathParams,
@@ -12726,7 +13070,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -12768,7 +13112,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/watermarkCustoms:template',
       'POST',
       pathParams,
@@ -12831,14 +13175,14 @@ JDCloud.LIVE = class LIVE extends Service {
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: 'jdcloud'
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -12880,7 +13224,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/watermarkCustoms',
       'GET',
       pathParams,
@@ -12959,7 +13303,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -13001,7 +13345,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/watermarkApps:config',
       'POST',
       pathParams,
@@ -13071,7 +13415,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -13113,7 +13457,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/watermarkDomains:config',
       'POST',
       pathParams,
@@ -13183,14 +13527,14 @@ JDCloud.LIVE = class LIVE extends Service {
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: 'jdcloud'
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -13232,7 +13576,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/watermarks:config',
       'GET',
       pathParams,
@@ -13291,7 +13635,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -13333,7 +13677,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/watermarkCustoms/{template}',
       'DELETE',
       pathParams,
@@ -13406,7 +13750,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -13448,7 +13792,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/watermarkApps/{publishDomain}/appNames/{appName}/templates/{template}',
       'DELETE',
       pathParams,
@@ -13514,7 +13858,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -13556,7 +13900,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/watermarkDomains/{publishDomain}/templates/{template}',
       'DELETE',
       pathParams,
@@ -13614,7 +13958,7 @@ JDCloud.LIVE = class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.18'
     }
 
     let contentTypes = ['application/json']
@@ -13656,7 +14000,7 @@ JDCloud.LIVE = class LIVE extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/watermarkTemplates/{template}:binding',
       'GET',
       pathParams,
@@ -13686,4 +14030,4 @@ JDCloud.LIVE = class LIVE extends Service {
     )
   }
 }
-module.exports = JDCloud.LIVE
+module.exports = LIVE

@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Cloud-Physical-Server
- * 云物理服务器私有网络操作相关的接口
+ * 策略管理类接口
+ * 京东云验证码-OpenAPI策略管理类接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -24,20 +24,20 @@
 
 const JDCloud = require('../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'cps'
+var serviceId = 'captcha'
 Service._services[serviceId] = true
 
 /**
- * cps service.
+ * captcha service.
  */
 
-JDCloud.CPS = class CPS {
+JDCloud.CAPTCHA = class CAPTCHA {
   constructor (config = {}) {
     this.init(config)
     return new this.service(config)
   }
   init (config) {
-    let serviceName = 'cps'
+    let serviceName = 'captcha'
     let version = config.version || JDCloud.config.version
     let versionFlag = 'v1'
     if (version && version[serviceName]) {
@@ -53,4 +53,4 @@ JDCloud.CPS = class CPS {
   }
 }
 
-module.exports = JDCloud.CPS
+module.exports = JDCloud.CAPTCHA

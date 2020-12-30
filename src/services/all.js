@@ -14,6 +14,7 @@ module.exports = {
   DEPLOY: require('./deploy'),
   COMPILE: require('./compile'),
   SOP: require('./sop'),
+  CAPTCHA: require('./captcha'),
   FUNCTION: require('./function'),
   BRI: require('./bri'),
   RMS: require('./rms'),

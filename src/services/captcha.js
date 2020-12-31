@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Send-Message-Related-APIs
- * 模版相关API
+ * 策略管理类接口
+ * 京东云验证码-OpenAPI策略管理类接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -24,20 +24,20 @@
 
 const JDCloud = require('../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'sms'
+var serviceId = 'captcha'
 Service._services[serviceId] = true
 
 /**
- * sms service.
+ * captcha service.
  */
 
-JDCloud.SMS = class SMS {
+JDCloud.CAPTCHA = class CAPTCHA {
   constructor (config = {}) {
     this.init(config)
     return new this.service(config)
   }
   init (config) {
-    let serviceName = 'sms'
+    let serviceName = 'captcha'
     let version = config.version || JDCloud.config.version
     let versionFlag = 'v1'
     if (version && version[serviceName]) {
@@ -53,4 +53,4 @@ JDCloud.SMS = class SMS {
   }
 }
 
-module.exports = JDCloud.SMS
+module.exports = JDCloud.CAPTCHA

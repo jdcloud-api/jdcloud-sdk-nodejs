@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Send-Message-Related-APIs
- * 模版相关API
+ * JRtcServiceAccount
+ * 用户服务管理
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -25,88 +25,59 @@
 require('../../../lib/node_loader')
 var JDCloud = require('../../../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'sms'
+var serviceId = 'openjrtc'
 Service._services[serviceId] = true
 
 /**
- * sms service.
- * @version 1.3.3
+ * openjrtc service.
+ * @version 1.0.0
  */
 
-class SMS extends Service {
+class OPENJRTC extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
       options._defaultEndpoint.protocol || 'https'
     options._defaultEndpoint.host =
-      options._defaultEndpoint.host || 'sms.jdcloud-api.com'
+      options._defaultEndpoint.host || 'openjrtc.jdcloud-api.com'
     options.basePath = '/v1' // 默认要设为空""
     super(serviceId, options)
   }
 
   /**
-      *  指定模板群发短信接口。接口调用需要使用京东云统一鉴权的SDK方式接入，以下文档仅是接口出参、入参描述，并不是最终程序实现逻辑的范例，具体接口实现请查看SDK参考：https://docs.jdcloud.com/cn/text-message/java
+      *  创建房间
+
       * @param {Object} opts - parameters
-      * @param {string} opts.templateId - 模板Id
-      * @param {string} opts.signId - 签名Id
-      * @param {array} [opts.phoneList] - 群发的国内电话号码,群发时一次最多不要超过100个手机号  optional
-      * @param {array} [opts.params] - 短信模板变量对应的数据值,Array格式  optional
-      * @param {string} regionId - ID of the region
+      * @param {string} [opts.roomName] - 房间名称  optional
+      * @param {string} [opts.appId] - 应用ID  optional
+      * @param {integer} [opts.peerId] - JRtc用户ID(创建者ID)  optional
       * @param {string} callback - callback
       @return {Object} result
-      * @param batchSendResp data  指定短信Id群发短信响应参数
-      * @param boolean status  请求状态
-      * @param integer code  错误码
-      * @param string message  错误消息
+      * @param createRoomResultObj resultObject
       */
 
-  batchSend (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  batchSend"
-      )
-    }
-
+  createRoom (opts, callback) {
     opts = opts || {}
 
-    if (opts.templateId === undefined || opts.templateId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.templateId' when calling batchSend"
-      )
-    }
-    if (opts.signId === undefined || opts.signId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.signId' when calling batchSend"
-      )
-    }
-
     let postBody = {}
-    if (opts.templateId !== undefined && opts.templateId !== null) {
-      postBody['templateId'] = opts.templateId
+    if (opts.roomName !== undefined && opts.roomName !== null) {
+      postBody['roomName'] = opts.roomName
     }
-    if (opts.signId !== undefined && opts.signId !== null) {
-      postBody['signId'] = opts.signId
+    if (opts.appId !== undefined && opts.appId !== null) {
+      postBody['appId'] = opts.appId
     }
-    if (opts.phoneList !== undefined && opts.phoneList !== null) {
-      postBody['phoneList'] = opts.phoneList
-    }
-    if (opts.params !== undefined && opts.params !== null) {
-      postBody['params'] = opts.params
+    if (opts.peerId !== undefined && opts.peerId !== null) {
+      postBody['peerId'] = opts.peerId
     }
 
     let queryParams = {}
 
     let pathParams = {
-      regionId: regionId
+      regionId: 'jdcloud'
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  sms/1.3.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -136,7 +107,7 @@ class SMS extends Service {
     let returnType = null
 
     this.config.logger(
-      `call batchSend with params:\npathParams:${JSON.stringify(
+      `call createRoom with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -149,7 +120,7 @@ class SMS extends Service {
     )
 
     let request = super.makeRequest(
-      '/regions/{regionId}/batchSend',
+      '/createRoom',
       'POST',
       pathParams,
       queryParams,
@@ -179,55 +150,34 @@ class SMS extends Service {
   }
 
   /**
-      *  短信发送回执接口。接口调用需要使用京东云统一鉴权的SDK方式接入，以下文档仅是接口出参、入参描述，并不是最终程序实现逻辑的范例，具体接口实现请查看SDK参考：https://docs.jdcloud.com/cn/text-message/java
+      *  查询房间实时在线人数:
+
       * @param {Object} opts - parameters
-      * @param {string} opts.sequenceNumber - 发送短信的序列号
-      * @param {array} [opts.phoneList] - 需要获取回执的手机号码列表，选填  optional
-      * @param {string} regionId - ID of the region
+      * @param {integer} opts.roomId - 房间ID
       * @param {string} callback - callback
       @return {Object} result
-      * @param statusReportResp data
-      * @param boolean status  请求状态
-      * @param integer code  错误码
-      * @param string message  错误消息
+      * @param userNumInfoObj resultObject
       */
 
-  statusReport (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  statusReport"
-      )
-    }
-
+  describeRoomOnlineUserNum (opts, callback) {
     opts = opts || {}
 
-    if (opts.sequenceNumber === undefined || opts.sequenceNumber === null) {
+    if (opts.roomId === undefined || opts.roomId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.sequenceNumber' when calling statusReport"
+        "Missing the required parameter 'opts.roomId' when calling describeRoomOnlineUserNum"
       )
     }
 
-    let postBody = {}
-    if (opts.sequenceNumber !== undefined && opts.sequenceNumber !== null) {
-      postBody['sequenceNumber'] = opts.sequenceNumber
-    }
-    if (opts.phoneList !== undefined && opts.phoneList !== null) {
-      postBody['phoneList'] = opts.phoneList
-    }
-
+    let postBody = null
     let queryParams = {}
 
     let pathParams = {
-      regionId: regionId
+      regionId: 'jdcloud',
+      roomId: opts.roomId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  sms/1.3.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -257,7 +207,7 @@ class SMS extends Service {
     let returnType = null
 
     this.config.logger(
-      `call statusReport with params:\npathParams:${JSON.stringify(
+      `call describeRoomOnlineUserNum with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -270,8 +220,8 @@ class SMS extends Service {
     )
 
     let request = super.makeRequest(
-      '/regions/{regionId}/statusReport',
-      'POST',
+      '/describeRoomOnlineUserNum/{roomId}',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -300,64 +250,43 @@ class SMS extends Service {
   }
 
   /**
-      *  短信回复接口。 接口调用需要使用京东云统一鉴权的SDK方式接入，以下文档仅是接口出参、入参描述，并不是最终程序实现逻辑的范例，具体接口实现请查看SDK参考：https://docs.jdcloud.com/cn/text-message/java
+      *  创建JRtc用户
+
       * @param {Object} opts - parameters
-      * @param {string} opts.appId - 应用Id
-      * @param {string} opts.dataDate - 查询时间
-      * @param {array} [opts.phoneList] - 手机号列表（选填）  optional
-      * @param {string} regionId - ID of the region
+      * @param {string} [opts.appId] - 应用ID  optional
+      * @param {string} [opts.userName] - 用户名称  optional
+      * @param {string} [opts.userId] - 业务接入方的用户ID  optional
+      * @param {boolean} [opts.temporary] - 是否临时用户  optional
       * @param {string} callback - callback
       @return {Object} result
-      * @param replyResp data
-      * @param boolean status  请求状态
-      * @param integer code  错误码
-      * @param string message  错误消息
+      * @param createUserResultObj resultObject
       */
 
-  reply (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  reply"
-      )
-    }
-
+  createUser (opts, callback) {
     opts = opts || {}
-
-    if (opts.appId === undefined || opts.appId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.appId' when calling reply"
-      )
-    }
-    if (opts.dataDate === undefined || opts.dataDate === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.dataDate' when calling reply"
-      )
-    }
 
     let postBody = {}
     if (opts.appId !== undefined && opts.appId !== null) {
       postBody['appId'] = opts.appId
     }
-    if (opts.dataDate !== undefined && opts.dataDate !== null) {
-      postBody['dataDate'] = opts.dataDate
+    if (opts.userName !== undefined && opts.userName !== null) {
+      postBody['userName'] = opts.userName
     }
-    if (opts.phoneList !== undefined && opts.phoneList !== null) {
-      postBody['phoneList'] = opts.phoneList
+    if (opts.userId !== undefined && opts.userId !== null) {
+      postBody['userId'] = opts.userId
+    }
+    if (opts.temporary !== undefined && opts.temporary !== null) {
+      postBody['temporary'] = opts.temporary
     }
 
     let queryParams = {}
 
     let pathParams = {
-      regionId: regionId
+      regionId: 'jdcloud'
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  sms/1.3.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -387,7 +316,7 @@ class SMS extends Service {
     let returnType = null
 
     this.config.logger(
-      `call reply with params:\npathParams:${JSON.stringify(
+      `call createUser with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -400,7 +329,7 @@ class SMS extends Service {
     )
 
     let request = super.makeRequest(
-      '/regions/{regionId}/reply',
+      '/createUser',
       'POST',
       pathParams,
       queryParams,
@@ -429,4 +358,4 @@ class SMS extends Service {
     )
   }
 }
-module.exports = SMS
+module.exports = OPENJRTC

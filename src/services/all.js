@@ -81,6 +81,7 @@ module.exports = {
   PIPELINE: require('./pipeline'),
   CONTAINERREGISTRY: require('./containerregistry'),
   PARTNER: require('./partner'),
+  OPENJRTC: require('./openjrtc'),
   LB: require('./lb'),
   IOTCARD: require('./iotcard'),
   CENSOR: require('./censor'),

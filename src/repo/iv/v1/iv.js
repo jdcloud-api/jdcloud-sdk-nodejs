@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * JRtcServiceAccount
- * 用户服务管理
+ * Vi Template
+ * 视频审查模板管理相关接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -25,349 +25,71 @@
 require('../../../lib/node_loader')
 var JDCloud = require('../../../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'openjrtc'
+var serviceId = 'iv'
 Service._services[serviceId] = true
 
 /**
- * openjrtc service.
- * @version 1.1.0
+ * iv service.
+ * @version 0.0.1
  */
 
-class OPENJRTC extends Service {
+class IV extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
       options._defaultEndpoint.protocol || 'https'
     options._defaultEndpoint.host =
-      options._defaultEndpoint.host || 'openjrtc.jdcloud-api.com'
+      options._defaultEndpoint.host || 'iv.jdcloud-api.com'
     options.basePath = '/v1' // 默认要设为空""
     super(serviceId, options)
   }
 
   /**
-      *  查询用户应用列表信息
-
+      *  提交视频审查作业
       * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNumber] - 页码；默认值为 1  optional
-      * @param {integer} [opts.pageSize] - 分页大小；默认值为 10；取值范围 [10, 100]  optional
+      * @param {string} opts.templateId - 视频审查模板ID
+      * @param {string} opts.region - 对象存储区域，输入和输入同区域
+      * @param {string} [opts.inputBucket] - 输入空间  optional
+      * @param {string} [opts.inputFileKey] - 输入文件  optional
+      * @param {string} [opts.outputBucket] - 输入空间  optional
+      * @param {string} [opts.outputFilePath] - 输入路径  optional
       * @param {string} callback - callback
       @return {Object} result
-      * @param appConentObject resultObject
+      * @param viJobSummary resultObject
       */
 
-  describeApps (opts, callback) {
+  submitViJob (opts, callback) {
     opts = opts || {}
 
-    let postBody = null
-    let queryParams = {}
-    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
-      queryParams['pageNumber'] = opts.pageNumber
-    }
-    if (opts.pageSize !== undefined && opts.pageSize !== null) {
-      queryParams['pageSize'] = opts.pageSize
-    }
-
-    let pathParams = {
-      regionId: 'jdcloud'
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeApps with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/applications',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询应用信息:
-
-      * @param {Object} opts - parameters
-      * @param {string} opts.appId - 应用ID
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param appInfoObject resultObject
-      */
-
-  describeApp (opts, callback) {
-    opts = opts || {}
-
-    if (opts.appId === undefined || opts.appId === null) {
+    if (opts.templateId === undefined || opts.templateId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.appId' when calling describeApp"
+        "Missing the required parameter 'opts.templateId' when calling submitViJob"
       )
     }
-
-    let postBody = null
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: 'jdcloud',
-      appId: opts.appId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeApp with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/applications/{appId}',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询应用appKey
-
-      * @param {Object} opts - parameters
-      * @param {string} opts.appId - 应用ID
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param appKeyInfoObject resultObject
-      */
-
-  describeAppKey (opts, callback) {
-    opts = opts || {}
-
-    if (opts.appId === undefined || opts.appId === null) {
+    if (opts.region === undefined || opts.region === null) {
       throw new Error(
-        "Missing the required parameter 'opts.appId' when calling describeAppKey"
+        "Missing the required parameter 'opts.region' when calling submitViJob"
       )
     }
-
-    let postBody = null
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: 'jdcloud',
-      appId: opts.appId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeAppKey with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/applications/{appId}:describeAppKey',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  创建房间
-
-      * @param {Object} opts - parameters
-      * @param {string} [opts.roomName] - 房间名称  optional
-      * @param {string} [opts.appId] - 应用ID  optional
-      * @param {integer} [opts.peerId] - 用户ID(创建者ID)  optional
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param roomInfoObj resultObject
-      */
-
-  createRoom (opts, callback) {
-    opts = opts || {}
 
     let postBody = {}
-    if (opts.roomName !== undefined && opts.roomName !== null) {
-      postBody['roomName'] = opts.roomName
+    if (opts.templateId !== undefined && opts.templateId !== null) {
+      postBody['templateId'] = opts.templateId
     }
-    if (opts.appId !== undefined && opts.appId !== null) {
-      postBody['appId'] = opts.appId
+    if (opts.region !== undefined && opts.region !== null) {
+      postBody['region'] = opts.region
     }
-    if (opts.peerId !== undefined && opts.peerId !== null) {
-      postBody['peerId'] = opts.peerId
+    if (opts.inputBucket !== undefined && opts.inputBucket !== null) {
+      postBody['inputBucket'] = opts.inputBucket
+    }
+    if (opts.inputFileKey !== undefined && opts.inputFileKey !== null) {
+      postBody['inputFileKey'] = opts.inputFileKey
+    }
+    if (opts.outputBucket !== undefined && opts.outputBucket !== null) {
+      postBody['outputBucket'] = opts.outputBucket
+    }
+    if (opts.outputFilePath !== undefined && opts.outputFilePath !== null) {
+      postBody['outputFilePath'] = opts.outputFilePath
     }
 
     let queryParams = {}
@@ -377,7 +99,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iv/0.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -407,7 +129,7 @@ class OPENJRTC extends Service {
     let returnType = null
 
     this.config.logger(
-      `call createRoom with params:\npathParams:${JSON.stringify(
+      `call submitViJob with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -420,7 +142,7 @@ class OPENJRTC extends Service {
     )
 
     let request = super.makeRequest(
-      '/createRoom',
+      '/viJobs:submit',
       'POST',
       pathParams,
       queryParams,
@@ -450,43 +172,33 @@ class OPENJRTC extends Service {
   }
 
   /**
-      *  获取房间信息
-
+      *  查询视频审查作业摘要
       * @param {Object} opts - parameters
-      * @param {string} opts.appId - 应用ID
-      * @param {integer} opts.roomId - 房间ID
+      * @param {string} opts.jobId - 作业ID，路径参数
       * @param {string} callback - callback
       @return {Object} result
-      * @param roomInfoObj resultObject
+      * @param viJobSummary resultObject
       */
 
-  describeRoomInfo (opts, callback) {
+  getViJobSummary (opts, callback) {
     opts = opts || {}
 
-    if (opts.appId === undefined || opts.appId === null) {
+    if (opts.jobId === undefined || opts.jobId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.appId' when calling describeRoomInfo"
-      )
-    }
-    if (opts.roomId === undefined || opts.roomId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.roomId' when calling describeRoomInfo"
+        "Missing the required parameter 'opts.jobId' when calling getViJobSummary"
       )
     }
 
     let postBody = null
     let queryParams = {}
-    if (opts.roomId !== undefined && opts.roomId !== null) {
-      queryParams['roomId'] = opts.roomId
-    }
 
     let pathParams = {
       regionId: 'jdcloud',
-      appId: opts.appId
+      jobId: opts.jobId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iv/0.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -516,7 +228,7 @@ class OPENJRTC extends Service {
     let returnType = null
 
     this.config.logger(
-      `call describeRoomInfo with params:\npathParams:${JSON.stringify(
+      `call getViJobSummary with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -529,7 +241,7 @@ class OPENJRTC extends Service {
     )
 
     let request = super.makeRequest(
-      '/rooms/{appId}',
+      '/viJobs/{jobId}',
       'GET',
       pathParams,
       queryParams,
@@ -559,43 +271,38 @@ class OPENJRTC extends Service {
   }
 
   /**
-      *  修改房间
+      *  查询视频审查模板列表。
+支持过滤查询：
+  - templateId,eq 精确匹配模板ID，非必选
 
       * @param {Object} opts - parameters
-      * @param {string} opts.appId - 应用ID
-      * @param {integer} [opts.roomId] - 房间ID  optional
-      * @param {string} [opts.roomName] - 房间名称  optional
+      * @param {integer} [opts.pageNumber] - 页码；默认值为 1  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认值为 10；取值范围 [10, 100]  optional
+      * @param {filter} [opts.filters]   optional
       * @param {string} callback - callback
       @return {Object} result
-      * @param roomInfoObj resultObject
+      * @param viTemplatePageInfo resultObject
       */
 
-  updateRoom (opts, callback) {
+  listViTemplates (opts, callback) {
     opts = opts || {}
 
-    if (opts.appId === undefined || opts.appId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.appId' when calling updateRoom"
-      )
-    }
-
-    let postBody = {}
-    if (opts.roomId !== undefined && opts.roomId !== null) {
-      postBody['roomId'] = opts.roomId
-    }
-    if (opts.roomName !== undefined && opts.roomName !== null) {
-      postBody['roomName'] = opts.roomName
-    }
-
+    let postBody = null
     let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
-      regionId: 'jdcloud',
-      appId: opts.appId
+      regionId: 'jdcloud'
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iv/0.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -625,7 +332,7 @@ class OPENJRTC extends Service {
     let returnType = null
 
     this.config.logger(
-      `call updateRoom with params:\npathParams:${JSON.stringify(
+      `call listViTemplates with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -638,7 +345,383 @@ class OPENJRTC extends Service {
     )
 
     let request = super.makeRequest(
-      '/rooms/{appId}',
+      '/viTemplates',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建视频审查模板
+      * @param {Object} opts - parameters
+      * @param {string} opts.templateName - 模板名称。长度不超过128个字符。UTF-8编码。
+
+      * @param {integer} [opts.shotInterval] - 截图间隔  optional
+      * @param {string} [opts.shotIntervalType] - 间隔类型：time, percent  optional
+      * @param {string} [opts.shotFormat] - 截图格式：png, jpg  optional
+      * @param {string} [opts.shotFrameType] - 截图帧类型：any, key  optional
+      * @param {integer} [opts.shotWidth] - 截图宽度  optional
+      * @param {integer} [opts.shotHeight] - 截图高度  optional
+      * @param {string} [opts.shotFillType] - 截图填充类型：stretch, gauss, black, white  optional
+      * @param {string} opts.inspectItems - 审查配置，JSON格式
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param viTemplateInfo resultObject
+      */
+
+  createViTemplate (opts, callback) {
+    opts = opts || {}
+
+    if (opts.templateName === undefined || opts.templateName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.templateName' when calling createViTemplate"
+      )
+    }
+    if (opts.inspectItems === undefined || opts.inspectItems === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.inspectItems' when calling createViTemplate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.templateName !== undefined && opts.templateName !== null) {
+      postBody['templateName'] = opts.templateName
+    }
+    if (opts.shotInterval !== undefined && opts.shotInterval !== null) {
+      postBody['shotInterval'] = opts.shotInterval
+    }
+    if (opts.shotIntervalType !== undefined && opts.shotIntervalType !== null) {
+      postBody['shotIntervalType'] = opts.shotIntervalType
+    }
+    if (opts.shotFormat !== undefined && opts.shotFormat !== null) {
+      postBody['shotFormat'] = opts.shotFormat
+    }
+    if (opts.shotFrameType !== undefined && opts.shotFrameType !== null) {
+      postBody['shotFrameType'] = opts.shotFrameType
+    }
+    if (opts.shotWidth !== undefined && opts.shotWidth !== null) {
+      postBody['shotWidth'] = opts.shotWidth
+    }
+    if (opts.shotHeight !== undefined && opts.shotHeight !== null) {
+      postBody['shotHeight'] = opts.shotHeight
+    }
+    if (opts.shotFillType !== undefined && opts.shotFillType !== null) {
+      postBody['shotFillType'] = opts.shotFillType
+    }
+    if (opts.inspectItems !== undefined && opts.inspectItems !== null) {
+      postBody['inspectItems'] = opts.inspectItems
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iv/0.0.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createViTemplate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/viTemplates',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询视频审查模板
+      * @param {Object} opts - parameters
+      * @param {string} opts.templateId - 模板ID，路径参数
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param viTemplateInfo resultObject
+      */
+
+  getViTemplate (opts, callback) {
+    opts = opts || {}
+
+    if (opts.templateId === undefined || opts.templateId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.templateId' when calling getViTemplate"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      templateId: opts.templateId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iv/0.0.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getViTemplate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/viTemplates/{templateId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改视频审查模板
+      * @param {Object} opts - parameters
+      * @param {string} opts.templateId - 模板ID，路径参数
+      * @param {string} [opts.templateName] - 模板名称。长度不超过128个字符。UTF-8编码。
+  optional
+      * @param {integer} [opts.shotInterval] - 截图间隔  optional
+      * @param {string} [opts.shotIntervalType] - 间隔类型：time, percent  optional
+      * @param {string} [opts.shotFormat] - 截图格式：png, jpg  optional
+      * @param {string} [opts.shotFrameType] - 截图帧类型：any, key  optional
+      * @param {integer} [opts.shotWidth] - 截图宽度  optional
+      * @param {integer} [opts.shotHeight] - 截图高度  optional
+      * @param {string} [opts.shotFillType] - 截图填充类型：stretch, gauss, black, white  optional
+      * @param {string} [opts.inspectItems] - 审查配置，JSON格式  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param viTemplateInfo resultObject
+      */
+
+  updateViTemplate (opts, callback) {
+    opts = opts || {}
+
+    if (opts.templateId === undefined || opts.templateId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.templateId' when calling updateViTemplate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.templateName !== undefined && opts.templateName !== null) {
+      postBody['templateName'] = opts.templateName
+    }
+    if (opts.shotInterval !== undefined && opts.shotInterval !== null) {
+      postBody['shotInterval'] = opts.shotInterval
+    }
+    if (opts.shotIntervalType !== undefined && opts.shotIntervalType !== null) {
+      postBody['shotIntervalType'] = opts.shotIntervalType
+    }
+    if (opts.shotFormat !== undefined && opts.shotFormat !== null) {
+      postBody['shotFormat'] = opts.shotFormat
+    }
+    if (opts.shotFrameType !== undefined && opts.shotFrameType !== null) {
+      postBody['shotFrameType'] = opts.shotFrameType
+    }
+    if (opts.shotWidth !== undefined && opts.shotWidth !== null) {
+      postBody['shotWidth'] = opts.shotWidth
+    }
+    if (opts.shotHeight !== undefined && opts.shotHeight !== null) {
+      postBody['shotHeight'] = opts.shotHeight
+    }
+    if (opts.shotFillType !== undefined && opts.shotFillType !== null) {
+      postBody['shotFillType'] = opts.shotFillType
+    }
+    if (opts.inspectItems !== undefined && opts.inspectItems !== null) {
+      postBody['inspectItems'] = opts.inspectItems
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      templateId: opts.templateId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iv/0.0.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call updateViTemplate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/viTemplates/{templateId}',
       'PUT',
       pathParams,
       queryParams,
@@ -668,42 +751,32 @@ class OPENJRTC extends Service {
   }
 
   /**
-      *  删除房间
-
+      *  删除视频审查模板
       * @param {Object} opts - parameters
-      * @param {string} opts.appId - 应用ID
-      * @param {integer} opts.roomId - 房间ID
+      * @param {string} opts.templateId - 模板ID，路径参数
       * @param {string} callback - callback
       @return {Object} result
       */
 
-  deleteRoom (opts, callback) {
+  deleteViTemplate (opts, callback) {
     opts = opts || {}
 
-    if (opts.appId === undefined || opts.appId === null) {
+    if (opts.templateId === undefined || opts.templateId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.appId' when calling deleteRoom"
-      )
-    }
-    if (opts.roomId === undefined || opts.roomId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.roomId' when calling deleteRoom"
+        "Missing the required parameter 'opts.templateId' when calling deleteViTemplate"
       )
     }
 
     let postBody = null
     let queryParams = {}
-    if (opts.roomId !== undefined && opts.roomId !== null) {
-      queryParams['roomId'] = opts.roomId
-    }
 
     let pathParams = {
       regionId: 'jdcloud',
-      appId: opts.appId
+      templateId: opts.templateId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iv/0.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -733,7 +806,7 @@ class OPENJRTC extends Service {
     let returnType = null
 
     this.config.logger(
-      `call deleteRoom with params:\npathParams:${JSON.stringify(
+      `call deleteViTemplate with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -746,7 +819,7 @@ class OPENJRTC extends Service {
     )
 
     let request = super.makeRequest(
-      '/rooms/{appId}',
+      '/viTemplates/{templateId}',
       'DELETE',
       pathParams,
       queryParams,
@@ -774,320 +847,5 @@ class OPENJRTC extends Service {
       }
     )
   }
-
-  /**
-      *  查询应用下的房间列表
-允许通过条件过滤查询，支持的过滤字段如下：
-           - appId[eq] 按应用ID查询
-
-      * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNumber] - 页码；默认值为 1  optional
-      * @param {integer} [opts.pageSize] - 分页大小；默认值为 10；取值范围 [10, 100]  optional
-      * @param {filter} [opts.filters] - 传参字段描述:
-  appId:   应用ID
-  optional
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param roomInfosObj resultObject
-      */
-
-  describeRooms (opts, callback) {
-    opts = opts || {}
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
-      queryParams['pageNumber'] = opts.pageNumber
-    }
-    if (opts.pageSize !== undefined && opts.pageSize !== null) {
-      queryParams['pageSize'] = opts.pageSize
-    }
-    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
-
-    let pathParams = {
-      regionId: 'jdcloud'
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeRooms with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/rooms',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询房间实时在线人数
-
-      * @param {Object} opts - parameters
-      * @param {integer} opts.roomId - 房间ID
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param userNumInfoObj resultObject
-      */
-
-  describeRoomOnlineUserNum (opts, callback) {
-    opts = opts || {}
-
-    if (opts.roomId === undefined || opts.roomId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.roomId' when calling describeRoomOnlineUserNum"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: 'jdcloud',
-      roomId: opts.roomId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeRoomOnlineUserNum with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/describeRoomOnlineUserNum/{roomId}',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  创建用户
-
-      * @param {Object} opts - parameters
-      * @param {string} [opts.appId] - 应用ID  optional
-      * @param {string} [opts.userName] - 用户名称  optional
-      * @param {string} [opts.userId] - 业务接入方的用户ID  optional
-      * @param {boolean} [opts.temporary] - 是否临时用户  optional
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param createUserResultObj resultObject
-      */
-
-  createUser (opts, callback) {
-    opts = opts || {}
-
-    let postBody = {}
-    if (opts.appId !== undefined && opts.appId !== null) {
-      postBody['appId'] = opts.appId
-    }
-    if (opts.userName !== undefined && opts.userName !== null) {
-      postBody['userName'] = opts.userName
-    }
-    if (opts.userId !== undefined && opts.userId !== null) {
-      postBody['userId'] = opts.userId
-    }
-    if (opts.temporary !== undefined && opts.temporary !== null) {
-      postBody['temporary'] = opts.temporary
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: 'jdcloud'
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call createUser with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/createUser',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
 }
-module.exports = OPENJRTC
+module.exports = IV

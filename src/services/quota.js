@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * yunding-user
- * 云鼎-用户操作相关接口
+ * JDCLOUD remote quota API
+ * API JDCLOUD remote quota API
  *
  * OpenAPI spec version: v2
  * Contact:
@@ -24,20 +24,20 @@
 
 const JDCloud = require('../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'yunding'
+var serviceId = 'quota'
 Service._services[serviceId] = true
 
 /**
- * yunding service.
+ * quota service.
  */
 
-JDCloud.YUNDING = class YUNDING {
+JDCloud.QUOTA = class QUOTA {
   constructor (config = {}) {
     this.init(config)
     return new this.service(config)
   }
   init (config) {
-    let serviceName = 'yunding'
+    let serviceName = 'quota'
     let version = config.version || JDCloud.config.version
     let versionFlag = 'v2'
     if (version && version[serviceName]) {
@@ -53,4 +53,4 @@ JDCloud.YUNDING = class YUNDING {
   }
 }
 
-module.exports = JDCloud.YUNDING
+module.exports = JDCloud.QUOTA

@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * ydsms service.
- * @version 1.0.1
+ * @version 1.0.4
  */
 
 class YDSMS extends Service {
@@ -80,7 +80,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -200,7 +200,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -299,7 +299,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -407,7 +407,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -506,7 +506,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -588,21 +588,20 @@ class YDSMS extends Service {
       * @param string appId  应用id
       */
 
-  modifyStatusUsingPOST (opts, callback) {
+  modifyStatusUsingGET (opts, callback) {
     opts = opts || {}
 
     if (opts.appId === undefined || opts.appId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.appId' when calling modifyStatusUsingPOST"
+        "Missing the required parameter 'opts.appId' when calling modifyStatusUsingGET"
       )
     }
 
-    let postBody = {}
-    if (opts.status !== undefined && opts.status !== null) {
-      postBody['status'] = opts.status
-    }
-
+    let postBody = null
     let queryParams = {}
+    if (opts.status !== undefined && opts.status !== null) {
+      queryParams['status'] = opts.status
+    }
 
     let pathParams = {
       regionId: 'jdcloud',
@@ -610,7 +609,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -640,7 +639,7 @@ class YDSMS extends Service {
     let returnType = null
 
     this.config.logger(
-      `call modifyStatusUsingPOST with params:\npathParams:${JSON.stringify(
+      `call modifyStatusUsingGET with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -654,7 +653,7 @@ class YDSMS extends Service {
 
     let request = super.makeRequest(
       '/smsApps/{appId}:modifyStatus',
-      'POST',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -692,7 +691,9 @@ class YDSMS extends Service {
       * @param {string} opts.startTime - 开始时间,pattern &#x3D;&quot;yyyy-MM-dd HH:mm:ss&quot;,timezone&#x3D;&quot;GMT+8&quot;
       * @param {string} callback - callback
       @return {Object} result
-      * @param listSmsSendOverviewVO listSmsSendOverviewVO
+      * @param string pin  pin
+      * @param string appId  应用id
+      * @param sendOverviewVO sendOverviewVOList
       */
 
   listSmsSendOverviewUsingGET (opts, callback) {
@@ -735,7 +736,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -821,7 +822,7 @@ class YDSMS extends Service {
       * @param {string} opts.startTime - 开始时间,pattern &#x3D;&quot;yyyy-MM-dd HH:mm:ss&quot;,timezone&#x3D;&quot;GMT+8&quot;
       * @param {string} callback - callback
       @return {Object} result
-      * @param sendRecord smsApps
+      * @param sendRecord sendRecords
       * @param integer totalCount
       */
 
@@ -877,7 +878,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -960,7 +961,7 @@ class YDSMS extends Service {
       * @param {string} opts.startTime - 开始时间,pattern &#x3D;&quot;yyyy-MM-dd HH:mm:ss&quot;,timezone&#x3D;&quot;GMT+8&quot;
       * @param {string} callback - callback
       @return {Object} result
-      * @param replyRecord smsApps
+      * @param replyRecord replyRecords
       * @param integer totalCount
       */
 
@@ -1007,7 +1008,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -1087,7 +1088,9 @@ class YDSMS extends Service {
       * @param {string} opts.startTime - 开始时间,pattern &#x3D;&quot;yyyy-MM-dd HH:mm:ss&quot;,timezone&#x3D;&quot;GMT+8&quot;
       * @param {string} callback - callback
       @return {Object} result
-      * @param queryReceiptRecordRes queryReceiptRecordRes
+      * @param string pin  pin
+      * @param string appId  应用id
+      * @param receiptRecord receiptRecords
       */
 
   queryReceiptRecordUsingGET (opts, callback) {
@@ -1124,7 +1127,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -1223,7 +1226,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -1315,15 +1318,14 @@ class YDSMS extends Service {
       )
     }
 
-    let postBody = {}
+    let postBody = null
+    let queryParams = {}
     if (opts.settingValue !== undefined && opts.settingValue !== null) {
-      postBody['settingValue'] = opts.settingValue
+      queryParams['settingValue'] = opts.settingValue
     }
     if (opts.status !== undefined && opts.status !== null) {
-      postBody['status'] = opts.status
+      queryParams['status'] = opts.status
     }
-
-    let queryParams = {}
 
     let pathParams = {
       regionId: 'jdcloud',
@@ -1331,7 +1333,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -1375,7 +1377,7 @@ class YDSMS extends Service {
 
     let request = super.makeRequest(
       '/smsAppGeneralSettings/{id}:modify',
-      'POST',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -1422,7 +1424,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -1538,7 +1540,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -1642,7 +1644,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -1762,7 +1764,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -1861,7 +1863,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -1960,7 +1962,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -2036,7 +2038,7 @@ class YDSMS extends Service {
       *  批量发送短信
       * @param {Object} opts - parameters
       * @param {} opts.appId - 应用id
-      * @param {} opts.params - 短信模板变量对应的数据值
+      * @param {} [opts.params] - 短信模板变量对应的数据值  optional
       * @param {} opts.phoneList - 群发的国内电话号码,群发时一次最多不要超过100个手机号
       * @param {} opts.signId - 签名id
       * @param {} opts.templateId - 模板id
@@ -2051,11 +2053,6 @@ class YDSMS extends Service {
     if (opts.appId === undefined || opts.appId === null) {
       throw new Error(
         "Missing the required parameter 'opts.appId' when calling sendMessagesUsingPOST"
-      )
-    }
-    if (opts.params === undefined || opts.params === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.params' when calling sendMessagesUsingPOST"
       )
     }
     if (opts.phoneList === undefined || opts.phoneList === null) {
@@ -2098,7 +2095,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -2212,7 +2209,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -2371,7 +2368,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -2470,7 +2467,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -2636,7 +2633,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -2727,7 +2724,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -2841,7 +2838,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -2922,6 +2919,7 @@ class YDSMS extends Service {
       * @param {} opts.signId - 短信签名id
       * @param {} opts.taskName - 任务名称
       * @param {} opts.templateId - 短信模板id
+      * @param {} [opts.taskType] - 任务类型，1：通道短信 2：营销短信  optional
       * @param {string} callback - callback
       @return {Object} result
       * @param string taskId  任务id
@@ -2970,6 +2968,9 @@ class YDSMS extends Service {
     if (opts.templateId !== undefined && opts.templateId !== null) {
       postBody['templateId'] = opts.templateId
     }
+    if (opts.taskType !== undefined && opts.taskType !== null) {
+      postBody['taskType'] = opts.taskType
+    }
 
     let queryParams = {}
 
@@ -2978,7 +2979,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -3077,7 +3078,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -3150,6 +3151,249 @@ class YDSMS extends Service {
   }
 
   /**
+      *  编辑短信发送任务
+      * @param {Object} opts - parameters
+      * @param {string} opts.taskId - 任务id
+      * @param {} opts.appId - 应用id
+      * @param {} [opts.sendNumberUrl] - 短信发送号码集合文件  optional
+      * @param {} [opts.sendTime] - 短信发送时间，不传表示立即发送  optional
+      * @param {} opts.signId - 短信签名id
+      * @param {} opts.taskName - 任务名称
+      * @param {} opts.templateId - 短信模板id
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string taskId  任务id
+      */
+
+  modifySmsTaskUsingPOST (opts, callback) {
+    opts = opts || {}
+
+    if (opts.taskId === undefined || opts.taskId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.taskId' when calling modifySmsTaskUsingPOST"
+      )
+    }
+    if (opts.appId === undefined || opts.appId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appId' when calling modifySmsTaskUsingPOST"
+      )
+    }
+    if (opts.signId === undefined || opts.signId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.signId' when calling modifySmsTaskUsingPOST"
+      )
+    }
+    if (opts.taskName === undefined || opts.taskName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.taskName' when calling modifySmsTaskUsingPOST"
+      )
+    }
+    if (opts.templateId === undefined || opts.templateId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.templateId' when calling modifySmsTaskUsingPOST"
+      )
+    }
+
+    let postBody = {}
+    if (opts.appId !== undefined && opts.appId !== null) {
+      postBody['appId'] = opts.appId
+    }
+    if (opts.sendNumberUrl !== undefined && opts.sendNumberUrl !== null) {
+      postBody['sendNumberUrl'] = opts.sendNumberUrl
+    }
+    if (opts.sendTime !== undefined && opts.sendTime !== null) {
+      postBody['sendTime'] = opts.sendTime
+    }
+    if (opts.signId !== undefined && opts.signId !== null) {
+      postBody['signId'] = opts.signId
+    }
+    if (opts.taskName !== undefined && opts.taskName !== null) {
+      postBody['taskName'] = opts.taskName
+    }
+    if (opts.templateId !== undefined && opts.templateId !== null) {
+      postBody['templateId'] = opts.templateId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      taskId: opts.taskId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifySmsTaskUsingPOST with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/smsTasks/{taskId}',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除任务
+      * @param {Object} opts - parameters
+      * @param {string} opts.taskId - 任务id
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean success  任务删除是否成功
+      */
+
+  taskDeleteUsingDelete (opts, callback) {
+    opts = opts || {}
+
+    if (opts.taskId === undefined || opts.taskId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.taskId' when calling taskDeleteUsingDelete"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      taskId: opts.taskId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call taskDeleteUsingDelete with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/smsTasks/{taskId}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  启动任务
       * @param {Object} opts - parameters
       * @param {string} opts.taskId - 任务id
@@ -3176,7 +3420,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -3249,12 +3493,124 @@ class YDSMS extends Service {
   }
 
   /**
-      *  查询短信模板
+      *  获取短信任务中的短信内容及计费条数
+      * @param {Object} opts - parameters
+      * @param {string} opts.signId - 签名id
+      * @param {string} opts.templateId - 模板id
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string content  短信内容预览
+      * @param integer chargeCount  计费条数
+      */
+
+  getSmsTaskContentUsingGET (opts, callback) {
+    opts = opts || {}
+
+    if (opts.signId === undefined || opts.signId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.signId' when calling getSmsTaskContentUsingGET"
+      )
+    }
+    if (opts.templateId === undefined || opts.templateId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.templateId' when calling getSmsTaskContentUsingGET"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.signId !== undefined && opts.signId !== null) {
+      queryParams['signId'] = opts.signId
+    }
+    if (opts.templateId !== undefined && opts.templateId !== null) {
+      queryParams['templateId'] = opts.templateId
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getSmsTaskContentUsingGET with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/smsTasks:getSmsTaskContent',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询短信模板列表
       * @param {Object} opts - parameters
       * @param {string} opts.appId - 应用id
       * @param {integer} [opts.pageNumber] - 页码  optional
       * @param {integer} [opts.pageSize] - 分页大小  optional
       * @param {string} [opts.status] - 状态，1申请中 2拒绝 3通过  optional
+      * @param {string} [opts.templateTypes] - 要查询的模板类型，多个以 , 隔开(0 验证码短信,1 通知短信,2 推广短信)  optional
       * @param {string} callback - callback
       @return {Object} result
       * @param smsTemplateVO smsTemplates
@@ -3284,13 +3640,16 @@ class YDSMS extends Service {
     if (opts.status !== undefined && opts.status !== null) {
       queryParams['status'] = opts.status
     }
+    if (opts.templateTypes !== undefined && opts.templateTypes !== null) {
+      queryParams['templateTypes'] = opts.templateTypes
+    }
 
     let pathParams = {
       regionId: 'jdcloud'
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -3423,7 +3782,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -3522,7 +3881,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -3662,7 +4021,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -3754,7 +4113,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -3856,7 +4215,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -3956,7 +4315,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.4'
     }
 
     let contentTypes = ['application/json']

@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * yunding-rds
- * 云鼎-RDS相关接口
+ * yunding-user
+ * 云鼎-用户操作相关接口
  *
  * OpenAPI spec version: v2
  * Contact:
@@ -30,10 +30,10 @@ Service._services[serviceId] = true
 
 /**
  * yunding service.
- * @version 2.0.1
+ * @version 2.0.3
  */
 
-JDCloud.YUNDING = class YUNDING extends Service {
+class YUNDING extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
@@ -42,6 +42,397 @@ JDCloud.YUNDING = class YUNDING extends Service {
       options._defaultEndpoint.host || 'yunding.jdcloud-api.com'
     options.basePath = '/v2' // 默认要设为空""
     super(serviceId, options)
+  }
+
+  /**
+      *  云拔测-可用性agent任务查询接口
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例 Id
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param tasksInfo tasks
+      */
+
+  describeTasks (opts, callback) {
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling describeTasks"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.3'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeTasks with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/agentTasks/{instanceId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  监控数据上报。
+      * @param {Object} opts - parameters
+      * @param {string} opts.appCode - 目前统一用jcloud
+      * @param {string} opts.serviceCode - 资源的类型，取值vm,ip,database,storage,disk,cdn,redis,balance,nat_gw,db_ro,vpn,ddos等,新接入的产品要求与opentapi命名的产品线名称一致
+      * @param {string} opts.region - 地域信息，如 cn-north-1 等
+      * @param {string} opts.resourceId - 资源的唯一表示，一般为uuid
+      * @param {array} [opts.dataPoints] - 监控数据点  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer failed  失败数量
+      * @param integer success  成功数量
+      */
+
+  put (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  put"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appCode === undefined || opts.appCode === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appCode' when calling put"
+      )
+    }
+    if (opts.serviceCode === undefined || opts.serviceCode === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.serviceCode' when calling put"
+      )
+    }
+    if (opts.region === undefined || opts.region === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.region' when calling put"
+      )
+    }
+    if (opts.resourceId === undefined || opts.resourceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.resourceId' when calling put"
+      )
+    }
+
+    let postBody = {}
+    if (opts.appCode !== undefined && opts.appCode !== null) {
+      postBody['appCode'] = opts.appCode
+    }
+    if (opts.serviceCode !== undefined && opts.serviceCode !== null) {
+      postBody['serviceCode'] = opts.serviceCode
+    }
+    if (opts.region !== undefined && opts.region !== null) {
+      postBody['region'] = opts.region
+    }
+    if (opts.resourceId !== undefined && opts.resourceId !== null) {
+      postBody['resourceId'] = opts.resourceId
+    }
+    if (opts.dataPoints !== undefined && opts.dataPoints !== null) {
+      postBody['dataPoints'] = opts.dataPoints
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.3'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call put with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/put',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  监控数据上报。
+      * @param {Object} opts - parameters
+      * @param {string} opts.appCode - 目前统一用jcloud
+      * @param {string} opts.serviceCode - 资源的类型，取值vm,ip,database,storage,disk,cdn,redis,balance,nat_gw,db_ro,vpn,ddos等,新接入的产品要求与opentapi命名的产品线名称一致
+      * @param {string} opts.region - 地域信息，如 cn-north-1 等
+      * @param {string} opts.resourceId - 资源的唯一表示，一般为uuid
+      * @param {array} [opts.dataPoints] - 监控数据点  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer failed  失败数量
+      * @param integer success  成功数量
+      */
+
+  putProductMetricData (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  putProductMetricData"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appCode === undefined || opts.appCode === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appCode' when calling putProductMetricData"
+      )
+    }
+    if (opts.serviceCode === undefined || opts.serviceCode === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.serviceCode' when calling putProductMetricData"
+      )
+    }
+    if (opts.region === undefined || opts.region === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.region' when calling putProductMetricData"
+      )
+    }
+    if (opts.resourceId === undefined || opts.resourceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.resourceId' when calling putProductMetricData"
+      )
+    }
+
+    let postBody = {}
+    if (opts.appCode !== undefined && opts.appCode !== null) {
+      postBody['appCode'] = opts.appCode
+    }
+    if (opts.serviceCode !== undefined && opts.serviceCode !== null) {
+      postBody['serviceCode'] = opts.serviceCode
+    }
+    if (opts.region !== undefined && opts.region !== null) {
+      postBody['region'] = opts.region
+    }
+    if (opts.resourceId !== undefined && opts.resourceId !== null) {
+      postBody['resourceId'] = opts.resourceId
+    }
+    if (opts.dataPoints !== undefined && opts.dataPoints !== null) {
+      postBody['dataPoints'] = opts.dataPoints
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.3'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call putProductMetricData with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/put',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
   }
 
   /**
@@ -98,7 +489,7 @@ JDCloud.YUNDING = class YUNDING extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -140,7 +531,7 @@ JDCloud.YUNDING = class YUNDING extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/ydNetworkInterfaces/{networkInterfaceId}:assignSecondaryIps',
       'POST',
       pathParams,
@@ -216,7 +607,7 @@ JDCloud.YUNDING = class YUNDING extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -258,9 +649,123 @@ JDCloud.YUNDING = class YUNDING extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/ydNetworkInterfaces/{networkInterfaceId}:unassignSecondaryIps',
       'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询弹性网卡信息详情
+      * @param {Object} opts - parameters
+      * @param {string} opts.networkInterfaceId - networkInterface ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param networkInterface networkInterface  networkInterface资源信息
+      */
+
+  describeNetworkInterface (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeNetworkInterface"
+      )
+    }
+
+    opts = opts || {}
+
+    if (
+      opts.networkInterfaceId === undefined ||
+      opts.networkInterfaceId === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.networkInterfaceId' when calling describeNetworkInterface"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      networkInterfaceId: opts.networkInterfaceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.3'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeNetworkInterface with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/ydNetworkInterfaces/{networkInterfaceId}',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -336,14 +841,14 @@ vpcId, 支持operator选项：eq
     if (opts.type !== undefined && opts.type !== null) {
       queryParams['type'] = opts.type
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -385,7 +890,7 @@ vpcId, 支持operator选项：eq
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/ydRdsInstances',
       'GET',
       pathParams,
@@ -454,7 +959,7 @@ vpcId, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -496,7 +1001,7 @@ vpcId, 支持operator选项：eq
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/ydRdsInstances/{instanceId}',
       'GET',
       pathParams,
@@ -566,7 +1071,7 @@ vpcId, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -608,7 +1113,7 @@ vpcId, 支持operator选项：eq
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/ydRdsInstances/{instanceId}:describeInstanceInfo',
       'GET',
       pathParams,
@@ -677,7 +1182,7 @@ vpcId, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -719,7 +1224,7 @@ vpcId, 支持operator选项：eq
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/ydRdsInstances/{instanceId}/whiteList',
       'GET',
       pathParams,
@@ -797,7 +1302,7 @@ vpcId, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -839,7 +1344,7 @@ vpcId, 支持operator选项：eq
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/ydRdsInstances/{instanceId}/whiteList',
       'PUT',
       pathParams,
@@ -917,7 +1422,7 @@ vpcId, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -959,7 +1464,7 @@ vpcId, 支持operator选项：eq
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/ydRdsInstances/{instanceId}/accounts',
       'GET',
       pathParams,
@@ -1046,7 +1551,7 @@ vpcId, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1088,7 +1593,7 @@ vpcId, 支持operator选项：eq
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/ydRdsInstances/{instanceId}/accounts',
       'POST',
       pathParams,
@@ -1163,7 +1668,7 @@ vpcId, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1205,7 +1710,7 @@ vpcId, 支持operator选项：eq
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/ydRdsInstances/{instanceId}/accounts/{accountName}',
       'DELETE',
       pathParams,
@@ -1296,7 +1801,7 @@ vpcId, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1338,8 +1843,130 @@ vpcId, 支持operator选项：eq
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/ydRdsInstances/{instanceId}/accounts/{accountName}:grantPrivilege',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  取消该账号对某个数据库的所有权限。权限取消后，该账号将不能访问此数据库。取消账号对某个数据库的访问权限，不影响该账号对其他数据库的访问权限
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
+      * @param {string} opts.accountName - 账号名，在同一个实例中账号名不能重复
+      * @param {array} [opts.dbNames] - 需要取消授权的数据库的名称。权限取消后，该账号将不能访问此数据库  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  revokePrivilege (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  revokePrivilege"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling revokePrivilege"
+      )
+    }
+    if (opts.accountName === undefined || opts.accountName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.accountName' when calling revokePrivilege"
+      )
+    }
+
+    let postBody = {}
+    if (opts.dbNames !== undefined && opts.dbNames !== null) {
+      postBody['dbNames'] = opts.dbNames
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      accountName: opts.accountName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.3'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call revokePrivilege with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/ydRdsInstances/{instanceId}/accounts/{accountName}:revokePrivilege',
       'POST',
       pathParams,
       queryParams,
@@ -1420,7 +2047,7 @@ vpcId, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1462,7 +2089,7 @@ vpcId, 支持operator选项：eq
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/ydRdsInstances/{instanceId}/databases',
       'GET',
       pathParams,
@@ -1549,7 +2176,7 @@ vpcId, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1591,7 +2218,7 @@ vpcId, 支持operator选项：eq
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/ydRdsInstances/{instanceId}/databases',
       'POST',
       pathParams,
@@ -1666,7 +2293,7 @@ vpcId, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1708,7 +2335,7 @@ vpcId, 支持operator选项：eq
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/ydRdsInstances/{instanceId}/databases/{dbName}',
       'DELETE',
       pathParams,
@@ -1781,7 +2408,7 @@ vpcId, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1823,7 +2450,7 @@ vpcId, 支持operator选项：eq
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/rdsInstances',
       'GET',
       pathParams,
@@ -1853,4 +2480,4 @@ vpcId, 支持operator选项：eq
     )
   }
 }
-module.exports = JDCloud.YUNDING
+module.exports = YUNDING

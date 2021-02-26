@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * cps service.
- * @version 2.4.1
+ * @version 2.4.3
  */
 
 class CPS extends Service {
@@ -101,7 +101,7 @@ class CPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -222,7 +222,7 @@ class CPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -339,7 +339,7 @@ class CPS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -384,6 +384,592 @@ class CPS extends Service {
     let request = super.makeRequest(
       '/regions/{regionId}/aliasIps/{aliasIpId}',
       'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询证书列表&lt;br/&gt;
+支持分页查询，默认每页20条&lt;br/&gt;
+
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[20, 100]  optional
+      * @param {string} [opts.name] - 证书名称  optional
+      * @param {filter} [opts.filters] - certId - 证书ID，精确匹配，支持多个&lt;br/&gt;
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param cert certs
+      * @param integer pageNumber  页码；默认为1
+      * @param integer pageSize  分页大小；默认为20；取值范围[20, 100]
+      * @param integer totalCount  查询结果总数
+      */
+
+  describeCerts (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeCerts"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    if (opts.name !== undefined && opts.name !== null) {
+      queryParams['name'] = opts.name
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeCerts with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/certs',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建证书
+
+      * @param {Object} opts - parameters
+      * @param {string} [opts.clientToken] - 由客户端生成，用于保证请求的幂等性，长度不能超过36个字符；&lt;br/&gt;
+如果多个请求使用了相同的clientToken，只会执行第一个请求，之后的请求直接返回第一个请求的结果&lt;br/&gt;
+  optional
+      * @param {certSpec} opts.certSpec - 弹性公网IP配置
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string certId  证书ID
+      */
+
+  createCert (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createCert"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.certSpec === undefined || opts.certSpec === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.certSpec' when calling createCert"
+      )
+    }
+
+    let postBody = {}
+    if (opts.clientToken !== undefined && opts.clientToken !== null) {
+      postBody['clientToken'] = opts.clientToken
+    }
+    if (opts.certSpec !== undefined && opts.certSpec !== null) {
+      postBody['certSpec'] = opts.certSpec
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createCert with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/certs',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询证书详情
+      * @param {Object} opts - parameters
+      * @param {string} opts.certId - 证书ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param cert cert  证书详细信息
+      */
+
+  describeCert (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeCert"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.certId === undefined || opts.certId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.certId' when calling describeCert"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      certId: opts.certId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeCert with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/certs/{certId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除证书
+      * @param {Object} opts - parameters
+      * @param {string} opts.certId - 证书ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean success  删除操作是否成功
+      */
+
+  removeCert (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  removeCert"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.certId === undefined || opts.certId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.certId' when calling removeCert"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      certId: opts.certId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call removeCert with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/certs/{certId}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改证书名称
+      * @param {Object} opts - parameters
+      * @param {string} opts.certId - 证书ID
+      * @param {string} [opts.name] - 证书名称  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string certId  证书ID
+      * @param string name  证书名称
+      * @param string certificate  证书内容
+      * @param string createTime  创建时间
+      * @param integer listenerCount  证书关联监听器数量
+      */
+
+  modifyCert (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyCert"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.certId === undefined || opts.certId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.certId' when calling modifyCert"
+      )
+    }
+
+    let postBody = {}
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      certId: opts.certId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyCert with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/certs/{certId}:modifyCert',
+      'POST',
       pathParams,
       queryParams,
       headerParams,
@@ -479,7 +1065,7 @@ elasticIp - 弹性公网IP，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -600,7 +1186,7 @@ elasticIp - 弹性公网IP，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -711,7 +1297,7 @@ elasticIp - 弹性公网IP，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -839,7 +1425,7 @@ elasticIp - 弹性公网IP，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -912,6 +1498,117 @@ elasticIp - 弹性公网IP，精确匹配，支持多个
   }
 
   /**
+      *  查询EIP名称
+      * @param {Object} opts - parameters
+      * @param {string} opts.elasticIpId - 弹性公网IPID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string name  EIP名称
+      */
+
+  describeElasticIpName (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeElasticIpName"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.elasticIpId === undefined || opts.elasticIpId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.elasticIpId' when calling describeElasticIpName"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      elasticIpId: opts.elasticIpId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeElasticIpName with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/elasticIp/{elasticIpId}:describeElasticIpName',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  查询云物理服务器实例类型
       * @param {Object} opts - parameters
       * @param {string} [opts.az] - 可用区，精确匹配  optional
@@ -946,7 +1643,7 @@ elasticIp - 弹性公网IP，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -1063,7 +1760,7 @@ elasticIp - 弹性公网IP，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -1180,7 +1877,7 @@ elasticIp - 弹性公网IP，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -1291,7 +1988,7 @@ elasticIp - 弹性公网IP，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -1447,7 +2144,7 @@ status - 云物理服务器状态，参考云物理服务器状态，精确匹�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -1584,7 +2281,7 @@ status - 云物理服务器状态，参考云物理服务器状态，精确匹�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -1695,7 +2392,7 @@ status - 云物理服务器状态，参考云物理服务器状态，精确匹�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -1826,7 +2523,7 @@ status - 云物理服务器状态，参考云物理服务器状态，精确匹�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -1947,7 +2644,7 @@ status - 云物理服务器状态，参考云物理服务器状态，精确匹�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -2061,7 +2758,7 @@ status - 云物理服务器状态，参考云物理服务器状态，精确匹�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -2175,7 +2872,7 @@ status - 云物理服务器状态，参考云物理服务器状态，精确匹�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -2293,7 +2990,7 @@ status - 云物理服务器状态，参考云物理服务器状态，精确匹�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -2411,7 +3108,7 @@ status - 云物理服务器状态，参考云物理服务器状态，精确匹�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -2529,7 +3226,7 @@ status - 云物理服务器状态，参考云物理服务器状态，精确匹�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -2573,6 +3270,348 @@ status - 云物理服务器状态，参考云物理服务器状态，精确匹�
 
     let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}:startInstance',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  批量重启云物理服务器，只能重启running状态的服务器 [MFA enabled]
+      * @param {Object} opts - parameters
+      * @param {string} [opts.clientToken] - 由客户端生成，用于保证请求的幂等性，长度不能超过36个字符；&lt;br/&gt;
+如果多个请求使用了相同的clientToken，只会执行第一个请求，之后的请求直接返回第一个请求的结果&lt;br/&gt;
+  optional
+      * @param {array} [opts.instanceIds] - 资源id列表  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean success  重启操作是否成功
+      */
+
+  restartInstances (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  restartInstances"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.clientToken !== undefined && opts.clientToken !== null) {
+      postBody['clientToken'] = opts.clientToken
+    }
+    if (opts.instanceIds !== undefined && opts.instanceIds !== null) {
+      postBody['instanceIds'] = opts.instanceIds
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call restartInstances with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances:restartInstances',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  批量关闭云物理服务器，只能停止running状态的服务器 [MFA enabled]
+      * @param {Object} opts - parameters
+      * @param {string} [opts.clientToken] - 由客户端生成，用于保证请求的幂等性，长度不能超过36个字符；&lt;br/&gt;
+如果多个请求使用了相同的clientToken，只会执行第一个请求，之后的请求直接返回第一个请求的结果&lt;br/&gt;
+  optional
+      * @param {array} [opts.instanceIds] - 资源id列表  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean success  关机操作是否成功
+      */
+
+  stopInstances (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  stopInstances"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.clientToken !== undefined && opts.clientToken !== null) {
+      postBody['clientToken'] = opts.clientToken
+    }
+    if (opts.instanceIds !== undefined && opts.instanceIds !== null) {
+      postBody['instanceIds'] = opts.instanceIds
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call stopInstances with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances:stopInstances',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  批量开启云物理服务器，只能启动stopped状态的服务器
+      * @param {Object} opts - parameters
+      * @param {string} [opts.clientToken] - 由客户端生成，用于保证请求的幂等性，长度不能超过36个字符；&lt;br/&gt;
+如果多个请求使用了相同的clientToken，只会执行第一个请求，之后的请求直接返回第一个请求的结果&lt;br/&gt;
+  optional
+      * @param {array} [opts.instanceIds] - 资源id列表  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean success  开机操作是否成功
+      */
+
+  startInstances (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  startInstances"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.clientToken !== undefined && opts.clientToken !== null) {
+      postBody['clientToken'] = opts.clientToken
+    }
+    if (opts.instanceIds !== undefined && opts.instanceIds !== null) {
+      postBody['instanceIds'] = opts.instanceIds
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call startInstances with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances:startInstances',
       'PUT',
       pathParams,
       queryParams,
@@ -2658,7 +3697,7 @@ status - 云物理服务器状态，参考云物理服务器状态，精确匹�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -2788,7 +3827,7 @@ status - 云物理服务器状态，参考云物理服务器状态，精确匹�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -2924,7 +3963,7 @@ status - 云物理服务器状态，参考云物理服务器状态，精确匹�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -3052,7 +4091,7 @@ status - 云物理服务器状态，参考云物理服务器状态，精确匹�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -3180,7 +4219,7 @@ status - 云物理服务器状态，参考云物理服务器状态，精确匹�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -3300,7 +4339,7 @@ status - 云物理服务器状态，参考云物理服务器状态，精确匹�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -3441,7 +4480,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -3563,7 +4602,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -3674,7 +4713,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -3805,7 +4844,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -3930,7 +4969,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -4058,7 +5097,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -4179,7 +5218,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -4290,7 +5329,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -4412,7 +5451,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -4533,7 +5572,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -4660,7 +5699,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -4795,7 +5834,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -4906,7 +5945,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -5017,7 +6056,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -5142,7 +6181,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -5262,7 +6301,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -5349,6 +6388,12 @@ cps.process.total - 总进程数
       * @param {integer} [opts.healthyThreshold] - 健康检查结果为success的阈值  optional
       * @param {integer} [opts.unhealthyThreshold] - 健康检查结果为fail的阈值  optional
       * @param {string} [opts.serverGroupId] - 服务器组id  optional
+      * @param {integer} [opts.stickySessionTimeout] - 会话保持超时时间，单位s  optional
+      * @param {string} [opts.cookieType] - 会话类型，植入Cookie or 重写Cookie  optional
+      * @param {string} [opts.healthCheckUri] - 检查路径  optional
+      * @param {string} [opts.healthCheckHttpCode] - 正常态码，要使用的Http状态码  optional
+      * @param {string} [opts.certificateId] - 证书ID  optional
+      * @param {array} [opts.headers] - 获取HTTP头字段：X-Forwarded-For、X-Forwarded-Proto、X- Forwarded-Port、X-Forwarded-LBIP  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -5418,6 +6463,30 @@ cps.process.total - 总进程数
     if (opts.serverGroupId !== undefined && opts.serverGroupId !== null) {
       postBody['serverGroupId'] = opts.serverGroupId
     }
+    if (
+      opts.stickySessionTimeout !== undefined &&
+      opts.stickySessionTimeout !== null
+    ) {
+      postBody['stickySessionTimeout'] = opts.stickySessionTimeout
+    }
+    if (opts.cookieType !== undefined && opts.cookieType !== null) {
+      postBody['cookieType'] = opts.cookieType
+    }
+    if (opts.healthCheckUri !== undefined && opts.healthCheckUri !== null) {
+      postBody['healthCheckUri'] = opts.healthCheckUri
+    }
+    if (
+      opts.healthCheckHttpCode !== undefined &&
+      opts.healthCheckHttpCode !== null
+    ) {
+      postBody['healthCheckHttpCode'] = opts.healthCheckHttpCode
+    }
+    if (opts.certificateId !== undefined && opts.certificateId !== null) {
+      postBody['certificateId'] = opts.certificateId
+    }
+    if (opts.headers !== undefined && opts.headers !== null) {
+      postBody['headers'] = opts.headers
+    }
 
     let queryParams = {}
 
@@ -5427,7 +6496,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -5538,7 +6607,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -5649,7 +6718,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -5767,7 +6836,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -5885,7 +6954,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -6018,7 +7087,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -6138,7 +7207,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -6258,7 +7327,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -6369,7 +7438,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -6487,7 +7556,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -6605,7 +7674,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -6732,7 +7801,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -6859,7 +7928,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -6932,6 +8001,117 @@ cps.process.total - 总进程数
   }
 
   /**
+      *  查询SLB名称
+      * @param {Object} opts - parameters
+      * @param {string} opts.loadBalancerId - 负载均衡实例ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string name  SLB名称
+      */
+
+  describeSlbsName (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeSlbsName"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.loadBalancerId === undefined || opts.loadBalancerId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.loadBalancerId' when calling describeSlbsName"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      loadBalancerId: opts.loadBalancerId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeSlbsName with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/slbs/{loadBalancerId}:describeSlbsName',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  查询云物理服务器地域列表
       * @param {Object} opts - parameters
       * @param {string} [opts.networkType] - 网络类型basic（基础网络）、vpc（私有网络）、retail（零售中台网络）, 默认basic  optional
@@ -6954,7 +8134,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -7045,7 +8225,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -7156,7 +8336,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -7281,7 +8461,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -7394,7 +8574,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -7520,7 +8700,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -7637,7 +8817,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -7766,7 +8946,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -7888,7 +9068,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -8015,7 +9195,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -8133,7 +9313,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -8258,7 +9438,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -8378,7 +9558,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -8489,7 +9669,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -8607,7 +9787,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -8718,7 +9898,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -8831,7 +10011,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -8960,7 +10140,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -9080,7 +10260,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -9203,7 +10383,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -9314,7 +10494,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -9434,7 +10614,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -9551,7 +10731,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -9662,7 +10842,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -9783,7 +10963,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -9901,7 +11081,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -10022,7 +11202,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -10142,7 +11322,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']
@@ -10261,7 +11441,7 @@ cps.process.total - 总进程数
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cps/2.4.3'
     }
 
     let contentTypes = ['application/json']

@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * vod service.
- * @version 1.1.9
+ * @version 1.1.10
  */
 
 class VOD extends Service {
@@ -73,7 +73,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -184,7 +184,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -283,7 +283,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -382,7 +382,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -495,7 +495,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -593,7 +593,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -694,7 +694,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -796,7 +796,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -895,7 +895,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -993,7 +993,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -1092,7 +1092,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -1191,7 +1191,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -1290,7 +1290,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -1424,7 +1424,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -1523,7 +1523,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -1648,7 +1648,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -1765,7 +1765,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -1864,7 +1864,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -1981,7 +1981,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -2080,7 +2080,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -2197,7 +2197,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -2296,7 +2296,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -2423,7 +2423,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -2522,7 +2522,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -2604,6 +2604,7 @@ https - 强制采用https协议回源
       * @param {string} [opts.description] - 视频描述  optional
       * @param {integer} [opts.categoryId] - 分类ID  optional
       * @param {array} [opts.tags] - 视频标签集合  optional
+      * @param {string} [opts.transcodeTemplateGroupId] - 转码模板组ID。若此字段不为空，则将以模板组方式提交转码作业，transcodeTemplateIds字段将被忽略。  optional
       * @param {array} [opts.transcodeTemplateIds] - 转码模板ID集合  optional
       * @param {array} [opts.watermarkIds] - 水印ID集合  optional
       * @param {string} opts.publishDomain - 推流域名
@@ -2686,6 +2687,12 @@ https - 强制采用https协议回源
       postBody['tags'] = opts.tags
     }
     if (
+      opts.transcodeTemplateGroupId !== undefined &&
+      opts.transcodeTemplateGroupId !== null
+    ) {
+      postBody['transcodeTemplateGroupId'] = opts.transcodeTemplateGroupId
+    }
+    if (
       opts.transcodeTemplateIds !== undefined &&
       opts.transcodeTemplateIds !== null
     ) {
@@ -2723,7 +2730,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -2808,6 +2815,7 @@ https - 强制采用https协议回源
       * @param {string} [opts.description] - 视频描述  optional
       * @param {integer} [opts.categoryId] - 分类ID  optional
       * @param {array} [opts.tags] - 视频标签集合  optional
+      * @param {string} [opts.transcodeTemplateGroupId] - 转码模板组ID  optional
       * @param {array} [opts.transcodeTemplateIds] - 转码模板ID集合  optional
       * @param {array} [opts.watermarkIds] - 水印ID集合  optional
       * @param {string} [opts.userData] - 自定义数据  optional
@@ -2856,6 +2864,12 @@ https - 强制采用https协议回源
       postBody['tags'] = opts.tags
     }
     if (
+      opts.transcodeTemplateGroupId !== undefined &&
+      opts.transcodeTemplateGroupId !== null
+    ) {
+      postBody['transcodeTemplateGroupId'] = opts.transcodeTemplateGroupId
+    }
+    if (
       opts.transcodeTemplateIds !== undefined &&
       opts.transcodeTemplateIds !== null
     ) {
@@ -2875,7 +2889,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -2976,7 +2990,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -3086,7 +3100,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -3185,7 +3199,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -3280,7 +3294,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -3380,7 +3394,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -3503,7 +3517,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -3602,7 +3616,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -3718,7 +3732,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -3816,7 +3830,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -3920,7 +3934,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -4046,7 +4060,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -4145,7 +4159,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -4253,7 +4267,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -4351,7 +4365,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -4427,6 +4441,7 @@ https - 强制采用https协议回源
       *  提交转码作业
       * @param {Object} opts - parameters
       * @param {string} [opts.videoId] - 视频ID  optional
+      * @param {string} [opts.templateGroupId] - 转码模板组ID。若此字段不为空，则以模板组方式提交作业，templateIds字段将被忽略。  optional
       * @param {array} [opts.templateIds] - 转码模板ID列表  optional
       * @param {array} [opts.watermarkIds] - 水印ID列表  optional
       * @param {string} callback - callback
@@ -4440,6 +4455,9 @@ https - 强制采用https协议回源
     let postBody = {}
     if (opts.videoId !== undefined && opts.videoId !== null) {
       postBody['videoId'] = opts.videoId
+    }
+    if (opts.templateGroupId !== undefined && opts.templateGroupId !== null) {
+      postBody['templateGroupId'] = opts.templateGroupId
     }
     if (opts.templateIds !== undefined && opts.templateIds !== null) {
       postBody['templateIds'] = opts.templateIds
@@ -4455,7 +4473,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -4551,7 +4569,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -4644,7 +4662,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -4737,7 +4755,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -4830,7 +4848,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -4934,7 +4952,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -5030,7 +5048,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -5135,7 +5153,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -5291,7 +5309,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -5390,7 +5408,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -5528,7 +5546,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -5626,7 +5644,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -5699,6 +5717,614 @@ https - 强制采用https协议回源
   }
 
   /**
+      *  查询转码模板组列表。
+
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码；默认值为 1  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认值为 10；取值范围 [10, 100]  optional
+      * @param {filter} [opts.filters]   optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param transcodeTemplateGroupPageData resultObject
+      */
+
+  listTranscodeTemplateGroups (opts, callback) {
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call listTranscodeTemplateGroups with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/transcodeTemplateGroups',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建转码模板组
+      * @param {Object} opts - parameters
+      * @param {string} [opts.groupName] - 转码模板组名称  optional
+      * @param {groupedTranscodeTemplateData} [opts.templates]   optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param transcodeTemplateGroupData resultObject
+      */
+
+  createTranscodeTemplateGroup (opts, callback) {
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.groupName !== undefined && opts.groupName !== null) {
+      postBody['groupName'] = opts.groupName
+    }
+    if (opts.templates !== undefined && opts.templates !== null) {
+      postBody['templates'] = opts.templates
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createTranscodeTemplateGroup with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/transcodeTemplateGroups',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询转码模板组
+      * @param {Object} opts - parameters
+      * @param {string} opts.groupId - 模板组ID
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param transcodeTemplateGroupData resultObject
+      */
+
+  getTranscodeTemplateGroup (opts, callback) {
+    opts = opts || {}
+
+    if (opts.groupId === undefined || opts.groupId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.groupId' when calling getTranscodeTemplateGroup"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      groupId: opts.groupId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getTranscodeTemplateGroup with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/transcodeTemplateGroups/{groupId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改转码模板组
+      * @param {Object} opts - parameters
+      * @param {string} opts.groupId - 模板组ID
+      * @param {string} [opts.groupName] - 转码模板组名称  optional
+      * @param {groupedTranscodeTemplateData} [opts.templates]   optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param transcodeTemplateGroupData resultObject
+      */
+
+  updateTranscodeTemplateGroup (opts, callback) {
+    opts = opts || {}
+
+    if (opts.groupId === undefined || opts.groupId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.groupId' when calling updateTranscodeTemplateGroup"
+      )
+    }
+
+    let postBody = {}
+    if (opts.groupName !== undefined && opts.groupName !== null) {
+      postBody['groupName'] = opts.groupName
+    }
+    if (opts.templates !== undefined && opts.templates !== null) {
+      postBody['templates'] = opts.templates
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      groupId: opts.groupId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call updateTranscodeTemplateGroup with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/transcodeTemplateGroups/{groupId}',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除转码模板组
+      * @param {Object} opts - parameters
+      * @param {string} opts.groupId - 模板组ID
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteTranscodeTemplateGroup (opts, callback) {
+    opts = opts || {}
+
+    if (opts.groupId === undefined || opts.groupId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.groupId' when calling deleteTranscodeTemplateGroup"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      groupId: opts.groupId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteTranscodeTemplateGroup with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/transcodeTemplateGroups/{groupId}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除转码模板组中的模板。
+
+      * @param {Object} opts - parameters
+      * @param {string} [opts.groupId] - 模板组ID  optional
+      * @param {integer} [opts.templateIds] - 待删除的模板ID列表  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param deleteGroupedTranscodeTemplatesResData resultObject
+      */
+
+  deleteGroupedTranscodeTemplates (opts, callback) {
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.groupId !== undefined && opts.groupId !== null) {
+      postBody['groupId'] = opts.groupId
+    }
+    if (opts.templateIds !== undefined && opts.templateIds !== null) {
+      postBody['templateIds'] = opts.templateIds
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteGroupedTranscodeTemplates with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/transcodeTemplateGroups:deleteGroupedTranscodeTemplates',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  查询视频列表信息。
 允许通过条件过滤查询，支持的过滤字段如下：
   - status[eq] 按视频状态精确查询
@@ -5735,7 +6361,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -5834,7 +6460,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -5954,7 +6580,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -6052,7 +6678,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -6148,7 +6774,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -6244,7 +6870,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -6343,7 +6969,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -6447,7 +7073,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -6560,7 +7186,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -6659,7 +7285,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -6758,7 +7384,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -6964,7 +7590,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -7063,7 +7689,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -7241,7 +7867,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']
@@ -7339,7 +7965,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.10'
     }
 
     let contentTypes = ['application/json']

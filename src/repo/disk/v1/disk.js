@@ -30,10 +30,10 @@ Service._services[serviceId] = true
 
 /**
  * disk service.
- * @version 0.12.4
+ * @version 0.12.6
  */
 
-JDCloud.DISK = class DISK extends Service {
+class DISK extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
@@ -60,6 +60,8 @@ az - 云硬盘状态，精确匹配，支持多个
 name - 云硬盘名称，模糊匹配，支持单个
 multiAttach - 云硬盘是否多点挂载，精确匹配，支持单个
 encrypted - 云硬盘是否加密，精确匹配，支持单个
+policyId - 绑定policyId的云硬盘，精确匹配，支持多个
+notPolicyId - 未绑定policyId的云硬盘，精确匹配，支持多个
   optional
       * @param {tagFilter} [opts.tags] - Tag筛选条件  optional
       * @param {string} regionId - ID of the region
@@ -91,15 +93,15 @@ encrypted - 云硬盘是否加密，精确匹配，支持单个
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
-    Object.assign(queryParams, this.buildTagFilterParam(opts.tags, 'tags'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildTagFilterParam(opts.tags, 'tags'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
     }
 
     let contentTypes = ['application/json']
@@ -141,7 +143,7 @@ encrypted - 云硬盘是否加密，精确匹配，支持单个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/disks',
       'GET',
       pathParams,
@@ -179,15 +181,19 @@ encrypted - 云硬盘是否加密，精确匹配，支持单个
 -   可选参数快照 ID用于从快照创建新盘。
 -   批量创建时，云硬盘的命名为 硬盘名称-数字，例如 myDisk-1，myDisk-2。
 -   maxCount为最大努力，不保证一定能达到maxCount。
+-   userTags 为创建云盘时打的标签
 
       * @param {Object} opts - parameters
       * @param {diskSpec} opts.diskSpec - 创建云硬盘规格
       * @param {integer} opts.maxCount - 购买实例数量；取值范围：[1,100]
+      * @param {array} [opts.userTags] - 用户标签  optional
       * @param {string} opts.clientToken - 幂等性校验参数
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param policyDiskRelationOpResult policyRelations
       * @param string diskIds
+      * @param string tagmsg  标签结果信息
       */
 
   createDisks (opts, regionId = this.config.regionId, callback) {
@@ -227,6 +233,9 @@ encrypted - 云硬盘是否加密，精确匹配，支持单个
     if (opts.maxCount !== undefined && opts.maxCount !== null) {
       postBody['maxCount'] = opts.maxCount
     }
+    if (opts.userTags !== undefined && opts.userTags !== null) {
+      postBody['userTags'] = opts.userTags
+    }
     if (opts.clientToken !== undefined && opts.clientToken !== null) {
       postBody['clientToken'] = opts.clientToken
     }
@@ -238,7 +247,7 @@ encrypted - 云硬盘是否加密，精确匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
     }
 
     let contentTypes = ['application/json']
@@ -280,7 +289,7 @@ encrypted - 云硬盘是否加密，精确匹配，支持单个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/disks',
       'POST',
       pathParams,
@@ -349,7 +358,7 @@ encrypted - 云硬盘是否加密，精确匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
     }
 
     let contentTypes = ['application/json']
@@ -391,7 +400,7 @@ encrypted - 云硬盘是否加密，精确匹配，支持单个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/disks/{diskId}',
       'GET',
       pathParams,
@@ -468,7 +477,7 @@ encrypted - 云硬盘是否加密，精确匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
     }
 
     let contentTypes = ['application/json']
@@ -510,7 +519,7 @@ encrypted - 云硬盘是否加密，精确匹配，支持单个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/disks/{diskId}',
       'PATCH',
       pathParams,
@@ -581,7 +590,7 @@ encrypted - 云硬盘是否加密，精确匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
     }
 
     let contentTypes = ['application/json']
@@ -623,7 +632,7 @@ encrypted - 云硬盘是否加密，精确匹配，支持单个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/disks/{diskId}',
       'DELETE',
       pathParams,
@@ -704,7 +713,7 @@ encrypted - 云硬盘是否加密，精确匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
     }
 
     let contentTypes = ['application/json']
@@ -746,7 +755,7 @@ encrypted - 云硬盘是否加密，精确匹配，支持单个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/disks/{diskId}:restore',
       'POST',
       pathParams,
@@ -830,7 +839,7 @@ encrypted - 云硬盘是否加密，精确匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
     }
 
     let contentTypes = ['application/json']
@@ -872,9 +881,260 @@ encrypted - 云硬盘是否加密，精确匹配，支持单个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/disks/{diskId}:extend',
       'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  -   查询您已经创建的云硬盘。
+-   filters多个过滤条件之间是逻辑与(AND)，每个条件内部的多个取值是逻辑或(OR)
+
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞)  optional
+      * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围：[10,100]  optional
+      * @param {array} [opts.tags] - Tag筛选条件  optional
+      * @param {array} [opts.filterGroups] - diskId - 云硬盘ID，精确匹配，支持多个
+diskType - 云硬盘类型，精确匹配，支持多个，取值为 ssd,premium-hdd,ssd.io1,ssd.gp1,hdd.std1
+instanceId - 云硬盘所挂载主机的ID，精确匹配，支持多个
+instanceType - 云硬盘所挂载主机的类型，精确匹配，支持多个
+status - 可用区，精确匹配，支持多个
+az - 云硬盘状态，精确匹配，支持多个
+name - 云硬盘名称，模糊匹配，支持单个
+multiAttach - 云硬盘是否多点挂载，精确匹配，支持单个
+encrypted - 云硬盘是否加密，精确匹配，支持单个
+policyId - 绑定policyId的云硬盘，精确匹配，支持多个
+notPolicyId - 未绑定policyId的云硬盘，精确匹配，支持多个
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param disk disks
+      * @param integer totalCount  查询的云硬盘数目
+      */
+
+  describeVolumesIgnoreServiceCode (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeVolumesIgnoreServiceCode"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      postBody['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+    if (opts.tags !== undefined && opts.tags !== null) {
+      postBody['tags'] = opts.tags
+    }
+    if (opts.filterGroups !== undefined && opts.filterGroups !== null) {
+      postBody['filterGroups'] = opts.filterGroups
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeVolumesIgnoreServiceCode with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/disks:ignoreServiceCode',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询云硬盘和快照资源的配额
+      * @param {Object} opts - parameters
+      * @param {string} opts.type - 资源类型  disk：用户能创建的云盘的配额  snapshot： 用户能创建的快照的配额 snapshot_policy： 用户能创建的快照策略的配额
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param quota quota
+      */
+
+  describeQuota (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeQuota"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.type === undefined || opts.type === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.type' when calling describeQuota"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.type !== undefined && opts.type !== null) {
+      queryParams['type'] = opts.type
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeQuota with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/quotas',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -945,14 +1205,14 @@ name - 快照名称，模糊匹配，支持单个
     if (opts.snapshotSource !== undefined && opts.snapshotSource !== null) {
       queryParams['snapshotSource'] = opts.snapshotSource
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
     }
 
     let contentTypes = ['application/json']
@@ -994,7 +1254,7 @@ name - 快照名称，模糊匹配，支持单个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/snapshots',
       'GET',
       pathParams,
@@ -1081,7 +1341,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
     }
 
     let contentTypes = ['application/json']
@@ -1123,9 +1383,122 @@ name - 快照名称，模糊匹配，支持单个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/snapshots',
       'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  -   删除云硬盘快照:快照状态必须为 available 或 error 状态。
+-   快照独立于云硬盘生命周期，删除快照不会对创建快照的云硬盘有任何影响。
+-   快照删除后不可恢复，请谨慎操作。
+
+      * @param {Object} opts - parameters
+      * @param {string} [opts.snapshotIds] - 快照ID列表  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param delSnapshot snapshots
+      * @param integer successCount  删除快照成功的数量
+      * @param integer failedCount  删除快照成功的数量
+      */
+
+  deleteSnapshots (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteSnapshots"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    Object.assign(
+      queryParams,
+      super.buildArrayParam(opts.snapshotIds, 'snapshotIds')
+    )
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteSnapshots with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/snapshots',
+      'DELETE',
       pathParams,
       queryParams,
       headerParams,
@@ -1192,7 +1565,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
     }
 
     let contentTypes = ['application/json']
@@ -1234,7 +1607,7 @@ name - 快照名称，模糊匹配，支持单个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/snapshots/{snapshotId}',
       'GET',
       pathParams,
@@ -1269,7 +1642,8 @@ name - 快照名称，模糊匹配，支持单个
       * @param {Object} opts - parameters
       * @param {string} opts.snapshotId - 快照ID
       * @param {string} [opts.name] - 快照名称  optional
-      * @param {string} [opts.description] - 快照描述，name和description必须要指定一个  optional
+      * @param {string} [opts.description] - 快照描述  optional
+      * @param {string} [opts.expireTime] - 快照过期时间，三者至少指定一个  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1302,6 +1676,9 @@ name - 快照名称，模糊匹配，支持单个
     if (opts.description !== undefined && opts.description !== null) {
       postBody['description'] = opts.description
     }
+    if (opts.expireTime !== undefined && opts.expireTime !== null) {
+      postBody['expireTime'] = opts.expireTime
+    }
 
     let queryParams = {}
 
@@ -1311,7 +1688,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
     }
 
     let contentTypes = ['application/json']
@@ -1353,7 +1730,7 @@ name - 快照名称，模糊匹配，支持单个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/snapshots/{snapshotId}',
       'PATCH',
       pathParams,
@@ -1424,7 +1801,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
     }
 
     let contentTypes = ['application/json']
@@ -1466,7 +1843,7 @@ name - 快照名称，模糊匹配，支持单个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/snapshots/{snapshotId}',
       'DELETE',
       pathParams,
@@ -1495,5 +1872,1167 @@ name - 快照名称，模糊匹配，支持单个
       }
     )
   }
+
+  /**
+      *  查询快照容量
+      * @param {Object} opts - parameters
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param snapshotCapacity capacities
+      */
+
+  describeSnapshotsCapacity (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeSnapshotsCapacity"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeSnapshotsCapacity with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/snapshots:capacity',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询快照链的快照个数和快照总容量
+      * @param {Object} opts - parameters
+      * @param {string} [opts.diskId] - 云硬盘ID  optional
+      * @param {string} [opts.snapshotId] - 快照ID  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param object snapshotChain
+      */
+
+  describeSnapshotChain (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeSnapshotChain"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.diskId !== undefined && opts.diskId !== null) {
+      queryParams['diskId'] = opts.diskId
+    }
+    if (opts.snapshotId !== undefined && opts.snapshotId !== null) {
+      queryParams['snapshotId'] = opts.snapshotId
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeSnapshotChain with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/snapshots:chain',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建快照策略
+      * @param {Object} opts - parameters
+      * @param {string} opts.name - 策略名称
+      * @param {integer} opts.interval - 策略执行周期，单位:秒，不小于12小时
+      * @param {string} opts.effectiveTime - 策略生效时间，格式&#x60;YYYY-MM-DDTHH:mm:ss+xx:xx&#x60;。如&#x60;2020-02-02T20:02:00+08:00&#x60;
+      * @param {integer} opts.snapshotLifecycle - 快照保留时间，单位:秒，0:表示不删除
+      * @param {contactInfo} [opts.contactInfo] - 联系人信息  optional
+      * @param {integer} opts.status - 策略状态。1:启用 2:禁用
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string id  是否发送短信。0:不发送 1:发送
+      * @param string name  是否发送短信。0:不发送 1:发送
+      * @param string pin  用户pin
+      * @param integer interval  策略执行间隔，单位:秒
+      * @param string effectiveTime  策略生效时间。格式&#x60;YYYY-MM-DDTHH:mm:ss+xx:xx&#x60;。如&#x60;2020-02-02T20:02:00+08:00&#x60;
+      * @param string lastTriggerTime  策略上次执行时间。格式&#x60;YYYY-MM-DDTHH:mm:ss+xx:xx&#x60;。如&#x60;2020-02-02T20:02:00+08:00&#x60;
+      * @param string nextTriggerTime  策略下次执行时间。格式&#x60;YYYY-MM-DDTHH:mm:ss+xx:xx&#x60;。如&#x60;2020-02-02T20:02:00+08:00&#x60;
+      * @param integer snapshotLifecycle  快照保留时间。单位:秒。0：永久保留
+      * @param contactInfo contactInfo  联系人信息
+      * @param string createTime  策略下次执行时间。格式&#x60;YYYY-MM-DDTHH:mm:ss+xx:xx&#x60;。如&#x60;2020-02-02T20:02:00+08:00&#x60;
+      * @param string updateTime  策略下次执行时间。格式&#x60;YYYY-MM-DDTHH:mm:ss+xx:xx&#x60;。如&#x60;2020-02-02T20:02:00+08:00&#x60;
+      * @param integer status  策略状态。1：启用 2：禁用
+      * @param integer diskCount  策略绑定的disk数量
+      */
+
+  createSnapshotPolicy (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createSnapshotPolicy"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.name === undefined || opts.name === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.name' when calling createSnapshotPolicy"
+      )
+    }
+    if (opts.interval === undefined || opts.interval === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.interval' when calling createSnapshotPolicy"
+      )
+    }
+    if (opts.effectiveTime === undefined || opts.effectiveTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.effectiveTime' when calling createSnapshotPolicy"
+      )
+    }
+    if (
+      opts.snapshotLifecycle === undefined ||
+      opts.snapshotLifecycle === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.snapshotLifecycle' when calling createSnapshotPolicy"
+      )
+    }
+    if (opts.status === undefined || opts.status === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.status' when calling createSnapshotPolicy"
+      )
+    }
+
+    let postBody = {}
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.interval !== undefined && opts.interval !== null) {
+      postBody['interval'] = opts.interval
+    }
+    if (opts.effectiveTime !== undefined && opts.effectiveTime !== null) {
+      postBody['effectiveTime'] = opts.effectiveTime
+    }
+    if (
+      opts.snapshotLifecycle !== undefined &&
+      opts.snapshotLifecycle !== null
+    ) {
+      postBody['snapshotLifecycle'] = opts.snapshotLifecycle
+    }
+    if (opts.contactInfo !== undefined && opts.contactInfo !== null) {
+      postBody['contactInfo'] = opts.contactInfo
+    }
+    if (opts.status !== undefined && opts.status !== null) {
+      postBody['status'] = opts.status
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createSnapshotPolicy with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/snapshotPolicy',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改快照策略
+      * @param {Object} opts - parameters
+      * @param {string} opts.policyId - 策略ID
+      * @param {string} opts.name - 策略名称
+      * @param {integer} opts.interval - 策略执行周期，单位:秒，不小于12小时
+      * @param {string} opts.effectiveTime - 策略生效时间，格式&#x60;YYYY-MM-DDTHH:mm:ss+xx:xx&#x60;。如&#x60;2020-02-02T20:02:00+08:00&#x60;
+      * @param {integer} opts.snapshotLifecycle - 快照保留时间，单位:秒，0:表示不删除
+      * @param {contactInfo} [opts.contactInfo] - 联系人信息  optional
+      * @param {integer} opts.status - 策略状态。1:启用 2:禁用
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string id  是否发送短信。0:不发送 1:发送
+      * @param string name  是否发送短信。0:不发送 1:发送
+      * @param string pin  用户pin
+      * @param integer interval  策略执行间隔，单位:秒
+      * @param string effectiveTime  策略生效时间。格式&#x60;YYYY-MM-DDTHH:mm:ss+xx:xx&#x60;。如&#x60;2020-02-02T20:02:00+08:00&#x60;
+      * @param string lastTriggerTime  策略上次执行时间。格式&#x60;YYYY-MM-DDTHH:mm:ss+xx:xx&#x60;。如&#x60;2020-02-02T20:02:00+08:00&#x60;
+      * @param string nextTriggerTime  策略下次执行时间。格式&#x60;YYYY-MM-DDTHH:mm:ss+xx:xx&#x60;。如&#x60;2020-02-02T20:02:00+08:00&#x60;
+      * @param integer snapshotLifecycle  快照保留时间。单位:秒。0：永久保留
+      * @param contactInfo contactInfo  联系人信息
+      * @param string createTime  策略下次执行时间。格式&#x60;YYYY-MM-DDTHH:mm:ss+xx:xx&#x60;。如&#x60;2020-02-02T20:02:00+08:00&#x60;
+      * @param string updateTime  策略下次执行时间。格式&#x60;YYYY-MM-DDTHH:mm:ss+xx:xx&#x60;。如&#x60;2020-02-02T20:02:00+08:00&#x60;
+      * @param integer status  策略状态。1：启用 2：禁用
+      * @param integer diskCount  策略绑定的disk数量
+      */
+
+  updateSnapshotPolicy (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  updateSnapshotPolicy"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.policyId === undefined || opts.policyId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.policyId' when calling updateSnapshotPolicy"
+      )
+    }
+    if (opts.name === undefined || opts.name === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.name' when calling updateSnapshotPolicy"
+      )
+    }
+    if (opts.interval === undefined || opts.interval === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.interval' when calling updateSnapshotPolicy"
+      )
+    }
+    if (opts.effectiveTime === undefined || opts.effectiveTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.effectiveTime' when calling updateSnapshotPolicy"
+      )
+    }
+    if (
+      opts.snapshotLifecycle === undefined ||
+      opts.snapshotLifecycle === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.snapshotLifecycle' when calling updateSnapshotPolicy"
+      )
+    }
+    if (opts.status === undefined || opts.status === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.status' when calling updateSnapshotPolicy"
+      )
+    }
+
+    let postBody = {}
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.interval !== undefined && opts.interval !== null) {
+      postBody['interval'] = opts.interval
+    }
+    if (opts.effectiveTime !== undefined && opts.effectiveTime !== null) {
+      postBody['effectiveTime'] = opts.effectiveTime
+    }
+    if (
+      opts.snapshotLifecycle !== undefined &&
+      opts.snapshotLifecycle !== null
+    ) {
+      postBody['snapshotLifecycle'] = opts.snapshotLifecycle
+    }
+    if (opts.contactInfo !== undefined && opts.contactInfo !== null) {
+      postBody['contactInfo'] = opts.contactInfo
+    }
+    if (opts.status !== undefined && opts.status !== null) {
+      postBody['status'] = opts.status
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      policyId: opts.policyId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call updateSnapshotPolicy with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/snapshotPolicy/{policyId}',
+      'PATCH',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除快照策略
+      * @param {Object} opts - parameters
+      * @param {string} opts.policyId - 策略ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteSnapshotPolicy (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteSnapshotPolicy"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.policyId === undefined || opts.policyId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.policyId' when calling deleteSnapshotPolicy"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      policyId: opts.policyId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteSnapshotPolicy with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/snapshotPolicy/{policyId}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询快照策略
+      * @param {Object} opts - parameters
+      * @param {string} [opts.name] - 策略名称  optional
+      * @param {array} [opts.policyId] - 策略ID  optional
+      * @param {array} [opts.status] - 策略状态。1: 启用 2：禁用  optional
+      * @param {orderItem} [opts.order] - 排序字段，只支持create_time和update_time字段  optional
+      * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞)  optional
+      * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围：[10,100]  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param snapshotPolicy policies
+      * @param integer totalCount  查询的快照策略数目
+      */
+
+  describeSnapshotPolicies (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeSnapshotPolicies"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.policyId !== undefined && opts.policyId !== null) {
+      postBody['policyId'] = opts.policyId
+    }
+    if (opts.status !== undefined && opts.status !== null) {
+      postBody['status'] = opts.status
+    }
+    if (opts.order !== undefined && opts.order !== null) {
+      postBody['order'] = opts.order
+    }
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      postBody['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeSnapshotPolicies with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/snapshotPolicies:describe',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询快照策略
+      * @param {Object} opts - parameters
+      * @param {array} [opts.filterGroups] - 过滤条件  optional
+      * @param {orderItem} [opts.order] - 排序字段，只支持create_time和update_time字段  optional
+      * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞)  optional
+      * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围：[10,100]  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param snapshotPolicy policies
+      * @param integer totalCount  查询的快照策略数目
+      */
+
+  describeSnapPolices (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeSnapPolices"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.filterGroups !== undefined && opts.filterGroups !== null) {
+      postBody['filterGroups'] = opts.filterGroups
+    }
+    if (opts.order !== undefined && opts.order !== null) {
+      postBody['order'] = opts.order
+    }
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      postBody['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeSnapPolices with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/snapPolicies:describe',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  绑定/解绑快照策略与磁盘关系
+      * @param {Object} opts - parameters
+      * @param {array} [opts.relations] - 绑定/解绑操作  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param policyDiskRelationOpResult opResults
+      */
+
+  applySnapshotPolicies (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  applySnapshotPolicies"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.relations !== undefined && opts.relations !== null) {
+      postBody['relations'] = opts.relations
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call applySnapshotPolicies with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/snapshotPolicies:apply',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询快照策略与磁盘绑定关系
+      * @param {Object} opts - parameters
+      * @param {array} [opts.diskId] - 磁盘ID  optional
+      * @param {array} [opts.diskRegion] - 磁盘地域ID  optional
+      * @param {array} [opts.policyId] - 策略ID  optional
+      * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞)  optional
+      * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围：[10,100]  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer totalCount  总数量
+      * @param descSnapshotRelationsData relationResults
+      */
+
+  describeSnapshotPolicyDiskRelations (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeSnapshotPolicyDiskRelations"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.diskId !== undefined && opts.diskId !== null) {
+      postBody['diskId'] = opts.diskId
+    }
+    if (opts.diskRegion !== undefined && opts.diskRegion !== null) {
+      postBody['diskRegion'] = opts.diskRegion
+    }
+    if (opts.policyId !== undefined && opts.policyId !== null) {
+      postBody['policyId'] = opts.policyId
+    }
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      postBody['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeSnapshotPolicyDiskRelations with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/snapshotPolicyDiskRelations:describe',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
 }
-module.exports = JDCloud.DISK
+module.exports = DISK

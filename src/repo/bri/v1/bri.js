@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * bri service.
- * @version 1.0.0
+ * @version 1.1.0
  */
 
 class BRI extends Service {
@@ -94,7 +94,7 @@ class BRI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  bri/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  bri/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -207,7 +207,7 @@ class BRI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  bri/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  bri/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -319,7 +319,7 @@ class BRI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  bri/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  bri/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -415,7 +415,7 @@ class BRI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  bri/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  bri/1.1.0'
     }
 
     let contentTypes = ['application/json']

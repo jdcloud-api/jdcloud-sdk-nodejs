@@ -46,6 +46,7 @@ module.exports = {
   KAFKA: require('./kafka'),
   DOMAIN: require('./domain'),
   NATIVECONTAINER: require('./nativecontainer'),
+  DCAP: require('./dcap'),
   CLOUDAUTH: require('./cloudauth'),
   POD: require('./pod'),
   IOTCORE: require('./iotcore'),

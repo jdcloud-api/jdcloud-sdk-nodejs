@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * waf service.
- * @version 1.0.1
+ * @version 1.0.2
  */
 
 class WAF extends Service {
@@ -75,7 +75,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -189,7 +189,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -315,7 +315,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -435,7 +435,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -550,7 +550,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -665,7 +665,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -709,6 +709,308 @@ class WAF extends Service {
 
     let request = super.makeRequest(
       '/regions/{regionId}/chart:getQpsData',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取网站在一定时间内的日志详情。
+      * @param {Object} opts - parameters
+      * @param {string} [opts.wafInstanceId] - 实例id，代表要查询的WAF实例，为空时表示当前用户下的所有实例  optional
+      * @param {string} [opts.domain] - 域名，为空时表示当前实例下的所有域名  optional
+      * @param {string} [opts.remote_addr] - 来源ip，检索字段  optional
+      * @param {string} [opts.document_uri] - URI，检索字段  optional
+      * @param {string} [opts.url] - url，检索字段  optional
+      * @param {string} [opts.anti_geo] - 来源地域，检索字段  optional
+      * @param {string} [opts.request_method] - 请求方法，检索字段  optional
+      * @param {string} [opts.action] - 动作，检索字段，支持类型：&quot;&quot;(为空时，默认查询全部动作类型)，&quot;-&quot;(放行)，&quot;notice&quot;(观察)，&quot;forbidden&quot;(拦截)，&quot;redirect&quot;(浏览器跳转)，&quot;verify&quot;(人机交互)  optional
+      * @param {string} [opts.status] - 状态码，检索字段  optional
+      * @param {string} [opts.logId] - 日志Id，检索字段  optional
+      * @param {integer} opts.start - 开始时间戳，单位秒，时间间隔要求大于5分钟，小于30天。
+      * @param {integer} opts.end - 结束时间戳，单位秒，时间间隔要求大于5分钟，小于30天。
+      * @param {integer} opts.pageSize - 每页显示的个数，默认是10。
+      * @param {integer} opts.pageIndex - 页数，默认是1。
+      * @param {string} [opts.logType] - 日志类型，检索字段，支持类型：&quot;&quot;(为空时，默认查询全部日志类型)，&quot;access&quot;(访问日志)，&quot;waf&quot;(wafSDK)，&quot;acl&quot;(自定义规则)，&quot;skip&quot;(白名单)，&quot;deny&quot;(黑名单)，&quot;cc&quot;(CC攻击)，&quot;webcache&quot;(网页防篡改)，&quot;css&quot;(跨站脚本攻击)，&quot;sqli&quot;(SQL注入攻击)，&quot;&quot;fileinc&quot;(文件读取/包含攻击)，&quot;cmding&quot;(命令/代码执行攻击)，&quot;sdd&quot;(敏感文件探测)，&quot;malscan&quot;(恶意扫描攻击)，&quot;bckack&quot;(恶意/后门文件攻击)，&quot;xmli&quot;(XML注入攻击)，&quot;dirt&quot;(目录遍历攻击)  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer pageSize  每页显示的个数。
+      * @param integer pageIndex  页数。
+      * @param integer total  总个数。
+      * @param esLogEvent events
+      */
+
+  getEsLogDetail (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getEsLogDetail"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.start === undefined || opts.start === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.start' when calling getEsLogDetail"
+      )
+    }
+    if (opts.end === undefined || opts.end === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.end' when calling getEsLogDetail"
+      )
+    }
+    if (opts.pageSize === undefined || opts.pageSize === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.pageSize' when calling getEsLogDetail"
+      )
+    }
+    if (opts.pageIndex === undefined || opts.pageIndex === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.pageIndex' when calling getEsLogDetail"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.wafInstanceId !== undefined && opts.wafInstanceId !== null) {
+      queryParams['wafInstanceId'] = opts.wafInstanceId
+    }
+    if (opts.domain !== undefined && opts.domain !== null) {
+      queryParams['domain'] = opts.domain
+    }
+    if (opts.remote_addr !== undefined && opts.remote_addr !== null) {
+      queryParams['remote_addr'] = opts.remote_addr
+    }
+    if (opts.document_uri !== undefined && opts.document_uri !== null) {
+      queryParams['document_uri'] = opts.document_uri
+    }
+    if (opts.url !== undefined && opts.url !== null) {
+      queryParams['url'] = opts.url
+    }
+    if (opts.anti_geo !== undefined && opts.anti_geo !== null) {
+      queryParams['anti_geo'] = opts.anti_geo
+    }
+    if (opts.request_method !== undefined && opts.request_method !== null) {
+      queryParams['request_method'] = opts.request_method
+    }
+    if (opts.action !== undefined && opts.action !== null) {
+      queryParams['action'] = opts.action
+    }
+    if (opts.status !== undefined && opts.status !== null) {
+      queryParams['status'] = opts.status
+    }
+    if (opts.logId !== undefined && opts.logId !== null) {
+      queryParams['logId'] = opts.logId
+    }
+    if (opts.start !== undefined && opts.start !== null) {
+      queryParams['start'] = opts.start
+    }
+    if (opts.end !== undefined && opts.end !== null) {
+      queryParams['end'] = opts.end
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    if (opts.pageIndex !== undefined && opts.pageIndex !== null) {
+      queryParams['pageIndex'] = opts.pageIndex
+    }
+    Object.assign(queryParams, super.buildArrayParam(opts.logType, 'logType'))
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getEsLogDetail with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/chart:getEsLog',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取网站在一定时间内的报表详情。
+      * @param {Object} opts - parameters
+      * @param {getAntiEventReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer pageSize  每页显示的个数。
+      * @param integer pageIndex  页数。
+      * @param integer total  总个数。
+      * @param antiEvent events
+      */
+
+  getAntiEvent (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getAntiEvent"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling getAntiEvent"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getAntiEvent with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/chart:getAntiEvent',
       'POST',
       pathParams,
       queryParams,
@@ -787,7 +1089,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -907,7 +1209,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1027,7 +1329,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1147,7 +1449,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1273,7 +1575,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1373,7 +1675,7 @@ class WAF extends Service {
       * @param statusConf statusConf  状态码修改配置
       * @param uriRewriteConf uriRewriteConf  网站uri重写规则配置
       * @param enableConf proxycacheConf  proxy缓存配置
-      * @param enableConf riskConf  risk配置
+      * @param riskConf riskConf  risk配置
       */
 
   getDomainAntiConfig (opts, regionId = this.config.regionId, callback) {
@@ -1414,7 +1716,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1539,7 +1841,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1665,7 +1967,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1785,7 +2087,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1905,7 +2207,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2025,7 +2327,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2145,7 +2447,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2265,7 +2567,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2385,7 +2687,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2509,7 +2811,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2629,7 +2931,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2749,7 +3051,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2876,7 +3178,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2996,7 +3298,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3116,7 +3418,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3236,7 +3538,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3360,7 +3662,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3484,7 +3786,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3604,7 +3906,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3724,7 +4026,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3844,7 +4146,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3968,7 +4270,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -4088,7 +4390,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -4208,7 +4510,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -4332,7 +4634,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -4452,7 +4754,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -4525,7 +4827,371 @@ class WAF extends Service {
   }
 
   /**
-      *  使能risk
+      *  激活bot 威胁情报库
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {enableReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  enableBotThreatIp (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  enableBotThreatIp"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling enableBotThreatIp"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling enableBotThreatIp"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call enableBotThreatIp with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/bot:setThreatIpBot',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  设置网站bot威胁情报库规则
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {setBotThreatIpRuleReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  setBotThreatIpRule (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  setBotThreatIpRule"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling setBotThreatIpRule"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling setBotThreatIpRule"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call setBotThreatIpRule with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/bot:setThreatRule',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取网站bot威胁情报库
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {listBotThreatIpRuleReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer pageIndex  页码
+      * @param integer pageSize  页大小
+      * @param integer totalCount  配置总数
+      * @param threatIpBotRules list  bot威胁情报库规则
+      */
+
+  listBotThreatIpRule (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  listBotThreatIpRule"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling listBotThreatIpRule"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling listBotThreatIpRule"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call listBotThreatIpRule with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/bot:listThreatRule',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  使能数据风控
       * @param {Object} opts - parameters
       * @param {string} opts.wafInstanceId - 实例Id
       * @param {enableReq} opts.req - 请求
@@ -4572,7 +5238,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -4616,6 +5282,246 @@ class WAF extends Service {
 
     let request = super.makeRequest(
       '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/risk:enable',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  使能账号安全
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {enableReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  enableRiskAccount (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  enableRiskAccount"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling enableRiskAccount"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling enableRiskAccount"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call enableRiskAccount with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/risk:enableAccount',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  使能数据风控风险控制功能
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {enableReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  enableRiskCtl (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  enableRiskCtl"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling enableRiskCtl"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling enableRiskCtl"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call enableRiskCtl with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/risk:enableRiskCtl',
       'POST',
       pathParams,
       queryParams,
@@ -4692,7 +5598,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -4768,7 +5674,7 @@ class WAF extends Service {
       *  获取网站业务风控规则
       * @param {Object} opts - parameters
       * @param {string} opts.wafInstanceId - 实例Id
-      * @param {listRulesReq} opts.req - 请求
+      * @param {listRiskRulesReq} opts.req - 请求
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -4816,7 +5722,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -4936,7 +5842,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -5056,7 +5962,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -5180,7 +6086,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -5300,7 +6206,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -5420,7 +6326,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -5544,7 +6450,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -5664,7 +6570,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -5709,6 +6615,2072 @@ class WAF extends Service {
     let request = super.makeRequest(
       '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/js:delPage',
       'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取风险控制事件信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {listRulesReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer pageIndex  页码
+      * @param integer pageSize  页大小
+      * @param integer count  配置总数
+      * @param riskConfDefaultCfg data  规则
+      */
+
+  listRiskConfDefault (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  listRiskConfDefault"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling listRiskConfDefault"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling listRiskConfDefault"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call listRiskConfDefault with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/risk:listRiskConfDefault',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  新增风险控制事件信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {setRiskEventReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  setRiskEvent (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  setRiskEvent"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling setRiskEvent"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling setRiskEvent"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call setRiskEvent with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/risk:setRiskEvent',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取网站业务风控事件信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {listRiskCommonReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer pageIndex  页码
+      * @param integer pageSize  页大小
+      * @param integer count  配置总数
+      * @param riskEventCfg data  规则
+      */
+
+  listRiskEvents (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  listRiskEvents"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling listRiskEvents"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling listRiskEvents"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call listRiskEvents with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/risk:listRiskEvents',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除事件信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {delRulesReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  delRiskEvents (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  delRiskEvents"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling delRiskEvents"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling delRiskEvents"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call delRiskEvents with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/risk:delRiskEvents',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  新增风险控制策略信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {setRiskPolicyReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  setRiskPolicy (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  setRiskPolicy"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling setRiskPolicy"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling setRiskPolicy"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call setRiskPolicy with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/risk:setRiskPolicy',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取网站业务风控策略
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {listRiskCommonReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer pageIndex  页码
+      * @param integer pageSize  页大小
+      * @param integer count  配置总数
+      * @param riskPolicyCfg data  规则
+      */
+
+  listRiskPolicys (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  listRiskPolicys"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling listRiskPolicys"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling listRiskPolicys"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call listRiskPolicys with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/risk:listRiskPolicys',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除网站风险控制策略
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {delRulesReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  delRiskPolicys (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  delRiskPolicys"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling delRiskPolicys"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling delRiskPolicys"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call delRiskPolicys with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/risk:delRiskPolicys',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  新增风险控制用户自定义名单信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {setRiskUsrListReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  setRiskUsrList (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  setRiskUsrList"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling setRiskUsrList"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling setRiskUsrList"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call setRiskUsrList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/risk:setRiskUsrList',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取网站业务风控用户自定义名单
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {listRiskCommonReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer pageIndex  页码
+      * @param integer pageSize  页大小
+      * @param integer count  配置总数
+      * @param riskUsrListCfg data  规则
+      */
+
+  listRiskUsrLists (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  listRiskUsrLists"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling listRiskUsrLists"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling listRiskUsrLists"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call listRiskUsrLists with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/risk:listRiskUsrLists',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除风险控制用户自定义名单
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {delRulesReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  delRiskUsrLists (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  delRiskUsrLists"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling delRiskUsrLists"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling delRiskUsrLists"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call delRiskUsrLists with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/risk:delRiskUsrLists',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  设置风险控制变量
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {setRiskVarReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  setRiskVar (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  setRiskVar"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling setRiskVar"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling setRiskVar"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call setRiskVar with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/risk:setRiskVar',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取网站业务风控变量
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {listRiskCommonReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer pageIndex  页码
+      * @param integer pageSize  页大小
+      * @param integer count  配置总数
+      * @param riskVarCfg data  规则
+      */
+
+  listRiskVars (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  listRiskVars"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling listRiskVars"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling listRiskVars"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call listRiskVars with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/risk:listRiskVars',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除风险控制变量
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {delRulesReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  delRiskVars (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  delRiskVars"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling delRiskVars"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling delRiskVars"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call delRiskVars with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/risk:delRiskVars',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取网站业务风控事件详细信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {listRiskEventVarsReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer pageIndex  页码
+      * @param integer pageSize  页大小
+      * @param integer count  配置总数
+      * @param riskEventVarsCfg data  规则
+      */
+
+  listRiskEventVars (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  listRiskEventVars"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling listRiskEventVars"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling listRiskEventVars"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call listRiskEventVars with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/risk:listRiskEventVars',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除事件及所属的策略、变量信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {delRulesReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  delRiskEventVars (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  delRiskEventVars"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling delRiskEventVars"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling delRiskEventVars"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call delRiskEventVars with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/risk:delRiskEventVars',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  新增风险控制事件详细信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {setRiskEventVarsReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  setRiskEventVars (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  setRiskEventVars"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling setRiskEventVars"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling setRiskEventVars"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call setRiskEventVars with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/risk:setRiskEventVars',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取实例ID及相关信息列表
+      * @param {Object} opts - parameters
+      * @param {string} [opts.idc] - 所属地区， 模糊匹配  optional
+      * @param {integer} [opts.pageNumber] - 页码  optional
+      * @param {integer} [opts.pageSize] - 分页大小  optional
+      * @param {string} [opts.sourceIds] - 资源id 多个时，以逗号,分隔。  optional
+      * @param {filter} [opts.filters] - wafInstanceId - 实例id  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer total  总个数。
+      * @param instanceIdCfg instanceIdCfg
+      */
+
+  getWafInstance (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getWafInstance"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.idc !== undefined && opts.idc !== null) {
+      queryParams['idc'] = opts.idc
+    }
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    if (opts.sourceIds !== undefined && opts.sourceIds !== null) {
+      queryParams['sourceIds'] = opts.sourceIds
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getWafInstance with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/user:getWafInstance',
+      'GET',
       pathParams,
       queryParams,
       headerParams,

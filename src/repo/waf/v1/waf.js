@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * waf service.
- * @version 1.0.2
+ * @version 1.0.3
  */
 
 class WAF extends Service {
@@ -75,7 +75,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -189,7 +189,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -315,7 +315,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -435,7 +435,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -550,7 +550,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -665,7 +665,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -850,7 +850,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -967,7 +967,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1089,7 +1089,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1209,7 +1209,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1329,7 +1329,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1449,7 +1449,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1575,7 +1575,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1676,6 +1676,7 @@ class WAF extends Service {
       * @param uriRewriteConf uriRewriteConf  网站uri重写规则配置
       * @param enableConf proxycacheConf  proxy缓存配置
       * @param riskConf riskConf  risk配置
+      * @param botConf botConf  bot配置
       */
 
   getDomainAntiConfig (opts, regionId = this.config.regionId, callback) {
@@ -1716,7 +1717,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1841,7 +1842,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1967,7 +1968,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -2087,7 +2088,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -2207,7 +2208,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -2327,7 +2328,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -2447,7 +2448,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -2567,7 +2568,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -2687,7 +2688,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -2811,7 +2812,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -2931,7 +2932,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -3051,7 +3052,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -3178,7 +3179,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -3298,7 +3299,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -3418,7 +3419,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -3538,7 +3539,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -3662,7 +3663,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -3786,7 +3787,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -3906,7 +3907,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -4026,7 +4027,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -4146,7 +4147,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -4270,7 +4271,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -4390,7 +4391,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -4510,7 +4511,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -4634,7 +4635,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -4754,7 +4755,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -4874,7 +4875,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -4994,7 +4995,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -5118,7 +5119,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -5238,7 +5239,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -5358,7 +5359,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -5478,7 +5479,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -5598,7 +5599,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -5722,7 +5723,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -5842,7 +5843,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -5962,7 +5963,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -6086,7 +6087,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -6206,7 +6207,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -6326,7 +6327,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -6450,7 +6451,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -6570,7 +6571,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -6694,7 +6695,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -6814,7 +6815,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -6938,7 +6939,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -7058,7 +7059,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -7178,7 +7179,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -7302,7 +7303,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -7422,7 +7423,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -7542,7 +7543,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -7666,7 +7667,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -7786,7 +7787,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -7906,7 +7907,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -8030,7 +8031,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -8150,7 +8151,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -8274,7 +8275,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -8394,7 +8395,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -8514,7 +8515,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -8636,7 +8637,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.3'
     }
 
     let contentTypes = ['application/json']

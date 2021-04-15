@@ -30,10 +30,10 @@ Service._services[serviceId] = true
 
 /**
  * resourcetag service.
- * @version 0.1.7
+ * @version 0.6.0
  */
 
-JDCloud.RESOURCETAG = class RESOURCETAG extends Service {
+class RESOURCETAG extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
@@ -89,7 +89,7 @@ JDCloud.RESOURCETAG = class RESOURCETAG extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  resourcetag/0.1.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  resourcetag/0.6.0'
     }
 
     let contentTypes = ['application/json']
@@ -131,7 +131,7 @@ JDCloud.RESOURCETAG = class RESOURCETAG extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/tags:describeResources',
       'POST',
       pathParams,
@@ -206,7 +206,7 @@ JDCloud.RESOURCETAG = class RESOURCETAG extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  resourcetag/0.1.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  resourcetag/0.6.0'
     }
 
     let contentTypes = ['application/json']
@@ -248,8 +248,236 @@ JDCloud.RESOURCETAG = class RESOURCETAG extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/describeTags',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取标签键
+      * @param {Object} opts - parameters
+      * @param {tagKeysReqVo} opts.tagKeysVo - 标签键参数
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param tagKeysResVo data  获取标签键结果详情
+      */
+
+  describeKeys (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeKeys"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.tagKeysVo === undefined || opts.tagKeysVo === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.tagKeysVo' when calling describeKeys"
+      )
+    }
+
+    let postBody = {}
+    if (opts.tagKeysVo !== undefined && opts.tagKeysVo !== null) {
+      postBody['tagKeysVo'] = opts.tagKeysVo
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  resourcetag/0.6.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeKeys with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/tags:describeKeys',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取标签值
+      * @param {Object} opts - parameters
+      * @param {tagValuesReqVo} opts.tagValuesVo - 标签值参数
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param tagValuesResVo data  获取标签值结果详情
+      */
+
+  describeValues (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeValues"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.tagValuesVo === undefined || opts.tagValuesVo === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.tagValuesVo' when calling describeValues"
+      )
+    }
+
+    let postBody = {}
+    if (opts.tagValuesVo !== undefined && opts.tagValuesVo !== null) {
+      postBody['tagValuesVo'] = opts.tagValuesVo
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  resourcetag/0.6.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeValues with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/tags:describeValues',
       'POST',
       pathParams,
       queryParams,
@@ -322,7 +550,7 @@ JDCloud.RESOURCETAG = class RESOURCETAG extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  resourcetag/0.1.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  resourcetag/0.6.0'
     }
 
     let contentTypes = ['application/json']
@@ -364,7 +592,7 @@ JDCloud.RESOURCETAG = class RESOURCETAG extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/tags:tagResources',
       'POST',
       pathParams,
@@ -438,7 +666,7 @@ JDCloud.RESOURCETAG = class RESOURCETAG extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  resourcetag/0.1.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  resourcetag/0.6.0'
     }
 
     let contentTypes = ['application/json']
@@ -480,7 +708,7 @@ JDCloud.RESOURCETAG = class RESOURCETAG extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/tags:unTagResources',
       'POST',
       pathParams,
@@ -554,7 +782,7 @@ JDCloud.RESOURCETAG = class RESOURCETAG extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  resourcetag/0.1.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  resourcetag/0.6.0'
     }
 
     let contentTypes = ['application/json']
@@ -596,7 +824,7 @@ JDCloud.RESOURCETAG = class RESOURCETAG extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/queryResource',
       'POST',
       pathParams,
@@ -626,4 +854,4 @@ JDCloud.RESOURCETAG = class RESOURCETAG extends Service {
     )
   }
 }
-module.exports = JDCloud.RESOURCETAG
+module.exports = RESOURCETAG

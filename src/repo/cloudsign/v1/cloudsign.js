@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * cloudsign service.
- * @version 1.1.0
+ * @version 1.1.1
  */
 
 class CLOUDSIGN extends Service {
@@ -76,7 +76,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -184,7 +184,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -264,6 +264,8 @@ class CLOUDSIGN extends Service {
       * @param {string} opts.contractId - 合同ID
       * @param {string} callback - callback
       @return {Object} result
+      * @param contractInfo contractList
+      * @param integer totalCount  合同数量
       */
 
   downloadContracts (opts, callback) {
@@ -284,7 +286,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -399,7 +401,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -497,7 +499,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -576,7 +578,7 @@ class CLOUDSIGN extends Service {
       @return {Object} result
       * @param string pin  用户pin
       * @param integer usedCapacity  已用存储容量
-      * @param integer status  当前服务状态(0:正常 -1:停服)
+      * @param integer status  当前服务状态(0 未开通 1 开通中 2 正常 3 停服)
       * @param boolean contractSaving  是否开启合同托管
       * @param string kmsKeyId  签章系统所用的托管密钥
       * @param string applyTime  申请开通服务时间
@@ -593,7 +595,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -684,7 +686,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -775,7 +777,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -870,7 +872,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -974,7 +976,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -1076,7 +1078,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -1176,7 +1178,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -1274,7 +1276,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -1385,7 +1387,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -1487,7 +1489,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -1587,7 +1589,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -1696,7 +1698,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -1794,7 +1796,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.1'
     }
 
     let contentTypes = ['application/json']

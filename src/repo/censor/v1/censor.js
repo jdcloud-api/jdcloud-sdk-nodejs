@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * censor service.
- * @version 1.0.1
+ * @version 1.0.2
  */
 
 class CENSOR extends Service {
@@ -80,7 +80,7 @@ class CENSOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -182,7 +182,7 @@ class CENSOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -255,6 +255,345 @@ class CENSOR extends Service {
   }
 
   /**
+      *  提交音频异步检测任务V2
+      * @param {Object} opts - parameters
+      * @param {} [opts.bizType] - 业务bizType，请联系客户经理获取  optional
+      * @param {} [opts.url] - 最大长度512, 语音文件url  optional
+      * @param {} [opts.version] - 最大长度4，接口版本号，可选值 v3.5  optional
+      * @param {} [opts.title] - 最大长度512，文件标题  optional
+      * @param {} [opts.ip] - 最大长度32，用户IP地址  optional
+      * @param {} [opts.account] - 最大长度128，用户唯一标识，如果无需登录则为空  optional
+      * @param {} [opts.deviceId] - 最大长度128，用户设备 id，与设备画像库匹配，明文请转大写传入；MD5加密请明文转大写后MD5计算，再转大写传入，建议抄送  optional
+      * @param {} [opts.deviceType] - 用户设备id的类型，0:其他，10:IMEI，11:AndroidID，12:IDFA，13:IDFV，14:MAC ，20:IMEI_MD5，21:AndroidID_MD5，22:IDFA_MD5，23:IDFV_MD5，24:MAC_MD5  optional
+      * @param {} [opts.callback] - 最大长度2^16-1，数据回调参数，调用方根据业务情况自行设计，当调用离线结果获取接口时，该接口会原样返回该字段，详细见音频离线检测结果获取。作为数据处理标识，因此该字段应该设计为能唯一定位到该次请求的数据结构，如对用户的昵称进行检测，dataId可设为用户标识（用户ID），用户修改多次，每次请求数据的dataId可能一致，但是callback参数可以设计成定位该次请求的数据结构，比如callback字段设计成json，包含dataId和请求的时间戳等信息，当然如果不想做区分，也可以直接把callback设置成dataId的值。  optional
+      * @param {} [opts.callbackUrl] - 最大长度256，离线结果回调通知到客户的URL。主动回调数据接口超时时间设置为2s，为了保证顺利接收数据，需保证接收接口性能稳定并且保证幂等性。  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param audioTaskData result
+      */
+
+  asyncAudioScanV2 (opts, callback) {
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.bizType !== undefined && opts.bizType !== null) {
+      postBody['bizType'] = opts.bizType
+    }
+    if (opts.url !== undefined && opts.url !== null) {
+      postBody['url'] = opts.url
+    }
+    if (opts.version !== undefined && opts.version !== null) {
+      postBody['version'] = opts.version
+    }
+    if (opts.title !== undefined && opts.title !== null) {
+      postBody['title'] = opts.title
+    }
+    if (opts.ip !== undefined && opts.ip !== null) {
+      postBody['ip'] = opts.ip
+    }
+    if (opts.account !== undefined && opts.account !== null) {
+      postBody['account'] = opts.account
+    }
+    if (opts.deviceId !== undefined && opts.deviceId !== null) {
+      postBody['deviceId'] = opts.deviceId
+    }
+    if (opts.deviceType !== undefined && opts.deviceType !== null) {
+      postBody['deviceType'] = opts.deviceType
+    }
+    if (opts.callback !== undefined && opts.callback !== null) {
+      postBody['callback'] = opts.callback
+    }
+    if (opts.callbackUrl !== undefined && opts.callbackUrl !== null) {
+      postBody['callbackUrl'] = opts.callbackUrl
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call asyncAudioScanV2 with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/audio:asyncscanv2',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  语音检测结果获取接口，获取离线处理的数据后，下次调用，不会再次返回之前获取过的离线数据。小于10s/20次，请求频率过快服务器会拒绝处理
+      * @param {Object} opts - parameters
+      * @param {} [opts.bizType] - 业务bizType，请联系客户经理获取  optional
+      * @param {} [opts.version] - 接口版本v1  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param audioAntispamResult antispam
+      * @param audioASRResult asr
+      * @param audioLanguageResult language
+      * @param audioVoiceResult voice
+      */
+
+  audioCallbackV2 (opts, callback) {
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.bizType !== undefined && opts.bizType !== null) {
+      postBody['bizType'] = opts.bizType
+    }
+    if (opts.version !== undefined && opts.version !== null) {
+      postBody['version'] = opts.version
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call audioCallbackV2 with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/audio:callbackv2',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  根据taskid查询语音检测结果，小于10s/20次，请求频率过快服务器会拒绝处理
+      * @param {Object} opts - parameters
+      * @param {} [opts.bizType] - 业务bizType，请联系客户经理获取  optional
+      * @param {} [opts.version] - 接口版本v1  optional
+      * @param {} [opts.taskIds] - 要查询的taskId  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param audioAntispamResult result
+      */
+
+  audioResultsV2 (opts, callback) {
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.bizType !== undefined && opts.bizType !== null) {
+      postBody['bizType'] = opts.bizType
+    }
+    if (opts.version !== undefined && opts.version !== null) {
+      postBody['version'] = opts.version
+    }
+    if (opts.taskIds !== undefined && opts.taskIds !== null) {
+      postBody['taskIds'] = opts.taskIds
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call audioResultsV2 with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/audio:resultsv2',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  删除敏感库
       * @param {Object} opts - parameters
       * @param {string} opts.libId - 敏感库id
@@ -294,7 +633,7 @@ class CENSOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -415,7 +754,7 @@ class CENSOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -515,7 +854,7 @@ class CENSOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -623,7 +962,7 @@ class CENSOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -725,7 +1064,7 @@ class CENSOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -798,6 +1137,119 @@ class CENSOR extends Service {
   }
 
   /**
+      *  图片同步检测v2
+      * @param {Object} opts - parameters
+      * @param {} [opts.images] - 指定检测场景  optional
+      * @param {} [opts.version] - 接口版本v4.1  optional
+      * @param {} [opts.bizType] - 业务bizType，请联系客户经理获取  optional
+      * @param {} [opts.checkLabels] - 接口指定过检分类，可多选，过检分类列表：100：色情，110：性感低俗，200：广告，210：二维码，260：广告法，300：暴恐，400：违禁，500：涉政，800：恶心类，900：其他，1100：涉价值观响应结果  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param imageAntispamResult antispam
+      * @param oCRResult ocr
+      * @param faceResult face
+      * @param qualityResult quality
+      * @param logoResult logo
+      * @param sceneResult scene
+      */
+
+  imageScanV2 (opts, callback) {
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.images !== undefined && opts.images !== null) {
+      postBody['images'] = opts.images
+    }
+    if (opts.version !== undefined && opts.version !== null) {
+      postBody['version'] = opts.version
+    }
+    if (opts.bizType !== undefined && opts.bizType !== null) {
+      postBody['bizType'] = opts.bizType
+    }
+    if (opts.checkLabels !== undefined && opts.checkLabels !== null) {
+      postBody['checkLabels'] = opts.checkLabels
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call imageScanV2 with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/image:scanv2',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  删除限制参数配置
       * @param {Object} opts - parameters
       * @param {string} opts.limitId - 限制参数配置id
@@ -837,7 +1289,7 @@ class CENSOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -937,7 +1389,7 @@ class CENSOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1037,7 +1489,7 @@ class CENSOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1110,6 +1562,214 @@ class CENSOR extends Service {
   }
 
   /**
+      *  文本同步检测-检测文本中是否包含违规信息
+      * @param {Object} opts - parameters
+      * @param {} [opts.bizType] - 业务bizType，请联系客户经理获取  optional
+      * @param {} [opts.version] - 接口版本号，固定值 v4  optional
+      * @param {} [opts.checkLabels] - 可指定多个垃圾类别进行机器检测，多个垃圾类别以逗号分隔（&quot;100,200&quot;）  optional
+      * @param {} [opts.texts] - 1-100条文本数据。  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param textResultDetailV2 result
+      */
+
+  textScanV2 (opts, callback) {
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.bizType !== undefined && opts.bizType !== null) {
+      postBody['bizType'] = opts.bizType
+    }
+    if (opts.version !== undefined && opts.version !== null) {
+      postBody['version'] = opts.version
+    }
+    if (opts.checkLabels !== undefined && opts.checkLabels !== null) {
+      postBody['checkLabels'] = opts.checkLabels
+    }
+    if (opts.texts !== undefined && opts.texts !== null) {
+      postBody['texts'] = opts.texts
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call textScanV2 with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/text:scanv2',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查看文本疑似结果，小于10s/20次，请求频率过快服务器会拒绝处理
+      * @param {Object} opts - parameters
+      * @param {} [opts.bizType] - 业务bizType，请联系客户经理获取  optional
+      * @param {} [opts.version] - 接口版本v4  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param textResultDetailV2 result
+      */
+
+  textResultsV2 (opts, callback) {
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.bizType !== undefined && opts.bizType !== null) {
+      postBody['bizType'] = opts.bizType
+    }
+    if (opts.version !== undefined && opts.version !== null) {
+      postBody['version'] = opts.version
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call textResultsV2 with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/text:resultsv2',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  提交视频异步检测任务
       * @param {Object} opts - parameters
       * @param {} [opts.live] - 是否直播。默认为false，表示为普通视频检测；若是直播检测，该值必须传入true。  optional
@@ -1153,7 +1813,7 @@ class CENSOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1255,7 +1915,7 @@ class CENSOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1299,6 +1959,345 @@ class CENSOR extends Service {
 
     let request = super.makeRequest(
       '/video:results',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  提交视频异步检测任务V2
+      * @param {Object} opts - parameters
+      * @param {} [opts.bizType] - 业务bizType，请联系客户经理获取  optional
+      * @param {} [opts.url] - 最大长度512, 点播视频地址  optional
+      * @param {} [opts.dataId] - 最大长度128，点播视频唯一标识  optional
+      * @param {} [opts.version] - 接口版本号，可选值 v3.2  optional
+      * @param {} [opts.title] - 最大长度512，视频名称  optional
+      * @param {} [opts.callback] - 最大长度512，数据回调参数，产品根据业务情况自行设计，当获取离线检测结果时，内容安全服务会返回该字段  optional
+      * @param {} [opts.callbackUrl] - 最大长度256，离线结果回调通知到客户的URL。主动回调数据接口超时时间设置为2s，为了保证顺利接收数据，需保证接收接口性能稳定并且保证幂等性。  optional
+      * @param {} [opts.uniqueKey] - 最大长度64，客户个性化视频唯一性标识，传入后，将以此值作为重复检测依据，若不传，默认以URL作为查重依据,如果重复提交会被拒绝，返回报错信息请求重复，以及原提交taskID值，具体返回请查看响应示例  optional
+      * @param {} [opts.scFrequency] - 最大长度64，客户个性化视频唯一性标识，传入后，将以此值作为重复检测依据，若不传，默认以URL作为查重依据,如果重复提交会被拒绝，返回报错信息请求重复，以及原提交taskID值，具体返回请查看响应示例  optional
+      * @param {} [opts.advancedFrequency] - 高级截帧设置，此项填写，默认截帧策略失效  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param videoTaskData result
+      */
+
+  asyncVideoScanV2 (opts, callback) {
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.bizType !== undefined && opts.bizType !== null) {
+      postBody['bizType'] = opts.bizType
+    }
+    if (opts.url !== undefined && opts.url !== null) {
+      postBody['url'] = opts.url
+    }
+    if (opts.dataId !== undefined && opts.dataId !== null) {
+      postBody['dataId'] = opts.dataId
+    }
+    if (opts.version !== undefined && opts.version !== null) {
+      postBody['version'] = opts.version
+    }
+    if (opts.title !== undefined && opts.title !== null) {
+      postBody['title'] = opts.title
+    }
+    if (opts.callback !== undefined && opts.callback !== null) {
+      postBody['callback'] = opts.callback
+    }
+    if (opts.callbackUrl !== undefined && opts.callbackUrl !== null) {
+      postBody['callbackUrl'] = opts.callbackUrl
+    }
+    if (opts.uniqueKey !== undefined && opts.uniqueKey !== null) {
+      postBody['uniqueKey'] = opts.uniqueKey
+    }
+    if (opts.scFrequency !== undefined && opts.scFrequency !== null) {
+      postBody['scFrequency'] = opts.scFrequency
+    }
+    if (
+      opts.advancedFrequency !== undefined &&
+      opts.advancedFrequency !== null
+    ) {
+      postBody['advancedFrequency'] = opts.advancedFrequency
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call asyncVideoScanV2 with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/video:asyncscanv2',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  视频检测结果获取接口，获取离线处理的数据后，下次调用，不会再次返回之前获取过的离线数据。小于10s/20次，请求频率过快服务器会拒绝处理
+      * @param {Object} opts - parameters
+      * @param {} [opts.bizType] - 业务bizType，请联系客户经理获取  optional
+      * @param {} [opts.version] - 接口版本v1  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param videoResultV2 result
+      */
+
+  videoCallbackV2 (opts, callback) {
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.bizType !== undefined && opts.bizType !== null) {
+      postBody['bizType'] = opts.bizType
+    }
+    if (opts.version !== undefined && opts.version !== null) {
+      postBody['version'] = opts.version
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call videoCallbackV2 with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/video:callbackv2',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  根据taskid查询视频检测结果，小于10s/20次，请求频率过快服务器会拒绝处理
+      * @param {Object} opts - parameters
+      * @param {} [opts.bizType] - 业务bizType，请联系客户经理获取  optional
+      * @param {} [opts.version] - 接口版本v1  optional
+      * @param {} [opts.taskIds] - 要查询的taskId  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param videoResultV2 result
+      */
+
+  videoResultsV2 (opts, callback) {
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.bizType !== undefined && opts.bizType !== null) {
+      postBody['bizType'] = opts.bizType
+    }
+    if (opts.version !== undefined && opts.version !== null) {
+      postBody['version'] = opts.version
+    }
+    if (opts.taskIds !== undefined && opts.taskIds !== null) {
+      postBody['taskIds'] = opts.taskIds
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call videoResultsV2 with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/video:resultsv2',
       'POST',
       pathParams,
       queryParams,

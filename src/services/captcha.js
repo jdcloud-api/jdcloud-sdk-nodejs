@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 策略管理类接口
- * 京东云验证码-OpenAPI策略管理类接口
+ * 运营后台类接口
+ * 京东云验证码-OpenAPI应用管理类接口
  *
  * OpenAPI spec version: v1
  * Contact:

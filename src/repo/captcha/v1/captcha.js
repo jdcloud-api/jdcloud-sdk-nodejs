@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 策略管理类接口
- * 京东云验证码-OpenAPI策略管理类接口
+ * 运营后台类接口
+ * 京东云验证码-OpenAPI应用管理类接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * captcha service.
- * @version 1.0.0
+ * @version 1.0.1
  */
 
 class CAPTCHA extends Service {
@@ -50,11 +50,11 @@ class CAPTCHA extends Service {
       * @param {} [opts.appId] - 应用id  optional
       * @param {} [opts.sceneId] - 场景id  optional
       * @param {} [opts.secret] - 密钥，从界面获取  optional
-      * @param {} [opts.uuid] - uuid，ios客户端传openudid, android客户端传androidid  optional
+      * @param {} [opts.uuid] - uuid，ios客户端传openudid, android客户端传androidid, m, pc, wxapp客户端此值为空即可  optional
       * @param {} [opts.ip] - 客户端ip  optional
       * @param {} [opts.userAgent] - 客户端userAgent  optional
-      * @param {} [opts.fingerPrint] - 指纹，客户端sdk获取  optional
-      * @param {} [opts.clientType] - 客户端类型, android, ios  optional
+      * @param {} [opts.fingerPrint] - 指纹，ios和android客户端(clientType)从sdk获取, m, pc, wxapp客户端此值为空即可  optional
+      * @param {} [opts.clientType] - 客户端类型, android, ios, pc, wxmapp, m  optional
       * @param {} [opts.clientVersion] - 客户端版本，用户端app版本，可选  optional
       * @param {string} callback - callback
       @return {Object} result
@@ -100,7 +100,7 @@ class CAPTCHA extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  captcha/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  captcha/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -179,10 +179,10 @@ class CAPTCHA extends Service {
       * @param {} [opts.sessionId] - 验证码会话id，getsessionid返回  optional
       * @param {} [opts.appId] - 应用id  optional
       * @param {} [opts.sceneId] - 场景id  optional
+      * @param {} [opts.secret] - 密钥，从界面获取  optional
       * @param {} [opts.ip] - 客户端ip  optional
       * @param {} [opts.userAgent] - 客户端userAgent  optional
-      * @param {} [opts.fingerPrint] - 指纹，客户端sdk获取  optional
-      * @param {} [opts.clientType] - 客户端类型, android, ios  optional
+      * @param {} [opts.clientType] - 客户端类型, 可选值: android, ios, pc, wxapp, m  optional
       * @param {} [opts.clientVersion] - 客户端版本，用户端app版本，可选  optional
       * @param {string} callback - callback
       @return {Object} result
@@ -205,14 +205,14 @@ class CAPTCHA extends Service {
     if (opts.sceneId !== undefined && opts.sceneId !== null) {
       postBody['sceneId'] = opts.sceneId
     }
+    if (opts.secret !== undefined && opts.secret !== null) {
+      postBody['secret'] = opts.secret
+    }
     if (opts.ip !== undefined && opts.ip !== null) {
       postBody['ip'] = opts.ip
     }
     if (opts.userAgent !== undefined && opts.userAgent !== null) {
       postBody['userAgent'] = opts.userAgent
-    }
-    if (opts.fingerPrint !== undefined && opts.fingerPrint !== null) {
-      postBody['fingerPrint'] = opts.fingerPrint
     }
     if (opts.clientType !== undefined && opts.clientType !== null) {
       postBody['clientType'] = opts.clientType
@@ -228,7 +228,7 @@ class CAPTCHA extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  captcha/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  captcha/1.0.1'
     }
 
     let contentTypes = ['application/json']

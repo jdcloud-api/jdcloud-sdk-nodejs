@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * live service.
- * @version 1.0.19
+ * @version 1.0.20
  */
 
 class LIVE extends Service {
@@ -84,7 +84,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -199,7 +199,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -311,7 +311,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -419,7 +419,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -534,7 +534,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -642,7 +642,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -757,7 +757,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -864,7 +864,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -973,7 +973,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -1109,7 +1109,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -1218,7 +1218,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -1354,7 +1354,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -1467,7 +1467,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -1584,7 +1584,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -1689,7 +1689,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -1795,7 +1795,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -1898,7 +1898,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -2000,7 +2000,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -2115,7 +2115,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -2228,7 +2228,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -2339,7 +2339,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -2461,7 +2461,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -2574,7 +2574,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -2687,7 +2687,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -2787,7 +2787,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -2901,7 +2901,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -3008,7 +3008,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -3109,7 +3109,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -3208,7 +3208,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -3308,7 +3308,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -3415,7 +3415,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -3511,7 +3511,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -3606,7 +3606,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -3721,7 +3721,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -3833,7 +3833,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -3978,7 +3978,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -4099,7 +4099,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -4211,7 +4211,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -4330,7 +4330,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -4443,7 +4443,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -4543,7 +4543,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -4658,7 +4658,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -4766,7 +4766,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -4867,7 +4867,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -4966,7 +4966,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -5130,7 +5130,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -5230,7 +5230,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -5371,7 +5371,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -5527,7 +5527,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -5678,7 +5678,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -5819,7 +5819,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -5960,7 +5960,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -6106,7 +6106,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -6248,7 +6248,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -6390,7 +6390,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -6512,7 +6512,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -6608,7 +6608,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -6753,7 +6753,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -6900,7 +6900,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -7042,7 +7042,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -7172,7 +7172,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -7307,7 +7307,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -7451,7 +7451,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -7595,7 +7595,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -7726,7 +7726,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -7838,7 +7838,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -7983,7 +7983,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -8128,7 +8128,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -8273,7 +8273,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -8418,7 +8418,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -8549,7 +8549,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -8676,7 +8676,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -8863,7 +8863,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -8982,7 +8982,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -9093,7 +9093,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -9215,7 +9215,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -9328,7 +9328,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -9441,7 +9441,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -9541,7 +9541,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -9654,7 +9654,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -9761,7 +9761,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -9862,7 +9862,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -9961,7 +9961,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -10061,7 +10061,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -10184,7 +10184,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -10303,7 +10303,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -10424,7 +10424,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -10544,7 +10544,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -10656,7 +10656,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -10756,7 +10756,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -10854,7 +10854,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -10972,7 +10972,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -11118,7 +11118,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -11224,7 +11224,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -11325,7 +11325,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -11437,7 +11437,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -11543,7 +11543,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -11644,7 +11644,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -11762,7 +11762,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -11885,7 +11885,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -12017,7 +12017,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -12260,7 +12260,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -12373,7 +12373,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -12486,7 +12486,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -12605,7 +12605,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -12712,7 +12712,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -12827,7 +12827,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -12968,7 +12968,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -13069,7 +13069,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -13169,7 +13169,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -13214,6 +13214,1406 @@ class LIVE extends Service {
     let request = super.makeRequest(
       '/transcodeTemplates/{template}:binding',
       'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  添加域名翻译配置
+- 添加域名级别的翻译模板配置
+- 一个域名最多可绑定一个翻译模板
+- 重新推流后生效
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.publishDomain - 直播的推流域名
+      * @param {string} opts.template - 翻译模版
+- 取值范围: 系统标准翻译模板, 用户自定义翻译模板
+- 系统标准翻译模板
+  system-zh-en (中译英)
+  system-en-zh (英译中)
+
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  addLiveStreamDomainTranslate (opts, callback) {
+    opts = opts || {}
+
+    if (opts.publishDomain === undefined || opts.publishDomain === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.publishDomain' when calling addLiveStreamDomainTranslate"
+      )
+    }
+    if (opts.template === undefined || opts.template === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.template' when calling addLiveStreamDomainTranslate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.publishDomain !== undefined && opts.publishDomain !== null) {
+      postBody['publishDomain'] = opts.publishDomain
+    }
+    if (opts.template !== undefined && opts.template !== null) {
+      postBody['template'] = opts.template
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call addLiveStreamDomainTranslate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/translateDomains:config',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  添加应用翻译配置
+- 添加应用级别的翻译模板配置
+- 一个应用最多可绑定一个翻译模板
+- 重新推流后生效
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.publishDomain - 推流域名
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.template - 翻译模版
+- 取值范围: 系统标准翻译模板, 用户自定义翻译模板
+- 系统标准翻译模板
+  system-zh-en (中译英)
+  system-en-zh (英译中)
+
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  addLiveStreamAppTranslate (opts, callback) {
+    opts = opts || {}
+
+    if (opts.publishDomain === undefined || opts.publishDomain === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.publishDomain' when calling addLiveStreamAppTranslate"
+      )
+    }
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling addLiveStreamAppTranslate"
+      )
+    }
+    if (opts.template === undefined || opts.template === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.template' when calling addLiveStreamAppTranslate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.publishDomain !== undefined && opts.publishDomain !== null) {
+      postBody['publishDomain'] = opts.publishDomain
+    }
+    if (opts.appName !== undefined && opts.appName !== null) {
+      postBody['appName'] = opts.appName
+    }
+    if (opts.template !== undefined && opts.template !== null) {
+      postBody['template'] = opts.template
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call addLiveStreamAppTranslate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/translateApps:config',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  添加流翻译配置
+- 添加流级别的翻译模板配置
+- 一个流最多可绑定一个翻译模板
+- 重新推流后生效
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.publishDomain - 推流域名
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.streamName - 流名称
+      * @param {string} opts.template - 翻译模版
+- 取值范围: 系统标准翻译模板, 用户自定义翻译模板
+- 系统标准翻译模板
+  system-zh-en (中译英)
+  system-en-zh (英译中)
+
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  addLiveStreamTranslate (opts, callback) {
+    opts = opts || {}
+
+    if (opts.publishDomain === undefined || opts.publishDomain === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.publishDomain' when calling addLiveStreamTranslate"
+      )
+    }
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling addLiveStreamTranslate"
+      )
+    }
+    if (opts.streamName === undefined || opts.streamName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.streamName' when calling addLiveStreamTranslate"
+      )
+    }
+    if (opts.template === undefined || opts.template === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.template' when calling addLiveStreamTranslate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.publishDomain !== undefined && opts.publishDomain !== null) {
+      postBody['publishDomain'] = opts.publishDomain
+    }
+    if (opts.appName !== undefined && opts.appName !== null) {
+      postBody['appName'] = opts.appName
+    }
+    if (opts.streamName !== undefined && opts.streamName !== null) {
+      postBody['streamName'] = opts.streamName
+    }
+    if (opts.template !== undefined && opts.template !== null) {
+      postBody['template'] = opts.template
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call addLiveStreamTranslate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/translateStream:config',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询系统默认翻译模板列表
+
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNum] - 页码
+- 取值范围 [1, 100000]
+  optional
+      * @param {integer} [opts.pageSize] - 分页大小
+- 取值范围 [10, 100]
+  optional
+      * @param {filter} [opts.filters] - 翻译模板查询过滤条件:
+  - name:   template 翻译模板名称
+  - value:  如果参数为空，则查询全部
+  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer pageNumber  当前页码
+      * @param integer pageSize  每页数量
+      * @param integer totalCount  查询总数
+      * @param translateInfo translateTemplates
+      */
+
+  describeSystemLiveStreamTranslateTemplates (opts, callback) {
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNum !== undefined && opts.pageNum !== null) {
+      queryParams['pageNum'] = opts.pageNum
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeSystemLiveStreamTranslateTemplates with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/translateSystem',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询翻译模板配置
+- 翻译模板配置按照 域名,应用,流 3级配置添加,以最小的粒度配置生效原则
+- 域名、应用、流 依次粒度递减 即: 域名&gt;应用&gt;流
+- 该查询旨在查询域名、应用、流最终生效的翻译模板配置,并非各级的模板绑定情况
+
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNum] - 页码
+- 取值范围 [1, 100000]
+  optional
+      * @param {integer} [opts.pageSize] - 分页大小
+- 取值范围[10, 100]
+  optional
+      * @param {filter} [opts.filters] - 模板配置查询过滤条件:
+  - name:   publishDomain 必填(推流域名)
+  - value:  参数
+  - name:   appName 必填(应用名称)
+  - value:  参数
+  - name:   streamName 非必填(流名称)
+  - value:  参数
+  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer pageNumber  当前页码
+      * @param integer pageSize  每页数量
+      * @param integer totalCount  查询总数
+      * @param translateTemplateConfig translateConfigs
+      */
+
+  describeLiveStreamTranslateConfig (opts, callback) {
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNum !== undefined && opts.pageNum !== null) {
+      queryParams['pageNum'] = opts.pageNum
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeLiveStreamTranslateConfig with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/translates:config',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询域名下的翻译模板配置
+
+      * @param {Object} opts - parameters
+      * @param {filter} [opts.filters] - 模板配置查询过滤条件:
+  - name:   publishDomain 必填(推流域名)
+  - value:  参数
+  - name:   level 非必填(Level)
+  - value:  参数，取值：domain,app,stream
+  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param domainTranslateTemplateConfig templateList
+      */
+
+  describeLiveDomainTranslateConfig (opts, callback) {
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeLiveDomainTranslateConfig with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/translateTemplates:domain',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除域名的翻译模板配置
+- 删除域名级别翻译模板配置,重新推流后生效
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.publishDomain - 推流域名
+      * @param {string} opts.template - 翻译模板
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteLiveStreamDomainTranslate (opts, callback) {
+    opts = opts || {}
+
+    if (opts.publishDomain === undefined || opts.publishDomain === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.publishDomain' when calling deleteLiveStreamDomainTranslate"
+      )
+    }
+    if (opts.template === undefined || opts.template === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.template' when calling deleteLiveStreamDomainTranslate"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      publishDomain: opts.publishDomain,
+      template: opts.template
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteLiveStreamDomainTranslate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/translateDomains/{publishDomain}/templates/{template}:config',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除应用的翻译模板配置
+- 删除应用级别的翻译模板配置,重新推流后生效
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.publishDomain - 推流域名
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.template - 翻译模板
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteLiveStreamAppTranslate (opts, callback) {
+    opts = opts || {}
+
+    if (opts.publishDomain === undefined || opts.publishDomain === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.publishDomain' when calling deleteLiveStreamAppTranslate"
+      )
+    }
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling deleteLiveStreamAppTranslate"
+      )
+    }
+    if (opts.template === undefined || opts.template === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.template' when calling deleteLiveStreamAppTranslate"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      publishDomain: opts.publishDomain,
+      appName: opts.appName,
+      template: opts.template
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteLiveStreamAppTranslate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/translateApps/{publishDomain}/appNames/{appName}/templates/{template}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除流的翻译模板配置
+- 删除流级别翻译模板配置,重新推流后生效
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.publishDomain - 推流域名
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.streamName - 流名称
+      * @param {string} opts.template - 翻译模板
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteLiveStreamTranslate (opts, callback) {
+    opts = opts || {}
+
+    if (opts.publishDomain === undefined || opts.publishDomain === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.publishDomain' when calling deleteLiveStreamTranslate"
+      )
+    }
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling deleteLiveStreamTranslate"
+      )
+    }
+    if (opts.streamName === undefined || opts.streamName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.streamName' when calling deleteLiveStreamTranslate"
+      )
+    }
+    if (opts.template === undefined || opts.template === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.template' when calling deleteLiveStreamTranslate"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      publishDomain: opts.publishDomain,
+      appName: opts.appName,
+      streamName: opts.streamName,
+      template: opts.template
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteLiveStreamTranslate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/translateStream/{publishDomain}/appNames/{appName}/streams/{streamName}/templates/{template}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询翻译模板绑定
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.template - 翻译模板
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param templateBinding bindingList
+      */
+
+  describeTranslateBinding (opts, callback) {
+    opts = opts || {}
+
+    if (opts.template === undefined || opts.template === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.template' when calling describeTranslateBinding"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      template: opts.template
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeTranslateBinding with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/translateTemplates/{template}:binding',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  暂停指定流的翻译任务
+- 暂停添加实时翻译字幕到指定流
+- 指定的流需在线且配置了翻译模板
+
+      * @param {Object} opts - parameters
+      * @param {} opts.publishDomain - 推流域名
+      * @param {} opts.appName - APP名
+      * @param {} opts.streamName - 流名
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  pauseLiveStreamTranslate (opts, callback) {
+    opts = opts || {}
+
+    if (opts.publishDomain === undefined || opts.publishDomain === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.publishDomain' when calling pauseLiveStreamTranslate"
+      )
+    }
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling pauseLiveStreamTranslate"
+      )
+    }
+    if (opts.streamName === undefined || opts.streamName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.streamName' when calling pauseLiveStreamTranslate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.publishDomain !== undefined && opts.publishDomain !== null) {
+      postBody['publishDomain'] = opts.publishDomain
+    }
+    if (opts.appName !== undefined && opts.appName !== null) {
+      postBody['appName'] = opts.appName
+    }
+    if (opts.streamName !== undefined && opts.streamName !== null) {
+      postBody['streamName'] = opts.streamName
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call pauseLiveStreamTranslate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/translate:pause',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  恢复指定流的翻译任务
+- 恢复添加实时翻译字幕到指定流
+- 指定的流需在线且配置了翻译模板，同时处于翻译暂停状态
+
+      * @param {Object} opts - parameters
+      * @param {} opts.publishDomain - 推流域名
+      * @param {} opts.appName - APP名
+      * @param {} opts.streamName - 流名
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  resumeLiveStreamTranslate (opts, callback) {
+    opts = opts || {}
+
+    if (opts.publishDomain === undefined || opts.publishDomain === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.publishDomain' when calling resumeLiveStreamTranslate"
+      )
+    }
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling resumeLiveStreamTranslate"
+      )
+    }
+    if (opts.streamName === undefined || opts.streamName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.streamName' when calling resumeLiveStreamTranslate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.publishDomain !== undefined && opts.publishDomain !== null) {
+      postBody['publishDomain'] = opts.publishDomain
+    }
+    if (opts.appName !== undefined && opts.appName !== null) {
+      postBody['appName'] = opts.appName
+    }
+    if (opts.streamName !== undefined && opts.streamName !== null) {
+      postBody['streamName'] = opts.streamName
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call resumeLiveStreamTranslate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/translate:resume',
+      'POST',
       pathParams,
       queryParams,
       headerParams,
@@ -13362,7 +14762,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -13474,7 +14874,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -13595,7 +14995,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -13707,7 +15107,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -13826,7 +15226,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -13927,7 +15327,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -14042,7 +15442,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -14150,7 +15550,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']
@@ -14250,7 +15650,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.19'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.20'
     }
 
     let contentTypes = ['application/json']

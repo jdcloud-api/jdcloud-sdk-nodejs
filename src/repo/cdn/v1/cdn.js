@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * cdn service.
- * @version 0.10.24
+ * @version 0.10.25
  */
 
 class CDN extends Service {
@@ -84,7 +84,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -210,7 +210,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -302,7 +302,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -397,7 +397,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -525,7 +525,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -645,7 +645,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -761,7 +761,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -877,7 +877,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -976,7 +976,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -1075,7 +1075,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -1175,7 +1175,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -1284,7 +1284,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -1406,7 +1406,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -1521,7 +1521,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -1633,7 +1633,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -1742,7 +1742,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -1834,7 +1834,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -1936,7 +1936,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -2012,7 +2012,7 @@ class CDN extends Service {
       *  设置ip黑名白单
       * @param {Object} opts - parameters
       * @param {string} opts.domain - 用户域名
-      * @param {} [opts.ips] - ip名单,ips中url不能超过50条  optional
+      * @param {} [opts.ips] - ip名单,ips中url不能超过50条，中国境外/全球加速域名暂不支持传IP段  optional
       * @param {} [opts.ipListType] - ip黑白名单类型，black:黑名单,white:白名单  optional
       * @param {string} callback - callback
       @return {Object} result
@@ -2043,7 +2043,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -2146,7 +2146,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -2247,7 +2247,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -2350,7 +2350,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -2427,7 +2427,7 @@ class CDN extends Service {
       * @param {Object} opts - parameters
       * @param {string} opts.domain - 用户域名
       * @param {} [opts.weight] - 此条配置的权重值, 取值范围为1-10,1最大  optional
-      * @param {} [opts.ttl] - 缓存时间,单位秒  optional
+      * @param {} [opts.ttl] - 缓存时间,单位秒，中国境内加速域名最长可配置2年，中国境外/全球加速域名最长可配置1年  optional
       * @param {} [opts.contents] - 规则内容。其他类型只能以/或者.开头，如/a/b或.jpg  optional
       * @param {} [opts.cacheType] - 缓存方式：0、不缓存，1自定义  optional
       * @param {string} callback - callback
@@ -2466,7 +2466,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -2543,7 +2543,7 @@ class CDN extends Service {
       * @param {Object} opts - parameters
       * @param {string} opts.domain - 用户域名
       * @param {} [opts.weight] - 此条配置的权重值, 取值范围为1-10,1最大  optional
-      * @param {} [opts.ttl] - 缓存时间,单位秒  optional
+      * @param {} [opts.ttl] - 缓存时间,单位秒，中国境内加速域名最长可配置2年，中国境外/全球加速域名最长可配置1年  optional
       * @param {} [opts.contents] - 规则内容。其他类型只能以/或者.开头，如/a/b或.jpg  optional
       * @param {} [opts.cacheType] - 缓存方式：0、不缓存，1自定义  optional
       * @param {} [opts.configId] - 缓存规则配置ID  optional
@@ -2585,7 +2585,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -2687,7 +2687,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -2760,6 +2760,110 @@ class CDN extends Service {
   }
 
   /**
+      *  批量添加缓存规则
+      * @param {Object} opts - parameters
+      * @param {string} opts.domain - 用户域名
+      * @param {} [opts.cacheRules]   optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param cacheVo data
+      */
+
+  setCacheRules (opts, callback) {
+    opts = opts || {}
+
+    if (opts.domain === undefined || opts.domain === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.domain' when calling setCacheRules"
+      )
+    }
+
+    let postBody = {}
+    if (opts.cacheRules !== undefined && opts.cacheRules !== null) {
+      postBody['cacheRules'] = opts.cacheRules
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      domain: opts.domain
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call setCacheRules with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/domain/{domain}/cacheRules',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  查询http header头
       * @param {Object} opts - parameters
       * @param {string} opts.domain - 用户域名
@@ -2787,7 +2891,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -2863,9 +2967,9 @@ class CDN extends Service {
       *  添加httpHeader
       * @param {Object} opts - parameters
       * @param {string} opts.domain - 用户域名
-      * @param {} [opts.headerType] - header类型[resp,req]  optional
-      * @param {} [opts.headerName] - header名  optional
-      * @param {} [opts.headerValue] - header值  optional
+      * @param {} [opts.headerType] - header类型[resp,req],resp：配置响应头，req：配置请求头  optional
+      * @param {} [opts.headerName] - header名，例如：Content-Disposition，可自定义，长度不能超过256个字符，不能包含中文字符，不能包含$和_，不支持设置如下头名：[&quot;Content-Length&quot;,&quot;Date&quot;,&quot;Host&quot;,&quot;Content-Encoding&quot;,&quot;If-Modified-Since&quot;,&quot;If-Range&quot;,&quot;Content-Type&quot;,&quot;Transfer-Encoding&quot;,&quot;Cache-Control&quot;,&quot;Last-Modified&quot;,&quot;Connection&quot;, &quot;Content-Range&quot;,&quot;ETag&quot;,&quot;Age&quot;,&quot;Authentication-Info&quot;,&quot;Proxy-Authenticate&quot;,&quot;Retry-After&quot;,&quot;Set-Cookie&quot;,&quot;Vary&quot;,&quot;Content-Location&quot;,&quot;Meter&quot;,&quot;Allow&quot;,&quot;Error&quot;,&quot;X-Trace&quot;, &quot;Proxy-Connection&quot;]  optional
+      * @param {} [opts.headerValue] - header值，不能包含($,_,#)，不能超过256个字符  optional
       * @param {string} callback - callback
       @return {Object} result
       */
@@ -2898,7 +3002,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -3005,7 +3109,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -3108,7 +3212,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -3211,7 +3315,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -3314,7 +3418,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -3421,7 +3525,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -3522,7 +3626,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -3624,7 +3728,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -3731,7 +3835,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -3832,7 +3936,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -3943,7 +4047,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -4020,7 +4124,7 @@ class CDN extends Service {
       * @param {Object} opts - parameters
       * @param {string} opts.domain - 用户域名
       * @param {} [opts.referType] - refer类型，取值：block（黑名单），allow（白名单）默认为block  optional
-      * @param {} [opts.referList] - 逗号隔开的域名列表，如果referList传空则为删除  optional
+      * @param {} [opts.referList] - 逗号隔开的域名列表，如果referList传空则为删除，中国境内加速域名至多可配置400条，中国境外/全球加速域名至多可配置50条  optional
       * @param {} [opts.allowNoReferHeader] - 是否允许空refer访问，默认为“on”  optional
       * @param {} [opts.allowNullReferHeader] - 是否允许无ua访问，默认为“on”  optional
       * @param {string} callback - callback
@@ -4064,7 +4168,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -4166,7 +4270,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -4281,7 +4385,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -4380,7 +4484,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -4511,7 +4615,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -4614,7 +4718,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -4746,7 +4850,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -4846,7 +4950,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -4949,7 +5053,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -5049,7 +5153,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -5153,7 +5257,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -5277,7 +5381,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -5376,7 +5480,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -5480,7 +5584,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -5580,7 +5684,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -5687,7 +5791,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -5790,7 +5894,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -5893,7 +5997,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -6000,7 +6104,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -6107,7 +6211,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -6208,7 +6312,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -6315,7 +6419,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -6416,7 +6520,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -6489,7 +6593,7 @@ class CDN extends Service {
   }
 
   /**
-      *  http2配置
+      *  http2配置，中国境外/全球加速域名暂不支持该配置
       * @param {Object} opts - parameters
       * @param {string} opts.domain - 用户域名
       * @param {} [opts.status] - HTTP2功能开关，取值on/off  optional
@@ -6519,7 +6623,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -6619,7 +6723,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -6722,7 +6826,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -6822,7 +6926,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -6925,7 +7029,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -7039,7 +7143,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -7141,7 +7245,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -7232,7 +7336,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -7310,7 +7414,7 @@ class CDN extends Service {
       * @param {integer} opts.id - 域名组id
       * @param {} [opts.domains] - 域名组内域名，包含主域名  optional
       * @param {} [opts.primaryDomain] - 主域名,开启共享缓存时必传  optional
-      * @param {} [opts.shareCache] - 是否共享内存  optional
+      * @param {} [opts.shareCache] - 是否共享内存，共享缓存仅对中国境内加速域名生效  optional
       * @param {} [opts.domainGroupName]   optional
       * @param {string} callback - callback
       @return {Object} result
@@ -7347,7 +7451,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -7422,7 +7526,7 @@ class CDN extends Service {
   /**
       *  创建域名组
       * @param {Object} opts - parameters
-      * @param {} [opts.shareCache] - 是否共享内存  optional
+      * @param {} [opts.shareCache] - 是否共享内存，共享缓存仅对中国境内加速域名生效  optional
       * @param {} [opts.primaryDomain] - 主域名,开启共享缓存时必传  optional
       * @param {} [opts.domainGroupName] - 域名组名称  optional
       * @param {} [opts.domains] - 域名组内域名包含主域名  optional
@@ -7454,7 +7558,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -7555,7 +7659,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -7673,7 +7777,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -7800,7 +7904,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -7879,38 +7983,38 @@ class CDN extends Service {
       * @param {string} callback - callback
       @return {Object} result
       * @param string allStatus  null
-      * @param string allowNoReferHeader
-      * @param string allowNullReferHeader
-      * @param integer dailyBandWidth
-      * @param string forbiddenType
-      * @param integer maxFileSize
-      * @param integer minFileSize
-      * @param integer sumFileSize
-      * @param integer avgFileSize
+      * @param string allowNoReferHeader  是否允许空refer访问
+      * @param string allowNullReferHeader  null
+      * @param integer dailyBandWidth  日带宽（单位Mbps）
+      * @param string forbiddenType  封禁类型，取值：domain,url
+      * @param integer maxFileSize  最大单个文件大小（单位MB）
+      * @param integer minFileSize  最小单个文件大小（单位MB）
+      * @param integer sumFileSize  总文件大小（单位MB）
+      * @param integer avgFileSize  平均文件大小（单位MB）
       * @param string referList
-      * @param string referType
-      * @param string domain
-      * @param string cname
-      * @param string archiveNo
-      * @param string type
-      * @param string created
-      * @param string modified
-      * @param string status
-      * @param string auditStatus
-      * @param backSourceInfo source
-      * @param string sourceType
+      * @param string referType  refer类型，取值：block（黑名单），allow（白名单）
+      * @param string domain  域名
+      * @param string cname  为加速域名生成的一个CNAME域名，需要在域名解析服务商处将加速域名CNAME解析到该域名
+      * @param string archiveNo  域名备案号
+      * @param string type  域名加速类型，web表示图片及小文件加速
+      * @param string created  创建时间
+      * @param string modified  最后修改时间
+      * @param string status  加速域名运行状态 ，online 表示启用；offline表示停用；configuring表示配置中；configure_failed表示配置失败
+      * @param string auditStatus  域名审核状态，取值：0（未审核），1（审核通过），2（审核不通过）
+      * @param backSourceInfo source  null
+      * @param string sourceType  回源类型：取值 ips（IP列表），domain（域名）,oss（oss回源）
       * @param string defaultSourceHost  默认的回源host
-      * @param string backSourceType
-      * @param string httpType
-      * @param string certificate
-      * @param string rsaKey
-      * @param string jumpType
-      * @param string certFrom
-      * @param string sslCertId
-      * @param string certName
-      * @param string certType
-      * @param string sslCertStartTime
-      * @param string sslCertEndTime
+      * @param string backSourceType  回源类型，只能为http（80端口回源）或者https（443端口回源），默认为http
+      * @param string httpType  http类型，只能为http或者https，默认为http。当设为https时，需要调用“设置通讯协议”接口上传证书和私钥
+      * @param string certificate  用户证书，当Type为https时必须设置
+      * @param string rsaKey  证书私钥
+      * @param string jumpType  跳转类型，有三种类型：default、http、https
+      * @param string certFrom  证书来源，取值：ssl,defalut
+      * @param string sslCertId  证书id
+      * @param string certName  证书名称
+      * @param string certType  证书类型
+      * @param string sslCertStartTime  证书开始时间
+      * @param string sslCertEndTime  证书结束时间
       * @param string accelerateRegion  加速区域
       * @param string txt  txt记录
       */
@@ -7933,7 +8037,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -8099,7 +8203,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -8197,7 +8301,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -8296,7 +8400,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -8395,7 +8499,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -8487,7 +8591,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -8649,7 +8753,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -8763,7 +8867,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -8869,7 +8973,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -8960,7 +9064,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -9067,7 +9171,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -9169,7 +9273,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -9267,7 +9371,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -9340,7 +9444,7 @@ class CDN extends Service {
   }
 
   /**
-      *  获取所有上层节点的ip
+      *  获取所有上层节点的ip，仅支持中国境内上层节点IP地址查询
       * @param {Object} opts - parameters
       * @param {} [opts.ips]   optional
       * @param {string} callback - callback
@@ -9363,7 +9467,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -9459,7 +9563,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -9581,7 +9685,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -9688,7 +9792,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -9809,7 +9913,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -9912,7 +10016,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -10015,7 +10119,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -10126,7 +10230,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -10253,7 +10357,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -10356,7 +10460,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -10467,7 +10571,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -10568,7 +10672,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -10702,7 +10806,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -10856,7 +10960,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -10956,7 +11060,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -11059,7 +11163,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -11155,7 +11259,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -11250,7 +11354,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -11357,7 +11461,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -11489,7 +11593,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -11592,7 +11696,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -11691,7 +11795,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -11811,7 +11915,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -11917,7 +12021,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -12017,7 +12121,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -12124,7 +12228,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -12235,7 +12339,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -12334,7 +12438,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -12435,7 +12539,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -12536,7 +12640,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -12668,7 +12772,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -12741,9 +12845,9 @@ class CDN extends Service {
   }
 
   /**
-      *  创建刷新预热任务
+      *  创建刷新预热任务，
       * @param {Object} opts - parameters
-      * @param {} [opts.taskType] - 刷新预热类型,(url:url刷新,dir:目录刷新,prefetch:预热)  optional
+      * @param {} [opts.taskType] - 刷新预热类型,(url:url刷新,dir:目录刷新,prefetch:预热)，中国境外/全球加速域名暂不支持预热功能  optional
       * @param {} [opts.urls]   optional
       * @param {string} callback - callback
       @return {Object} result
@@ -12769,7 +12873,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -12869,7 +12973,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -13008,7 +13112,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -13099,7 +13203,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -13194,7 +13298,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -13285,7 +13389,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -13385,7 +13489,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -13486,7 +13590,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -13605,7 +13709,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -13696,7 +13800,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -13819,7 +13923,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -13918,7 +14022,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -14022,7 +14126,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -14121,7 +14225,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -14246,7 +14350,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -14319,16 +14423,17 @@ class CDN extends Service {
   }
 
   /**
-      *  查询统计数据
+      *  查询统计数据，仅可查询中国境内的相关信息
       * @param {Object} opts - parameters
       * @param {} [opts.startTime] - 查询起始时间,UTC时间，格式为:yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;，示例:2018-10-21T10:00:00Z  optional
       * @param {} [opts.endTime] - 查询截止时间,UTC时间，格式为:yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;，示例:2018-10-21T10:00:00Z  optional
       * @param {} [opts.domain] - 需要查询的域名, 必须为用户pin下有权限的域名  optional
       * @param {} [opts.fields] - 需要查询的字段  optional
-      * @param {} [opts.area]   optional
-      * @param {} [opts.isp]   optional
+      * @param {} [opts.area] - 查询的区域，如beijing,shanghai。多个用逗号分隔  optional
+      * @param {} [opts.isp] - 查询的运营商，cmcc,cnc,ct，表示移动、联通、电信。多个用逗号分隔  optional
       * @param {} [opts.period] - 时间粒度，可选值:[oneMin,fiveMin,followTime],followTime只会返回一个汇总后的数据  optional
       * @param {} [opts.scheme] - 查询协议，可选值:[http,https,all],传空默认返回全部协议汇总后的数据  optional
+      * @param {} [opts.cacheType] - 查询节点层级，可选值:[all,edge,mid],默认查询all,edge边缘 mid中间  optional
       * @param {string} callback - callback
       @return {Object} result
       * @param string startTime
@@ -14365,6 +14470,9 @@ class CDN extends Service {
     if (opts.scheme !== undefined && opts.scheme !== null) {
       postBody['scheme'] = opts.scheme
     }
+    if (opts.cacheType !== undefined && opts.cacheType !== null) {
+      postBody['cacheType'] = opts.cacheType
+    }
 
     let queryParams = {}
 
@@ -14373,7 +14481,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -14446,15 +14554,16 @@ class CDN extends Service {
   }
 
   /**
-      *  分地区及运营商查询统计数据
+      *  分地区及运营商查询统计数据，仅可查询中国境内的相关信息
       * @param {Object} opts - parameters
       * @param {} [opts.startTime] - 查询起始时间,UTC时间，格式为:yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;，示例:2018-10-21T10:00:00Z  optional
       * @param {} [opts.endTime] - 查询截止时间,UTC时间，格式为:yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;，示例:2018-10-21T10:00:00Z  optional
       * @param {} [opts.domain] - 需要查询的域名, 必须为用户pin下有权限的域名  optional
       * @param {} [opts.fields] - 需要查询的字段  optional
-      * @param {} [opts.area]   optional
-      * @param {} [opts.isp]   optional
+      * @param {} [opts.area] - 查询的区域，如beijing,shanghai。多个用逗号分隔  optional
+      * @param {} [opts.isp] - 查询的运营商，cmcc,cnc,ct，表示移动、联通、电信。多个用逗号分隔  optional
       * @param {} [opts.period] - 时间粒度，可选值:[oneMin,fiveMin,followTime],followTime只会返回一个汇总后的数据  optional
+      * @param {} [opts.cacheType] - 查询节点层级，可选值:[all,edge,mid],默认查询all,edge边缘 mid中间  optional
       * @param {string} callback - callback
       @return {Object} result
       * @param string startTime
@@ -14488,6 +14597,9 @@ class CDN extends Service {
     if (opts.period !== undefined && opts.period !== null) {
       postBody['period'] = opts.period
     }
+    if (opts.cacheType !== undefined && opts.cacheType !== null) {
+      postBody['cacheType'] = opts.cacheType
+    }
 
     let queryParams = {}
 
@@ -14496,7 +14608,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -14569,16 +14681,17 @@ class CDN extends Service {
   }
 
   /**
-      *  查询统计数据并进行汇总加和
+      *  查询统计数据并进行汇总加和，仅可查询中国境内的相关信息
       * @param {Object} opts - parameters
       * @param {} [opts.startTime] - 查询起始时间,UTC时间，格式为:yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;，示例:2018-10-21T10:00:00Z  optional
       * @param {} [opts.endTime] - 查询截止时间,UTC时间，格式为:yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;，示例:2018-10-21T10:00:00Z  optional
       * @param {} [opts.domain] - 需要查询的域名, 必须为用户pin下有权限的域名  optional
       * @param {} [opts.fields] - 需要查询的字段  optional
-      * @param {} [opts.area]   optional
-      * @param {} [opts.isp]   optional
+      * @param {} [opts.area] - 查询的区域，如beijing,shanghai。多个用逗号分隔  optional
+      * @param {} [opts.isp] - 查询的运营商，cmcc,cnc,ct，表示移动、联通、电信。多个用逗号分隔  optional
       * @param {} [opts.period] - 时间粒度，可选值:[oneMin,fiveMin,followTime],followTime只会返回一个汇总后的数据  optional
-      * @param {} [opts.groupBy] - 分组依据,只能按域名分组  optional
+      * @param {} [opts.groupBy] - 分组依据,只能按域名[domain]分组  optional
+      * @param {} [opts.cacheType] - 查询节点层级，可选值:[all,edge,mid],默认查询all,edge边缘 mid中间  optional
       * @param {string} callback - callback
       @return {Object} result
       * @param string startTime
@@ -14615,6 +14728,9 @@ class CDN extends Service {
     if (opts.groupBy !== undefined && opts.groupBy !== null) {
       postBody['groupBy'] = opts.groupBy
     }
+    if (opts.cacheType !== undefined && opts.cacheType !== null) {
+      postBody['cacheType'] = opts.cacheType
+    }
 
     let queryParams = {}
 
@@ -14623,7 +14739,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -14701,13 +14817,14 @@ class CDN extends Service {
       * @param {} [opts.startTime] - 查询起始时间,UTC时间，格式为:yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;，示例:2018-10-21T10:00:00Z  optional
       * @param {} [opts.endTime] - 查询截止时间,UTC时间，格式为:yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;，示例:2018-10-21T10:00:00Z  optional
       * @param {} [opts.domain] - 需要查询的域名, 必须为用户pin下有权限的域名  optional
-      * @param {} [opts.subDomain] - 待查询的子域名  optional
+      * @param {} [opts.subDomain] - 查询泛域名时，指定的子域名列表，多个用逗号分隔。非泛域名时，传入空即可  optional
       * @param {} [opts.fields] - 需要查询的字段  optional
-      * @param {} [opts.area]   optional
-      * @param {} [opts.isp]   optional
-      * @param {} [opts.origin]   optional
+      * @param {} [opts.area] - 查询的区域，如beijing,shanghai。多个用逗号分隔  optional
+      * @param {} [opts.isp] - 查询的运营商，cmcc,cnc,ct，表示移动、联通、电信。多个用逗号分隔  optional
+      * @param {} [opts.origin] - 是否查询回源统计信息。取值为true和false，默认为false。注意，如果查询回源信息，Fields的取值当前只支持oribandwidth，oripv，oricodestat三个，其余Fields忽略。  optional
       * @param {} [opts.period] - 时间粒度，可选值:[oneMin,fiveMin,followTime],followTime只会返回一个汇总后的数据  optional
       * @param {} [opts.abroad] - true 代表查询境外数据，默认false查询境内数据  optional
+      * @param {} [opts.cacheType] - 查询节点层级，可选值:[all,edge,mid],默认查询all,edge边缘 mid中间  optional
       * @param {string} callback - callback
       @return {Object} result
       * @param string startTime
@@ -14750,6 +14867,9 @@ class CDN extends Service {
     if (opts.abroad !== undefined && opts.abroad !== null) {
       postBody['abroad'] = opts.abroad
     }
+    if (opts.cacheType !== undefined && opts.cacheType !== null) {
+      postBody['cacheType'] = opts.cacheType
+    }
 
     let queryParams = {}
 
@@ -14758,7 +14878,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -14836,15 +14956,16 @@ class CDN extends Service {
       * @param {} [opts.startTime] - 查询起始时间,UTC时间，格式为:yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;，示例:2018-10-21T10:00:00Z  optional
       * @param {} [opts.endTime] - 查询截止时间,UTC时间，格式为:yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;，示例:2018-10-21T10:00:00Z  optional
       * @param {} [opts.domain] - 需要查询的域名, 必须为用户pin下有权限的域名  optional
-      * @param {} [opts.subDomain] - 待查询的子域名  optional
+      * @param {} [opts.subDomain] - 查询泛域名时，指定的子域名列表，多个用逗号分隔。非泛域名时，传入空即可  optional
       * @param {} [opts.fields] - 需要查询的字段  optional
-      * @param {} [opts.area]   optional
-      * @param {} [opts.isp]   optional
-      * @param {} [opts.origin]   optional
+      * @param {} [opts.area] - 查询的区域，如beijing,shanghai。多个用逗号分隔  optional
+      * @param {} [opts.isp] - 查询的运营商，cmcc,cnc,ct，表示移动、联通、电信。多个用逗号分隔  optional
+      * @param {} [opts.origin] - 是否查询回源统计信息。取值为true和false，默认为false。注意，如果查询回源信息，Fields的取值当前只支持oribandwidth，oripv，oricodestat三个，其余Fields忽略  optional
       * @param {} [opts.period] - 时间粒度，可选值:[oneMin,fiveMin,followTime],followTime只会返回一个汇总后的数据  optional
-      * @param {} [opts.groupBy] - 分组依据  optional
+      * @param {} [opts.groupBy] - 分组依据,可选值：[terminal,sdtfrom],如果为空，则只按area/isp进行group  optional
       * @param {} [opts.scheme] - 查询协议，可选值:[http,https,all],传空默认返回全部协议汇总后的数据  optional
       * @param {} [opts.abroad] - true 代表查询境外数据，默认false查询境内数据  optional
+      * @param {} [opts.cacheType] - 查询节点层级，可选值:[all,edge,mid],默认查询all,edge边缘 mid中间  optional
       * @param {string} callback - callback
       @return {Object} result
       * @param string startTime
@@ -14893,6 +15014,9 @@ class CDN extends Service {
     if (opts.abroad !== undefined && opts.abroad !== null) {
       postBody['abroad'] = opts.abroad
     }
+    if (opts.cacheType !== undefined && opts.cacheType !== null) {
+      postBody['cacheType'] = opts.cacheType
+    }
 
     let queryParams = {}
 
@@ -14901,7 +15025,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -14979,14 +15103,15 @@ class CDN extends Service {
       * @param {} [opts.startTime] - 查询起始时间,UTC时间，格式为:yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;，示例:2018-10-21T10:00:00Z  optional
       * @param {} [opts.endTime] - 查询截止时间,UTC时间，格式为:yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;，示例:2018-10-21T10:00:00Z  optional
       * @param {} [opts.domain] - 需要查询的域名, 必须为用户pin下有权限的域名  optional
-      * @param {} [opts.subDomain] - 待查询的子域名  optional
+      * @param {} [opts.subDomain] - 查询泛域名时，指定的子域名列表，多个用逗号分隔。非泛域名时，传入空即可  optional
       * @param {} [opts.fields] - 需要查询的字段  optional
-      * @param {} [opts.area]   optional
-      * @param {} [opts.isp]   optional
-      * @param {} [opts.origin]   optional
+      * @param {} [opts.area] - 查询的区域，如beijing,shanghai。多个用逗号分隔  optional
+      * @param {} [opts.isp] - 查询的运营商，cmcc,cnc,ct，表示移动、联通、电信。多个用逗号分隔  optional
+      * @param {} [opts.origin] - 是否查询回源统计信息。取值为true和false，默认为false。注意，如果查询回源信息，Fields的取值当前只支持oribandwidth，oripv，oricodestat三个，其余Fields忽略。  optional
       * @param {} [opts.period] - 时间粒度，可选值:[oneMin,fiveMin,followTime],followTime只会返回一个汇总后的数据  optional
-      * @param {} [opts.groupBy] - 分组依据  optional
+      * @param {} [opts.groupBy] - 分组依据，可选值：[area,isp,domain,scheme]  optional
       * @param {} [opts.abroad] - true 代表查询境外数据，默认false查询境内数据  optional
+      * @param {} [opts.cacheType] - 查询节点层级，可选值:[all,edge,mid],默认查询all,edge边缘 mid中间  optional
       * @param {string} callback - callback
       @return {Object} result
       * @param string startTime
@@ -15032,6 +15157,9 @@ class CDN extends Service {
     if (opts.abroad !== undefined && opts.abroad !== null) {
       postBody['abroad'] = opts.abroad
     }
+    if (opts.cacheType !== undefined && opts.cacheType !== null) {
+      postBody['cacheType'] = opts.cacheType
+    }
 
     let queryParams = {}
 
@@ -15040,7 +15168,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -15118,16 +15246,17 @@ class CDN extends Service {
       * @param {} [opts.startTime] - 查询起始时间,UTC时间，格式为:yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;，示例:2018-10-21T10:00:00Z  optional
       * @param {} [opts.endTime] - 查询截止时间,UTC时间，格式为:yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;，示例:2018-10-21T10:00:00Z  optional
       * @param {} [opts.domain] - 需要查询的域名, 必须为用户pin下有权限的域名  optional
-      * @param {} [opts.appName] - app名  optional
-      * @param {} [opts.streamName] - 流名  optional
-      * @param {} [opts.subDomain] - 子域名  optional
+      * @param {} [opts.appName] - app名,查询的App名称，多个用逗号分隔。注意，传如多个AppName时，表示查询这些AppName的和值，即“或”的关系。默认为空，表示查询所有App  optional
+      * @param {} [opts.streamName] - 流名,查询的流名称，多个用逗号分隔。注意，传如多个StreamName时，表示查询这些StreamName的和值，即“或”的关系。默认为空，表示查询所有Stream  optional
+      * @param {} [opts.subDomain] - 子域名,查询泛域名时，指定的子域名列表，多个用逗号分隔。非泛域名时，传入空即可  optional
       * @param {} [opts.fields] - 需要查询的字段  optional
-      * @param {} [opts.area]   optional
-      * @param {} [opts.isp]   optional
-      * @param {} [opts.reqMethod]   optional
-      * @param {} [opts.scheme] - 查询的流协议类型  optional
-      * @param {} [opts.cacheLevel] - cacheLevel  optional
+      * @param {} [opts.area] - 查询的区域，如beijing,shanghai。多个用逗号分隔  optional
+      * @param {} [opts.isp] - 查询的运营商，cmcc,cnc,ct，表示移动、联通、电信。多个用逗号分隔  optional
+      * @param {} [opts.reqMethod] - 当前取值范围(&quot;GET,HEAD,forward,forward-hls,ingest,play,publish,detour-ingest,Forward-Origin&quot;)  optional
+      * @param {} [opts.scheme] - 查询的流协议类型,取值范围：&quot;rtmp,hdl,hls&quot;，多个用逗号分隔，默认为空，表示查询所有协议。  optional
+      * @param {} [opts.cacheLevel] - cacheLevel,可选值：[L1,L2,L3]  optional
       * @param {} [opts.period] - 时间粒度，可选值:[oneMin,fiveMin,followTime],followTime只会返回一个汇总后的数据  optional
+      * @param {} [opts.cacheType] - 查询节点层级，可选值:[all,edge,mid],默认查询all,edge边缘 mid中间  optional
       * @param {string} callback - callback
       @return {Object} result
       * @param string startTime
@@ -15179,6 +15308,9 @@ class CDN extends Service {
     if (opts.period !== undefined && opts.period !== null) {
       postBody['period'] = opts.period
     }
+    if (opts.cacheType !== undefined && opts.cacheType !== null) {
+      postBody['cacheType'] = opts.cacheType
+    }
 
     let queryParams = {}
 
@@ -15187,7 +15319,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -15265,17 +15397,18 @@ class CDN extends Service {
       * @param {} [opts.startTime] - 查询起始时间,UTC时间，格式为:yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;，示例:2018-10-21T10:00:00Z  optional
       * @param {} [opts.endTime] - 查询截止时间,UTC时间，格式为:yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;，示例:2018-10-21T10:00:00Z  optional
       * @param {} [opts.domain] - 需要查询的域名, 必须为用户pin下有权限的域名  optional
-      * @param {} [opts.appName] - app名  optional
+      * @param {} [opts.appName] - 查询的App名称，多个用逗号分隔。  optional
       * @param {} [opts.fields] - 需要查询的字段  optional
-      * @param {} [opts.area]   optional
-      * @param {} [opts.isp]   optional
-      * @param {} [opts.streamName]   optional
+      * @param {} [opts.area] - 查询的区域，如beijing,shanghai。多个用逗号分隔  optional
+      * @param {} [opts.isp] - 查询的运营商，cmcc,cnc,ct，表示移动、联通、电信。多个用逗号分隔  optional
+      * @param {} [opts.streamName] - 查询的流名称，多个用逗号分隔。  optional
       * @param {} [opts.period] - 时间粒度，可选值:[oneMin,fiveMin,followTime],followTime只会返回一个汇总后的数据  optional
-      * @param {} [opts.groupBy] - 分组依据  optional
-      * @param {} [opts.subDomain]   optional
-      * @param {} [opts.scheme] - 查询的流协议  optional
-      * @param {} [opts.reqMethod]   optional
-      * @param {} [opts.cacheLevel] - cacheLevel  optional
+      * @param {} [opts.groupBy] - 分组依据,可选值：[appname,streamname]，如果为空，则只按area/isp进行group。  optional
+      * @param {} [opts.subDomain] - 查询泛域名时，指定的子域名列表，多个用逗号分隔。非泛域名时，传入空即可  optional
+      * @param {} [opts.scheme] - 查询的流协议，取值范围：&quot;rtmp,hdl,hls&quot;，多个用逗号分隔，默认为空，表示查询所有协议。  optional
+      * @param {} [opts.reqMethod] - 当前取值范围(&quot;GET,HEAD,forward,forward-hls,ingest,play,publish,detour-ingest,Forward-Origin&quot;)  optional
+      * @param {} [opts.cacheLevel] - cacheLevel，可选值：[L1,L2,L3]  optional
+      * @param {} [opts.cacheType] - 查询节点层级，可选值:[all,edge,mid],默认查询all,edge边缘 mid中间  optional
       * @param {string} callback - callback
       @return {Object} result
       * @param string startTime
@@ -15330,6 +15463,9 @@ class CDN extends Service {
     if (opts.cacheLevel !== undefined && opts.cacheLevel !== null) {
       postBody['cacheLevel'] = opts.cacheLevel
     }
+    if (opts.cacheType !== undefined && opts.cacheType !== null) {
+      postBody['cacheType'] = opts.cacheType
+    }
 
     let queryParams = {}
 
@@ -15338,7 +15474,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -15416,17 +15552,18 @@ class CDN extends Service {
       * @param {} [opts.startTime] - 查询起始时间,UTC时间，格式为:yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;，示例:2018-10-21T10:00:00Z  optional
       * @param {} [opts.endTime] - 查询截止时间,UTC时间，格式为:yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;，示例:2018-10-21T10:00:00Z  optional
       * @param {} [opts.domain] - 需要查询的域名, 必须为用户pin下有权限的域名  optional
-      * @param {} [opts.subDomain]   optional
-      * @param {} [opts.appName] - app名  optional
-      * @param {} [opts.streamName] - 流名  optional
+      * @param {} [opts.subDomain] - 查询泛域名时，指定的子域名列表，多个用逗号分隔。非泛域名时，传入空即可  optional
+      * @param {} [opts.appName] - 查询的App名称，多个用逗号分隔。  optional
+      * @param {} [opts.streamName] - 查询的流名称，多个用逗号分隔。  optional
       * @param {} [opts.fields] - 需要查询的字段  optional
-      * @param {} [opts.area]   optional
-      * @param {} [opts.isp]   optional
-      * @param {} [opts.scheme] - 查询的流协议  optional
+      * @param {} [opts.area] - 查询的区域，如beijing,shanghai。多个用逗号分隔  optional
+      * @param {} [opts.isp] - 查询的运营商，cmcc,cnc,ct，表示移动、联通、电信。多个用逗号分隔  optional
+      * @param {} [opts.scheme] - 查询的流协议，取值范围：&quot;rtmp,hdl,hls&quot;，多个用逗号分隔，默认为空，表示查询所有协议。  optional
       * @param {} [opts.period] - 时间粒度，可选值:[oneMin,fiveMin,followTime],followTime只会返回一个汇总后的数据  optional
-      * @param {} [opts.groupBy] - 分组依据  optional
-      * @param {} [opts.reqMethod]   optional
-      * @param {} [opts.cacheLevel] - cacheLevel  optional
+      * @param {} [opts.groupBy] - 分组依据，可选值：[appname,streamname,domain,area,isp,scheme]  optional
+      * @param {} [opts.reqMethod] - 当前取值范围(&quot;GET,HEAD,forward,forward-hls,ingest,play,publish,detour-ingest,Forward-Origin&quot;)  optional
+      * @param {} [opts.cacheLevel] - cacheLevel，可选值：[L1,L2,L3]  optional
+      * @param {} [opts.cacheType] - 查询节点层级，可选值:[all,edge,mid],默认查询all,edge边缘 mid中间  optional
       * @param {string} callback - callback
       @return {Object} result
       * @param string startTime
@@ -15481,6 +15618,9 @@ class CDN extends Service {
     if (opts.cacheLevel !== undefined && opts.cacheLevel !== null) {
       postBody['cacheLevel'] = opts.cacheLevel
     }
+    if (opts.cacheType !== undefined && opts.cacheType !== null) {
+      postBody['cacheType'] = opts.cacheType
+    }
 
     let queryParams = {}
 
@@ -15489,7 +15629,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -15562,14 +15702,14 @@ class CDN extends Service {
   }
 
   /**
-      *  查询TOP IP
+      *  查询TOP IP，仅可查询中国境内的相关信息
       * @param {Object} opts - parameters
       * @param {} [opts.startTime] - 查询起始时间,UTC时间，格式为:yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;，示例:2018-10-21T10:00:00Z  optional
       * @param {} [opts.endTime] - 查询截止时间,UTC时间，格式为:yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;，示例:2018-10-21T10:00:00Z  optional
       * @param {} [opts.domain] - 需要查询的域名, 必须为用户pin下有权限的域名  optional
-      * @param {} [opts.subDomain] - 待查询的子域名  optional
-      * @param {} [opts.size]   optional
-      * @param {} [opts.topBy] - 排序依据  optional
+      * @param {} [opts.subDomain] - 待查询的子域名,查询泛域名时，指定的子域名列表，多个用逗号分隔。非泛域名时，传入空即可  optional
+      * @param {} [opts.size] - 查询的topN的条数，取值范围：1-100，默认为20  optional
+      * @param {} [opts.topBy] - 排序依据,当前可选：pv,flow, 分别表示按pv、按流量topN ip，默认为&quot;pv&quot;  optional
       * @param {string} callback - callback
       @return {Object} result
       * @param string startTime
@@ -15608,7 +15748,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -15681,14 +15821,14 @@ class CDN extends Service {
   }
 
   /**
-      *  查询TOP Url
+      *  查询TOP Url，仅可查询中国境内的相关信息
       * @param {Object} opts - parameters
       * @param {} [opts.startTime] - 查询起始时间,UTC时间，格式为:yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;，示例:2018-10-21T10:00:00Z  optional
       * @param {} [opts.endTime] - 查询截止时间,UTC时间，格式为:yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;，示例:2018-10-21T10:00:00Z  optional
       * @param {} [opts.domain] - 需要查询的域名, 必须为用户pin下有权限的域名  optional
-      * @param {} [opts.subDomain] - 待查询的子域名  optional
-      * @param {} [opts.size]   optional
-      * @param {} [opts.topBy] - 排序依据  optional
+      * @param {} [opts.subDomain] - 待查询的子域名,查询泛域名时，指定的子域名列表，多个用逗号分隔。非泛域名时，传入空即可  optional
+      * @param {} [opts.size] - 查询的topN的条数，取值范围：1-100，默认为20  optional
+      * @param {} [opts.topBy] - 排序依据,当前可选：pv,flow，bandwidth, 分别表示按pv、按流量、按带宽topN url，默认为&quot;pv&quot;  optional
       * @param {string} callback - callback
       @return {Object} result
       * @param string startTime
@@ -15727,7 +15867,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -15807,6 +15947,7 @@ class CDN extends Service {
       * @param {} [opts.domain] - 需要查询的域名, 必须为用户pin下有权限的域名，该接口仅支持单域名查询  optional
       * @param {} [opts.dirs] - 需要过滤的目录  optional
       * @param {} [opts.regions] - 需要过滤的地区  optional
+      * @param {} [opts.cacheType] - 查询节点层级，可选值:[all,edge,mid],默认查询all,edge边缘 mid中间  optional
       * @param {string} callback - callback
       @return {Object} result
       * @param string domain
@@ -15832,6 +15973,9 @@ class CDN extends Service {
     if (opts.regions !== undefined && opts.regions !== null) {
       postBody['regions'] = opts.regions
     }
+    if (opts.cacheType !== undefined && opts.cacheType !== null) {
+      postBody['cacheType'] = opts.cacheType
+    }
 
     let queryParams = {}
 
@@ -15840,7 +15984,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -15919,6 +16063,7 @@ class CDN extends Service {
       * @param {} [opts.endTime] - 查询截止时间,UTC时间，格式为:yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;，示例:2018-10-21T10:00:00Z  optional
       * @param {} [opts.domain] - 需要查询的域名, 必须为用户pin下有权限的域名，该接口仅支持单域名查询  optional
       * @param {} [opts.dirs] - 需要过滤的目录  optional
+      * @param {} [opts.cacheType] - 查询节点层级，可选值:[all,edge,mid],默认查询all,edge边缘 mid中间  optional
       * @param {string} callback - callback
       @return {Object} result
       * @param string domain
@@ -15941,6 +16086,9 @@ class CDN extends Service {
     if (opts.dirs !== undefined && opts.dirs !== null) {
       postBody['dirs'] = opts.dirs
     }
+    if (opts.cacheType !== undefined && opts.cacheType !== null) {
+      postBody['cacheType'] = opts.cacheType
+    }
 
     let queryParams = {}
 
@@ -15949,7 +16097,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -16058,7 +16206,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -16102,6 +16250,133 @@ class CDN extends Service {
 
     let request = super.makeRequest(
       '/statistics:queryCustomizedDirBandWidth',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  分页查询直播流数据接口
+      * @param {Object} opts - parameters
+      * @param {string} opts.domain - 用户域名
+      * @param {} [opts.startTime] - 查询起始时间,UTC时间，格式为:yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;，示例:2018-10-21T10:00:00Z  optional
+      * @param {} [opts.endTime] - 查询截止时间,UTC时间，格式为:yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39;，示例:2018-10-21T10:00:00Z  optional
+      * @param {} [opts.appName] - app名  optional
+      * @param {} [opts.streamName] - 流名  optional
+      * @param {} [opts.pageNum] - 页码，不传默认1  optional
+      * @param {} [opts.pageSize] - 页size,不传默认100,最大值1000  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer total
+      * @param integer pageNum
+      * @param integer pageSize
+      * @param statisticsLiveStreamInfo streamInfoList
+      */
+
+  queryStreamInfo (opts, callback) {
+    opts = opts || {}
+
+    if (opts.domain === undefined || opts.domain === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.domain' when calling queryStreamInfo"
+      )
+    }
+
+    let postBody = {}
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      postBody['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      postBody['endTime'] = opts.endTime
+    }
+    if (opts.appName !== undefined && opts.appName !== null) {
+      postBody['appName'] = opts.appName
+    }
+    if (opts.streamName !== undefined && opts.streamName !== null) {
+      postBody['streamName'] = opts.streamName
+    }
+    if (opts.pageNum !== undefined && opts.pageNum !== null) {
+      postBody['pageNum'] = opts.pageNum
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      domain: opts.domain
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call queryStreamInfo with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/domain/{domain}/liveStatistics:streamInfo',
       'POST',
       pathParams,
       queryParams,
@@ -16181,7 +16456,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -16294,7 +16569,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -16380,8 +16655,8 @@ class CDN extends Service {
       * @param {} [opts.pluginPin] - 插件pin  optional
       * @param {string} callback - callback
       @return {Object} result
-      * @param string startTime
-      * @param string endTime
+      * @param string startTime  2020/07/30 10:30，查询起始时间
+      * @param string endTime  2020/07/30 11:00，查询截止时间
       * @param statisticsDataItem statistics
       */
 
@@ -16424,7 +16699,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -16468,6 +16743,140 @@ class CDN extends Service {
 
     let request = super.makeRequest(
       '/jdBoxStatistics',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  无线宝按group查询的统计接口
+      * @param {Object} opts - parameters
+      * @param {} [opts.startTime] - 查询起始时间,时间戳  optional
+      * @param {} [opts.endTime] - 查询截止时间,时间戳  optional
+      * @param {} [opts.groupBy] - 取值范围：area，isp，pin ,mac_addr，category，多个用,隔开,多个维度的查询，必须要限制较短的时间间隔  optional
+      * @param {} [opts.fields] - 查询的字段，取值范围(avgbandwidth,pv,flow)。多个用逗号分隔。默认为空，表示查询带宽流量  optional
+      * @param {} [opts.area] - 区域  optional
+      * @param {} [opts.isp] - 运营商  optional
+      * @param {} [opts.period] - 查询周期，当前取值范围：“oneMin,fiveMin”，分别表示1min，5min。默认为空，表示fiveMin  optional
+      * @param {} [opts.category] - 业务类型  optional
+      * @param {} [opts.macAddr] - 设备id  optional
+      * @param {} [opts.pluginPin] - 插件pin  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string startTime  2021/01/19 10:30，查询起始时间
+      * @param string endTime  2021/01/19 11:00，查询截止时间
+      * @param statisticsDataItem statistics
+      */
+
+  queryJDBoxStatisticsDataWithGroup (opts, callback) {
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      postBody['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      postBody['endTime'] = opts.endTime
+    }
+    if (opts.groupBy !== undefined && opts.groupBy !== null) {
+      postBody['groupBy'] = opts.groupBy
+    }
+    if (opts.fields !== undefined && opts.fields !== null) {
+      postBody['fields'] = opts.fields
+    }
+    if (opts.area !== undefined && opts.area !== null) {
+      postBody['area'] = opts.area
+    }
+    if (opts.isp !== undefined && opts.isp !== null) {
+      postBody['isp'] = opts.isp
+    }
+    if (opts.period !== undefined && opts.period !== null) {
+      postBody['period'] = opts.period
+    }
+    if (opts.category !== undefined && opts.category !== null) {
+      postBody['category'] = opts.category
+    }
+    if (opts.macAddr !== undefined && opts.macAddr !== null) {
+      postBody['macAddr'] = opts.macAddr
+    }
+    if (opts.pluginPin !== undefined && opts.pluginPin !== null) {
+      postBody['pluginPin'] = opts.pluginPin
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call queryJDBoxStatisticsDataWithGroup with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/jdBoxStatisticsWithGroup',
       'POST',
       pathParams,
       queryParams,
@@ -16556,7 +16965,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -16655,7 +17064,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -16758,7 +17167,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -16857,7 +17266,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -16960,7 +17369,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -17080,7 +17489,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -17195,7 +17604,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -17317,7 +17726,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -17424,7 +17833,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -17531,7 +17940,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -17645,7 +18054,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -17744,7 +18153,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -17847,7 +18256,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -17967,7 +18376,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -18086,7 +18495,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -18212,7 +18621,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -18319,7 +18728,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -18426,7 +18835,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -18540,7 +18949,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -18639,7 +19048,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -18742,7 +19151,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -18853,7 +19262,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -18972,7 +19381,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -19098,7 +19507,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -19201,7 +19610,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -19304,7 +19713,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -19409,7 +19818,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -19508,7 +19917,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -19611,7 +20020,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -19712,7 +20121,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -19823,7 +20232,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -19925,7 +20334,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -20024,7 +20433,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -20128,7 +20537,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -20234,7 +20643,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']
@@ -20355,7 +20764,7 @@ class CDN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cdn/0.10.25'
     }
 
     let contentTypes = ['application/json']

@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * vod service.
- * @version 1.1.12
+ * @version 1.2.0
  */
 
 class VOD extends Service {
@@ -73,7 +73,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -184,7 +184,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -283,7 +283,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -382,7 +382,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -495,7 +495,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -593,7 +593,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -694,7 +694,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -796,7 +796,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -895,7 +895,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -993,7 +993,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -1092,7 +1092,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -1191,7 +1191,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -1290,7 +1290,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -1424,7 +1424,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -1523,7 +1523,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -1648,7 +1648,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -1765,7 +1765,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -1864,7 +1864,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -1981,7 +1981,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -2080,7 +2080,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -2197,7 +2197,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -2296,7 +2296,7 @@ class VOD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -2423,7 +2423,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -2522,7 +2522,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -2730,7 +2730,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -2889,7 +2889,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -2990,7 +2990,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -3100,7 +3100,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -3199,7 +3199,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -3294,7 +3294,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -3394,7 +3394,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -3517,7 +3517,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -3616,7 +3616,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -3732,7 +3732,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -3830,7 +3830,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -3934,7 +3934,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -4060,7 +4060,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -4159,7 +4159,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -4267,7 +4267,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -4365,7 +4365,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -4473,7 +4473,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -4569,7 +4569,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -4662,7 +4662,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -4755,7 +4755,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -4848,7 +4848,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -4952,7 +4952,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -5048,7 +5048,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -5153,7 +5153,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -5309,7 +5309,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -5408,7 +5408,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -5546,7 +5546,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -5644,7 +5644,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -5746,7 +5746,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -5846,7 +5846,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -5945,7 +5945,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -6053,7 +6053,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -6151,7 +6151,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -6252,7 +6252,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -6325,6 +6325,740 @@ https - 强制采用https协议回源
   }
 
   /**
+      *  创建视频剪辑作业
+
+      * @param {Object} opts - parameters
+      * @param {string} [opts.projectName] - 工程名称  optional
+      * @param {string} [opts.description] - 工程描述  optional
+      * @param {timeline} [opts.timeline] - 时间线信息  optional
+      * @param {mediaMetadata} [opts.mediaMetadata] - 剪辑合成媒资元数据  optional
+      * @param {string} [opts.userData] - 用户数据，JSON格式的字符串  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param submittedVeditJob resultObject
+      */
+
+  createVeditJob (opts, callback) {
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.projectName !== undefined && opts.projectName !== null) {
+      postBody['projectName'] = opts.projectName
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+    if (opts.timeline !== undefined && opts.timeline !== null) {
+      postBody['timeline'] = opts.timeline
+    }
+    if (opts.mediaMetadata !== undefined && opts.mediaMetadata !== null) {
+      postBody['mediaMetadata'] = opts.mediaMetadata
+    }
+    if (opts.userData !== undefined && opts.userData !== null) {
+      postBody['userData'] = opts.userData
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createVeditJob with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/veditJobs',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  提交视频剪辑作业
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.projectId] - 工程ID  optional
+      * @param {mediaMetadata} [opts.mediaMetadata] - 合成媒资元数据  optional
+      * @param {string} [opts.userData] - 用户数据，JSON格式字符串  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param submittedVeditJob resultObject
+      */
+
+  submitVeditJob (opts, callback) {
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.projectId !== undefined && opts.projectId !== null) {
+      postBody['projectId'] = opts.projectId
+    }
+    if (opts.mediaMetadata !== undefined && opts.mediaMetadata !== null) {
+      postBody['mediaMetadata'] = opts.mediaMetadata
+    }
+    if (opts.userData !== undefined && opts.userData !== null) {
+      postBody['userData'] = opts.userData
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call submitVeditJob with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/veditJobs:submit',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询视频剪辑工程列表。
+允许通过条件过滤查询，支持的过滤字段如下：
+  - projectId[eq] 按照工程ID精确查询
+
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码；默认值为 1  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认值为 10；取值范围 [10, 100]  optional
+      * @param {filter} [opts.filters]   optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param veditProjectPageData resultObject
+      */
+
+  listVeditProjects (opts, callback) {
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call listVeditProjects with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/veditProjects',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建视频剪辑工程
+      * @param {Object} opts - parameters
+      * @param {string} [opts.projectName] - 工程名称  optional
+      * @param {string} [opts.description] - 工程描述  optional
+      * @param {timeline} [opts.timeline] - 时间线信息  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param veditProjectData resultObject
+      */
+
+  createVeditProject (opts, callback) {
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.projectName !== undefined && opts.projectName !== null) {
+      postBody['projectName'] = opts.projectName
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+    if (opts.timeline !== undefined && opts.timeline !== null) {
+      postBody['timeline'] = opts.timeline
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createVeditProject with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/veditProjects',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询视频剪辑工程详情
+      * @param {Object} opts - parameters
+      * @param {integer} opts.projectId - 视频剪辑工程ID
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param veditProjectData resultObject
+      */
+
+  getVeditProject (opts, callback) {
+    opts = opts || {}
+
+    if (opts.projectId === undefined || opts.projectId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.projectId' when calling getVeditProject"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      projectId: opts.projectId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getVeditProject with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/veditProjects/{projectId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改视频剪辑工程信息
+      * @param {Object} opts - parameters
+      * @param {integer} opts.projectId - 视频剪辑工程ID
+      * @param {string} [opts.projectName] - 工程名称  optional
+      * @param {string} [opts.description] - 工程描述  optional
+      * @param {timeline} [opts.timeline] - 时间线信息  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param veditProjectData resultObject
+      */
+
+  updateVeditProject (opts, callback) {
+    opts = opts || {}
+
+    if (opts.projectId === undefined || opts.projectId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.projectId' when calling updateVeditProject"
+      )
+    }
+
+    let postBody = {}
+    if (opts.projectName !== undefined && opts.projectName !== null) {
+      postBody['projectName'] = opts.projectName
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+    if (opts.timeline !== undefined && opts.timeline !== null) {
+      postBody['timeline'] = opts.timeline
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      projectId: opts.projectId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call updateVeditProject with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/veditProjects/{projectId}',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除视频剪辑工程
+      * @param {Object} opts - parameters
+      * @param {integer} opts.projectId - 视频剪辑工程ID
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteVeditProject (opts, callback) {
+    opts = opts || {}
+
+    if (opts.projectId === undefined || opts.projectId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.projectId' when calling deleteVeditProject"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      projectId: opts.projectId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteVeditProject with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/veditProjects/{projectId}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  查询视频列表信息。
 允许通过条件过滤查询，支持的过滤字段如下：
   - status[eq] 按视频状态精确查询
@@ -6361,7 +7095,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -6460,7 +7194,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -6580,7 +7314,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -6678,7 +7412,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -6774,7 +7508,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -6870,7 +7604,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -6969,7 +7703,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -7073,7 +7807,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -7186,7 +7920,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -7285,7 +8019,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -7384,7 +8118,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -7590,7 +8324,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -7689,7 +8423,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -7867,7 +8601,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']
@@ -7965,7 +8699,7 @@ https - 强制采用https协议回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.1.12'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vod/1.2.0'
     }
 
     let contentTypes = ['application/json']

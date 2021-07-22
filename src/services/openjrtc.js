@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * JRtcServiceAccount
- * 用户服务管理
+ * UserRoom
+ * 用户房间号管理
  *
  * OpenAPI spec version: v1
  * Contact:

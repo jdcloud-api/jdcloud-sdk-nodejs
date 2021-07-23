@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Resource Order Management APIs
- * 资源单管理API接口
+ * 停删规则
+ * 停删规则
  *
  * OpenAPI spec version: v1
  * Contact:

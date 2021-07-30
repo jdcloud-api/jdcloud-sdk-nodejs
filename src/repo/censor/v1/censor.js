@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * censor service.
- * @version 1.0.2
+ * @version 1.0.3
  */
 
 class CENSOR extends Service {
@@ -47,6 +47,7 @@ class CENSOR extends Service {
   /**
       *  提交音频异步检测任务
       * @param {Object} opts - parameters
+      * @param {} [opts.bizType] - 机审策略，eg: default  optional
       * @param {} [opts.scenes] - 指定检测场景  optional
       * @param {} [opts.tasks] - 检测任务列表，包含一个或多个元素。每个元素是个结构体，最多可添加10个元素，每个元素的具体结构描述见audioTask。  optional
       * @param {} [opts.callback] - 异步检测结果回调通知您的URL，支持HTTP/HTTPS。该字段为空时，您必须定时检索检测结果。  optional
@@ -60,6 +61,9 @@ class CENSOR extends Service {
     opts = opts || {}
 
     let postBody = {}
+    if (opts.bizType !== undefined && opts.bizType !== null) {
+      postBody['bizType'] = opts.bizType
+    }
     if (opts.scenes !== undefined && opts.scenes !== null) {
       postBody['scenes'] = opts.scenes
     }
@@ -80,7 +84,7 @@ class CENSOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -182,7 +186,7 @@ class CENSOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -314,7 +318,7 @@ class CENSOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -417,7 +421,7 @@ class CENSOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -521,7 +525,7 @@ class CENSOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -633,7 +637,7 @@ class CENSOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -754,7 +758,7 @@ class CENSOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -829,6 +833,7 @@ class CENSOR extends Service {
   /**
       *  图片同步检测
       * @param {Object} opts - parameters
+      * @param {} [opts.bizType] - 机审策略，eg: default  optional
       * @param {} [opts.scenes] - 指定检测场景  optional
       * @param {} [opts.tasks] - 检测任务列表，包含一个或多个元素。每个元素是个结构体，最多可添加10个元素，即最多对10段文本进行检测。每个元素的具体结构描述见ImageTask。  optional
       * @param {string} callback - callback
@@ -840,6 +845,9 @@ class CENSOR extends Service {
     opts = opts || {}
 
     let postBody = {}
+    if (opts.bizType !== undefined && opts.bizType !== null) {
+      postBody['bizType'] = opts.bizType
+    }
     if (opts.scenes !== undefined && opts.scenes !== null) {
       postBody['scenes'] = opts.scenes
     }
@@ -854,7 +862,7 @@ class CENSOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -929,6 +937,7 @@ class CENSOR extends Service {
   /**
       *  提交图片异步检测任务
       * @param {Object} opts - parameters
+      * @param {} [opts.bizType] - 机审策略，eg: default  optional
       * @param {} [opts.scenes] - 指定检测场景  optional
       * @param {} [opts.tasks] - 检测任务列表，包含一个或多个元素。每个元素是个结构体，最多可添加10个元素，每个元素的具体结构描述见ImageTask。  optional
       * @param {} [opts.callback] - 异步检测结果回调通知您的URL，支持HTTP/HTTPS。该字段为空时，您必须定时检索检测结果。  optional
@@ -942,6 +951,9 @@ class CENSOR extends Service {
     opts = opts || {}
 
     let postBody = {}
+    if (opts.bizType !== undefined && opts.bizType !== null) {
+      postBody['bizType'] = opts.bizType
+    }
     if (opts.scenes !== undefined && opts.scenes !== null) {
       postBody['scenes'] = opts.scenes
     }
@@ -962,7 +974,7 @@ class CENSOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1064,7 +1076,7 @@ class CENSOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1177,7 +1189,7 @@ class CENSOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1289,7 +1301,7 @@ class CENSOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1364,6 +1376,7 @@ class CENSOR extends Service {
   /**
       *  文本同步检测-检测文本中是否包含违规信息
       * @param {Object} opts - parameters
+      * @param {} [opts.bizType] - 机审策略，eg: default  optional
       * @param {} [opts.scenes] - 指定检测场景，固定值：antispam  optional
       * @param {} [opts.tasks] - 检测任务列表，包含一个或多个元素。每个元素是个结构体，最多可添加10个元素，即最多对10段文本进行检测。每个元素的具体结构描述见TextTask。  optional
       * @param {string} callback - callback
@@ -1375,6 +1388,9 @@ class CENSOR extends Service {
     opts = opts || {}
 
     let postBody = {}
+    if (opts.bizType !== undefined && opts.bizType !== null) {
+      postBody['bizType'] = opts.bizType
+    }
     if (opts.scenes !== undefined && opts.scenes !== null) {
       postBody['scenes'] = opts.scenes
     }
@@ -1389,7 +1405,7 @@ class CENSOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1489,7 +1505,7 @@ class CENSOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1597,7 +1613,7 @@ class CENSOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1697,7 +1713,7 @@ class CENSOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1772,6 +1788,7 @@ class CENSOR extends Service {
   /**
       *  提交视频异步检测任务
       * @param {Object} opts - parameters
+      * @param {} [opts.bizType] - 机审策略，eg: default  optional
       * @param {} [opts.live] - 是否直播。默认为false，表示为普通视频检测；若是直播检测，该值必须传入true。  optional
       * @param {} [opts.scenes] - 指定检测场景  optional
       * @param {} [opts.audioScenes] - 视频中语音的检测场景  optional
@@ -1787,6 +1804,9 @@ class CENSOR extends Service {
     opts = opts || {}
 
     let postBody = {}
+    if (opts.bizType !== undefined && opts.bizType !== null) {
+      postBody['bizType'] = opts.bizType
+    }
     if (opts.live !== undefined && opts.live !== null) {
       postBody['live'] = opts.live
     }
@@ -1813,7 +1833,7 @@ class CENSOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1915,7 +1935,7 @@ class CENSOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -2050,7 +2070,7 @@ class CENSOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -2150,7 +2170,7 @@ class CENSOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -2254,7 +2274,7 @@ class CENSOR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  censor/1.0.3'
     }
 
     let contentTypes = ['application/json']

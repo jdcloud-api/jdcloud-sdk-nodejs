@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * ydsms service.
- * @version 1.0.5
+ * @version 1.0.6
  */
 
 class YDSMS extends Service {
@@ -80,7 +80,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -200,7 +200,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -299,7 +299,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -407,7 +407,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -506,7 +506,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -609,7 +609,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -736,7 +736,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -878,7 +878,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -1008,7 +1008,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -1127,7 +1127,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -1226,7 +1226,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -1333,7 +1333,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -1424,7 +1424,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -1540,7 +1540,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -1644,7 +1644,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -1764,7 +1764,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -1863,7 +1863,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -1962,7 +1962,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -2095,7 +2095,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -2237,7 +2237,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -2370,7 +2370,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -2484,7 +2484,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -2643,7 +2643,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -2742,7 +2742,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -2908,7 +2908,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -2999,7 +2999,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -3113,7 +3113,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -3254,7 +3254,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -3353,7 +3353,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -3497,7 +3497,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -3596,7 +3596,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -3695,7 +3695,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -3806,7 +3806,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -3924,7 +3924,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -4057,7 +4057,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -4156,7 +4156,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -4296,7 +4296,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -4388,7 +4388,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -4490,7 +4490,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -4590,7 +4590,7 @@ class YDSMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydsms/1.0.6'
     }
 
     let contentTypes = ['application/json']

@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * vm service.
- * @version 1.3.4
+ * @version 1.3.7
  */
 
 class VM extends Service {
@@ -45,14 +45,21 @@ class VM extends Service {
   }
 
   /**
-      *  查询镜像详情。
+      *
+查询镜像详情。
+
+详细操作说明请参考帮助文档：[镜像概述](https://docs.jdcloud.com/cn/virtual-machines/image-overview)
+
+## 接口说明
+- 该接口与查询镜像信息列表返回的信息一致。
+- 只需要查询单个镜像信息的时候可以调用该接口。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.imageId - 镜像ID
+      * @param {string} opts.imageId - 镜像ID。
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param image image  镜像详情
+      * @param image image  镜像信息。
       */
 
   describeImage (opts, regionId = this.config.regionId, callback) {
@@ -84,7 +91,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -157,12 +164,21 @@ class VM extends Service {
   }
 
   /**
-      *  删除一个私有镜像，只允许操作您的个人私有镜像。&lt;br&gt;
-若镜像已共享给其他用户，需先取消共享才可删除。
+      *
+删除一个私有镜像。
+
+详细操作说明请参考帮助文档：[删除私有镜像](https://docs.jdcloud.com/cn/virtual-machines/delete-private-image)
+
+## 接口说明
+- 已共享的私有镜像在取消共享关系前不可以删除，如私有镜像已共享给其他用户，请取消共享后再进行删除。
+- 本地系统盘镜像在有基于其创建的云主机时，将无法删除。
+- 只能操作私有镜像。
+- 私有镜像没有正在处理中的任务时才可以删除。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.imageId - 镜像ID
-      * @param {boolean} [opts.deleteSnapshot] - 删除镜像是否删除关联的快照，默认为false；如果指定为true, 将会删除镜像关联的快照。  optional
+      * @param {string} opts.imageId - 镜像ID。
+      * @param {boolean} [opts.deleteSnapshot] - 删除镜像时是否删除关联的快照。默认为 &#x60;false&#x60;；如果指定为 &#x60;true&#x60;, 将会删除镜像关联的快照。
+  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -200,7 +216,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -273,27 +289,52 @@ class VM extends Service {
   }
 
   /**
-      *  查询镜像信息列表。&lt;br&gt;
-通过此接口可以查询到京东云官方镜像、第三方镜像、私有镜像、或其他用户共享给您的镜像。&lt;br&gt;
-此接口支持分页查询，默认每页20条。
+      *
+查询镜像信息列表。
+
+详细操作说明请参考帮助文档：[镜像概述](https://docs.jdcloud.com/cn/virtual-machines/image-overview)
+
+## 接口说明
+- 通过此接口可以查询到京东云官方镜像、第三方镜像、镜像市场、私有镜像、或其他用户共享给您的镜像。
+- 请求参数即过滤条件，每个条件之间的关系为逻辑与（AND）的关系。
+- 如果使用子帐号查询，只会查询到该子帐号有权限的镜像。关于资源权限请参考 [IAM概述](https://docs.jdcloud.com/cn/iam/product-overview)。
+- 单次查询最大可查询100条镜像信息。
+- 尽量一次调用接口查询多条数据，不建议使用该批量查询接口一次查询一条数据，如果使用不当导致查询过于密集，可能导致网关触发限流。
+- 由于该接口为 &#x60;GET&#x60; 方式请求，最终参数会转换为 &#x60;URL&#x60; 上的参数，但是 &#x60;HTTP&#x60; 协议下的 &#x60;GET&#x60; 请求参数长度是有大小限制的，使用者需要注意参数超长的问题。
 
       * @param {Object} opts - parameters
-      * @param {string} [opts.imageSource] - 镜像来源，如果没有指定ids参数，此参数必传；取值范围：public、shared、thirdparty、private、community  optional
-      * @param {string} [opts.serviceCode] - 产品线标识，非必传，不传的时候返回全部产品线镜像  optional
-      * @param {boolean} [opts.offline] - 是否下线，默认值为false；imageSource为public或者thirdparty时，此参数才有意义，其它情况下此参数无效；指定镜像ID查询时，此参数无效  optional
-      * @param {string} [opts.platform] - 操作系统平台，取值范围：Windows Server、CentOS、Ubuntu  optional
-      * @param {string} [opts.imageName] - 根据镜像名称模糊查找  optional
-      * @param {string} [opts.rootDeviceType] - 镜像支持的系统盘类型，[localDisk,cloudDisk]  optional
-      * @param {string} [opts.launchPermission] - 镜像的使用权限[all, specifiedUsers，ownerOnly]，可选参数，仅当imageSource取值private时有效  optional
-      * @param {string} [opts.status] - &lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/image_status&quot;&gt;参考镜像状态&lt;/a&gt;  optional
-      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
-      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
-      * @param {string} [opts.ids] - 镜像ID列表，如果指定了此参数，其它参数可为空  optional
+      * @param {string} [opts.imageSource] - 镜像来源，如果没有指定 &#x60;ids&#x60; 参数，此参数必传。取值范围：
+&#x60;public&#x60;：官方镜像。
+&#x60;thirdparty&#x60;：镜像市场镜像。
+&#x60;private&#x60;：用户自己的私有镜像。
+&#x60;shared&#x60;：其他用户分享的镜像。
+&#x60;community&#x60;：社区镜像。
+  optional
+      * @param {boolean} [opts.offline] - 查询已经下线的镜像时使用。
+只有查询 &#x60;官方镜像&#x60; 或者 &#x60;镜像市场镜像&#x60; 时，此参数才有意义，其它情况下此参数无效。
+指定 &#x60;ids&#x60; 查询时，此参数无效。
+  optional
+      * @param {string} [opts.platform] - 根据镜像的操作系统发行版查询。
+取值范围：&#x60;Ubuntu、CentOS、Windows Server&#x60;。
+  optional
+      * @param {string} [opts.imageName] - 根据镜像名称模糊查询。  optional
+      * @param {string} [opts.rootDeviceType] - 根据镜像支持的系统盘类型查询。支持范围：&#x60;localDisk&#x60; 本地系统盘镜像；&#x60;cloudDisk&#x60; 云盘系统盘镜像。  optional
+      * @param {string} [opts.launchPermission] - 根据镜像的使用权限查询，可选参数，仅当 &#x60;imageSource&#x60; 为 &#x60;private&#x60; 时有效。取值范围：
+&#x60;all&#x60;：没有限制，所有人均可以使用。
+&#x60;specifiedUsers&#x60;：只有共享用户可以使用。
+&#x60;ownerOnly&#x60;：镜像拥有者自己可以使用。
+  optional
+      * @param {string} [opts.status] - 根据镜像状态查询。参考 [镜像状态](https://docs.jdcloud.com/virtual-machines/api/image_status)  optional
+      * @param {string} [opts.serviceCode] - 已废弃。  optional
+      * @param {integer} [opts.pageNumber] - 页码；默认为1。  optional
+      * @param {integer} [opts.pageSize] - 分页大小；&lt;br&gt;默认为20；取值范围[10, 100]。  optional
+      * @param {string} [opts.ids] - 指定镜像ID查询，如果指定了此参数，其它参数可以不传。
+  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       * @param image images
-      * @param integer totalCount  总数量
+      * @param integer totalCount  本次查询可匹配到的总记录数，使用者需要结合 &#x60;pageNumber&#x60; 和 &#x60;pageSize&#x60; 计算是否可以继续分页。
       */
 
   describeImages (opts, regionId = this.config.regionId, callback) {
@@ -315,9 +356,6 @@ class VM extends Service {
     if (opts.imageSource !== undefined && opts.imageSource !== null) {
       queryParams['imageSource'] = opts.imageSource
     }
-    if (opts.serviceCode !== undefined && opts.serviceCode !== null) {
-      queryParams['serviceCode'] = opts.serviceCode
-    }
     if (opts.offline !== undefined && opts.offline !== null) {
       queryParams['offline'] = opts.offline
     }
@@ -336,6 +374,9 @@ class VM extends Service {
     if (opts.status !== undefined && opts.status !== null) {
       queryParams['status'] = opts.status
     }
+    if (opts.serviceCode !== undefined && opts.serviceCode !== null) {
+      queryParams['serviceCode'] = opts.serviceCode
+    }
     if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
       queryParams['pageNumber'] = opts.pageNumber
     }
@@ -349,7 +390,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -422,15 +463,22 @@ class VM extends Service {
   }
 
   /**
-      *  查询镜像的实例规格限制。&lt;br&gt;
-通过此接口可以查看镜像不支持的实例规格。只有官方镜像、第三方镜像有实例规格的限制，个人的私有镜像没有此限制。
+      *
+查询单个镜像的实例规格限制。
+
+详细操作说明请参考帮助文档：[镜像概述](https://docs.jdcloud.com/cn/virtual-machines/image-overview)
+
+## 接口说明
+- 该接口与批量查询镜像的实例规格限制返回的信息一致。
+- 通过此接口可以查询镜像的实例规格限制信息。
+- 只有官方镜像、第三方镜像有实例规格的限制，用户的私有镜像没有此限制。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.imageId - 镜像ID
+      * @param {string} opts.imageId - 镜像ID。
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param imageConstraint imageConstraints  镜像限制
+      * @param imageConstraint imageConstraints  镜像限制信息。
       */
 
   describeImageConstraints (opts, regionId = this.config.regionId, callback) {
@@ -462,7 +510,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -535,11 +583,17 @@ class VM extends Service {
   }
 
   /**
-      *  批量查询镜像的实例规格限制。&lt;br&gt;
-通过此接口可以查看镜像不支持的实例规格。只有官方镜像、第三方镜像有实例规格的限制，个人的私有镜像没有此限制。
+      *
+批量查询镜像的实例规格限制。
+
+详细操作说明请参考帮助文档：[镜像概述](https://docs.jdcloud.com/cn/virtual-machines/image-overview)
+
+## 接口说明
+- 通过此接口可以查询镜像的实例规格限制信息。
+- 只有官方镜像、第三方镜像有实例规格的限制，用户的私有镜像没有此限制。
 
       * @param {Object} opts - parameters
-      * @param {string} [opts.ids] - 镜像ID列表  optional
+      * @param {string} [opts.ids] - 要查询的镜像ID列表，只支持官方镜像和第三方镜像。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -573,7 +627,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -646,12 +700,19 @@ class VM extends Service {
   }
 
   /**
-      *  共享镜像，只允许操作您的个人私有镜像，单个镜像最多可共享给20个京东云帐户。&lt;br&gt;
-整机镜像目前不支持共享。
+      *
+共享私有镜像。
+
+详细操作说明请参考帮助文档：[共享私有镜像](https://docs.jdcloud.com/cn/virtual-machines/share-image)
+
+## 接口说明
+- 只允许共享用户的私有镜像。
+- 单个镜像最多可以共享给20个京东云帐户、不可以共享给自己。
+- 带有加密快照的打包镜像无法共享。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.imageId - 镜像ID
-      * @param {array} [opts.pins] - 需要共享的帐户  optional
+      * @param {string} opts.imageId - 镜像ID。
+      * @param {array} [opts.pins] - 共享的目标京东云帐户列表。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -690,7 +751,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -763,11 +824,18 @@ class VM extends Service {
   }
 
   /**
-      *  取消共享镜像，只允许操作您的个人私有镜像。
+      *
+取消共享私有镜像。
+
+详细操作说明请参考帮助文档：[取消共享私有镜像](https://docs.jdcloud.com/cn/virtual-machines/cancel-share-image)
+
+## 接口说明
+- 只允许操作用户的私有镜像。
+- 原被共享用户将无法再使用该镜像创建云主机实例，同时使用该镜像创建的云主机实例也无法重置为原始系统状态。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.imageId - 镜像ID
-      * @param {array} [opts.pins] - 需要取消的帐户  optional
+      * @param {string} opts.imageId - 镜像ID。
+      * @param {array} [opts.pins] - 需要取消的京东云帐户列表。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -806,7 +874,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -879,10 +947,19 @@ class VM extends Service {
   }
 
   /**
-      *  发布社区镜像，只允许操作您的个人私有镜像。发布为社区镜像后会撤销共享关系。&lt;br&gt;
+      *
+发布社区镜像。
+
+详细操作说明请参考帮助文档：[镜像概述](https://docs.jdcloud.com/cn/virtual-machines/image-overview)
+
+## 接口说明
+- 只允许发布用户的私有镜像。
+- 仅支持云盘系统盘的私有镜像。
+- 带有加密快照的打包镜像无法发布为社区镜像。
+- 发布为社区镜像后会撤销共享关系。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.imageId - 镜像ID
+      * @param {string} opts.imageId - 镜像ID。
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -918,7 +995,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -991,10 +1068,16 @@ class VM extends Service {
   }
 
   /**
-      *  撤销社区镜像，只允许操作您的个人私有镜像。
+      *
+撤销社区镜像。
+
+详细操作说明请参考帮助文档：[镜像概述](https://docs.jdcloud.com/cn/virtual-machines/image-overview)
+
+## 接口说明
+- 只允许撤销用户的私有镜像。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.imageId - 镜像ID
+      * @param {string} opts.imageId - 镜像ID。
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1030,7 +1113,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -1103,10 +1186,16 @@ class VM extends Service {
   }
 
   /**
-      *  查询镜像共享帐户列表，只允许操作您的个人私有镜像。
+      *
+查询私有镜像共享给哪些京东云帐户。
+
+详细操作说明请参考帮助文档：[共享私有镜像](https://docs.jdcloud.com/cn/virtual-machines/share-image)
+
+## 接口说明
+- 只允许查询用户的私有镜像。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.imageId - 镜像ID
+      * @param {string} opts.imageId - 镜像ID。
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1142,7 +1231,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -1215,12 +1304,19 @@ class VM extends Service {
   }
 
   /**
-      *  镜像跨区复制，将私有镜像复制到其它地域下，只允许操作您的个人私有镜像。&lt;br&gt;
-只支持rootDeviceType为cloudDisk的云硬盘系统盘镜像操作。
+      *
+镜像跨地域复制。
+
+详细操作说明请参考帮助文档：[镜像复制](https://docs.jdcloud.com/cn/virtual-machines/copy-image)
+
+## 接口说明
+- 调用该接口将私有镜像复制到其它地域下。
+- 只支持云盘系统盘的镜像。
+- 不支持带有加密快照的镜像。
 
       * @param {Object} opts - parameters
-      * @param {array} [opts.sourceImageIds] - 源镜像ID  optional
-      * @param {string} opts.destinationRegion - 目标区域
+      * @param {array} [opts.sourceImageIds] - 要复制的私有镜像ID列表，最多支持10个。  optional
+      * @param {string} opts.destinationRegion - 目标地域。
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1268,7 +1364,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -1341,12 +1437,18 @@ class VM extends Service {
   }
 
   /**
-      *  修改镜像信息，包括名称、描述；只允许操作您的个人私有镜像。
+      *
+修改镜像属性。
+
+详细操作说明请参考帮助文档：[镜像概述](https://docs.jdcloud.com/cn/virtual-machines/image-overview)
+
+## 接口说明
+- 只支持修改镜像名称或描述。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.imageId - 镜像ID
-      * @param {string} [opts.name] - 名称，&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/general_parameters&quot;&gt;参考公共参数规范&lt;/a&gt;。  optional
-      * @param {string} [opts.description] - 描述，&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/general_parameters&quot;&gt;参考公共参数规范&lt;/a&gt;。  optional
+      * @param {string} opts.imageId - 镜像ID。
+      * @param {string} [opts.name] - 镜像名称。参考 [公共参数规范](https://docs.jdcloud.com/virtual-machines/api/general_parameters)。  optional
+      * @param {string} [opts.description] - 镜像描述。参考 [公共参数规范](https://docs.jdcloud.com/virtual-machines/api/general_parameters)。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1388,7 +1490,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -1461,25 +1563,34 @@ class VM extends Service {
   }
 
   /**
-      *  导入镜像，将外部镜像导入到京东云中
+      *
+导入私有镜像。
+
+详细操作说明请参考帮助文档：[导入私有镜像](https://docs.jdcloud.com/cn/virtual-machines/import-private-image)
+
+## 接口说明
+- 当前仅支持导入系统盘镜像。
+- 导入后的镜像将以 &#x60;云硬盘系统盘镜像&#x60; 格式作为私有镜像使用，同时会自动生成一个与导入镜像关联的快照。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.architecture - 系统架构，可选值：x86_64,i386
-      * @param {string} opts.osType - 操作系统，可选值：windows,linux
-      * @param {string} opts.platform - 平台名称，可选值：CentOS,Ubuntu,Windows Server,Other Linux,Other Windows
-      * @param {string} opts.diskFormat - 磁盘格式，可选值：qcow2,vhd,vmdk,raw
-      * @param {integer} opts.systemDiskSizeGB - 以此镜像需要制作的系统盘的默认大小，单位GB。最小值40，最大值500，要求值是10的整数倍
-      * @param {string} opts.imageUrl - 要导入镜像的对象存储外链地址
-      * @param {string} [opts.osVersion] - 镜像的操作系统版本  optional
-      * @param {string} opts.imageName - 导入镜像的自定义名称
-      * @param {string} [opts.description] - 导入镜像的描述信息  optional
-      * @param {boolean} [opts.forceImport] - 是否强制导入。强制导入则忽略镜像的合规性检测  optional
-      * @param {string} [opts.clientToken] - 用户导入镜像的幂等性保证。每次创建请传入不同的值，如果传值与某次的clientToken相同，则返还该次的请求结果  optional
+      * @param {string} opts.architecture - 镜像架构。取值范围：&#x60;x86_64、i386&#x60;。
+      * @param {string} opts.osType - 镜像的操作系统类型。取值范围：&#x60;windows、linux&#x60;。
+      * @param {string} opts.platform - 镜像的操作系统平台名称。
+取值范围：&#x60;Ubuntu、CentOS、Windows Server、Other Linux、Other Windows&#x60;。
+
+      * @param {string} opts.diskFormat - 磁盘格式，取值范围：&#x60;qcow2、vhd、vmdk、raw&#x60;。
+      * @param {integer} opts.systemDiskSizeGB - 以此镜像需要制作的系统盘的默认大小，单位GB。最小值40，最大值500，要求值是10的整数倍。
+      * @param {string} opts.imageUrl - 要导入镜像的对象存储外链地址。
+      * @param {string} [opts.osVersion] - 镜像的操作系统版本。  optional
+      * @param {string} opts.imageName - 导入镜像的自定义名称。参考 [公共参数规范](https://docs.jdcloud.com/virtual-machines/api/general_parameters)。
+      * @param {string} [opts.description] - 导入镜像的描述信息。参考 [公共参数规范](https://docs.jdcloud.com/virtual-machines/api/general_parameters)。  optional
+      * @param {boolean} [opts.forceImport] - 是否强制导入。强制导入会忽略镜像的合规性检测。默认为false。  optional
+      * @param {string} [opts.clientToken] - 用户导出镜像的幂等性保证。每次导出请传入不同的值，如果传值与某次的clientToken相同，则返还同一个请求结果，不能超过64个字符。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param string imageId  镜像id
-      * @param integer importTaskId  导入任务id
+      * @param string imageId  镜像id。
+      * @param integer importTaskId  导入任务id。
       */
 
   importImage (opts, regionId = this.config.regionId, callback) {
@@ -1574,7 +1685,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -1647,18 +1758,30 @@ class VM extends Service {
   }
 
   /**
-      *  导出镜像，将京东云私有镜像导出至京东云以外环境
+      *
+导出私有镜像。
+
+将京东云私有镜像导出至京东云以外环境。
+
+详细操作说明请参考帮助文档：[导出私有镜像](https://docs.jdcloud.com/cn/virtual-machines/export-private-image)
+
+## 接口说明
+- 调用此接口将私有镜像导出到京东云对象存储空间中。
+- 仅支持系统盘镜像导出，即使镜像有关联的数据盘快照，也仅会导出系统盘镜像文件。
+- 导出的镜像文件格式为QCOW2。
+- &#x60;Windows Server&#x60; 操作系统的镜像不支持导出（若镜像来源为导入镜像，则无此限制）。
+- 镜像必须为 &#x60;云硬盘系统盘&#x60; 镜像，如您的镜像是 &#x60;本地盘系统盘&#x60; 镜像，可以通过镜像类型转换功能转换为云盘系统盘镜像后再导出。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.imageId - 镜像ID
-      * @param {string} opts.roleName - 用户创建的服务角色名称
-      * @param {string} opts.ossUrl - 存储导出镜像文件的oss bucket的域名，请填写以 https:// 开头的完整url
-      * @param {string} [opts.ossPrefix] - 导出镜像文件名前缀，仅支持英文字母和数字，不能超过32个字符  optional
-      * @param {string} [opts.clientToken] - 用户导出镜像的幂等性保证。每次导出请传入不同的值，如果传值与某次的clientToken相同，则返还同一个请求结果，不能超过64个字符  optional
+      * @param {string} opts.imageId - 镜像ID。
+      * @param {string} opts.roleName - 用户创建的服务角色名称。
+      * @param {string} opts.ossUrl - 存储导出镜像文件的 &#x60;oss bucket&#x60; 的域名，请填写以 https:// 开头的完整url。
+      * @param {string} [opts.ossPrefix] - 导出镜像文件名前缀，仅支持英文字母和数字，不能超过32个字符。  optional
+      * @param {string} [opts.clientToken] - 用户导出镜像的幂等性保证。每次导出请传入不同的值，如果传值与某次的clientToken相同，则返还同一个请求结果，不能超过64个字符。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param integer exportTaskId  导出任务id
+      * @param integer exportTaskId  导出任务id。
       */
 
   exportImage (opts, regionId = this.config.regionId, callback) {
@@ -1713,7 +1836,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -1786,16 +1909,26 @@ class VM extends Service {
   }
 
   /**
-      *  查询镜像导入导出任务详情
+      *
+查询镜像任务详情。
+
+将京东云私有镜像导出至京东云以外环境。
+
+详细操作说明请参考帮助文档：
+[导入私有镜像](https://docs.jdcloud.com/cn/virtual-machines/import-private-image)
+[导出私有镜像](https://docs.jdcloud.com/cn/virtual-machines/export-private-image)
+
+## 接口说明
+- 调用该接口可查询镜像导入或导出的任务详情。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.taskAction - 任务种类。可选值：ImportImage， ExportImage
-      * @param {string} [opts.taskStatus] - 任务状态。可选值：pending,running,failed,finished  optional
+      * @param {string} opts.taskAction - 任务操作类型。支持范围：&#x60;ImportImage、ExportImage&#x60;。
+      * @param {string} [opts.taskStatus] - 任务状态。支持范围：&#x60;pending、running、failed、finished&#x60;。  optional
       * @param {string} [opts.startTime] - 任务开始时间  optional
       * @param {string} [opts.endTime] - 任务结束时间  optional
-      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
-      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
-      * @param {integer} [opts.taskIds] - 任务id  optional
+      * @param {integer} [opts.pageNumber] - 页码；默认为1。  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认为10；取值范围[1, 10]。  optional
+      * @param {integer} [opts.taskIds] - 任务id列表。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1850,7 +1983,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -1923,33 +2056,44 @@ class VM extends Service {
   }
 
   /**
-      *  批量查询云主机的详细信息&lt;br&gt;
-此接口支持分页查询，默认每页20条。
+      *
+查询一台或多台云主机实例的详细信息。
+
+详细操作说明请参考帮助文档：[查找实例](https://docs.jdcloud.com/cn/virtual-machines/search-instance)
+
+## 接口说明
+- 使用 &#x60;filters&#x60; 过滤器进行条件筛选，每个 &#x60;filter&#x60; 之间的关系为逻辑与（AND）的关系。
+- 如果使用子帐号查询，只会查询到该子帐号有权限的云主机实例。关于资源权限请参考 [IAM概述](https://docs.jdcloud.com/cn/iam/product-overview)。
+- 单次查询最大可查询100条云主机实例数据。
+- 尽量一次调用接口查询多条数据，不建议使用该批量查询接口一次查询一条数据，如果使用不当导致查询过于密集，可能导致网关触发限流。
+- 由于该接口为 &#x60;GET&#x60; 方式请求，最终参数会转换为 &#x60;URL&#x60; 上的参数，但是 &#x60;HTTP&#x60; 协议下的 &#x60;GET&#x60; 请求参数长度是有大小限制的，使用者需要注意参数超长的问题。
 
       * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
-      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
-      * @param {filter} [opts.filters] - instanceId - 云主机ID，精确匹配，支持多个
-privateIpAddress - 主网卡内网主IP地址，模糊匹配，支持多个
-az - 可用区，精确匹配，支持多个
-vpcId - 私有网络ID，精确匹配，支持多个
-status - 云主机状态，精确匹配，支持多个，&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/vm_status&quot;&gt;参考云主机状态&lt;/a&gt;
-name - 云主机名称，模糊匹配，支持单个
-imageId - 镜像ID，精确匹配，支持多个
-networkInterfaceId - 弹性网卡ID，精确匹配，支持多个
-subnetId - 子网ID，精确匹配，支持多个
-agId - 使用可用组id，支持单个
-faultDomain - 错误域，支持多个
-dedicatedHostId - 专有宿主机ID，精确匹配，支持多个
-dedicatedPoolId - 专有宿主机池ID，精确匹配，支持多个
-instanceType - 实例规格，精确匹配，支持多个
-elasticIpAddress - 公网IP地址，精确匹配，支持单个。该条件会将公网IP转换成networkInterfaceId进行查询，所以与networkInterfaceId为或者的关系。
+      * @param {integer} [opts.pageNumber] - 页码；默认为1。  optional
+      * @param {integer} [opts.pageSize] - 分页大小；&lt;br&gt;默认为20；取值范围[10, 100]。  optional
+      * @param {filter} [opts.filters] - &lt;b&gt;filters 中支持使用以下关键字进行过滤&lt;/b&gt;
+&#x60;instanceId&#x60;: 云主机ID，精确匹配，支持多个
+&#x60;privateIpAddress&#x60;: 云主机挂载的网卡内网主IP地址，模糊匹配，支持多个
+&#x60;az&#x60;: 可用区，精确匹配，支持多个
+&#x60;vpcId&#x60;: 私有网络ID，精确匹配，支持多个
+&#x60;status&#x60;: 云主机状态，精确匹配，支持多个，参考 [云主机状态](https://docs.jdcloud.com/virtual-machines/api/vm_status)
+&#x60;name&#x60;: 云主机名称，模糊匹配，支持单个
+&#x60;imageId&#x60;: 镜像ID，精确匹配，支持多个
+&#x60;networkInterfaceId&#x60;: 弹性网卡ID，精确匹配，支持多个
+&#x60;subnetId&#x60;: 子网ID，精确匹配，支持多个
+&#x60;agId&#x60;: 使用可用组id，支持单个
+&#x60;faultDomain&#x60;: 错误域，支持多个
+&#x60;dedicatedHostId&#x60;: 专有宿主机ID，精确匹配，支持多个
+&#x60;dedicatedPoolId&#x60;: 专有宿主机池ID，精确匹配，支持多个
+&#x60;instanceType&#x60;: 实例规格，精确匹配，支持多个，可通过查询 [DescribeInstanceTypes](https://docs.jdcloud.com/virtual-machines/api/describeinstancetypes) 接口获得实例规格
+&#x60;elasticIpAddress&#x60;: 公网IP地址，精确匹配，支持单个。该条件会将公网IP转换成 &#x60;networkInterfaceId&#x60; 进行查询，所以与 &#x60;networkInterfaceId&#x60; 为或者的关系。
   optional
+      * @param {tagFilter} [opts.tags] - Tag筛选条件。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       * @param instance instances
-      * @param number totalCount
+      * @param number totalCount  本次查询可匹配到的总记录数，使用者需要结合 &#x60;pageNumber&#x60; 和 &#x60;pageSize&#x60; 计算是否可以继续分页。
       */
 
   describeInstances (opts, regionId = this.config.regionId, callback) {
@@ -1975,13 +2119,14 @@ elasticIpAddress - 公网IP地址，精确匹配，支持单个。该条件会�
       queryParams['pageSize'] = opts.pageSize
     }
     Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildTagFilterParam(opts.tags, 'tags'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -2054,64 +2199,35 @@ elasticIpAddress - 公网IP地址，精确匹配，支持单个。该条件会�
   }
 
   /**
-      *  创建一台或多台指定配置的云主机，创建模式分为三种：1.普通方式、2.使用高可用组、3.使用启动模板。三种方式创建云主机时参数的必传与非必传是不同的，具体请参考&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/create_vm_sample&quot;&gt;参数详细说明&lt;/a&gt;&lt;br&gt;
-- 创建云主机需要通过实名认证
-- 实例规格
-    - 可查询&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/describeinstancetypes&quot;&gt;DescribeInstanceTypes&lt;/a&gt;接口获得指定地域或可用区的规格信息。
-    - 不能使用已下线、或已售馨的规格ID
-- 镜像
-    - Windows Server所有镜像CPU不可选超过64核CPU。
-    - 可查询&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/describeimages&quot;&gt;DescribeImages&lt;/a&gt;接口获得指定地域的镜像信息。
-    - 选择的镜像必须支持选择的实例规格。可查询&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/describeimageconstraints&quot;&gt;DescribeImageConstraints&lt;/a&gt;接口获得指定镜像的实例规格限制信息。&lt;br&gt;
-- 网络配置
-    - 指定主网卡配置信息
-        - 必须指定subnetId
-        - 可以指定elasticIp规格来约束创建的弹性IP，带宽取值范围[1-200]Mbps，步进1Mbps
-        - 可以指定主网卡的内网主IP(primaryIpAddress)，此时maxCount只能为1
-        - 安全组securityGroup需与子网Subnet在同一个私有网络VPC内
-        - 一台云主机创建时必须至少指定一个安全组，至多指定5个安全组，如果没有指定安全组，默认使用默认安全组
-        - 主网卡deviceIndex设置为1
-- 存储
-    - 系统盘
-        - 磁盘分类，系统盘支持local或cloud
-        - 磁盘大小
-            - local：不能指定大小，默认为40GB
-            - cloud：取值范围: 40-500GB，并且不能小于镜像的最小系统盘大小，如果没有指定，默认以镜像中的系统盘大小为准
-        - 自动删除
-            - 如果是local类型，默认自动删除，不可修改
-            - 如果是cloud类型的按配置计费的云硬盘，默认为True，可修改
-            - 如果是cloud类型的包年包月的云硬盘，默认为False，不可修改
-    - 数据盘
-        - 磁盘分类，数据盘仅支持cloud
-        - 云硬盘类型可以选择ssd、premium-hdd、hdd.std1、ssd.gp1、ssd.io1
-        - 磁盘大小
-            - premium-hdd：范围[20,3000]GB，步长为10G
-            - ssd：范围[20,1000]GB，步长为10G
-            - hdd.std1、ssd.gp1、ssd.io1: 范围[20-16000]GB，步长为10GB
-        - 自动删除
-            - 默认自动删除，如果是包年包月的云硬盘，此参数不生效
-        - 可以从快照创建磁盘
-    - iops
-        - 仅当云盘类型为ssd.io1时，可指定iops值，范围为【200， min（32000，size * 50 ）】，步长为10，若不指定则按此公式计算默认值
-    - local类型系统的云主机可以挂载8块云硬盘
-    - cloud类型系统的云主机可以挂载7块云硬盘
-- 计费
-    - 弹性IP的计费模式，如果选择按用量类型可以单独设置，其它计费模式都以主机为准
-    - 云硬盘的计费模式以主机为准
-- 其他
-    - 创建完成后，主机状态为running
-    - 仅Linux系统云主机可以指定密钥
-    - maxCount为最大努力，不保证一定能达到maxCount
-    - 虚机的az会覆盖磁盘的az属性
-- 密码
-    - &lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/general_parameters&quot;&gt;参考公共参数规范&lt;/a&gt;
+      *
+创建一台或多台指定配置的云主机实例。
+
+实例有三种创建方式，不同方式下传参详见下方的请求[参数说明](createInstance#requestparameters)，也可参考请求[示例](createInstance#examples)。
+
+1、自定义创建：按配置要求逐一指定参数创建；
+2、使用实例模板创建：[实例模板](https://docs.jdcloud.com/virtual-machines/instance-template-overview)是实例配置信息的预配置，通过实例模板可快速创建实例，省去逐一配置参数的步骤。指定实例模板创建时，如不额外指定模板包含的参数将以模板为准创建实例，模板中未包含的参数，如可用区、内网IPv4地址、名称等仍需指定；
+3、基于高可用组创建：[高可用组](https://docs.jdcloud.com/availability-group/product-overview)是一种高可用部署解决方案，提供了组内实例在数据中心内横跨多个故障域均衡部署的机制。高可用组须搭配实例模板使用，基于高可用组创建的实例将在其指定的可用区内以实例模板配置按一定分散机制创建实例。此创建方式下，实例创建参数除内网IPv4地址、名称等外均以实例模板为准且不支持再次指定。
+
+详细操作说明请参考帮助文档：[创建实例](https://docs.jdcloud.com/cn/virtual-machines/create-instance)
+
+## 接口说明
+- 创建实例前，请参考 [创建前准备](https://docs.jdcloud.com/virtual-machines/account-preparation-linux) 完成实名认证、支付方式确认、计费类型选择等准备工作。
+- 创建实例的配置说明和选择指导，请参考 [配置项说明](https://docs.jdcloud.com/cn/virtual-machines/select-configuration-linux)。
+- 各地域下实例及关联资源（云硬盘、弹性公网IP）的可创建数量受配额限制，创建前请通过 [DescribeQuotas](https://docs.jdcloud.com/cn/virtual-machines/api/describequotas?content&#x3D;API) 确认配额，如须提升请[提交工单](https://ticket.jdcloud.com/applyorder/submit)或联系京东云客服。
+- 不同地域及可用区下售卖的实例规格有差异，可通过 [DescribeInstanceTypes](https://docs.jdcloud.com/virtual-machines/api/describeinstancetypes?content&#x3D;API) 查询在售规格及规格详细信息。
+- 通过本接口创建包年包月实例时将自动从账户扣款（代金券优先），如需使用第三方支付方式请通过控制台创建。
+- 单次请求最多支持创建 &#x60;100&#x60; 台实例。
+- 本接口为异步接口，请求下发成功后会返回RequestId和实例ID，此时实例处于 &#x60;Pending&#x60;（创建中）状态。如创建成功则实例自动变为 &#x60;Running&#x60;（运行中）状态；如创建失败则短暂处于 &#x60;Error&#x60;（错误）状态，随后将自动删除（创建失败的实例不会收费且会自动释放占用的配额）。实例状态可以通过 [describeInstanceStatus](https://docs.jdcloud.com/virtual-machines/api/describeinstancestatus?content&#x3D;API) 接口查询。
+- 批量创建多台实例时系统将尽可能完成目标创建数量，但受底层资源、配额等因素影响，可能存在部分成功部分失败的情况，还请关注最终完成数量，如有失败情况请尝试重新申请或联系客服。
 
       * @param {Object} opts - parameters
-      * @param {instanceSpec} opts.instanceSpec - 描述云主机配置
+      * @param {instanceSpec} opts.instanceSpec - 实例配置。
 
-      * @param {integer} [opts.maxCount] - 购买云主机的数量；取值范围：[1,100]，默认为1。
+      * @param {integer} [opts.maxCount] - 创建实例的数量，不能超过用户配额。
+取值范围：[1,100]；默认值：1。
+如果在弹性网卡中指定了内网IP地址，那么单次创建 &#x60;maxCount&#x60; 只能是 1。
   optional
-      * @param {string} [opts.clientToken] - 用于保证请求的幂等性。由客户端生成，长度不能超过64个字符。
+      * @param {string} [opts.clientToken] - 用于保证请求的幂等性。由客户端生成，并确保不同请求中该参数唯一，长度不能超过64个字符。
   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -2157,7 +2273,7 @@ elasticIpAddress - 公网IP地址，精确匹配，支持单个。该条件会�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -2230,34 +2346,44 @@ elasticIpAddress - 公网IP地址，精确匹配，支持单个。该条件会�
   }
 
   /**
-      *  批量查询云主机信息的轻量接口，不返回云盘、网络、计费、标签等信息。如果不需要关联资源属性，尽量选择使用该接口。&lt;br&gt;
-此接口支持分页查询，默认每页20条。
+      *
+查询一台或多台云主机实例的详细信息。该接口为轻量级接口，不返回云盘、网络、计费、标签等关联信息。如果不需要关联资源属性，尽量选择使用该接口。
+
+详细操作说明请参考帮助文档：[查找实例](https://docs.jdcloud.com/cn/virtual-machines/search-instance)
+
+## 接口说明
+- 使用 &#x60;filters&#x60; 过滤器进行条件筛选，每个 &#x60;filter&#x60; 之间的关系为逻辑与（AND）的关系。
+- 如果使用子帐号查询，只会查询到该子帐号有权限的云主机实例。关于资源权限请参考 [IAM概述](https://docs.jdcloud.com/cn/iam/product-overview)。
+- 单次查询最大可查询100条云主机实例数据。
+- 尽量一次调用接口查询多条数据，不建议使用该批量查询接口一次查询一条数据，如果使用不当导致查询过于密集，可能导致网关触发限流。
+- 由于该接口为 &#x60;GET&#x60; 方式请求，最终参数会转换为 &#x60;URL&#x60; 上的参数，但是 &#x60;HTTP&#x60; 协议下的 &#x60;GET&#x60; 请求参数长度是有大小限制的，使用者需要注意参数超长的问题。
 
       * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
-      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
-      * @param {filter} [opts.filters] - instanceId - 云主机ID，精确匹配，支持多个
-privateIpAddress - 主网卡内网主IP地址，模糊匹配，支持多个
-az - 可用区，精确匹配，支持多个
-vpcId - 私有网络ID，精确匹配，支持多个
-status - 云主机状态，精确匹配，支持多个，&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/vm_status&quot;&gt;参考云主机状态&lt;/a&gt;
-name - 云主机名称，模糊匹配，支持单个
-imageId - 镜像ID，精确匹配，支持多个
-networkInterfaceId - 弹性网卡ID，精确匹配，支持多个
-subnetId - 子网ID，精确匹配，支持多个
-agId - 使用可用组id，支持单个
-faultDomain - 错误域，支持多个
-dedicatedHostId - 专有宿主机ID，精确匹配，支持多个
-dedicatedPoolId - 专有宿主机池ID，精确匹配，支持多个
-instanceType - 实例规格，精确匹配，支持多个
-elasticIpAddress - 公网IP地址，精确匹配，支持单个
+      * @param {integer} [opts.pageNumber] - 页码；默认为1。  optional
+      * @param {integer} [opts.pageSize] - 分页大小；&lt;br&gt;默认为20；取值范围[10, 100]。  optional
+      * @param {filter} [opts.filters] - &lt;b&gt;filters 中支持使用以下关键字进行过滤&lt;/b&gt;
+&#x60;instanceId&#x60;: 云主机ID，精确匹配，支持多个
+&#x60;privateIpAddress&#x60;: 云主机挂载的网卡内网主IP地址，模糊匹配，支持多个
+&#x60;az&#x60;: 可用区，精确匹配，支持多个
+&#x60;vpcId&#x60;: 私有网络ID，精确匹配，支持多个
+&#x60;status&#x60;: 云主机状态，精确匹配，支持多个，参考 [云主机状态](https://docs.jdcloud.com/virtual-machines/api/vm_status)
+&#x60;name&#x60;: 云主机名称，模糊匹配，支持单个
+&#x60;imageId&#x60;: 镜像ID，精确匹配，支持多个
+&#x60;networkInterfaceId&#x60;: 弹性网卡ID，精确匹配，支持多个
+&#x60;subnetId&#x60;: 子网ID，精确匹配，支持多个
+&#x60;agId&#x60;: 使用可用组id，支持单个
+&#x60;faultDomain&#x60;: 错误域，支持多个
+&#x60;dedicatedHostId&#x60;: 专有宿主机ID，精确匹配，支持多个
+&#x60;dedicatedPoolId&#x60;: 专有宿主机池ID，精确匹配，支持多个
+&#x60;instanceType&#x60;: 实例规格，精确匹配，支持多个，可通过查询 [DescribeInstanceTypes](https://docs.jdcloud.com/virtual-machines/api/describeinstancetypes) 接口获得实例规格
+&#x60;elasticIpAddress&#x60;: 公网IP地址，精确匹配，支持单个。该条件会将公网IP转换成 &#x60;networkInterfaceId&#x60; 进行查询，所以与 &#x60;networkInterfaceId&#x60; 为或者的关系。
   optional
       * @param {tagFilter} [opts.tags] - Tag筛选条件  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       * @param briefInstance instances
-      * @param number totalCount
+      * @param number totalCount  本次查询可匹配到的总记录数，用户需要结合 &#x60;pageNumber&#x60; 和 &#x60;pageSize&#x60; 计算是否可以继续分页。
       */
 
   describeBriefInstances (opts, regionId = this.config.regionId, callback) {
@@ -2290,7 +2416,7 @@ elasticIpAddress - 公网IP地址，精确匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -2363,14 +2489,21 @@ elasticIpAddress - 公网IP地址，精确匹配，支持单个
   }
 
   /**
-      *  查询一台云主机的详细信息
+      *
+查询一台云主机实例的详细信息。
+
+详细操作说明请参考帮助文档：[查找实例](https://docs.jdcloud.com/cn/virtual-machines/search-instance)
+
+## 接口说明
+- 该接口与查询云主机列表返回的信息一致。
+- 只需要查询单个云主机实例详细信息的时候可以调用该接口。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 云主机ID
+      * @param {string} opts.instanceId - 云主机ID。
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param instance instance
+      * @param instance instance  响应结果。
       */
 
   describeInstance (opts, regionId = this.config.regionId, callback) {
@@ -2402,7 +2535,7 @@ elasticIpAddress - 公网IP地址，精确匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -2475,12 +2608,21 @@ elasticIpAddress - 公网IP地址，精确匹配，支持单个
   }
 
   /**
-      *  删除按配置计费、或包年包月已到期的单个云主机。不能删除没有计费信息的云主机。&lt;br&gt;
-云主机状态必须为运行&lt;b&gt;running&lt;/b&gt;、停止&lt;b&gt;stopped&lt;/b&gt;、错误&lt;b&gt;error&lt;/b&gt;，同时云主机没有正在进行中的任务才可删除。&lt;br&gt;
-如果主机中挂载的数据盘为按配置计费的云硬盘且AutoDelete属性为true，那么数据盘会随主机一起删除。
+      *
+删除一台云主机实例。
+
+详细操作说明请参考帮助文档：[删除实例](https://docs.jdcloud.com/cn/virtual-machines/delete-instance)
+
+## 接口说明
+- 不可以删除包年包月未到期的云主机。如果云主机为包年包月已到期的，并且用户处于白名单中，也不允许删除。
+- 不可以删除没有计费信息的云主机，该情况只限于创建过程中出现了异常。
+- 云主机状态必须为运行 &#x60;running&#x60;、停止 &#x60;stopped&#x60;、错误 &#x60;error&#x60;、状态，同时云主机没有正在进行中的任务才可以删除。
+- 如果云主机中挂载的数据盘为按配置计费的云硬盘且 &#x60;AutoDelete&#x60; 属性为 &#x60;true&#x60;，那么数据盘会随云主机一起删除。
+- 云主机中绑定的弹性公网IP不会随云主机一起删除，如果不需要保留，需要单独进行删除，需要使用者注意。
+- 如出现不能删除的情况请 [提交工单](https://ticket.jdcloud.com/applyorder/submit) 或联系京东云客服。
  [MFA enabled]
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 云主机ID
+      * @param {string} opts.instanceId - 云主机ID。
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -2515,7 +2657,7 @@ elasticIpAddress - 公网IP地址，精确匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -2588,24 +2730,37 @@ elasticIpAddress - 公网IP地址，精确匹配，支持单个
   }
 
   /**
-      *  批量查询云主机状态
+      *
+查询一台或多台云主机实例的状态。
+
+云主机实例的状态说明请参考帮助文档：[云主机状态](https://docs.jdcloud.com/cn/virtual-machines/api/vm_status)
+
+## 接口说明
+- 使用 &#x60;filters&#x60; 过滤器进行条件筛选，每个 &#x60;filter&#x60; 之间的关系为逻辑与（AND）的关系。
+- 单次查询最大可查询100条云主机状态。
+- 尽量一次调用接口查询多条数据，不建议使用该批量查询接口一次查询一条数据，如果使用不当导致查询过于密集，可能导致网关触发限流。
+- 由于该接口为 &#x60;GET&#x60; 方式请求，最终参数会转换为 &#x60;URL&#x60; 上的参数，但是 &#x60;HTTP&#x60; 协议下的 &#x60;GET&#x60; 请求参数长度是有大小限制的，使用者需要注意参数超长的问题。
+
       * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
-      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
-      * @param {filter} [opts.filters] - instanceId - 云主机ID，精确匹配，支持多个
-privateIpAddress - 主网卡内网主IP地址，模糊匹配，支持多个
-vpcId - 私有网络ID，精确匹配，支持多个
-status - 云主机状态，精确匹配，支持多个，&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/vm_status&quot;&gt;参考云主机状态&lt;/a&gt;
-name - 云主机名称，模糊匹配，支持单个
-imageId - 镜像ID，精确匹配，支持多个
-networkInterfaceId - 弹性网卡ID，精确匹配，支持多个
-subnetId - 子网ID，精确匹配，支持多个
+      * @param {integer} [opts.pageNumber] - 页码；默认为1。  optional
+      * @param {integer} [opts.pageSize] - 分页大小；&lt;br&gt;默认为20；取值范围[10, 100]。  optional
+      * @param {filter} [opts.filters] - &lt;b&gt;filters 中支持使用以下关键字进行过滤&lt;/b&gt;
+&#x60;instanceId&#x60;: 云主机ID，精确匹配，支持多个
+&#x60;privateIpAddress&#x60;: 主网卡内网主IP地址，模糊匹配，支持多个
+&#x60;vpcId&#x60;: 私有网络ID，精确匹配，支持多个
+&#x60;status&#x60;: 云主机状态，精确匹配，支持多个，参考 [云主机状态](https://docs.jdcloud.com/virtual-machines/api/vm_status)
+&#x60;name&#x60;: 云主机名称，模糊匹配，支持单个
+&#x60;imageId&#x60;: 镜像ID，精确匹配，支持多个
+&#x60;agId&#x60;: 使用可用组id，支持单个
+&#x60;faultDomain&#x60;: 错误域，支持多个
+&#x60;networkInterfaceId&#x60;: 弹性网卡ID，精确匹配，支持多个
+&#x60;subnetId&#x60;: 子网ID，精确匹配，支持多个
   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       * @param instanceStatus instanceStatuses
-      * @param number totalCount
+      * @param number totalCount  本次查询可匹配到的总记录数，使用者需要结合 &#x60;pageNumber&#x60; 和 &#x60;pageSize&#x60; 计算是否可以继续分页。
       */
 
   describeInstanceStatus (opts, regionId = this.config.regionId, callback) {
@@ -2637,7 +2792,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -2710,25 +2865,37 @@ subnetId - 子网ID，精确匹配，支持多个
   }
 
   /**
-      *  批量查询云主机内网IP地址，查询的是主网卡内网主IP地址。
+      *
+查询一台或多台云主机实例的主网卡内网主IP地址。
+
+弹性网卡说明请参考帮助文档：[弹性网卡](https://docs.jdcloud.com/cn/virtual-machines/attach-eni)
+
+## 接口说明
+- 使用 &#x60;filters&#x60; 过滤器进行条件筛选，每个 &#x60;filter&#x60; 之间的关系为逻辑与（AND）的关系。
+- 单次查询最大可查询100条云主机实例数据。
+- 尽量一次调用接口查询多条数据，不建议使用该批量查询接口一次查询一条数据，如果使用不当导致查询过于密集，可能导致网关触发限流。
+- 由于该接口为 &#x60;GET&#x60; 方式请求，最终参数会转换为 &#x60;URL&#x60; 上的参数，但是 &#x60;HTTP&#x60; 协议下的 &#x60;GET&#x60; 请求参数长度是有大小限制的，使用者需要注意参数超长的问题。
+
       * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
-      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
-      * @param {filter} [opts.filters] - instanceId - 云主机ID，精确匹配，支持多个
-privateIpAddress - 主网卡内网主IP地址，模糊匹配，支持多个
-vpcId - 私有网络ID，精确匹配，支持多个
-status - 云主机状态，精确匹配，支持多个，&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/vm_status&quot;&gt;参考云主机状态&lt;/a&gt;
-name - 云主机名称，模糊匹配，支持单个
-imageId - 镜像ID，精确匹配，支持多个
-networkInterfaceId - 弹性网卡ID，精确匹配，支持多个
-subnetId - 子网ID，精确匹配，支持多个
-chargeOnStopped - 停机不计费标志，keepCharging、stopCharging 或者 notApplicable
+      * @param {integer} [opts.pageNumber] - 页码；默认为1。  optional
+      * @param {integer} [opts.pageSize] - 分页大小；&lt;br&gt;默认为20；取值范围[10, 100]。  optional
+      * @param {filter} [opts.filters] - &lt;b&gt;filters 中支持使用以下关键字进行过滤&lt;/b&gt;
+&#x60;instanceId&#x60;: 云主机ID，精确匹配，支持多个
+&#x60;privateIpAddress&#x60;: 主网卡内网主IP地址，模糊匹配，支持多个
+&#x60;vpcId&#x60;: 私有网络ID，精确匹配，支持多个
+&#x60;status&#x60;: 云主机状态，精确匹配，支持多个，参考 [云主机状态](https://docs.jdcloud.com/virtual-machines/api/vm_status)
+&#x60;name&#x60;: 云主机名称，模糊匹配，支持单个
+&#x60;imageId&#x60;: 镜像ID，精确匹配，支持多个
+&#x60;agId&#x60;: 使用可用组id，支持单个
+&#x60;faultDomain&#x60;: 错误域，支持多个
+&#x60;networkInterfaceId&#x60;: 弹性网卡ID，精确匹配，支持多个
+&#x60;subnetId&#x60;: 子网ID，精确匹配，支持多个
   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       * @param instancePrivateIpAddress instancePrivateIpAddress
-      * @param number totalCount
+      * @param number totalCount  本次查询可匹配到的总记录数，用户需要结合 &#x60;pageNumber&#x60; 和 &#x60;pageSize&#x60; 计算是否可以继续分页。
       */
 
   describeInstancePrivateIpAddress (
@@ -2764,7 +2931,7 @@ chargeOnStopped - 停机不计费标志，keepCharging、stopCharging 或者 not
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -2837,11 +3004,25 @@ chargeOnStopped - 停机不计费标志，keepCharging、stopCharging 或者 not
   }
 
   /**
-      *  停止单个云主机，只能停止&lt;b&gt;running&lt;/b&gt;状态的云主机，云主机没有正在进行中的任务才可停止
+      *
+停止云主机实例。
+
+详细操作说明请参考帮助文档：[停止实例](https://docs.jdcloud.com/cn/virtual-machines/stop-instance)
+
+## 接口说明
+- 实例状态必须为运行 &#x60;running&#x60; 状态，同时实例没有正在进行中的任务时才可停止。
+- 如果云主机实例属性 &#x60;chargeOnStopped&#x60; 的值为 &#x60;stopCharging&#x60;，实例关机之后，实例部分将停止计费，且释放实例自身包含的资源（CPU/内存/GPU/本地数据盘）。需要使用者注意的是，实例一旦释放自身资源，再次启动时有可能因为库存资源不足而导致无法启动。
+- &#x60;chargeOnStopped&#x60; 该参数仅对按配置计费且系统盘为云硬盘的实例生效，并且不是专有宿主机中的实例。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 云主机ID
-      * @param {string} [opts.chargeOnStopped] - 关机模式，只支持云盘做系统盘的按配置计费云主机keepCharging：关机后继续计费；stopCharging：关机后停止计费。  optional
+      * @param {string} opts.instanceId - 云主机ID。
+      * @param {string} [opts.chargeOnStopped] - 停机不计费模式。
+该参数仅对按配置计费且系统盘为云硬盘的实例生效，并且不是专有宿主机中的实例。
+配置停机不计费且停机后，实例部分将停止计费，且释放实例自身包含的资源（CPU/内存/GPU/本地数据盘）。
+可选值：
+&#x60;keepCharging&#x60;：停机后保持计费，不释放资源。
+&#x60;stopCharging&#x60;：停机后停止计费，释放实例资源。默认值为空。
+  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -2880,7 +3061,7 @@ chargeOnStopped - 停机不计费标志，keepCharging、stopCharging 或者 not
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -2953,11 +3134,19 @@ chargeOnStopped - 停机不计费标志，keepCharging、stopCharging 或者 not
   }
 
   /**
-      *  启动单个云主机，只能启动&lt;b&gt;stopped&lt;/b&gt;状态的云主机，云主机没有正在进行中的任务才可启动。&lt;br&gt;
-只能启动正常计费状态的云主机，若已欠费停服或到期停服则不支持启动。
+      *
+启动云主机实例。
+
+详细操作说明请参考帮助文档：[启动实例](https://docs.jdcloud.com/cn/virtual-machines/start-instance)
+
+## 接口说明
+- 实例状态必须为停止 &#x60;stopped&#x60; 状态，同时实例没有正在进行中的任务时才可以启动。
+- 如果实例为停机不计费模式，启动时有可能因为库存资源不足而导致无法启动。
+- 如果云主机实例已欠费或已到期，则无法启动。
+- 如果实例系统盘是云硬盘，启动之前请确保系统盘处于正常挂载状态。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 云主机ID
+      * @param {string} opts.instanceId - 云主机ID。
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -2993,7 +3182,7 @@ chargeOnStopped - 停机不计费标志，keepCharging、stopCharging 或者 not
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -3066,10 +3255,17 @@ chargeOnStopped - 停机不计费标志，keepCharging、stopCharging 或者 not
   }
 
   /**
-      *  重启单个云主机，只能重启&lt;b&gt;running&lt;/b&gt;状态的云主机，云主机没有正在进行中的任务才可重启。
+      *
+重启云主机实例。
+
+详细操作说明请参考帮助文档：[重启实例](https://docs.jdcloud.com/cn/virtual-machines/reboot-instance)
+
+## 接口说明
+- 实例状态必须为运行 &#x60;running&#x60; 状态，同时实例没有正在进行中的任务时才可以重启。
+- 如果云主机实例已欠费或已到期，则无法重启。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 云主机ID
+      * @param {string} opts.instanceId - 云主机ID。
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -3105,7 +3301,7 @@ chargeOnStopped - 停机不计费标志，keepCharging、stopCharging 或者 not
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -3178,16 +3374,26 @@ chargeOnStopped - 停机不计费标志，keepCharging、stopCharging 或者 not
   }
 
   /**
-      *  云主机绑定一块弹性网卡。&lt;br&gt;
-云主机状态必须为&lt;b&gt;running&lt;/b&gt;或&lt;b&gt;stopped&lt;/b&gt;状态，并且没有正在进行中的任务才可操作。&lt;br&gt;
-弹性网卡上如果绑定了弹性公网IP，那么其所在az需要与云主机的az保持一致，或者为全可用区型弹性公网IP，才可挂载该网卡。&lt;br&gt;
-云主机挂载弹性网卡的数量，不能超过实例规格的限制。可查询&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/describeinstancetypes&quot;&gt;DescribeInstanceTypes&lt;/a&gt;接口获得指定规格可挂载弹性网卡的数量上限。&lt;br&gt;
-弹性网卡与云主机必须在相同vpc下。
+      *
+为云主机绑定弹性网卡。
+
+详细操作说明请参考帮助文档：[绑定弹性网卡](https://docs.jdcloud.com/cn/virtual-machines/attach-eni)
+
+## 接口说明
+- 实例状态必须为 &#x60;running&#x60; 或 &#x60;stopped&#x60; 状态，同时实例没有正在进行中的任务时才可以操作。
+- 实例中的主网卡是不可以解绑和绑定的，绑定弹性网卡只支持绑定辅助网卡。
+- 目标弹性网卡上如果绑定了弹性公网IP，那么其所在的可用区需要与云主机的可用区保持一致，或者弹性公网IP是全可用区类型的，才允许绑定该弹性网卡。
+- 弹性网卡与云主机必须在相同vpc下。
+- 对于受管网卡，授权中不能含有 &#x60;instance-attach&#x60; 用户才可以挂载。
+- 对于授信网卡，授权中必须含有 &#x60;instance-attach&#x60; 用户才可以挂载。
+- 实例挂载弹性网卡的数量，不能超过实例规格的限制。可查询 [DescribeInstanceTypes](https://docs.jdcloud.com/virtual-machines/api/describeinstancetypes) 接口获得指定规格可挂载弹性网卡的数量上限。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 云主机ID
-      * @param {string} opts.networkInterfaceId - 弹性网卡ID
-      * @param {boolean} [opts.autoDelete] - 随云主机删除而自动删除，默认为False  optional
+      * @param {string} opts.instanceId - 云主机ID。
+      * @param {string} opts.networkInterfaceId - 弹性网卡ID。
+      * @param {boolean} [opts.autoDelete] - 随云主机实例自动删除，默认为False。
+受管网卡或授信网卡默认为False并且不支持修改。
+  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -3240,7 +3446,7 @@ chargeOnStopped - 停机不计费标志，keepCharging、stopCharging 或者 not
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -3313,12 +3519,17 @@ chargeOnStopped - 停机不计费标志，keepCharging、stopCharging 或者 not
   }
 
   /**
-      *  云主机缷载一块弹性网卡。&lt;br&gt;
-云主机状态必须为&lt;b&gt;running&lt;/b&gt;或&lt;b&gt;stopped&lt;/b&gt;状态，并且没有正在进行中的任务才可操作。&lt;br&gt;
-不能缷载主网卡。
+      *
+为云主机解绑弹性网卡。
+
+详细操作说明请参考帮助文档：[解绑弹性网卡](https://docs.jdcloud.com/cn/virtual-machines/detach-eni)
+
+## 接口说明
+- 实例状态必须为 &#x60;running&#x60; 或 &#x60;stopped&#x60; 状态，同时实例没有正在进行中的任务时才可以操作。
+- 实例中的主网卡是不可以解绑和绑定的，解绑弹性网卡只支持解绑辅助网卡。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 云主机ID
+      * @param {string} opts.instanceId - 云主机ID。
       * @param {string} opts.networkInterfaceId - 弹性网卡ID
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -3369,7 +3580,7 @@ chargeOnStopped - 停机不计费标志，keepCharging、stopCharging 或者 not
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -3442,12 +3653,18 @@ chargeOnStopped - 停机不计费标志，keepCharging、stopCharging 或者 not
   }
 
   /**
-      *  修改虚机弹性网卡属性，包括是否随云主机一起删除。&lt;br&gt;
-不能修改主网卡。
+      *
+修改云主机弹性网卡属性。
+
+详细操作说明请参考帮助文档：[配置弹性网卡删除属性](https://docs.jdcloud.com/cn/virtual-machines/configurate-eni-delete-attributes)
+
+## 接口说明
+- 当前只支持修改随云主机实例删除的属性。
+- 不支持修改主网卡。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 云主机ID
-      * @param {array} [opts.networks] - 弹性网卡列表  optional
+      * @param {string} opts.instanceId - 云主机ID。
+      * @param {array} [opts.networks] - 弹性网卡列表。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -3490,7 +3707,7 @@ chargeOnStopped - 停机不计费标志，keepCharging、stopCharging 或者 not
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -3563,12 +3780,19 @@ chargeOnStopped - 停机不计费标志，keepCharging、stopCharging 或者 not
   }
 
   /**
-      *  为云主机主网卡的主内网IP绑定弹性公网IP。&lt;br&gt;
-一台云主机的主网卡的主内网IP只能绑定一个弹性公网IP，若已绑定弹性公网IP，操作绑定会返回错误。&lt;br&gt;
+      *
+为云主机绑定弹性公网IP。
+
+详细操作说明请参考帮助文档：[绑定弹性公网IP](https://docs.jdcloud.com/cn/virtual-machines/associate-elastic-ip)
+
+## 接口说明
+- 该接口只支持在实例的主网卡的主内网IP上绑定弹性公网IP。
+- 一台云主机的主网卡的主内网IP只能绑定一个弹性公网IP，若已绑定弹性公网IP，操作绑定会返回错误。
+- 弹性公网IP所在的可用区需要与云主机的可用区保持一致，或者弹性公网IP是全可用区类型的，才允许绑定操作。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 云主机ID
-      * @param {string} opts.elasticIpId - 弹性公网IP的ID
+      * @param {string} opts.instanceId - 云主机ID。
+      * @param {string} opts.elasticIpId - 弹性公网IP的ID。
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -3612,7 +3836,7 @@ chargeOnStopped - 停机不计费标志，keepCharging、stopCharging 或者 not
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -3685,11 +3909,17 @@ chargeOnStopped - 停机不计费标志，keepCharging、stopCharging 或者 not
   }
 
   /**
-      *  云主机解绑弹性公网IP，解绑的是主网卡、内网主IP对应的弹性公网IP。
+      *
+为云主机解绑弹性公网IP。
+
+详细操作说明请参考帮助文档：[解绑弹性公网IP](https://docs.jdcloud.com/cn/virtual-machines/disassociate-elastic-ip)
+
+## 接口说明
+- 该接口只支持解绑实例的主网卡的主内网IP上的弹性公网IP。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 云主机ID
-      * @param {string} opts.elasticIpId - 弹性公网IP的ID
+      * @param {string} opts.instanceId - 云主机ID。
+      * @param {string} opts.elasticIpId - 弹性公网IP的ID。
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -3733,7 +3963,7 @@ chargeOnStopped - 停机不计费标志，keepCharging、stopCharging 或者 not
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -3806,20 +4036,36 @@ chargeOnStopped - 停机不计费标志，keepCharging、stopCharging 或者 not
   }
 
   /**
-      *  为云主机创建私有镜像。云主机状态必须为&lt;b&gt;stopped&lt;/b&gt;。&lt;br&gt;
-云主机没有正在进行中的任务才可制作镜像。&lt;br&gt;
-制作镜像以备份系统盘为基础，在此之上可选择全部或部分挂载数据盘制作整机镜像（如不做任何更改将默认制作整机镜像），制作镜像过程会为所挂载云硬盘创建快照并与镜像关联。&lt;br&gt;
-调用接口后，需要等待镜像状态变为&lt;b&gt;ready&lt;/b&gt;后，才能正常使用镜像。
+      *
+为云主机制作私有镜像。
+
+详细操作说明请参考帮助文档：[基于实例创建私有镜像](https://docs.jdcloud.com/cn/virtual-machines/create-private-image)
+
+## 接口说明
+- 云主机实例没有正在进行中的任务时才可制作镜像。
+- 本地系统盘的实例，仅支持关机（已停止）状态下制作私有镜像。
+- 云盘系统盘的实例，支持开机(运行中)/关机（已停止）状态下制作私有镜像。
+- 调用接口后，需要等待镜像状态变为 &#x60;ready&#x60; 后，才能正常使用镜像。
+- 若当前实例系统盘为本地盘，则创建完成后的私有镜像为本地盘系统盘镜像；若当前实例系统盘为云硬盘，则创建完成后的私有镜像为云硬盘系统盘镜像。您可通过镜像类型转换 [convertImage](https://docs.jdcloud.com/Image/api/convertimage) 将本地盘系统盘镜像转换为云硬盘系统盘镜像后使用。
+- 默认情况下，制作的镜像中包括数据盘中的云硬盘（制作快照），但是不包含本地数据盘。
+- 如果需要变更打包镜像中的一些数据盘、或排除一些数据盘不需要制作快照，可通过 &#x60;dataDisks&#x60; 中的参数进行控制。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 云主机ID
-      * @param {string} opts.name - 镜像名称，&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/general_parameters&quot;&gt;参考公共参数规范&lt;/a&gt;。
-      * @param {string} [opts.description] - 镜像描述，&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/general_parameters&quot;&gt;参考公共参数规范&lt;/a&gt;。  optional
-      * @param {array} [opts.dataDisks] - 数据盘列表，可以在实例已挂载数据盘的基础上，额外增加新的快照、空盘、或排除云主机中的数据盘。  optional
+      * @param {string} opts.instanceId - 云主机ID。
+      * @param {string} opts.name - 镜像名称，长度为2\~32个字符，只允许中文、数字、大小写字母、英文下划线（\_）、连字符（-）及点（.）。
+
+      * @param {string} [opts.description] - 镜像描述。256字符以内。
+  optional
+      * @param {array} [opts.dataDisks] - 数据盘列表。
+在不指定该参数的情况下，制作镜像的过程中会将该实例中的所有云盘数据盘制作快照，并与系统盘一起，制作成打包镜像。
+如果不希望将实例中的某个云盘数据盘制作快照，可使用 &#x60;noDevice&#x60; 的方式排除，例如：&#x60;deviceName&#x3D;vdb&#x60;、&#x60;noDevice&#x3D;true&#x60; 就不会将 &#x60;vdb&#x60; 制作快照。
+如果希望在打包镜像中插入一块新盘，该盘不在实例中，可通过指定新的 &#x60;deviceName&#x60; 的方式实现，例如：&#x60;deviceName&#x3D;vdx&#x60; 将会在打包镜像中插入一块盘符为 &#x60;vdx&#x60; 的新盘，支持新盘使用或不使用快照都可以。
+如果使用 &#x60;deviceName&#x60; 指定了与实例中相同的盘符，那么实例中对应的云盘数据盘也不会制作快照，并使用新指定的参数进行替换。
+  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param string imageId  镜像ID
+      * @param string imageId  镜像ID。
       */
 
   createImage (opts, regionId = this.config.regionId, callback) {
@@ -3866,7 +4112,7 @@ chargeOnStopped - 停机不计费标志，keepCharging、stopCharging 或者 not
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -3939,15 +4185,31 @@ chargeOnStopped - 停机不计费标志，keepCharging、stopCharging 或者 not
   }
 
   /**
-      *  为一台云主机挂载一块云硬盘，云主机和云硬盘没有正在进行中的的任务时才可挂载。&lt;br&gt;
-云主机状态必须是&lt;b&gt;running&lt;/b&gt;或&lt;b&gt;stopped&lt;/b&gt;状态。&lt;br&gt;
-本地盘(local类型)做系统盘的云主机可挂载8块云硬盘，云硬盘(cloud类型)做系统盘的云主机可挂载除系统盘外7块云硬盘。
+      *
+为一台云主机挂载云硬盘。
+
+详细操作说明请参考帮助文档：[挂载云硬盘](https://docs.jdcloud.com/cn/virtual-machines/attach-cloud-disk)
+
+## 接口说明
+- 云主机和云硬盘都没有正在进行中的的任务时才可以操作。
+- 云主机状态必须是 &#x60;running&#x60; 或 &#x60;stopped&#x60; 状态。操作系统盘时必须先停止实例。
+- 实例挂载云硬盘的数量，不能超过实例规格的限制。可查询  [DescribeInstanceTypes](https://docs.jdcloud.com/virtual-machines/api/describeinstancetypes)  接口获得指定规格可挂载云硬盘的数量上限。
+- 云硬盘作为系统盘时，容量不能小于40GB，并且不能超过500GB。
+- 待挂载的云硬盘与云主机实例必须在同一个可用区下。
+- 共享型云硬盘最多可挂载16个云主机实例，并且只能用作数据盘，不能用于系统盘。非共享型云盘最多只能挂载一个云主机实例。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 云主机ID
-      * @param {string} opts.diskId - 云硬盘ID
-      * @param {string} [opts.deviceName] - 设备名[vda,vdb,vdc,vdd,vde,vdf,vdg,vdh,vdi,vmj,vdk,vdl,vdm]，挂载系统盘时必传，且需传vda  optional
-      * @param {boolean} [opts.autoDelete] - 随云主机删除自动删除此云硬盘，默认为False。仅按配置计费云硬盘支持修改此参数，包年包月云硬盘不可修改。  optional
+      * @param {string} opts.instanceId - 云主机ID。
+      * @param {string} opts.diskId - 云硬盘ID。
+      * @param {string} [opts.deviceName] - 磁盘逻辑挂载点。
+**系统盘**：必须指定并且只能是vda。
+**数据盘**：取值范围：&#x60;[vdb~vdbm]&#x60;。
+  optional
+      * @param {boolean} [opts.autoDelete] - 是否随实例一起删除，即删除实例时是否自动删除此磁盘。此参数仅对按配置计费的非多点挂载云硬盘生效。
+可选值：
+&#x60;true&#x60;：随实例删除。
+&#x60;false&#x60;（默认值）：不随实例删除。
+  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -3997,7 +4259,7 @@ chargeOnStopped - 停机不计费标志，keepCharging、stopCharging 或者 not
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -4070,12 +4332,21 @@ chargeOnStopped - 停机不计费标志，keepCharging、stopCharging 或者 not
   }
 
   /**
-      *  云主机缷载云硬盘，云主机和云硬盘没有正在进行中的任务时才可缷载。&lt;br&gt;
+      *
+为一台云主机缷载云硬盘
+
+详细操作说明请参考帮助文档：[缷载云硬盘](https://docs.jdcloud.com/cn/virtual-machines/detach-cloud-disk)
+
+## 接口说明
+- 云主机和云硬盘都没有正在进行中的的任务时才可以操作。
+- 云主机状态必须是 &#x60;running&#x60; 或 &#x60;stopped&#x60; 状态。操作系统盘时必须先停止实例。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 云主机ID
-      * @param {string} opts.diskId - 云硬盘ID
-      * @param {boolean} [opts.force] - 强制缷载，默认False。如果此参数传值为True，代表数据盘的IO会被强制断掉。  optional
+      * @param {string} opts.instanceId - 云主机ID。
+      * @param {string} opts.diskId - 云硬盘ID。
+      * @param {boolean} [opts.force] - 是否强制缷载，默认False。
+如果此参数传值为True，数据盘的IO会被强制断掉。
+  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -4122,7 +4393,7 @@ chargeOnStopped - 停机不计费标志，keepCharging、stopCharging 或者 not
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -4195,12 +4466,19 @@ chargeOnStopped - 停机不计费标志，keepCharging、stopCharging 或者 not
   }
 
   /**
-      *  修改云主机挂载的数据盘属性，包括是否随主机删除。&lt;br&gt;
-仅按配置计费云硬盘支持设置随实例删除属性;包年包月计费云硬盘该属性不生效,实例删除时云硬盘将保留。&lt;br&gt;
+      *
+修改一台云主机中的云硬盘属性。
+
+详细操作说明请参考帮助文档：[配置云硬盘删除属性](https://docs.jdcloud.com/cn/virtual-machines/configurate-delete-attributes)
+
+## 接口说明
+- 该接口当前只能修改实例中的云硬盘随实例删除属性。
+- 仅按配置计费、并且非共享型的云硬盘支持修改。
+- 包年包月计费的云硬盘该属性不生效，实例删除时云硬盘将保留。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 云主机ID
-      * @param {array} [opts.dataDisks] - 云硬盘列表  optional
+      * @param {string} opts.instanceId - 云主机ID。
+      * @param {array} [opts.dataDisks] - 云硬盘列表。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -4239,7 +4517,7 @@ chargeOnStopped - 停机不计费标志，keepCharging、stopCharging 或者 not
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -4312,23 +4590,35 @@ chargeOnStopped - 停机不计费标志，keepCharging、stopCharging 或者 not
   }
 
   /**
-      *  修改云主机部分信息，包括名称、描述。
+      *
+修改一台云主机的属性。
+
+详细操作说明请参考帮助文档：
+[修改实例名称](https://docs.jdcloud.com/cn/virtual-machines/modify-instance-name)
+[自定义数据](https://docs.jdcloud.com/cn/virtual-machines/userdata)
+[实例元数据](https://docs.jdcloud.com/cn/virtual-machines/instance-metadata)
+
+## 接口说明
+- 支持修改实例的名称、描述、hostname、自定义数据、实例元数据。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 云主机ID
-      * @param {string} [opts.name] - 名称，不为空且只允许中文、数字、大小写字母、英文下划线（_）、中划线（-）及点（.），不能以（.）作为首尾，长度为2~128个字符  optional
-      * @param {string} [opts.description] - 描述，&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/general_parameters&quot;&gt;参考公共参数规范&lt;/a&gt;。  optional
-      * @param {string} [opts.hostname] - 云主机hostname，若不指定hostname，则hostname默认使用云主机名称name，但是会以RFC 952和RFC 1123命名规范做一定转义
-Windows Server系统：长度为2-15个字符，允许大小写字母、数字或连字符（-）。不能以连字符（-）开头或结尾，不能连续使用连字符（-），也不能全部使用数字。不支持点号（.）。
-Linux系统：长度为2-64个字符，允许支持多个点号，点之间为一段，每段允许使用大小写字母、数字或连字符（-），但不能连续使用点号（.）或连字符（-），不能以点号（.）或连字符（-）开头或结尾。
-hostname修改后，重启云主机hostname生效
+      * @param {string} opts.instanceId - 云主机ID。
+      * @param {string} [opts.name] - 实例名称。长度为2\~128个字符，只允许中文、数字、大小写字母、英文下划线（\_）、连字符（-）及点（.），不能以（.）作为首尾。
   optional
-      * @param {array} [opts.metadata] - 用户自定义元数据信息，key-value 键值对总数量不超过40，其中更新和新增键值对总数量不超过20对，删除的键值对总数量不超过20对。不区分大小写。
-如key已有认为是更新value；如key不存在认为是新增键值对；如key后面有连字符(-)，比如key-，则删除此key。
+      * @param {string} [opts.description] - 实例描述。256字符以内。
   optional
-      * @param {array} [opts.userdata] - 元数据信息，目前只支持传入一个key为&quot;launch-script&quot;，表示首次启动脚本。value为base64格式。
-launch-script：linux系统支持bash和python，编码前须分别以 #!/bin/bash 和 #!/usr/bin/env python 作为内容首行;
-launch-script：windows系统支持bat和powershell，编码前须分别以 &lt;cmd&gt;&lt;/cmd&gt; 和 &lt;powershell&gt;&lt;/powershell&gt; 作为内容首、尾行。
+      * @param {string} [opts.hostname] - 实例hostname。
+**Windows系统**：长度为2\~15个字符，允许大小写字母、数字或连字符（-），不能以连字符（-）开头或结尾，不能连续使用连字符（-），也不能全部使用数字。不支持点号（.）。
+**Linux系统**：长度为2-64个字符，允许支持多个点号，点之间为一段，每段允许使用大小写字母、数字或连字符（-），但不能连续使用点号（.）或连字符（-），不能以点号（.）或连字符（-）开头或结尾。
+  optional
+      * @param {array} [opts.metadata] - 用户自定义元数据。
+以 &#x60;key-value&#x60; 键值对形式指定，可在实例系统内通过元数据服务查询获取。最多支持40对键值对，且 &#x60;key&#x60; 不超过256字符，&#x60;value&#x60; 不超过16KB，不区分大小写。
+注意：&#x60;key&#x60; 不要以连字符(-)结尾，否则此 &#x60;key&#x60; 不生效。
+  optional
+      * @param {array} [opts.userdata] - 自定义脚本。
+目前仅支持启动脚本，即 &#x60;launch-script&#x60;，须Base64编码且编码前数据长度不能超过16KB。
+**linux系统**：支持bash和python，编码前须分别以 &#x60;#!/bin/bash&#x60; 和 &#x60;#!/usr/bin/env python&#x60; 作为内容首行。
+**Windows系统**：支持 &#x60;bat&#x60; 和 &#x60;powershell&#x60; ，编码前须分别以 &#x60;&lt;cmd&gt;&lt;/cmd&gt;和&lt;powershell&gt;&lt;/powershell&gt;&#x60; 作为内容首、尾行。
   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -4380,7 +4670,7 @@ launch-script：windows系统支持bat和powershell，编码前须分别以 &lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -4453,12 +4743,187 @@ launch-script：windows系统支持bat和powershell，编码前须分别以 &lt;
   }
 
   /**
-      *  修改云主机密码，主机没有正在进行中的任务时才可操作。&lt;br&gt;
-修改密码后，需要重启云主机后生效。
+      *
+修改一台云主机的子网或内网IP地址。
+
+详细操作说明请参考帮助文档：[修改网络配置](https://docs.jdcloud.com/cn/virtual-machines/modify-vpc-attribute)
+
+## 接口说明
+- 调该接口之前实例必须处于停止 &#x60;stopped&#x60; 状态。
+- 修改VPC及子网
+  - 内网IPv4：可指定或由系统分配。
+  - IPv6：如新子网支持IPv6，可选是否分配，如分配仅支持系统分配。
+  - 安全组：须指定新VPC下的安全组。
+- 不修改VPC，仅修改子网
+  - 内网IPv4：可指定或由系统分配。
+  - IPv6：如新子网支持IPv6，可选是否分配，如分配仅支持系统分配。
+  - 安全组：不支持绑定新安全组。
+- 不修改VPC及子网，仅更换内网IP
+  - 内网IPv4：须指定IP地址。
+  - IPv6：不支持修改。
+  - 安全组：不支持绑定新安全组。
+- 一些限制及注意事项：
+  - 已加入负载均衡-后端服务器组中的实例不允许修改。
+  - 绑定弹性网卡的实例不支持修改VPC，仅支持在同VPC下修改子网和内网IP。
+  - 主网卡分配了辅助内网IP的实例不支持修改VPC和子网，仅支持在同子网下修改内网IP。
+  - 如实例在高可用组内，则不允许修改VPC，仅可在同VPC内修改子网或内网IPv4地址。
+  - 仅在更换VPC时传入安全组ID才有效，且安全组须隶属于目标VPC。
+  - 如指定内网IPv4，须确保IP地址在子网网段内且未被占用；如不指定则随机分配，须确保子网可用IP充足。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 云主机ID
-      * @param {string} opts.password - 密码，&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/general_parameters&quot;&gt;参考公共参数规范&lt;/a&gt;。
+      * @param {string} opts.instanceId - 云主机ID。
+      * @param {string} opts.subnetId - 子网Id。
+      * @param {boolean} [opts.assignIpv6] - &#x60;true&#x60;: 分配IPV6地址。
+&#x60;false&#x60;: 不分配IPV6地址。
+  optional
+      * @param {string} [opts.privateIpAddress] - Ipv4地址。
+不变更 &#x60;vpc&#x60; 及子网时必须指定Ipv4地址
+  optional
+      * @param {array} [opts.securityGroups] - 安全组列表。
+更换 &#x60;vpc&#x60; 时必须指定新的安全组。
+不更换 &#x60;vpc&#x60; 时不可以指定安全组。
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  modifyInstanceVpcAttribute (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyInstanceVpcAttribute"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling modifyInstanceVpcAttribute"
+      )
+    }
+    if (opts.subnetId === undefined || opts.subnetId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.subnetId' when calling modifyInstanceVpcAttribute"
+      )
+    }
+
+    let postBody = {}
+    if (opts.subnetId !== undefined && opts.subnetId !== null) {
+      postBody['subnetId'] = opts.subnetId
+    }
+    if (opts.assignIpv6 !== undefined && opts.assignIpv6 !== null) {
+      postBody['assignIpv6'] = opts.assignIpv6
+    }
+    if (opts.privateIpAddress !== undefined && opts.privateIpAddress !== null) {
+      postBody['privateIpAddress'] = opts.privateIpAddress
+    }
+    if (opts.securityGroups !== undefined && opts.securityGroups !== null) {
+      postBody['securityGroups'] = opts.securityGroups
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyInstanceVpcAttribute with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}:modifyInstanceVpcAttribute',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *
+修改云主机密码。
+
+详细操作说明请参考帮助文档：[重置密码](https://docs.jdcloud.com/cn/virtual-machines/reset-password)
+
+## 接口说明
+- 实例没有正在进行中的任务时才可操作。
+- 重置密码后，需要重启云主机后生效。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 云主机ID。
+      * @param {string} opts.password - 实例密码。
+可用于SSH登录和VNC登录。
+长度为8\~30个字符，必须同时包含大、小写英文字母、数字和特殊符号中的三类字符。特殊符号包括：&#x60;\(\)\&#x60;~!@#$%^&amp;\*\_-+&#x3D;\|{}\[ ]:&quot;;&#39;&lt;&gt;,.?/，&#x60;。
+更多密码输入要求请参见 [公共参数规范](https://docs.jdcloud.com/virtual-machines/api/general_parameters)。
+
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -4502,7 +4967,7 @@ launch-script：windows系统支持bat和powershell，编码前须分别以 &lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -4575,15 +5040,23 @@ launch-script：windows系统支持bat和powershell，编码前须分别以 &lt;
   }
 
   /**
-      *  获取云主机vnc，用于连接管理云主机。&lt;br&gt;
-vnc地址的有效期为1个小时，调用接口获取vnc地址后如果1个小时内没有使用，vnc地址自动失效，再次使用需要重新获取。
+      *
+获取云主机vnc地址。
+
+详细操作说明请参考帮助文档：[连接实例](https://docs.jdcloud.com/cn/virtual-machines/connect-to-instance)
+
+## 接口说明
+- 实例仅 &#x60;running&#x60; 状态时才可获取到 &#x60;vnc&#x60; 地址。
+- 调用该接口可获取云主机 &#x60;vnc&#x60; 地址，用于远程连接管理云主机。
+- &#x60;vnc&#x60; 地址的有效期为1个小时，调用接口获取vnc地址后如果1个小时内没有使用，&#x60;vnc&#x60; 地址将自动失效，再次使用需要重新获取。
+- 裸金属实例目前不支持通过 &#x60;vnc&#x60; 登录。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 云主机ID
+      * @param {string} opts.instanceId - 云主机ID。
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param string vncUrl
+      * @param string vncUrl  远程vnc地址。
       */
 
   describeInstanceVncUrl (opts, regionId = this.config.regionId, callback) {
@@ -4615,7 +5088,7 @@ vnc地址的有效期为1个小时，调用接口获取vnc地址后如果1个小
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -4688,20 +5161,32 @@ vnc地址的有效期为1个小时，调用接口获取vnc地址后如果1个小
   }
 
   /**
-      *  云主机变更实例规格&lt;br&gt;
-云主机的状态必须为&lt;b&gt;stopped&lt;/b&gt;状态。&lt;br&gt;
-以下情况的云主机，不允许在一代与二代实例规格间互相调整，例：不允许g.n1与g.n2之间互相调配&lt;br&gt;
-1、16年创建的云硬盘做系统盘的云主机&lt;br&gt;
-2、本地盘(local类型)做系统盘的云主机。&lt;br&gt;
-3、使用高可用组(Ag)创建的云主机。&lt;br&gt;
-如果当前主机中的弹性网卡数量，大于新实例规格允许的弹性网卡数量，会返回错误。可查询&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/describeinstancetypes&quot;&gt;DescribeInstanceTypes&lt;/a&gt;接口获得指定地域及可用区下的实例规格信息。&lt;br&gt;
-当前主机所使用的镜像，需要支持要变更的目标实例规格，否则返回错误。可查询&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/describeimageconstraints&quot;&gt;DescribeImageConstraints&lt;/a&gt;接口获得指定镜像的实例规格限制信息。&lt;br&gt;
-云主机欠费或到期时，无法更改实例规格。
+      *
+变更云主机实例配置。
+
+详细操作说明请参考帮助文档：[调整配置](https://docs.jdcloud.com/cn/virtual-machines/resize-instance)
+
+## 接口说明
+  - 云主机的状态必须为 &#x60;stopped&#x60; 状态。
+  - 16年创建的云硬盘做系统盘的云主机，实例规格不允许跨代调配。
+  - 若当前实例系统盘为本地盘，则不允许跨代调配，例如第一代云主机不允许与第二代云主机互相调配，且不允许调整至第一代存储优化大数据型 &#x60;s.d1&#x60; 及第二代存储优化大数据型 &#x60;s.d2&#x60;。
+  - 若当前实例在高可用组内，则不允许调配至除GPU类型外的第一代云主机，受限于高可用组支持的规格情况。
+  - 若当前实例已挂载加密云盘，则不允许调配至第一代云主机，受限于支持加密盘的规格情况。
+  - 裸金属实例规格主机暂不支持调配，即不支持从其他规格调整为裸金属规格或从裸金属规格调整为其他规格。
+  - 对于按配置计费实例，调整配置后将按照新规格计费，调整前规格会立即出账结算（即对上次整点结算时间至当前时间产生的费用进行结算）。
+  - 若当前实例带有本地数据盘，需清除本地盘内数据才可调整配置，还请谨慎操作。
+  - 对于包年包月计费云主机：
+	- 若调配后规格价格低于调配前规格价格，则将延长云主机到期时间；
+	- 若调配后规格价格高于调配前规格价格，需要支付到期前的差价。
+  - 如果当前主机中的弹性网卡数量，超过了目标实例规格允许的弹性网卡数量，会返回错误。可查询 [DescribeInstanceTypes](https://docs.jdcloud.com/virtual-machines/api/describeinstancetypes) 接口获得实例规格允许的弹性网卡数量。
+  - 如果当前主机中的云硬盘数据，超过了目标实例规格允许的云硬盘数量，会返回错误。可查询 [DescribeInstanceTypes](https://docs.jdcloud.com/virtual-machines/api/describeinstancetypes) 接口获得实例规格允许的云硬盘数量。
+  - 当前主机所使用的镜像，需要支持目标实例规格，否则返回错误。可查询 [DescribeImageConstraints](docs.jdcloud.com/virtual-machines/api/describeimageconstraints) 接口获得指定镜像的实例规格限制信息。
+  - 云主机欠费或到期时，无法更改实例规格。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 云主机ID
-      * @param {string} opts.instanceType - 实例规格，可查询&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/describeinstancetypes&quot;&gt;DescribeInstanceTypes&lt;/a&gt;接口获得指定地域或可用区的规格信息。
-      * @param {boolean} [opts.force] - 是否强制调配，默认为false；如果指定为true, 将会清除本地数据盘。  optional
+      * @param {string} opts.instanceId - 云主机ID。
+      * @param {string} opts.instanceType - 实例规格，可查询 [DescribeInstanceTypes](https://docs.jdcloud.com/virtual-machines/api/describeinstancetypes) 接口获得指定地域或可用区的规格信息。
+      * @param {boolean} [opts.force] - 是否强制调配，默认为 &#x60;false&#x60;。如果指定为 &#x60;true&#x60;, 将会清除本地数据盘。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -4748,7 +5233,7 @@ vnc地址的有效期为1个小时，调用接口获取vnc地址后如果1个小
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -4821,29 +5306,47 @@ vnc地址的有效期为1个小时，调用接口获取vnc地址后如果1个小
   }
 
   /**
-      *  云主机使用指定镜像重置云主机系统&lt;br&gt;
-云主机的状态必须为&lt;b&gt;stopped&lt;/b&gt;状态。&lt;br&gt;
-若不指定镜像ID，默认使用当前主机的原镜像重置系统。&lt;br&gt;
-云主机系统盘类型必须与待更换镜像支持的系统盘类型保持一致，若当前云主机系统盘为local类型，则更换镜像的系统盘类型必须为loaclDisk类型；同理，若当前云主机系统盘为cloud类型，则更换镜像的系统盘类型必须为cloudDisk类型。可查询&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/describeimages&quot;&gt;DescribeImages&lt;/a&gt;接口获得指定地域的镜像信息。&lt;br&gt;
-指定的镜像必须能够支持当前主机的实例规格(instanceType)，否则会返回错误。可查询&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/describeimageconstraints&quot;&gt;DescribeImageConstraints&lt;/a&gt;接口获得指定镜像支持的系统盘类型信息。
+      *
+重置云主机系统。
+
+需要注意的是，重装系统会导致系统盘的内容全部丢失，数据盘的数据不受影响（但需要重新识别）。因此，在需要保留系统运行数据的情况下，强烈建议您在重置系统前制作私有镜像，之后重置时选择该私有镜像即可实现保留系统运行数据。
+
+详细操作说明请参考帮助文档：[重置系统](https://docs.jdcloud.com/cn/virtual-machines/rebuild-instance)
+
+## 接口说明
+- 云主机的状态必须为 &#x60;stopped&#x60; 状态。
+- 若实例基于私有镜像创建，而私有镜像已被删除，则无法使用原镜像重置系统，即无法恢复至刚创建时的系统状态，建议保留被实例引用的私有镜像。
+- 重置系统需要重新指定密码，对于 &#x60;Linux&#x60; 系统您还可以重新指定 &#x60;SSH密钥&#x60;。
+- 对于云盘作系统盘的实例，当前系统盘大小不能超过目标镜像对应系统盘快照的容量。
+- 云主机系统盘类型必须与待更换镜像支持的系统盘类型保持一致，若当前云主机系统盘为 &#x60;local&#x60; 类型，则更换镜像的系统盘类型必须为 &#x60;loaclDisk&#x60; 类型；同理，若当前云主机系统盘为 &#x60;cloud&#x60; 类型，则更换镜像的系统盘类型必须为 &#x60;cloudDisk&#x60; 类型。可查询 [DescribeImages](https://docs.jdcloud.com/virtual-machines/api/describeimages) 接口获得指定地域的镜像信息。
+- 指定的镜像必须能够支持当前主机的实例规格 &#x60;instanceType&#x60;，否则会返回错误。可查询 [DescribeImageConstraints](docs.jdcloud.com/virtual-machines/api/describeimageconstraints) 接口获得指定镜像支持的系统盘类型信息。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 云主机ID
-      * @param {string} [opts.password] - 云主机密码，&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/general_parameters&quot;&gt;参考公共参数规范&lt;/a&gt;。  optional
-      * @param {string} [opts.imageId] - 镜像ID。可查询&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/describeimages&quot;&gt;DescribeImages&lt;/a&gt;接口获得指定地域的镜像信息。  optional
-      * @param {array} [opts.keyNames] - 密钥对名称；当前只支持一个。仅Linux系统支持指定。  optional
-      * @param {string} [opts.hostname] - 云主机hostname，若不指定hostname，则hostname默认使用云主机重置前的hostname
-Windows Server系统：长度为2-15个字符，允许大小写字母、数字或连字符（-）。不能以连字符（-）开头或结尾，不能连续使用连字符（-），也不能全部使用数字。不支持点号（.）。
-Linux系统：长度为2-64个字符，允许支持多个点号，点之间为一段，每段允许使用大小写字母、数字或连字符（-），但不能连续使用点号（.）或连字符（-），不能以点号（.）或连字符（-）开头或结尾。
+      * @param {string} opts.instanceId - 云主机ID。
+      * @param {string} [opts.password] - 实例密码。
+可用于SSH登录和VNC登录。
+长度为8\~30个字符，必须同时包含大、小写英文字母、数字和特殊符号中的三类字符。特殊符号包括：&#x60;\(\)\&#x60;~!@#$%^&amp;\*\_-+&#x3D;\|{}\[ ]:&quot;;&#39;&lt;&gt;,.?/，&#x60;。
+更多密码输入要求请参见 [公共参数规范](https://docs.jdcloud.com/virtual-machines/api/general_parameters)。
   optional
-      * @param {array} [opts.metadata] - 用户自定义元数据信息，key-value键值对总数量不超过40对，其中有效键值对数量不超过20，无效键值对数量不超过20对。不区分大小写。
-若不指定metadata，则metadata默认使用云主机重置前的metadata。
-注意：key不要以连字符(-)结尾，否则此key不生效。
+      * @param {string} [opts.imageId] - 镜像ID。
+若不指定镜像ID，默认使用当前主机的原镜像重置系统。
+可查询 [DescribeImages](https://docs.jdcloud.com/virtual-machines/api/describeimages) 接口获得指定地域的镜像信息。
   optional
-      * @param {array} [opts.userdata] - 元数据信息，目前只支持传入一个key为&quot;launch-script&quot;，表示首次启动脚本。value为base64格式。
-若不指定userdata，则userdata默认使用云主机重置前的userdata。
-launch-script：linux系统支持bash和python，编码前须分别以 #!/bin/bash 和 #!/usr/bin/env python 作为内容首行;
-launch-script：windows系统支持bat和powershell，编码前须分别以 &lt;cmd&gt;&lt;/cmd&gt; 和 &lt;powershell&gt;&lt;/powershell&gt; 作为内容首、尾行。
+      * @param {array} [opts.keyNames] - 密钥对名称。仅Linux系统下该参数生效，当前仅支持输入单个密钥。
+  optional
+      * @param {string} [opts.hostname] - 实例hostname。
+若不指定hostname，则默认以实例名称&#x60;name&#x60;作为hostname，但是会以RFC 952和RFC 1123命名规范做一定转义。
+**Windows系统**：长度为2\~15个字符，允许大小写字母、数字或连字符（-），不能以连字符（-）开头或结尾，不能连续使用连字符（-），也不能全部使用数字。不支持点号（.）。
+**Linux系统**：长度为2-64个字符，允许支持多个点号，点之间为一段，每段允许使用大小写字母、数字或连字符（-），但不能连续使用点号（.）或连字符（-），不能以点号（.）或连字符（-）开头或结尾。
+  optional
+      * @param {array} [opts.metadata] - 用户自定义元数据。
+以 &#x60;key-value&#x60; 键值对形式指定，可在实例系统内通过元数据服务查询获取。最多支持40对键值对，且 &#x60;key&#x60; 不超过256字符，&#x60;value&#x60; 不超过16KB，不区分大小写。
+注意：&#x60;key&#x60; 不要以连字符(-)结尾，否则此 &#x60;key&#x60; 不生效。
+  optional
+      * @param {array} [opts.userdata] - 自定义脚本。
+目前仅支持启动脚本，即 &#x60;launch-script&#x60;，须Base64编码且编码前数据长度不能超过16KB。
+**linux系统**：支持bash和python，编码前须分别以 &#x60;#!/bin/bash&#x60; 和 &#x60;#!/usr/bin/env python&#x60; 作为内容首行。
+**Windows系统**：支持 &#x60;bat&#x60; 和 &#x60;powershell&#x60;，编码前须分别以 &#x60;&lt;cmd&gt;&lt;/cmd&gt;和&lt;powershell&gt;&lt;/powershell&gt;&#x60; 作为内容首、尾行。
   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -4898,7 +5401,7 @@ launch-script：windows系统支持bat和powershell，编码前须分别以 &lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -4971,23 +5474,35 @@ launch-script：windows系统支持bat和powershell，编码前须分别以 &lt;
   }
 
   /**
-      *  批量查询云主机用户自定义元数据
+      *
+批量查询云主机用户自定义元数据。
+
+详细操作说明请参考帮助文档：[自定义元数据](https://docs.jdcloud.com/cn/virtual-machines/userdata)
+
+## 接口说明
+- 使用 &#x60;filters&#x60; 过滤器进行条件筛选，每个 &#x60;filter&#x60; 之间的关系为逻辑与（AND）的关系。
+- 单次查询最大可查询10台云主机实例自定义元数据。
+
       * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
-      * @param {integer} [opts.pageSize] - 分页大小；默认为10；取值范围[1, 10]  optional
-      * @param {filter} [opts.filters] - instanceId - 云主机ID，精确匹配，支持多个
-privateIpAddress - 主网卡内网主IP地址，模糊匹配，支持多个
-vpcId - 私有网络ID，精确匹配，支持多个
-status - 云主机状态，精确匹配，支持多个，&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/vm_status&quot;&gt;参考云主机状态&lt;/a&gt;
-imageId - 镜像ID，精确匹配，支持多个
-networkInterfaceId - 弹性网卡ID，精确匹配，支持多个
-subnetId - 子网ID，精确匹配，支持多个
+      * @param {integer} [opts.pageNumber] - 页码；默认为1。  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认为10；取值范围[1, 10]。  optional
+      * @param {filter} [opts.filters] - &lt;b&gt;filters 中支持使用以下关键字进行过滤&lt;/b&gt;
+&#x60;instanceId&#x60;: 云主机ID，精确匹配，支持多个
+&#x60;privateIpAddress&#x60;: 主网卡内网主IP地址，模糊匹配，支持多个
+&#x60;vpcId&#x60;: 私有网络ID，精确匹配，支持多个
+&#x60;status&#x60;: 云主机状态，精确匹配，支持多个，参考 [云主机状态](https://docs.jdcloud.com/virtual-machines/api/vm_status)
+&#x60;name&#x60;: 云主机名称，模糊匹配，支持单个
+&#x60;imageId&#x60;: 镜像ID，精确匹配，支持多个
+&#x60;agId&#x60;: 使用可用组id，支持单个
+&#x60;faultDomain&#x60;: 错误域，支持多个
+&#x60;networkInterfaceId&#x60;: 弹性网卡ID，精确匹配，支持多个
+&#x60;subnetId&#x60;: 子网ID，精确匹配，支持多个
   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       * @param customData customData
-      * @param number totalCount
+      * @param number totalCount  本次查询可匹配到的总记录数，使用者需要结合&#x60;pageNumber&#x60;和&#x60;pageSize&#x60;计算是否可以继续分页。
       */
 
   describeInstancesCustomData (opts, regionId = this.config.regionId, callback) {
@@ -5019,7 +5534,7 @@ subnetId - 子网ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -5092,19 +5607,27 @@ subnetId - 子网ID，精确匹配，支持多个
   }
 
   /**
-      *  查询启动模板列表
+      *
+查询实例模板列表。
+
+详细操作说明请参考帮助文档：[实例模板](https://docs.jdcloud.com/cn/virtual-machines/instance-template-overview)
+
+## 接口说明
+- 使用 &#x60;filters&#x60; 过滤器进行条件筛选，每个 &#x60;filter&#x60; 之间的关系为逻辑与（AND）的关系。
+- 单次查询最大可查询100条实例模板数据。
 
       * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
-      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
-      * @param {filter} [opts.filters] - name - 启动模板名称，模糊匹配，支持多个
-instanceTemplateId - 启动模板ID，精确匹配，支持多个
+      * @param {integer} [opts.pageNumber] - 页码；默认为1。  optional
+      * @param {integer} [opts.pageSize] - 分页大小；&lt;br&gt;默认为20；取值范围[10, 100]。  optional
+      * @param {filter} [opts.filters] - &lt;b&gt;filters 中支持使用以下关键字进行过滤&lt;/b&gt;
+&#x60;name&#x60;: 实例模板名称，模糊匹配，支持多个
+&#x60;instanceTemplateId&#x60;: 实例模板ID，精确匹配，支持多个
   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       * @param instanceTemplate instanceTemplates
-      * @param number totalCount
+      * @param number totalCount  本次查询可匹配到的总记录数，使用者需要结合 &#x60;pageNumber&#x60; 和 &#x60;pageSize&#x60; 计算是否可以继续分页。
       */
 
   describeInstanceTemplates (opts, regionId = this.config.regionId, callback) {
@@ -5136,7 +5659,7 @@ instanceTemplateId - 启动模板ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -5209,19 +5732,30 @@ instanceTemplateId - 启动模板ID，精确匹配，支持多个
   }
 
   /**
-      *  创建一个指定参数的启动模板，启动模板中包含创建云主机时的大部分配置参数，避免每次创建云主机时的重复性工作。&lt;br&gt;
-如果是使用启动模板创建云主机，如果指定了某些参数与模板中的参数相冲突，那么新指定的参数会替换模板中的参数。&lt;br&gt;
-如果是使用启动模板创建云主机，如果指定了镜像ID与模板中的镜像ID不一致，那么模板中的dataDisks参数会失效。&lt;br&gt;
-如果使用高可用组(Ag)创建云主机，那么Ag所关联的模板中的参数都不可以被调整，只能以模板为准。
+      *
+创建实例模板。
+
+实例模板是创建云主机实例的配置信息模板，包括镜像、实例规格、系统盘及数据盘类型和容量、私有网络及子网配置、安全组及登录信息等。实例模板可用于创建实例及用于配置高可用组，创建高可用组时必须指定实例模板。您每次创建实例时无需重新指定实例模板已包括的参数，缩短您的部署时间。
+
+请注意：实例模板一经创建后其属性将不能编辑。
+
+详细操作说明请参考帮助文档：[创建实例模板](https://docs.jdcloud.com/cn/virtual-machines/create-instance-template)
+
+## 接口说明
+- 创建实例模板的限制基本与创建云主机一致，可参考 [创建云主机](https://docs.jdcloud.com/cn/virtual-machines/create-instance-template)。
+- 实例模板中包含创建云主机的大部分配置参数，可以避免每次创建云主机时的重复性配置参数的工作。
+- 使用实例模板创建云主机时，如果再次指定了某些参数，并且与实例模板中的参数相冲突，那么新指定的参数会替换模板中的参数，以新指定的参数为准。
+- 使用实例模板创建云主机时，如果再次指定了镜像ID，并且与模板中的镜像ID不一致，那么模板中的 &#x60;systemDisk&#x60; 和 &#x60;dataDisks&#x60; 配置会失效，以新指定的镜像为准。
+- 如果使用高可用组(Ag)创建云主机，那么Ag所关联的模板中的参数都不可以被调整，只能以模板为准。
 
       * @param {Object} opts - parameters
-      * @param {instanceTemplateSpec} opts.instanceTemplateData - 启动模板的数据
-      * @param {string} opts.name - 启动模板的名称，&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/general_parameters&quot;&gt;参考公共参数规范&lt;/a&gt;。
-      * @param {string} [opts.description] - 启动模板的描述，&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/general_parameters&quot;&gt;参考公共参数规范&lt;/a&gt;。  optional
+      * @param {instanceTemplateSpec} opts.instanceTemplateData - 实例模板配置信息。
+      * @param {string} opts.name - 实例模板的名称，参考 [公共参数规范](https://docs.jdcloud.com/virtual-machines/api/general_parameters)。
+      * @param {string} [opts.description] - 实例模板的描述，参考 [公共参数规范](https://docs.jdcloud.com/virtual-machines/api/general_parameters)。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param string instanceTemplateId
+      * @param string instanceTemplateId  实例模板ID。
       */
 
   createInstanceTemplate (opts, regionId = this.config.regionId, callback) {
@@ -5273,7 +5807,7 @@ instanceTemplateId - 启动模板ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -5346,14 +5880,21 @@ instanceTemplateId - 启动模板ID，精确匹配，支持多个
   }
 
   /**
-      *  查询启动模板详情
+      *
+查询实例模板详情。
+
+详细操作说明请参考帮助文档：[实例模板](https://docs.jdcloud.com/cn/virtual-machines/instance-template-overview)
+
+## 接口说明
+- 该接口与查询实例模板列表返回的信息一致。
+- 只需要查询单个实例模板详细信息的时候可以调用该接口。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceTemplateId - 启动模板ID
+      * @param {string} opts.instanceTemplateId - 实例模板ID。
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param instanceTemplate instanceTemplate
+      * @param instanceTemplate instanceTemplate  响应结果。
       */
 
   describeInstanceTemplate (opts, regionId = this.config.regionId, callback) {
@@ -5388,7 +5929,7 @@ instanceTemplateId - 启动模板ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -5461,12 +6002,18 @@ instanceTemplateId - 启动模板ID，精确匹配，支持多个
   }
 
   /**
-      *  修改一个启动模板的信息，包括名称、描述
+      *
+修改实例模板属性。
+
+详细操作说明请参考帮助文档：[实例模板](https://docs.jdcloud.com/cn/virtual-machines/instance-template-overview)
+
+## 接口说明
+- 该接口只支持修改实例模板的名称或描述。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceTemplateId - 启动模板ID
-      * @param {string} [opts.description] - 模板描述，&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/general_parameters&quot;&gt;参考公共参数规范&lt;/a&gt;。  optional
-      * @param {string} [opts.name] - 模板名称，&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/general_parameters&quot;&gt;参考公共参数规范&lt;/a&gt;。  optional
+      * @param {string} opts.instanceTemplateId - 实例模板ID。
+      * @param {string} opts.name - 实例模板的名称，参考 [公共参数规范](https://docs.jdcloud.com/virtual-machines/api/general_parameters)。
+      * @param {string} [opts.description] - 实例模板的描述，参考 [公共参数规范](https://docs.jdcloud.com/virtual-machines/api/general_parameters)。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -5494,13 +6041,18 @@ instanceTemplateId - 启动模板ID，精确匹配，支持多个
         "Missing the required parameter 'opts.instanceTemplateId' when calling updateInstanceTemplate"
       )
     }
+    if (opts.name === undefined || opts.name === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.name' when calling updateInstanceTemplate"
+      )
+    }
 
     let postBody = {}
-    if (opts.description !== undefined && opts.description !== null) {
-      postBody['description'] = opts.description
-    }
     if (opts.name !== undefined && opts.name !== null) {
       postBody['name'] = opts.name
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
     }
 
     let queryParams = {}
@@ -5511,7 +6063,7 @@ instanceTemplateId - 启动模板ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -5584,10 +6136,16 @@ instanceTemplateId - 启动模板ID，精确匹配，支持多个
   }
 
   /**
-      *  删除一个启动模板
+      *
+删除单个实例模板。
+
+详细操作说明请参考帮助文档：[删除实例模板](https://docs.jdcloud.com/cn/virtual-machines/delete-instance-template)
+
+## 接口说明
+- 关联了高可用组的实例模板不可以删除。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceTemplateId - 启动模板ID
+      * @param {string} opts.instanceTemplateId - 实例模板ID。
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -5625,7 +6183,7 @@ instanceTemplateId - 启动模板ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -5698,10 +6256,16 @@ instanceTemplateId - 启动模板ID，精确匹配，支持多个
   }
 
   /**
-      *  校验启动模板的有效性
+      *
+校验实例模板的有效性。
+
+详细操作说明请参考帮助文档：[实例模板](https://docs.jdcloud.com/cn/virtual-machines/instance-template-overview)
+
+## 接口说明
+- 调用该接口可以校验实例模板是否有效，例如某些关联资源可能已经被删除了，此刻实例模板可能已经失效了。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceTemplateId - 启动模板ID
+      * @param {string} opts.instanceTemplateId - 实例模板ID。
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -5739,7 +6303,7 @@ instanceTemplateId - 启动模板ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -5812,15 +6376,23 @@ instanceTemplateId - 启动模板ID，精确匹配，支持多个
   }
 
   /**
-      *  查询模板自定义元数据
+      *
+查询实例模板上的自定义元数据。
+
+详细操作说明请参考帮助文档：[实例模板](https://docs.jdcloud.com/cn/virtual-machines/instance-template-overview)
+
+## 接口说明
+- 一般情况下由于自定义元数据比较大，所以限制每次最多查询10个实例模板。
 
       * @param {Object} opts - parameters
-      * @param {filter} [opts.filters] - instanceTemplateId - 启动模板ID，精确匹配，支持多个，最多支持10个  optional
+      * @param {filter} [opts.filters] - &lt;b&gt;filters 中支持使用以下关键字进行过滤&lt;/b&gt;
+&#x60;instanceTemplateId&#x60;: 实例模板ID，精确匹配，最多支持10个
+  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       * @param instanceTemplateCustomData instanceTemplatesCustomData
-      * @param number totalCount
+      * @param number totalCount  本次查询的总记录数。
       */
 
   describeInstanceTemplatesCustomdata (
@@ -5850,7 +6422,7 @@ instanceTemplateId - 启动模板ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -5923,19 +6495,29 @@ instanceTemplateId - 启动模板ID，精确匹配，支持多个
   }
 
   /**
-      *  查询实例规格信息列表
+      *
+查询实例规格列表。
+
+详细操作说明请参考帮助文档：[实例规格类型](https://docs.jdcloud.com/cn/virtual-machines/instance-type-family)
+
+## 接口说明
+- 调用该接口可查询全量实例规格信息。
+- 可查询实例规格的CPU、内存大小、可绑定的弹性网卡数量、可挂载的云硬盘数量，是否售卖等信息。
+- GPU 或 本地存储型的规格可查询 GPU型号、GPU卡数量、本地盘数量。
+- 尽量使用过滤器查询关心的实例规格，并适当缓存这些信息。否则全量查询可能响应较慢。
 
       * @param {Object} opts - parameters
-      * @param {string} [opts.serviceName] - 服务类型，取值为{vm、nc}，vm代表虚机、nc代表原生容器  optional
-      * @param {filter} [opts.filters] - instanceTypes - 实例规格，精确匹配，支持多个
-az - 可用区，精确匹配，支持多个
+      * @param {string} [opts.serviceName] - 产品线类型，默认为 &#x60;vm&#x60;。支持范围：&#x60;vm&#x60; 云主机，&#x60;nc&#x60; 原生容器。  optional
+      * @param {filter} [opts.filters] - &lt;b&gt;filters 中支持使用以下关键字进行过滤&lt;/b&gt;
+&#x60;instanceTypes&#x60;: 实例规格，精确匹配，支持多个
+&#x60;az&#x60;: 可用区，精确匹配，支持多个
   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       * @param instanceType instanceTypes
       * @param instanceType specificInstanceTypes
-      * @param integer totalCount  总数量
+      * @param integer totalCount  本次查询到的所有实例规格数量。
       */
 
   describeInstanceTypes (opts, regionId = this.config.regionId, callback) {
@@ -5964,7 +6546,7 @@ az - 可用区，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -6037,19 +6619,26 @@ az - 可用区，精确匹配，支持多个
   }
 
   /**
-      *  批量查询密钥对。&lt;br&gt;
-此接口支持分页查询，默认每页20条。
+      *
+批量查询密钥对。
+
+详细操作说明请参考帮助文档：[密钥概述](https://docs.jdcloud.com/cn/virtual-machines/keypair-overview)
+
+## 接口说明
+- 使用 &#x60;filters&#x60; 过滤器进行条件筛选，每个 &#x60;filter&#x60; 之间的关系为逻辑与（AND）的关系。
+- 单次查询最大可查询100条密钥数据。
 
       * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
-      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
-      * @param {filter} [opts.filters] - keyNames - 密钥对名称，精确匹配，支持多个
+      * @param {integer} [opts.pageNumber] - 页码；默认为1。  optional
+      * @param {integer} [opts.pageSize] - 分页大小；&lt;br&gt;默认为20；取值范围[10, 100]。  optional
+      * @param {filter} [opts.filters] - &lt;b&gt;filters 中支持使用以下关键字进行过滤&lt;/b&gt;
+&#x60;keyNames&#x60;: 密钥对名称，精确匹配，支持多个
   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       * @param keypair keypairs
-      * @param number totalCount  总的数据条数
+      * @param number totalCount  本次查询可匹配到的总记录数，使用者需要结合 &#x60;pageNumber&#x60; 和 &#x60;pageSize&#x60; 计算是否可以继续分页。
       */
 
   describeKeypairs (opts, regionId = this.config.regionId, callback) {
@@ -6081,7 +6670,7 @@ az - 可用区，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -6154,18 +6743,26 @@ az - 可用区，精确匹配，支持多个
   }
 
   /**
-      *  创建ssh密钥对。公钥部分存储在京东云，并返回未加密的 PEM 编码的 PKCS#8 格式私钥，您只有一次机会保存您的私钥。请妥善保管。&lt;br&gt;
-若传入已存在的密钥名称，会返回错误。
+      *
+创建密钥。
+
+公钥和私钥都由京东云生成，公钥保存在京东云，私钥返回给用户，由用户保存。
+
+详细操作说明请参考帮助文档：[创建密钥](https://docs.jdcloud.com/cn/virtual-machines/create-keypair)
+
+## 接口说明
+- 调用该接口创建密钥后，公钥部分存储在京东云，并返回未加密的 &#x60;PEM&#x60; 编码的 &#x60;PKCS#8&#x60; 格式私钥，您只有一次机会保存您的私钥。请妥善保管。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.keyName - 密钥对名称，需要全局唯一。只允许数字、大小写字母、下划线“_”及中划线“-”，不超过32个字符。
+      * @param {string} opts.keyName - 密钥对名称，需要全局唯一。
+只允许数字、大小写字母、下划线“_”及中划线“-”，不超过32个字符。
 
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param string keyName  密钥对名称
-      * @param string privateKey  密钥对的私钥部分，PEM PKCS#8 格式。
-      * @param string keyFingerprint  密钥对的指纹，根据 RFC4716 定义的公钥指纹格式，采用 MD5 信息摘要算法。
+      * @param string keyName  密钥对名称。
+      * @param string privateKey  密钥对的私钥部分，&#x60;PEM PKCS#8&#x60; 格式。
+      * @param string keyFingerprint  密钥对的指纹，根据 &#x60;RFC4716&#x60; 定义的公钥指纹格式，采用 &#x60;MD5&#x60; 信息摘要算法。
       */
 
   createKeypair (opts, regionId = this.config.regionId, callback) {
@@ -6200,7 +6797,7 @@ az - 可用区，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -6273,18 +6870,26 @@ az - 可用区，精确匹配，支持多个
   }
 
   /**
-      *  导入由其他工具生成的密钥对的公钥部分。&lt;br&gt;
-若传入已存在的密钥名称，会返回错误。
+      *
+导入密钥。
+
+与创建密钥不同的是，导入的密钥是由用户生成的。生成之后将公钥部分导入到京东云。
+
+详细操作说明请参考帮助文档：[创建密钥](https://docs.jdcloud.com/cn/virtual-machines/create-keypair)
+
+## 接口说明
+- 调用该接口导入由其他工具生成的密钥对的公钥部分。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.keyName - 密钥对名称，需要全局唯一。只允许数字、大小写字母、下划线“_”及中划线“-”，不超过32个字符。
+      * @param {string} opts.keyName - 密钥对名称，需要全局唯一。
+只允许数字、大小写字母、下划线“_”及中划线“-”，不超过32个字符。
 
-      * @param {string} opts.publicKey - 密钥对的公钥部分
+      * @param {string} opts.publicKey - 密钥对的公钥部分。
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param string keyName  密钥对名称
-      * @param string keyFingerprint  密钥对的指纹，根据 RFC4716 定义的公钥指纹格式，采用 MD5 信息摘要算法。
+      * @param string keyName  密钥对名称。
+      * @param string keyFingerprint  密钥对的指纹，根据 &#x60;RFC4716&#x60; 定义的公钥指纹格式，采用 &#x60;MD5&#x60; 信息摘要算法。
       */
 
   importKeypair (opts, regionId = this.config.regionId, callback) {
@@ -6327,7 +6932,7 @@ az - 可用区，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -6400,10 +7005,17 @@ az - 可用区，精确匹配，支持多个
   }
 
   /**
-      *  删除ssh密钥对。
+      *
+删除密钥。
+
+详细操作说明请参考帮助文档：[删除密钥](https://docs.jdcloud.com/cn/virtual-machines/delete-keypair)
+
+## 接口说明
+- 密钥删除后，使用该密钥的实例仍可正常使用与之匹配的本地私钥登录，且密钥仍会显示在实例详情中。
+- 密钥删除后，与之关联的实例模板将变为不可用，并且与该实例模板关联的高可用组也会变为不可用。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.keyName - 密钥名称
+      * @param {string} opts.keyName - 密钥名称。
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -6438,7 +7050,7 @@ az - 可用区，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -6511,12 +7123,21 @@ az - 可用区，精确匹配，支持多个
   }
 
   /**
-      *  绑定ssh密钥对。
+      *
+为云主机实例绑定密钥。
+
+详细操作说明请参考帮助文档：[绑定密钥](https://docs.jdcloud.com/cn/virtual-machines/bind-keypair)
+
+## 接口说明
+- 只支持为 linux 云主机实例绑定密钥。
+- 每台云主机实例只支持绑定一个密钥。如果云主机绑定的密钥被删除了，那么该云主机还可以再次绑定密钥。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.keyName - 密钥名称
-      * @param {array} [opts.instanceIds] - 虚机Id  optional
-      * @param {string} opts.passWordAuth - 密码授权，绑定密钥后，根据此参数决定是否使用密码登录，&quot;yes&quot;为使用，&quot;no&quot;为不使用
+      * @param {string} opts.keyName - 密钥名称。
+      * @param {array} [opts.instanceIds] - 要绑定的云主机Id列表。  optional
+      * @param {string} opts.passWordAuth - 绑定密钥后，根据此参数决定是否允许使用密码登录。可选范围：
+&#x60;yes&#x60;：允许SSH密码登录。
+&#x60;no&#x60;：禁止SSH密码登录。
 
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -6566,7 +7187,7 @@ az - 可用区，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -6639,11 +7260,17 @@ az - 可用区，精确匹配，支持多个
   }
 
   /**
-      *  解绑ssh密钥对。
+      *
+为云主机实例解绑密钥。
+
+详细操作说明请参考帮助文档：[绑定密钥](https://docs.jdcloud.com/cn/virtual-machines/bind-keypair)
+
+## 接口说明
+- 调用该接口解绑云主机实例中的密钥。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.keyName - 密钥名称
-      * @param {array} [opts.instanceIds] - 虚机Id  optional
+      * @param {string} opts.keyName - 密钥名称。
+      * @param {array} [opts.instanceIds] - 要解绑的云主机实例ID列表。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -6684,7 +7311,7 @@ az - 可用区，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']
@@ -6757,11 +7384,18 @@ az - 可用区，精确匹配，支持多个
   }
 
   /**
-      *  查询配额，支持的类型：云主机、镜像、密钥、模板、镜像共享。
+      *
+查询资源配额。
+
+## 接口说明
+- 调用该接口可查询 &#x60;云主机&#x60;、&#x60;镜像&#x60;、&#x60;密钥&#x60;、&#x60;实例模板&#x60;、&#x60;镜像共享&#x60; 的配额。
 
       * @param {Object} opts - parameters
-      * @param {string} [opts.imageId] - 私有镜像Id，查询镜像共享(imageShare)配额时，此参数必传  optional
-      * @param {filter} [opts.filters] - resourceTypes - 资源类型，支持多个[instance，keypair，image，instanceTemplate，imageShare]
+      * @param {string} [opts.imageId] - 私有镜像Id。
+查询镜像共享 &#x60;imageShare&#x60; 的配额时，此参数必传。
+  optional
+      * @param {filter} [opts.filters] - &lt;b&gt;filters 中支持使用以下关键字进行过滤&lt;/b&gt;
+&#x60;resourceTypes&#x60;: 资源类型，支持多个，可选范围：&#x60;instance、keypair、image、instanceTemplate、imageShare&#x60;
   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -6795,7 +7429,7 @@ az - 可用区，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.3.7'
     }
 
     let contentTypes = ['application/json']

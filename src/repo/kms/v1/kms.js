@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * kms service.
- * @version 0.3.1
+ * @version 0.3.3
  */
 
 class KMS extends Service {
@@ -72,7 +72,7 @@ class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.3'
     }
 
     let contentTypes = ['application/json']
@@ -174,7 +174,7 @@ class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.3'
     }
 
     let contentTypes = ['application/json']
@@ -273,7 +273,7 @@ class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.3'
     }
 
     let contentTypes = ['application/json']
@@ -383,7 +383,7 @@ class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.3'
     }
 
     let contentTypes = ['application/json']
@@ -482,7 +482,7 @@ class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.3'
     }
 
     let contentTypes = ['application/json']
@@ -581,7 +581,7 @@ class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.3'
     }
 
     let contentTypes = ['application/json']
@@ -683,7 +683,7 @@ class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.3'
     }
 
     let contentTypes = ['application/json']
@@ -782,7 +782,7 @@ class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.3'
     }
 
     let contentTypes = ['application/json']
@@ -881,7 +881,7 @@ class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.3'
     }
 
     let contentTypes = ['application/json']
@@ -985,7 +985,7 @@ class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.3'
     }
 
     let contentTypes = ['application/json']
@@ -1089,7 +1089,7 @@ class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.3'
     }
 
     let contentTypes = ['application/json']
@@ -1188,7 +1188,7 @@ class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.3'
     }
 
     let contentTypes = ['application/json']
@@ -1292,7 +1292,7 @@ class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.3'
     }
 
     let contentTypes = ['application/json']
@@ -1400,7 +1400,7 @@ class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.3'
     }
 
     let contentTypes = ['application/json']
@@ -1500,7 +1500,7 @@ class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.3'
     }
 
     let contentTypes = ['application/json']
@@ -1607,7 +1607,7 @@ class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.3'
     }
 
     let contentTypes = ['application/json']
@@ -1713,7 +1713,7 @@ class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.3'
     }
 
     let contentTypes = ['application/json']
@@ -1819,7 +1819,7 @@ class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.3'
     }
 
     let contentTypes = ['application/json']
@@ -1928,7 +1928,7 @@ class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.3'
     }
 
     let contentTypes = ['application/json']
@@ -2034,7 +2034,7 @@ class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.3'
     }
 
     let contentTypes = ['application/json']
@@ -2134,7 +2134,7 @@ class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.3'
     }
 
     let contentTypes = ['application/json']
@@ -2236,7 +2236,7 @@ class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.3'
     }
 
     let contentTypes = ['application/json']
@@ -2309,101 +2309,6 @@ class KMS extends Service {
   }
 
   /**
-      *  导入机密
-      * @param {Object} opts - parameters
-      * @param {} [opts.secretPackage] - 密钥包的内容  optional
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  importSecret (opts, callback) {
-    opts = opts || {}
-
-    let postBody = {}
-    if (opts.secretPackage !== undefined && opts.secretPackage !== null) {
-      postBody['secretPackage'] = opts.secretPackage
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: 'jdcloud'
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call importSecret with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/secret:import',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
       *  获取机密详情
       * @param {Object} opts - parameters
       * @param {string} opts.secretId - 机密ID
@@ -2438,7 +2343,7 @@ class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.3'
     }
 
     let contentTypes = ['application/json']
@@ -2546,7 +2451,7 @@ class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.3'
     }
 
     let contentTypes = ['application/json']
@@ -2645,7 +2550,7 @@ class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.3'
     }
 
     let contentTypes = ['application/json']
@@ -2744,7 +2649,7 @@ class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.3'
     }
 
     let contentTypes = ['application/json']
@@ -2842,7 +2747,7 @@ class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.3'
     }
 
     let contentTypes = ['application/json']
@@ -2950,7 +2855,7 @@ class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.3'
     }
 
     let contentTypes = ['application/json']
@@ -3023,105 +2928,6 @@ class KMS extends Service {
   }
 
   /**
-      *  导出机密
-      * @param {Object} opts - parameters
-      * @param {string} opts.secretId - 机密ID
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param string secretPackage  机密包
-      */
-
-  exportSecret (opts, callback) {
-    opts = opts || {}
-
-    if (opts.secretId === undefined || opts.secretId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.secretId' when calling exportSecret"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: 'jdcloud',
-      secretId: opts.secretId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call exportSecret with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/secret/{secretId}:export',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
       *  获取指定机密版本的详细信息
       * @param {Object} opts - parameters
       * @param {string} opts.secretId - 机密ID
@@ -3155,7 +2961,7 @@ class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.3'
     }
 
     let contentTypes = ['application/json']
@@ -3270,7 +3076,7 @@ class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.3'
     }
 
     let contentTypes = ['application/json']
@@ -3376,7 +3182,7 @@ class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.3'
     }
 
     let contentTypes = ['application/json']
@@ -3482,7 +3288,7 @@ class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.3'
     }
 
     let contentTypes = ['application/json']
@@ -3587,7 +3393,7 @@ class KMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kms/0.3.3'
     }
 
     let contentTypes = ['application/json']

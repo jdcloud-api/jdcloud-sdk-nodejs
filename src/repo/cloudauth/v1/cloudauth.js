@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * cloudauth service.
- * @version 1.0.3
+ * @version 1.0.4
  */
 
 class CLOUDAUTH extends Service {
@@ -74,7 +74,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -176,7 +176,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -278,7 +278,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -380,7 +380,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -482,7 +482,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -584,7 +584,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -692,7 +692,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -797,7 +797,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -892,7 +892,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -987,7 +987,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -1101,7 +1101,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -1194,7 +1194,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.4'
     }
 
     let contentTypes = ['application/json']

@@ -23,6 +23,8 @@ module.exports = {
   KAFKA: require('./kafka'),
   DOMAIN: require('./domain'),
   NATIVECONTAINER: require('./nativecontainer'),
+  PRIVATEZONE: require('./privatezone'),
+  STARSHIELD: require('./starshield'),
   REFUND: require('./refund'),
   POD: require('./pod'),
   JKE: require('./jke'),

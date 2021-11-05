@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 合同模板管理接口
- * 电子签章-合同模板管理接口
+ * 私有域名zone
+ * 私有域名zone API
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -25,58 +25,346 @@
 require('../../../lib/node_loader')
 var JDCloud = require('../../../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'cloudsign'
+var serviceId = 'privatezone'
 Service._services[serviceId] = true
 
 /**
- * cloudsign service.
- * @version 1.1.2
+ * privatezone service.
+ * @version 0.0.1
  */
 
-class CLOUDSIGN extends Service {
+class PRIVATEZONE extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
       options._defaultEndpoint.protocol || 'https'
     options._defaultEndpoint.host =
-      options._defaultEndpoint.host || 'cloudsign.jdcloud-api.com'
+      options._defaultEndpoint.host || 'privatezone.jdcloud-api.com'
     options.basePath = '/v1' // 默认要设为空""
     super(serviceId, options)
   }
 
   /**
-      *  获取已签章合同列表
+      *  查询操作日志
+
       * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNumber] - 页码, 默认为1  optional
-      * @param {integer} [opts.pageSize] - 分页大小, 默认为10, 取值范围[10, 100]  optional
-      * @param {string} [opts.contractTitle] - 合同标题  optional
+      * @param {integer} [opts.pageSize] - 页容量，默认10，取值范围(1 - 100)  optional
+      * @param {integer} [opts.pageNumber] - 页序号，默认值1，不能小于1  optional
+      * @param {string} opts.start - 起始时间，格式：UTC时间例如2017-11-10T23:00:00Z
+      * @param {string} opts.end - 结束时间，格式：UTC时间例如2017-11-10T23:00:00Z
+      * @param {string} [opts.keyWord] - 日志模糊匹配的关键词  optional
+      * @param {boolean} [opts.success] - 操作结果 false-&gt;失败 true-&gt;成功  optional
+      * @param {string} [opts.actionType] - 日志类型，支持的类型有：CREATE_ZONE、DELETE_ZONE、LOCK_ZONE、CREATE_RR、MODIFY_RR、DELETE_RR、SET_RR_STATUS、RETRY_RECURSE_ZONE  optional
+      * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param contractInfo contractList
-      * @param integer totalCount  合同数量
+      * @param describeActionLogsRes dataList
+      * @param integer currentCount  当前页记录数量
+      * @param integer totalCount  总记录数量
+      * @param integer totalPage  总页数
       */
 
-  describeContractList (opts, callback) {
+  describeActionLogs (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeActionLogs"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.start === undefined || opts.start === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.start' when calling describeActionLogs"
+      )
+    }
+    if (opts.end === undefined || opts.end === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.end' when calling describeActionLogs"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.start !== undefined && opts.start !== null) {
+      queryParams['start'] = opts.start
+    }
+    if (opts.end !== undefined && opts.end !== null) {
+      queryParams['end'] = opts.end
+    }
+    if (opts.keyWord !== undefined && opts.keyWord !== null) {
+      queryParams['keyWord'] = opts.keyWord
+    }
+    if (opts.success !== undefined && opts.success !== null) {
+      queryParams['success'] = opts.success
+    }
+    if (opts.actionType !== undefined && opts.actionType !== null) {
+      queryParams['actionType'] = opts.actionType
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  privatezone/0.0.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeActionLogs with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/actionLogs',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询实例信息
+
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageSize] - 页容量，默认10，取值范围(1 - 100)  optional
+      * @param {integer} [opts.pageNumber] - 页序号，默认1，不能小于1  optional
+      * @param {string} [opts.instanceId] - 实例ID  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param describeInstancesRes dataList
+      * @param integer currentCount  当前页记录数量
+      * @param integer totalCount  总记录数量
+      * @param integer totalPage  总页数
+      */
+
+  describeInstances (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeInstances"
+      )
+    }
+
     opts = opts || {}
 
     let postBody = null
     let queryParams = {}
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
     if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
       queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.instanceId !== undefined && opts.instanceId !== null) {
+      queryParams['instanceId'] = opts.instanceId
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  privatezone/0.0.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeInstances with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询解析记录
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.zoneId - zone id
+      * @param {string} [opts.hostRecord] - 主机记录左右模糊查询  optional
+      * @param {integer} [opts.pageSize] - 页容量，默认10，取值范围(1 - 100)  optional
+      * @param {integer} [opts.pageNumber] - 页序号，默认1，不能小于1  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param describeResourceRecordsRes dataList
+      * @param integer currentCount  当前页记录数量
+      * @param integer totalCount  总记录数量
+      * @param integer totalPage  总页数
+      */
+
+  describeResourceRecords (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeResourceRecords"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.zoneId === undefined || opts.zoneId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zoneId' when calling describeResourceRecords"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.hostRecord !== undefined && opts.hostRecord !== null) {
+      queryParams['hostRecord'] = opts.hostRecord
     }
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    if (opts.contractTitle !== undefined && opts.contractTitle !== null) {
-      queryParams['contractTitle'] = opts.contractTitle
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
     }
 
     let pathParams = {
-      regionId: 'jdcloud'
+      regionId: regionId,
+      zoneId: opts.zoneId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  privatezone/0.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -106,7 +394,7 @@ class CLOUDSIGN extends Service {
     let returnType = null
 
     this.config.logger(
-      `call describeContractList with params:\npathParams:${JSON.stringify(
+      `call describeResourceRecords with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -119,7 +407,7 @@ class CLOUDSIGN extends Service {
     )
 
     let request = super.makeRequest(
-      '/contract',
+      '/regions/{regionId}/zone/{zoneId}/resourceRecords',
       'GET',
       pathParams,
       queryParams,
@@ -149,42 +437,74 @@ class CLOUDSIGN extends Service {
   }
 
   /**
-      *  合同签章四种方式：
-1. 合同文件 + 印章文件：contractContent + stampContent
-2. 合同文件 + 印章ID：contractContent + stampId
-3. 模板ID + 印章文件：templateId + stampContent
-4. 模板ID + 印章ID：templateId + stampId
+      *  创建解析记录
 
       * @param {Object} opts - parameters
-      * @param {contractSpec} opts.contractSpec
+      * @param {string} opts.zoneId - zone id
+      * @param {} [opts.hostRecord] - 主机记录  optional
+      * @param {} [opts.hostValue] - 主机记录值  optional
+      * @param {} [opts.recordType] - 解析类型，目前支持类型 A AAAA CNAME TXT CAA SRV MX PTR  optional
+      * @param {} [opts.ttl] - TTL值  optional
+      * @param {} [opts.priority] - 优先级，只存在于MX, SRV解析记录类型  optional
+      * @param {} [opts.port] - 端口，只存在于SRV解析记录类型  optional
+      * @param {} [opts.weight] - 解析记录的权重，目前支持权重的有：A/AAAA/CNAME，A/AAAA权重范围0-100，CNAME权重范围1-100。  optional
+      * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param string contractId  新签的合同ID
-      * @param string contractContent  新签的合同文件（base64）
       */
 
-  signContract (opts, callback) {
+  createResourceRecord (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createResourceRecord"
+      )
+    }
+
     opts = opts || {}
 
-    if (opts.contractSpec === undefined || opts.contractSpec === null) {
+    if (opts.zoneId === undefined || opts.zoneId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.contractSpec' when calling signContract"
+        "Missing the required parameter 'opts.zoneId' when calling createResourceRecord"
       )
     }
 
     let postBody = {}
-    if (opts.contractSpec !== undefined && opts.contractSpec !== null) {
-      postBody['contractSpec'] = opts.contractSpec
+    if (opts.hostRecord !== undefined && opts.hostRecord !== null) {
+      postBody['hostRecord'] = opts.hostRecord
+    }
+    if (opts.hostValue !== undefined && opts.hostValue !== null) {
+      postBody['hostValue'] = opts.hostValue
+    }
+    if (opts.recordType !== undefined && opts.recordType !== null) {
+      postBody['recordType'] = opts.recordType
+    }
+    if (opts.ttl !== undefined && opts.ttl !== null) {
+      postBody['ttl'] = opts.ttl
+    }
+    if (opts.priority !== undefined && opts.priority !== null) {
+      postBody['priority'] = opts.priority
+    }
+    if (opts.port !== undefined && opts.port !== null) {
+      postBody['port'] = opts.port
+    }
+    if (opts.weight !== undefined && opts.weight !== null) {
+      postBody['weight'] = opts.weight
     }
 
     let queryParams = {}
 
     let pathParams = {
-      regionId: 'jdcloud'
+      regionId: regionId,
+      zoneId: opts.zoneId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  privatezone/0.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -214,7 +534,7 @@ class CLOUDSIGN extends Service {
     let returnType = null
 
     this.config.logger(
-      `call signContract with params:\npathParams:${JSON.stringify(
+      `call createResourceRecord with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -227,7 +547,7 @@ class CLOUDSIGN extends Service {
     )
 
     let request = super.makeRequest(
-      '/contract',
+      '/regions/{regionId}/zone/{zoneId}/resourceRecords',
       'POST',
       pathParams,
       queryParams,
@@ -257,151 +577,81 @@ class CLOUDSIGN extends Service {
   }
 
   /**
-      *  1. 下载已签章的合同
-2. 多个合同id用逗号分隔
- [MFA enabled]
+      *  修改解析记录
+
       * @param {Object} opts - parameters
-      * @param {string} opts.contractId - 合同ID
+      * @param {string} opts.zoneId - zone id
+      * @param {string} opts.resourceRecordId - 解析记录ID
+      * @param {} [opts.hostRecord] - 主机记录  optional
+      * @param {} [opts.hostValue] - 主机记录值  optional
+      * @param {} [opts.recordType] - 解析类型，目前支持类型 A AAAA CNAME TXT CAA SRV MX PTR  optional
+      * @param {} [opts.ttl] - TTL值  optional
+      * @param {} [opts.priority] - 优先级，只存在于MX, SRV解析记录类型  optional
+      * @param {} [opts.port] - 端口，只存在于SRV解析记录类型  optional
+      * @param {} [opts.weight] - 解析记录的权重，目前支持权重的有：A/AAAA/CNAME，A/AAAA权重范围0-100，CNAME权重范围1-100。  optional
+      * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param contractInfo contractList
-      * @param integer totalCount  合同数量
       */
 
-  downloadContracts (opts, callback) {
-    opts = opts || {}
+  modifyResourceRecord (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
 
-    if (opts.contractId === undefined || opts.contractId === null) {
+    if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.contractId' when calling downloadContracts"
+        "Missing the required parameter 'regionId' when calling  modifyResourceRecord"
       )
     }
 
-    let postBody = null
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: 'jdcloud',
-      contractId: opts.contractId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.2'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call downloadContracts with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/contract/{contractId}',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  验签已签章合同
-      * @param {Object} opts - parameters
-      * @param {string} opts.contractId - 合同ID
-      * @param {contractVerifySpec} opts.contractVerifySpec
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param verifyInfo verifyInfo
-      */
-
-  verifyContract (opts, callback) {
     opts = opts || {}
 
-    if (opts.contractId === undefined || opts.contractId === null) {
+    if (opts.zoneId === undefined || opts.zoneId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.contractId' when calling verifyContract"
+        "Missing the required parameter 'opts.zoneId' when calling modifyResourceRecord"
       )
     }
-    if (
-      opts.contractVerifySpec === undefined ||
-      opts.contractVerifySpec === null
-    ) {
+    if (opts.resourceRecordId === undefined || opts.resourceRecordId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.contractVerifySpec' when calling verifyContract"
+        "Missing the required parameter 'opts.resourceRecordId' when calling modifyResourceRecord"
       )
     }
 
     let postBody = {}
-    if (
-      opts.contractVerifySpec !== undefined &&
-      opts.contractVerifySpec !== null
-    ) {
-      postBody['contractVerifySpec'] = opts.contractVerifySpec
+    if (opts.hostRecord !== undefined && opts.hostRecord !== null) {
+      postBody['hostRecord'] = opts.hostRecord
+    }
+    if (opts.hostValue !== undefined && opts.hostValue !== null) {
+      postBody['hostValue'] = opts.hostValue
+    }
+    if (opts.recordType !== undefined && opts.recordType !== null) {
+      postBody['recordType'] = opts.recordType
+    }
+    if (opts.ttl !== undefined && opts.ttl !== null) {
+      postBody['ttl'] = opts.ttl
+    }
+    if (opts.priority !== undefined && opts.priority !== null) {
+      postBody['priority'] = opts.priority
+    }
+    if (opts.port !== undefined && opts.port !== null) {
+      postBody['port'] = opts.port
+    }
+    if (opts.weight !== undefined && opts.weight !== null) {
+      postBody['weight'] = opts.weight
     }
 
     let queryParams = {}
 
     let pathParams = {
-      regionId: 'jdcloud',
-      contractId: opts.contractId
+      regionId: regionId,
+      zoneId: opts.zoneId,
+      resourceRecordId: opts.resourceRecordId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  privatezone/0.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -431,7 +681,7 @@ class CLOUDSIGN extends Service {
     let returnType = null
 
     this.config.logger(
-      `call verifyContract with params:\npathParams:${JSON.stringify(
+      `call modifyResourceRecord with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -444,8 +694,8 @@ class CLOUDSIGN extends Service {
     )
 
     let request = super.makeRequest(
-      '/contract/{contractId}',
-      'POST',
+      '/regions/{regionId}/zone/{zoneId}/resourceRecord/{resourceRecordId}',
+      'PUT',
       pathParams,
       queryParams,
       headerParams,
@@ -474,19 +724,38 @@ class CLOUDSIGN extends Service {
   }
 
   /**
-      *  删除已签章的合同 [MFA enabled]
+      *  删除解析记录。批量删除时多个resourceRecordId用&quot;,&quot;分隔。批量删除每次最多不超过100个记录
+
       * @param {Object} opts - parameters
-      * @param {string} opts.contractId - 合同ID
+      * @param {string} opts.zoneId - zone id
+      * @param {string} opts.resourceRecordId - 解析记录ID
+      * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       */
 
-  deleteContract (opts, callback) {
+  deleteResourceRecords (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteResourceRecords"
+      )
+    }
+
     opts = opts || {}
 
-    if (opts.contractId === undefined || opts.contractId === null) {
+    if (opts.zoneId === undefined || opts.zoneId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.contractId' when calling deleteContract"
+        "Missing the required parameter 'opts.zoneId' when calling deleteResourceRecords"
+      )
+    }
+    if (opts.resourceRecordId === undefined || opts.resourceRecordId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.resourceRecordId' when calling deleteResourceRecords"
       )
     }
 
@@ -494,12 +763,13 @@ class CLOUDSIGN extends Service {
     let queryParams = {}
 
     let pathParams = {
-      regionId: 'jdcloud',
-      contractId: opts.contractId
+      regionId: regionId,
+      zoneId: opts.zoneId,
+      resourceRecordId: opts.resourceRecordId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  privatezone/0.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -529,7 +799,7 @@ class CLOUDSIGN extends Service {
     let returnType = null
 
     this.config.logger(
-      `call deleteContract with params:\npathParams:${JSON.stringify(
+      `call deleteResourceRecords with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -542,7 +812,7 @@ class CLOUDSIGN extends Service {
     )
 
     let request = super.makeRequest(
-      '/contract/{contractId}',
+      '/regions/{regionId}/zone/{zoneId}/resourceRecords/{resourceRecordId}',
       'DELETE',
       pathParams,
       queryParams,
@@ -572,30 +842,62 @@ class CLOUDSIGN extends Service {
   }
 
   /**
-      *  查询服务开通状态
+      *  设置解析记录状态，STOP操作会将停止该记录的解析，直到再次START。批量设置时多个resourceRecordId用&quot;,&quot;分隔。批量设置时每次最多不超过100个记录
+
       * @param {Object} opts - parameters
+      * @param {string} opts.zoneId - zone id
+      * @param {string} opts.resourceRecordId - 解析记录ID
+      * @param {string} opts.status - 解析记录状态 START-&gt;正常解析 STOP-&gt;停止解析
+      * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param string pin  用户pin
-      * @param integer usedCapacity  已用存储容量
-      * @param integer status  当前服务状态(0 未开通 1 开通中 2 正常 3 停服)
-      * @param boolean contractSaving  是否开启合同托管
-      * @param string kmsKeyId  签章系统所用的托管密钥
-      * @param string applyTime  申请开通服务时间
       */
 
-  describeApplyStatus (opts, callback) {
+  setResourceRecordsStatus (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  setResourceRecordsStatus"
+      )
+    }
+
     opts = opts || {}
 
-    let postBody = null
+    if (opts.zoneId === undefined || opts.zoneId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zoneId' when calling setResourceRecordsStatus"
+      )
+    }
+    if (opts.resourceRecordId === undefined || opts.resourceRecordId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.resourceRecordId' when calling setResourceRecordsStatus"
+      )
+    }
+    if (opts.status === undefined || opts.status === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.status' when calling setResourceRecordsStatus"
+      )
+    }
+
+    let postBody = {}
+    if (opts.status !== undefined && opts.status !== null) {
+      postBody['status'] = opts.status
+    }
+
     let queryParams = {}
 
     let pathParams = {
-      regionId: 'jdcloud'
+      regionId: regionId,
+      zoneId: opts.zoneId,
+      resourceRecordId: opts.resourceRecordId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  privatezone/0.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -625,7 +927,7 @@ class CLOUDSIGN extends Service {
     let returnType = null
 
     this.config.logger(
-      `call describeApplyStatus with params:\npathParams:${JSON.stringify(
+      `call setResourceRecordsStatus with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -638,7 +940,119 @@ class CLOUDSIGN extends Service {
     )
 
     let request = super.makeRequest(
-      '/manage:applyStatus',
+      '/regions/{regionId}/zone/{zoneId}/resourceRecords/{resourceRecordId}/status',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  导出当前zone下所有解析记录，返回的数据是可以转换为csv文件格式的字符串
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.zoneId - zone id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string data  导出数据结果，此结果是可以存储为csv文件格式的字符串
+      */
+
+  exportResourceRecords (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  exportResourceRecords"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.zoneId === undefined || opts.zoneId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zoneId' when calling exportResourceRecords"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      zoneId: opts.zoneId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  privatezone/0.0.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call exportResourceRecords with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/zone/{zoneId}/resourceRecords:export',
       'GET',
       pathParams,
       queryParams,
@@ -668,828 +1082,61 @@ class CLOUDSIGN extends Service {
   }
 
   /**
-      *  启用合同存管
+      *  批量导入解析记录，批量导入每次不可超过100条记录
+
       * @param {Object} opts - parameters
+      * @param {string} opts.zoneId - zone id
+      * @param {array} opts.importResourceRecordsReq - 导入的解析记录数据
+      * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       */
 
-  enableContractSave (opts, callback) {
-    opts = opts || {}
-
-    let postBody = {}
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: 'jdcloud'
+  importResourceRecords (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
     }
 
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.2'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call enableContractSave with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/manage:enableContractSave',
-      'PATCH',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  禁用合同存管
-      * @param {Object} opts - parameters
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  disableContractSave (opts, callback) {
-    opts = opts || {}
-
-    let postBody = {}
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: 'jdcloud'
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.2'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call disableContractSave with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/manage:disableContractSave',
-      'PATCH',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  签章系统加密密钥 [MFA enabled]
-      * @param {Object} opts - parameters
-      * @param {} [opts.keyId] - KmsKeyId  optional
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  setKmsKeyId (opts, callback) {
-    opts = opts || {}
-
-    let postBody = {}
-    if (opts.keyId !== undefined && opts.keyId !== null) {
-      postBody['keyId'] = opts.keyId
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: 'jdcloud'
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.2'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call setKmsKeyId with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/manage:setKmsKeyId',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  获取印章列表
-      * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNumber] - 页码, 默认为1  optional
-      * @param {integer} [opts.pageSize] - 分页大小, 默认为10, 取值范围[10, 100]  optional
-      * @param {string} [opts.stampName] - 印章名称  optional
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param stampInfo stampList
-      * @param integer totalCount  印章的数量
-      */
-
-  describeStampList (opts, callback) {
-    opts = opts || {}
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
-      queryParams['pageNumber'] = opts.pageNumber
-    }
-    if (opts.pageSize !== undefined && opts.pageSize !== null) {
-      queryParams['pageSize'] = opts.pageSize
-    }
-    if (opts.stampName !== undefined && opts.stampName !== null) {
-      queryParams['stampName'] = opts.stampName
-    }
-
-    let pathParams = {
-      regionId: 'jdcloud'
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.2'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeStampList with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/stamp',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  上传印章
-      * @param {Object} opts - parameters
-      * @param {stampSpec} opts.stampSpec
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param string stampId  印章ID
-      */
-
-  uploadStamp (opts, callback) {
-    opts = opts || {}
-
-    if (opts.stampSpec === undefined || opts.stampSpec === null) {
+    if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.stampSpec' when calling uploadStamp"
+        "Missing the required parameter 'regionId' when calling  importResourceRecords"
       )
     }
 
-    let postBody = {}
-    if (opts.stampSpec !== undefined && opts.stampSpec !== null) {
-      postBody['stampSpec'] = opts.stampSpec
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: 'jdcloud'
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.2'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call uploadStamp with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/stamp',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  1. 下载印章
-2. 多个印章id用逗号分隔
- [MFA enabled]
-      * @param {Object} opts - parameters
-      * @param {string} opts.stampId - 印章ID
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  downloadStamps (opts, callback) {
     opts = opts || {}
 
-    if (opts.stampId === undefined || opts.stampId === null) {
+    if (opts.zoneId === undefined || opts.zoneId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.stampId' when calling downloadStamps"
+        "Missing the required parameter 'opts.zoneId' when calling importResourceRecords"
       )
-    }
-
-    let postBody = null
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: 'jdcloud',
-      stampId: opts.stampId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.2'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call downloadStamps with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/stamp/{stampId}',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  删除印章 [MFA enabled]
-      * @param {Object} opts - parameters
-      * @param {string} opts.stampId - 印章ID
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  deleteStamp (opts, callback) {
-    opts = opts || {}
-
-    if (opts.stampId === undefined || opts.stampId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.stampId' when calling deleteStamp"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: 'jdcloud',
-      stampId: opts.stampId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.2'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call deleteStamp with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/stamp/{stampId}',
-      'DELETE',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  获取合同模板列表
-      * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNumber] - 页码, 默认为1  optional
-      * @param {integer} [opts.pageSize] - 分页大小, 默认为10, 取值范围[10, 100]  optional
-      * @param {string} [opts.templateNameOrTitle] - 合同模板名称或者标题  optional
-      * @param {string} [opts.templateType] - 模板类型 pdf,word,pdf-auto(不传查所有类型)  optional
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param templateInfo templateList
-      * @param integer totalCount  合同模板数量
-      */
-
-  describeTemplateList (opts, callback) {
-    opts = opts || {}
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
-      queryParams['pageNumber'] = opts.pageNumber
-    }
-    if (opts.pageSize !== undefined && opts.pageSize !== null) {
-      queryParams['pageSize'] = opts.pageSize
     }
     if (
-      opts.templateNameOrTitle !== undefined &&
-      opts.templateNameOrTitle !== null
+      opts.importResourceRecordsReq === undefined ||
+      opts.importResourceRecordsReq === null
     ) {
-      queryParams['templateNameOrTitle'] = opts.templateNameOrTitle
-    }
-    if (opts.templateType !== undefined && opts.templateType !== null) {
-      queryParams['templateType'] = opts.templateType
-    }
-
-    let pathParams = {
-      regionId: 'jdcloud'
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.2'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeTemplateList with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/template',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  上传合同模板
-      * @param {Object} opts - parameters
-      * @param {templateSpec} opts.templateSpec
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param string templateId  合同模板ID
-      */
-
-  uploadTemplate (opts, callback) {
-    opts = opts || {}
-
-    if (opts.templateSpec === undefined || opts.templateSpec === null) {
       throw new Error(
-        "Missing the required parameter 'opts.templateSpec' when calling uploadTemplate"
+        "Missing the required parameter 'opts.importResourceRecordsReq' when calling importResourceRecords"
       )
     }
 
     let postBody = {}
-    if (opts.templateSpec !== undefined && opts.templateSpec !== null) {
-      postBody['templateSpec'] = opts.templateSpec
+    if (
+      opts.importResourceRecordsReq !== undefined &&
+      opts.importResourceRecordsReq !== null
+    ) {
+      postBody['importResourceRecordsReq'] = opts.importResourceRecordsReq
     }
 
     let queryParams = {}
 
     let pathParams = {
-      regionId: 'jdcloud'
+      regionId: regionId,
+      zoneId: opts.zoneId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  privatezone/0.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -1519,7 +1166,7 @@ class CLOUDSIGN extends Service {
     let returnType = null
 
     this.config.logger(
-      `call uploadTemplate with params:\npathParams:${JSON.stringify(
+      `call importResourceRecords with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1532,7 +1179,7 @@ class CLOUDSIGN extends Service {
     )
 
     let request = super.makeRequest(
-      '/template',
+      '/regions/{regionId}/zone/{zoneId}/resourceRecords:import',
       'POST',
       pathParams,
       queryParams,
@@ -1562,34 +1209,67 @@ class CLOUDSIGN extends Service {
   }
 
   /**
-      *  1. 下载合同模板
-2. 多个合同id用逗号分隔
- [MFA enabled]
+      *  统计zone的解析量
+
       * @param {Object} opts - parameters
-      * @param {string} opts.templateId - 合同模板ID
+      * @param {string} opts.start - 查询时间段的起始时间, UTC时间格式，例如2017-11-10T23:00:00Z
+      * @param {string} opts.end - 查询时间段的终止时间, UTC时间格式，例如2017-11-10T23:00:00Z
+      * @param {array} [opts.zoneIds] - 查询的zone id，默认查询所有zone  optional
+      * @param {array} [opts.vpcIds] - 查询的vpc id，默认查询所有vpc  optional
+      * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param integer time
+      * @param integer traffic
       */
 
-  downloadTemplates (opts, callback) {
-    opts = opts || {}
+  zoneResolveCount (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
 
-    if (opts.templateId === undefined || opts.templateId === null) {
+    if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.templateId' when calling downloadTemplates"
+        "Missing the required parameter 'regionId' when calling  zoneResolveCount"
       )
     }
 
-    let postBody = null
+    opts = opts || {}
+
+    if (opts.start === undefined || opts.start === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.start' when calling zoneResolveCount"
+      )
+    }
+    if (opts.end === undefined || opts.end === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.end' when calling zoneResolveCount"
+      )
+    }
+
+    let postBody = {}
+    if (opts.start !== undefined && opts.start !== null) {
+      postBody['start'] = opts.start
+    }
+    if (opts.end !== undefined && opts.end !== null) {
+      postBody['end'] = opts.end
+    }
+    if (opts.zoneIds !== undefined && opts.zoneIds !== null) {
+      postBody['zoneIds'] = opts.zoneIds
+    }
+    if (opts.vpcIds !== undefined && opts.vpcIds !== null) {
+      postBody['vpcIds'] = opts.vpcIds
+    }
+
     let queryParams = {}
 
     let pathParams = {
-      regionId: 'jdcloud',
-      templateId: opts.templateId
+      regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  privatezone/0.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -1619,7 +1299,7 @@ class CLOUDSIGN extends Service {
     let returnType = null
 
     this.config.logger(
-      `call downloadTemplates with params:\npathParams:${JSON.stringify(
+      `call zoneResolveCount with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1632,7 +1312,268 @@ class CLOUDSIGN extends Service {
     )
 
     let request = super.makeRequest(
-      '/template/{templateId}',
+      '/regions/{regionId}/stat:zoneResolveCount',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  统计zone的流量
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.start - 查询时间段的起始时间, UTC时间格式，例如2017-11-10T23:00:00Z
+      * @param {string} opts.end - 查询时间段的终止时间, UTC时间格式，例如2017-11-10T23:00:00Z
+      * @param {array} [opts.zoneIds] - 查询的zone id，默认查询所有zone  optional
+      * @param {array} [opts.vpcIds] - 查询的vpc id，默认查询所有vpc  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer time
+      * @param string unit  数据序列的单位
+      * @param number traffic
+      */
+
+  zoneFlowCount (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  zoneFlowCount"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.start === undefined || opts.start === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.start' when calling zoneFlowCount"
+      )
+    }
+    if (opts.end === undefined || opts.end === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.end' when calling zoneFlowCount"
+      )
+    }
+
+    let postBody = {}
+    if (opts.start !== undefined && opts.start !== null) {
+      postBody['start'] = opts.start
+    }
+    if (opts.end !== undefined && opts.end !== null) {
+      postBody['end'] = opts.end
+    }
+    if (opts.zoneIds !== undefined && opts.zoneIds !== null) {
+      postBody['zoneIds'] = opts.zoneIds
+    }
+    if (opts.vpcIds !== undefined && opts.vpcIds !== null) {
+      postBody['vpcIds'] = opts.vpcIds
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  privatezone/0.0.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call zoneFlowCount with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/stat:zoneFlowCount',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询私有解析zone列表
+
+      * @param {Object} opts - parameters
+      * @param {string} [opts.zone] - zone模块匹配查询  optional
+      * @param {string} [opts.instanceId] - 购买的套餐实例ID  optional
+      * @param {string} [opts.zoneId] - 根据zoneId精准查询(zone模糊查询失效)  optional
+      * @param {integer} [opts.pageSize] - 页容量，默认10，取值范围(1 - 100)  optional
+      * @param {integer} [opts.pageNumber] - 页序号，默认1，不能小于1  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param describeZonesRes dataList
+      * @param integer currentCount  当前页记录数量
+      * @param integer totalCount  总记录数量
+      * @param integer totalPage  总页数
+      */
+
+  describeZones (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeZones"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.zone !== undefined && opts.zone !== null) {
+      queryParams['zone'] = opts.zone
+    }
+    if (opts.instanceId !== undefined && opts.instanceId !== null) {
+      queryParams['instanceId'] = opts.instanceId
+    }
+    if (opts.zoneId !== undefined && opts.zoneId !== null) {
+      queryParams['zoneId'] = opts.zoneId
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  privatezone/0.0.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeZones with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/zones',
       'GET',
       pathParams,
       queryParams,
@@ -1662,43 +1603,77 @@ class CLOUDSIGN extends Service {
   }
 
   /**
-      *  填充合同模板
+      *  - 添加一个私有解析的zone，可添加以下三种类型的zone
+- 云内全局zone：zone的后缀是指定的后缀，如：local。该域名在云内自动全局生效，不用关联vpc即可在vpc内解析，该类型全局唯一，不能重复添加
+- 反向解析zone：zone的后缀是in-addr.arpa时，我们认为他是一个反向解析的zone，反向解析域名前缀目前支持10/172.16-31/192.168网段，如：10.in-addr.arpa、16.172.in-addr.arpa。反向解析的zone只能添加反向解析的记录
+- 私有解析zone：该类型的zone可以时任意符合格式的域名，私有解析zone需要关联vpc后，在vpc内生效解析
+
       * @param {Object} opts - parameters
-      * @param {string} opts.templateId - 合同模板ID
-      * @param {paddingSpec} opts.paddingSpec
+      * @param {string} opts.zone - zone
+      * @param {string} opts.instanceId - 购买的套餐实例ID
+      * @param {string} opts.zoneType - 域名类型 LOCAL-&gt;云内全局 PTR-&gt;反向解析zone PV-&gt;私有zone
+      * @param {boolean} [opts.retryRecurse] - 解析失败后是否进行递归解析  optional
+      * @param {array} [opts.bindVpc] - 绑定的vpc信息  optional
+      * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param string templateId  填充完成的合同模板ID
       */
 
-  paddingTemplate (opts, callback) {
-    opts = opts || {}
+  createZone (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
 
-    if (opts.templateId === undefined || opts.templateId === null) {
+    if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.templateId' when calling paddingTemplate"
+        "Missing the required parameter 'regionId' when calling  createZone"
       )
     }
-    if (opts.paddingSpec === undefined || opts.paddingSpec === null) {
+
+    opts = opts || {}
+
+    if (opts.zone === undefined || opts.zone === null) {
       throw new Error(
-        "Missing the required parameter 'opts.paddingSpec' when calling paddingTemplate"
+        "Missing the required parameter 'opts.zone' when calling createZone"
+      )
+    }
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling createZone"
+      )
+    }
+    if (opts.zoneType === undefined || opts.zoneType === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zoneType' when calling createZone"
       )
     }
 
     let postBody = {}
-    if (opts.paddingSpec !== undefined && opts.paddingSpec !== null) {
-      postBody['paddingSpec'] = opts.paddingSpec
+    if (opts.zone !== undefined && opts.zone !== null) {
+      postBody['zone'] = opts.zone
+    }
+    if (opts.instanceId !== undefined && opts.instanceId !== null) {
+      postBody['instanceId'] = opts.instanceId
+    }
+    if (opts.zoneType !== undefined && opts.zoneType !== null) {
+      postBody['zoneType'] = opts.zoneType
+    }
+    if (opts.retryRecurse !== undefined && opts.retryRecurse !== null) {
+      postBody['retryRecurse'] = opts.retryRecurse
+    }
+    if (opts.bindVpc !== undefined && opts.bindVpc !== null) {
+      postBody['bindVpc'] = opts.bindVpc
     }
 
     let queryParams = {}
 
     let pathParams = {
-      regionId: 'jdcloud',
-      templateId: opts.templateId
+      regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  privatezone/0.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -1728,7 +1703,7 @@ class CLOUDSIGN extends Service {
     let returnType = null
 
     this.config.logger(
-      `call paddingTemplate with params:\npathParams:${JSON.stringify(
+      `call createZone with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1741,8 +1716,8 @@ class CLOUDSIGN extends Service {
     )
 
     let request = super.makeRequest(
-      '/template/{templateId}',
-      'PATCH',
+      '/regions/{regionId}/zones',
+      'POST',
       pathParams,
       queryParams,
       headerParams,
@@ -1771,19 +1746,32 @@ class CLOUDSIGN extends Service {
   }
 
   /**
-      *  删除合同模板 [MFA enabled]
+      *  删除zone，该zone下的解析记录和绑定的vpc关联关系将会被删除
+
       * @param {Object} opts - parameters
-      * @param {string} opts.templateId - 合同模板ID
+      * @param {string} opts.zoneId - zone id
+      * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       */
 
-  deleteTemplate (opts, callback) {
+  deleteZone (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteZone"
+      )
+    }
+
     opts = opts || {}
 
-    if (opts.templateId === undefined || opts.templateId === null) {
+    if (opts.zoneId === undefined || opts.zoneId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.templateId' when calling deleteTemplate"
+        "Missing the required parameter 'opts.zoneId' when calling deleteZone"
       )
     }
 
@@ -1791,12 +1779,12 @@ class CLOUDSIGN extends Service {
     let queryParams = {}
 
     let pathParams = {
-      regionId: 'jdcloud',
-      templateId: opts.templateId
+      regionId: regionId,
+      zoneId: opts.zoneId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  privatezone/0.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -1826,7 +1814,7 @@ class CLOUDSIGN extends Service {
     let returnType = null
 
     this.config.logger(
-      `call deleteTemplate with params:\npathParams:${JSON.stringify(
+      `call deleteZone with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1839,8 +1827,247 @@ class CLOUDSIGN extends Service {
     )
 
     let request = super.makeRequest(
-      '/template/{templateId}',
+      '/regions/{regionId}/zone/{zoneId}',
       'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  解析失败后，尝试递归解析开关
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.zoneId - zone id
+      * @param {boolean} opts.retryRecurse - true-&gt;解析失败后尝试递归解析 false-&gt;解析失败后不进行递归解析
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  retryRecurse (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  retryRecurse"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.zoneId === undefined || opts.zoneId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zoneId' when calling retryRecurse"
+      )
+    }
+    if (opts.retryRecurse === undefined || opts.retryRecurse === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.retryRecurse' when calling retryRecurse"
+      )
+    }
+
+    let postBody = {}
+    if (opts.retryRecurse !== undefined && opts.retryRecurse !== null) {
+      postBody['retryRecurse'] = opts.retryRecurse
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      zoneId: opts.zoneId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  privatezone/0.0.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call retryRecurse with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/zone/{zoneId}:retryRecurse',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  绑定vpc
+- vpc信息为空时，会将之前的绑定关系全部解除
+- 该接口为覆盖类的接口，请将需要的vpc全部进行绑定
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.zoneId - zone id
+      * @param {array} [opts.bindVpc] - 绑定的vpc信息  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  bindVpc (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  bindVpc"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.zoneId === undefined || opts.zoneId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zoneId' when calling bindVpc"
+      )
+    }
+
+    let postBody = {}
+    if (opts.bindVpc !== undefined && opts.bindVpc !== null) {
+      postBody['bindVpc'] = opts.bindVpc
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      zoneId: opts.zoneId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  privatezone/0.0.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call bindVpc with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/zone/{zoneId}/vpc:bind',
+      'PUT',
       pathParams,
       queryParams,
       headerParams,
@@ -1868,4 +2095,4 @@ class CLOUDSIGN extends Service {
     )
   }
 }
-module.exports = CLOUDSIGN
+module.exports = PRIVATEZONE

@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * starshield service.
- * @version 0.0.1
+ * @version 0.0.2
  */
 
 class STARSHIELD extends Service {
@@ -42,6 +42,105 @@ class STARSHIELD extends Service {
       options._defaultEndpoint.host || 'starshield.jdcloud-api.com'
     options.basePath = '/v1' // 默认要设为空""
     super(serviceId, options)
+  }
+
+  /**
+      *  listAvailablePageRuleSetting
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param availablePageRule dataList
+      */
+
+  listAvailablePageRuleSetting (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling listAvailablePageRuleSetting"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call listAvailablePageRuleSetting with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/pagerules$$settings',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
   }
 
   /**
@@ -75,7 +174,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -181,7 +280,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -254,6 +353,356 @@ class STARSHIELD extends Service {
   }
 
   /**
+      *  对于一个特定域，订购一个高级证书包
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {} [opts.ty_pe] - 证书包的类型  optional
+      * @param {} [opts.hosts] - 以逗号分隔的证书包的有效主机名称列表。必须包含域的顶级域名，不得包含50个以上的主机，也不得为空。  optional
+      * @param {} [opts.validation_method] - 为订阅选择的验证方法  optional
+      * @param {} [opts.validity_days] - 为订阅选择的有效日期  optional
+      * @param {} [opts.certificate_authority] - 为该订阅选择的证书颁发机构。选择Let&#39;s Encrypt将减少对其他字段的定制。
+validation_method必须是&#39;txt&#39;，validity_days必须是90，cloudflare_branding必须省略，hosts必须只包含两个条目。
+一个是域名，一个是域名的子域通配符（例如 example.com, *.example.com）。
+  optional
+      * @param {} [opts.cloudflare_branding] - 是否为订阅添加星盾品牌。  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param certificatePack data
+      */
+
+  orderAdvancedCertificateManagerCertificatePack (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling orderAdvancedCertificateManagerCertificatePack"
+      )
+    }
+
+    let postBody = {}
+    if (opts.ty_pe !== undefined && opts.ty_pe !== null) {
+      postBody['ty_pe'] = opts.ty_pe
+    }
+    if (opts.hosts !== undefined && opts.hosts !== null) {
+      postBody['hosts'] = opts.hosts
+    }
+    if (
+      opts.validation_method !== undefined &&
+      opts.validation_method !== null
+    ) {
+      postBody['validation_method'] = opts.validation_method
+    }
+    if (opts.validity_days !== undefined && opts.validity_days !== null) {
+      postBody['validity_days'] = opts.validity_days
+    }
+    if (
+      opts.certificate_authority !== undefined &&
+      opts.certificate_authority !== null
+    ) {
+      postBody['certificate_authority'] = opts.certificate_authority
+    }
+    if (
+      opts.cloudflare_branding !== undefined &&
+      opts.cloudflare_branding !== null
+    ) {
+      postBody['cloudflare_branding'] = opts.cloudflare_branding
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call orderAdvancedCertificateManagerCertificatePack with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/ssl$$certificate_packs$$order',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  域可以使用的可用自定义页面列表
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param customPage dataList
+      */
+
+  listAvailableCustomPages (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling listAvailableCustomPages"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call listAvailableCustomPages with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/custom_pages',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新自定义页面URL
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {string} opts.identifier
+      * @param {} [opts.url] - 与自定义页面关联的URL。  optional
+      * @param {} [opts.state] - 自定义页面状态  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param customPage data
+      */
+
+  updateCustomPageURL (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling updateCustomPageURL"
+      )
+    }
+    if (opts.identifier === undefined || opts.identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.identifier' when calling updateCustomPageURL"
+      )
+    }
+
+    let postBody = {}
+    if (opts.url !== undefined && opts.url !== null) {
+      postBody['url'] = opts.url
+    }
+    if (opts.state !== undefined && opts.state !== null) {
+      postBody['state'] = opts.state
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier,
+      identifier: opts.identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call updateCustomPageURL with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/custom_pages/{identifier}',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  列出、搜索和筛选所有自定义SSL证书。
 
       * @param {Object} opts - parameters
@@ -297,7 +746,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -370,6 +819,129 @@ class STARSHIELD extends Service {
   }
 
   /**
+      *  上载域的新SSL证书
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {} [opts.certificate] - 域的SSL证书或证书以及中间层  optional
+      * @param {} [opts.private_key] - 域的私钥  optional
+      * @param {} [opts.bundle_method] - SSL泛捆绑在各处有着最高的概率被验证，甚至能被使用过时的或不寻常的信任存储的客户端验证。
+最佳捆绑使用最短的认证链和最新的中间证书。
+而强制捆绑会验证证书链，但不以其他方式修改证书链。
+  optional
+      * @param {} [opts.geo_restrictions]   optional
+      * @param {} [opts.ty_pe] - “legacy_custom”类型支持在TLS握手中不包含SNI的传统客户端。  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param customSSL data
+      */
+
+  createSSLConfiguration (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling createSSLConfiguration"
+      )
+    }
+
+    let postBody = {}
+    if (opts.certificate !== undefined && opts.certificate !== null) {
+      postBody['certificate'] = opts.certificate
+    }
+    if (opts.private_key !== undefined && opts.private_key !== null) {
+      postBody['private_key'] = opts.private_key
+    }
+    if (opts.bundle_method !== undefined && opts.bundle_method !== null) {
+      postBody['bundle_method'] = opts.bundle_method
+    }
+    if (opts.geo_restrictions !== undefined && opts.geo_restrictions !== null) {
+      postBody['geo_restrictions'] = opts.geo_restrictions
+    }
+    if (opts.ty_pe !== undefined && opts.ty_pe !== null) {
+      postBody['ty_pe'] = opts.ty_pe
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createSSLConfiguration with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/custom_certificates',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  从域中删除SSL证书。
       * @param {Object} opts - parameters
       * @param {string} opts.zone_identifier
@@ -403,7 +975,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -448,6 +1020,1460 @@ class STARSHIELD extends Service {
     let request = super.makeRequest(
       '/zones/{zone_identifier}/custom_certificates/{identifier}',
       'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  列出、搜索、排序和筛选域的DNS记录。
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {string} [opts.match] - 是否匹配所有搜索要求或至少一个（任何）  optional
+      * @param {string} [opts.name] - DNS record name  optional
+      * @param {string} [opts.order] - 用于排序的字段  optional
+      * @param {number} [opts.page] - 分页结果的页码  optional
+      * @param {number} [opts.per_page] - 每页的DNS记录数  optional
+      * @param {string} [opts.content] - DNS记录内容  optional
+      * @param {string} [opts.type] - DNS记录类型  optional
+      * @param {boolean} [opts.proxied] - DNS记录代理状态  optional
+      * @param {string} [opts.direction] - asc - 升序；desc - 降序  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param dnsRecord dataList
+      */
+
+  listDNSRecords (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling listDNSRecords"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.match !== undefined && opts.match !== null) {
+      queryParams['match'] = opts.match
+    }
+    if (opts.name !== undefined && opts.name !== null) {
+      queryParams['name'] = opts.name
+    }
+    if (opts.order !== undefined && opts.order !== null) {
+      queryParams['order'] = opts.order
+    }
+    if (opts.page !== undefined && opts.page !== null) {
+      queryParams['page'] = opts.page
+    }
+    if (opts.per_page !== undefined && opts.per_page !== null) {
+      queryParams['per_page'] = opts.per_page
+    }
+    if (opts.content !== undefined && opts.content !== null) {
+      queryParams['content'] = opts.content
+    }
+    if (opts.type !== undefined && opts.type !== null) {
+      queryParams['type'] = opts.type
+    }
+    if (opts.proxied !== undefined && opts.proxied !== null) {
+      queryParams['proxied'] = opts.proxied
+    }
+    if (opts.direction !== undefined && opts.direction !== null) {
+      queryParams['direction'] = opts.direction
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call listDNSRecords with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/dns_records',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建DNS记录
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {} [opts.ty_pe] - DNS记录类型  optional
+      * @param {} opts.name - DNS记录名称
+      * @param {} opts.content - DNS记录内容
+      * @param {} opts.ttl - DNS记录的生存时间。值为1是 &quot;自动&quot;。
+      * @param {} [opts.priority] - 与一些记录如MX和SRV一起使用，以确定优先级。如果你没有为MX记录提供一个优先级，默认值为0将被设置。  optional
+      * @param {} [opts.proxied] - 是否利用星盾的性能和安全优势  optional
+      * @param {} [opts.srvData]   optional
+      * @param {} [opts.caaData]   optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param dnsRecord data
+      */
+
+  createDNSRecord (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling createDNSRecord"
+      )
+    }
+    if (opts.name === undefined || opts.name === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.name' when calling createDNSRecord"
+      )
+    }
+    if (opts.content === undefined || opts.content === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.content' when calling createDNSRecord"
+      )
+    }
+    if (opts.ttl === undefined || opts.ttl === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.ttl' when calling createDNSRecord"
+      )
+    }
+
+    let postBody = {}
+    if (opts.ty_pe !== undefined && opts.ty_pe !== null) {
+      postBody['ty_pe'] = opts.ty_pe
+    }
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.content !== undefined && opts.content !== null) {
+      postBody['content'] = opts.content
+    }
+    if (opts.ttl !== undefined && opts.ttl !== null) {
+      postBody['ttl'] = opts.ttl
+    }
+    if (opts.priority !== undefined && opts.priority !== null) {
+      postBody['priority'] = opts.priority
+    }
+    if (opts.proxied !== undefined && opts.proxied !== null) {
+      postBody['proxied'] = opts.proxied
+    }
+    if (opts.srvData !== undefined && opts.srvData !== null) {
+      postBody['srvData'] = opts.srvData
+    }
+    if (opts.caaData !== undefined && opts.caaData !== null) {
+      postBody['caaData'] = opts.caaData
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createDNSRecord with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/dns_records',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  updateDNSRecord
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {string} opts.identifier
+      * @param {} [opts.ty_pe] - DNS记录类型  optional
+      * @param {} opts.name - DNS记录名称
+      * @param {} opts.content - DNS记录内容
+      * @param {} opts.ttl - DNS记录的生存时间。值为1是 &quot;自动&quot;。
+      * @param {} [opts.proxied] - 是否利用星盾的性能和安全优势  optional
+      * @param {} [opts.priority] - 如果是MX记录，该属性是必需的  optional
+      * @param {} [opts.srvData]   optional
+      * @param {} [opts.caaData]   optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param dnsRecord data
+      */
+
+  updateDNSRecord (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling updateDNSRecord"
+      )
+    }
+    if (opts.identifier === undefined || opts.identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.identifier' when calling updateDNSRecord"
+      )
+    }
+    if (opts.name === undefined || opts.name === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.name' when calling updateDNSRecord"
+      )
+    }
+    if (opts.content === undefined || opts.content === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.content' when calling updateDNSRecord"
+      )
+    }
+    if (opts.ttl === undefined || opts.ttl === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.ttl' when calling updateDNSRecord"
+      )
+    }
+
+    let postBody = {}
+    if (opts.ty_pe !== undefined && opts.ty_pe !== null) {
+      postBody['ty_pe'] = opts.ty_pe
+    }
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.content !== undefined && opts.content !== null) {
+      postBody['content'] = opts.content
+    }
+    if (opts.ttl !== undefined && opts.ttl !== null) {
+      postBody['ttl'] = opts.ttl
+    }
+    if (opts.proxied !== undefined && opts.proxied !== null) {
+      postBody['proxied'] = opts.proxied
+    }
+    if (opts.priority !== undefined && opts.priority !== null) {
+      postBody['priority'] = opts.priority
+    }
+    if (opts.srvData !== undefined && opts.srvData !== null) {
+      postBody['srvData'] = opts.srvData
+    }
+    if (opts.caaData !== undefined && opts.caaData !== null) {
+      postBody['caaData'] = opts.caaData
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier,
+      identifier: opts.identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call updateDNSRecord with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/dns_records/{identifier}',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  deleteDNSRecord
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {string} opts.identifier
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string data
+      */
+
+  deleteDNSRecord (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling deleteDNSRecord"
+      )
+    }
+    if (opts.identifier === undefined || opts.identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.identifier' when calling deleteDNSRecord"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier,
+      identifier: opts.identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteDNSRecord with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/dns_records/{identifier}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建新过滤器
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {} [opts.filters]   optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param filter dataList
+      */
+
+  createFilters (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling createFilters"
+      )
+    }
+
+    let postBody = {}
+    if (opts.filters !== undefined && opts.filters !== null) {
+      postBody['filters'] = opts.filters
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createFilters with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/filters',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新一个现有的筛选器。
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {string} opts.id
+      * @param {} [opts.expression] - 要使用的筛选器表达式  optional
+      * @param {} [opts.paused] - 此筛选器当前是否已暂停  optional
+      * @param {} [opts.description] - 可用于描述过滤器用途的注释  optional
+      * @param {} [opts.ref] - 短引用标记，用于快速选择相关规则。  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param filter data
+      */
+
+  updateIndividualFilter (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling updateIndividualFilter"
+      )
+    }
+    if (opts.id === undefined || opts.id === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.id' when calling updateIndividualFilter"
+      )
+    }
+
+    let postBody = {}
+    if (opts.expression !== undefined && opts.expression !== null) {
+      postBody['expression'] = opts.expression
+    }
+    if (opts.paused !== undefined && opts.paused !== null) {
+      postBody['paused'] = opts.paused
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+    if (opts.ref !== undefined && opts.ref !== null) {
+      postBody['ref'] = opts.ref
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier,
+      id: opts.id
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call updateIndividualFilter with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/filters/{id}',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  列出当前定义的所有防火墙规则。
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {string} [opts.id] - 防火墙规则标识符  optional
+      * @param {string} [opts.description] - 描述中不区分大小写的搜索  optional
+      * @param {string} [opts.action] - 规则操作上的精确匹配  optional
+      * @param {boolean} [opts.paused] - 此防火墙规则当前是否已暂停。  optional
+      * @param {number} [opts.page] - 分页结果的页码  optional
+      * @param {number} [opts.per_page] - 每页的防火墙规则数  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param firewallRule dataList
+      */
+
+  listOfFirewallRules (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling listOfFirewallRules"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.id !== undefined && opts.id !== null) {
+      queryParams['id'] = opts.id
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      queryParams['description'] = opts.description
+    }
+    if (opts.action !== undefined && opts.action !== null) {
+      queryParams['action'] = opts.action
+    }
+    if (opts.paused !== undefined && opts.paused !== null) {
+      queryParams['paused'] = opts.paused
+    }
+    if (opts.page !== undefined && opts.page !== null) {
+      queryParams['page'] = opts.page
+    }
+    if (opts.per_page !== undefined && opts.per_page !== null) {
+      queryParams['per_page'] = opts.per_page
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call listOfFirewallRules with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/firewall$$rules',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建新的防火墙规则。
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {} [opts.firewallRules]   optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param firewallRule dataList
+      */
+
+  createFirewallRules (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling createFirewallRules"
+      )
+    }
+
+    let postBody = {}
+    if (opts.firewallRules !== undefined && opts.firewallRules !== null) {
+      postBody['firewallRules'] = opts.firewallRules
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createFirewallRules with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/firewall$$rules',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新一个单独的现有防火墙规则。
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {string} opts.id
+      * @param {} [opts.action] - 应用于匹配请求的行动。注意，行动 &quot;log &quot;只适用于企业客户。  optional
+      * @param {} [opts.filter]   optional
+      * @param {} [opts.products]   optional
+      * @param {} [opts.priority] - 规则的优先级，允许控制处理顺序。一个较小的数字表示高优先级。如果不提供，任何有优先权的规则将在没有优先权的规则之前排序。  optional
+      * @param {} [opts.paused] - 此防火墙规则当前是否已暂停。  optional
+      * @param {} [opts.ref] - 短引用标记，用于快速选择相关规则。  optional
+      * @param {} [opts.action_parameters]   optional
+      * @param {} [opts.description] - 对规则的描述，以帮助识别它。  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param firewallRule data
+      */
+
+  updateIndividualFirewallRule (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling updateIndividualFirewallRule"
+      )
+    }
+    if (opts.id === undefined || opts.id === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.id' when calling updateIndividualFirewallRule"
+      )
+    }
+
+    let postBody = {}
+    if (opts.action !== undefined && opts.action !== null) {
+      postBody['action'] = opts.action
+    }
+    if (opts.filter !== undefined && opts.filter !== null) {
+      postBody['filter'] = opts.filter
+    }
+    if (opts.products !== undefined && opts.products !== null) {
+      postBody['products'] = opts.products
+    }
+    if (opts.priority !== undefined && opts.priority !== null) {
+      postBody['priority'] = opts.priority
+    }
+    if (opts.paused !== undefined && opts.paused !== null) {
+      postBody['paused'] = opts.paused
+    }
+    if (opts.ref !== undefined && opts.ref !== null) {
+      postBody['ref'] = opts.ref
+    }
+    if (
+      opts.action_parameters !== undefined &&
+      opts.action_parameters !== null
+    ) {
+      postBody['action_parameters'] = opts.action_parameters
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier,
+      id: opts.id
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call updateIndividualFirewallRule with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/firewall$$rules/{id}',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除现有防火墙规则。
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {string} opts.id
+      * @param {boolean} [opts.delete_filter_if_unused]   optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param firewallRule data
+      */
+
+  deleteIndividualFirewallRules (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling deleteIndividualFirewallRules"
+      )
+    }
+    if (opts.id === undefined || opts.id === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.id' when calling deleteIndividualFirewallRules"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (
+      opts.delete_filter_if_unused !== undefined &&
+      opts.delete_filter_if_unused !== null
+    ) {
+      queryParams['delete_filter_if_unused'] = opts.delete_filter_if_unused
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier,
+      id: opts.id
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteIndividualFirewallRules with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/firewall$$rules/{id}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询Bot开启状态
+      * @param {Object} opts - parameters
+      * @param {string} opts.zoneId
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string zoneId  zone id
+      * @param string instanceId  套餐实例id
+      * @param string subscriptionType  订阅类型
+      * @param string subscriptionId  订阅id
+      * @param string switchStatus  开关状态
+      */
+
+  describeBotStatus (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zoneId === undefined || opts.zoneId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zoneId' when calling describeBotStatus"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zoneId: opts.zoneId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeBotStatus with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/bot/{zoneId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  开启BOT
+      * @param {Object} opts - parameters
+      * @param {string} opts.zoneId
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean success  操作是否成功
+      */
+
+  openFirewallBot (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zoneId === undefined || opts.zoneId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zoneId' when calling openFirewallBot"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zoneId: opts.zoneId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call openFirewallBot with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/bot/{zoneId}',
+      'POST',
       pathParams,
       queryParams,
       headerParams,
@@ -521,7 +2547,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -596,8 +2622,22 @@ class STARSHIELD extends Service {
   /**
       *  创建套餐实例
       * @param {Object} opts - parameters
-      * @param {} [opts.chargeMode] - 计费模式（CONFIG、FLOW、MONTHLY、ONCE）  optional
-      * @param {} [opts.packType] - 套餐类型（FREE、BASIC、PROFESSIONAL、ENTERPRISE、ULTIMATE、SMB_BASIC、SMB_BUSINESS）  optional
+      * @param {} [opts.chargeMode] - 计费模式（CONFIG、FLOW、MONTHLY、ONCE）
+CONFIG 按配置
+FLOW 按用量
+MONTHLY 包年包月
+ONCE 一次性
+  optional
+      * @param {} [opts.packType] - 套餐类型（BASIC、PROFESSIONAL、ENTERPRISE、ULTIMATE、SMB_EXPERIENCE、SMB_BASIC、SMB_BUSINESS）
+BASIC 包年包月 基础版
+PROFESSIONAL 包年包月 专业版
+ENTERPRISE 包年包月 企业版
+ULTIMATE 包年包月 旗舰版
+--------------------------
+SMB_EXPERIENCE 按流量 体验版
+SMB_BASIC 按流量 基础版
+SMB_BUSINESS 按流量 商业版
+  optional
       * @param {} [opts.zonePackNum] - 域名增量包数量  optional
       * @param {} [opts.duration] - 计费时长  optional
       * @param {} [opts.durationUnit] - 计费时长单位（MONTH、YEAR）  optional
@@ -661,7 +2701,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -705,6 +2745,126 @@ class STARSHIELD extends Service {
 
     let request = super.makeRequest(
       '/regions/{regionId}/instances',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  购买流量包
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例ID
+      * @param {} [opts.flowPackNum] - 流量包数量  optional
+      * @param {} [opts.returnUrl] - 支付成功返回路径  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string buyId  购买ID
+      */
+
+  createFlowPack (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createFlowPack"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling createFlowPack"
+      )
+    }
+
+    let postBody = {}
+    if (opts.flowPackNum !== undefined && opts.flowPackNum !== null) {
+      postBody['flowPackNum'] = opts.flowPackNum
+    }
+    if (opts.returnUrl !== undefined && opts.returnUrl !== null) {
+      postBody['returnUrl'] = opts.returnUrl
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createFlowPack with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/flowPack',
       'POST',
       pathParams,
       queryParams,
@@ -785,7 +2945,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -898,7 +3058,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1010,7 +3170,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1124,7 +3284,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1235,7 +3395,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1308,6 +3468,474 @@ class STARSHIELD extends Service {
   }
 
   /**
+      *  listPageRules
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {string} [opts.status] - 页面规则的状态  optional
+      * @param {string} [opts.order] - 用于按顺序排列页面规则的字段  optional
+      * @param {string} [opts.direction] - asc - 升序；desc - 降序  optional
+      * @param {string} [opts.match] - 是否匹配所有搜索要求或至少一个（任何）  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param pageRule dataList
+      */
+
+  listPageRules (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling listPageRules"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.status !== undefined && opts.status !== null) {
+      queryParams['status'] = opts.status
+    }
+    if (opts.order !== undefined && opts.order !== null) {
+      queryParams['order'] = opts.order
+    }
+    if (opts.direction !== undefined && opts.direction !== null) {
+      queryParams['direction'] = opts.direction
+    }
+    if (opts.match !== undefined && opts.match !== null) {
+      queryParams['match'] = opts.match
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call listPageRules with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/pagerules',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  createPageRule
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {} [opts.targets] - 根据请求评估的目标  optional
+      * @param {} [opts.actions] - 如果此规则的目标与请求匹配，则要执行的操作集。操作可以将url重定向到另一个url或覆盖设置（但不能同时覆盖两者）  optional
+      * @param {} [opts.priority] - 一个数字，表示一个页面规则优先于另一个页面规则。
+如果您可能有一个全面的页面规则（例如#1 “/images/”）
+但是想要更具体的规则优先（例如#2 &#39;/images/special/&#39;），
+您需要在后者（#2）上指定更高的优先级，以便它将覆盖第一个优先级。
+  optional
+      * @param {} [opts.status] - 页面规则的状态  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param pageRule data
+      */
+
+  createPageRule (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling createPageRule"
+      )
+    }
+
+    let postBody = {}
+    if (opts.targets !== undefined && opts.targets !== null) {
+      postBody['targets'] = opts.targets
+    }
+    if (opts.actions !== undefined && opts.actions !== null) {
+      postBody['actions'] = opts.actions
+    }
+    if (opts.priority !== undefined && opts.priority !== null) {
+      postBody['priority'] = opts.priority
+    }
+    if (opts.status !== undefined && opts.status !== null) {
+      postBody['status'] = opts.status
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createPageRule with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/pagerules',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  替换页面规则。最终规则将与此请求传递的数据完全匹配。
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {string} opts.identifier
+      * @param {} [opts.targets] - 根据请求评估的目标  optional
+      * @param {} [opts.actions] - 如果此规则的目标与请求匹配，则要执行的操作集。操作可以将url重定向到另一个url或覆盖设置（但不能同时覆盖两者）  optional
+      * @param {} [opts.priority] - 一个数字，表示一个页面规则优先于另一个页面规则。
+如果您可能有一个全面的页面规则（例如#1 “/images/”）
+但是想要更具体的规则优先（例如#2 &#39;/images/special/&#39;），
+您需要在后者（#2）上指定更高的优先级，以便它将覆盖第一个优先级。
+  optional
+      * @param {} [opts.status] - 页面规则的状态  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param pageRule data
+      */
+
+  updatePageRule (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling updatePageRule"
+      )
+    }
+    if (opts.identifier === undefined || opts.identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.identifier' when calling updatePageRule"
+      )
+    }
+
+    let postBody = {}
+    if (opts.targets !== undefined && opts.targets !== null) {
+      postBody['targets'] = opts.targets
+    }
+    if (opts.actions !== undefined && opts.actions !== null) {
+      postBody['actions'] = opts.actions
+    }
+    if (opts.priority !== undefined && opts.priority !== null) {
+      postBody['priority'] = opts.priority
+    }
+    if (opts.status !== undefined && opts.status !== null) {
+      postBody['status'] = opts.status
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier,
+      identifier: opts.identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call updatePageRule with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/pagerules/{identifier}',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  deletePageRule
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {string} opts.identifier
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string data
+      */
+
+  deletePageRule (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling deletePageRule"
+      )
+    }
+    if (opts.identifier === undefined || opts.identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.identifier' when calling deletePageRule"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier,
+      identifier: opts.identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deletePageRule with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/pagerules/{identifier}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  获取域的通用SSL证书设置
       * @param {Object} opts - parameters
       * @param {string} opts.zone_identifier
@@ -1334,7 +3962,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1379,6 +4007,119 @@ class STARSHIELD extends Service {
     let request = super.makeRequest(
       '/zones/{zone_identifier}/ssl$$universal$$settings',
       'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修补域的通用SSL设置
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {} [opts.enabled] - 禁用通用SSL将从边缘上删除域的所有当前激活的通用SSL证书并且防止将来订购任何通用SSL证书。如果没有为域上载专用证书或自定义证书，访问者将无法通过HTTPS访问域。
+通过禁用通用SSL，您知道以下星盾设置和首选项将导致访问者无法访问您的域，除非您上载了自定义证书或购买了专用证书。
+  * HSTS
+  * Always Use HTTPS
+  * Opportunistic Encryption
+  * Onion Routing
+  * Any Page Rules redirecting traffic to HTTPS
+类似地，在启用星盾代理时，在源站将任何HTTP重定向到HTTPS将导致用户在星盾的边缘没有有效证书的情况下无法访问您的站点。
+如果您在星盾的边缘没有有效的自定义或专用证书，并且不确定是否启用了上述任何星盾设置，或者如果您的源站存在任何HTTP重定向，我们建议您的域保持启用通用SSL。
+  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param universalSSLSetting data
+      */
+
+  editUniversalSSLSettings (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling editUniversalSSLSettings"
+      )
+    }
+
+    let postBody = {}
+    if (opts.enabled !== undefined && opts.enabled !== null) {
+      postBody['enabled'] = opts.enabled
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call editUniversalSSLSettings with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/ssl$$universal$$settings',
+      'PATCH',
       pathParams,
       queryParams,
       headerParams,
@@ -1475,7 +4216,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1591,7 +4332,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1636,6 +4377,127 @@ class STARSHIELD extends Service {
     let request = super.makeRequest(
       '/zones/{zone_identifier}/firewall$$waf$$packages/{package_identifier}/groups/{identifier}',
       'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新规则组的状态
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {string} opts.package_identifier
+      * @param {string} opts.identifier
+      * @param {} [opts.mode] - 该组中包含的规则是否可配置/可使用  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param wAFRuleGroup data
+      */
+
+  editRuleGroup (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling editRuleGroup"
+      )
+    }
+    if (
+      opts.package_identifier === undefined ||
+      opts.package_identifier === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.package_identifier' when calling editRuleGroup"
+      )
+    }
+    if (opts.identifier === undefined || opts.identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.identifier' when calling editRuleGroup"
+      )
+    }
+
+    let postBody = {}
+    if (opts.mode !== undefined && opts.mode !== null) {
+      postBody['mode'] = opts.mode
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier,
+      package_identifier: opts.package_identifier,
+      identifier: opts.identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call editRuleGroup with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/firewall$$waf$$packages/{package_identifier}/groups/{identifier}',
+      'PATCH',
       pathParams,
       queryParams,
       headerParams,
@@ -1714,7 +4576,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1820,7 +4682,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1865,6 +4727,121 @@ class STARSHIELD extends Service {
     let request = super.makeRequest(
       '/zones/{zone_identifier}/firewall$$waf$$packages/{identifier}',
       'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更改异常检测类型WAF规则包的灵敏度和操作
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {string} opts.identifier
+      * @param {} [opts.sensitivity] - 防火墙包的敏感度。  optional
+      * @param {} [opts.action_mode] - 将对防火墙包下的规则执行的默认操作。  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param wAFRulePackage data
+      */
+
+  editFirewallPackage (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling editFirewallPackage"
+      )
+    }
+    if (opts.identifier === undefined || opts.identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.identifier' when calling editFirewallPackage"
+      )
+    }
+
+    let postBody = {}
+    if (opts.sensitivity !== undefined && opts.sensitivity !== null) {
+      postBody['sensitivity'] = opts.sensitivity
+    }
+    if (opts.action_mode !== undefined && opts.action_mode !== null) {
+      postBody['action_mode'] = opts.action_mode
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier,
+      identifier: opts.identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call editFirewallPackage with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/firewall$$waf$$packages/{identifier}',
+      'PATCH',
       pathParams,
       queryParams,
       headerParams,
@@ -1962,7 +4939,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2089,7 +5066,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2162,6 +5139,125 @@ class STARSHIELD extends Service {
   }
 
   /**
+      *  createZone
+      * @param {Object} opts - parameters
+      * @param {} opts.name - 域名
+      * @param {} opts.account
+      * @param {} [opts.jump_start] - 自动尝试获取现有DNS记录  optional
+      * @param {} [opts.ty_pe] - 全接入域意味着DNS由星盾托管。半接入域通常是合作伙伴托管的域或CNAME设置。  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param zone data
+      */
+
+  createZone (opts, callback) {
+    opts = opts || {}
+
+    if (opts.name === undefined || opts.name === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.name' when calling createZone"
+      )
+    }
+    if (opts.account === undefined || opts.account === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.account' when calling createZone"
+      )
+    }
+
+    let postBody = {}
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.account !== undefined && opts.account !== null) {
+      postBody['account'] = opts.account
+    }
+    if (opts.jump_start !== undefined && opts.jump_start !== null) {
+      postBody['jump_start'] = opts.jump_start
+    }
+    if (opts.ty_pe !== undefined && opts.ty_pe !== null) {
+      postBody['ty_pe'] = opts.ty_pe
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createZone with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  删除存在的域名
       * @param {Object} opts - parameters
       * @param {string} opts.identifier
@@ -2188,7 +5284,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2299,7 +5395,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2407,7 +5503,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2524,7 +5620,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2597,6 +5693,105 @@ class STARSHIELD extends Service {
   }
 
   /**
+      *  域的相关配置
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param zoneSetting dataList
+      */
+
+  getAllZoneSettings (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling getAllZoneSettings"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getAllZoneSettings with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/settings',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  批量更新域的设置
       * @param {Object} opts - parameters
       * @param {string} opts.zone_identifier
@@ -2627,7 +5822,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2727,7 +5922,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2826,7 +6021,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2930,7 +6125,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3030,7 +6225,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3135,7 +6330,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3234,7 +6429,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3338,7 +6533,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3438,7 +6633,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3543,7 +6738,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3620,6 +6815,106 @@ class STARSHIELD extends Service {
 
       * @param {Object} opts - parameters
       * @param {string} opts.zone_identifier
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param browserCheck data
+      */
+
+  getBrowserCheckSetting (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling getBrowserCheckSetting"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getBrowserCheckSetting with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/settings$$browser_check',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  浏览器完整性检查与不良行为检查类似，寻找最常被垃圾邮件发送者滥用的常见HTTP头，并拒绝他们访问您的页面。它还会对没有用户代理或非标准用户代理（也是滥用机器人、爬虫或访客常用的）的访客提出挑战质询。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
       * @param {} [opts.value] - on - 开启；off - 关闭  optional
       * @param {string} callback - callback
       @return {Object} result
@@ -3648,7 +6943,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3756,7 +7051,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3856,7 +7151,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3961,7 +7256,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -4062,7 +7357,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -4168,7 +7463,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -4267,7 +7562,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -4371,7 +7666,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -4472,7 +7767,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -4578,7 +7873,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -4677,7 +7972,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -4781,7 +8076,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -4880,7 +8175,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -4984,7 +8279,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -5083,7 +8378,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -5187,7 +8482,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -5286,7 +8581,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -5390,7 +8685,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -5489,7 +8784,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -5593,7 +8888,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -5693,7 +8988,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -5798,7 +9093,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -5897,7 +9192,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -6001,7 +9296,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -6105,7 +9400,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -6214,7 +9509,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -6314,7 +9609,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -6419,7 +9714,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -6523,7 +9818,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -6622,7 +9917,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -6726,7 +10021,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -6826,7 +10121,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -6931,7 +10226,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -7033,7 +10328,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -7140,7 +10435,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -7239,7 +10534,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -7339,7 +10634,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -7444,7 +10739,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -7548,7 +10843,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -7657,7 +10952,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -7757,7 +11052,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -7862,7 +11157,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -7968,7 +11263,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -8079,7 +11374,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -8178,7 +11473,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -8282,7 +11577,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -8381,7 +11676,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -8485,7 +11780,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -8584,7 +11879,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -8688,7 +11983,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -8787,7 +12082,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -8891,7 +12186,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -8990,7 +12285,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -9094,7 +12389,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -9196,7 +12491,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -9303,7 +12598,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -9402,7 +12697,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -9506,7 +12801,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -9605,7 +12900,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -9709,7 +13004,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -9808,7 +13103,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -9912,7 +13207,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -10011,7 +13306,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -10115,7 +13410,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -10216,7 +13511,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -10322,7 +13617,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -10421,7 +13716,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -10521,7 +13816,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -10626,7 +13921,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -10730,7 +14025,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.2'
     }
 
     let contentTypes = ['application/json']

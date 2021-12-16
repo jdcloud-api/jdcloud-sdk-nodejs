@@ -30,10 +30,10 @@ Service._services[serviceId] = true
 
 /**
  * iotlink service.
- * @version 1.0.4
+ * @version 1.0.5
  */
 
-JDCloud.IOTLINK = class IOTLINK extends Service {
+class IOTLINK extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
@@ -42,6 +42,466 @@ JDCloud.IOTLINK = class IOTLINK extends Service {
       options._defaultEndpoint.host || 'iotlink.jdcloud-api.com'
     options.basePath = '/v1' // 默认要设为空""
     super(serviceId, options)
+  }
+
+  /**
+      *  根据物联网卡IMSI查询该卡的GPRS状态信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.imsi - 物联网卡IMSI
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status  请求状态(0:成功;1:失败)
+      * @param string message  消息描述
+      * @param gprsStatusResp result  指定物联网卡的gprs状态信息
+      */
+
+  gprsStatusByIMSI (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  gprsStatusByIMSI"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.imsi === undefined || opts.imsi === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.imsi' when calling gprsStatusByIMSI"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.imsi !== undefined && opts.imsi !== null) {
+      queryParams['imsi'] = opts.imsi
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call gprsStatusByIMSI with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/gprsStatusByIMSI',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  根据物联网卡imsi查询该卡的开关机状态信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.imsi - 物联网卡imsi
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status  请求状态(0:成功;1:失败)
+      * @param string message  消息描述
+      * @param onOffStatusResp result  指定物联网卡的开关机状态信息
+      */
+
+  onOffStatusByIMSI (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  onOffStatusByIMSI"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.imsi === undefined || opts.imsi === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.imsi' when calling onOffStatusByIMSI"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.imsi !== undefined && opts.imsi !== null) {
+      queryParams['imsi'] = opts.imsi
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call onOffStatusByIMSI with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/onOffStatusByIMSI',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  根据物联网卡imsi查询该卡的生命周期信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.imsi - 物联网卡imsi
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status  请求状态(0:成功;1:失败)
+      * @param string message  消息描述
+      * @param lifeStatusResp result  指定物联网卡的生命周期信息
+      */
+
+  lifeStatusByIMSI (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  lifeStatusByIMSI"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.imsi === undefined || opts.imsi === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.imsi' when calling lifeStatusByIMSI"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.imsi !== undefined && opts.imsi !== null) {
+      queryParams['imsi'] = opts.imsi
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call lifeStatusByIMSI with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/lifeStatusByIMSI',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  根据物联网卡imsi查询该卡的当月套餐内的GPRS实时使用量
+      * @param {Object} opts - parameters
+      * @param {string} opts.imsi - 物联网卡imsi
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status  请求状态(0:成功;1:失败)
+      * @param string message  消息描述
+      * @param gprsRealtimeInfoResp result  指定物联网卡的当月套餐内的GPRS实时使用量
+      */
+
+  gprsRealtimeInfoByIMSI (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  gprsRealtimeInfoByIMSI"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.imsi === undefined || opts.imsi === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.imsi' when calling gprsRealtimeInfoByIMSI"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.imsi !== undefined && opts.imsi !== null) {
+      queryParams['imsi'] = opts.imsi
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call gprsRealtimeInfoByIMSI with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/gprsRealtimeInfoByIMSI',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
   }
 
   /**
@@ -87,7 +547,7 @@ JDCloud.IOTLINK = class IOTLINK extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -202,7 +662,7 @@ JDCloud.IOTLINK = class IOTLINK extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -317,7 +777,7 @@ JDCloud.IOTLINK = class IOTLINK extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -432,7 +892,7 @@ JDCloud.IOTLINK = class IOTLINK extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -542,7 +1002,7 @@ JDCloud.IOTLINK = class IOTLINK extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -652,7 +1112,7 @@ JDCloud.IOTLINK = class IOTLINK extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -762,7 +1222,7 @@ JDCloud.IOTLINK = class IOTLINK extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -872,7 +1332,7 @@ JDCloud.IOTLINK = class IOTLINK extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -997,7 +1457,7 @@ JDCloud.IOTLINK = class IOTLINK extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -1122,7 +1582,7 @@ JDCloud.IOTLINK = class IOTLINK extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -1194,4 +1654,4 @@ JDCloud.IOTLINK = class IOTLINK extends Service {
     )
   }
 }
-module.exports = JDCloud.IOTLINK
+module.exports = IOTLINK

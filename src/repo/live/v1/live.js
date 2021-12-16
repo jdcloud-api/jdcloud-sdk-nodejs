@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * live service.
- * @version 1.0.21
+ * @version 1.0.22
  */
 
 class LIVE extends Service {
@@ -84,7 +84,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -199,7 +199,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -311,7 +311,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -419,7 +419,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -534,7 +534,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -642,7 +642,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -757,7 +757,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -864,7 +864,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -973,7 +973,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -1109,7 +1109,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -1218,7 +1218,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -1354,7 +1354,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -1467,7 +1467,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -1584,7 +1584,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -1689,7 +1689,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -1795,7 +1795,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -1898,7 +1898,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -2000,7 +2000,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -2115,7 +2115,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -2224,6 +2224,7 @@ class LIVE extends Service {
   optional
       * @param {string} callback - callback
       @return {Object} result
+      * @param string taskId  任务ID
       */
 
   createLiveForwardTask (opts, callback) {
@@ -2278,7 +2279,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -2428,7 +2429,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -2542,7 +2543,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -2644,7 +2645,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -2746,7 +2747,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -2848,7 +2849,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -2961,7 +2962,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -3072,7 +3073,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -3194,7 +3195,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -3307,7 +3308,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -3420,7 +3421,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -3520,7 +3521,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -3634,7 +3635,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -3741,7 +3742,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -3842,7 +3843,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -3941,7 +3942,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -4041,7 +4042,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -4148,7 +4149,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -4244,7 +4245,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -4339,7 +4340,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -4454,7 +4455,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -4566,7 +4567,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -4711,7 +4712,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -4832,7 +4833,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -4944,7 +4945,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -5063,7 +5064,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -5176,7 +5177,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -5276,7 +5277,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -5391,7 +5392,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -5499,7 +5500,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -5600,7 +5601,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -5699,7 +5700,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -5863,7 +5864,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -5963,7 +5964,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -6104,7 +6105,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -6260,7 +6261,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -6411,7 +6412,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -6552,7 +6553,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -6693,7 +6694,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -6839,7 +6840,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -6981,7 +6982,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -7123,7 +7124,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -7245,7 +7246,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -7341,7 +7342,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -7486,7 +7487,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -7633,7 +7634,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -7775,7 +7776,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -7905,7 +7906,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -8040,7 +8041,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -8184,7 +8185,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -8328,7 +8329,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -8459,7 +8460,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -8571,7 +8572,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -8716,7 +8717,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -8861,7 +8862,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -9006,7 +9007,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -9151,7 +9152,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -9282,7 +9283,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -9409,7 +9410,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -9596,7 +9597,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -9715,7 +9716,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -9826,7 +9827,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -9948,7 +9949,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -10061,7 +10062,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -10174,7 +10175,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -10274,7 +10275,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -10387,7 +10388,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -10494,7 +10495,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -10595,7 +10596,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -10694,7 +10695,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -10794,7 +10795,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -10917,7 +10918,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -11036,7 +11037,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -11157,7 +11158,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -11277,7 +11278,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -11389,7 +11390,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -11489,7 +11490,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -11587,7 +11588,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -11705,7 +11706,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -11851,7 +11852,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -11957,7 +11958,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -12058,7 +12059,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -12170,7 +12171,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -12276,7 +12277,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -12377,7 +12378,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -12495,7 +12496,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -12618,7 +12619,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -12750,7 +12751,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -12993,7 +12994,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -13106,7 +13107,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -13219,7 +13220,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -13338,7 +13339,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -13445,7 +13446,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -13560,7 +13561,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -13701,7 +13702,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -13802,7 +13803,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -13902,7 +13903,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -14021,7 +14022,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -14149,7 +14150,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -14286,7 +14287,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -14398,7 +14399,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -14517,7 +14518,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -14616,7 +14617,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -14723,7 +14724,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -14837,7 +14838,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -14958,7 +14959,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -15058,7 +15059,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -15180,7 +15181,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -15302,7 +15303,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -15495,7 +15496,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -15607,7 +15608,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -15728,7 +15729,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -15840,7 +15841,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -15959,7 +15960,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -16060,7 +16061,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -16175,7 +16176,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -16283,7 +16284,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']
@@ -16383,7 +16384,7 @@ class LIVE extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.21'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  live/1.0.22'
     }
 
     let contentTypes = ['application/json']

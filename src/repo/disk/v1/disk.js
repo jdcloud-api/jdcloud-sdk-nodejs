@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * disk service.
- * @version 0.12.6
+ * @version 0.12.7
  */
 
 class DISK extends Service {
@@ -55,8 +55,8 @@ class DISK extends Service {
 diskType - 云硬盘类型，精确匹配，支持多个，取值为 ssd,premium-hdd,ssd.io1,ssd.gp1,hdd.std1
 instanceId - 云硬盘所挂载主机的ID，精确匹配，支持多个
 instanceType - 云硬盘所挂载主机的类型，精确匹配，支持多个
-status - 可用区，精确匹配，支持多个
-az - 云硬盘状态，精确匹配，支持多个
+status - 云硬盘状态，精确匹配，支持多个
+az - 可用区，精确匹配，支持多个
 name - 云硬盘名称，模糊匹配，支持单个
 multiAttach - 云硬盘是否多点挂载，精确匹配，支持单个
 encrypted - 云硬盘是否加密，精确匹配，支持单个
@@ -101,7 +101,7 @@ notPolicyId - 未绑定policyId的云硬盘，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.7'
     }
 
     let contentTypes = ['application/json']
@@ -186,7 +186,7 @@ notPolicyId - 未绑定policyId的云硬盘，精确匹配，支持多个
       * @param {Object} opts - parameters
       * @param {diskSpec} opts.diskSpec - 创建云硬盘规格
       * @param {integer} opts.maxCount - 购买实例数量；取值范围：[1,100]
-      * @param {array} [opts.userTags] - 用户标签  optional
+      * @param {array} [opts.userTags] - 用户标签,默认为空;tag标签的限制：每个资源最多允许绑定 10 个不同的标签，同一资源每个标签“键”上只能存在1个标签“值”；标签键/值只支持中文、数字、大小写字母、空格及特殊符号_.:/&#x3D;+-@;当无tags时,reps结果返回中tagmsg为空  optional
       * @param {string} opts.clientToken - 幂等性校验参数
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -247,7 +247,7 @@ notPolicyId - 未绑定policyId的云硬盘，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.7'
     }
 
     let contentTypes = ['application/json']
@@ -358,7 +358,7 @@ notPolicyId - 未绑定policyId的云硬盘，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.7'
     }
 
     let contentTypes = ['application/json']
@@ -477,7 +477,7 @@ notPolicyId - 未绑定policyId的云硬盘，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.7'
     }
 
     let contentTypes = ['application/json']
@@ -590,7 +590,7 @@ notPolicyId - 未绑定policyId的云硬盘，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.7'
     }
 
     let contentTypes = ['application/json']
@@ -713,7 +713,7 @@ notPolicyId - 未绑定policyId的云硬盘，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.7'
     }
 
     let contentTypes = ['application/json']
@@ -792,7 +792,7 @@ notPolicyId - 未绑定policyId的云硬盘，精确匹配，支持多个
       * @param {Object} opts - parameters
       * @param {string} opts.diskId - 云硬盘ID
       * @param {integer} opts.diskSizeGB - 扩容后的云硬盘大小，单位为GiB
-      * @param {integer} [opts.iops] - 修改ssd.io1型云硬盘的iops数量，当且仅当ssd.io1型的云盘类型有效，步长是10.  optional
+      * @param {integer} [opts.iops] - 修改ssd.io1型云硬盘的iops数量，当且仅当ssd.io1型的云盘类型有效，步长是10; 默认iops为云硬盘原有iops值  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -839,7 +839,7 @@ notPolicyId - 未绑定policyId的云硬盘，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.7'
     }
 
     let contentTypes = ['application/json']
@@ -977,7 +977,7 @@ notPolicyId - 未绑定policyId的云硬盘，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.7'
     }
 
     let contentTypes = ['application/json']
@@ -1090,7 +1090,7 @@ notPolicyId - 未绑定policyId的云硬盘，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.7'
     }
 
     let contentTypes = ['application/json']
@@ -1212,7 +1212,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.7'
     }
 
     let contentTypes = ['application/json']
@@ -1341,7 +1341,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.7'
     }
 
     let contentTypes = ['application/json']
@@ -1454,7 +1454,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.7'
     }
 
     let contentTypes = ['application/json']
@@ -1565,7 +1565,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.7'
     }
 
     let contentTypes = ['application/json']
@@ -1688,7 +1688,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.7'
     }
 
     let contentTypes = ['application/json']
@@ -1801,7 +1801,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.7'
     }
 
     let contentTypes = ['application/json']
@@ -1904,7 +1904,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.7'
     }
 
     let contentTypes = ['application/json']
@@ -2015,7 +2015,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.7'
     }
 
     let contentTypes = ['application/json']
@@ -2187,7 +2187,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.7'
     }
 
     let contentTypes = ['application/json']
@@ -2366,7 +2366,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.7'
     }
 
     let contentTypes = ['application/json']
@@ -2476,7 +2476,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.7'
     }
 
     let contentTypes = ['application/json']
@@ -2551,8 +2551,8 @@ name - 快照名称，模糊匹配，支持单个
   /**
       *  查询快照策略
       * @param {Object} opts - parameters
-      * @param {string} [opts.name] - 策略名称  optional
-      * @param {array} [opts.policyId] - 策略ID  optional
+      * @param {string} [opts.name] - 策略名称,默认为空  optional
+      * @param {array} [opts.policyId] - 策略ID,默认为空  optional
       * @param {array} [opts.status] - 策略状态。1: 启用 2：禁用  optional
       * @param {orderItem} [opts.order] - 排序字段，只支持create_time和update_time字段  optional
       * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞)  optional
@@ -2605,7 +2605,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.7'
     }
 
     let contentTypes = ['application/json']
@@ -2678,7 +2678,9 @@ name - 快照名称，模糊匹配，支持单个
   }
 
   /**
-      *  查询快照策略
+      *  -   查询您已经创建的快照策略。
+-   filters多个过滤条件之间是逻辑与(AND)，每个条件内部的多个取值是逻辑或(OR)
+
       * @param {Object} opts - parameters
       * @param {array} [opts.filterGroups] - 过滤条件  optional
       * @param {orderItem} [opts.order] - 排序字段，只支持create_time和update_time字段  optional
@@ -2726,7 +2728,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.7'
     }
 
     let contentTypes = ['application/json']
@@ -2834,7 +2836,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.7'
     }
 
     let contentTypes = ['application/json']
@@ -2963,7 +2965,7 @@ name - 快照名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.7'
     }
 
     let contentTypes = ['application/json']
@@ -3008,6 +3010,110 @@ name - 快照名称，模糊匹配，支持单个
     let request = super.makeRequest(
       '/regions/{regionId}/snapshotPolicyDiskRelations:describe',
       'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询云硬盘售罄情况列表
+      * @param {Object} opts - parameters
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param soldout soldout
+      * @param integer totalCount  查询的可用区售罄情况数目
+      */
+
+  describeSoldout (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeSoldout"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  disk/0.12.7'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeSoldout with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/soldout',
+      'GET',
       pathParams,
       queryParams,
       headerParams,

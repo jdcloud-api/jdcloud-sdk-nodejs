@@ -30,10 +30,10 @@ Service._services[serviceId] = true
 
 /**
  * baseanti service.
- * @version 1.2.3
+ * @version 1.3.0
  */
 
-JDCloud.BASEANTI = class BASEANTI extends Service {
+class BASEANTI extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
@@ -95,7 +95,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -210,7 +210,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -322,7 +322,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -435,7 +435,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -543,7 +543,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -621,6 +621,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
       * @param {Object} opts - parameters
       * @param {integer} [opts.pageNumber] - 页码  optional
       * @param {integer} [opts.pageSize] - 分页大小  optional
+      * @param {string} [opts.ip] - IP 模糊匹配  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -652,13 +653,16 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
+    if (opts.ip !== undefined && opts.ip !== null) {
+      queryParams['ip'] = opts.ip
+    }
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -736,6 +740,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
       * @param {Object} opts - parameters
       * @param {integer} [opts.pageNumber] - 页码  optional
       * @param {integer} [opts.pageSize] - 分页大小  optional
+      * @param {string} [opts.ip] - IP 模糊匹配  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -767,13 +772,16 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
+    if (opts.ip !== undefined && opts.ip !== null) {
+      queryParams['ip'] = opts.ip
+    }
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -850,6 +858,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
       * @param {Object} opts - parameters
       * @param {integer} [opts.pageNumber] - 页码  optional
       * @param {integer} [opts.pageSize] - 分页大小  optional
+      * @param {string} [opts.ip] - IP 模糊匹配  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -881,13 +890,16 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
+    if (opts.ip !== undefined && opts.ip !== null) {
+      queryParams['ip'] = opts.ip
+    }
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -960,6 +972,124 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
   }
 
   /**
+      *  查询基础防护已防护的Web应用防火墙 IP 的安全信息
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码  optional
+      * @param {integer} [opts.pageSize] - 分页大小  optional
+      * @param {string} [opts.ip] - IP 模糊匹配  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param ipResource dataList
+      * @param integer currentCount  当前页数量
+      * @param integer totalCount  总数
+      * @param integer totalPage  总页数
+      */
+
+  describeWafIpResources (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeWafIpResources"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    if (opts.ip !== undefined && opts.ip !== null) {
+      queryParams['ip'] = opts.ip
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.3.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeWafIpResources with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafIpResources',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  查询公网 IP 安全信息, 仅支持 ipv4. (已废弃, 建议使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describeipsafetyinfo&#39;&gt;describeIpSafetyInfo&lt;/a&gt; 接口)
 
       * @param {Object} opts - parameters
@@ -999,7 +1129,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -1074,7 +1204,12 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
   /**
       *  查询基础防护已防护公网 IP 安全信息, 支持 ipv4 和 ipv6
       * @param {Object} opts - parameters
-      * @param {string} opts.ip - 基础防护已防护公网 IP. &lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describeelasticipresources&#39;&gt;describeElasticIpResources&lt;/a&gt; 接口查询基础防护已防护的私有网络弹性公网 IP &lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describecpsipresources&#39;&gt;describeCpsIpResources&lt;/a&gt; 接口查询基础防护已防护的云物理服务器公网IP 和 弹性公网 IP &lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describeccsipresources&#39;&gt;describeCcsIpResources&lt;/a&gt; 接口查询基础防护已防护的托管区公网 IP
+      * @param {string} opts.ip - 基础防护已防护公网 IP, 支持 ipv4 和 ipv6.
+&lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describeelasticipresources&#39;&gt;describeElasticIpResources&lt;/a&gt; 接口查询基础防护已防护的私有网络弹性公网 IP
+&lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describecpsipresources&#39;&gt;describeCpsIpResources&lt;/a&gt; 接口查询基础防护已防护的云物理服务器公网IP 和 弹性公网 IP
+&lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describewafipresources&#39;&gt;describeWafIpResources&lt;/a&gt; 接口查询基础防护已防护的Web应用防火墙 IP
+&lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describeccsipresources&#39;&gt;describeCcsIpResources&lt;/a&gt; 接口查询基础防护已防护的托管区公网 IP
+
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1112,7 +1247,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -1239,7 +1374,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -1360,7 +1495,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -1435,7 +1570,12 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
   /**
       *  查询公网 IP 可设置清洗阈值范围, 支持 ipv4 和 ipv6
       * @param {Object} opts - parameters
-      * @param {string} opts.ip - 基础防护已防护公网 IP. &lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describeelasticipresources&#39;&gt;describeElasticIpResources&lt;/a&gt; 接口查询基础防护已防护的私有网络弹性公网 IP &lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describecpsipresources&#39;&gt;describeCpsIpResources&lt;/a&gt; 接口查询基础防护已防护的云物理服务器公网IP 和 弹性公网 IP &lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describeccsipresources&#39;&gt;describeCcsIpResources&lt;/a&gt; 接口查询基础防护已防护的托管区公网 IP
+      * @param {string} opts.ip - 基础防护已防护公网 IP, 支持 ipv4 和 ipv6.
+&lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describeelasticipresources&#39;&gt;describeElasticIpResources&lt;/a&gt; 接口查询基础防护已防护的私有网络弹性公网 IP
+&lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describecpsipresources&#39;&gt;describeCpsIpResources&lt;/a&gt; 接口查询基础防护已防护的云物理服务器公网IP 和 弹性公网 IP
+&lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describewafipresources&#39;&gt;describeWafIpResources&lt;/a&gt; 接口查询基础防护已防护的Web应用防火墙 IP
+&lt;br&gt;- 使用 &lt;a href&#x3D;&#39;http://docs.jdcloud.com/anti-ddos-basic/api/describeccsipresources&#39;&gt;describeCcsIpResources&lt;/a&gt; 接口查询基础防护已防护的托管区公网 IP
+
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1477,7 +1617,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -1601,7 +1741,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -1718,7 +1858,7 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  baseanti/1.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -1790,4 +1930,4 @@ JDCloud.BASEANTI = class BASEANTI extends Service {
     )
   }
 }
-module.exports = JDCloud.BASEANTI
+module.exports = BASEANTI

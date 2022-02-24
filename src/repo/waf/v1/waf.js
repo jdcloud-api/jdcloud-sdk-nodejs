@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * waf service.
- * @version 1.0.4
+ * @version 1.0.5
  */
 
 class WAF extends Service {
@@ -75,7 +75,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -197,7 +197,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -312,7 +312,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -438,7 +438,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -558,7 +558,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -673,7 +673,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -788,7 +788,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -832,6 +832,248 @@ class WAF extends Service {
 
     let request = super.makeRequest(
       '/regions/{regionId}/chart:getQpsData',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取网站在一定时间内的状态码报表信息。
+      * @param {Object} opts - parameters
+      * @param {getStatusCodeReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param statusCodeData statusCodeData  状态码TopN
+      */
+
+  getStatusCodeInfo (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getStatusCodeInfo"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling getStatusCodeInfo"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getStatusCodeInfo with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/chart:getStatusCodeInfo',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取网站在一定时间内主要的防护信息,新接口，无url响应时间分布。
+      * @param {Object} opts - parameters
+      * @param {getChartReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer ip  ip访问量
+      * @param integer ipPre  之前ip访问量，当时间跨度大于7天时，该值无意义。
+      * @param integer pv  PV访问量
+      * @param integer pvPre  之前PV访问量，当时间跨度大于7天时，该值无意义。
+      * @param integer maxBps  流量峰值
+      * @param integer maxBpsPre  之前流量峰值，当时间跨度大于7天时，该值无意义。
+      * @param integer wafAnti  Web防护攻击数
+      * @param integer wafAntiPre  之前Web防护攻击数，当时间跨度大于7天时，该值无意义。
+      * @param integer domainCount  防护网站数
+      * @param integer aclAnti  自定义规则防护攻击数
+      * @param integer aclAntiPre  之前自定义规则防护攻击数
+      * @param integer ccAnti  cc防护攻击数
+      * @param integer ccAntiPre  之前cc防护攻击数
+      * @param integer botAnti  bot防护攻击数
+      * @param integer botAntiPre  之前bot防护攻击数
+      */
+
+  getMainAntiInfoNew (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getMainAntiInfoNew"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling getMainAntiInfoNew"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getMainAntiInfoNew with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/chart:getMainAntiInfoNew',
       'POST',
       pathParams,
       queryParams,
@@ -973,7 +1215,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -1090,7 +1332,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -1212,7 +1454,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -1332,7 +1574,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -1452,7 +1694,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -1572,7 +1814,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -1698,7 +1940,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -1840,7 +2082,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -1960,7 +2202,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -2085,7 +2327,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -2211,7 +2453,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -2331,7 +2573,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -2451,7 +2693,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -2571,7 +2813,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -2691,7 +2933,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -2811,7 +3053,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -2931,7 +3173,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -3055,7 +3297,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -3175,7 +3417,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -3295,7 +3537,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -3419,7 +3661,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -3543,7 +3785,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -3667,7 +3909,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -3789,7 +4031,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
     }
 
     let contentTypes = ['application/json']

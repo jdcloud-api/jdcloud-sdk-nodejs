@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * lb service.
- * @version 0.5.3
+ * @version 0.5.6
  */
 
 class LB extends Service {
@@ -54,7 +54,7 @@ backendNames - 后端服务名字列表，支持多个
 loadBalancerId - 负载均衡器Id，支持单个
 agId - 可用性组Id，支持单个
 loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb，支持单个
-protocol - 后端服务的协议【alb】支持Http、Tcp，【nlb】支持Tcp，默认查询所有，支持单个
+protocol - 后端服务的协议【alb】支持Http、Tcp和Udp，【nlb】支持Tcp、Udp，【dnlb】支持Tcp、Udp，默认查询所有，支持单个
   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -92,7 +92,7 @@ protocol - 后端服务的协议【alb】支持Http、Tcp，【nlb】支持Tcp�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
     }
 
     let contentTypes = ['application/json']
@@ -169,13 +169,13 @@ protocol - 后端服务的协议【alb】支持Http、Tcp，【nlb】支持Tcp�
       * @param {Object} opts - parameters
       * @param {string} opts.backendName - 后端服务名字,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符
       * @param {string} opts.loadBalancerId - 后端服务所属负载均衡的Id
-      * @param {string} opts.protocol - 后端服务的协议 &lt;br&gt;【alb】取值范围：Http、Tcp &lt;br&gt;【nlb】取值范围：Tcp &lt;br&gt;【dnlb】取值范围：Tcp
+      * @param {string} opts.protocol - 后端服务的协议 &lt;br&gt;【alb】取值范围：Http、Tcp、Udp &lt;br&gt;【nlb】取值范围：Tcp、Udp &lt;br&gt;【dnlb】取值范围：Tcp、Udp
       * @param {integer} opts.port - 后端服务的端口，取值范围为[1, 65535]，如指定了TargetSpec中的port，实际按照target指定的port进行转发
       * @param {healthCheckSpec} opts.healthCheckSpec - 健康检查信息
       * @param {string} [opts.algorithm] - 调度算法 &lt;br&gt;【alb,nlb】取值范围为[IpHash, RoundRobin, LeastConn]（取值范围的含义：加权源Ip哈希，加权轮询和加权最小连接），alb和nlb默认为加权轮询 &lt;br&gt;【dnlb】取值范围为[IpHash, QuintupleHash]（取值范围的含义分别为：加权源Ip哈希和加权五元组哈希），dnlb默认为加权源Ip哈希  optional
       * @param {array} [opts.targetGroupIds] - 虚拟服务器组的Id列表，目前只支持一个，且与agIds不能同时存在  optional
       * @param {array} [opts.agIds] - 高可用组的Id列表，目前只支持一个，且与targetGroupIds不能同时存在  optional
-      * @param {boolean} [opts.proxyProtocol] - 【alb Tcp协议】获取真实ip, 取值为False(不获取)或者True(获取,支持Proxy Protocol v1版本)，默认为False  optional
+      * @param {boolean} [opts.proxyProtocol] - 【alb Tcp、Udp协议】获取真实ip, 取值为False(不获取)或者True(获取,支持Proxy Protocol v1版本)，默认为False  optional
       * @param {string} [opts.description] - 描述,允许输入UTF-8编码下的全部字符，不超过256字符  optional
       * @param {boolean} [opts.sessionStickiness] - 会话保持, 取值为false(不开启)或者true(开启)，默认为false &lt;br&gt;【alb Http协议，RoundRobin算法】支持基于cookie的会话保持 &lt;br&gt;【nlb】支持基于报文源目的IP的会话保持  optional
       * @param {integer} [opts.sessionStickyTimeout] - 【nlb】会话保持超时时间，sessionStickiness开启时生效，默认300s, 取值范围[1-3600]  optional
@@ -185,6 +185,7 @@ protocol - 后端服务的协议【alb】支持Http、Tcp，【nlb】支持Tcp�
       * @param {boolean} [opts.httpForwardedPort] - 【alb Http协议】获取负载均衡的端口, 取值为False(不获取)或True(获取), 默认为False  optional
       * @param {boolean} [opts.httpForwardedHost] - 【alb Http协议】获取负载均衡的host信息, 取值为False(不获取)或True(获取), 默认为False  optional
       * @param {boolean} [opts.httpForwardedVip] - 【alb Http协议】获取负载均衡的vip, 取值为False(不获取)或True(获取), 默认为False  optional
+      * @param {boolean} [opts.httpForwardedClientPort] - 【alb Http协议】获取请求端使用的端口, 取值为False(不获取)或True(获取), 默认为False  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -307,6 +308,12 @@ protocol - 后端服务的协议【alb】支持Http、Tcp，【nlb】支持Tcp�
     if (opts.httpForwardedVip !== undefined && opts.httpForwardedVip !== null) {
       postBody['httpForwardedVip'] = opts.httpForwardedVip
     }
+    if (
+      opts.httpForwardedClientPort !== undefined &&
+      opts.httpForwardedClientPort !== null
+    ) {
+      postBody['httpForwardedClientPort'] = opts.httpForwardedClientPort
+    }
 
     let queryParams = {}
 
@@ -315,7 +322,7 @@ protocol - 后端服务的协议【alb】支持Http、Tcp，【nlb】支持Tcp�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
     }
 
     let contentTypes = ['application/json']
@@ -426,7 +433,7 @@ protocol - 后端服务的协议【alb】支持Http、Tcp，【nlb】支持Tcp�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
     }
 
     let contentTypes = ['application/json']
@@ -507,7 +514,7 @@ protocol - 后端服务的协议【alb】支持Http、Tcp，【nlb】支持Tcp�
       * @param {string} [opts.algorithm] - 调度算法 &lt;br&gt;【alb,nlb】取值范围为[IpHash, RoundRobin, LeastConn]（含义分别为：加权源Ip哈希，加权轮询和加权最小连接） &lt;br&gt;【dnlb】取值范围为[IpHash, QuintupleHash]（含义分别为：加权源Ip哈希和加权五元组哈希）  optional
       * @param {array} [opts.targetGroupIds] - 虚拟服务器组的Id列表，目前只支持一个，且与agIds不能同时存在  optional
       * @param {array} [opts.agIds] - 高可用组的Id列表，目前只支持一个，且与targetGroupIds不能同时存在  optional
-      * @param {boolean} [opts.proxyProtocol] - 【alb Tcp协议】是否启用Proxy ProtocolV1协议获取真实源ip, 取值为false(不开启)或者true(开启), 默认为false  optional
+      * @param {boolean} [opts.proxyProtocol] - 【alb Tcp、Udp协议】是否启用Proxy ProtocolV1协议获取真实源ip, 取值为false(不开启)或者true(开启), 默认为false  optional
       * @param {string} [opts.description] - 描述,允许输入UTF-8编码下的全部字符，不超过256字符  optional
       * @param {boolean} [opts.sessionStickiness] - 会话保持, 取值为false(不开启)或者true(开启)，默认为false &lt;br&gt;【alb Http协议，RoundRobin算法】支持基于cookie的会话保持 &lt;br&gt;【nlb】支持基于报文源目的IP的会话保持  optional
       * @param {integer} [opts.sessionStickyTimeout] - 【nlb】会话保持超时时间，sessionStickiness开启时生效, 取值范围[1-3600]  optional
@@ -517,6 +524,7 @@ protocol - 后端服务的协议【alb】支持Http、Tcp，【nlb】支持Tcp�
       * @param {boolean} [opts.httpForwardedPort] - 【alb Http协议】获取负载均衡的端口, 取值为False(不获取)或True(获取)  optional
       * @param {boolean} [opts.httpForwardedHost] - 【alb Http协议】获取负载均衡的host信息, 取值为False(不获取)或True(获取)  optional
       * @param {boolean} [opts.httpForwardedVip] - 【alb Http协议】获取负载均衡的vip, 取值为False(不获取)或True(获取)  optional
+      * @param {boolean} [opts.httpForwardedClientPort] - 【alb Http协议】获取请求端使用的端口, 取值为False(不获取)或True(获取)  optional
       * @param {boolean} [opts.closeHealthCheck] - 【alb,dnlb】关闭健康检查，取值为false(不关闭)或true(关闭)  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -610,6 +618,12 @@ protocol - 后端服务的协议【alb】支持Http、Tcp，【nlb】支持Tcp�
     if (opts.httpForwardedVip !== undefined && opts.httpForwardedVip !== null) {
       postBody['httpForwardedVip'] = opts.httpForwardedVip
     }
+    if (
+      opts.httpForwardedClientPort !== undefined &&
+      opts.httpForwardedClientPort !== null
+    ) {
+      postBody['httpForwardedClientPort'] = opts.httpForwardedClientPort
+    }
     if (opts.closeHealthCheck !== undefined && opts.closeHealthCheck !== null) {
       postBody['closeHealthCheck'] = opts.closeHealthCheck
     }
@@ -622,7 +636,7 @@ protocol - 后端服务的协议【alb】支持Http、Tcp，【nlb】支持Tcp�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
     }
 
     let contentTypes = ['application/json']
@@ -732,7 +746,7 @@ protocol - 后端服务的协议【alb】支持Http、Tcp，【nlb】支持Tcp�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
     }
 
     let contentTypes = ['application/json']
@@ -843,7 +857,7 @@ protocol - 后端服务的协议【alb】支持Http、Tcp，【nlb】支持Tcp�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
     }
 
     let contentTypes = ['application/json']
@@ -962,7 +976,7 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
     }
 
     let contentTypes = ['application/json']
@@ -1038,14 +1052,16 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
       *  创建一个监听器
       * @param {Object} opts - parameters
       * @param {string} opts.listenerName - Listener的名字,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符
-      * @param {string} opts.protocol - 监听协议, 取值为Tcp, Tls, Http, Https &lt;br&gt;【alb】支持Http, Https，Tcp和Tls &lt;br&gt;【nlb】支持Tcp  &lt;br&gt;【dnlb】支持Tcp
+      * @param {string} opts.protocol - 监听协议, 取值为Tcp, Tls, Http, Https, Udp &lt;br&gt;【alb】支持Http, Https，Tcp、Tls和Udp &lt;br&gt;【nlb】支持Tcp, Udp  &lt;br&gt;【dnlb】支持Tcp, Udp
+      * @param {boolean} [opts.hstsEnable] - 【alb使用https时支持】是否开启HSTS，True(开启)， False(关闭)，缺省为False  optional
+      * @param {integer} [opts.hstsMaxAge] - 【alb使用https时支持】HSTS过期时间(秒)，取值范围为[1, 94608000(3年)]，缺省为31536000(1年)  optional
       * @param {integer} opts.port - 监听端口，取值范围为[1, 65535]
       * @param {string} opts.backendId - 默认的后端服务Id
       * @param {string} opts.loadBalancerId - Listener所属loadBalancer的Id
       * @param {string} [opts.urlMapId] - 【alb Https和Http协议】转发规则组Id  optional
       * @param {string} [opts.action] - 默认后端服务的转发策略,取值为Forward或Redirect, 现只支持Forward, 默认为Forward  optional
-      * @param {array} [opts.certificateSpecs] - 【alb Https和Tls协议】Listener绑定的默认证书，只支持一个证书  optional
-      * @param {integer} [opts.connectionIdleTimeSeconds] - 【alb、nlb】空闲连接超时时间, 范围为[1,86400]。 &lt;br&gt;（Tcp和Tls协议）默认为：1800s &lt;br&gt;（Http和Https协议）默认为：60s &lt;br&gt;【dnlb】不支持  optional
+      * @param {array} [opts.certificateSpecs] - 【alb Https和Tls协议】Listener绑定的默认证书，最多支持两个，两个证书的加密算法需要不同  optional
+      * @param {integer} [opts.connectionIdleTimeSeconds] - 【alb、nlb】空闲连接超时时间, 范围为[1,86400]。 &lt;br&gt;（Tcp和Tls协议）默认为：1800s &lt;br&gt;（Udp协议）默认为：300s &lt;br&gt;（Http和Https协议）默认为：60s &lt;br&gt;【dnlb】不支持  optional
       * @param {string} [opts.description] - 描述,允许输入UTF-8编码下的全部字符，不超过256字符  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -1100,6 +1116,12 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
     if (opts.protocol !== undefined && opts.protocol !== null) {
       postBody['protocol'] = opts.protocol
     }
+    if (opts.hstsEnable !== undefined && opts.hstsEnable !== null) {
+      postBody['hstsEnable'] = opts.hstsEnable
+    }
+    if (opts.hstsMaxAge !== undefined && opts.hstsMaxAge !== null) {
+      postBody['hstsMaxAge'] = opts.hstsMaxAge
+    }
     if (opts.port !== undefined && opts.port !== null) {
       postBody['port'] = opts.port
     }
@@ -1135,7 +1157,7 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
     }
 
     let contentTypes = ['application/json']
@@ -1246,7 +1268,7 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
     }
 
     let contentTypes = ['application/json']
@@ -1324,7 +1346,9 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
       * @param {string} opts.listenerId - 监听器ID
       * @param {string} [opts.listenerName] - 监听器名称,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符  optional
       * @param {string} [opts.status] - Listener状态, 取值为On或者为Off  optional
-      * @param {array} [opts.certificateSpecs] - 【alb Https和Tls协议】Listener绑定的默认证书，只支持一个证书  optional
+      * @param {boolean} [opts.hstsEnable] - 【alb使用https时支持】是否开启HSTS，True(开启)， False(关闭)，缺省为不改变原值  optional
+      * @param {integer} [opts.hstsMaxAge] - 【alb使用https时支持】HSTS过期时间(秒)，取值范围为[1, 94608000(3年)]，缺省为不改变原值  optional
+      * @param {array} [opts.certificateSpecs] - 【alb Https和Tls协议】Listener绑定的默认证书，最多支持两个，两个证书的加密算法需要不同  optional
       * @param {integer} [opts.connectionIdleTimeSeconds] - 【alb、nlb】空闲连接超时时间, 范围为[1,86400]。 &lt;br&gt;（Tcp和Tls协议）默认为：1800s &lt;br&gt;（Http和Https协议）默认为：60s &lt;br&gt;【dnlb】不支持该功能  optional
       * @param {string} [opts.backendId] - 默认后端服务Id  optional
       * @param {string} [opts.urlMapId] - 【alb Https和Http协议】转发规则组Id  optional
@@ -1361,6 +1385,12 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
     if (opts.status !== undefined && opts.status !== null) {
       postBody['status'] = opts.status
     }
+    if (opts.hstsEnable !== undefined && opts.hstsEnable !== null) {
+      postBody['hstsEnable'] = opts.hstsEnable
+    }
+    if (opts.hstsMaxAge !== undefined && opts.hstsMaxAge !== null) {
+      postBody['hstsMaxAge'] = opts.hstsMaxAge
+    }
     if (opts.certificateSpecs !== undefined && opts.certificateSpecs !== null) {
       postBody['certificateSpecs'] = opts.certificateSpecs
     }
@@ -1388,7 +1418,7 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
     }
 
     let contentTypes = ['application/json']
@@ -1498,7 +1528,7 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
     }
 
     let contentTypes = ['application/json']
@@ -1613,7 +1643,7 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
     }
 
     let contentTypes = ['application/json']
@@ -1728,7 +1758,7 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
     }
 
     let contentTypes = ['application/json']
@@ -1846,7 +1876,7 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
     }
 
     let contentTypes = ['application/json']
@@ -1927,6 +1957,8 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
 loadBalancerIds - 负载均衡ID列表，支持多个
 loadBalancerNames - 负载均衡名称列表，支持多个
 vpcId - 负载均衡所在Vpc的Id，支持单个
+azType - 负载均衡az类型，取值：all(全部类型)，standard(标准负载均衡)，edge(边缘负载均衡)，支持单个
+azs - 可用区，支持多个
   optional
       * @param {tagFilter} [opts.tags] - Tag筛选条件  optional
       * @param {string} regionId - ID of the region
@@ -1966,7 +1998,7 @@ vpcId - 负载均衡所在Vpc的Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
     }
 
     let contentTypes = ['application/json']
@@ -2044,11 +2076,13 @@ vpcId - 负载均衡所在Vpc的Id，支持单个
       * @param {string} opts.loadBalancerName - LoadBalancer的名称,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符
       * @param {string} opts.subnetId - LoadBalancer所属子网的Id
       * @param {string} [opts.type] - LoadBalancer的类型，取值：alb、nlb、dnlb，默认为alb  optional
-      * @param {array} [opts.azs] - 【alb，nlb】LoadBalancer所属availability Zone列表,对于alb,nlb是必选参数 &lt;br&gt;【dnlb】全可用区可用，不必传该参数  optional
+      * @param {array} [opts.azs] - 【alb，nlb】LoadBalancer所属availability Zone列表,对于alb,nlb是必选参数，可用区个数不能超过2个 &lt;br&gt;【dnlb】全可用区可用，不必传该参数  optional
       * @param {chargeSpec} [opts.chargeSpec] - 【alb】支持按用量计费，默认为按用量。【nlb】支持按用量计费。【dnlb】支持按配置计费  optional
       * @param {elasticIpSpec} [opts.elasticIp] - 负载均衡关联的弹性IP规格  optional
+      * @param {string} [opts.privateIpAddress] - 指定LoadBalancer的VIP(内网IPv4地址)，需要属于指定的子网并且未被占用  optional
       * @param {array} [opts.securityGroupIds] - 【alb】 安全组 ID列表  optional
       * @param {string} [opts.description] - LoadBalancer的描述信息,允许输入UTF-8编码下的全部字符，不超过256字符  optional
+      * @param {boolean} [opts.domainEnable] - 是否绑定域名，包括外网和内网，缺省为False(关闭)  optional
       * @param {boolean} [opts.deleteProtection] - 删除保护，取值为True(开启)或False(关闭)，默认为False  optional
       * @param {array} [opts.userTags] - 用户tag 信息  optional
       * @param {string} regionId - ID of the region
@@ -2101,11 +2135,17 @@ vpcId - 负载均衡所在Vpc的Id，支持单个
     if (opts.elasticIp !== undefined && opts.elasticIp !== null) {
       postBody['elasticIp'] = opts.elasticIp
     }
+    if (opts.privateIpAddress !== undefined && opts.privateIpAddress !== null) {
+      postBody['privateIpAddress'] = opts.privateIpAddress
+    }
     if (opts.securityGroupIds !== undefined && opts.securityGroupIds !== null) {
       postBody['securityGroupIds'] = opts.securityGroupIds
     }
     if (opts.description !== undefined && opts.description !== null) {
       postBody['description'] = opts.description
+    }
+    if (opts.domainEnable !== undefined && opts.domainEnable !== null) {
+      postBody['domainEnable'] = opts.domainEnable
     }
     if (opts.deleteProtection !== undefined && opts.deleteProtection !== null) {
       postBody['deleteProtection'] = opts.deleteProtection
@@ -2121,7 +2161,7 @@ vpcId - 负载均衡所在Vpc的Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
     }
 
     let contentTypes = ['application/json']
@@ -2232,7 +2272,7 @@ vpcId - 负载均衡所在Vpc的Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
     }
 
     let contentTypes = ['application/json']
@@ -2311,7 +2351,9 @@ vpcId - 负载均衡所在Vpc的Id，支持单个
       * @param {string} [opts.loadBalancerName] - LoadBalancer的名称,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符  optional
       * @param {string} [opts.action] - 启用或停止LoadBalancer，取值为Start(启用)或Stop(停止)  optional
       * @param {string} [opts.description] - LoadBalancer的描述信息,允许输入UTF-8编码下的全部字符，不超过256字符  optional
+      * @param {boolean} [opts.domainEnable] - 是否绑定域名，包括外网和内网，缺省为不改变原值  optional
       * @param {boolean} [opts.deleteProtection] - 删除保护，取值为True(开启)或False(关闭)，默认为False  optional
+      * @param {string} [opts.privateIpAddress] - 变更loadBalancer的vip地址，新地址只允许是loadBalancer本子网中的空闲ip地址，缺省为不改变原值  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -2347,8 +2389,14 @@ vpcId - 负载均衡所在Vpc的Id，支持单个
     if (opts.description !== undefined && opts.description !== null) {
       postBody['description'] = opts.description
     }
+    if (opts.domainEnable !== undefined && opts.domainEnable !== null) {
+      postBody['domainEnable'] = opts.domainEnable
+    }
     if (opts.deleteProtection !== undefined && opts.deleteProtection !== null) {
       postBody['deleteProtection'] = opts.deleteProtection
+    }
+    if (opts.privateIpAddress !== undefined && opts.privateIpAddress !== null) {
+      postBody['privateIpAddress'] = opts.privateIpAddress
     }
 
     let queryParams = {}
@@ -2359,7 +2407,7 @@ vpcId - 负载均衡所在Vpc的Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
     }
 
     let contentTypes = ['application/json']
@@ -2469,7 +2517,7 @@ vpcId - 负载均衡所在Vpc的Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
     }
 
     let contentTypes = ['application/json']
@@ -2589,7 +2637,7 @@ vpcId - 负载均衡所在Vpc的Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
     }
 
     let contentTypes = ['application/json']
@@ -2709,7 +2757,7 @@ vpcId - 负载均衡所在Vpc的Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
     }
 
     let contentTypes = ['application/json']
@@ -2824,7 +2872,7 @@ vpcId - 负载均衡所在Vpc的Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
     }
 
     let contentTypes = ['application/json']
@@ -2939,7 +2987,7 @@ vpcId - 负载均衡所在Vpc的Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
     }
 
     let contentTypes = ['application/json']
@@ -2984,6 +3032,254 @@ vpcId - 负载均衡所在Vpc的Id，支持单个
     let request = super.makeRequest(
       '/regions/{regionId}/loadBalancers/{loadBalancerId}:disassociateSecurityGroup',
       'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建负载均衡列表导出任务
+      * @param {Object} opts - parameters
+      * @param {string} [opts.fileType] - 导出文件类型, 目前支持excel和csv  optional
+      * @param {integer} [opts.startPage] - 开始页码, 默认为1, 取值范围：[1,∞), startPage超过总页数时会报错  optional
+      * @param {integer} [opts.endPage] - 结束页码, 取值范围：[startPage,∞), 当startPage未超过总页数, endpage超过总页数, 会返回从开始页码到最后一页的内容  optional
+      * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围：[10,100]  optional
+      * @param {filter} [opts.filters] - loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb，支持单个
+loadBalancerIds - 负载均衡ID列表，支持多个
+loadBalancerNames - 负载均衡名称列表，支持多个
+vpcId - 负载均衡所在Vpc的Id，支持单个
+azType - 负载均衡az类型，取值：all(全部类型)，standard(标准负载均衡)，edge(边缘负载均衡)，默认standard ，支持单个
+azs - 可用区，支持多个
+columns - 不指定则默认导出基本表头：&quot;LB ID&quot;, &quot;LB Name&quot;, &quot;LB Type&quot;, &quot;Region&quot;
+  可选字段值：
+    az：lb所属可用区，对应表头&quot;Availability Zone&quot;
+    privateIpAddress：lb的vip地址，对应表头&quot;VIP&quot;
+    elasticIp：lb的公网IP，对应表头&quot;EIP IPv4 Address&quot;、&quot;EIP IPv4 Bandwidth&quot;
+    ipv6Address：lb的ipv6地址，对应表头&quot;IPv6 Address&quot;
+    vpc/subnet：lb所属的vpc及子网，对应表头&quot;VPC ID&quot;、&quot;VPC Name&quot;、&quot;Subnet ID&quot;、&quot;Subnet Name&quot;
+    deleteProtection：是否开启删除保护，对应表头&quot;Delete Protection&quot;
+    charge：lb的计费信息，对应表头&quot;LB Billing Type&quot;、&quot;Creation Time&quot;
+    state：lb状态，对应表头&quot;Status&quot;
+    tag：lb绑定的标签，对应表头&quot;Tag&quot;
+    description：lb的描述信息，对应表头&quot;Description&quot;
+  optional
+      * @param {tagFilter} [opts.tags] - Tag筛选条件  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string taskId  导出任务的Id
+      */
+
+  exportLoadBalancers (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  exportLoadBalancers"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.fileType !== undefined && opts.fileType !== null) {
+      queryParams['fileType'] = opts.fileType
+    }
+    if (opts.startPage !== undefined && opts.startPage !== null) {
+      queryParams['startPage'] = opts.startPage
+    }
+    if (opts.endPage !== undefined && opts.endPage !== null) {
+      queryParams['endPage'] = opts.endPage
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildTagFilterParam(opts.tags, 'tags'))
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call exportLoadBalancers with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/loadBalancers:export',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询负载均衡导出任务列表
+      * @param {Object} opts - parameters
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param exportTask exportTasks
+      */
+
+  describeLoadBalancersExportTasks (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeLoadBalancersExportTasks"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeLoadBalancersExportTasks with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/loadBalancers:exporttask',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -3057,7 +3353,7 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
     }
 
     let contentTypes = ['application/json']
@@ -3188,7 +3484,7 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
     }
 
     let contentTypes = ['application/json']
@@ -3299,7 +3595,7 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
     }
 
     let contentTypes = ['application/json']
@@ -3418,7 +3714,7 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
     }
 
     let contentTypes = ['application/json']
@@ -3528,7 +3824,7 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
     }
 
     let contentTypes = ['application/json']
@@ -3648,7 +3944,7 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
     }
 
     let contentTypes = ['application/json']
@@ -3768,7 +4064,7 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
     }
 
     let contentTypes = ['application/json']
@@ -3894,7 +4190,7 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
     }
 
     let contentTypes = ['application/json']
@@ -4021,7 +4317,7 @@ ipAddress - ip地址,仅支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
     }
 
     let contentTypes = ['application/json']
@@ -4138,7 +4434,7 @@ loadBalancerId - 负载均衡器Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
     }
 
     let contentTypes = ['application/json']
@@ -4265,7 +4561,7 @@ loadBalancerId - 负载均衡器Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
     }
 
     let contentTypes = ['application/json']
@@ -4376,7 +4672,7 @@ loadBalancerId - 负载均衡器Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
     }
 
     let contentTypes = ['application/json']
@@ -4495,7 +4791,7 @@ loadBalancerId - 负载均衡器Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
     }
 
     let contentTypes = ['application/json']
@@ -4605,7 +4901,7 @@ loadBalancerId - 负载均衡器Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
     }
 
     let contentTypes = ['application/json']
@@ -4720,7 +5016,7 @@ loadBalancerId - 负载均衡器Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
     }
 
     let contentTypes = ['application/json']
@@ -4835,7 +5131,7 @@ loadBalancerId - 负载均衡器Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
     }
 
     let contentTypes = ['application/json']
@@ -4950,7 +5246,7 @@ loadBalancerId - 负载均衡器Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
     }
 
     let contentTypes = ['application/json']

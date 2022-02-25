@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * lb service.
- * @version 0.5.6
+ * @version 0.5.7
  */
 
 class LB extends Service {
@@ -92,7 +92,7 @@ protocol - 后端服务的协议【alb】支持Http、Tcp和Udp，【nlb】支�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
     }
 
     let contentTypes = ['application/json']
@@ -322,7 +322,7 @@ protocol - 后端服务的协议【alb】支持Http、Tcp和Udp，【nlb】支�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
     }
 
     let contentTypes = ['application/json']
@@ -433,7 +433,7 @@ protocol - 后端服务的协议【alb】支持Http、Tcp和Udp，【nlb】支�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
     }
 
     let contentTypes = ['application/json']
@@ -636,7 +636,7 @@ protocol - 后端服务的协议【alb】支持Http、Tcp和Udp，【nlb】支�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
     }
 
     let contentTypes = ['application/json']
@@ -746,7 +746,7 @@ protocol - 后端服务的协议【alb】支持Http、Tcp和Udp，【nlb】支�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
     }
 
     let contentTypes = ['application/json']
@@ -857,7 +857,7 @@ protocol - 后端服务的协议【alb】支持Http、Tcp和Udp，【nlb】支�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
     }
 
     let contentTypes = ['application/json']
@@ -976,7 +976,7 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
     }
 
     let contentTypes = ['application/json']
@@ -1157,7 +1157,7 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
     }
 
     let contentTypes = ['application/json']
@@ -1268,7 +1268,7 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
     }
 
     let contentTypes = ['application/json']
@@ -1418,7 +1418,7 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
     }
 
     let contentTypes = ['application/json']
@@ -1528,7 +1528,7 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
     }
 
     let contentTypes = ['application/json']
@@ -1643,7 +1643,7 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
     }
 
     let contentTypes = ['application/json']
@@ -1758,7 +1758,7 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
     }
 
     let contentTypes = ['application/json']
@@ -1876,7 +1876,7 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
     }
 
     let contentTypes = ['application/json']
@@ -1957,8 +1957,8 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
 loadBalancerIds - 负载均衡ID列表，支持多个
 loadBalancerNames - 负载均衡名称列表，支持多个
 vpcId - 负载均衡所在Vpc的Id，支持单个
-azType - 负载均衡az类型，取值：all(全部类型)，standard(标准负载均衡)，edge(边缘负载均衡)，支持单个
-azs - 可用区，支持多个
+azType - 负载均衡所在可用区类型，取值包括：all(全部可用区)、standard(标准可用区)、edge(边缘可用区)。默认standard ，支持单个
+azs - 边缘可用区，支持多个
   optional
       * @param {tagFilter} [opts.tags] - Tag筛选条件  optional
       * @param {string} regionId - ID of the region
@@ -1998,7 +1998,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
     }
 
     let contentTypes = ['application/json']
@@ -2076,13 +2076,12 @@ azs - 可用区，支持多个
       * @param {string} opts.loadBalancerName - LoadBalancer的名称,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符
       * @param {string} opts.subnetId - LoadBalancer所属子网的Id
       * @param {string} [opts.type] - LoadBalancer的类型，取值：alb、nlb、dnlb，默认为alb  optional
-      * @param {array} [opts.azs] - 【alb，nlb】LoadBalancer所属availability Zone列表,对于alb,nlb是必选参数，可用区个数不能超过2个 &lt;br&gt;【dnlb】全可用区可用，不必传该参数  optional
+      * @param {array} [opts.azs] - 【alb，nlb】LoadBalancer所属availability Zone列表,对于alb,nlb是必选参数，可用区个数不能超过2个 &lt;br&gt;【dnlb】中心可用区，dnlb不需要传该参数，全可用区可用；边缘可用区，仅支持传入单可用区  optional
       * @param {chargeSpec} [opts.chargeSpec] - 【alb】支持按用量计费，默认为按用量。【nlb】支持按用量计费。【dnlb】支持按配置计费  optional
       * @param {elasticIpSpec} [opts.elasticIp] - 负载均衡关联的弹性IP规格  optional
       * @param {string} [opts.privateIpAddress] - 指定LoadBalancer的VIP(内网IPv4地址)，需要属于指定的子网并且未被占用  optional
       * @param {array} [opts.securityGroupIds] - 【alb】 安全组 ID列表  optional
       * @param {string} [opts.description] - LoadBalancer的描述信息,允许输入UTF-8编码下的全部字符，不超过256字符  optional
-      * @param {boolean} [opts.domainEnable] - 是否绑定域名，包括外网和内网，缺省为False(关闭)  optional
       * @param {boolean} [opts.deleteProtection] - 删除保护，取值为True(开启)或False(关闭)，默认为False  optional
       * @param {array} [opts.userTags] - 用户tag 信息  optional
       * @param {string} regionId - ID of the region
@@ -2144,9 +2143,6 @@ azs - 可用区，支持多个
     if (opts.description !== undefined && opts.description !== null) {
       postBody['description'] = opts.description
     }
-    if (opts.domainEnable !== undefined && opts.domainEnable !== null) {
-      postBody['domainEnable'] = opts.domainEnable
-    }
     if (opts.deleteProtection !== undefined && opts.deleteProtection !== null) {
       postBody['deleteProtection'] = opts.deleteProtection
     }
@@ -2161,7 +2157,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
     }
 
     let contentTypes = ['application/json']
@@ -2272,7 +2268,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
     }
 
     let contentTypes = ['application/json']
@@ -2407,7 +2403,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
     }
 
     let contentTypes = ['application/json']
@@ -2517,7 +2513,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
     }
 
     let contentTypes = ['application/json']
@@ -2637,7 +2633,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
     }
 
     let contentTypes = ['application/json']
@@ -2757,7 +2753,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
     }
 
     let contentTypes = ['application/json']
@@ -2872,7 +2868,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
     }
 
     let contentTypes = ['application/json']
@@ -2987,7 +2983,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
     }
 
     let contentTypes = ['application/json']
@@ -3032,254 +3028,6 @@ azs - 可用区，支持多个
     let request = super.makeRequest(
       '/regions/{regionId}/loadBalancers/{loadBalancerId}:disassociateSecurityGroup',
       'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  创建负载均衡列表导出任务
-      * @param {Object} opts - parameters
-      * @param {string} [opts.fileType] - 导出文件类型, 目前支持excel和csv  optional
-      * @param {integer} [opts.startPage] - 开始页码, 默认为1, 取值范围：[1,∞), startPage超过总页数时会报错  optional
-      * @param {integer} [opts.endPage] - 结束页码, 取值范围：[startPage,∞), 当startPage未超过总页数, endpage超过总页数, 会返回从开始页码到最后一页的内容  optional
-      * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围：[10,100]  optional
-      * @param {filter} [opts.filters] - loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb，支持单个
-loadBalancerIds - 负载均衡ID列表，支持多个
-loadBalancerNames - 负载均衡名称列表，支持多个
-vpcId - 负载均衡所在Vpc的Id，支持单个
-azType - 负载均衡az类型，取值：all(全部类型)，standard(标准负载均衡)，edge(边缘负载均衡)，默认standard ，支持单个
-azs - 可用区，支持多个
-columns - 不指定则默认导出基本表头：&quot;LB ID&quot;, &quot;LB Name&quot;, &quot;LB Type&quot;, &quot;Region&quot;
-  可选字段值：
-    az：lb所属可用区，对应表头&quot;Availability Zone&quot;
-    privateIpAddress：lb的vip地址，对应表头&quot;VIP&quot;
-    elasticIp：lb的公网IP，对应表头&quot;EIP IPv4 Address&quot;、&quot;EIP IPv4 Bandwidth&quot;
-    ipv6Address：lb的ipv6地址，对应表头&quot;IPv6 Address&quot;
-    vpc/subnet：lb所属的vpc及子网，对应表头&quot;VPC ID&quot;、&quot;VPC Name&quot;、&quot;Subnet ID&quot;、&quot;Subnet Name&quot;
-    deleteProtection：是否开启删除保护，对应表头&quot;Delete Protection&quot;
-    charge：lb的计费信息，对应表头&quot;LB Billing Type&quot;、&quot;Creation Time&quot;
-    state：lb状态，对应表头&quot;Status&quot;
-    tag：lb绑定的标签，对应表头&quot;Tag&quot;
-    description：lb的描述信息，对应表头&quot;Description&quot;
-  optional
-      * @param {tagFilter} [opts.tags] - Tag筛选条件  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param string taskId  导出任务的Id
-      */
-
-  exportLoadBalancers (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  exportLoadBalancers"
-      )
-    }
-
-    opts = opts || {}
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.fileType !== undefined && opts.fileType !== null) {
-      queryParams['fileType'] = opts.fileType
-    }
-    if (opts.startPage !== undefined && opts.startPage !== null) {
-      queryParams['startPage'] = opts.startPage
-    }
-    if (opts.endPage !== undefined && opts.endPage !== null) {
-      queryParams['endPage'] = opts.endPage
-    }
-    if (opts.pageSize !== undefined && opts.pageSize !== null) {
-      queryParams['pageSize'] = opts.pageSize
-    }
-    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
-    Object.assign(queryParams, super.buildTagFilterParam(opts.tags, 'tags'))
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call exportLoadBalancers with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/loadBalancers:export',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询负载均衡导出任务列表
-      * @param {Object} opts - parameters
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param exportTask exportTasks
-      */
-
-  describeLoadBalancersExportTasks (
-    opts,
-    regionId = this.config.regionId,
-    callback
-  ) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeLoadBalancersExportTasks"
-      )
-    }
-
-    opts = opts || {}
-
-    let postBody = null
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeLoadBalancersExportTasks with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/loadBalancers:exporttask',
-      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -3353,7 +3101,7 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
     }
 
     let contentTypes = ['application/json']
@@ -3484,7 +3232,7 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
     }
 
     let contentTypes = ['application/json']
@@ -3595,7 +3343,7 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
     }
 
     let contentTypes = ['application/json']
@@ -3714,7 +3462,7 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
     }
 
     let contentTypes = ['application/json']
@@ -3824,7 +3572,7 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
     }
 
     let contentTypes = ['application/json']
@@ -3944,7 +3692,7 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
     }
 
     let contentTypes = ['application/json']
@@ -4064,7 +3812,7 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
     }
 
     let contentTypes = ['application/json']
@@ -4190,7 +3938,7 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
     }
 
     let contentTypes = ['application/json']
@@ -4317,7 +4065,7 @@ ipAddress - ip地址,仅支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
     }
 
     let contentTypes = ['application/json']
@@ -4434,7 +4182,7 @@ loadBalancerId - 负载均衡器Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
     }
 
     let contentTypes = ['application/json']
@@ -4561,7 +4309,7 @@ loadBalancerId - 负载均衡器Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
     }
 
     let contentTypes = ['application/json']
@@ -4672,7 +4420,7 @@ loadBalancerId - 负载均衡器Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
     }
 
     let contentTypes = ['application/json']
@@ -4791,7 +4539,7 @@ loadBalancerId - 负载均衡器Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
     }
 
     let contentTypes = ['application/json']
@@ -4901,7 +4649,7 @@ loadBalancerId - 负载均衡器Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
     }
 
     let contentTypes = ['application/json']
@@ -5016,7 +4764,7 @@ loadBalancerId - 负载均衡器Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
     }
 
     let contentTypes = ['application/json']
@@ -5131,7 +4879,7 @@ loadBalancerId - 负载均衡器Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
     }
 
     let contentTypes = ['application/json']
@@ -5246,7 +4994,7 @@ loadBalancerId - 负载均衡器Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
     }
 
     let contentTypes = ['application/json']

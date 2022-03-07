@@ -1,5 +1,7 @@
 module.exports = {
   VQD: require('./vqd'),
+  SMARTDBA: require('./smartdba'),
+  DMS: require('./dms'),
   STREAMCOMPUTER: require('./streamcomputer'),
   SSL: require('./ssl'),
   OSS: require('./oss'),
@@ -55,6 +57,7 @@ module.exports = {
   ASSET: require('./asset'),
   RDS: require('./rds'),
   KUBERNETES: require('./kubernetes'),
+  TIDB: require('./tidb'),
   IPANTI: require('./ipanti'),
   ANTIPRO: require('./antipro'),
   JMR: require('./jmr'),

@@ -76,6 +76,7 @@ module.exports = {
   ES: require('./es'),
   HTTPDNS: require('./httpdns'),
   DISK: require('./disk'),
+  DBS: require('./dbs'),
   NC: require('./nc'),
   YDSMS: require('./ydsms'),
   VM: require('./vm'),

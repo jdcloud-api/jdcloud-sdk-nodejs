@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * openjrtc service.
- * @version 1.1.2
+ * @version 1.1.5
  */
 
 class OPENJRTC extends Service {
@@ -72,7 +72,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -172,7 +172,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -272,7 +272,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -381,7 +381,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -490,7 +490,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -599,7 +599,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -707,7 +707,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -813,7 +813,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -892,7 +892,7 @@ class OPENJRTC extends Service {
       * @param {integer} opts.roomId - 房间ID
       * @param {string} callback - callback
       @return {Object} result
-      * @param userNumInfoObj resultObject
+      * @param userOnlineNumInfo resultObject
       */
 
   describeRoomOnlineUserNum (opts, callback) {
@@ -913,7 +913,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -1024,7 +1024,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -1131,7 +1131,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -1240,7 +1240,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -1342,7 +1342,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -1387,6 +1387,230 @@ class OPENJRTC extends Service {
     let request = super.makeRequest(
       '/describeUserByPeer',
       'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  下发混流任务
+
+      * @param {Object} opts - parameters
+      * @param {string} [opts.appId] - 应用ID  optional
+      * @param {string} [opts.userRoomId] - 业务接入方定义的且在JRTC系统内注册过的房间号  optional
+      * @param {integer} [opts.layoutTemplate] - 布局模板-支持参数1  optional
+      * @param {string} [opts.mainUserId] - 主人员userId  optional
+      * @param {integer} [opts.outputType] - 输出类型 1：录制 2：旁路转推  optional
+      * @param {string} [opts.outputName] - 输出名称  optional
+      * @param {array} [opts.mcuUserInfos] - 参与混流人员参数  optional
+      * @param {outputEncode} [opts.outputEncode] - 输出格式  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  startMcuTranscode (opts, callback) {
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.appId !== undefined && opts.appId !== null) {
+      postBody['appId'] = opts.appId
+    }
+    if (opts.userRoomId !== undefined && opts.userRoomId !== null) {
+      postBody['userRoomId'] = opts.userRoomId
+    }
+    if (opts.layoutTemplate !== undefined && opts.layoutTemplate !== null) {
+      postBody['layoutTemplate'] = opts.layoutTemplate
+    }
+    if (opts.mainUserId !== undefined && opts.mainUserId !== null) {
+      postBody['mainUserId'] = opts.mainUserId
+    }
+    if (opts.outputType !== undefined && opts.outputType !== null) {
+      postBody['outputType'] = opts.outputType
+    }
+    if (opts.outputName !== undefined && opts.outputName !== null) {
+      postBody['outputName'] = opts.outputName
+    }
+    if (opts.mcuUserInfos !== undefined && opts.mcuUserInfos !== null) {
+      postBody['mcuUserInfos'] = opts.mcuUserInfos
+    }
+    if (opts.outputEncode !== undefined && opts.outputEncode !== null) {
+      postBody['outputEncode'] = opts.outputEncode
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call startMcuTranscode with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/startMcuTranscode',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  中止混流任务
+
+      * @param {Object} opts - parameters
+      * @param {string} [opts.appId] - 应用ID  optional
+      * @param {string} [opts.userRoomId] - 业务接入方定义的且在JRTC系统内注册过的房间号  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  stopMcuTranscode (opts, callback) {
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.appId !== undefined && opts.appId !== null) {
+      postBody['appId'] = opts.appId
+    }
+    if (opts.userRoomId !== undefined && opts.userRoomId !== null) {
+      postBody['userRoomId'] = opts.userRoomId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call stopMcuTranscode with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/stopMcuTask',
+      'POST',
       pathParams,
       queryParams,
       headerParams,
@@ -1460,7 +1684,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -1574,7 +1798,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -1647,6 +1871,206 @@ class OPENJRTC extends Service {
   }
 
   /**
+      *  添加推流规则
+
+      * @param {Object} opts - parameters
+      * @param {string} [opts.appId] - 应用ID  optional
+      * @param {array} [opts.rules] - 推流规则  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  addPushStreamRule (opts, callback) {
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.appId !== undefined && opts.appId !== null) {
+      postBody['appId'] = opts.appId
+    }
+    if (opts.rules !== undefined && opts.rules !== null) {
+      postBody['rules'] = opts.rules
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call addPushStreamRule with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/addPushStreamRule',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  添加录制规则
+
+      * @param {Object} opts - parameters
+      * @param {string} [opts.appId] - 应用ID  optional
+      * @param {array} [opts.rules] - 录制规则  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  addRecordRule (opts, callback) {
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.appId !== undefined && opts.appId !== null) {
+      postBody['appId'] = opts.appId
+    }
+    if (opts.rules !== undefined && opts.rules !== null) {
+      postBody['rules'] = opts.rules
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call addRecordRule with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/addRecordRule',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  注册用户-将业务接入方用户体系的userId注册为jrtc系统内可识别和流转的用户id
 
       * @param {Object} opts - parameters
@@ -1683,7 +2107,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -1792,7 +2216,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -1908,7 +2332,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -2016,7 +2440,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -2120,7 +2544,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -2247,7 +2671,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -2356,7 +2780,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -2429,6 +2853,118 @@ class OPENJRTC extends Service {
   }
 
   /**
+      *  关闭房间内的指定流
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.appId - 应用ID
+      * @param {string} [opts.userRoomId] - 业务接入方定义的且在JRTC系统内注册过的房间号  optional
+      * @param {string} [opts.userId] - 业务接入方用户体系定义的且在JRTC系统内注册过的userId  optional
+      * @param {string} [opts.streamId] - 要关闭的流ID  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  closeRoomUserStream (opts, callback) {
+    opts = opts || {}
+
+    if (opts.appId === undefined || opts.appId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appId' when calling closeRoomUserStream"
+      )
+    }
+
+    let postBody = {}
+    if (opts.userRoomId !== undefined && opts.userRoomId !== null) {
+      postBody['userRoomId'] = opts.userRoomId
+    }
+    if (opts.userId !== undefined && opts.userId !== null) {
+      postBody['userId'] = opts.userId
+    }
+    if (opts.streamId !== undefined && opts.streamId !== null) {
+      postBody['streamId'] = opts.streamId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      appId: opts.appId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call closeRoomUserStream with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/closeRoomUserStream/{appId}',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  生成token-用户加入房间时携带token校验通过后方能加入
 
       * @param {Object} opts - parameters
@@ -2469,7 +3005,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -2576,7 +3112,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -2687,7 +3223,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -2796,7 +3332,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -2909,7 +3445,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -3018,7 +3554,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -3134,7 +3670,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.5'
     }
 
     let contentTypes = ['application/json']

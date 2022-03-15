@@ -1,6 +1,6 @@
 {
   "name": "jdcloud-sdk-js",
-  "version": "1.2.161",
+  "version": "1.2.162",
   "description": "jdcloud openApi sdk",
   "main": "src/jdcloud.js",
   "scripts": {

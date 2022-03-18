@@ -79,6 +79,7 @@ module.exports = {
   DBS: require('./dbs'),
   NC: require('./nc'),
   YDSMS: require('./ydsms'),
+  CLICKHOUSE: require('./clickhouse'),
   VM: require('./vm'),
   DCAP: require('./dcap'),
   CLOUDAUTH: require('./cloudauth'),

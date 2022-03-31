@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * logs service.
- * @version 1.2.10
+ * @version 1.2.12
  */
 
 class LOGS extends Service {
@@ -39,7 +39,7 @@ class LOGS extends Service {
     options._defaultEndpoint.protocol =
       options._defaultEndpoint.protocol || 'https'
     options._defaultEndpoint.host =
-      options._defaultEndpoint.host || 'logs.jcloud.com'
+      options._defaultEndpoint.host || 'logs.jdcloud-api.com'
     options.basePath = '/v1' // 默认要设为空""
     super(serviceId, options)
   }
@@ -99,7 +99,7 @@ class LOGS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -279,7 +279,7 @@ class LOGS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -402,7 +402,7 @@ class LOGS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -526,7 +526,7 @@ class LOGS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -729,7 +729,7 @@ class LOGS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -809,6 +809,7 @@ class LOGS extends Service {
       * @param {string} opts.parserMode - 解析类型。oneline - 单行，split - 分割， json - json， regexp - regexp
       * @param {string} [opts.parserPattern] - 解析语法  optional
       * @param {string} [opts.parserSample] - 日志样例  optional
+      * @param {array} [opts.pipelines] - 预处理任务列表。按照数组的顺序执行。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -852,6 +853,9 @@ class LOGS extends Service {
     if (opts.parserSample !== undefined && opts.parserSample !== null) {
       postBody['parserSample'] = opts.parserSample
     }
+    if (opts.pipelines !== undefined && opts.pipelines !== null) {
+      postBody['pipelines'] = opts.pipelines
+    }
 
     let queryParams = {}
 
@@ -861,7 +865,7 @@ class LOGS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -971,7 +975,7 @@ class LOGS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -1051,6 +1055,7 @@ class LOGS extends Service {
       * @param {string} opts.parserMode - 解析类型。oneline - 单行，split - 分割， json - json， regexp - regexp
       * @param {string} [opts.parserPattern] - 解析语法  optional
       * @param {string} [opts.parserSample] - 日志样例  optional
+      * @param {array} [opts.pipelines] - 预处理任务列表。按照数组的顺序执行。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1094,6 +1099,9 @@ class LOGS extends Service {
     if (opts.parserSample !== undefined && opts.parserSample !== null) {
       postBody['parserSample'] = opts.parserSample
     }
+    if (opts.pipelines !== undefined && opts.pipelines !== null) {
+      postBody['pipelines'] = opts.pipelines
+    }
 
     let queryParams = {}
 
@@ -1103,7 +1111,7 @@ class LOGS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -1181,6 +1189,7 @@ class LOGS extends Service {
       * @param {string} opts.parserMode - 解析类型。oneline - 单行，split - 分割， json - json， regexp - regexp
       * @param {string} [opts.parserPattern] - 解析语法  optional
       * @param {string} [opts.parserSample] - 日志样例  optional
+      * @param {array} [opts.pipelines] - 预处理任务列表。按照数组的顺序执行。  optional
       * @param {string} callback - callback
       @return {Object} result
       */
@@ -1204,6 +1213,9 @@ class LOGS extends Service {
     if (opts.parserSample !== undefined && opts.parserSample !== null) {
       postBody['parserSample'] = opts.parserSample
     }
+    if (opts.pipelines !== undefined && opts.pipelines !== null) {
+      postBody['pipelines'] = opts.pipelines
+    }
 
     let queryParams = {}
 
@@ -1212,7 +1224,7 @@ class LOGS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -1292,6 +1304,7 @@ class LOGS extends Service {
       * @param {string} opts.parserMode - 解析类型。oneline - 单行，split - 分割， json - json， regexp - regexp
       * @param {string} [opts.parserPattern] - 解析语法  optional
       * @param {string} [opts.parserSample] - 日志样例  optional
+      * @param {array} [opts.pipelines] - 预处理任务列表。按照数组的顺序执行。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1335,6 +1348,9 @@ class LOGS extends Service {
     if (opts.parserSample !== undefined && opts.parserSample !== null) {
       postBody['parserSample'] = opts.parserSample
     }
+    if (opts.pipelines !== undefined && opts.pipelines !== null) {
+      postBody['pipelines'] = opts.pipelines
+    }
 
     let queryParams = {}
 
@@ -1344,7 +1360,7 @@ class LOGS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -1463,7 +1479,7 @@ class LOGS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -1590,7 +1606,7 @@ class LOGS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -1707,7 +1723,7 @@ class LOGS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -1826,7 +1842,7 @@ class LOGS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -1936,7 +1952,7 @@ class LOGS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -2067,7 +2083,7 @@ class LOGS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -2192,7 +2208,7 @@ class LOGS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -2309,7 +2325,7 @@ class LOGS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -2430,7 +2446,7 @@ class LOGS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -2550,7 +2566,7 @@ class LOGS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -2706,7 +2722,7 @@ class LOGS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -2838,7 +2854,7 @@ in: query  optional
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -3026,7 +3042,7 @@ in: query  optional
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -3151,7 +3167,7 @@ in: query  optional
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -3336,7 +3352,7 @@ in: query  optional
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -3461,7 +3477,7 @@ in: query  optional
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -3534,49 +3550,81 @@ in: query  optional
   }
 
   /**
-      *  自定义日志上报。
+      *  日志检索结果直方图
       * @param {Object} opts - parameters
-      * @param {string} opts.logtopicUID - 日志主题uid
-      * @param {string} [opts.stream] - 全局 strean 日志流标识符（建议起能唯一界定一个文件的名字，如 /i-iqnvqpinkjiq/app.log），不传则写入default日志流中（会导致很多文件混合在一起，不推荐）  optional
-      * @param {string} [opts.timestamp] - 全局时间戳，UTC格式，最多支持到纳秒级别，不传入则取服务器时间。如 2019-04-08T03:08:04.437670934Z、2019-04-08T03:08:04Z、2019-04-08T03:08:04.123Z  optional
-      * @param {object} [opts.tags] - 全局标签 map[string]string  optional
-      * @param {array} [opts.entries] - 日志数据  optional
+      * @param {string} opts.logsetUID - 日志集ID
+      * @param {string} opts.logtopicUID - 日志主题ID
+      * @param {string} opts.action - &quot;preview&quot;表示预览, &quot;fulltext&quot;表示全文检索, &quot;advance&quot;表示按照搜索语句检索
+      * @param {string} [opts.expr] - Base64编码的搜索表达式,  optional
+      * @param {boolean} [opts.caseSensitive] - 搜索关键字大小写敏感， 默认false  optional
+      * @param {string} [opts.startTime] - 开始时间。格式 “YYYY-MM-DDThh:mm:ssTZD”, 比如 “2018-11-09T15:34:46+0800”.当action !&#x3D; preview时，必填  optional
+      * @param {string} [opts.endTime] - 结束时间。格式 “YYYY-MM-DDThh:mm:ssTZD”, 比如 “2018-11-09T15:34:46+0800”.当action !&#x3D; preview时，必填  optional
+      * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param integer count  结果条数
+      * @param object data
+      * @param string progress  任务进度
+      * @param searchFields searchFields
+      * @param integer total  总数
       */
 
-  push (opts, callback) {
-    opts = opts || {}
+  histograms (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
 
-    if (opts.logtopicUID === undefined || opts.logtopicUID === null) {
+    if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.logtopicUID' when calling push"
+        "Missing the required parameter 'regionId' when calling  histograms"
       )
     }
 
-    let postBody = {}
-    if (opts.stream !== undefined && opts.stream !== null) {
-      postBody['stream'] = opts.stream
+    opts = opts || {}
+
+    if (opts.logsetUID === undefined || opts.logsetUID === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.logsetUID' when calling histograms"
+      )
     }
-    if (opts.timestamp !== undefined && opts.timestamp !== null) {
-      postBody['timestamp'] = opts.timestamp
+    if (opts.logtopicUID === undefined || opts.logtopicUID === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.logtopicUID' when calling histograms"
+      )
     }
-    if (opts.tags !== undefined && opts.tags !== null) {
-      postBody['tags'] = opts.tags
-    }
-    if (opts.entries !== undefined && opts.entries !== null) {
-      postBody['entries'] = opts.entries
+    if (opts.action === undefined || opts.action === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.action' when calling histograms"
+      )
     }
 
+    let postBody = null
     let queryParams = {}
+    if (opts.action !== undefined && opts.action !== null) {
+      queryParams['action'] = opts.action
+    }
+    if (opts.expr !== undefined && opts.expr !== null) {
+      queryParams['expr'] = opts.expr
+    }
+    if (opts.caseSensitive !== undefined && opts.caseSensitive !== null) {
+      queryParams['caseSensitive'] = opts.caseSensitive
+    }
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
 
     let pathParams = {
-      regionId: 'jdcloud',
+      regionId: regionId,
+      logsetUID: opts.logsetUID,
       logtopicUID: opts.logtopicUID
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -3606,7 +3654,7 @@ in: query  optional
     let returnType = null
 
     this.config.logger(
-      `call push with params:\npathParams:${JSON.stringify(
+      `call histograms with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -3619,123 +3667,8 @@ in: query  optional
     )
 
     let request = super.makeRequest(
-      '/logtopics/{logtopicUID}:push',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  自定义日志上报。
-      * @param {Object} opts - parameters
-      * @param {string} opts.logtopicUID - 日志主题uid
-      * @param {string} [opts.stream] - 全局 strean 日志流标识符（建议起能唯一界定一个文件的名字，如 /i-iqnvqpinkjiq/app.log），不传则写入default日志流中（会导致很多文件混合在一起，不推荐）  optional
-      * @param {string} [opts.timestamp] - 全局时间戳，UTC格式，最多支持到纳秒级别，不传入则取服务器时间。如 2019-04-08T03:08:04.437670934Z、2019-04-08T03:08:04Z、2019-04-08T03:08:04.123Z  optional
-      * @param {object} [opts.tags] - 全局标签 map[string]string  optional
-      * @param {array} [opts.entries] - 日志数据  optional
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  put (opts, callback) {
-    opts = opts || {}
-
-    if (opts.logtopicUID === undefined || opts.logtopicUID === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.logtopicUID' when calling put"
-      )
-    }
-
-    let postBody = {}
-    if (opts.stream !== undefined && opts.stream !== null) {
-      postBody['stream'] = opts.stream
-    }
-    if (opts.timestamp !== undefined && opts.timestamp !== null) {
-      postBody['timestamp'] = opts.timestamp
-    }
-    if (opts.tags !== undefined && opts.tags !== null) {
-      postBody['tags'] = opts.tags
-    }
-    if (opts.entries !== undefined && opts.entries !== null) {
-      postBody['entries'] = opts.entries
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: 'jdcloud',
-      logtopicUID: opts.logtopicUID
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.10'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call put with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/logtopics/{logtopicUID}:put',
-      'POST',
+      '/regions/{regionId}/logsets/{logsetUID}/logtopics/{logtopicUID}/histograms',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -3777,7 +3710,7 @@ in: query  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param object data  结果条目 map[string]interface{} key包含:content,id,anchor
+      * @param object data
       * @param searchFields searchFields
       * @param string taskID  任务ID
       * @param string taskStatus  任务状态, 为Complete 时，表示结束
@@ -3835,7 +3768,7 @@ in: query  optional
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -3924,7 +3857,7 @@ in: query  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param object data  结果条目 map[string]interface{} key包含:content,id,anchor
+      * @param object data
       * @param searchFields searchFields
       * @param integer total  总数
       */
@@ -3994,7 +3927,7 @@ in: query  optional
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -4120,7 +4053,7 @@ in: query  optional
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -4238,7 +4171,7 @@ in: query  optional
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -4360,7 +4293,7 @@ in: query  optional
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  logs/1.2.12'
     }
 
     let contentTypes = ['application/json']

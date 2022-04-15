@@ -30,10 +30,10 @@ Service._services[serviceId] = true
 
 /**
  * vpc service.
- * @version 0.9.2
+ * @version 1.0.1
  */
 
-JDCloud.VPC = class VPC extends Service {
+class VPC extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
@@ -42,6 +42,1071 @@ JDCloud.VPC = class VPC extends Service {
       options._defaultEndpoint.host || 'vpc.jdcloud-api.com'
     options.basePath = '/v1' // 默认要设为空""
     super(serviceId, options)
+  }
+
+  /**
+      *
+查询共享带宽包列表
+
+## 接口说明
+
+- 使用 &#x60;filters&#x60; 过滤器进行条件筛选，每个 &#x60;filter&#x60; 之间的关系为逻辑与（AND）的关系。
+
+- 如果使用子帐号查询，只会查询到该子帐号有权限的云主机实例。关于资源权限请参考 [IAM概述](https://docs.jdcloud.com/cn/iam/product-overview)。
+
+- 单次查询最大可查询100条共享带宽包数据。
+
+- 尽量一次调用接口查询多条数据，不建议使用该批量查询接口一次查询一条数据，如果使用不当导致查询过于密集，可能导致网关触发限流。
+
+- 由于该接口为 &#x60;GET&#x60; 方式请求，最终参数会转换为 &#x60;URL&#x60; 上的参数，但是 &#x60;HTTP&#x60; 协议下的 &#x60;GET&#x60; 请求参数长度是有大小限制的，使用者需要注意参数超长的问题。
+
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞), 页码超过总页数时, 显示最后一页  optional
+      * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围为[10,100]  optional
+      * @param {filter} [opts.filters] - bwpIds - 共享带宽包ID，支持多个进行精确搜索
+name - 共享带宽包名称，支持单个进行精确搜索
+  optional
+      * @param {tagFilter} [opts.tags] - Tag筛选条件  optional
+      * @param {string} [opts.resourceGroupIds] - 资源组筛选条件  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param bandwidthPackage bandwidthPackages
+      * @param integer totalCount  总数量
+      */
+
+  describeBandwidthPackages (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeBandwidthPackages"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildTagFilterParam(opts.tags, 'tags'))
+    Object.assign(
+      queryParams,
+      super.buildArrayParam(opts.resourceGroupIds, 'resourceGroupIds')
+    )
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeBandwidthPackages with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/bandwidthPackages/',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  指定地域创建共享带宽包实例。
+
+## 接口说明
+
+- 需要接口完成实名认证、支付方式确认、计费类型选择等准备工作。
+
+- 各地域下包年包月和按配置计费的共享带宽包不受配额限制，按用量计费的共享带宽包可创建数量受配额限制，创建前请通过 [DescribeQuotas](https://docs.jdcloud.com/cn/shared-bandwidth-package/api/describequotas?content&#x3D;API) 确认配额，如须提升请[提交工单](https://ticket.jdcloud.com/applyorder/submit)或联系京东云客服。
+
+- 通过本接口创建包年包月资源时将自动从账户扣款（代金券优先），如需使用第三方支付方式请通过控制台创建。
+
+- 按用量计费模式需提工单申请使用权限，默认支持增强95消峰计费。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.name - 名称，只支持中文、数字、大小写字母、英文下划线“_”及中划线“-”，且长度不超过32个字符
+      * @param {string} [opts.description] - 描述，长度不超过256个字符  optional
+      * @param {integer} opts.bandwidthMbps - 共享带宽包带宽上限，取值范围200-5000，单位为Mbps，保底带宽 &#x3D; 共享带宽包带宽上限 * 20%
+      * @param {string} [opts.provider] - 线路信息，默认bgp，目前只支持中心节点的BGP线路  optional
+      * @param {chargeSpec} [opts.chargeSpec] - 计费配置。支持包年包月、按配置、按用量计费模式  optional
+      * @param {array} [opts.userTags] - 用户标签  optional
+      * @param {string} [opts.resourceGroupId] - 资源所属资源组ID  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string bandwidthPackageId  共享带宽包ID
+      * @param string requestId  请求ID
+      */
+
+  createBandwidthPackage (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createBandwidthPackage"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.name === undefined || opts.name === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.name' when calling createBandwidthPackage"
+      )
+    }
+    if (opts.bandwidthMbps === undefined || opts.bandwidthMbps === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.bandwidthMbps' when calling createBandwidthPackage"
+      )
+    }
+
+    let postBody = {}
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+    if (opts.bandwidthMbps !== undefined && opts.bandwidthMbps !== null) {
+      postBody['bandwidthMbps'] = opts.bandwidthMbps
+    }
+    if (opts.provider !== undefined && opts.provider !== null) {
+      postBody['provider'] = opts.provider
+    }
+    if (opts.chargeSpec !== undefined && opts.chargeSpec !== null) {
+      postBody['chargeSpec'] = opts.chargeSpec
+    }
+    if (opts.userTags !== undefined && opts.userTags !== null) {
+      postBody['userTags'] = opts.userTags
+    }
+    if (opts.resourceGroupId !== undefined && opts.resourceGroupId !== null) {
+      postBody['resourceGroupId'] = opts.resourceGroupId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createBandwidthPackage with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/bandwidthPackages/',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *
+共享带宽包资源信息详情
+
+## 接口说明
+
+- 该接口与查询共享带宽包列表返回的信息一致。
+
+- 只需要查询单个共享带宽包详细信息的时候可以调用该接口。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.bandwidthPackageId - 共享带宽包ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param bandwidthPackage bandwidthPackage  共享带宽包资源信息
+      */
+
+  describeBandwidthPackage (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeBandwidthPackage"
+      )
+    }
+
+    opts = opts || {}
+
+    if (
+      opts.bandwidthPackageId === undefined ||
+      opts.bandwidthPackageId === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.bandwidthPackageId' when calling describeBandwidthPackage"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      bandwidthPackageId: opts.bandwidthPackageId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeBandwidthPackage with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/bandwidthPackages/{bandwidthPackageId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *
+修改共享带宽包信息，包括带宽上限及共享带宽包名称、描述信息。
+
+## 接口说明
+
+- 如共享带宽包中的弹性公网 IP 有单独限速。共享带宽包的带宽上限值不能低于其包含任一弹性公网IP的带宽上限值。
+
+- 欠费或到期的共享带宽包资源不支持修改带宽上限。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.bandwidthPackageId - 共享带宽包ID
+      * @param {integer} [opts.bandwidthMbps] - 共享带宽包带宽上限，取值范围200-5000，单位为Mbps，且不能低于共享带宽包内公网IP带宽上限  optional
+      * @param {string} [opts.name] - 名称，只支持中文、数字、大小写字母、英文下划线“_”及中划线“-”，且长度不超过32个字符  optional
+      * @param {string} [opts.description] - 描述，长度不超过256个字符  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  modifyBandwidthPackage (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyBandwidthPackage"
+      )
+    }
+
+    opts = opts || {}
+
+    if (
+      opts.bandwidthPackageId === undefined ||
+      opts.bandwidthPackageId === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.bandwidthPackageId' when calling modifyBandwidthPackage"
+      )
+    }
+
+    let postBody = {}
+    if (opts.bandwidthMbps !== undefined && opts.bandwidthMbps !== null) {
+      postBody['bandwidthMbps'] = opts.bandwidthMbps
+    }
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      bandwidthPackageId: opts.bandwidthPackageId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyBandwidthPackage with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/bandwidthPackages/{bandwidthPackageId}',
+      'PATCH',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除共享带宽包
+
+## 接口说明
+
+- 当共享带宽包内有公网IP存在时、包年包月类型的共享带宽包未到期时、按用量计费的共享带宽包使用时长未满一个完整的自然月时均不支持删除共享带宽包
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.bandwidthPackageId - 共享带宽包ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteBandwidthPackage (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteBandwidthPackage"
+      )
+    }
+
+    opts = opts || {}
+
+    if (
+      opts.bandwidthPackageId === undefined ||
+      opts.bandwidthPackageId === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.bandwidthPackageId' when calling deleteBandwidthPackage"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      bandwidthPackageId: opts.bandwidthPackageId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteBandwidthPackage with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/bandwidthPackages/{bandwidthPackageId}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *
+向共享带宽包内增加公网IP
+
+## 接口说明
+
+- 确保已有至少一个共享带宽包资源。
+
+- 添加弹性公网IP前，需确保弹性公网IP所在地域与共享带宽包地域和线路相同，弹性公网IP的计费模式为按配置或按用量计费，且未加入其他的共享带宽包资源。
+
+- 已欠费的、包年包月的公网IP不能加入共享带宽包。
+
+- 一个公网IP同时只能加入一个共享带宽包。
+
+- 共享带宽包中可添加的弹性公网IP受配额限制，添加前请通过 [DescribeQuotas](https://docs.jdcloud.com/cn/shared-bandwidth-package/api/describequotas?content&#x3D;API) 确认配额，如须提升请[提交工单](https://ticket.jdcloud.com/applyorder/submit)或联系京东云客服。
+
+- 弹性公网IP加入共享带宽包后，弹性公网 IP 会原有的计费和带宽上限暂时失效，已共享带宽包进行计费，带宽上限默认为共享带宽包的带宽上限，可通过[modifyBandwidthPackageIpBandwidth](https://docs.jdcloud.com/cn/shared-bandwidth-package/api/modifybandwidthpackageIpbandwidth)进行修改。
+
+- 共享带宽包欠费或到期停服后不支持添加弹性公网IP。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.bandwidthPackageId - 共享带宽包ID
+      * @param {array} [opts.bandwidthPackageIPSpecs] - Ip列表  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  addBandwidthPackageIP (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  addBandwidthPackageIP"
+      )
+    }
+
+    opts = opts || {}
+
+    if (
+      opts.bandwidthPackageId === undefined ||
+      opts.bandwidthPackageId === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.bandwidthPackageId' when calling addBandwidthPackageIP"
+      )
+    }
+
+    let postBody = {}
+    if (
+      opts.bandwidthPackageIPSpecs !== undefined &&
+      opts.bandwidthPackageIPSpecs !== null
+    ) {
+      postBody['bandwidthPackageIPSpecs'] = opts.bandwidthPackageIPSpecs
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      bandwidthPackageId: opts.bandwidthPackageId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call addBandwidthPackageIP with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/bandwidthPackages/{bandwidthPackageId}:addBandwidthPackageIP',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *
+从共享带宽包内移除公网IP
+
+## 接口说明
+
+-  弹性公网IP从共享带宽包中移除后，恢复原有的计费模式和带宽上限。
+
+-  共享带宽包是否计费与共享带宽包中有无弹性公网IP无关，如共享带宽包中无弹性公网IP资源时请及时删除资源，避免产生额外费用
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.bandwidthPackageId - 共享带宽包ID
+      * @param {array} [opts.bandwidthPackageIPSpecs] - 公网IP列表  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  removeBandwidthPackageIP (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  removeBandwidthPackageIP"
+      )
+    }
+
+    opts = opts || {}
+
+    if (
+      opts.bandwidthPackageId === undefined ||
+      opts.bandwidthPackageId === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.bandwidthPackageId' when calling removeBandwidthPackageIP"
+      )
+    }
+
+    let postBody = {}
+    if (
+      opts.bandwidthPackageIPSpecs !== undefined &&
+      opts.bandwidthPackageIPSpecs !== null
+    ) {
+      postBody['bandwidthPackageIPSpecs'] = opts.bandwidthPackageIPSpecs
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      bandwidthPackageId: opts.bandwidthPackageId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call removeBandwidthPackageIP with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/bandwidthPackages/{bandwidthPackageId}:removeBandwidthPackageIP',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *
+修改共享带宽包内弹性公网 IP 的带宽上限。
+
+## 接口说明
+
+- 共享带宽包中弹性公网IP的带宽上限不能高于共享带宽包的带宽上限。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.bandwidthPackageId - 共享带宽包ID
+      * @param {array} [opts.bandwidthPackageIPSpecs] - Ip列表  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  modifyBandwidthPackageIpBandwidth (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyBandwidthPackageIpBandwidth"
+      )
+    }
+
+    opts = opts || {}
+
+    if (
+      opts.bandwidthPackageId === undefined ||
+      opts.bandwidthPackageId === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.bandwidthPackageId' when calling modifyBandwidthPackageIpBandwidth"
+      )
+    }
+
+    let postBody = {}
+    if (
+      opts.bandwidthPackageIPSpecs !== undefined &&
+      opts.bandwidthPackageIPSpecs !== null
+    ) {
+      postBody['bandwidthPackageIPSpecs'] = opts.bandwidthPackageIPSpecs
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      bandwidthPackageId: opts.bandwidthPackageId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyBandwidthPackageIpBandwidth with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/bandwidthPackages/{bandwidthPackageId}:modifyBandwidthPackageIpBandwidth',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
   }
 
   /**
@@ -54,8 +1119,11 @@ elasticIpAddress - eip的IP地址，支持单个
 chargeStatus - eip的费用支付状态,normal(正常状态) or overdue(预付费已到期) or arrear(欠费状态)，支持单个
 ipType - eip类型，取值：all(所有类型)、standard(标准弹性IP)、edge(边缘弹性IP)，默认standard，支持单个
 azs - eip可用区，支持多个
+bandwidthPackageId - 共享带宽包ID，支持单个
+status - IP是否被绑定，取值：ASSOCIATED（被绑定）、NOT_ASSOCIATED（未被绑定）、ALL（全部）。支持单个
   optional
       * @param {tagFilter} [opts.tags] - Tag筛选条件  optional
+      * @param {string} [opts.resourceGroupIds] - 资源组筛选条件  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -87,13 +1155,17 @@ azs - eip可用区，支持多个
     }
     Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
     Object.assign(queryParams, super.buildTagFilterParam(opts.tags, 'tags'))
+    Object.assign(
+      queryParams,
+      super.buildArrayParam(opts.resourceGroupIds, 'resourceGroupIds')
+    )
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -173,6 +1245,8 @@ azs - eip可用区，支持多个
       * @param {elasticIpSpec} opts.elasticIpSpec - 弹性ip规格
       * @param {array} [opts.userTags] - 用户标签  optional
       * @param {string} [opts.ipType] - 弹性ip类型，取值：standard(标准公网IP)，edge(边缘公网IP)，默认为standard  optional
+      * @param {string} [opts.resourceGroupId] - 资源所属资源组ID  optional
+      * @param {boolean} [opts.dryRun] - 预检标识，默认false，dryRun为true时只作检查，不做变更  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -221,6 +1295,12 @@ azs - eip可用区，支持多个
     if (opts.ipType !== undefined && opts.ipType !== null) {
       postBody['ipType'] = opts.ipType
     }
+    if (opts.resourceGroupId !== undefined && opts.resourceGroupId !== null) {
+      postBody['resourceGroupId'] = opts.resourceGroupId
+    }
+    if (opts.dryRun !== undefined && opts.dryRun !== null) {
+      postBody['dryRun'] = opts.dryRun
+    }
 
     let queryParams = {}
 
@@ -229,7 +1309,7 @@ azs - eip可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -340,7 +1420,7 @@ azs - eip可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -413,7 +1493,7 @@ azs - eip可用区，支持多个
   }
 
   /**
-      *  修改弹性公网IP
+      *  修改弹性公网IP，当弹性公网IP加入共享带宽包后，此公网IP限速需要调用共享带宽包的接口（修改共享带宽包内公网IP带宽上限）
       * @param {Object} opts - parameters
       * @param {string} opts.elasticIpId - ElasticIp ID
       * @param {integer} opts.bandwidthMbps - 弹性公网IP的限速（单位：Mbps），取值范围为[1-200]
@@ -460,7 +1540,7 @@ azs - eip可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -533,7 +1613,7 @@ azs - eip可用区，支持多个
   }
 
   /**
-      *  删除弹性公网IP
+      *  删除弹性公网IP，已加入共享带宽包的公网IP不能删除，需要先从共享带宽包移出
       * @param {Object} opts - parameters
       * @param {string} opts.elasticIpId - ElasticIp ID
       * @param {string} regionId - ID of the region
@@ -570,7 +1650,7 @@ azs - eip可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -647,9 +1727,9 @@ azs - eip可用区，支持多个
       * @param {Object} opts - parameters
       * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞), 页码超过总页数时, 显示最后一页  optional
       * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围：[10,100]  optional
-      * @param {filter} [opts.filters] - networkAclIds - 弹性网卡ID列表，支持多个
-networkAclNames - 弹性网卡名称列表，支持多个
-vpcId - 弹性网卡所属vpc Id，支持单个
+      * @param {filter} [opts.filters] - networkAclIds - networkAcl ID列表，支持多个
+networkAclNames - networkAcl名称列表，支持多个
+vpcId - networkAcl所属vpc Id，支持单个
   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -687,7 +1767,7 @@ vpcId - 弹性网卡所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -814,7 +1894,7 @@ vpcId - 弹性网卡所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -925,7 +2005,7 @@ vpcId - 弹性网卡所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -1044,7 +2124,7 @@ vpcId - 弹性网卡所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -1154,7 +2234,7 @@ vpcId - 弹性网卡所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -1274,7 +2354,7 @@ vpcId - 弹性网卡所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -1394,7 +2474,7 @@ vpcId - 弹性网卡所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -1512,7 +2592,7 @@ vpcId - 弹性网卡所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -1632,7 +2712,7 @@ vpcId - 弹性网卡所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -1750,7 +2830,7 @@ vpcId - 弹性网卡所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -1832,6 +2912,8 @@ networkInterfaceNames - 弹性网卡名称列表，支持多个
 vpcId - 弹性网卡所属vpc Id，支持单个
 subnetId - 弹性网卡所属子网Id，支持单个
 role - 网卡角色，取值范围：Primary（主网卡）、Secondary（辅助网卡）、Managed （受管网卡），支持单个
+azType - 网卡 az类型，取值：all(全部类型)，standard(标准Az网卡)，edge(边缘Az网卡)，默认为all，支持单个
+azs - 可用区 az名，支持多个
   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -1869,7 +2951,7 @@ role - 网卡角色，取值范围：Primary（主网卡）、Secondary（辅助
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -2021,7 +3103,7 @@ role - 网卡角色，取值范围：Primary（主网卡）、Secondary（辅助
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -2135,7 +3217,7 @@ role - 网卡角色，取值范围：Primary（主网卡）、Secondary（辅助
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -2208,7 +3290,7 @@ role - 网卡角色，取值范围：Primary（主网卡）、Secondary（辅助
   }
 
   /**
-      *  修改弹性网卡接口
+      *  修改弹性网卡信息
       * @param {Object} opts - parameters
       * @param {string} opts.networkInterfaceId - networkInterface ID
       * @param {string} [opts.networkInterfaceName] - 弹性网卡名称,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符  optional
@@ -2264,7 +3346,7 @@ role - 网卡角色，取值范围：Primary（主网卡）、Secondary（辅助
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -2337,7 +3419,7 @@ role - 网卡角色，取值范围：Primary（主网卡）、Secondary（辅助
   }
 
   /**
-      *  删除弹性网卡接口
+      *  删除弹性网卡
       * @param {Object} opts - parameters
       * @param {string} opts.networkInterfaceId - networkInterface ID
       * @param {string} regionId - ID of the region
@@ -2377,7 +3459,7 @@ role - 网卡角色，取值范围：Primary（主网卡）、Secondary（辅助
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -2503,7 +3585,7 @@ role - 网卡角色，取值范围：Primary（主网卡）、Secondary（辅助
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -2625,7 +3707,7 @@ role - 网卡角色，取值范围：Primary（主网卡）、Secondary（辅助
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -2698,12 +3780,14 @@ role - 网卡角色，取值范围：Primary（主网卡）、Secondary（辅助
   }
 
   /**
-      *  给网卡分配secondaryIp接口
+      *  给网卡分配secondaryIp
       * @param {Object} opts - parameters
       * @param {string} opts.networkInterfaceId - networkInterface ID
-      * @param {boolean} [opts.force] - secondary ip被其他接口占用时，是否抢占。false：非抢占重分配，true：抢占重分配，默认抢占重分配。默认值：true  optional
+      * @param {boolean} [opts.force] - secondary ip被其他接口占用时，是否抢占。false：非抢占重分配，true：抢占重分配；按网段分配时，默认非抢占重分配，指定IP或者个数时，默认抢占重分配。  optional
       * @param {array} [opts.secondaryIps] - 指定分配的secondaryIp地址  optional
       * @param {number} [opts.secondaryIpCount] - 指定自动分配的secondaryIp个数  optional
+      * @param {integer} [opts.secondaryIpMaskLen] - 指定分配的网段掩码长度, 支持24-28位掩码长度，不能与secondaryIpCount或secondaryIps同时指定，不支持抢占重分配  optional
+      * @param {string} [opts.secondaryIpAddress] - 指定分配的网段中第一个secondaryIp地址，不能与secondaryIpCount或secondaryIps同时指定，secondaryIpAddress与secondaryIpMaskLen需要保持一致，否则无法创建  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -2742,6 +3826,18 @@ role - 网卡角色，取值范围：Primary（主网卡）、Secondary（辅助
     if (opts.secondaryIpCount !== undefined && opts.secondaryIpCount !== null) {
       postBody['secondaryIpCount'] = opts.secondaryIpCount
     }
+    if (
+      opts.secondaryIpMaskLen !== undefined &&
+      opts.secondaryIpMaskLen !== null
+    ) {
+      postBody['secondaryIpMaskLen'] = opts.secondaryIpMaskLen
+    }
+    if (
+      opts.secondaryIpAddress !== undefined &&
+      opts.secondaryIpAddress !== null
+    ) {
+      postBody['secondaryIpAddress'] = opts.secondaryIpAddress
+    }
 
     let queryParams = {}
 
@@ -2751,7 +3847,7 @@ role - 网卡角色，取值范围：Primary（主网卡）、Secondary（辅助
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -2824,10 +3920,11 @@ role - 网卡角色，取值范围：Primary（主网卡）、Secondary（辅助
   }
 
   /**
-      *  给网卡删除secondaryIp接口
+      *  给网卡删除secondaryIp
       * @param {Object} opts - parameters
       * @param {string} opts.networkInterfaceId - networkInterface ID
       * @param {array} [opts.secondaryIps] - 指定删除的secondaryIp地址  optional
+      * @param {array} [opts.secondaryCidrs] - 指定删除的secondaryIp网段  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -2860,6 +3957,9 @@ role - 网卡角色，取值范围：Primary（主网卡）、Secondary（辅助
     if (opts.secondaryIps !== undefined && opts.secondaryIps !== null) {
       postBody['secondaryIps'] = opts.secondaryIps
     }
+    if (opts.secondaryCidrs !== undefined && opts.secondaryCidrs !== null) {
+      postBody['secondaryCidrs'] = opts.secondaryCidrs
+    }
 
     let queryParams = {}
 
@@ -2869,7 +3969,7 @@ role - 网卡角色，取值范围：Primary（主网卡）、Secondary（辅助
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -2990,7 +4090,7 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -3123,7 +4223,7 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -3241,7 +4341,7 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -3366,7 +4466,7 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -3479,7 +4579,7 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -3605,7 +4705,7 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -3732,7 +4832,7 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -3858,7 +4958,7 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -3933,8 +5033,8 @@ vpcId - 安全组所属vpc Id，支持单个
   /**
       *  查询配额信息
       * @param {Object} opts - parameters
-      * @param {string} opts.type - 资源类型，取值范围：vpc、elastic_ip、subnet、security_group、vpcpeering、network_interface（配额只统计辅助网卡）、acl、aclRule、routeTable、staticRoute、propagatedRoute、securityGroupRule
-      * @param {string} [opts.parentResourceId] - type为vpc、elastic_ip、network_interface不设置, type为subnet、security_group、vpcpeering、acl、routeTable设置为vpcId, type为aclRule设置为aclId, type为staticRoute、propagatedRoute设置为routeTableId, type为securityGroupRule为securityGroupId  optional
+      * @param {string} opts.type - 资源类型，取值范围：vpc、elastic_ip、subnet、security_group、vpcpeering、network_interface（配额只统计辅助网卡）、acl、aclRule、routeTable、staticRoute、propagatedRoute、securityGroupRule、network_interface_cidr、bwpByUsage、bandwidthPackageIp、natGateway
+      * @param {string} [opts.parentResourceId] - type为vpc、elastic_ip、network_interface、bwpByUsage、natGateway不设置, type为subnet、security_group、vpcpeering、acl、routeTable设置为vpcId, type为aclRule设置为aclId, type为staticRoute、propagatedRoute设置为routeTableId, type为securityGroupRule为securityGroupId, type为network_interface_cidr设置为networkInterfaceId，type为bandwidthPackageIp设置为bandwidthPackageId  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -3975,7 +5075,7 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -4055,6 +5155,8 @@ vpcId - 安全组所属vpc Id，支持单个
       * @param {filter} [opts.filters] - routeTableIds - 路由表ID列表，支持多个
 routeTableNames - 路由表名称列表，支持多个
 vpcId - 路由表所属vpc Id，支持单个
+azType - 路由表az类型，取值：all(全部类型)，standard(标准路由表)，edge(边缘路由表)，默认standard ，支持单个
+azs - 可用区，支持多个
   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -4092,7 +5194,7 @@ vpcId - 路由表所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -4219,7 +5321,7 @@ vpcId - 路由表所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -4330,7 +5432,7 @@ vpcId - 路由表所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -4449,7 +5551,7 @@ vpcId - 路由表所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -4559,7 +5661,7 @@ vpcId - 路由表所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -4677,7 +5779,7 @@ vpcId - 路由表所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -4797,7 +5899,7 @@ vpcId - 路由表所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -4915,7 +6017,7 @@ vpcId - 路由表所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -5030,7 +6132,7 @@ vpcId - 路由表所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -5150,7 +6252,7 @@ vpcId - 路由表所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -5269,7 +6371,7 @@ azs - 边缘公网IP的可用区，分为全可用区（暂不支持）和边缘
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -5353,6 +6455,7 @@ aclId - 子网关联acl Id，支持单个
 vpcId - 子网所属VPC Id，支持单个
 subnetType - 子网类型，取值：all(全部类型)，standard(标准子网)，edge(边缘子网)，默认standard ，支持单个
 azs - 可用区，支持多个
+azType - VPC az类型，取值：all(全部类型)，standard(标准可用区子网)，edge(边缘可用区子网)，默认standard ，支持单个
   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -5390,7 +6493,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -5470,8 +6573,7 @@ azs - 可用区，支持多个
       * @param {string} opts.addressPrefix - 子网网段，vpc内子网网段不能重叠，cidr的取值范围：10.0.0.0/8、172.16.0.0/12和192.168.0.0/16及它们包含的子网，且子网掩码长度为16-28之间，如果vpc含有cidr，则必须为vpc所在cidr的子网
       * @param {string} [opts.routeTableId] - 子网关联的路由表Id, 默认为vpc的默认路由表,子网关联路由表需检查路由表中已绑定的子网与本子网类型是否一致（一致标准为：或者都为标准子网，或者都为相同边缘可用区的边缘子网）  optional
       * @param {string} [opts.description] - 子网描述信息,允许输入UTF-8编码下的全部字符，不超过256字符。  optional
-      * @param {string} [opts.subnetType] - 子网类型，取值：standard(标准子网)，edge(边缘子网)  optional
-      * @param {string} [opts.az] - 子网可用区，边缘子网必须指定可用区  optional
+      * @param {integer} [opts.ipMaskLen] - 子网内预留网段掩码长度，此网段IP地址按照单个申请，子网内其余部分IP地址以网段形式分配。此参数非必选，缺省值为0，代表子网内所有IP地址都按照单个申请  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -5524,11 +6626,8 @@ azs - 可用区，支持多个
     if (opts.description !== undefined && opts.description !== null) {
       postBody['description'] = opts.description
     }
-    if (opts.subnetType !== undefined && opts.subnetType !== null) {
-      postBody['subnetType'] = opts.subnetType
-    }
-    if (opts.az !== undefined && opts.az !== null) {
-      postBody['az'] = opts.az
+    if (opts.ipMaskLen !== undefined && opts.ipMaskLen !== null) {
+      postBody['ipMaskLen'] = opts.ipMaskLen
     }
 
     let queryParams = {}
@@ -5538,7 +6637,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -5649,7 +6748,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -5727,6 +6826,7 @@ azs - 可用区，支持多个
       * @param {string} opts.subnetId - Subnet ID
       * @param {string} [opts.subnetName] - 子网名称,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符。  optional
       * @param {string} [opts.description] - 子网描述信息，允许输入UTF-8编码下的全部字符，不超过256字符。  optional
+      * @param {integer} [opts.ipMaskLen] - 子网内预留网段掩码长度，此网段IP地址按照单个申请，子网内其余部分IP地址以网段形式分配。此参数非必选，缺省值为0，代表子网内所有IP地址都按照单个申请  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -5759,6 +6859,9 @@ azs - 可用区，支持多个
     if (opts.description !== undefined && opts.description !== null) {
       postBody['description'] = opts.description
     }
+    if (opts.ipMaskLen !== undefined && opts.ipMaskLen !== null) {
+      postBody['ipMaskLen'] = opts.ipMaskLen
+    }
 
     let queryParams = {}
 
@@ -5768,7 +6871,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -5878,7 +6981,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -5957,6 +7060,8 @@ azs - 可用区，支持多个
       * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围：[10,100]  optional
       * @param {filter} [opts.filters] - vpcIds - vpc ID列表，支持多个
 vpcNames - vpc名称列表,支持多个
+azType - VPC az类型，取值：all(全部类型)，standard(标准VPC)，edge(边缘VPC)，默认standard ，支持单个
+azs - 可用区，支持多个
   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -5994,7 +7099,7 @@ vpcNames - vpc名称列表,支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -6072,6 +7177,8 @@ vpcNames - vpc名称列表,支持多个
       * @param {string} opts.vpcName - 私有网络名称,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符。
       * @param {string} [opts.addressPrefix] - 如果为空，则不限制网段，如果不为空，10.0.0.0/8、172.16.0.0/12和192.168.0.0/16及它们包含的子网，且子网掩码长度为16-28之间  optional
       * @param {string} [opts.description] - vpc描述，允许输入UTF-8编码下的全部字符，不超过256字符。  optional
+      * @param {string} [opts.azType] - VPC az类型，取值：standard(标准VPC)，edge(边缘VPC)  optional
+      * @param {string} [opts.az] - VPC可用区，边缘VPC必须指定可用区  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -6108,6 +7215,12 @@ vpcNames - vpc名称列表,支持多个
     if (opts.description !== undefined && opts.description !== null) {
       postBody['description'] = opts.description
     }
+    if (opts.azType !== undefined && opts.azType !== null) {
+      postBody['azType'] = opts.azType
+    }
+    if (opts.az !== undefined && opts.az !== null) {
+      postBody['az'] = opts.az
+    }
 
     let queryParams = {}
 
@@ -6116,7 +7229,7 @@ vpcNames - vpc名称列表,支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -6189,7 +7302,7 @@ vpcNames - vpc名称列表,支持多个
   }
 
   /**
-      *  查询Vpc信息详情
+      *  查询虚拟网络信息详情
       * @param {Object} opts - parameters
       * @param {string} opts.vpcId - Vpc ID
       * @param {string} regionId - ID of the region
@@ -6227,7 +7340,7 @@ vpcNames - vpc名称列表,支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -6346,7 +7459,7 @@ vpcNames - vpc名称列表,支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -6456,7 +7569,7 @@ vpcNames - vpc名称列表,支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -6537,6 +7650,8 @@ vpcNames - vpc名称列表,支持多个
 vpcPeeringNames - vpcPeering名称列表，支持多个
 vpcId - vpcPeering本端Vpc Id，支持单个
 remoteVpcId - vpcPeering对端Vpc Id，支持单个
+azType - vpcPeering本端VPC az类型，取值：all(全部类型)，standard(标准VPC)，edge(边缘VPC)，默认standard ，支持单个
+azs - vpcPeering本端VPC可用区，支持多个
   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -6574,7 +7689,7 @@ remoteVpcId - vpcPeering对端Vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -6710,7 +7825,7 @@ remoteVpcId - vpcPeering对端Vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -6821,7 +7936,7 @@ remoteVpcId - vpcPeering对端Vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -6940,7 +8055,7 @@ remoteVpcId - vpcPeering对端Vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -7050,7 +8165,7 @@ remoteVpcId - vpcPeering对端Vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/0.9.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -7122,4 +8237,4 @@ remoteVpcId - vpcPeering对端Vpc Id，支持单个
     )
   }
 }
-module.exports = JDCloud.VPC
+module.exports = VPC

@@ -57,6 +57,7 @@ module.exports = {
   ASSET: require('./asset'),
   RDS: require('./rds'),
   KUBERNETES: require('./kubernetes'),
+  DH: require('./dh'),
   TIDB: require('./tidb'),
   IPANTI: require('./ipanti'),
   ANTIPRO: require('./antipro'),

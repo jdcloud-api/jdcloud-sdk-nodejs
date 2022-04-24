@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * openjrtc service.
- * @version 1.1.6
+ * @version 1.1.7
  */
 
 class OPENJRTC extends Service {
@@ -76,7 +76,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -180,7 +180,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -280,7 +280,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -380,7 +380,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -480,7 +480,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -589,7 +589,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -698,7 +698,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -807,7 +807,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -915,7 +915,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -1021,7 +1021,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -1121,7 +1121,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -1232,7 +1232,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -1339,7 +1339,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -1451,7 +1451,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -1565,7 +1565,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -1724,7 +1724,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -1834,7 +1834,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -1926,7 +1926,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -2035,7 +2035,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -2137,7 +2137,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -2261,7 +2261,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -2361,7 +2361,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -2479,7 +2479,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -2593,7 +2593,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -2693,7 +2693,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -2793,7 +2793,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -2902,7 +2902,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -3011,7 +3011,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -3127,7 +3127,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -3200,6 +3200,623 @@ class OPENJRTC extends Service {
   }
 
   /**
+      *  查询房间内推流信息列表
+允许通过条件过滤查询，支持的过滤字段如下：
+           - status[eq] 在线状态 1-在线 2-离线
+           - kind[eq] 在线状态 1-音频流 2-视频流 100-数据流
+           - startTime[eq] 用户推流开始时间-UTC时间  startTime,endTime同时指定时生效
+           - endTime[eq]   用户推流结束时间-UTC时间  startTime,endTime同时指定时生效
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.appId - 应用ID
+      * @param {integer} [opts.pageNumber] - 页码；默认值为 1  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认值为 10；取值范围 [10, 100]  optional
+      * @param {string} opts.userRoomId - 业务接入方定义的且在JRTC系统内注册过的房间号
+      * @param {filter} [opts.filters] - 传参字段描述:
+- status[eq] 在线状态 1-在线 2-离线
+- kind[eq] 在线状态 1-音频流 2-视频流 100-数据流
+- startTime[eq] 用户推流开始时间-UTC时间  startTime,endTime同时指定时生效
+- endTime[eq]   用户推流结束时间-UTC时间  startTime,endTime同时指定时生效
+  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param roomStreamContent resultObject
+      */
+
+  describeStreamInfosByUserRoomId (opts, callback) {
+    opts = opts || {}
+
+    if (opts.appId === undefined || opts.appId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appId' when calling describeStreamInfosByUserRoomId"
+      )
+    }
+    if (opts.userRoomId === undefined || opts.userRoomId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.userRoomId' when calling describeStreamInfosByUserRoomId"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    if (opts.userRoomId !== undefined && opts.userRoomId !== null) {
+      queryParams['userRoomId'] = opts.userRoomId
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      appId: opts.appId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeStreamInfosByUserRoomId with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/describeStreamInfosByUserRoomId/{appId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询指定用户在房间内的推流信息
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.appId - 应用ID
+      * @param {string} opts.userRoomId - 业务接入方定义的且在JRTC系统内注册过的房间号
+      * @param {string} opts.userId - 业务接入方用户体系定义的且在JRTC系统内注册过的userId
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param streamInfo content
+      */
+
+  describeStreamInfosByUserId (opts, callback) {
+    opts = opts || {}
+
+    if (opts.appId === undefined || opts.appId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appId' when calling describeStreamInfosByUserId"
+      )
+    }
+    if (opts.userRoomId === undefined || opts.userRoomId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.userRoomId' when calling describeStreamInfosByUserId"
+      )
+    }
+    if (opts.userId === undefined || opts.userId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.userId' when calling describeStreamInfosByUserId"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.userRoomId !== undefined && opts.userRoomId !== null) {
+      queryParams['userRoomId'] = opts.userRoomId
+    }
+    if (opts.userId !== undefined && opts.userId !== null) {
+      queryParams['userId'] = opts.userId
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      appId: opts.appId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeStreamInfosByUserId with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/describeStreamInfosByUserId/{appId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  根据流ID查询推流信息
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.appId - 应用ID
+      * @param {string} opts.streamId - 流ID
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param streamInfo resultObject
+      */
+
+  describeStreamInfoByStreamId (opts, callback) {
+    opts = opts || {}
+
+    if (opts.appId === undefined || opts.appId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appId' when calling describeStreamInfoByStreamId"
+      )
+    }
+    if (opts.streamId === undefined || opts.streamId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.streamId' when calling describeStreamInfoByStreamId"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.streamId !== undefined && opts.streamId !== null) {
+      queryParams['streamId'] = opts.streamId
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      appId: opts.appId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeStreamInfoByStreamId with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/describeStreamInfoByStreamId/{appId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询指定用户在房间内的推流历史记录
+允许通过条件过滤查询，支持的过滤字段如下：
+           - kind[eq] 在线状态 1-音频流 2-视频流 100-数据流
+           - startTime[eq] 用户推流开始时间-UTC时间  startTime,endTime同时指定时生效
+           - endTime[eq]   用户推流结束时间-UTC时间  startTime,endTime同时指定时生效
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.appId - 应用ID
+      * @param {integer} [opts.pageNumber] - 页码；默认值为 1  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认值为 10；取值范围 [10, 100]  optional
+      * @param {string} opts.userRoomId - 业务接入方定义的且在JRTC系统内注册过的房间号
+      * @param {string} opts.userId - 业务接入方用户体系定义的且在JRTC系统内注册过的userId
+      * @param {filter} [opts.filters] - 传参字段描述:
+- kind[eq] 在线状态 1-音频流 2-视频流 100-数据流
+- startTime[eq] 用户推流开始时间-UTC时间  startTime,endTime同时指定时生效
+- endTime[eq]   用户推流结束时间-UTC时间  startTime,endTime同时指定时生效
+  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param streamRecordContent resultObject
+      */
+
+  describeStreamRecordsByUserId (opts, callback) {
+    opts = opts || {}
+
+    if (opts.appId === undefined || opts.appId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appId' when calling describeStreamRecordsByUserId"
+      )
+    }
+    if (opts.userRoomId === undefined || opts.userRoomId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.userRoomId' when calling describeStreamRecordsByUserId"
+      )
+    }
+    if (opts.userId === undefined || opts.userId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.userId' when calling describeStreamRecordsByUserId"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    if (opts.userRoomId !== undefined && opts.userRoomId !== null) {
+      queryParams['userRoomId'] = opts.userRoomId
+    }
+    if (opts.userId !== undefined && opts.userId !== null) {
+      queryParams['userId'] = opts.userId
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      appId: opts.appId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeStreamRecordsByUserId with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/describeStreamRecordsByUserId/{appId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  根据流ID查询推流历史记录
+允许通过条件过滤查询，支持的过滤字段如下：
+           - startTime[eq] 用户推流开始时间-UTC时间  startTime,endTime同时指定时生效
+           - endTime[eq]   用户推流结束时间-UTC时间  startTime,endTime同时指定时生效
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.appId - 应用ID
+      * @param {integer} [opts.pageNumber] - 页码；默认值为 1  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认值为 10；取值范围 [10, 100]  optional
+      * @param {string} opts.streamId - 流ID
+      * @param {filter} [opts.filters] - 传参字段描述:
+- startTime[eq] 用户推流开始时间-UTC时间  startTime,endTime同时指定时生效
+- endTime[eq]   用户推流结束时间-UTC时间  startTime,endTime同时指定时生效
+  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param streamRecordContent resultObject
+      */
+
+  describeStreamRecordsByStreamId (opts, callback) {
+    opts = opts || {}
+
+    if (opts.appId === undefined || opts.appId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appId' when calling describeStreamRecordsByStreamId"
+      )
+    }
+    if (opts.streamId === undefined || opts.streamId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.streamId' when calling describeStreamRecordsByStreamId"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    if (opts.streamId !== undefined && opts.streamId !== null) {
+      queryParams['streamId'] = opts.streamId
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      appId: opts.appId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeStreamRecordsByStreamId with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/describeStreamRecordsByStreamId/{appId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  移除房间内人员
 
       * @param {Object} opts - parameters
@@ -3235,7 +3852,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -3339,7 +3956,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -3466,7 +4083,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -3575,7 +4192,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -3687,7 +4304,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -3800,7 +4417,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -3907,7 +4524,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -4018,7 +4635,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -4127,7 +4744,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -4240,7 +4857,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -4349,7 +4966,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']
@@ -4465,7 +5082,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.7'
     }
 
     let contentTypes = ['application/json']

@@ -96,6 +96,7 @@ module.exports = {
   MONGODB: require('./mongodb'),
   WAF: require('./waf'),
   LIVE: require('./live'),
+  JDWORKSPACE: require('./jdworkspace'),
   VPC: require('./vpc'),
   MONITOR: require('./monitor'),
   XDATA: require('./xdata'),

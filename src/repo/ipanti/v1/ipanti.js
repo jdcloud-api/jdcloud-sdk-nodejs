@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Anti DDos Pro Web Rule Configuration APIs
- * Anti DDos Pro Web Rule Configuration APIs
+ * Anti DDoS Pro Web Rule Configuration APIs
+ * Anti DDoS Pro Web Rule Configuration APIs
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * ipanti service.
- * @version 1.11.0
+ * @version 1.12.0
  */
 
 class IPANTI extends Service {
@@ -105,7 +105,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -248,7 +248,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -381,7 +381,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -518,7 +518,7 @@ class IPANTI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -662,7 +662,7 @@ CC攻击为实例级别, 查询类型 type 为 cc 时, 参数 serviceIp 无效
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -794,7 +794,7 @@ CC攻击为实例级别, 查询类型 type 为 cc 时, 参数 serviceIp 无效
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -929,7 +929,7 @@ CC攻击为实例级别, 查询类型 type 为 cc 时, 参数 serviceIp 无效
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -1053,7 +1053,7 @@ CC攻击为实例级别, 查询类型 type 为 cc 时, 参数 serviceIp 无效
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -1188,7 +1188,7 @@ CC攻击为实例级别, 查询类型 type 为 cc 时, 参数 serviceIp 无效
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -1318,7 +1318,7 @@ CC攻击为实例级别, 查询类型 type 为 cc 时, 参数 serviceIp 无效
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -1452,7 +1452,7 @@ CC攻击为实例级别, 查询类型 type 为 cc 时, 参数 serviceIp 无效
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -1587,7 +1587,7 @@ CC攻击为实例级别, 查询类型 type 为 cc 时, 参数 serviceIp 无效
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -1721,7 +1721,7 @@ CC攻击为实例级别, 查询类型 type 为 cc 时, 参数 serviceIp 无效
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -1849,7 +1849,7 @@ CC攻击为实例级别, 查询类型 type 为 cc 时, 参数 serviceIp 无效
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -1977,7 +1977,7 @@ CC攻击为实例级别, 查询类型 type 为 cc 时, 参数 serviceIp 无效
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -2112,7 +2112,7 @@ CC攻击为实例级别, 查询类型 type 为 cc 时, 参数 serviceIp 无效
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -2231,7 +2231,7 @@ CC攻击为实例级别, 查询类型 type 为 cc 时, 参数 serviceIp 无效
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -2351,7 +2351,7 @@ CC攻击为实例级别, 查询类型 type 为 cc 时, 参数 serviceIp 无效
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -2471,7 +2471,7 @@ CC攻击为实例级别, 查询类型 type 为 cc 时, 参数 serviceIp 无效
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -2605,7 +2605,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -2727,7 +2727,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -2855,7 +2855,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -2973,7 +2973,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -3102,7 +3102,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -3221,7 +3221,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -3341,7 +3341,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -3461,7 +3461,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -3583,7 +3583,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -3722,7 +3722,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -3825,7 +3825,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -3947,7 +3947,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -4080,7 +4080,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -4204,7 +4204,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -4328,7 +4328,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -4450,7 +4450,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -4583,7 +4583,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -4707,7 +4707,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -4831,7 +4831,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -4942,7 +4942,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -5064,7 +5064,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -5176,7 +5176,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -5291,7 +5291,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -5413,7 +5413,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -5542,7 +5542,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -5661,7 +5661,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -5781,7 +5781,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -5898,7 +5898,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -6011,7 +6011,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -6124,7 +6124,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -6242,7 +6242,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -6319,11 +6319,13 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
       * @param {Object} opts - parameters
       * @param {createInstanceSpec} opts.createInstanceSpec - 新购或升级实例请求参数
       * @param {autoRenewalSpec} [opts.autoRenewalSpec] - 自动续费配置, 默认不开通, 仅新购实例时可设置  optional
+      * @param {boolean} [opts.autoPay] - 自动支付标识  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       * @param integer code  0: 新购或升级实例失败, 1: 新购或升级实例成功
       * @param string message  新购或升级成功时为计费资源ID, 创建实例失败时给出具体原因
+      * @param string orderNumber  新购或升级实例成功, 且设置了自动支付时, 为订单号。否则为空
       */
 
   createInstance (opts, regionId = this.config.regionId, callback) {
@@ -6359,6 +6361,9 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     if (opts.autoRenewalSpec !== undefined && opts.autoRenewalSpec !== null) {
       postBody['autoRenewalSpec'] = opts.autoRenewalSpec
     }
+    if (opts.autoPay !== undefined && opts.autoPay !== null) {
+      postBody['autoPay'] = opts.autoPay
+    }
 
     let queryParams = {}
 
@@ -6367,7 +6372,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -6478,7 +6483,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -6606,7 +6611,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -6734,7 +6739,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -6845,7 +6850,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -6967,7 +6972,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -7078,7 +7083,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -7200,7 +7205,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -7317,7 +7322,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -7439,7 +7444,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -7546,7 +7551,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -7649,7 +7654,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -7763,7 +7768,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -7877,7 +7882,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -7991,7 +7996,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -8105,7 +8110,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -8227,7 +8232,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -8349,7 +8354,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -8467,7 +8472,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -8585,7 +8590,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -8698,7 +8703,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -8828,7 +8833,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -8950,7 +8955,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -9072,7 +9077,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -9190,7 +9195,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -9319,7 +9324,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -9438,7 +9443,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -9567,7 +9572,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -9687,7 +9692,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -9807,7 +9812,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -9927,7 +9932,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -10047,7 +10052,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -10167,7 +10172,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -10291,7 +10296,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -10420,7 +10425,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -10549,7 +10554,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -10678,7 +10683,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -10814,7 +10819,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -10940,7 +10945,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -11060,7 +11065,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -11180,7 +11185,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -11300,7 +11305,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -11420,7 +11425,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -11545,7 +11550,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -11684,7 +11689,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -11816,7 +11821,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -11965,7 +11970,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -12098,7 +12103,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -12232,7 +12237,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -12366,7 +12371,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -12490,7 +12495,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -12614,7 +12619,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -12736,7 +12741,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -12875,7 +12880,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -12997,7 +13002,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -13132,7 +13137,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -13257,7 +13262,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -13390,7 +13395,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -13529,7 +13534,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -13661,7 +13666,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -13810,7 +13815,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -13943,7 +13948,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -14063,7 +14068,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -14197,7 +14202,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -14317,7 +14322,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -14451,7 +14456,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -14576,7 +14581,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -14709,7 +14714,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -14848,7 +14853,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -14980,7 +14985,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -15129,7 +15134,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -15262,7 +15267,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -15382,7 +15387,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -15516,7 +15521,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -15636,7 +15641,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -15770,7 +15775,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -15877,7 +15882,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -15984,7 +15989,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']
@@ -16087,7 +16092,7 @@ port - 按转发端口排序，默认不排序,asc表示按转发端口升序，
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.11.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ipanti/1.12.0'
     }
 
     let contentTypes = ['application/json']

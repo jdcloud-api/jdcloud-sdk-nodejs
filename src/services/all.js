@@ -1,4 +1,5 @@
 module.exports = {
+  RDTS: require('./rdts'),
   VQD: require('./vqd'),
   SMARTDBA: require('./smartdba'),
   DMS: require('./dms'),

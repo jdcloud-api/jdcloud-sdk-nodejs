@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * waf service.
- * @version 1.0.5
+ * @version 1.0.6
  */
 
 class WAF extends Service {
@@ -75,7 +75,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -157,6 +157,7 @@ class WAF extends Service {
       @return {Object} result
       * @param string buyId  订单编号
       * @param string wafInstanceId  wafInstancdId
+      * @param string orderNumber  orderNumber
       */
 
   upgradeInstance (opts, regionId = this.config.regionId, callback) {
@@ -197,7 +198,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -278,6 +279,7 @@ class WAF extends Service {
       @return {Object} result
       * @param string buyId  buyId
       * @param string wafInstanceId  wafInstanceId
+      * @param string orderNumber  orderNumber
       */
 
   createInstance (opts, regionId = this.config.regionId, callback) {
@@ -312,7 +314,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -438,7 +440,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -558,7 +560,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -673,7 +675,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -788,7 +790,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -902,7 +904,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -1030,7 +1032,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -1115,6 +1117,7 @@ class WAF extends Service {
       * @param {string} [opts.action] - 动作，检索字段，支持类型：&quot;&quot;(为空时，默认查询全部动作类型)，&quot;-&quot;(放行)，&quot;notice&quot;(观察)，&quot;forbidden OR status&quot;(拦截)，&quot;redirect&quot;(浏览器跳转)，&quot;verify&quot;(人机交互)  optional
       * @param {string} [opts.status] - 状态码，检索字段  optional
       * @param {string} [opts.logId] - 日志Id，检索字段  optional
+      * @param {string} [opts.request_id] - 请求Id，检索字段  optional
       * @param {integer} opts.start - 开始时间戳，单位秒，时间间隔要求大于5分钟，小于30天。
       * @param {integer} opts.end - 结束时间戳，单位秒，时间间隔要求大于5分钟，小于30天。
       * @param {integer} opts.pageSize - 每页显示的个数，默认是10。
@@ -1196,6 +1199,9 @@ class WAF extends Service {
     if (opts.logId !== undefined && opts.logId !== null) {
       queryParams['logId'] = opts.logId
     }
+    if (opts.request_id !== undefined && opts.request_id !== null) {
+      queryParams['request_id'] = opts.request_id
+    }
     if (opts.start !== undefined && opts.start !== null) {
       queryParams['start'] = opts.start
     }
@@ -1215,7 +1221,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -1332,7 +1338,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -1454,7 +1460,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -1574,7 +1580,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -1694,7 +1700,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -1814,7 +1820,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -1940,7 +1946,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -2023,11 +2029,12 @@ class WAF extends Service {
       * @param string domain  域名
       * @param integer disableWaf  waf状态 1表示关闭waf
       * @param aclConf aclConf  网站waf防护配置
-      * @param enableConf antispiderConf  网站防爬虫防护配置
+      * @param spiderConf antispiderConf  网站防爬虫防护配置
       * @param ccConf ccConf  网站cc防护配置
       * @param denyConf denyConf  网站黑名单防护配置
       * @param intSemConf intSemConf  网站智能语义引擎防护配置
       * @param ipbanConf ipbanConf  网站恶意ip防护配置
+      * @param ipbanUsrConf ipbanUsrConf  网站恶意ip自定义防护配置
       * @param ratelimitConf ratelimitConf  网站限速规则防护配置
       * @param enableConf threatinfoConf  网站威胁情报防护配置
       * @param userDefPageConf userDefPageConf  网站自定义页面配置
@@ -2082,7 +2089,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -2202,7 +2209,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -2327,7 +2334,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -2407,12 +2414,6 @@ class WAF extends Service {
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param string wafInstanceId  实例id
-      * @param domainMainConfig list
-      * @param integer pageIndex  页码
-      * @param integer pageSize  页大小
-      * @param integer totalCount  该实例下总共的域名数量
-      * @param integer maxLimit  最大支持的数目
       */
 
   disableRules (opts, regionId = this.config.regionId, callback) {
@@ -2453,7 +2454,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -2573,7 +2574,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -2693,7 +2694,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -2813,7 +2814,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -2933,7 +2934,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -3053,7 +3054,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -3173,7 +3174,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -3256,7 +3257,7 @@ class WAF extends Service {
       * @param integer pageIndex  页码
       * @param integer pageSize  页大小
       * @param integer totalCount  配置总数
-      * @param listWafRuleCfg data  网站waf自定义规则
+      * @param listWafRuleCfg list
       */
 
   listWafRules (opts, regionId = this.config.regionId, callback) {
@@ -3297,7 +3298,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -3417,7 +3418,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -3537,7 +3538,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -3620,7 +3621,7 @@ class WAF extends Service {
       * @param integer pageIndex  页码
       * @param integer pageSize  页大小
       * @param integer totalCount  配置总数
-      * @param listWafConditionCfg list  网站waf自定义防护条件配置
+      * @param listWafConditionCfg list
       */
 
   listWafConditions (opts, regionId = this.config.regionId, callback) {
@@ -3661,7 +3662,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -3785,7 +3786,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -3868,7 +3869,7 @@ class WAF extends Service {
       * @param integer pageIndex  页码
       * @param integer pageSize  页大小
       * @param integer totalCount  配置总数
-      * @param stdBotRules list  已知类型bot规则
+      * @param stdBotRules list
       */
 
   listBotStdRules (opts, regionId = this.config.regionId, callback) {
@@ -3909,7 +3910,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -4031,7 +4032,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.6'
     }
 
     let contentTypes = ['application/json']

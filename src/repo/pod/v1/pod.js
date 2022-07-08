@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * pod service.
- * @version 2.2.5
+ * @version 2.3.0
  */
 
 class POD extends Service {
@@ -42,6 +42,480 @@ class POD extends Service {
       options._defaultEndpoint.host || 'pod.jdcloud-api.com'
     options.basePath = '/v1' // 默认要设为空""
     super(serviceId, options)
+  }
+
+  /**
+      *  创建一个 configFile，存放文件内容（键值对）。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.name - configFile名字，不能重复
+
+      * @param {array} [opts.data] - key 的有效字符包括字母、数字、-、_和.; &lt;br&gt;
+value 每个value长度上限为32KB，整个data的长度不能超过1M; &lt;br&gt;
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string name
+      */
+
+  createConfigFile (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createConfigFile"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.name === undefined || opts.name === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.name' when calling createConfigFile"
+      )
+    }
+
+    let postBody = {}
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.data !== undefined && opts.data !== null) {
+      postBody['data'] = opts.data
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createConfigFile with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/configFiles',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询单个 configFile 详情
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.name - Name
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param configFile configFile
+      */
+
+  describeConfigFile (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeConfigFile"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.name === undefined || opts.name === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.name' when calling describeConfigFile"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      name: opts.name
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeConfigFile with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/configFiles/{name}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除单个 configFile
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.name - Name
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteConfigFile (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteConfigFile"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.name === undefined || opts.name === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.name' when calling deleteConfigFile"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      name: opts.name
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteConfigFile with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/configFiles/{name}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新configFile信息
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.name - Name
+      * @param {string} opts.name - configFile名字，不能重复
+
+      * @param {array} [opts.data] - key 的有效字符包括字母、数字、-、_和.; &lt;br&gt;
+value 每个value长度上限为32KB，整个data的长度不能超过1M; &lt;br&gt;
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string name
+      */
+
+  updateConfigFile (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  updateConfigFile"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.name === undefined || opts.name === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.name' when calling updateConfigFile"
+      )
+    }
+    if (opts.name === undefined || opts.name === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.name' when calling updateConfigFile"
+      )
+    }
+
+    let postBody = {}
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.data !== undefined && opts.data !== null) {
+      postBody['data'] = opts.data
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      name: opts.name
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call updateConfigFile with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/configFiles/{name}:update',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
   }
 
   /**
@@ -90,7 +564,7 @@ class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -208,7 +682,7 @@ class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -336,7 +810,7 @@ class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -463,7 +937,7 @@ class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -589,7 +1063,7 @@ class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -729,7 +1203,7 @@ class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -839,7 +1313,7 @@ az - 可用区，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -925,6 +1399,7 @@ vpcId - 私有网络ID，精确匹配，支持多个
 phase - pod 状态，精确匹配，支持多个
 name - 实例名称，模糊匹配，支持单个
 subnetId - 镜像ID，精确匹配，支持多个
+agId - 镜像ID，精确匹配，支持多个
   optional
       * @param {tagFilter} [opts.tags] - Tag筛选条件  optional
       * @param {string} regionId - ID of the region
@@ -964,7 +1439,7 @@ subnetId - 镜像ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -1039,6 +1514,11 @@ subnetId - 镜像ID，精确匹配，支持多个
   /**
       *  创建一台或多台 pod
 - 创建pod需要通过实名认证
+- 可用区
+    - Pod所属的可用区
+    - 创建Pod，需要使用中心可用区的相关资源：
+        - 具有中心可用区属性的子网
+        - 公网IP服务商
 - hostname规范
     - 支持两种方式：以标签方式书写或以完整主机名方式书写
     - 标签规范
@@ -1061,6 +1541,7 @@ subnetId - 镜像ID，精确匹配，支持多个
 - 存储
     - volume分为container system disk和pod data volume，container system disk的挂载目录是/，data volume的挂载目录可以随意指定
     - container system disk
+        - 支持cloud和local
         - 云硬盘类型可以选择hdd.std1、ssd.gp1、ssd.io1
         - 磁盘大小
             - 所有类型：范围[20,100]GB，步长为10G
@@ -1068,14 +1549,19 @@ subnetId - 镜像ID，精确匹配，支持多个
             - 默认自动删除
         - 可以选择已存在的云硬盘
     - data volume
-        - 当前只能选择cloud类别
-        - 云硬盘类型可以选择hdd.std1、ssd.gp1、ssd.io1
-        - 磁盘大小
-            - 所有类型：范围[20,2000]GB，步长为10G
-        - 自动删除
-            - 默认自动删除
-        - 可以选择已存在的云硬盘
-        - 可以从快照创建磁盘
+        -cloudDisk
+          - 云硬盘类型可以选择hdd.std1、ssd.gp1、ssd.io1
+          - 磁盘大小
+              - 所有类型：范围[20,2000]GB，步长为10G
+          - 自动删除
+              - 默认自动删除
+          - 可以选择已存在的云硬盘
+          - 可以从快照创建磁盘
+        -CFS
+          - 从zbs去获取数据，挂载到当前的volume
+        -configFile
+          - 提前创建好configFile相关数据，然后挂载到volume
+
 - pod 容器日志
     - default：默认在本地分配10MB的存储空间，自动rotate
 - DNS-1123 label规范
@@ -1141,7 +1627,7 @@ subnetId - 镜像ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -1261,7 +1747,7 @@ subnetId - 镜像ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -1373,7 +1859,7 @@ subnetId - 镜像ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -1486,7 +1972,7 @@ subnetId - 镜像ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -1599,7 +2085,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -1711,7 +2197,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -1827,7 +2313,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -1950,7 +2436,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -2071,7 +2557,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -2215,7 +2701,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -2331,7 +2817,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -2467,7 +2953,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -2582,7 +3068,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -2699,7 +3185,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -2838,7 +3324,7 @@ value 是 Base64 编码的字符串，不能包含换行符（在 linux 下使�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -2950,7 +3436,7 @@ value 是 Base64 编码的字符串，不能包含换行符（在 linux 下使�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.0'
     }
 
     let contentTypes = ['application/json']
@@ -3061,7 +3547,7 @@ value 是 Base64 编码的字符串，不能包含换行符（在 linux 下使�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.2.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.0'
     }
 
     let contentTypes = ['application/json']

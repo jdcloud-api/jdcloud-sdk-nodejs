@@ -30,10 +30,10 @@ Service._services[serviceId] = true
 
 /**
  * ag service.
- * @version 0.4.0
+ * @version 0.5.0
  */
 
-JDCloud.AG = class AG extends Service {
+class AG extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
@@ -83,14 +83,14 @@ vpcId - vpc id，精确匹配
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.5.0'
     }
 
     let contentTypes = ['application/json']
@@ -132,7 +132,7 @@ vpcId - vpc id，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/availabilityGroups',
       'GET',
       pathParams,
@@ -167,13 +167,14 @@ vpcId - vpc id，精确匹配
       * @param {Object} opts - parameters
       * @param {array} [opts.azs] - 支持的可用区，最少一个  optional
       * @param {string} opts.agName - 高可用组名称，只支持中文、数字、大小写字母、英文下划线 “_” 及中划线 “-”，且不能超过 32 字符
-      * @param {string} [opts.agType] - 高可用组类型，支持vm  optional
-      * @param {string} opts.instanceTemplateId - 实例模板的Id
+      * @param {string} [opts.agType] - 高可用组资源类型，支持vm  optional
+      * @param {string} opts.instanceTemplateId - 实例模板的ID
       * @param {string} [opts.description] - 描述，长度不超过 256 字符  optional
+      * @param {string} [opts.configurationType] - 高可用组配置类型，支持strict(关联模板型)、loose(自定义配置型)  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param string agId  创建成功的高可用组 id
+      * @param string agId  创建成功的高可用组 ID
       */
 
   createAg (opts, regionId = this.config.regionId, callback) {
@@ -223,6 +224,12 @@ vpcId - vpc id，精确匹配
     if (opts.description !== undefined && opts.description !== null) {
       postBody['description'] = opts.description
     }
+    if (
+      opts.configurationType !== undefined &&
+      opts.configurationType !== null
+    ) {
+      postBody['configurationType'] = opts.configurationType
+    }
 
     let queryParams = {}
 
@@ -231,7 +238,7 @@ vpcId - vpc id，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.5.0'
     }
 
     let contentTypes = ['application/json']
@@ -273,7 +280,7 @@ vpcId - vpc id，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/availabilityGroups',
       'POST',
       pathParams,
@@ -304,7 +311,7 @@ vpcId - vpc id，精确匹配
   }
 
   /**
-      *  根据 id 查询高可用组详情
+      *  根据 ID 查询高可用组详情
       * @param {Object} opts - parameters
       * @param {string} opts.agId - 高可用组 ID
       * @param {string} regionId - ID of the region
@@ -342,7 +349,7 @@ vpcId - vpc id，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.5.0'
     }
 
     let contentTypes = ['application/json']
@@ -384,7 +391,7 @@ vpcId - vpc id，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/availabilityGroups/{agId}',
       'GET',
       pathParams,
@@ -461,7 +468,7 @@ vpcId - vpc id，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.5.0'
     }
 
     let contentTypes = ['application/json']
@@ -503,7 +510,7 @@ vpcId - vpc id，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/availabilityGroups/{agId}',
       'PATCH',
       pathParams,
@@ -534,7 +541,7 @@ vpcId - vpc id，精确匹配
   }
 
   /**
-      *  根据 id 删除高可用组，需确保 AG 中云主机实例已全部删除
+      *  根据 ID 删除高可用组，需确保 AG 中云主机实例已全部删除
       * @param {Object} opts - parameters
       * @param {string} opts.agId - 高可用组 ID
       * @param {string} regionId - ID of the region
@@ -571,7 +578,7 @@ vpcId - vpc id，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.5.0'
     }
 
     let contentTypes = ['application/json']
@@ -613,7 +620,7 @@ vpcId - vpc id，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/availabilityGroups/{agId}',
       'DELETE',
       pathParams,
@@ -647,7 +654,7 @@ vpcId - vpc id，精确匹配
       *  从高可用组中剔除实例
       * @param {Object} opts - parameters
       * @param {string} opts.agId - 高可用组 ID
-      * @param {array} [opts.instanceIds] - 准备剔除出高可用组的实例 id  optional
+      * @param {array} [opts.instanceIds] - 准备剔除出高可用组的实例 ID  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -686,7 +693,7 @@ vpcId - vpc id，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.5.0'
     }
 
     let contentTypes = ['application/json']
@@ -728,7 +735,7 @@ vpcId - vpc id，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/availabilityGroups/{agId}:abandonInstances',
       'POST',
       pathParams,
@@ -759,10 +766,10 @@ vpcId - vpc id，精确匹配
   }
 
   /**
-      *  修改高可用组的实例模板
+      *  修改高可用组的实例模板&lt;br&gt;- 对于更换实例模板来说，如果已经关联负载均衡，则VPC不可以更改。&lt;br&gt;- 自定义配置型不可更改实例模板。
       * @param {Object} opts - parameters
       * @param {string} opts.agId - 高可用组 ID
-      * @param {string} opts.instanceTemplateId - 实例模板 id
+      * @param {string} opts.instanceTemplateId - 实例模板 ID
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -812,7 +819,7 @@ vpcId - vpc id，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.5.0'
     }
 
     let contentTypes = ['application/json']
@@ -854,7 +861,7 @@ vpcId - vpc id，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/availabilityGroups/{agId}:setInstanceTemplate',
       'POST',
       pathParams,
@@ -911,14 +918,14 @@ vpcId - vpc id，精确匹配
 
     let postBody = null
     let queryParams = {}
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.4.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.5.0'
     }
 
     let contentTypes = ['application/json']
@@ -960,7 +967,7 @@ vpcId - vpc id，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/quotas',
       'GET',
       pathParams,
@@ -990,4 +997,4 @@ vpcId - vpc id，精确匹配
     )
   }
 }
-module.exports = JDCloud.AG
+module.exports = AG

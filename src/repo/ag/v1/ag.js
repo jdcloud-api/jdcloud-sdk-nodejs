@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * ag service.
- * @version 0.5.0
+ * @version 0.6.0
  */
 
 class AG extends Service {
@@ -90,7 +90,7 @@ vpcId - vpc id，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.5.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.6.0'
     }
 
     let contentTypes = ['application/json']
@@ -168,7 +168,7 @@ vpcId - vpc id，精确匹配
       * @param {array} [opts.azs] - 支持的可用区，最少一个  optional
       * @param {string} opts.agName - 高可用组名称，只支持中文、数字、大小写字母、英文下划线 “_” 及中划线 “-”，且不能超过 32 字符
       * @param {string} [opts.agType] - 高可用组资源类型，支持vm  optional
-      * @param {string} opts.instanceTemplateId - 实例模板的ID
+      * @param {string} [opts.instanceTemplateId] - 实例模板的ID  optional
       * @param {string} [opts.description] - 描述，长度不超过 256 字符  optional
       * @param {string} [opts.configurationType] - 高可用组配置类型，支持strict(关联模板型)、loose(自定义配置型)  optional
       * @param {string} regionId - ID of the region
@@ -194,14 +194,6 @@ vpcId - vpc id，精确匹配
     if (opts.agName === undefined || opts.agName === null) {
       throw new Error(
         "Missing the required parameter 'opts.agName' when calling createAg"
-      )
-    }
-    if (
-      opts.instanceTemplateId === undefined ||
-      opts.instanceTemplateId === null
-    ) {
-      throw new Error(
-        "Missing the required parameter 'opts.instanceTemplateId' when calling createAg"
       )
     }
 
@@ -238,7 +230,7 @@ vpcId - vpc id，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.5.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.6.0'
     }
 
     let contentTypes = ['application/json']
@@ -349,7 +341,7 @@ vpcId - vpc id，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.5.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.6.0'
     }
 
     let contentTypes = ['application/json']
@@ -468,7 +460,7 @@ vpcId - vpc id，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.5.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.6.0'
     }
 
     let contentTypes = ['application/json']
@@ -578,7 +570,7 @@ vpcId - vpc id，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.5.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.6.0'
     }
 
     let contentTypes = ['application/json']
@@ -693,7 +685,7 @@ vpcId - vpc id，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.5.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.6.0'
     }
 
     let contentTypes = ['application/json']
@@ -819,7 +811,7 @@ vpcId - vpc id，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.5.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.6.0'
     }
 
     let contentTypes = ['application/json']
@@ -925,7 +917,7 @@ vpcId - vpc id，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.5.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.6.0'
     }
 
     let contentTypes = ['application/json']

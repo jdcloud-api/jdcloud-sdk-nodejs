@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * vm service.
- * @version 1.4.2
+ * @version 1.5.2
  */
 
 class VM extends Service {
@@ -91,7 +91,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -216,7 +216,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -326,7 +326,7 @@ class VM extends Service {
   optional
       * @param {string} [opts.status] - 根据镜像状态查询。参考 [镜像状态](https://docs.jdcloud.com/virtual-machines/api/image_status)  optional
       * @param {string} [opts.serviceCode] - 已废弃。  optional
-      * @param {string} [opts.architecture] - CPU架构。支持范围：&#x60;x86_64&#x60;、&#x60;aarch64&#x60;。  optional
+      * @param {string} [opts.architecture] - CPU架构。支持范围：&#x60;x86_64&#x60;、&#x60;arm64&#x60;。  optional
       * @param {integer} [opts.pageNumber] - 页码；默认为1。  optional
       * @param {integer} [opts.pageSize] - 分页大小；&lt;br&gt;默认为20；取值范围[10, 100]。  optional
       * @param {string} [opts.ids] - 指定镜像ID查询，如果指定了此参数，其它参数可以不传。
@@ -394,7 +394,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -514,7 +514,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -631,7 +631,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -755,7 +755,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -878,7 +878,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -999,7 +999,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -1117,7 +1117,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -1235,7 +1235,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -1368,7 +1368,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -1494,7 +1494,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -1577,7 +1577,7 @@ class VM extends Service {
 - 导入后的镜像将以 &#x60;云硬盘系统盘镜像&#x60; 格式作为私有镜像使用，同时会自动生成一个与导入镜像关联的快照。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.architecture - 镜像架构。取值范围：&#x60;x86_64、i386&#x60;。
+      * @param {string} opts.architecture - 镜像架构。取值范围：&#x60;x86_64、arm64&#x60;。
       * @param {string} opts.osType - 镜像的操作系统类型。取值范围：&#x60;windows、linux&#x60;。
       * @param {string} opts.platform - 镜像的操作系统平台名称。
 取值范围：&#x60;Ubuntu、CentOS、Windows Server、Other Linux、Other Windows&#x60;。
@@ -1689,7 +1689,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -1840,7 +1840,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -1981,7 +1981,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -2124,7 +2124,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -2271,7 +2271,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -2414,7 +2414,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -2533,7 +2533,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -2655,7 +2655,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -2790,7 +2790,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -2929,7 +2929,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -3059,7 +3059,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -3180,7 +3180,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -3299,7 +3299,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -3444,7 +3444,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -3578,7 +3578,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -3705,7 +3705,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -3834,7 +3834,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -3961,7 +3961,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -4110,7 +4110,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -4257,7 +4257,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -4391,7 +4391,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -4515,7 +4515,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -4668,7 +4668,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -4833,7 +4833,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -4965,7 +4965,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -5086,7 +5086,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -5231,7 +5231,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -5346,6 +5346,11 @@ class VM extends Service {
 **linux系统**：支持bash和python，编码前须分别以 &#x60;#!/bin/bash&#x60; 和 &#x60;#!/usr/bin/env python&#x60; 作为内容首行。
 **Windows系统**：支持 &#x60;bat&#x60; 和 &#x60;powershell&#x60;，编码前须分别以 &#x60;&lt;cmd&gt;&lt;/cmd&gt;和&lt;powershell&gt;&lt;/powershell&gt;&#x60; 作为内容首、尾行。
   optional
+      * @param {string} [opts.passWordAuth] - 密码授权，若存在密匙，则根据此参数决定是否使用密码，若没有密匙，此参数无效，会强制使用密码。
+若不使用密码，且密匙对解绑后，用户需重置密码，方可使用密码登录。
+此参数在windows系统中必须为yes。
+  optional
+      * @param {string} [opts.imageInherit] - 继承镜像中的登录验证方式，&quot;yes&quot;为使用，&quot;no&quot;为不使用，&quot;&quot;默认为&quot;no&quot;  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -5390,6 +5395,12 @@ class VM extends Service {
     if (opts.userdata !== undefined && opts.userdata !== null) {
       postBody['userdata'] = opts.userdata
     }
+    if (opts.passWordAuth !== undefined && opts.passWordAuth !== null) {
+      postBody['passWordAuth'] = opts.passWordAuth
+    }
+    if (opts.imageInherit !== undefined && opts.imageInherit !== null) {
+      postBody['imageInherit'] = opts.imageInherit
+    }
 
     let queryParams = {}
 
@@ -5399,7 +5410,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -5532,7 +5543,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -5673,7 +5684,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -5798,7 +5809,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -5946,7 +5957,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -6068,7 +6079,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -6205,7 +6216,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -6325,7 +6336,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -6445,7 +6456,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -6564,7 +6575,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -6653,6 +6664,7 @@ class VM extends Service {
       * @param {filter} [opts.filters] - &lt;b&gt;filters 中支持使用以下关键字进行过滤&lt;/b&gt;
 &#x60;instanceTypes&#x60;: 实例规格，精确匹配，支持多个
 &#x60;az&#x60;: 可用区，精确匹配，支持多个
+&#x60;architecture&#x60;: CPU架构，精确匹配，支持单个，可选范围:x86_64或arm64
   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -6688,7 +6700,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -6812,7 +6824,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -6939,7 +6951,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -7074,7 +7086,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -7192,7 +7204,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -7329,7 +7341,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -7453,7 +7465,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']
@@ -7530,14 +7542,14 @@ class VM extends Service {
 查询资源配额。
 
 ## 接口说明
-- 调用该接口可查询 &#x60;云主机&#x60;、&#x60;镜像&#x60;、&#x60;密钥&#x60;、&#x60;实例模板&#x60;、&#x60;镜像共享&#x60; 的配额。
+- 调用该接口可查询 &#x60;云主机&#x60;、&#x60;云主机的CPU&#x60;、&#x60;云主机的内存&#x60;、&#x60;云主机的本地盘&#x60;、&#x60;镜像&#x60;、&#x60;密钥&#x60;、&#x60;实例模板&#x60;、&#x60;镜像共享&#x60; 的配额。
 
       * @param {Object} opts - parameters
       * @param {string} [opts.imageId] - 私有镜像Id。
 查询镜像共享 &#x60;imageShare&#x60; 的配额时，此参数必传。
   optional
       * @param {filter} [opts.filters] - &lt;b&gt;filters 中支持使用以下关键字进行过滤&lt;/b&gt;
-&#x60;resourceTypes&#x60;: 资源类型，支持多个，可选范围：&#x60;instance、keypair、image、instanceTemplate、imageShare&#x60;
+&#x60;resourceTypes&#x60;: 资源类型，支持多个，可选范围：&#x60;instance、instance_cpu、instance_memory、instance_local_disk、keypair、image、instanceTemplate、imageShare&#x60;
   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -7571,7 +7583,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.4.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.2'
     }
 
     let contentTypes = ['application/json']

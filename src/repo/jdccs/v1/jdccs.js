@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * jdccs service.
- * @version 1.1.2
+ * @version 1.1.4
  */
 
 class JDCCS extends Service {
@@ -49,7 +49,6 @@ class JDCCS extends Service {
       * @param {Object} opts - parameters
       * @param {integer} [opts.pageNumber] - 页码, 默认为1  optional
       * @param {integer} [opts.pageSize] - 分页大小，默认为20  optional
-      * @param {integer} [opts.all] - 是否查询全部，默认分页  optional
       * @param {string} [opts.resourceType] - 资源类型 bandwidth:带宽  optional
       * @param {string} [opts.resourceId] - 资源ID，指定resourceId时须指定resourceType  optional
       * @param {string} [opts.idc] - 机房英文标识  optional
@@ -75,9 +74,6 @@ class JDCCS extends Service {
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    if (opts.all !== undefined && opts.all !== null) {
-      queryParams['all'] = opts.all
-    }
     if (opts.resourceType !== undefined && opts.resourceType !== null) {
       queryParams['resourceType'] = opts.resourceType
     }
@@ -97,7 +93,7 @@ class JDCCS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -253,7 +249,7 @@ class JDCCS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -352,7 +348,7 @@ class JDCCS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -500,7 +496,7 @@ class JDCCS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -599,7 +595,7 @@ class JDCCS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -717,7 +713,7 @@ class JDCCS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -821,7 +817,7 @@ class JDCCS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -912,7 +908,7 @@ class JDCCS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -1057,7 +1053,7 @@ class JDCCS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -1172,7 +1168,7 @@ class JDCCS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -1250,7 +1246,6 @@ class JDCCS extends Service {
       * @param {string} opts.idc - IDC机房ID
       * @param {integer} [opts.pageNumber] - 页码, 默认为1  optional
       * @param {integer} [opts.pageSize] - 分页大小，默认为20  optional
-      * @param {integer} [opts.all] - 是否查询全部，默认分页  optional
       * @param {string} [opts.bandwidthName] - 带宽（出口）名称  optional
       * @param {string} callback - callback
       @return {Object} result
@@ -1277,9 +1272,6 @@ class JDCCS extends Service {
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    if (opts.all !== undefined && opts.all !== null) {
-      queryParams['all'] = opts.all
-    }
     if (opts.bandwidthName !== undefined && opts.bandwidthName !== null) {
       queryParams['bandwidthName'] = opts.bandwidthName
     }
@@ -1290,7 +1282,7 @@ class JDCCS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -1396,7 +1388,7 @@ class JDCCS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -1515,7 +1507,7 @@ class JDCCS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -1606,7 +1598,7 @@ class JDCCS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -1711,7 +1703,7 @@ class JDCCS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -1784,6 +1776,244 @@ class JDCCS extends Service {
   }
 
   /**
+      *  按照时间段查询单个机柜AB路电流
+      * @param {Object} opts - parameters
+      * @param {string} opts.idc - IDC机房ID
+      * @param {string} opts.resourceId - 机柜资源ID
+      * @param {integer} opts.startTime - 查询时间范围的开始时间， UNIX时间戳，（最多支持最近90天数据查询）
+      * @param {integer} opts.endTime - 查询时间范围的结束时间， UNIX时间戳，（最多支持最近90天数据查询）
+      * @param {string} [opts.timeInterval] - 时间间隔：分钟m、小时h、天d，如： 10分钟&#x3D;10m、1小时&#x3D;1h，3天&#x3D;3d；默认5m，最小支持5m，最大90d 目前带宽上、下行流量查询，时间间隔：1m、5m，默认5m。时间间隔支持的最大时间范围为2小时  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param cabinetCurrentRespItem data
+      */
+
+  describeRangetimeCabinetCurrent (opts, callback) {
+    opts = opts || {}
+
+    if (opts.idc === undefined || opts.idc === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.idc' when calling describeRangetimeCabinetCurrent"
+      )
+    }
+    if (opts.resourceId === undefined || opts.resourceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.resourceId' when calling describeRangetimeCabinetCurrent"
+      )
+    }
+    if (opts.startTime === undefined || opts.startTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.startTime' when calling describeRangetimeCabinetCurrent"
+      )
+    }
+    if (opts.endTime === undefined || opts.endTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.endTime' when calling describeRangetimeCabinetCurrent"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.resourceId !== undefined && opts.resourceId !== null) {
+      queryParams['resourceId'] = opts.resourceId
+    }
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+    if (opts.timeInterval !== undefined && opts.timeInterval !== null) {
+      queryParams['timeInterval'] = opts.timeInterval
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      idc: opts.idc
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeRangetimeCabinetCurrent with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/idcs/{idc}/rangetimeCabinetCurrent',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询多个机柜AB路实时电流
+      * @param {Object} opts - parameters
+      * @param {string} opts.idc - IDC机房ID
+      * @param {string} opts.resourceId - 资源ID，支持多个resourceId批量查询，每个id用英文竖线分隔
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param cabinetCurrentRespItem data
+      */
+
+  describeRealtimeCabinetCurrent (opts, callback) {
+    opts = opts || {}
+
+    if (opts.idc === undefined || opts.idc === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.idc' when calling describeRealtimeCabinetCurrent"
+      )
+    }
+    if (opts.resourceId === undefined || opts.resourceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.resourceId' when calling describeRealtimeCabinetCurrent"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.resourceId !== undefined && opts.resourceId !== null) {
+      queryParams['resourceId'] = opts.resourceId
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      idc: opts.idc
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeRealtimeCabinetCurrent with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/idcs/{idc}/realtimeCabinetCurrent',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  查询IDC机房列表
       * @param {Object} opts - parameters
       * @param {integer} [opts.pageNumber] - 页码, 默认为1  optional
@@ -1824,7 +2054,7 @@ class JDCCS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -1941,7 +2171,7 @@ class JDCCS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -2019,11 +2249,9 @@ class JDCCS extends Service {
       * @param {string} opts.idc - IDC机房ID
       * @param {integer} [opts.pageNumber] - 页码, 默认为1  optional
       * @param {integer} [opts.pageSize] - 分页大小，默认为20  optional
-      * @param {integer} [opts.all] - 是否查询全部，默认分页  optional
       * @param {string} [opts.cabinetType] - 机柜类型 formal:正式机柜 reserved:预留机柜  optional
       * @param {string} [opts.cabinetOpenStatus] - 机柜开通状态 disabled:未开通 enabling:开通中 enabled:已开通 disabling:关电中  optional
       * @param {string} [opts.cabinetNo] - 机柜编码  optional
-      * @param {string} [opts.deviceMustBeEmpty] - 机柜关电工单使用 yes  optional
       * @param {filter} [opts.filters] - roomNo - 房间号，精确匹配，支持多个
 cabinetId - 机柜ID，精确匹配，支持多个
 cabinetNo - 机柜编码，精确匹配，支持多个
@@ -2055,9 +2283,6 @@ cabinetOpenStatus - 机柜开通状态，精确匹配，支持多个
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    if (opts.all !== undefined && opts.all !== null) {
-      queryParams['all'] = opts.all
-    }
     if (opts.cabinetType !== undefined && opts.cabinetType !== null) {
       queryParams['cabinetType'] = opts.cabinetType
     }
@@ -2070,12 +2295,6 @@ cabinetOpenStatus - 机柜开通状态，精确匹配，支持多个
     if (opts.cabinetNo !== undefined && opts.cabinetNo !== null) {
       queryParams['cabinetNo'] = opts.cabinetNo
     }
-    if (
-      opts.deviceMustBeEmpty !== undefined &&
-      opts.deviceMustBeEmpty !== null
-    ) {
-      queryParams['deviceMustBeEmpty'] = opts.deviceMustBeEmpty
-    }
     Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
     Object.assign(queryParams, super.buildSortParam(opts.sorts, 'sorts'))
 
@@ -2085,7 +2304,7 @@ cabinetOpenStatus - 机柜开通状态，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -2191,7 +2410,7 @@ cabinetOpenStatus - 机柜开通状态，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -2269,15 +2488,12 @@ cabinetOpenStatus - 机柜开通状态，精确匹配，支持多个
       * @param {string} opts.idc - IDC机房ID
       * @param {integer} [opts.pageNumber] - 页码, 默认为1  optional
       * @param {integer} [opts.pageSize] - 分页大小，默认为20  optional
-      * @param {integer} [opts.all] - 是否查询全部，默认分页  optional
       * @param {string} [opts.cabinetId] - 机柜ID  optional
       * @param {string} [opts.deviceType] - 设备类型 server:服务器 network:网络设备 storage:存储设备 other:其他设备  optional
       * @param {string} [opts.assetStatus] - 资产状态 launched:已上架 opened:已开通 canceling:退订中 operating:操作中 modifing:变更中  optional
       * @param {string} [opts.assetBelong] - 资产归属 own:自备 lease:租赁  optional
       * @param {string} [opts.deviceNo] - 设备编码  optional
       * @param {string} [opts.snNo] - 设备SN号  optional
-      * @param {string} [opts.cabinetNo] - 机柜编码  optional
-      * @param {string} [opts.ticketTemplateCode] - 工单模板CODE  optional
       * @param {filter} [opts.filters] - deviceId - 设备实例ID，精确匹配，支持多个
 snNo - 设备SN号，精确匹配，支持多个
 deviceNo - 设备编码，精确匹配，支持多个
@@ -2309,9 +2525,6 @@ cabinetNo - 机柜编码，精确匹配，支持多个
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    if (opts.all !== undefined && opts.all !== null) {
-      queryParams['all'] = opts.all
-    }
     if (opts.cabinetId !== undefined && opts.cabinetId !== null) {
       queryParams['cabinetId'] = opts.cabinetId
     }
@@ -2330,15 +2543,6 @@ cabinetNo - 机柜编码，精确匹配，支持多个
     if (opts.snNo !== undefined && opts.snNo !== null) {
       queryParams['snNo'] = opts.snNo
     }
-    if (opts.cabinetNo !== undefined && opts.cabinetNo !== null) {
-      queryParams['cabinetNo'] = opts.cabinetNo
-    }
-    if (
-      opts.ticketTemplateCode !== undefined &&
-      opts.ticketTemplateCode !== null
-    ) {
-      queryParams['ticketTemplateCode'] = opts.ticketTemplateCode
-    }
     Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
     Object.assign(queryParams, super.buildSortParam(opts.sorts, 'sorts'))
 
@@ -2348,7 +2552,7 @@ cabinetNo - 机柜编码，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -2454,7 +2658,7 @@ cabinetNo - 机柜编码，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -2532,7 +2736,6 @@ cabinetNo - 机柜编码，精确匹配，支持多个
       * @param {string} opts.idc - IDC机房ID
       * @param {integer} [opts.pageNumber] - 页码, 默认为1  optional
       * @param {integer} [opts.pageSize] - 分页大小，默认为20  optional
-      * @param {integer} [opts.all] - 是否查询全部，默认分页  optional
       * @param {string} [opts.lineType] - 线路类型 dynamicBGP:动态BGP thirdLineBGP:三线BGP telecom:电信单线 unicom:联通单线 mobile:移动单线  optional
       * @param {string} [opts.status] - 状态 normal:正常 abnormal:异常  optional
       * @param {string} [opts.cidrAddr] - IP地址段  optional
@@ -2564,9 +2767,6 @@ cabinetNo - 机柜编码，精确匹配，支持多个
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    if (opts.all !== undefined && opts.all !== null) {
-      queryParams['all'] = opts.all
-    }
     if (opts.lineType !== undefined && opts.lineType !== null) {
       queryParams['lineType'] = opts.lineType
     }
@@ -2585,7 +2785,7 @@ cabinetNo - 机柜编码，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -2663,7 +2863,6 @@ cabinetNo - 机柜编码，精确匹配，支持多个
       * @param {string} opts.idc - IDC机房ID
       * @param {integer} [opts.pageNumber] - 页码, 默认为1  optional
       * @param {integer} [opts.pageSize] - 分页大小，默认为20  optional
-      * @param {integer} [opts.all] - 是否查询全部，默认分页  optional
       * @param {string} [opts.lineType] - 线路类型 dynamicBGP:动态BGP thirdLineBGP:三线BGP telecom:电信单线 unicom:联通单线 mobile:移动单线  optional
       * @param {string} [opts.chargeType] - 计费方式 fixedBandwidth:固定带宽 95thPercentile:95峰值 merge95thPercentile:合并95峰值  optional
       * @param {string} [opts.bandwidthName] - 带宽（出口）名称  optional
@@ -2696,9 +2895,6 @@ cabinetNo - 机柜编码，精确匹配，支持多个
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    if (opts.all !== undefined && opts.all !== null) {
-      queryParams['all'] = opts.all
-    }
     if (opts.lineType !== undefined && opts.lineType !== null) {
       queryParams['lineType'] = opts.lineType
     }
@@ -2720,7 +2916,7 @@ cabinetNo - 机柜编码，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -2826,7 +3022,7 @@ cabinetNo - 机柜编码，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -2928,7 +3124,7 @@ cabinetNo - 机柜编码，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -3005,17 +3201,14 @@ cabinetNo - 机柜编码，精确匹配，支持多个
       * @param {Object} opts - parameters
       * @param {integer} [opts.pageNumber] - 页码, 默认为1  optional
       * @param {integer} [opts.pageSize] - 分页大小，默认为20  optional
-      * @param {integer} [opts.all] - 是否查询全部，默认分页  optional
       * @param {string} [opts.type] - 工单TAB类型 pendingProcess:待我处理 pendingReview:待审核 processing:处理中 all:全部(默认)  optional
       * @param {string} [opts.ticketTypeName] - 工单类型  optional
-      * @param {integer} [opts.ticketTypeId] - 工单类型ID  optional
       * @param {string} [opts.status] - 工单状态 pendingReview:待审核 revoked:已撤销 processing:处理中 pendingVerification:待核验 pendingClose:待关单 rejected:已拒绝 completed:已完成 cancelled:已取消 draft:草稿中  optional
       * @param {string} [opts.ticketNo] - 工单编号  optional
       * @param {string} [opts.ticketTemplateName] - 工单名称  optional
       * @param {string} [opts.description] - 描述  optional
       * @param {string} [opts.startTime] - 创建开始时间，遵循ISO8601标准，使用UTC时间，格式为：yyyy-MM-ddTHH:mm:ssZ  optional
       * @param {string} [opts.endTime] - 创建结束时间，遵循ISO8601标准，使用UTC时间，格式为：yyyy-MM-ddTHH:mm:ssZ  optional
-      * @param {string} [opts.submitAccount] - 提交账号  optional
       * @param {filter} [opts.filters] - ticketNo - 工单编号，精确匹配，支持多个
   optional
       * @param {sort} [opts.sorts] - createdTime - 创建时间 closedTime - 关闭时间  optional
@@ -3038,17 +3231,11 @@ cabinetNo - 机柜编码，精确匹配，支持多个
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    if (opts.all !== undefined && opts.all !== null) {
-      queryParams['all'] = opts.all
-    }
     if (opts.type !== undefined && opts.type !== null) {
       queryParams['type'] = opts.type
     }
     if (opts.ticketTypeName !== undefined && opts.ticketTypeName !== null) {
       queryParams['ticketTypeName'] = opts.ticketTypeName
-    }
-    if (opts.ticketTypeId !== undefined && opts.ticketTypeId !== null) {
-      queryParams['ticketTypeId'] = opts.ticketTypeId
     }
     if (opts.status !== undefined && opts.status !== null) {
       queryParams['status'] = opts.status
@@ -3071,9 +3258,6 @@ cabinetNo - 机柜编码，精确匹配，支持多个
     if (opts.endTime !== undefined && opts.endTime !== null) {
       queryParams['endTime'] = opts.endTime
     }
-    if (opts.submitAccount !== undefined && opts.submitAccount !== null) {
-      queryParams['submitAccount'] = opts.submitAccount
-    }
     Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
     Object.assign(queryParams, super.buildSortParam(opts.sorts, 'sorts'))
 
@@ -3082,7 +3266,7 @@ cabinetNo - 机柜编码，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -3181,7 +3365,7 @@ cabinetNo - 机柜编码，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.4'
     }
 
     let contentTypes = ['application/json']
@@ -3322,7 +3506,7 @@ cabinetNo - 机柜编码，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdccs/1.1.4'
     }
 
     let contentTypes = ['application/json']

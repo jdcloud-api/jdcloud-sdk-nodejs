@@ -33,7 +33,7 @@ Service._services[serviceId] = true
  * @version 1.0.5
  */
 
-JDCloud.ZFS = class ZFS extends Service {
+class ZFS extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
@@ -85,8 +85,8 @@ status - 文件系统状态，精确匹配，支持多个 FileSystem Status/crea
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
-    Object.assign(queryParams, this.buildTagFilterParam(opts.tags, 'tags'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildTagFilterParam(opts.tags, 'tags'))
 
     let pathParams = {
       regionId: regionId
@@ -135,7 +135,7 @@ status - 文件系统状态，精确匹配，支持多个 FileSystem Status/crea
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/fileSystems',
       'GET',
       pathParams,
@@ -272,7 +272,7 @@ status - 文件系统状态，精确匹配，支持多个 FileSystem Status/crea
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/fileSystems',
       'POST',
       pathParams,
@@ -383,7 +383,7 @@ status - 文件系统状态，精确匹配，支持多个 FileSystem Status/crea
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/fileSystems/{fileSystemId}',
       'GET',
       pathParams,
@@ -502,7 +502,7 @@ status - 文件系统状态，精确匹配，支持多个 FileSystem Status/crea
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/fileSystems/{fileSystemId}',
       'PATCH',
       pathParams,
@@ -613,7 +613,7 @@ status - 文件系统状态，精确匹配，支持多个 FileSystem Status/crea
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/fileSystems/{fileSystemId}',
       'DELETE',
       pathParams,
@@ -681,7 +681,7 @@ mountTargetId - 挂载目标ID，精确匹配，支持多个
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId
@@ -730,7 +730,7 @@ mountTargetId - 挂载目标ID，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/mountTargets',
       'GET',
       pathParams,
@@ -877,7 +877,7 @@ mountTargetId - 挂载目标ID，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/mountTargets',
       'POST',
       pathParams,
@@ -988,7 +988,7 @@ mountTargetId - 挂载目标ID，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/mountTargets/{mountTargetId}',
       'GET',
       pathParams,
@@ -1099,7 +1099,7 @@ mountTargetId - 挂载目标ID，精确匹配，支持多个
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/mountTargets/{mountTargetId}',
       'DELETE',
       pathParams,
@@ -1129,4 +1129,4 @@ mountTargetId - 挂载目标ID，精确匹配，支持多个
     )
   }
 }
-module.exports = JDCloud.ZFS
+module.exports = ZFS

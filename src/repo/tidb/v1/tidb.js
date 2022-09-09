@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * tidb service.
- * @version 1.0.0
+ * @version 1.0.1
  */
 
 class TIDB extends Service {
@@ -85,7 +85,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -214,7 +214,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -341,7 +341,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -463,7 +463,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -586,7 +586,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -696,7 +696,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -804,7 +804,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -907,7 +907,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -1022,7 +1022,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -1133,7 +1133,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -1243,7 +1243,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -1372,7 +1372,7 @@ instanceStatus, 支持operator选项：eq,ne
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -1490,7 +1490,7 @@ instanceStatus, 支持operator选项：eq,ne
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -1614,7 +1614,7 @@ instanceStatus, 支持operator选项：eq,ne
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -1739,7 +1739,7 @@ instanceStatus, 支持operator选项：eq,ne
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -1862,7 +1862,7 @@ instanceStatus, 支持operator选项：eq,ne
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -1982,7 +1982,7 @@ instanceStatus, 支持operator选项：eq,ne
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -2114,7 +2114,7 @@ instanceStatus, 支持operator选项：eq,ne
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -2250,7 +2250,7 @@ instanceStatus, 支持operator选项：eq,ne
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -2379,7 +2379,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -2490,7 +2490,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -2610,7 +2610,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -2730,7 +2730,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -2849,7 +2849,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -2960,7 +2960,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -3073,7 +3073,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -3193,7 +3193,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -3313,7 +3313,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -3424,7 +3424,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -3535,7 +3535,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -3646,7 +3646,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -3761,7 +3761,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -3890,7 +3890,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -4012,7 +4012,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -4124,7 +4124,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -4244,7 +4244,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -4361,7 +4361,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -4479,7 +4479,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -4597,7 +4597,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -4744,7 +4744,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -4855,7 +4855,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -4975,7 +4975,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -5104,7 +5104,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -5223,7 +5223,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
     }
 
     let contentTypes = ['application/json']

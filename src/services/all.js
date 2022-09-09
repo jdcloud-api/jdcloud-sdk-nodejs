@@ -12,6 +12,7 @@ module.exports = {
   QUOTA: require('./quota'),
   BRI: require('./bri'),
   EDCPS: require('./edcps'),
+  BASTION: require('./bastion'),
   PORTAL: require('./portal'),
   ORDER: require('./order'),
   CLOUDDNSSERVICE: require('./clouddnsservice'),

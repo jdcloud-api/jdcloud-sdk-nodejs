@@ -69,6 +69,7 @@ module.exports = {
   SOP: require('./sop'),
   CAPTCHA: require('./captcha'),
   FUNCTION: require('./function'),
+  RESERVEDINSTANCE: require('./reservedinstance'),
   RMS: require('./rms'),
   LOGS: require('./logs'),
   JDCCS: require('./jdccs'),

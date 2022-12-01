@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * dms service.
- * @version 1.3.0
+ * @version 1.4.0
  */
 
 class DMS extends Service {
@@ -42,6 +42,97 @@ class DMS extends Service {
       options._defaultEndpoint.host || 'dms.jdcloud-api.com'
     options.basePath = '/v1' // 默认要设为空""
     super(serviceId, options)
+  }
+
+  /**
+      *  校验当前的用户是否允许访问DMS控制台
+      * @param {Object} opts - parameters
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string strResult  允许访问
+      */
+
+  dmsConsoleCheck (opts, callback) {
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call dmsConsoleCheck with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/console:check',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
   }
 
   /**
@@ -128,7 +219,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -288,7 +379,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -404,7 +495,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -531,7 +622,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -651,7 +742,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -771,7 +862,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -917,7 +1008,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -1052,7 +1143,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -1217,7 +1308,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -1324,7 +1415,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -1476,7 +1567,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -1639,7 +1730,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -1755,7 +1846,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -1871,7 +1962,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -1999,7 +2090,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -2120,7 +2211,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -2193,7 +2284,7 @@ class DMS extends Service {
   }
 
   /**
-      *  生成建表语句sql，支持Mysql，Stardb
+      *  生成建表语句sql，支持Mysql，Stardb，OpenGauss
       * @param {Object} opts - parameters
       * @param {} [opts.dataSourceId] - 数据源id  optional
       * @param {} [opts.dbName] - 数据库名  optional
@@ -2252,7 +2343,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -2380,7 +2471,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -2497,7 +2588,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -2618,7 +2709,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -2758,7 +2849,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -2865,7 +2956,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -2941,7 +3032,7 @@ class DMS extends Service {
       *  rds，drds登录实例
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - rds，drds的实例id。
-      * @param {} [opts.dbType] - 数据源类型，CDS(&quot;CDS&quot;, 1), MYSQL(&quot;MYSQL&quot;, 2), ORACLE(&quot;ORACLE&quot;, 3), SQLSERVER(&quot;SQLSERVER&quot;, 4), CDSMYSQL(&quot;CDSMYSQL&quot;, 5), CDSORACLE(&quot;CDSORACLE&quot;, 6), CDSSQLSERVER(&quot;CDSSQLSERVER&quot;, 7), DATACENTER(&quot;DATACENTER&quot;, 8), HBASE(&quot;Hbase&quot;,9),MONGODB(&quot;MongoDb&quot;,10),ES(&quot;ES&quot;,11), MYSQL_INS(&quot;MYSQL_INS&quot;,12), DRDS_INS(&quot;DRDS_INS&quot;,13), STARDB_INS(&quot;STARDB_INS&quot;,14), STARDB_PROXY_INS(&quot;STARDB_PROXY_INS&quot;,15), CLICK_HOUSE_INS(&quot;CLICK_HOUSE_INS&quot;,16), TIDB_INS(&quot;TIDB_INS&quot;,17);  optional
+      * @param {} [opts.dbType] - 数据源类型，CDS(&quot;CDS&quot;, 1), MYSQL(&quot;MYSQL&quot;, 2), ORACLE(&quot;ORACLE&quot;, 3), SQLSERVER(&quot;SQLSERVER&quot;, 4), CDSMYSQL(&quot;CDSMYSQL&quot;, 5), CDSORACLE(&quot;CDSORACLE&quot;, 6), CDSSQLSERVER(&quot;CDSSQLSERVER&quot;, 7), DATACENTER(&quot;DATACENTER&quot;, 8), HBASE(&quot;Hbase&quot;,9),MONGODB(&quot;MongoDb&quot;,10),ES(&quot;ES&quot;,11), MYSQL_INS(&quot;MYSQL_INS&quot;,12), DRDS_INS(&quot;DRDS_INS&quot;,13), STARDB_INS(&quot;STARDB_INS&quot;,14), STARDB_PROXY_INS(&quot;STARDB_PROXY_INS&quot;,15), CLICK_HOUSE_INS(&quot;CLICK_HOUSE_INS&quot;,16), TIDB_INS(&quot;TIDB_INS&quot;,17), OPEN_GAUSS_INS(&quot;OPEN_GAUSS_INS&quot;,18), SS_OPEN_GAUSS_INS(&quot;SS_OPEN_GAUSS_INS&quot;,19);  optional
       * @param {} [opts.addrMode] - CLASSIC(&quot;CLASSIC&quot;, 0), RDS(&quot;RDS&quot;, 1), ECS(&quot;ECS&quot;, 2), VPC(&quot;VPC&quot;, 3), 当前只支持rds模式。  optional
       * @param {} [opts.dbUser] - 数据库用户名。  optional
       * @param {} [opts.dbPassword] - 数据库用户密码。  optional
@@ -2992,7 +3083,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -3099,7 +3190,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -3174,7 +3265,7 @@ class DMS extends Service {
   /**
       *  查询用户数据类型实例
       * @param {Object} opts - parameters
-      * @param {} [opts.dbType] - 数据源类型，CDS(&quot;CDS&quot;, 1), MYSQL(&quot;MYSQL&quot;, 2), ORACLE(&quot;ORACLE&quot;, 3), SQLSERVER(&quot;SQLSERVER&quot;, 4), CDSMYSQL(&quot;CDSMYSQL&quot;, 5), CDSORACLE(&quot;CDSORACLE&quot;, 6), CDSSQLSERVER(&quot;CDSSQLSERVER&quot;, 7), DATACENTER(&quot;DATACENTER&quot;, 8), HBASE(&quot;Hbase&quot;,9),MONGODB(&quot;MongoDb&quot;,10),ES(&quot;ES&quot;,11), MYSQL_INS(&quot;MYSQL_INS&quot;,12), DRDS_INS(&quot;DRDS_INS&quot;,13), STARDB_INS(&quot;STARDB_INS&quot;,14), STARDB_PROXY_INS(&quot;STARDB_PROXY_INS&quot;,15), CLICK_HOUSE_INS(&quot;CLICK_HOUSE_INS&quot;,16), TIDB_INS(&quot;TIDB_INS&quot;,17);  optional
+      * @param {} [opts.dbType] - 数据源类型，CDS(&quot;CDS&quot;, 1), MYSQL(&quot;MYSQL&quot;, 2), ORACLE(&quot;ORACLE&quot;, 3), SQLSERVER(&quot;SQLSERVER&quot;, 4), CDSMYSQL(&quot;CDSMYSQL&quot;, 5), CDSORACLE(&quot;CDSORACLE&quot;, 6), CDSSQLSERVER(&quot;CDSSQLSERVER&quot;, 7), DATACENTER(&quot;DATACENTER&quot;, 8), HBASE(&quot;Hbase&quot;,9),MONGODB(&quot;MongoDb&quot;,10),ES(&quot;ES&quot;,11), MYSQL_INS(&quot;MYSQL_INS&quot;,12), DRDS_INS(&quot;DRDS_INS&quot;,13), STARDB_INS(&quot;STARDB_INS&quot;,14), STARDB_PROXY_INS(&quot;STARDB_PROXY_INS&quot;,15), CLICK_HOUSE_INS(&quot;CLICK_HOUSE_INS&quot;,16), TIDB_INS(&quot;TIDB_INS&quot;,17), OPEN_GAUSS_INS(&quot;OPEN_GAUSS_INS&quot;,18), SS_OPEN_GAUSS_INS(&quot;SS_OPEN_GAUSS_INS&quot;,19);  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -3210,7 +3301,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -3283,6 +3374,116 @@ class DMS extends Service {
   }
 
   /**
+      *  校验用户是否有实例权限
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  checkInstance (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  checkInstance"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling checkInstance"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call checkInstance with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}:check',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  获取表元数据，支持Mysql，Stardb，Tidb，ClickHouse
       * @param {Object} opts - parameters
       * @param {} [opts.dataSourceId] - 数据源id  optional
@@ -3326,7 +3527,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -3434,7 +3635,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -3546,7 +3747,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -3662,7 +3863,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -3765,7 +3966,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -3809,6 +4010,453 @@ class DMS extends Service {
 
     let request = super.makeRequest(
       '/regions/{regionId}/getDmsDomain',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取Dms域名，仅供前端使用
+      * @param {Object} opts - parameters
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param object domains  区域到域名映射，例{&quot;cn-north-1&quot;:&quot;http://10.222.49.154:8080&quot;, &quot;cn-east-1&quot;:&quot;http://10.222.49.154:8080&quot;}。
+      */
+
+  getDmsDomains (opts, callback) {
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getDmsDomains with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/getDmsDomain',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取操作对应控制台功能
+      * @param {Object} opts - parameters
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer count  操作类型总量
+      * @param dmsOperationType dmsOperationTypes
+      */
+
+  queryOperationType (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  queryOperationType"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call queryOperationType with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/operationType:query',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取操作日志列表
+      * @param {Object} opts - parameters
+      * @param {} [opts.supType] - 操作类型  optional
+      * @param {} [opts.type] - 对应控制台功能  optional
+      * @param {} [opts.pin] - 操作人  optional
+      * @param {} [opts.instanceId] - 实例id  optional
+      * @param {} [opts.dbName] - 数据库名称  optional
+      * @param {} [opts.startTime] - 起始时间(UTC)  optional
+      * @param {} [opts.endTime] - 结束时间(UTC)  optional
+      * @param {} [opts.pageNumber] - 显示数据的页码，取值范围：[1,∞)。pageNumber为Null时，返回所有数据页码；超过总页数时，无数据。  optional
+      * @param {} [opts.pageSize] - 每页显示的数据条数，用于查询列表的接口。  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer count  操作日志总量
+      * @param dmsOperationLog operationLogs
+      */
+
+  queryOperationLog (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  queryOperationLog"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.supType !== undefined && opts.supType !== null) {
+      postBody['supType'] = opts.supType
+    }
+    if (opts.type !== undefined && opts.type !== null) {
+      postBody['type'] = opts.type
+    }
+    if (opts.pin !== undefined && opts.pin !== null) {
+      postBody['pin'] = opts.pin
+    }
+    if (opts.instanceId !== undefined && opts.instanceId !== null) {
+      postBody['instanceId'] = opts.instanceId
+    }
+    if (opts.dbName !== undefined && opts.dbName !== null) {
+      postBody['dbName'] = opts.dbName
+    }
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      postBody['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      postBody['endTime'] = opts.endTime
+    }
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      postBody['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call queryOperationLog with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/operationLog:query',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取操作详情
+      * @param {Object} opts - parameters
+      * @param {integer} opts.operationId - 操作id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param dmsOperationLog dmsOperationLog
+      */
+
+  operationDetail (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  operationDetail"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.operationId === undefined || opts.operationId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.operationId' when calling operationDetail"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      operationId: opts.operationId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call operationDetail with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/operationDetail/{operationId}',
       'GET',
       pathParams,
       queryParams,
@@ -3882,7 +4530,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -3998,7 +4646,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -4105,7 +4753,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -4220,7 +4868,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -4367,7 +5015,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -4525,7 +5173,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -4641,7 +5289,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -4757,7 +5405,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -4882,7 +5530,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -5002,7 +5650,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -5122,7 +5770,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -5237,7 +5885,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -5353,7 +6001,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -5469,7 +6117,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -5589,7 +6237,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -5701,7 +6349,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -5817,7 +6465,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -5890,7 +6538,7 @@ class DMS extends Service {
   }
 
   /**
-      *  获取批量建表sql，仅供前端使用，支持Stardb
+      *  获取批量建表sql，仅供前端使用，支持Stardb，OpenGauss
       * @param {Object} opts - parameters
       * @param {} [opts.dataSourceId] - 数据源id  optional
       * @param {} [opts.dbName] - 数据库名称  optional
@@ -5933,7 +6581,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -5977,6 +6625,793 @@ class DMS extends Service {
 
     let request = super.makeRequest(
       '/regions/{regionId}/console:getCreateTableBatchSql',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建Sql任务
+      * @param {Object} opts - parameters
+      * @param {} [opts.dataSourceId] - 数据源id  optional
+      * @param {} [opts.dbName] - 数据库名称。  optional
+      * @param {} [opts.planTime] - 计划开始执行时间，stardb数据源固定为空。  optional
+      * @param {} [opts.sqls] - 执行SQL。  optional
+      * @param {} [opts.taskTypeEnum] - 任务类型:DDL, DML  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer intResult  任务id
+      */
+
+  createOnlineSqlTask (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createOnlineSqlTask"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.dataSourceId !== undefined && opts.dataSourceId !== null) {
+      postBody['dataSourceId'] = opts.dataSourceId
+    }
+    if (opts.dbName !== undefined && opts.dbName !== null) {
+      postBody['dbName'] = opts.dbName
+    }
+    if (opts.planTime !== undefined && opts.planTime !== null) {
+      postBody['planTime'] = opts.planTime
+    }
+    if (opts.sqls !== undefined && opts.sqls !== null) {
+      postBody['sqls'] = opts.sqls
+    }
+    if (opts.taskTypeEnum !== undefined && opts.taskTypeEnum !== null) {
+      postBody['taskTypeEnum'] = opts.taskTypeEnum
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createOnlineSqlTask with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/sqltask:create',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  启动Sql任务
+      * @param {Object} opts - parameters
+      * @param {} [opts.taskId] - 任务id  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  startOnlineSqlTask (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  startOnlineSqlTask"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.taskId !== undefined && opts.taskId !== null) {
+      postBody['taskId'] = opts.taskId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call startOnlineSqlTask with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/sqltask:start',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  暂停Sql任务
+      * @param {Object} opts - parameters
+      * @param {} [opts.taskId] - 任务id  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  suspendOnlineSqlTask (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  suspendOnlineSqlTask"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.taskId !== undefined && opts.taskId !== null) {
+      postBody['taskId'] = opts.taskId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call suspendOnlineSqlTask with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/sqltask:suspend',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  重启Sql任务
+      * @param {Object} opts - parameters
+      * @param {} [opts.taskId] - 任务id  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  restartOnlineSqlTask (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  restartOnlineSqlTask"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.taskId !== undefined && opts.taskId !== null) {
+      postBody['taskId'] = opts.taskId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call restartOnlineSqlTask with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/sqltask:restart',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询任务状态
+      * @param {Object} opts - parameters
+      * @param {} [opts.taskId] - 任务id  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer id  主键id。
+      * @param integer dataSourceId  数据源id。
+      * @param string dbName  数据库名称。
+      * @param string taskType  任务类型，DDL， DML。
+      * @param string planTime  计划时间。
+      * @param boolean transaction  是否为事务。
+      * @param boolean parallel  是否为并行执行。
+      * @param boolean ignoreError  是否忽略错误。
+      * @param string runStatus  运行状态。CREATE(&quot;CREATE&quot;, 1),RUNNING(&quot;RUNNING&quot;, 2), SUCCESS(&quot;SUCCESS&quot;, 3), FAILED(&quot;FAILED&quot;, 4), SUSPEND(&quot;SUSPEND&quot;, 5);
+      * @param string createdDate  创建日期。
+      * @param string finishDate  结束日期。
+      * @param string createUser  创建用户。
+      * @param string status  状态0有效，1无效。
+      * @param string message  执行消息。
+      * @param string runIp  运行ip。
+      */
+
+  onlineSqlTaskQuery (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  onlineSqlTaskQuery"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.taskId !== undefined && opts.taskId !== null) {
+      postBody['taskId'] = opts.taskId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call onlineSqlTaskQuery with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/sqltask:query',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询sql子任务状态
+      * @param {Object} opts - parameters
+      * @param {} [opts.taskId] - 任务id  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param dmsOnlineSubSqlTask dmsOnlineSubSqlTasks
+      */
+
+  onlineSubSqlTaskQuery (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  onlineSubSqlTaskQuery"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.taskId !== undefined && opts.taskId !== null) {
+      postBody['taskId'] = opts.taskId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call onlineSubSqlTaskQuery with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/subsqltask:query',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询sql子任务状态
+      * @param {Object} opts - parameters
+      * @param {} [opts.taskId] - dms任务id  optional
+      * @param {} [opts.proxyTaskId] - proxy任务id  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param dmsOnlineProxySubTask dmsOnlineProxySubTasks
+      */
+
+  onlineProxySubTaskQuery (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  onlineProxySubTaskQuery"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.taskId !== undefined && opts.taskId !== null) {
+      postBody['taskId'] = opts.taskId
+    }
+    if (opts.proxyTaskId !== undefined && opts.proxyTaskId !== null) {
+      postBody['proxyTaskId'] = opts.proxyTaskId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call onlineProxySubTaskQuery with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/proxysubtask:query',
       'POST',
       pathParams,
       queryParams,
@@ -6065,7 +7500,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -6204,7 +7639,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -6320,7 +7755,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -6436,7 +7871,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -6557,7 +7992,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -6601,6 +8036,1278 @@ class DMS extends Service {
 
     let request = super.makeRequest(
       '/regions/{regionId}/trigger:info',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  用户管理列表
+      * @param {Object} opts - parameters
+      * @param {} [opts.activeStatus] - 查询的用户状态(启用(true),禁用(false))  optional
+      * @param {} [opts.role] - 查询的用户角色,枚举值(Admin(&quot;Admin&quot;,&quot;管理员&quot;),DBA(&quot;DBA&quot;,&quot;DBA&quot;),StructureReadOnly(&quot;StructureReadOnly&quot;,&quot;结构只读&quot;),Normal(&quot;Normal&quot;,&quot;普通用户&quot;))  optional
+      * @param {} [opts.loginDateStart] - 查询的用户登录开始时间(yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSS&#39;Z&#39;)  optional
+      * @param {} [opts.loginDateEnd] - 查询的用户登录结束时间(yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSS&#39;Z&#39;)  optional
+      * @param {} [opts.username] - 查询用户的用户名称  optional
+      * @param {} [opts.pageNumber] - 显示数据的页码，取值范围：[1,∞)。pageNumber为Null时，返回所有数据页码；超过总页数时，无数据。  optional
+      * @param {} [opts.pageSize] - 每页显示的数据条数，用于查询列表的接口。  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer count  符合条件的用户的总数
+      * @param dmsUserVO dmsUserVOList
+      */
+
+  queryUserList (opts, callback) {
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.activeStatus !== undefined && opts.activeStatus !== null) {
+      postBody['activeStatus'] = opts.activeStatus
+    }
+    if (opts.role !== undefined && opts.role !== null) {
+      postBody['role'] = opts.role
+    }
+    if (opts.loginDateStart !== undefined && opts.loginDateStart !== null) {
+      postBody['loginDateStart'] = opts.loginDateStart
+    }
+    if (opts.loginDateEnd !== undefined && opts.loginDateEnd !== null) {
+      postBody['loginDateEnd'] = opts.loginDateEnd
+    }
+    if (opts.username !== undefined && opts.username !== null) {
+      postBody['username'] = opts.username
+    }
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      postBody['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call queryUserList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/management:queryUserList',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取主账号下未同步的子账号数据
+      * @param {Object} opts - parameters
+      * @param {} [opts.pageNumber] - 第几页,不传的话会将当前所有的未同步的账号都同步过来  optional
+      * @param {} [opts.pageSize] - 页大小。  optional
+      * @param {} [opts.keyword] - 关键字。  optional
+      * @param {} [opts.sort] - 排序规则：0-创建时间顺序排序，1-创建时间倒序排序。  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer total  子账号总数量
+      * @param dmsSubUserVO subUserList
+      */
+
+  queryUserNotSync (opts, callback) {
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      postBody['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+    if (opts.keyword !== undefined && opts.keyword !== null) {
+      postBody['keyword'] = opts.keyword
+    }
+    if (opts.sort !== undefined && opts.sort !== null) {
+      postBody['sort'] = opts.sort
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call queryUserNotSync with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/management:queryUserNotSync',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  同步子账号
+      * @param {Object} opts - parameters
+      * @param {} [opts.dmsSyncSubUserVOList] - 同步的子账号的列表信息  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  syncSubUser (opts, callback) {
+    opts = opts || {}
+
+    let postBody = {}
+    if (
+      opts.dmsSyncSubUserVOList !== undefined &&
+      opts.dmsSyncSubUserVOList !== null
+    ) {
+      postBody['dmsSyncSubUserVOList'] = opts.dmsSyncSubUserVOList
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call syncSubUser with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/management:syncSubUser',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新用户信息
+      * @param {Object} opts - parameters
+      * @param {} [opts.pin] - 被更新用户的pin信息  optional
+      * @param {} [opts.phone] - 用户手机号码  optional
+      * @param {} [opts.email] - 用户邮箱  optional
+      * @param {} [opts.roleList] - 用户角色列表信息  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  updateUserInfo (opts, callback) {
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.pin !== undefined && opts.pin !== null) {
+      postBody['pin'] = opts.pin
+    }
+    if (opts.phone !== undefined && opts.phone !== null) {
+      postBody['phone'] = opts.phone
+    }
+    if (opts.email !== undefined && opts.email !== null) {
+      postBody['email'] = opts.email
+    }
+    if (opts.roleList !== undefined && opts.roleList !== null) {
+      postBody['roleList'] = opts.roleList
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call updateUserInfo with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/management:updateUserInfo',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  启用/禁用用户
+      * @param {Object} opts - parameters
+      * @param {} [opts.dmsUserEnableVOList] - 启用/禁用的用户列表信息  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  enableUser (opts, callback) {
+    opts = opts || {}
+
+    let postBody = {}
+    if (
+      opts.dmsUserEnableVOList !== undefined &&
+      opts.dmsUserEnableVOList !== null
+    ) {
+      postBody['dmsUserEnableVOList'] = opts.dmsUserEnableVOList
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call enableUser with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/management:enableUser',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除用户
+      * @param {Object} opts - parameters
+      * @param {} [opts.dmsUserDeleteList] - 删除用户的pin信息  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteUser (opts, callback) {
+    opts = opts || {}
+
+    let postBody = {}
+    if (
+      opts.dmsUserDeleteList !== undefined &&
+      opts.dmsUserDeleteList !== null
+    ) {
+      postBody['dmsUserDeleteList'] = opts.dmsUserDeleteList
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteUser with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/management:deleteUser',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取用户信息
+      * @param {Object} opts - parameters
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean isMaster  是否是主账号
+      * @param string username  用户名
+      * @param string pin  用户pin
+      * @param string masterPin  用户主账号pin
+      * @param integer accountId  用户账号Id
+      * @param string roleList
+      */
+
+  getUserInfo (opts, callback) {
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getUserInfo with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/management:getUserInfo',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  用户授权信息列表
+      * @param {Object} opts - parameters
+      * @param {} [opts.instanceId] - 实例ID  optional
+      * @param {} [opts.instanceName] - 实例名称  optional
+      * @param {} [opts.pin] - 用户账号  optional
+      * @param {} [opts.showNormal] - 是否只显示生效中的授权信息  optional
+      * @param {} [opts.releaseStatus] - 是否只显示释放的记录,true展示释放权限的记录  optional
+      * @param {} [opts.pageNumber] - 显示数据的页码，取值范围：[1,∞)。pageNumber为Null时，返回所有数据页码；超过总页数时，无数据。  optional
+      * @param {} [opts.pageSize] - 每页显示的数据条数，用于查询列表的接口。  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer count  符合条件的用户的总数
+      * @param boolean isAdmin  如果为真则表示这个账号默认就拥有所有的实例登录权限
+      * @param dmsPrivilegeVO dmsPrivilegeVOList
+      */
+
+  queryPrivilegeList (opts, callback) {
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.instanceId !== undefined && opts.instanceId !== null) {
+      postBody['instanceId'] = opts.instanceId
+    }
+    if (opts.instanceName !== undefined && opts.instanceName !== null) {
+      postBody['instanceName'] = opts.instanceName
+    }
+    if (opts.pin !== undefined && opts.pin !== null) {
+      postBody['pin'] = opts.pin
+    }
+    if (opts.showNormal !== undefined && opts.showNormal !== null) {
+      postBody['showNormal'] = opts.showNormal
+    }
+    if (opts.releaseStatus !== undefined && opts.releaseStatus !== null) {
+      postBody['releaseStatus'] = opts.releaseStatus
+    }
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      postBody['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call queryPrivilegeList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/management:queryPrivilegeList',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查看当前用户授权信息列表
+      * @param {Object} opts - parameters
+      * @param {} [opts.instanceId] - 实例ID  optional
+      * @param {} [opts.instanceName] - 实例名称  optional
+      * @param {} [opts.showNormal] - 是否只显示生效中的授权信息  optional
+      * @param {} [opts.releaseStatus] - 是否只显示释放的记录,true展示释放权限的记录  optional
+      * @param {} [opts.pageNumber] - 显示数据的页码，取值范围：[1,∞)。pageNumber为Null时，返回所有数据页码；超过总页数时，无数据。  optional
+      * @param {} [opts.pageSize] - 每页显示的数据条数，用于查询列表的接口。  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer count  符合条件的用户的总数
+      * @param boolean isAdmin  如果为真则表示这个账号默认就拥有所有的实例登录权限
+      * @param dmsPrivilegeVO dmsPrivilegeVOList
+      */
+
+  queryPrivilegeSelfList (opts, callback) {
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.instanceId !== undefined && opts.instanceId !== null) {
+      postBody['instanceId'] = opts.instanceId
+    }
+    if (opts.instanceName !== undefined && opts.instanceName !== null) {
+      postBody['instanceName'] = opts.instanceName
+    }
+    if (opts.showNormal !== undefined && opts.showNormal !== null) {
+      postBody['showNormal'] = opts.showNormal
+    }
+    if (opts.releaseStatus !== undefined && opts.releaseStatus !== null) {
+      postBody['releaseStatus'] = opts.releaseStatus
+    }
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      postBody['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call queryPrivilegeSelfList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/management:queryPrivilegeSelfList',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  释放权限
+      * @param {Object} opts - parameters
+      * @param {} [opts.idList] - 授权实例记录对应的主键ID  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  releasePrivilege (opts, callback) {
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.idList !== undefined && opts.idList !== null) {
+      postBody['idList'] = opts.idList
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call releasePrivilege with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/management:releasePrivilege',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  实例授权
+      * @param {Object} opts - parameters
+      * @param {} [opts.pinList] - 用户pin列表信息  optional
+      * @param {} [opts.privilegeName] - 权限名称,枚举值：PrivilegeLogin(实例登录权限)  optional
+      * @param {} [opts.expireDate] - 授权过期时间(yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSS&#39;Z&#39;)  optional
+      * @param {} [opts.dmsPrivilegeInstanceParamList] - 授权实例的信息，主要包括用户实例ID和实例名称  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  authPrivilege (opts, callback) {
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.pinList !== undefined && opts.pinList !== null) {
+      postBody['pinList'] = opts.pinList
+    }
+    if (opts.privilegeName !== undefined && opts.privilegeName !== null) {
+      postBody['privilegeName'] = opts.privilegeName
+    }
+    if (opts.expireDate !== undefined && opts.expireDate !== null) {
+      postBody['expireDate'] = opts.expireDate
+    }
+    if (
+      opts.dmsPrivilegeInstanceParamList !== undefined &&
+      opts.dmsPrivilegeInstanceParamList !== null
+    ) {
+      postBody['dmsPrivilegeInstanceParamList'] =
+        opts.dmsPrivilegeInstanceParamList
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call authPrivilege with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/management:authPrivilege',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改权限到期时间
+      * @param {Object} opts - parameters
+      * @param {} [opts.idList] - 授权实例记录对应的主键ID  optional
+      * @param {} [opts.expireDate] - 授权过期时间(yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSS&#39;Z&#39;)  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  modifyPrivilegeExpireDate (opts, callback) {
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.idList !== undefined && opts.idList !== null) {
+      postBody['idList'] = opts.idList
+    }
+    if (opts.expireDate !== undefined && opts.expireDate !== null) {
+      postBody['expireDate'] = opts.expireDate
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyPrivilegeExpireDate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/management:modifyPrivilegeExpireDate',
       'POST',
       pathParams,
       queryParams,
@@ -6693,7 +9400,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -6833,7 +9540,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -6949,7 +9656,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']
@@ -7071,7 +9778,7 @@ class DMS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.3.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dms/1.4.0'
     }
 
     let contentTypes = ['application/json']

@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * tidb service.
- * @version 1.0.1
+ * @version 1.0.2
  */
 
 class TIDB extends Service {
@@ -45,7 +45,7 @@ class TIDB extends Service {
   }
 
   /**
-      *  查看某个实例下的账号信息
+      *  查看当前实例下的账号信息。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {string} regionId - ID of the region
@@ -85,7 +85,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -158,10 +158,10 @@ class TIDB extends Service {
   }
 
   /**
-      *  创建数据库账号，用户可以使用客户端，应用程序等通过该账号和密码登录数据库实例。
+      *  创建数据库的高权限管理账号，用户可以使用客户端、应用程序等通过该账号和密码登录 TiDB 实例，然后通过SQL创建数据库和其他用户。一个数据库实例只能创建一个高权限账号。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
-      * @param {} opts.accountName - 账号名，在同一个实例中，账号名不能重复
+      * @param {} opts.accountName - 账号名
       * @param {} opts.accountPassword - 密码
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -214,7 +214,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -287,10 +287,10 @@ class TIDB extends Service {
   }
 
   /**
-      *  创建数据库账号，用户可以使用客户端，应用程序等通过该账号和密码登录RDS数据库实例。
+      *  重置 TiDB 实例的高权限账号的密码。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
-      * @param {string} opts.accountName - 账号名，在同一个实例中账号名不能重复
+      * @param {string} opts.accountName - 账号名
       * @param {} opts.accountPassword - 新密码
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -341,7 +341,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -414,7 +414,7 @@ class TIDB extends Service {
   }
 
   /**
-      *  查看该实例下所有备份的详细信息
+      *  查看该实例下所有备份的详细信息。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID，唯一标识一个实例
       * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页。  optional
@@ -463,7 +463,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -536,7 +536,7 @@ class TIDB extends Service {
   }
 
   /**
-      *  创建一个实例全量备份，可以对整个实例所有的数据库进行全量备份。同一时间点，只能有一个正在运行的备份任务
+      *  进行 TiDB 实例的全量备份，对实例中所有的数据库进行备份。同一时间，只能有一个正在运行的备份任务。
       * @param {Object} opts - parameters
       * @param {} opts.instanceId - 实例ID，唯一标识一个实例
       * @param {} opts.backupSpec - 备份创建信息
@@ -586,7 +586,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -659,7 +659,7 @@ class TIDB extends Service {
   }
 
   /**
-      *  删除TiDB的备份，仅允许删除用户生成的备份，系统自动备份不允许删除。
+      *  删除TiDB的备份，仅允许删除用户创建的备份，系统的自动备份不允许删除。
       * @param {Object} opts - parameters
       * @param {string} opts.backupId - 备份ID
       * @param {string} regionId - ID of the region
@@ -696,7 +696,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -769,7 +769,7 @@ class TIDB extends Service {
   }
 
   /**
-      *  获取当前用户售罄信息
+      *  获取当前用户售罄信息。
       * @param {Object} opts - parameters
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -804,7 +804,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -877,7 +877,7 @@ class TIDB extends Service {
   }
 
   /**
-      *  获取TiDB产品提供的所有版本
+      *  查询指定地域下 TiDB 服务支持的数据库版本。
       * @param {Object} opts - parameters
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -907,7 +907,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -980,7 +980,7 @@ class TIDB extends Service {
   }
 
   /**
-      *  创建一个TiDB实例
+      *  创建一个 TiDB 实例。创建时需要指定 TiDB 各类节点的数目，规格，存储空间等。 TiFlash和TiCDC节点在创建时不是必须的，可以在需要时，通过扩容的功能创建TiFlash和TiCDC节点。
       * @param {Object} opts - parameters
       * @param {tidbInstanceSpec} opts.instanceSpec - 新建实例规格
       * @param {string} regionId - ID of the region
@@ -1022,7 +1022,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1095,7 +1095,7 @@ class TIDB extends Service {
   }
 
   /**
-      *  查询 TiDB 实例的详细信息
+      *  查询 TiDB 实例的详细信息，例如TiDB的具体版本号，各个节点的规格、存储空间以及连接信息等等。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {string} regionId - ID of the region
@@ -1133,7 +1133,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1206,7 +1206,7 @@ class TIDB extends Service {
   }
 
   /**
-      *  删除一个TiDB实例
+      *  删除指定的 TiDB 实例。实例删除后，数据不可恢复，请谨慎使用。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {string} regionId - ID of the region
@@ -1243,7 +1243,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1316,18 +1316,18 @@ class TIDB extends Service {
   }
 
   /**
-      *  查询实例列表
+      *  查询当前账号下所有的 TiDB 实例。
       * @param {Object} opts - parameters
       * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页;  optional
       * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为100，取值范围：[10,100]，用于查询列表的接口  optional
-      * @param {filter} [opts.filters] - 过滤参数，多个过滤参数之间的关系为“与”(and)
+      * @param {array} [opts.filters] - 过滤参数，多个过滤参数之间的关系为“与”(and)
 支持以下属性的过滤：
 instanceId, 支持operator选项：eq,ne
 instanceName, 支持operator选项：eq,ne,like
 instanceStatus, 支持operator选项：eq,ne
   optional
-      * @param {tagFilter} [opts.tagFilters] - 资源标签  optional
-      * @param {string} [opts.resourceGroupIds] - 资源组id  optional
+      * @param {array} [opts.tagFilters] - 资源标签  optional
+      * @param {array} [opts.resourceGroupIds] - 资源组id  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1349,30 +1349,31 @@ instanceStatus, 支持operator选项：eq,ne
 
     opts = opts || {}
 
-    let postBody = null
-    let queryParams = {}
+    let postBody = {}
     if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
-      queryParams['pageNumber'] = opts.pageNumber
+      postBody['pageNumber'] = opts.pageNumber
     }
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
-      queryParams['pageSize'] = opts.pageSize
+      postBody['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
-    Object.assign(
-      queryParams,
-      super.buildTagFilterParam(opts.tagFilters, 'tagFilters')
-    )
-    Object.assign(
-      queryParams,
-      super.buildArrayParam(opts.resourceGroupIds, 'resourceGroupIds')
-    )
+    if (opts.filters !== undefined && opts.filters !== null) {
+      postBody['filters'] = opts.filters
+    }
+    if (opts.tagFilters !== undefined && opts.tagFilters !== null) {
+      postBody['tagFilters'] = opts.tagFilters
+    }
+    if (opts.resourceGroupIds !== undefined && opts.resourceGroupIds !== null) {
+      postBody['resourceGroupIds'] = opts.resourceGroupIds
+    }
+
+    let queryParams = {}
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1416,7 +1417,7 @@ instanceStatus, 支持operator选项：eq,ne
 
     let request = super.makeRequest(
       '/regions/{regionId}/instances:describeInstances',
-      'GET',
+      'POST',
       pathParams,
       queryParams,
       headerParams,
@@ -1445,7 +1446,7 @@ instanceStatus, 支持operator选项：eq,ne
   }
 
   /**
-      *  规格获取接口
+      *  获取各种 TiDB 节点支持的具体规格。
       * @param {Object} opts - parameters
       * @param {string} opts.storageType - 存储类型,目前只支持本地SSD;
       * @param {string} regionId - ID of the region
@@ -1490,7 +1491,7 @@ instanceStatus, 支持operator选项：eq,ne
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1563,7 +1564,7 @@ instanceStatus, 支持operator选项：eq,ne
   }
 
   /**
-      *  根据源实例全量备份创建一个新实例
+      *  创建一个新的 TiDB 实例，并将指定的备份恢复到该实例上。
       * @param {Object} opts - parameters
       * @param {} opts.backupId - 要恢复的备份的ID
       * @param {} opts.instanceSpec - 新建实例规格
@@ -1614,7 +1615,7 @@ instanceStatus, 支持operator选项：eq,ne
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1687,7 +1688,7 @@ instanceStatus, 支持operator选项：eq,ne
   }
 
   /**
-      *  查看实例当前的备份备份策略。
+      *  查看实例当前的备份策略。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {string} regionId - ID of the region
@@ -1739,7 +1740,7 @@ instanceStatus, 支持operator选项：eq,ne
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1812,7 +1813,7 @@ instanceStatus, 支持operator选项：eq,ne
   }
 
   /**
-      *  修改TiDB实例备份策略。
+      *  修改 TiDB 实例备份策略，例如全量备份的日期，时间等。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {} [opts.startWindow] - 自动备份开始时间窗口,例如：00:00-01:00，表示0点到1点开始进行数据库自动备份，备份完成时间则跟实例大小有关，不一定在这个时间范围中该参数只能是以下取值:00:00-01:0001:00-02:00......23:00-24:00  optional
@@ -1862,7 +1863,7 @@ instanceStatus, 支持operator选项：eq,ne
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1935,7 +1936,7 @@ instanceStatus, 支持operator选项：eq,ne
   }
 
   /**
-      *  修改实例名称，可支持中文，实例名的具体规则可参见帮助中心文档
+      *  修改实例名称，可支持中文，实例名的具体规则可参见帮助中心文档。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {} opts.instanceName - 实例名称，名称支持中文，实例名的具体规则可参见帮助中心文档
@@ -1982,7 +1983,7 @@ instanceStatus, 支持operator选项：eq,ne
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2055,7 +2056,7 @@ instanceStatus, 支持operator选项：eq,ne
   }
 
   /**
-      *  增加实例的节点数量。
+      *  修改 TiDB 实例中各类节点的数量。如果当前实例无TiFlash和TiCDC节点，那么在增加TiFlash和TiCDC节点数目时，可同时指定其规格。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {} [opts.tidbNodeNum] - 调整后的tidb节点数  optional
@@ -2114,7 +2115,7 @@ instanceStatus, 支持operator选项：eq,ne
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2187,7 +2188,7 @@ instanceStatus, 支持operator选项：eq,ne
   }
 
   /**
-      *  修改实例规格，包含节点的水平扩容与垂直扩容
+      *  修改 TiDB 实例中各类节点中的数目与规格。支持 TiDB 节点和 Monitor 节点数目和规格的同时调整。 如果当前实例无 TiFlash 和 TiCDC 节点，那么在增加 TiFlash 和 TiCDC 节点数目时，可同时指定其规格。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {} [opts.tikvNodeNum] - 调整后的tikv节点数  optional
@@ -2250,7 +2251,7 @@ instanceStatus, 支持operator选项：eq,ne
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2323,7 +2324,7 @@ instanceStatus, 支持operator选项：eq,ne
   }
 
   /**
-      *  获取某个实例下的节点信息
+      *  获取某个实例下的所有节点的主要性能信息，如CPU，内存，存储空间等。 该性能信息从云监控获取，为上一个监控周期的数据。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页;  optional
@@ -2379,7 +2380,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2452,7 +2453,7 @@ diskUsage - 磁盘使用率
   }
 
   /**
-      *  查看TiDB实例的配置参数
+      *  查看TiDB实例的主要配置参数。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {string} regionId - ID of the region
@@ -2490,7 +2491,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2563,7 +2564,7 @@ diskUsage - 磁盘使用率
   }
 
   /**
-      *  修改TiDB实例的配置参数。部分参数修改后，需要重启才能生效，具体可以参考PingCAP的相关文档
+      *  修改TiDB实例的配置参数。部分参数修改后，需要重启才能生效，具体可以参考PingCAP的相关文档。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {} opts.parameters
@@ -2610,7 +2611,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2683,7 +2684,7 @@ diskUsage - 磁盘使用率
   }
 
   /**
-      *  重启实例的pod
+      *  重启实例的某类节点。重启采用滚动重启的方式，如果该类节点有多个，通常不会中断实例的服务。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {} opts.nodeType - 重启指定类型的pod,支持Tikv,TiDB,PD,TiFlash
@@ -2730,7 +2731,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2803,7 +2804,7 @@ diskUsage - 磁盘使用率
   }
 
   /**
-      *  升级TiDB引擎版本，例如从4.0.6 升级到4.0.8. 目前支持小版本的升级，可升级到平台支持的最新的小版本
+      *  升级TiDB引擎版本，例如从4.0.8 升级到 5.4.0等。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {} [opts.version] - 升级后的版本号  optional
@@ -2849,7 +2850,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2922,7 +2923,7 @@ diskUsage - 磁盘使用率
   }
 
   /**
-      *  获取TiDB数据库可升级到的版本
+      *  获取当前 TiDB 实例可升级到的目标版本。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {string} regionId - ID of the region
@@ -2960,7 +2961,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3033,7 +3034,7 @@ diskUsage - 磁盘使用率
   }
 
   /**
-      *  查询TiDB数据库的升级计划
+      *  查询当前 TiDB 实例的升级计划。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {string} regionId - ID of the region
@@ -3073,7 +3074,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3146,7 +3147,7 @@ diskUsage - 磁盘使用率
   }
 
   /**
-      *  开启TiDB服务的公网访问域名
+      *  开启 TiDB 实例的 Internet 公网服务。开启后，并配置 IP 白名单后，可以在 VPC 外通过公网域名访问 TiDB 实例。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {string} opts.serviceType - 按照service type (database pd monitor)开启公网域名
@@ -3193,7 +3194,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3266,7 +3267,7 @@ diskUsage - 磁盘使用率
   }
 
   /**
-      *  关闭TiDB服务的公网访问域名
+      *  关闭 TiDB 实例的 Internet 公网服务。 关闭后，将不能在 VPC 外访问 TiDB 实例。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {string} opts.serviceType - 按照service type (database pd monitor)关闭公网域名
@@ -3313,7 +3314,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3386,7 +3387,7 @@ diskUsage - 磁盘使用率
   }
 
   /**
-      *  开启TiDB和MySQL客户端之间的SSL功能
+      *  开启 TiDB 和 MySQL 客户端之间的 SSL 连接功能。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {string} regionId - ID of the region
@@ -3424,7 +3425,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3497,7 +3498,7 @@ diskUsage - 磁盘使用率
   }
 
   /**
-      *  关闭TiDB和MySQL客户端之间的SSL功能
+      *  关闭 TiDB 和 MySQL 客户端之间的 SSL 连接功能。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {string} regionId - ID of the region
@@ -3535,7 +3536,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3608,7 +3609,7 @@ diskUsage - 磁盘使用率
   }
 
   /**
-      *  查询TiDB实例的ssl状态
+      *  查询 TiDB 实例的 SSL 的开启状态。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {string} regionId - ID of the region
@@ -3646,7 +3647,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3719,7 +3720,7 @@ diskUsage - 磁盘使用率
   }
 
   /**
-      *  查询 TiDB 数据迁移任务的信息
+      *  查询 TiDB 数据迁移任务的详细信息，例如任务的开始、完成时间，任务状态等等。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {string} [opts.queryStartTime] - 查询迁移任务的起始时间，结束时间为当前时间。按任务开始时间查询，默认查询7天（包含当天）  optional
@@ -3761,7 +3762,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3834,10 +3835,10 @@ diskUsage - 磁盘使用率
   }
 
   /**
-      *  查询 TiDB 数据迁移任务的信息
+      *  创建一个数据迁移任务，可以将对象存储 OSS 中的数据导入到 TiDB 实例中，具体可以参考帮助文档。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
-      * @param {} opts.migrationType - 迁移任务类型，支持以下类型（大小写不敏感）：-FULL_IMPORT:全量数据导入
+      * @param {} opts.migrationType - 迁移任务类型，支持以下类型（大小写不敏感）：&lt;br&gt;-FULL_IMPORT:全量数据导入
       * @param {} opts.importTask - 使用 TiDB Lightning 进行的数据迁移任务
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -3890,7 +3891,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3963,7 +3964,7 @@ diskUsage - 磁盘使用率
   }
 
   /**
-      *  校验需要导入的备份文件在OSS上是否存在，需要的读取权限是否具备
+      *  校验需要导入的备份文件在OSS上是否存在，需要的读取权限是否具备。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {} opts.ossLink - 要校验的文件bucket及路径,例如Bucket为db_bak,文件路径为test_server/db1/20181013.bak,则ossLink为db_bak/test_server/db1/20181013.bak
@@ -4012,7 +4013,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -4085,7 +4086,7 @@ diskUsage - 磁盘使用率
   }
 
   /**
-      *  查看TiCDC复制任务列表
+      *  查询当前实例下所有的复制任务。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {string} regionId - ID of the region
@@ -4124,7 +4125,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -4197,13 +4198,14 @@ diskUsage - 磁盘使用率
   }
 
   /**
-      *  创建一个TiCDC
+      *  创建一个数据复制任务，可以将 TiDB 的增量数据同步到下游的 MySQL， TiDB 或者 Kafka 中。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
-      * @param {replicationSpec} opts.replication - 新建TiCDC复制任务
+      * @param {replicationSpec} opts.replication - 数据复制任务的详细信息
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param string replicationId  复制任务ID
       */
 
   createReplication (opts, regionId = this.config.regionId, callback) {
@@ -4244,7 +4246,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -4317,7 +4319,7 @@ diskUsage - 磁盘使用率
   }
 
   /**
-      *  删除复制任务
+      *  删除指定的复制任务。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {string} opts.taskId - 复制任务ID
@@ -4361,7 +4363,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -4434,7 +4436,7 @@ diskUsage - 磁盘使用率
   }
 
   /**
-      *  启动复制任务
+      *  继续处于“暂停”状态的复制任务。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {string} opts.taskId - 复制任务ID
@@ -4479,7 +4481,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -4552,7 +4554,7 @@ diskUsage - 磁盘使用率
   }
 
   /**
-      *  暂停复制任务
+      *  暂停指定的复制任务。注意：如果暂停的时间过长，会导致 TiCDC 节点的磁盘空间写满，导致复制任务错误或失败。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {string} opts.taskId - 复制任务ID
@@ -4597,7 +4599,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -4670,7 +4672,7 @@ diskUsage - 磁盘使用率
   }
 
   /**
-      *  修改复制任务
+      *  修改复制任务，修改前需要先暂停复制任务。为保证复制任务的可靠性，目前仅允许修改部分配置。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {string} opts.taskId - 复制任务ID
@@ -4744,7 +4746,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -4855,7 +4857,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -4928,7 +4930,7 @@ diskUsage - 磁盘使用率
   }
 
   /**
-      *  增加白名单分组。
+      *  增加白名单分组，用于用户管理不同类型或者来源的 IP 白名单。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {} opts.name - 白名单分组名
@@ -4975,7 +4977,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -5104,7 +5106,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -5177,7 +5179,7 @@ diskUsage - 磁盘使用率
   }
 
   /**
-      *  删除白名单分组。
+      *  删除指定的白名单分组。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {string} opts.name - 白名单分组名
@@ -5223,7 +5225,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.2'
     }
 
     let contentTypes = ['application/json']

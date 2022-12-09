@@ -4682,6 +4682,7 @@ diskUsage - 磁盘使用率
       * @param {string} [opts.targetPassword] - 目标类型为TiDB或MySQL时，连接目标实例的密码  optional
       * @param {string} [opts.kafkaTopic] - Kafka的Topic  optional
       * @param {string} [opts.kafkaVersion] - Kafka的版本  optional
+      * @param {array} [opts.replicationObjects] - 过滤规则列表  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -4735,6 +4736,12 @@ diskUsage - 磁盘使用率
     }
     if (opts.kafkaVersion !== undefined && opts.kafkaVersion !== null) {
       postBody['kafkaVersion'] = opts.kafkaVersion
+    }
+    if (
+      opts.replicationObjects !== undefined &&
+      opts.replicationObjects !== null
+    ) {
+      postBody['replicationObjects'] = opts.replicationObjects
     }
 
     let queryParams = {}

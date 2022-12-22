@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * redis service.
- * @version 2.6.24
+ * @version 2.6.32
  */
 
 class REDIS extends Service {
@@ -75,7 +75,7 @@ class REDIS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -178,7 +178,7 @@ class REDIS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -281,7 +281,7 @@ class REDIS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -416,7 +416,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -537,7 +537,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -648,7 +648,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -777,7 +777,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -890,7 +890,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -969,6 +969,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
       * @param {string} opts.cacheInstanceId - 缓存Redis实例ID，是访问实例的唯一标识
       * @param {string} opts.cacheInstanceClass - 新规格
       * @param {integer} [opts.shardNumber] - 自定义分片数，只对自定义分片规格实例有效  optional
+      * @param {boolean} [opts.parallel] - 是否开启4.0集群并行变配  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1014,6 +1015,9 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     if (opts.shardNumber !== undefined && opts.shardNumber !== null) {
       postBody['shardNumber'] = opts.shardNumber
     }
+    if (opts.parallel !== undefined && opts.parallel !== null) {
+      postBody['parallel'] = opts.parallel
+    }
 
     let queryParams = {}
 
@@ -1023,7 +1027,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -1096,6 +1100,139 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
   }
 
   /**
+      *  查询缓存Red4.0实例是否支持新变配功能，是否支持并行变配, 变配需要的IP数量及变配预估时间
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.cacheInstanceId - 缓存Redis实例ID，是访问实例的唯一标识
+      * @param {string} [opts.cacheInstanceClass] - 新规格。不传参只返回是否支持新变配功能。  optional
+      * @param {integer} [opts.shardNumber] - 自定义分片数。不传参只返回是否支持新变配功能。  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean supportPScale  是否支持新变配
+      * @param boolean supportParallel  是否支持并行变配
+      * @param integer serialIpCount  串行变配需要的IP数量
+      * @param integer serialTimeCost  串行变配预估时间
+      * @param integer parallelIpCount  并行变配需要的IP数量
+      * @param integer parallelTimeCost  并行变配预估时间
+      */
+
+  describeResizeModeIpTimeInfo (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeResizeModeIpTimeInfo"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.cacheInstanceId === undefined || opts.cacheInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.cacheInstanceId' when calling describeResizeModeIpTimeInfo"
+      )
+    }
+
+    let postBody = {}
+    if (
+      opts.cacheInstanceClass !== undefined &&
+      opts.cacheInstanceClass !== null
+    ) {
+      postBody['cacheInstanceClass'] = opts.cacheInstanceClass
+    }
+    if (opts.shardNumber !== undefined && opts.shardNumber !== null) {
+      postBody['shardNumber'] = opts.shardNumber
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      cacheInstanceId: opts.cacheInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeResizeModeIpTimeInfo with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/cacheInstance/{cacheInstanceId}/describeResizeModeIpTimeInfo',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  修改缓存Redis实例的密码，可为空
       * @param {Object} opts - parameters
       * @param {string} opts.cacheInstanceId - 缓存Redis实例ID，是访问实例的唯一标识
@@ -1138,7 +1275,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -1250,7 +1387,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -1370,7 +1507,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -1481,7 +1618,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -1601,7 +1738,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -1721,7 +1858,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -1797,6 +1934,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
       *  创建缓存分析任务，一天最多创建12次分析任务
       * @param {Object} opts - parameters
       * @param {string} opts.cacheInstanceId - 缓存Redis实例ID，是访问实例的唯一标识
+      * @param {string} [opts.sizeMode] - 计算大key的方式。若为elementCounts，则使用元素个数计算大key；若为memorySize，则使用内存大小计算大key。默认为memorySize。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1823,6 +1961,9 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let postBody = {}
+    if (opts.sizeMode !== undefined && opts.sizeMode !== null) {
+      postBody['sizeMode'] = opts.sizeMode
+    }
 
     let queryParams = {}
 
@@ -1832,7 +1973,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -1959,7 +2100,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -2070,7 +2211,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -2191,7 +2332,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -2323,7 +2464,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -2453,7 +2594,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -2567,7 +2708,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -2700,7 +2841,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -2820,7 +2961,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -2940,7 +3081,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -3051,7 +3192,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -3162,7 +3303,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -3277,7 +3418,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -3413,7 +3554,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -3528,7 +3669,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -3639,7 +3780,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -3754,7 +3895,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -3866,7 +4007,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -4006,7 +4147,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -4141,7 +4282,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -4260,7 +4401,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -4375,7 +4516,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -4507,7 +4648,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -4618,7 +4759,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -4729,7 +4870,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -4849,7 +4990,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -4931,6 +5072,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
       * @param {integer} [opts.setSize] - Set类型阈值  optional
       * @param {integer} [opts.zsetSize] - Zset类型阈值  optional
       * @param {integer} [opts.top] - top值，范围10~1000  optional
+      * @param {string} [opts.sizeMode] - 计算大key的方式。若为“elementCounts”，则使用元素个数计算大key；若为“memorySize”，则使用内存大小计算大key。默认为“elementCounts”。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -4975,6 +5117,9 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     if (opts.top !== undefined && opts.top !== null) {
       postBody['top'] = opts.top
     }
+    if (opts.sizeMode !== undefined && opts.sizeMode !== null) {
+      postBody['sizeMode'] = opts.sizeMode
+    }
 
     let queryParams = {}
 
@@ -4984,7 +5129,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -5111,7 +5256,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -5222,7 +5367,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -5342,7 +5487,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -5453,7 +5598,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -5569,7 +5714,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -5704,7 +5849,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -5835,7 +5980,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -5955,7 +6100,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -6084,7 +6229,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -6195,7 +6340,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -6315,7 +6460,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -6430,7 +6575,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -6561,7 +6706,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -6672,7 +6817,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -6801,7 +6946,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -6920,7 +7065,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -7057,7 +7202,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -7130,6 +7275,258 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
   }
 
   /**
+      *  重启4.0实例代理
+      * @param {Object} opts - parameters
+      * @param {string} opts.cacheInstanceId - 缓存Redis实例ID，是访问实例的唯一标识
+      * @param {array} [opts.proxyIds] - proxy节点id列表  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  restartProxy (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  restartProxy"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.cacheInstanceId === undefined || opts.cacheInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.cacheInstanceId' when calling restartProxy"
+      )
+    }
+
+    let postBody = {}
+    if (opts.proxyIds !== undefined && opts.proxyIds !== null) {
+      postBody['proxyIds'] = opts.proxyIds
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      cacheInstanceId: opts.cacheInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call restartProxy with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/cacheInstance/{cacheInstanceId}/restartProxy',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  关闭4.0实例客户端连接
+      * @param {Object} opts - parameters
+      * @param {string} opts.cacheInstanceId - 缓存Redis实例ID，是访问实例的唯一标识
+      * @param {string} opts.option - 关闭属性, 支持addr/type/db三种属性
+addr - 根据客户端地址关闭连接
+type - 根据链接类型关闭连接
+db - 根据db关闭连接
+
+      * @param {string} opts.value - 筛选条件
+属性是addr时 - ip:port, port空表示此ip所有port
+属性是type时 - 支持normal/pubsub/all三种条件
+属性是db时 - db列表, 0,1,2..
+
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  clientKill (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  clientKill"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.cacheInstanceId === undefined || opts.cacheInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.cacheInstanceId' when calling clientKill"
+      )
+    }
+    if (opts.option === undefined || opts.option === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.option' when calling clientKill"
+      )
+    }
+    if (opts.value === undefined || opts.value === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.value' when calling clientKill"
+      )
+    }
+
+    let postBody = {}
+    if (opts.option !== undefined && opts.option !== null) {
+      postBody['option'] = opts.option
+    }
+    if (opts.value !== undefined && opts.value !== null) {
+      postBody['value'] = opts.value
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      cacheInstanceId: opts.cacheInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call clientKill with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/cacheInstance/{cacheInstanceId}/clientKill',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  查询缓存Redis实例的规格列表
       * @param {Object} opts - parameters
       * @param {string} [opts.redisVersion] - 缓存Redis的版本号：目前有2.8和4.0，默认为2.8  optional
@@ -7165,7 +7562,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -7268,7 +7665,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']
@@ -7372,7 +7769,7 @@ createTime - 按创建时间排序(asc表示按时间正序，desc表示按时�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.24'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  redis/2.6.32'
     }
 
     let contentTypes = ['application/json']

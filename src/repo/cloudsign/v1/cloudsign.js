@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * cloudsign service.
- * @version 1.1.2
+ * @version 2.0.0
  */
 
 class CLOUDSIGN extends Service {
@@ -76,7 +76,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -184,7 +184,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -286,7 +286,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -401,7 +401,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -499,7 +499,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -572,6 +572,534 @@ class CLOUDSIGN extends Service {
   }
 
   /**
+      *  单证据链存证接口
+      * @param {Object} opts - parameters
+      * @param {string} opts.businessId - 业务流水号
+      * @param {string} opts.file - 存证数据json字符串的Base64
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code
+      * @param string message
+      * @param boolean success
+      * @param saveEvidenceResp data
+      */
+
+  saveEvidence (opts, callback) {
+    opts = opts || {}
+
+    if (opts.businessId === undefined || opts.businessId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.businessId' when calling saveEvidence"
+      )
+    }
+    if (opts.file === undefined || opts.file === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.file' when calling saveEvidence"
+      )
+    }
+
+    let postBody = {}
+    if (opts.businessId !== undefined && opts.businessId !== null) {
+      postBody['businessId'] = opts.businessId
+    }
+    if (opts.file !== undefined && opts.file !== null) {
+      postBody['file'] = opts.file
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call saveEvidence with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/evidence:evidenceSave',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  多证据链存证接口
+      * @param {Object} opts - parameters
+      * @param {string} opts.businessId - 业务流水号
+      * @param {string} opts.file - 存证数据json字符串的Base64
+      * @param {string} opts.businessCode - 证据链代码
+      * @param {string} [opts.token] - 业务token  optional
+      * @param {string} [opts.lender] - 资方信息（借钱传：ZY；票据传 PJ_SHOUXIN--授信,PJ_JIEKUAN--借款）  optional
+      * @param {string} [opts.messageId] - 请求流水号  optional
+      * @param {string} [opts.evidenceType] - 业务类型（JIEQIAN–借钱；PIAOJU--票据）  optional
+      * @param {string} [opts.messageDate] - 请求时间  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code
+      * @param string message
+      * @param boolean success
+      * @param saveEvidenceResp data
+      */
+
+  saveMultiEvidence (opts, callback) {
+    opts = opts || {}
+
+    if (opts.businessId === undefined || opts.businessId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.businessId' when calling saveMultiEvidence"
+      )
+    }
+    if (opts.file === undefined || opts.file === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.file' when calling saveMultiEvidence"
+      )
+    }
+    if (opts.businessCode === undefined || opts.businessCode === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.businessCode' when calling saveMultiEvidence"
+      )
+    }
+
+    let postBody = {}
+    if (opts.businessId !== undefined && opts.businessId !== null) {
+      postBody['businessId'] = opts.businessId
+    }
+    if (opts.file !== undefined && opts.file !== null) {
+      postBody['file'] = opts.file
+    }
+    if (opts.businessCode !== undefined && opts.businessCode !== null) {
+      postBody['businessCode'] = opts.businessCode
+    }
+    if (opts.token !== undefined && opts.token !== null) {
+      postBody['token'] = opts.token
+    }
+    if (opts.lender !== undefined && opts.lender !== null) {
+      postBody['lender'] = opts.lender
+    }
+    if (opts.messageId !== undefined && opts.messageId !== null) {
+      postBody['messageId'] = opts.messageId
+    }
+    if (opts.evidenceType !== undefined && opts.evidenceType !== null) {
+      postBody['evidenceType'] = opts.evidenceType
+    }
+    if (opts.messageDate !== undefined && opts.messageDate !== null) {
+      postBody['messageDate'] = opts.messageDate
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call saveMultiEvidence with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/evidence:evidenceMultisave',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  单证据链取证接口
+      * @param {Object} opts - parameters
+      * @param {string} opts.businessId - 业务流水号
+      * @param {string} opts.evidenceId - 存证编号
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code
+      * @param string message
+      * @param boolean success
+      * @param getEvidenceResp data
+      */
+
+  getEvidence (opts, callback) {
+    opts = opts || {}
+
+    if (opts.businessId === undefined || opts.businessId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.businessId' when calling getEvidence"
+      )
+    }
+    if (opts.evidenceId === undefined || opts.evidenceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.evidenceId' when calling getEvidence"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.businessId !== undefined && opts.businessId !== null) {
+      queryParams['businessId'] = opts.businessId
+    }
+    if (opts.evidenceId !== undefined && opts.evidenceId !== null) {
+      queryParams['evidenceId'] = opts.evidenceId
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getEvidence with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/evidence:evidenceGetEvidence',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  带主体标记的取证接口
+      * @param {Object} opts - parameters
+      * @param {string} opts.businessId - 业务流水号
+      * @param {string} opts.evidenceId - 存证编号
+      * @param {string} opts.applicantIdType - 申请取证主体的ID类型
+      * @param {string} opts.applicantIdNum - 申请取证主体的ID
+      * @param {string} [opts.businessCode] - 证据链代码  optional
+      * @param {string} [opts.token] - 业务token  optional
+      * @param {string} [opts.messageId] - 请求流水号  optional
+      * @param {string} [opts.evidenceType] - 业务类型  optional
+      * @param {string} [opts.messageDate] - 请求时间  optional
+      * @param {string} [opts.evidenceMessageId] - 存证时的请求流水  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code
+      * @param string message
+      * @param boolean success
+      * @param getEvidenceResp data
+      */
+
+  getMultiEvidence (opts, callback) {
+    opts = opts || {}
+
+    if (opts.businessId === undefined || opts.businessId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.businessId' when calling getMultiEvidence"
+      )
+    }
+    if (opts.evidenceId === undefined || opts.evidenceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.evidenceId' when calling getMultiEvidence"
+      )
+    }
+    if (opts.applicantIdType === undefined || opts.applicantIdType === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.applicantIdType' when calling getMultiEvidence"
+      )
+    }
+    if (opts.applicantIdNum === undefined || opts.applicantIdNum === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.applicantIdNum' when calling getMultiEvidence"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.businessId !== undefined && opts.businessId !== null) {
+      queryParams['businessId'] = opts.businessId
+    }
+    if (opts.evidenceId !== undefined && opts.evidenceId !== null) {
+      queryParams['evidenceId'] = opts.evidenceId
+    }
+    if (opts.applicantIdType !== undefined && opts.applicantIdType !== null) {
+      queryParams['applicantIdType'] = opts.applicantIdType
+    }
+    if (opts.applicantIdNum !== undefined && opts.applicantIdNum !== null) {
+      queryParams['applicantIdNum'] = opts.applicantIdNum
+    }
+    if (opts.businessCode !== undefined && opts.businessCode !== null) {
+      queryParams['businessCode'] = opts.businessCode
+    }
+    if (opts.token !== undefined && opts.token !== null) {
+      queryParams['token'] = opts.token
+    }
+    if (opts.messageId !== undefined && opts.messageId !== null) {
+      queryParams['messageId'] = opts.messageId
+    }
+    if (opts.evidenceType !== undefined && opts.evidenceType !== null) {
+      queryParams['evidenceType'] = opts.evidenceType
+    }
+    if (opts.messageDate !== undefined && opts.messageDate !== null) {
+      queryParams['messageDate'] = opts.messageDate
+    }
+    if (
+      opts.evidenceMessageId !== undefined &&
+      opts.evidenceMessageId !== null
+    ) {
+      queryParams['evidenceMessageId'] = opts.evidenceMessageId
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getMultiEvidence with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/evidence:evidenceGetmulti',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  查询服务开通状态
       * @param {Object} opts - parameters
       * @param {string} callback - callback
@@ -595,7 +1123,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -686,7 +1214,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -777,7 +1305,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -872,7 +1400,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -976,7 +1504,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -1078,7 +1606,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -1178,7 +1706,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -1276,7 +1804,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -1387,7 +1915,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -1489,7 +2017,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -1589,7 +2117,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -1698,7 +2226,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -1796,7 +2324,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/1.1.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.0'
     }
 
     let contentTypes = ['application/json']

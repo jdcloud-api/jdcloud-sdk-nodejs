@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Peering-Connection
- * 对等连接相关接口
+ * Vpc-Policy
+ * vpc支持oss权限访问控制相关接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * vpc service.
- * @version 1.0.1
+ * @version 1.1.0
  */
 
 class VPC extends Service {
@@ -109,7 +109,7 @@ name - 共享带宽包名称，支持单个进行精确搜索
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -264,7 +264,7 @@ name - 共享带宽包名称，支持单个进行精确搜索
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -386,7 +386,7 @@ name - 共享带宽包名称，支持单个进行精确搜索
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -520,7 +520,7 @@ name - 共享带宽包名称，支持单个进行精确搜索
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -638,7 +638,7 @@ name - 共享带宽包名称，支持单个进行精确搜索
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -777,7 +777,7 @@ name - 共享带宽包名称，支持单个进行精确搜索
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -906,7 +906,7 @@ name - 共享带宽包名称，支持单个进行精确搜索
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -1037,7 +1037,7 @@ name - 共享带宽包名称，支持单个进行精确搜索
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -1165,7 +1165,7 @@ status - IP是否被绑定，取值：ASSOCIATED（被绑定）、NOT_ASSOCIATED
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -1309,7 +1309,7 @@ status - IP是否被绑定，取值：ASSOCIATED（被绑定）、NOT_ASSOCIATED
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -1420,7 +1420,7 @@ status - IP是否被绑定，取值：ASSOCIATED（被绑定）、NOT_ASSOCIATED
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -1540,7 +1540,7 @@ status - IP是否被绑定，取值：ASSOCIATED（被绑定）、NOT_ASSOCIATED
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -1650,7 +1650,7 @@ status - IP是否被绑定，取值：ASSOCIATED（被绑定）、NOT_ASSOCIATED
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -1767,7 +1767,7 @@ vpcId - networkAcl所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -1894,7 +1894,7 @@ vpcId - networkAcl所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -2005,7 +2005,7 @@ vpcId - networkAcl所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -2124,7 +2124,7 @@ vpcId - networkAcl所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -2234,7 +2234,7 @@ vpcId - networkAcl所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -2354,7 +2354,7 @@ vpcId - networkAcl所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -2474,7 +2474,7 @@ vpcId - networkAcl所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -2592,7 +2592,7 @@ vpcId - networkAcl所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -2712,7 +2712,7 @@ vpcId - networkAcl所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -2830,7 +2830,7 @@ vpcId - networkAcl所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -2911,7 +2911,7 @@ vpcId - networkAcl所属vpc Id，支持单个
 networkInterfaceNames - 弹性网卡名称列表，支持多个
 vpcId - 弹性网卡所属vpc Id，支持单个
 subnetId - 弹性网卡所属子网Id，支持单个
-role - 网卡角色，取值范围：Primary（主网卡）、Secondary（辅助网卡）、Managed （受管网卡），支持单个
+role - 网卡角色，取值范围：Primary（主网卡）、Secondary（辅助网卡）、Managed （受管网卡），支持多个
 azType - 网卡 az类型，取值：all(全部类型)，standard(标准Az网卡)，edge(边缘Az网卡)，默认为all，支持单个
 azs - 可用区 az名，支持多个
   optional
@@ -2951,7 +2951,7 @@ azs - 可用区 az名，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -3103,7 +3103,7 @@ azs - 可用区 az名，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -3217,7 +3217,7 @@ azs - 可用区 az名，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -3346,7 +3346,7 @@ azs - 可用区 az名，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -3459,7 +3459,7 @@ azs - 可用区 az名，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -3585,7 +3585,7 @@ azs - 可用区 az名，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -3707,7 +3707,7 @@ azs - 可用区 az名，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -3847,7 +3847,7 @@ azs - 可用区 az名，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -3969,7 +3969,7 @@ azs - 可用区 az名，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -4090,7 +4090,7 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -4223,7 +4223,7 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -4341,7 +4341,7 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -4466,7 +4466,7 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -4579,7 +4579,7 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -4659,6 +4659,7 @@ vpcId - 安全组所属vpc Id，支持单个
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param securityGroupRule securityGroupRules
       */
 
   addNetworkSecurityGroupRules (
@@ -4705,7 +4706,7 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -4832,7 +4833,7 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -4958,7 +4959,7 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -5033,8 +5034,8 @@ vpcId - 安全组所属vpc Id，支持单个
   /**
       *  查询配额信息
       * @param {Object} opts - parameters
-      * @param {string} opts.type - 资源类型，取值范围：vpc、elastic_ip、subnet、security_group、vpcpeering、network_interface（配额只统计辅助网卡）、acl、aclRule、routeTable、staticRoute、propagatedRoute、securityGroupRule、network_interface_cidr、bwpByUsage、bandwidthPackageIp、natGateway
-      * @param {string} [opts.parentResourceId] - type为vpc、elastic_ip、network_interface、bwpByUsage、natGateway不设置, type为subnet、security_group、vpcpeering、acl、routeTable设置为vpcId, type为aclRule设置为aclId, type为staticRoute、propagatedRoute设置为routeTableId, type为securityGroupRule为securityGroupId, type为network_interface_cidr设置为networkInterfaceId，type为bandwidthPackageIp设置为bandwidthPackageId  optional
+      * @param {string} opts.type - 资源类型，取值范围：vpc、elastic_ip、subnet、security_group、vpcpeering、network_interface（配额只统计辅助网卡）、acl、aclRule、routeTable、staticRoute、propagatedRoute、securityGroupRule、network_interface_cidr、bwpByUsage、bandwidthPackageIp、natGateway、natGatewayFip
+      * @param {string} [opts.parentResourceId] - type为vpc、elastic_ip、network_interface、bwpByUsage、natGateway不设置, type为subnet、security_group、vpcpeering、acl、routeTable设置为vpcId, type为aclRule设置为aclId, type为staticRoute、propagatedRoute设置为routeTableId, type为securityGroupRule为securityGroupId, type为network_interface_cidr设置为networkInterfaceId，type为bandwidthPackageIp设置为bandwidthPackageId，natGatewayFip设置为natGatewayId  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -5075,7 +5076,7 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -5156,6 +5157,7 @@ vpcId - 安全组所属vpc Id，支持单个
 routeTableNames - 路由表名称列表，支持多个
 vpcId - 路由表所属vpc Id，支持单个
 azType - 路由表az类型，取值：all(全部类型)，standard(标准路由表)，edge(边缘路由表)，默认standard ，支持单个
+associateType - 绑定资源类型，取值：subnet，gateway，支持单个
 azs - 可用区，支持多个
   optional
       * @param {string} regionId - ID of the region
@@ -5194,7 +5196,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -5271,7 +5273,8 @@ azs - 可用区，支持多个
       * @param {Object} opts - parameters
       * @param {string} opts.vpcId - 路由表所属的私有网络ID
       * @param {string} opts.routeTableName - 路由表名称，只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符。
-      * @param {string} [opts.description] - 描述,​ 允许输入UTF-8编码下的全部字符，不超过256字符  optional
+      * @param {string} [opts.description] - 描述，允许输入UTF-8编码下的全部字符，不超过256字符  optional
+      * @param {string} [opts.associateType] - 绑定资源类型，取值：subnet(缺省时默认值)，gateway  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -5313,6 +5316,9 @@ azs - 可用区，支持多个
     if (opts.description !== undefined && opts.description !== null) {
       postBody['description'] = opts.description
     }
+    if (opts.associateType !== undefined && opts.associateType !== null) {
+      postBody['associateType'] = opts.associateType
+    }
 
     let queryParams = {}
 
@@ -5321,7 +5327,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -5432,7 +5438,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -5551,7 +5557,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -5661,7 +5667,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -5779,7 +5785,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -5899,7 +5905,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -6017,7 +6023,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -6093,7 +6099,7 @@ azs - 可用区，支持多个
       *  路由表绑定子网接口
       * @param {Object} opts - parameters
       * @param {string} opts.routeTableId - RouteTable ID
-      * @param {array} [opts.subnetIds] - 路由表要绑定的子网ID列表, subnet已被其他路由表绑定时，自动解绑。路由表绑定的子网属性要相同，或者都是标准子网，或者都是相同边缘可用区的边缘子网。  optional
+      * @param {array} [opts.subnetIds] - 路由表要绑定的子网ID列表, 只有associateType是subnet类型的路由表才支持绑定；subnet已被其他路由表绑定时，自动解绑。路由表绑定的子网属性要相同，或者都是标准子网，或者都是相同边缘可用区的边缘子网。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -6132,7 +6138,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -6252,7 +6258,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -6371,7 +6377,7 @@ azs - 边缘公网IP的可用区，分为全可用区（暂不支持）和边缘
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -6455,7 +6461,7 @@ aclId - 子网关联acl Id，支持单个
 vpcId - 子网所属VPC Id，支持单个
 subnetType - 子网类型，取值：all(全部类型)，standard(标准子网)，edge(边缘子网)，默认standard ，支持单个
 azs - 可用区，支持多个
-azType - VPC az类型，取值：all(全部类型)，standard(标准可用区子网)，edge(边缘可用区子网)，默认standard ，支持单个
+azType - VPC az类型，取值：all(全部类型)，standard(标准可用区子网)，edge(边缘可用区子网)，默认all，支持单个
   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -6493,7 +6499,7 @@ azType - VPC az类型，取值：all(全部类型)，standard(标准可用区子
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -6574,6 +6580,7 @@ azType - VPC az类型，取值：all(全部类型)，standard(标准可用区子
       * @param {string} [opts.routeTableId] - 子网关联的路由表Id, 默认为vpc的默认路由表,子网关联路由表需检查路由表中已绑定的子网与本子网类型是否一致（一致标准为：或者都为标准子网，或者都为相同边缘可用区的边缘子网）  optional
       * @param {string} [opts.description] - 子网描述信息,允许输入UTF-8编码下的全部字符，不超过256字符。  optional
       * @param {integer} [opts.ipMaskLen] - 子网内预留网段掩码长度，此网段IP地址按照单个申请，子网内其余部分IP地址以网段形式分配。此参数非必选，缺省值为0，代表子网内所有IP地址都按照单个申请  optional
+      * @param {boolean} [opts.dryRun] - 是否只预检此次请求。true：不会创建子网，只会对参数进行校验；false：正常的创建请求。默认为false。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -6629,6 +6636,9 @@ azType - VPC az类型，取值：all(全部类型)，standard(标准可用区子
     if (opts.ipMaskLen !== undefined && opts.ipMaskLen !== null) {
       postBody['ipMaskLen'] = opts.ipMaskLen
     }
+    if (opts.dryRun !== undefined && opts.dryRun !== null) {
+      postBody['dryRun'] = opts.dryRun
+    }
 
     let queryParams = {}
 
@@ -6637,7 +6647,7 @@ azType - VPC az类型，取值：all(全部类型)，standard(标准可用区子
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -6748,7 +6758,7 @@ azType - VPC az类型，取值：all(全部类型)，standard(标准可用区子
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -6871,7 +6881,7 @@ azType - VPC az类型，取值：all(全部类型)，standard(标准可用区子
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -6981,7 +6991,7 @@ azType - VPC az类型，取值：all(全部类型)，standard(标准可用区子
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -7060,7 +7070,7 @@ azType - VPC az类型，取值：all(全部类型)，standard(标准可用区子
       * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围：[10,100]  optional
       * @param {filter} [opts.filters] - vpcIds - vpc ID列表，支持多个
 vpcNames - vpc名称列表,支持多个
-azType - VPC az类型，取值：all(全部类型)，standard(标准VPC)，edge(边缘VPC)，默认standard ，支持单个
+azType - VPC az类型，取值：all(全部类型)，standard(标准VPC)，edge(边缘VPC)，默认all，支持单个
 azs - 可用区，支持多个
   optional
       * @param {string} regionId - ID of the region
@@ -7099,7 +7109,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -7229,7 +7239,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -7340,7 +7350,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -7459,7 +7469,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -7569,7 +7579,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -7689,7 +7699,7 @@ azs - vpcPeering本端VPC可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -7825,7 +7835,7 @@ azs - vpcPeering本端VPC可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -7936,7 +7946,7 @@ azs - vpcPeering本端VPC可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -8055,7 +8065,7 @@ azs - vpcPeering本端VPC可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -8165,7 +8175,7 @@ azs - vpcPeering本端VPC可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
     }
 
     let contentTypes = ['application/json']
@@ -8209,6 +8219,487 @@ azs - vpcPeering本端VPC可用区，支持多个
 
     let request = super.makeRequest(
       '/regions/{regionId}/vpcPeerings/{vpcPeeringId}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建VpcPolicy接口
+      * @param {Object} opts - parameters
+      * @param {string} opts.vpcPolicyName - 访问控制策略名称。取值范围：1-32个中文、英文大小写的字母、数字和下划线分隔符
+      * @param {string} opts.vpcId - 访问控制策略所属vpc id
+      * @param {string} opts.policyDocument - 具体策略内容(格式参考样例)
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string vpcPolicyId  访问控制策略ID
+      */
+
+  createVpcPolicy (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createVpcPolicy"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.vpcPolicyName === undefined || opts.vpcPolicyName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.vpcPolicyName' when calling createVpcPolicy"
+      )
+    }
+    if (opts.vpcId === undefined || opts.vpcId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.vpcId' when calling createVpcPolicy"
+      )
+    }
+    if (opts.policyDocument === undefined || opts.policyDocument === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.policyDocument' when calling createVpcPolicy"
+      )
+    }
+
+    let postBody = {}
+    if (opts.vpcPolicyName !== undefined && opts.vpcPolicyName !== null) {
+      postBody['vpcPolicyName'] = opts.vpcPolicyName
+    }
+    if (opts.vpcId !== undefined && opts.vpcId !== null) {
+      postBody['vpcId'] = opts.vpcId
+    }
+    if (opts.policyDocument !== undefined && opts.policyDocument !== null) {
+      postBody['policyDocument'] = opts.policyDocument
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createVpcPolicy with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/vpcPolicy/',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询VpcPolicy资源详情
+      * @param {Object} opts - parameters
+      * @param {string} opts.vpcPolicyId - policy ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param vpcPolicy vpcPolicy  Vpc访问控制策略资源信息
+      */
+
+  describeVpcPolicy (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeVpcPolicy"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.vpcPolicyId === undefined || opts.vpcPolicyId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.vpcPolicyId' when calling describeVpcPolicy"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      vpcPolicyId: opts.vpcPolicyId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeVpcPolicy with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/vpcPolicy/{vpcPolicyId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改VPC Policy接口
+      * @param {Object} opts - parameters
+      * @param {string} opts.vpcPolicyId - policy ID
+      * @param {string} opts.vpcPolicyId - 访问控制策略的Id
+      * @param {string} [opts.vpcPolicyName] - VpcPolicy的名称,不为空(有变更再传)。取值范围：1-32个中文、英文大小写的字母、数字和下划线分隔符  optional
+      * @param {string} [opts.policyDocument] - 具体策略内容(格式参考样例)  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  modifyVpcPolicy (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyVpcPolicy"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.vpcPolicyId === undefined || opts.vpcPolicyId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.vpcPolicyId' when calling modifyVpcPolicy"
+      )
+    }
+    if (opts.vpcPolicyId === undefined || opts.vpcPolicyId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.vpcPolicyId' when calling modifyVpcPolicy"
+      )
+    }
+
+    let postBody = {}
+    if (opts.vpcPolicyId !== undefined && opts.vpcPolicyId !== null) {
+      postBody['vpcPolicyId'] = opts.vpcPolicyId
+    }
+    if (opts.vpcPolicyName !== undefined && opts.vpcPolicyName !== null) {
+      postBody['vpcPolicyName'] = opts.vpcPolicyName
+    }
+    if (opts.policyDocument !== undefined && opts.policyDocument !== null) {
+      postBody['policyDocument'] = opts.policyDocument
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      vpcPolicyId: opts.vpcPolicyId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyVpcPolicy with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/vpcPolicy/{vpcPolicyId}',
+      'PATCH',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除VpcPolicy接口
+      * @param {Object} opts - parameters
+      * @param {string} opts.vpcPolicyId - policy ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteVpcPolicy (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteVpcPolicy"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.vpcPolicyId === undefined || opts.vpcPolicyId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.vpcPolicyId' when calling deleteVpcPolicy"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      vpcPolicyId: opts.vpcPolicyId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteVpcPolicy with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/vpcPolicy/{vpcPolicyId}',
       'DELETE',
       pathParams,
       queryParams,

@@ -57,6 +57,7 @@ module.exports = {
   INDUSTRYDATA: require('./industrydata'),
   JDW: require('./jdw'),
   ASSET: require('./asset'),
+  AUTOTASKPOLICY: require('./autotaskpolicy'),
   RDS: require('./rds'),
   KUBERNETES: require('./kubernetes'),
   DH: require('./dh'),

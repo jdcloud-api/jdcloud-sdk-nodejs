@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * dh service.
- * @version 1.0.0
+ * @version 1.1.3
  */
 
 class DH extends Service {
@@ -58,6 +58,7 @@ name - 专有宿主机名称，模糊匹配，支持单个
 dedicatedPoolId - 专有宿主机池ID，精确匹配，支持多个
 dedicatedHostType - 专有宿主机机型，精确匹配，支持多个
   optional
+      * @param {tagFilter} [opts.tags] - Tag筛选条件。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -88,13 +89,14 @@ dedicatedHostType - 专有宿主机机型，精确匹配，支持多个
       queryParams['pageSize'] = opts.pageSize
     }
     Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildTagFilterParam(opts.tags, 'tags'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dh/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dh/1.1.3'
     }
 
     let contentTypes = ['application/json']
@@ -179,6 +181,8 @@ dedicatedHostType - 专有宿主机机型，精确匹配，支持多个
   optional
       * @param {string} [opts.clientToken] - 用于保证请求的幂等性。由客户端生成，长度不能超过64个字符。
   optional
+      * @param {boolean} [opts.enableCpuTopology] - 是否开启cpu拓扑，true:开启，false:关闭，只有宿主机是非超卖模式，且没有资源的时候才能开启；开启后，该宿主机上的虚机可以配置cpu拓扑和NUMA映射等。
+  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -224,6 +228,12 @@ dedicatedHostType - 专有宿主机机型，精确匹配，支持多个
     if (opts.clientToken !== undefined && opts.clientToken !== null) {
       postBody['clientToken'] = opts.clientToken
     }
+    if (
+      opts.enableCpuTopology !== undefined &&
+      opts.enableCpuTopology !== null
+    ) {
+      postBody['enableCpuTopology'] = opts.enableCpuTopology
+    }
 
     let queryParams = {}
 
@@ -232,7 +242,7 @@ dedicatedHostType - 专有宿主机机型，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dh/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dh/1.1.3'
     }
 
     let contentTypes = ['application/json']
@@ -344,7 +354,7 @@ dedicatedHostType - 专有宿主机机型，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dh/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dh/1.1.3'
     }
 
     let contentTypes = ['application/json']
@@ -423,6 +433,8 @@ dedicatedHostType - 专有宿主机机型，精确匹配，支持多个
       * @param {string} opts.dedicatedHostId - 专有宿主机ID
       * @param {string} [opts.name] - 名称，&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/general_parameters&quot;&gt;参考公共参数规范&lt;/a&gt;。  optional
       * @param {string} [opts.description] - 描述，&lt;a href&#x3D;&quot;http://docs.jdcloud.com/virtual-machines/api/general_parameters&quot;&gt;参考公共参数规范&lt;/a&gt;。  optional
+      * @param {boolean} [opts.enableCpuTopology] - 是否开启cpu拓扑，true:开启，false:关闭，只有宿主机是非超卖模式，且没有资源的时候才能开启；开启后，该宿主机上的虚机可以配置cpu拓扑和NUMA映射等。
+  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -459,6 +471,12 @@ dedicatedHostType - 专有宿主机机型，精确匹配，支持多个
     if (opts.description !== undefined && opts.description !== null) {
       postBody['description'] = opts.description
     }
+    if (
+      opts.enableCpuTopology !== undefined &&
+      opts.enableCpuTopology !== null
+    ) {
+      postBody['enableCpuTopology'] = opts.enableCpuTopology
+    }
 
     let queryParams = {}
 
@@ -468,7 +486,7 @@ dedicatedHostType - 专有宿主机机型，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dh/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dh/1.1.3'
     }
 
     let contentTypes = ['application/json']
@@ -577,7 +595,7 @@ az - 可用区，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dh/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dh/1.1.3'
     }
 
     let contentTypes = ['application/json']
@@ -695,7 +713,7 @@ dedicatedHostType - 专有宿主机机型，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dh/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dh/1.1.3'
     }
 
     let contentTypes = ['application/json']
@@ -826,7 +844,7 @@ deployPolicy表示是否强制池中专有宿主机在每个AZ内数量均衡。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dh/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dh/1.1.3'
     }
 
     let contentTypes = ['application/json']
@@ -956,7 +974,7 @@ deployPolicy表示是否强制池中专有宿主机在每个AZ内数量均衡。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dh/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dh/1.1.3'
     }
 
     let contentTypes = ['application/json']
@@ -1068,7 +1086,7 @@ deployPolicy表示是否强制池中专有宿主机在每个AZ内数量均衡。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dh/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dh/1.1.3'
     }
 
     let contentTypes = ['application/json']
@@ -1175,7 +1193,7 @@ deployPolicy表示是否强制池中专有宿主机在每个AZ内数量均衡。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  dh/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  dh/1.1.3'
     }
 
     let contentTypes = ['application/json']

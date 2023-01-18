@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * pod service.
- * @version 2.3.2
+ * @version 2.3.4
  */
 
 class POD extends Service {
@@ -94,7 +94,7 @@ class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -206,7 +206,7 @@ class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -317,7 +317,7 @@ class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -445,7 +445,7 @@ class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -563,7 +563,7 @@ class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -681,7 +681,7 @@ class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -809,7 +809,7 @@ class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -936,7 +936,7 @@ class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -1062,7 +1062,7 @@ class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -1202,7 +1202,7 @@ class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -1312,7 +1312,7 @@ az - 可用区，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -1438,7 +1438,7 @@ agId - 镜像ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -1626,7 +1626,7 @@ agId - 镜像ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -1746,7 +1746,7 @@ agId - 镜像ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -1858,7 +1858,7 @@ agId - 镜像ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -1971,7 +1971,7 @@ agId - 镜像ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -2084,7 +2084,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -2196,7 +2196,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -2312,7 +2312,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -2435,7 +2435,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -2556,7 +2556,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -2700,7 +2700,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -2816,7 +2816,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -2952,7 +2952,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -3067,7 +3067,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -3184,7 +3184,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -3323,7 +3323,7 @@ value 是 Base64 编码的字符串，不能包含换行符（在 linux 下使�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -3435,7 +3435,7 @@ value 是 Base64 编码的字符串，不能包含换行符（在 linux 下使�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -3546,7 +3546,7 @@ value 是 Base64 编码的字符串，不能包含换行符（在 linux 下使�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
     }
 
     let contentTypes = ['application/json']

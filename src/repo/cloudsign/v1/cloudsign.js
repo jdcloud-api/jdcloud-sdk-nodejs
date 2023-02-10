@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * cloudsign service.
- * @version 2.0.1
+ * @version 2.0.2
  */
 
 class CLOUDSIGN extends Service {
@@ -76,7 +76,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -184,7 +184,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -286,7 +286,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -403,7 +403,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -501,7 +501,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -615,7 +615,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -758,7 +758,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -871,7 +871,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1029,7 +1029,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1125,7 +1125,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1216,7 +1216,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1307,7 +1307,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1402,7 +1402,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1506,7 +1506,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1608,7 +1608,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1709,7 +1709,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1807,7 +1807,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1918,7 +1918,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2020,7 +2020,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2120,7 +2120,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2229,7 +2229,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2327,7 +2327,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
     }
 
     let contentTypes = ['application/json']

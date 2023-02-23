@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * starshield service.
- * @version 0.0.4
+ * @version 0.0.5
  */
 
 class STARSHIELD extends Service {
@@ -42,6 +42,2448 @@ class STARSHIELD extends Service {
       options._defaultEndpoint.host || 'starshield.jdcloud-api.com'
     options.basePath = '/v1' // 默认要设为空""
     super(serviceId, options)
+  }
+
+  /**
+      *  The dashboard view provides both totals and timeseries data for the given zone and time period across the entire scdn network.
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {string} opts.zoneName
+      * @param {string} opts.since
+      * @param {string} opts.until
+      * @param {string} [opts.category]   optional
+      * @param {} [opts.filters]   optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param zoneAnalytics zoneAnalytics
+      */
+
+  dashboard (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling dashboard"
+      )
+    }
+    if (opts.zoneName === undefined || opts.zoneName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zoneName' when calling dashboard"
+      )
+    }
+    if (opts.since === undefined || opts.since === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.since' when calling dashboard"
+      )
+    }
+    if (opts.until === undefined || opts.until === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.until' when calling dashboard"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.zoneName !== undefined && opts.zoneName !== null) {
+      queryParams['zoneName'] = opts.zoneName
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      queryParams['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      queryParams['until'] = opts.until
+    }
+    if (opts.category !== undefined && opts.category !== null) {
+      queryParams['category'] = opts.category
+    }
+    if (opts.filters !== undefined && opts.filters !== null) {
+      queryParams['filters'] = opts.filters
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call dashboard with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/analytics$$dashboard',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  按请求次数统计。获取国家/地区的请求分布情况；获取路径、主机、设备类型的TopK.
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {} [opts.zoneName]   optional
+      * @param {} [opts.since]   optional
+      * @param {} [opts.until]   optional
+      * @param {} [opts.topK]   optional
+      * @param {} [opts.filters]   optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param topkAnalytics topkAnalytics
+      */
+
+  topK (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling topK"
+      )
+    }
+
+    let postBody = {}
+    if (opts.zoneName !== undefined && opts.zoneName !== null) {
+      postBody['zoneName'] = opts.zoneName
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+    if (opts.topK !== undefined && opts.topK !== null) {
+      postBody['topK'] = opts.topK
+    }
+    if (opts.filters !== undefined && opts.filters !== null) {
+      postBody['filters'] = opts.filters
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call topK with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/analytics$$topK',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  按响应带宽统计。获取国家/地区的请求分布情况；获取路径、主机、设备类型的TopK.
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {} [opts.zoneName]   optional
+      * @param {} [opts.since]   optional
+      * @param {} [opts.until]   optional
+      * @param {} [opts.topK]   optional
+      * @param {} [opts.filters]   optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param topkAnalytics topkAnalytics
+      */
+
+  bandwidthTopK (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling bandwidthTopK"
+      )
+    }
+
+    let postBody = {}
+    if (opts.zoneName !== undefined && opts.zoneName !== null) {
+      postBody['zoneName'] = opts.zoneName
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+    if (opts.topK !== undefined && opts.topK !== null) {
+      postBody['topK'] = opts.topK
+    }
+    if (opts.filters !== undefined && opts.filters !== null) {
+      postBody['filters'] = opts.filters
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call bandwidthTopK with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/analytics$$bandwidthTopK',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  按请求次数统计，返回日期直方图.
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {} [opts.zoneName]   optional
+      * @param {} [opts.since]   optional
+      * @param {} [opts.until]   optional
+      * @param {} [opts.topK]   optional
+      * @param {} [opts.criterionName]   optional
+      * @param {} [opts.filters]   optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param dateHistogram dateHistograms
+      * @param number timeScope
+      * @param string since
+      * @param string util
+      */
+
+  dateHistogram (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling dateHistogram"
+      )
+    }
+
+    let postBody = {}
+    if (opts.zoneName !== undefined && opts.zoneName !== null) {
+      postBody['zoneName'] = opts.zoneName
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+    if (opts.topK !== undefined && opts.topK !== null) {
+      postBody['topK'] = opts.topK
+    }
+    if (opts.criterionName !== undefined && opts.criterionName !== null) {
+      postBody['criterionName'] = opts.criterionName
+    }
+    if (opts.filters !== undefined && opts.filters !== null) {
+      postBody['filters'] = opts.filters
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call dateHistogram with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/analytics$$dateHistogram',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  按响应带宽统计，返回日期直方图.
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {} [opts.zoneName]   optional
+      * @param {} [opts.since]   optional
+      * @param {} [opts.until]   optional
+      * @param {} [opts.topK]   optional
+      * @param {} [opts.criterionName]   optional
+      * @param {} [opts.filters]   optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param dateHistogram dateHistograms
+      * @param number timeScope
+      * @param string since
+      * @param string util
+      */
+
+  dateHistogramBandwidth (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling dateHistogramBandwidth"
+      )
+    }
+
+    let postBody = {}
+    if (opts.zoneName !== undefined && opts.zoneName !== null) {
+      postBody['zoneName'] = opts.zoneName
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+    if (opts.topK !== undefined && opts.topK !== null) {
+      postBody['topK'] = opts.topK
+    }
+    if (opts.criterionName !== undefined && opts.criterionName !== null) {
+      postBody['criterionName'] = opts.criterionName
+    }
+    if (opts.filters !== undefined && opts.filters !== null) {
+      postBody['filters'] = opts.filters
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call dateHistogramBandwidth with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/analytics$$dateHistogramBandwidth',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  按请求或响应带宽统计，返回日期直方图.
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {} [opts.zoneName]   optional
+      * @param {} [opts.since]   optional
+      * @param {} [opts.until]   optional
+      * @param {} [opts.direction]   optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param simpleDateHistogram data
+      */
+
+  bandwidthTrend (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling bandwidthTrend"
+      )
+    }
+
+    let postBody = {}
+    if (opts.zoneName !== undefined && opts.zoneName !== null) {
+      postBody['zoneName'] = opts.zoneName
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+    if (opts.direction !== undefined && opts.direction !== null) {
+      postBody['direction'] = opts.direction
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call bandwidthTrend with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/analytics$$bandwidthTrend',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  按请求次数统计。获取内容类型、路径、主机、设备类型、国家/地区、状态代码的TopK.
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {} [opts.zoneName]   optional
+      * @param {} [opts.since]   optional
+      * @param {} [opts.until]   optional
+      * @param {} [opts.topK]   optional
+      * @param {} [opts.filters]   optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param topkAnalytics topkAnalytics
+      */
+
+  cacheTopK (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling cacheTopK"
+      )
+    }
+
+    let postBody = {}
+    if (opts.zoneName !== undefined && opts.zoneName !== null) {
+      postBody['zoneName'] = opts.zoneName
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+    if (opts.topK !== undefined && opts.topK !== null) {
+      postBody['topK'] = opts.topK
+    }
+    if (opts.filters !== undefined && opts.filters !== null) {
+      postBody['filters'] = opts.filters
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call cacheTopK with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/analytics$$cacheTopK',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  按响应带宽统计。获取内容类型、路径、主机、设备类型、国家/地区、状态代码的TopK.
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {} [opts.zoneName]   optional
+      * @param {} [opts.since]   optional
+      * @param {} [opts.until]   optional
+      * @param {} [opts.topK]   optional
+      * @param {} [opts.filters]   optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param topkAnalytics topkAnalytics
+      */
+
+  cacheBandwidthTopK (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling cacheBandwidthTopK"
+      )
+    }
+
+    let postBody = {}
+    if (opts.zoneName !== undefined && opts.zoneName !== null) {
+      postBody['zoneName'] = opts.zoneName
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+    if (opts.topK !== undefined && opts.topK !== null) {
+      postBody['topK'] = opts.topK
+    }
+    if (opts.filters !== undefined && opts.filters !== null) {
+      postBody['filters'] = opts.filters
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call cacheBandwidthTopK with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/analytics$$cacheBandwidthTopK',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  按请求次数统计，返回日期直方图.
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {} [opts.zoneName]   optional
+      * @param {} [opts.since]   optional
+      * @param {} [opts.until]   optional
+      * @param {} [opts.topK]   optional
+      * @param {} [opts.criterionName]   optional
+      * @param {} [opts.filters]   optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param dateHistogram dateHistograms
+      * @param number timeScope
+      * @param string since
+      * @param string util
+      */
+
+  cacheDateHistogram (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling cacheDateHistogram"
+      )
+    }
+
+    let postBody = {}
+    if (opts.zoneName !== undefined && opts.zoneName !== null) {
+      postBody['zoneName'] = opts.zoneName
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+    if (opts.topK !== undefined && opts.topK !== null) {
+      postBody['topK'] = opts.topK
+    }
+    if (opts.criterionName !== undefined && opts.criterionName !== null) {
+      postBody['criterionName'] = opts.criterionName
+    }
+    if (opts.filters !== undefined && opts.filters !== null) {
+      postBody['filters'] = opts.filters
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call cacheDateHistogram with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/analytics$$cacheDateHistogram',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  按响应带宽统计，返回日期直方图。
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {} [opts.zoneName]   optional
+      * @param {} [opts.since]   optional
+      * @param {} [opts.until]   optional
+      * @param {} [opts.topK]   optional
+      * @param {} [opts.criterionName]   optional
+      * @param {} [opts.filters]   optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param dateHistogram dateHistograms
+      * @param number timeScope
+      * @param string since
+      * @param string util
+      */
+
+  cacheDateHistogramBandwidth (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling cacheDateHistogramBandwidth"
+      )
+    }
+
+    let postBody = {}
+    if (opts.zoneName !== undefined && opts.zoneName !== null) {
+      postBody['zoneName'] = opts.zoneName
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+    if (opts.topK !== undefined && opts.topK !== null) {
+      postBody['topK'] = opts.topK
+    }
+    if (opts.criterionName !== undefined && opts.criterionName !== null) {
+      postBody['criterionName'] = opts.criterionName
+    }
+    if (opts.filters !== undefined && opts.filters !== null) {
+      postBody['filters'] = opts.filters
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call cacheDateHistogramBandwidth with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/analytics$$cacheDateHistogramBandwidth',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  按防火墙事件数量统计。获取IP地址、用户代理、路径、主机、国家/地区、HTTP方法的TopK。
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {} [opts.zoneName]   optional
+      * @param {} [opts.since]   optional
+      * @param {} [opts.until]   optional
+      * @param {} [opts.topK]   optional
+      * @param {} [opts.filters]   optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param topkAnalytics topkAnalytics
+      */
+
+  firewallTopK (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling firewallTopK"
+      )
+    }
+
+    let postBody = {}
+    if (opts.zoneName !== undefined && opts.zoneName !== null) {
+      postBody['zoneName'] = opts.zoneName
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+    if (opts.topK !== undefined && opts.topK !== null) {
+      postBody['topK'] = opts.topK
+    }
+    if (opts.filters !== undefined && opts.filters !== null) {
+      postBody['filters'] = opts.filters
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call firewallTopK with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/analytics$$firewallTopK',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  按防火墙事件数量统计，返回日期直方图.
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {} [opts.zoneName]   optional
+      * @param {} [opts.since]   optional
+      * @param {} [opts.until]   optional
+      * @param {} [opts.topK]   optional
+      * @param {} [opts.criterionName]   optional
+      * @param {} [opts.filters]   optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param dateHistogram dateHistograms
+      * @param number timeScope
+      * @param string since
+      * @param string util
+      */
+
+  firewallDateHistogram (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling firewallDateHistogram"
+      )
+    }
+
+    let postBody = {}
+    if (opts.zoneName !== undefined && opts.zoneName !== null) {
+      postBody['zoneName'] = opts.zoneName
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+    if (opts.topK !== undefined && opts.topK !== null) {
+      postBody['topK'] = opts.topK
+    }
+    if (opts.criterionName !== undefined && opts.criterionName !== null) {
+      postBody['criterionName'] = opts.criterionName
+    }
+    if (opts.filters !== undefined && opts.filters !== null) {
+      postBody['filters'] = opts.filters
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call firewallDateHistogram with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/analytics$$firewallDateHistogram',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  qps on Zone
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {} [opts.zoneName]   optional
+      * @param {} [opts.queryMode]   optional
+      * @param {} [opts.since]   optional
+      * @param {} [opts.until]   optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param simpleDateHistogram data
+      */
+
+  qpsZone (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling qpsZone"
+      )
+    }
+
+    let postBody = {}
+    if (opts.zoneName !== undefined && opts.zoneName !== null) {
+      postBody['zoneName'] = opts.zoneName
+    }
+    if (opts.queryMode !== undefined && opts.queryMode !== null) {
+      postBody['queryMode'] = opts.queryMode
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call qpsZone with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/qps',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  域的每秒指标，request/bandwidth/waf/l7ddos/firewallRules
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {} [opts.zoneName]   optional
+      * @param {} [opts.queryMode]   optional
+      * @param {} [opts.since]   optional
+      * @param {} [opts.until]   optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param simpleDateHistogram data
+      */
+
+  xps (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling xps"
+      )
+    }
+
+    let postBody = {}
+    if (opts.zoneName !== undefined && opts.zoneName !== null) {
+      postBody['zoneName'] = opts.zoneName
+    }
+    if (opts.queryMode !== undefined && opts.queryMode !== null) {
+      postBody['queryMode'] = opts.queryMode
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call xps with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/xps',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  qps
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId
+      * @param {} [opts.queryMode]   optional
+      * @param {} [opts.since]   optional
+      * @param {} [opts.until]   optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param simpleDateHistogram data
+      */
+
+  qpsInstance (opts, callback) {
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling qpsInstance"
+      )
+    }
+
+    let postBody = {}
+    if (opts.queryMode !== undefined && opts.queryMode !== null) {
+      postBody['queryMode'] = opts.queryMode
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call qpsInstance with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/instances/{instanceId}/qps',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  bps on Zone
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {} [opts.zoneName]   optional
+      * @param {} [opts.queryMode]   optional
+      * @param {} [opts.since]   optional
+      * @param {} [opts.until]   optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param simpleDateHistogram data
+      */
+
+  bpsZone (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling bpsZone"
+      )
+    }
+
+    let postBody = {}
+    if (opts.zoneName !== undefined && opts.zoneName !== null) {
+      postBody['zoneName'] = opts.zoneName
+    }
+    if (opts.queryMode !== undefined && opts.queryMode !== null) {
+      postBody['queryMode'] = opts.queryMode
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call bpsZone with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/bps',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  bps
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId
+      * @param {} [opts.queryMode]   optional
+      * @param {} [opts.since]   optional
+      * @param {} [opts.until]   optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param simpleDateHistogram data
+      */
+
+  bpsInstance (opts, callback) {
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling bpsInstance"
+      )
+    }
+
+    let postBody = {}
+    if (opts.queryMode !== undefined && opts.queryMode !== null) {
+      postBody['queryMode'] = opts.queryMode
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call bpsInstance with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/instances/{instanceId}/bps',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  活动日志.
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {} [opts.zoneName]   optional
+      * @param {} [opts.since]   optional
+      * @param {} [opts.until]   optional
+      * @param {} [opts.pageNumber]   optional
+      * @param {} [opts.pageSize]   optional
+      * @param {} [opts.filters]   optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param number total
+      * @param activityLog activityLogs
+      */
+
+  firewallActivityLog (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling firewallActivityLog"
+      )
+    }
+
+    let postBody = {}
+    if (opts.zoneName !== undefined && opts.zoneName !== null) {
+      postBody['zoneName'] = opts.zoneName
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      postBody['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+    if (opts.filters !== undefined && opts.filters !== null) {
+      postBody['filters'] = opts.filters
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call firewallActivityLog with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/analytics$$firewallActivityLog',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  访问日志.
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {} [opts.zoneName]   optional
+      * @param {} [opts.since]   optional
+      * @param {} [opts.until]   optional
+      * @param {} [opts.pageNumber]   optional
+      * @param {} [opts.pageSize]   optional
+      * @param {} [opts.filters]   optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param number total
+      * @param accessLog dataList
+      */
+
+  accessLog (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling accessLog"
+      )
+    }
+
+    let postBody = {}
+    if (opts.zoneName !== undefined && opts.zoneName !== null) {
+      postBody['zoneName'] = opts.zoneName
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      postBody['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+    if (opts.filters !== undefined && opts.filters !== null) {
+      postBody['filters'] = opts.filters
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call accessLog with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/analytics$$accessLog',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  分组统计。
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {string} opts.zoneName
+      * @param {string} opts.since
+      * @param {string} opts.until
+      * @param {string} opts.criterionName
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param item items
+      */
+
+  groupBy (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling groupBy"
+      )
+    }
+    if (opts.zoneName === undefined || opts.zoneName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zoneName' when calling groupBy"
+      )
+    }
+    if (opts.since === undefined || opts.since === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.since' when calling groupBy"
+      )
+    }
+    if (opts.until === undefined || opts.until === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.until' when calling groupBy"
+      )
+    }
+    if (opts.criterionName === undefined || opts.criterionName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.criterionName' when calling groupBy"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.zoneName !== undefined && opts.zoneName !== null) {
+      queryParams['zoneName'] = opts.zoneName
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      queryParams['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      queryParams['until'] = opts.until
+    }
+    if (opts.criterionName !== undefined && opts.criterionName !== null) {
+      queryParams['criterionName'] = opts.criterionName
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call groupBy with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/analytics$$groupBy',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
   }
 
   /**
@@ -71,7 +2513,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -174,7 +2616,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -280,7 +2722,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -416,7 +2858,7 @@ validation_method必须是&#39;txt&#39;，validity_days必须是90，cloudflare_
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -515,7 +2957,7 @@ validation_method必须是&#39;txt&#39;，validity_days必须是90，cloudflare_
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -630,7 +3072,7 @@ validation_method必须是&#39;txt&#39;，validity_days必须是90，cloudflare_
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -746,7 +3188,7 @@ validation_method必须是&#39;txt&#39;，validity_days必须是90，cloudflare_
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -874,7 +3316,7 @@ sni_custom
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -1003,7 +3445,7 @@ force：强制捆绑会验证证书链，但不以其他方式修改证书链。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -1109,7 +3551,7 @@ force：强制捆绑会验证证书链，但不以其他方式修改证书链。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -1244,7 +3686,7 @@ force：强制捆绑会验证证书链，但不以其他方式修改证书链。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -1391,7 +3833,7 @@ force：强制捆绑会验证证书链，但不以其他方式修改证书链。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -1545,7 +3987,7 @@ force：强制捆绑会验证证书链，但不以其他方式修改证书链。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -1651,7 +4093,7 @@ force：强制捆绑会验证证书链，但不以其他方式修改证书链。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -1755,7 +4197,7 @@ force：强制捆绑会验证证书链，但不以其他方式修改证书链。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -1878,7 +4320,7 @@ force：强制捆绑会验证证书链，但不以其他方式修改证书链。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -2001,7 +4443,7 @@ force：强制捆绑会验证证书链，但不以其他方式修改证书链。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -2105,7 +4547,7 @@ force：强制捆绑会验证证书链，但不以其他方式修改证书链。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -2247,7 +4689,7 @@ force：强制捆绑会验证证书链，但不以其他方式修改证书链。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -2360,7 +4802,7 @@ force：强制捆绑会验证证书链，但不以其他方式修改证书链。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -2463,7 +4905,7 @@ force：强制捆绑会验证证书链，但不以其他方式修改证书链。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -2563,7 +5005,7 @@ force：强制捆绑会验证证书链，但不以其他方式修改证书链。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -2681,7 +5123,7 @@ force：强制捆绑会验证证书链，但不以其他方式修改证书链。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -2840,7 +5282,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -2976,7 +5418,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -3104,7 +5546,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -3215,7 +5657,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -3328,7 +5770,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -3440,7 +5882,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -3513,6 +5955,3288 @@ SMB_BUSINESS 按流量 商业版
   }
 
   /**
+      *  星盾节点信息
+      * @param {Object} opts - parameters
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string jdcloudCidrs
+      */
+
+  ips (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  ips"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call ips with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/ips',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  平均峰值带宽。查询范围最近6个月、查询最大跨度1个月。
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例标识
+      * @param {} opts.queryMode - all - 所有
+normal - 业务
+mitigation - 缓解
+cache - 缓存
+origin - 回源
+
+      * @param {} opts.since - 查询开始时间
+      * @param {} opts.until - 查询结束时间
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param cdnSingleMetric data
+      */
+
+  instanceBandwidthAvg (opts, callback) {
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling instanceBandwidthAvg"
+      )
+    }
+    if (opts.queryMode === undefined || opts.queryMode === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryMode' when calling instanceBandwidthAvg"
+      )
+    }
+    if (opts.since === undefined || opts.since === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.since' when calling instanceBandwidthAvg"
+      )
+    }
+    if (opts.until === undefined || opts.until === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.until' when calling instanceBandwidthAvg"
+      )
+    }
+
+    let postBody = {}
+    if (opts.queryMode !== undefined && opts.queryMode !== null) {
+      postBody['queryMode'] = opts.queryMode
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call instanceBandwidthAvg with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/instances/{instanceId}/instanceBandwidthAvg',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  带宽峰值。查询范围最近6个月、查询最大跨度1个月。
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例标识
+      * @param {} opts.queryMode - all - 所有
+normal - 业务
+mitigation - 缓解
+cache - 缓存
+origin - 回源
+
+      * @param {} opts.since - 查询开始时间
+      * @param {} opts.until - 查询结束时间
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param cdnBandwidthMax data
+      */
+
+  instanceBandwidthMax (opts, callback) {
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling instanceBandwidthMax"
+      )
+    }
+    if (opts.queryMode === undefined || opts.queryMode === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryMode' when calling instanceBandwidthMax"
+      )
+    }
+    if (opts.since === undefined || opts.since === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.since' when calling instanceBandwidthMax"
+      )
+    }
+    if (opts.until === undefined || opts.until === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.until' when calling instanceBandwidthMax"
+      )
+    }
+
+    let postBody = {}
+    if (opts.queryMode !== undefined && opts.queryMode !== null) {
+      postBody['queryMode'] = opts.queryMode
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call instanceBandwidthMax with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/instances/{instanceId}/instanceBandwidthMax',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  95峰值带宽。查询范围最近6个月、查询最大跨度1个月。
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例标识
+      * @param {} opts.queryMode - all - 所有
+normal - 业务
+mitigation - 缓解
+cache - 缓存
+origin - 回源
+
+      * @param {} opts.since - 查询开始时间
+      * @param {} opts.until - 查询结束时间
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param cdnSingleMetric data
+      */
+
+  instanceBandwidthP95 (opts, callback) {
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling instanceBandwidthP95"
+      )
+    }
+    if (opts.queryMode === undefined || opts.queryMode === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryMode' when calling instanceBandwidthP95"
+      )
+    }
+    if (opts.since === undefined || opts.since === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.since' when calling instanceBandwidthP95"
+      )
+    }
+    if (opts.until === undefined || opts.until === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.until' when calling instanceBandwidthP95"
+      )
+    }
+
+    let postBody = {}
+    if (opts.queryMode !== undefined && opts.queryMode !== null) {
+      postBody['queryMode'] = opts.queryMode
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call instanceBandwidthP95 with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/instances/{instanceId}/instanceBandwidthP95',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  带宽图。查询范围最近6个月、查询最大跨度1个月。
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例标识
+      * @param {} opts.queryMode - all - 所有
+normal - 业务
+mitigation - 缓解
+cache - 缓存
+origin - 回源
+
+      * @param {} opts.since - 查询开始时间
+      * @param {} opts.until - 查询结束时间
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param simpleDateHistogram data
+      */
+
+  instanceBandwidthDateHistogram (opts, callback) {
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling instanceBandwidthDateHistogram"
+      )
+    }
+    if (opts.queryMode === undefined || opts.queryMode === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryMode' when calling instanceBandwidthDateHistogram"
+      )
+    }
+    if (opts.since === undefined || opts.since === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.since' when calling instanceBandwidthDateHistogram"
+      )
+    }
+    if (opts.until === undefined || opts.until === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.until' when calling instanceBandwidthDateHistogram"
+      )
+    }
+
+    let postBody = {}
+    if (opts.queryMode !== undefined && opts.queryMode !== null) {
+      postBody['queryMode'] = opts.queryMode
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call instanceBandwidthDateHistogram with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/instances/{instanceId}/instanceBandwidthDateHistogram',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  多指标的带宽图。查询范围最近6个月、查询最大跨度1个月。
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例标识
+      * @param {} opts.queryModes - all - 所有
+normal - 业务
+mitigation - 缓解
+cache - 缓存
+origin - 回源
+all/normal/mitigation/cache/origin的任意组合
+
+      * @param {} opts.since - 查询开始时间
+      * @param {} opts.until - 查询结束时间
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param dateHistogram dateHistograms
+      * @param number timeScope
+      * @param string since
+      * @param string util
+      */
+
+  instanceBandwidthMultiDateHistogram (opts, callback) {
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling instanceBandwidthMultiDateHistogram"
+      )
+    }
+    if (opts.queryModes === undefined || opts.queryModes === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryModes' when calling instanceBandwidthMultiDateHistogram"
+      )
+    }
+    if (opts.since === undefined || opts.since === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.since' when calling instanceBandwidthMultiDateHistogram"
+      )
+    }
+    if (opts.until === undefined || opts.until === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.until' when calling instanceBandwidthMultiDateHistogram"
+      )
+    }
+
+    let postBody = {}
+    if (opts.queryModes !== undefined && opts.queryModes !== null) {
+      postBody['queryModes'] = opts.queryModes
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call instanceBandwidthMultiDateHistogram with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/instances/{instanceId}/instanceBandwidthMultiDateHistogram',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  TopK域名的带宽图。查询范围最近6个月、查询最大跨度1个月。
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例标识
+      * @param {} opts.queryMode - all - 所有
+normal - 业务
+mitigation - 缓解
+cache - 缓存
+origin - 回源
+
+      * @param {} opts.since - 查询开始时间
+      * @param {} opts.until - 查询结束时间
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param dateHistogram dateHistograms
+      * @param number timeScope
+      * @param string since
+      * @param string util
+      */
+
+  bandwidthDateHistogramTopK (opts, callback) {
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling bandwidthDateHistogramTopK"
+      )
+    }
+    if (opts.queryMode === undefined || opts.queryMode === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryMode' when calling bandwidthDateHistogramTopK"
+      )
+    }
+    if (opts.since === undefined || opts.since === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.since' when calling bandwidthDateHistogramTopK"
+      )
+    }
+    if (opts.until === undefined || opts.until === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.until' when calling bandwidthDateHistogramTopK"
+      )
+    }
+
+    let postBody = {}
+    if (opts.queryMode !== undefined && opts.queryMode !== null) {
+      postBody['queryMode'] = opts.queryMode
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call bandwidthDateHistogramTopK with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/instances/{instanceId}/bandwidthDateHistogramTopK',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  按域名的TopK峰值带宽。查询范围最近6个月、查询最大跨度1个月。
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例标识
+      * @param {} opts.queryMode - all - 所有
+normal - 业务
+mitigation - 缓解
+cache - 缓存
+origin - 回源
+
+      * @param {} opts.since - 查询开始时间
+      * @param {} opts.until - 查询结束时间
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param topK data
+      */
+
+  bandwidthTopK (opts, callback) {
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling bandwidthTopK"
+      )
+    }
+    if (opts.queryMode === undefined || opts.queryMode === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryMode' when calling bandwidthTopK"
+      )
+    }
+    if (opts.since === undefined || opts.since === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.since' when calling bandwidthTopK"
+      )
+    }
+    if (opts.until === undefined || opts.until === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.until' when calling bandwidthTopK"
+      )
+    }
+
+    let postBody = {}
+    if (opts.queryMode !== undefined && opts.queryMode !== null) {
+      postBody['queryMode'] = opts.queryMode
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call bandwidthTopK with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/instances/{instanceId}/bandwidthTopK',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  域名带宽列表，按带宽降序排列。查询范围最近6个月、查询最大跨度1个月。
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例标识
+      * @param {} opts.queryMode - all - 所有
+normal - 业务
+mitigation - 缓解
+cache - 缓存
+origin - 回源
+
+      * @param {} opts.since - 查询开始时间
+      * @param {} opts.until - 查询结束时间
+      * @param {} opts.pageNumber - 页码。当页码为-1时，返回所有记录
+      * @param {} [opts.pageSize] - 每页显示记录数。当pageNumber的值大于0时，该字段必须赋值  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param number total
+      * @param cdnZoneBandwidth dataList
+      */
+
+  instanceBandwidthList (opts, callback) {
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling instanceBandwidthList"
+      )
+    }
+    if (opts.queryMode === undefined || opts.queryMode === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryMode' when calling instanceBandwidthList"
+      )
+    }
+    if (opts.since === undefined || opts.since === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.since' when calling instanceBandwidthList"
+      )
+    }
+    if (opts.until === undefined || opts.until === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.until' when calling instanceBandwidthList"
+      )
+    }
+    if (opts.pageNumber === undefined || opts.pageNumber === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.pageNumber' when calling instanceBandwidthList"
+      )
+    }
+
+    let postBody = {}
+    if (opts.queryMode !== undefined && opts.queryMode !== null) {
+      postBody['queryMode'] = opts.queryMode
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      postBody['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call instanceBandwidthList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/instances/{instanceId}/instanceBandwidthList',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  总流量。查询范围最近6个月、查询最大跨度1个月。
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例标识
+      * @param {} opts.queryMode - all - 所有
+normal - 业务
+mitigation - 缓解
+cache - 缓存
+origin - 回源
+
+      * @param {} opts.since - 查询开始时间
+      * @param {} opts.until - 查询结束时间
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param cdnSingleMetric data
+      */
+
+  instanceTrafficSum (opts, callback) {
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling instanceTrafficSum"
+      )
+    }
+    if (opts.queryMode === undefined || opts.queryMode === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryMode' when calling instanceTrafficSum"
+      )
+    }
+    if (opts.since === undefined || opts.since === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.since' when calling instanceTrafficSum"
+      )
+    }
+    if (opts.until === undefined || opts.until === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.until' when calling instanceTrafficSum"
+      )
+    }
+
+    let postBody = {}
+    if (opts.queryMode !== undefined && opts.queryMode !== null) {
+      postBody['queryMode'] = opts.queryMode
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call instanceTrafficSum with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/instances/{instanceId}/instanceTrafficSum',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  流量图。查询范围最近6个月、查询最大跨度1个月。
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例标识
+      * @param {} opts.queryMode - all - 所有
+normal - 业务
+mitigation - 缓解
+cache - 缓存
+origin - 回源
+
+      * @param {} opts.since - 查询开始时间
+      * @param {} opts.until - 查询结束时间
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param simpleDateHistogram data
+      */
+
+  instanceTrafficDateHistogram (opts, callback) {
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling instanceTrafficDateHistogram"
+      )
+    }
+    if (opts.queryMode === undefined || opts.queryMode === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryMode' when calling instanceTrafficDateHistogram"
+      )
+    }
+    if (opts.since === undefined || opts.since === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.since' when calling instanceTrafficDateHistogram"
+      )
+    }
+    if (opts.until === undefined || opts.until === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.until' when calling instanceTrafficDateHistogram"
+      )
+    }
+
+    let postBody = {}
+    if (opts.queryMode !== undefined && opts.queryMode !== null) {
+      postBody['queryMode'] = opts.queryMode
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call instanceTrafficDateHistogram with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/instances/{instanceId}/instanceTrafficDateHistogram',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  多指标的流量图。查询范围最近6个月、查询最大跨度1个月。
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例标识
+      * @param {} opts.queryModes - all - 所有
+normal - 业务
+mitigation - 缓解
+cache - 缓存
+origin - 回源
+all/normal/mitigation/cache/origin的任意组合
+
+      * @param {} opts.since - 查询开始时间
+      * @param {} opts.until - 查询结束时间
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param dateHistogram dateHistograms
+      * @param number timeScope
+      * @param string since
+      * @param string util
+      */
+
+  instanceTrafficMultiDateHistogram (opts, callback) {
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling instanceTrafficMultiDateHistogram"
+      )
+    }
+    if (opts.queryModes === undefined || opts.queryModes === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryModes' when calling instanceTrafficMultiDateHistogram"
+      )
+    }
+    if (opts.since === undefined || opts.since === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.since' when calling instanceTrafficMultiDateHistogram"
+      )
+    }
+    if (opts.until === undefined || opts.until === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.until' when calling instanceTrafficMultiDateHistogram"
+      )
+    }
+
+    let postBody = {}
+    if (opts.queryModes !== undefined && opts.queryModes !== null) {
+      postBody['queryModes'] = opts.queryModes
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call instanceTrafficMultiDateHistogram with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/instances/{instanceId}/instanceTrafficMultiDateHistogram',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  TopK域名的流量图。查询范围最近6个月、查询最大跨度1个月。
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例标识
+      * @param {} opts.queryMode - all - 所有
+normal - 业务
+mitigation - 缓解
+cache - 缓存
+origin - 回源
+
+      * @param {} opts.since - 查询开始时间
+      * @param {} opts.until - 查询结束时间
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param dateHistogram dateHistograms
+      * @param number timeScope
+      * @param string since
+      * @param string util
+      */
+
+  trafficDateHistogramTopK (opts, callback) {
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling trafficDateHistogramTopK"
+      )
+    }
+    if (opts.queryMode === undefined || opts.queryMode === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryMode' when calling trafficDateHistogramTopK"
+      )
+    }
+    if (opts.since === undefined || opts.since === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.since' when calling trafficDateHistogramTopK"
+      )
+    }
+    if (opts.until === undefined || opts.until === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.until' when calling trafficDateHistogramTopK"
+      )
+    }
+
+    let postBody = {}
+    if (opts.queryMode !== undefined && opts.queryMode !== null) {
+      postBody['queryMode'] = opts.queryMode
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call trafficDateHistogramTopK with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/instances/{instanceId}/trafficDateHistogramTopK',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  按域名的TopK总流量。查询范围最近6个月、查询最大跨度1个月。
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例标识
+      * @param {} opts.queryMode - all - 所有
+normal - 业务
+mitigation - 缓解
+cache - 缓存
+origin - 回源
+
+      * @param {} opts.since - 查询开始时间
+      * @param {} opts.until - 查询结束时间
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param topK data
+      */
+
+  trafficTopK (opts, callback) {
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling trafficTopK"
+      )
+    }
+    if (opts.queryMode === undefined || opts.queryMode === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryMode' when calling trafficTopK"
+      )
+    }
+    if (opts.since === undefined || opts.since === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.since' when calling trafficTopK"
+      )
+    }
+    if (opts.until === undefined || opts.until === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.until' when calling trafficTopK"
+      )
+    }
+
+    let postBody = {}
+    if (opts.queryMode !== undefined && opts.queryMode !== null) {
+      postBody['queryMode'] = opts.queryMode
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call trafficTopK with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/instances/{instanceId}/trafficTopK',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  总请求量。查询范围最近6个月、查询最大跨度1个月。
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例标识
+      * @param {} opts.queryMode - all - 所有
+normal - 业务
+mitigation - 缓解
+cache - 缓存
+origin - 回源
+
+      * @param {} opts.since - 查询开始时间
+      * @param {} opts.until - 查询结束时间
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param cdnSingleMetric data
+      */
+
+  instanceRequestSum (opts, callback) {
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling instanceRequestSum"
+      )
+    }
+    if (opts.queryMode === undefined || opts.queryMode === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryMode' when calling instanceRequestSum"
+      )
+    }
+    if (opts.since === undefined || opts.since === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.since' when calling instanceRequestSum"
+      )
+    }
+    if (opts.until === undefined || opts.until === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.until' when calling instanceRequestSum"
+      )
+    }
+
+    let postBody = {}
+    if (opts.queryMode !== undefined && opts.queryMode !== null) {
+      postBody['queryMode'] = opts.queryMode
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call instanceRequestSum with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/instances/{instanceId}/instanceRequestSum',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  请求量图。查询范围最近6个月、查询最大跨度1个月。
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例标识
+      * @param {} opts.queryMode - all - 所有
+normal - 业务
+mitigation - 缓解
+cache - 缓存
+origin - 回源
+
+      * @param {} opts.since - 查询开始时间
+      * @param {} opts.until - 查询结束时间
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param simpleDateHistogram data
+      */
+
+  instanceRequestDateHistogram (opts, callback) {
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling instanceRequestDateHistogram"
+      )
+    }
+    if (opts.queryMode === undefined || opts.queryMode === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryMode' when calling instanceRequestDateHistogram"
+      )
+    }
+    if (opts.since === undefined || opts.since === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.since' when calling instanceRequestDateHistogram"
+      )
+    }
+    if (opts.until === undefined || opts.until === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.until' when calling instanceRequestDateHistogram"
+      )
+    }
+
+    let postBody = {}
+    if (opts.queryMode !== undefined && opts.queryMode !== null) {
+      postBody['queryMode'] = opts.queryMode
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call instanceRequestDateHistogram with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/instances/{instanceId}/instanceRequestDateHistogram',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  多指标的请求量图。查询范围最近6个月、查询最大跨度1个月。
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例标识
+      * @param {} opts.queryModes - all - 所有
+normal - 业务
+mitigation - 缓解
+cache - 缓存
+origin - 回源
+all/normal/mitigation/cache/origin的任意组合
+
+      * @param {} opts.since - 查询开始时间
+      * @param {} opts.until - 查询结束时间
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param dateHistogram dateHistograms
+      * @param number timeScope
+      * @param string since
+      * @param string util
+      */
+
+  instanceRequestMultiDateHistogram (opts, callback) {
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling instanceRequestMultiDateHistogram"
+      )
+    }
+    if (opts.queryModes === undefined || opts.queryModes === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryModes' when calling instanceRequestMultiDateHistogram"
+      )
+    }
+    if (opts.since === undefined || opts.since === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.since' when calling instanceRequestMultiDateHistogram"
+      )
+    }
+    if (opts.until === undefined || opts.until === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.until' when calling instanceRequestMultiDateHistogram"
+      )
+    }
+
+    let postBody = {}
+    if (opts.queryModes !== undefined && opts.queryModes !== null) {
+      postBody['queryModes'] = opts.queryModes
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call instanceRequestMultiDateHistogram with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/instances/{instanceId}/instanceRequestMultiDateHistogram',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  TopK域名的请求量图。查询范围最近6个月、查询最大跨度1个月。
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例标识
+      * @param {} opts.queryMode - all - 所有
+normal - 业务
+mitigation - 缓解
+cache - 缓存
+origin - 回源
+
+      * @param {} opts.since - 查询开始时间
+      * @param {} opts.until - 查询结束时间
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param dateHistogram dateHistograms
+      * @param number timeScope
+      * @param string since
+      * @param string util
+      */
+
+  requestDateHistogramTopK (opts, callback) {
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling requestDateHistogramTopK"
+      )
+    }
+    if (opts.queryMode === undefined || opts.queryMode === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryMode' when calling requestDateHistogramTopK"
+      )
+    }
+    if (opts.since === undefined || opts.since === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.since' when calling requestDateHistogramTopK"
+      )
+    }
+    if (opts.until === undefined || opts.until === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.until' when calling requestDateHistogramTopK"
+      )
+    }
+
+    let postBody = {}
+    if (opts.queryMode !== undefined && opts.queryMode !== null) {
+      postBody['queryMode'] = opts.queryMode
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call requestDateHistogramTopK with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/instances/{instanceId}/requestDateHistogramTopK',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  按域名的TopK总请求量。查询范围最近6个月、查询最大跨度1个月。
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例标识
+      * @param {} opts.queryMode - all - 所有
+normal - 业务
+mitigation - 缓解
+cache - 缓存
+origin - 回源
+
+      * @param {} opts.since - 查询开始时间
+      * @param {} opts.until - 查询结束时间
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param topK data
+      */
+
+  requestTopK (opts, callback) {
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling requestTopK"
+      )
+    }
+    if (opts.queryMode === undefined || opts.queryMode === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryMode' when calling requestTopK"
+      )
+    }
+    if (opts.since === undefined || opts.since === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.since' when calling requestTopK"
+      )
+    }
+    if (opts.until === undefined || opts.until === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.until' when calling requestTopK"
+      )
+    }
+
+    let postBody = {}
+    if (opts.queryMode !== undefined && opts.queryMode !== null) {
+      postBody['queryMode'] = opts.queryMode
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call requestTopK with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/instances/{instanceId}/requestTopK',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  列出域的日志推送作业
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param logpushJob dataList
+      */
+
+  listLogpushJobs (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling listLogpushJobs"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call listLogpushJobs with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/logpush$$jobs',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  为域创建新的日志推送作业
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {} [opts.zone_name] - 域名  optional
+      * @param {} [opts.destination_conf] - 唯一标识数据推送目的地的字符串。可能包括目的地支持的其他参数。
+例如：splunk://splunk.cf-analytics.com:8088/services/collector/raw?channel&#x3D;xxx&amp;header_Authorization&#x3D;Splunk xxx&amp;sourcetype&#x3D;xxx&amp;insecure-skip-verify&#x3D;false
+  optional
+      * @param {} [opts.name] - 可选的用户可读的作业名称。不是独一无二的。使用户更容易识别工作。建议包含域名称。  optional
+      * @param {} [opts.enabled] - 默认值false  optional
+      * @param {} [opts.dataset] - 要推送的数据集。合法值为：http/firewall。  optional
+      * @param {} [opts.logpull_options] - 它指定了诸如请求的字段和时间戳格式之类的内容。例如：fields&#x3D;fieldName1,fieldName2,fileNamek&amp;timestamps&#x3D;rfc3339&amp;sample&#x3D;0.1  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param logpushJob data
+      */
+
+  createLogpushJob (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling createLogpushJob"
+      )
+    }
+
+    let postBody = {}
+    if (opts.zone_name !== undefined && opts.zone_name !== null) {
+      postBody['zone_name'] = opts.zone_name
+    }
+    if (opts.destination_conf !== undefined && opts.destination_conf !== null) {
+      postBody['destination_conf'] = opts.destination_conf
+    }
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.enabled !== undefined && opts.enabled !== null) {
+      postBody['enabled'] = opts.enabled
+    }
+    if (opts.dataset !== undefined && opts.dataset !== null) {
+      postBody['dataset'] = opts.dataset
+    }
+    if (opts.logpull_options !== undefined && opts.logpull_options !== null) {
+      postBody['logpull_options'] = opts.logpull_options
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createLogpushJob with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/logpush$$jobs',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  数据集可用的所有字段的列表。
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {string} opts.dataset
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param logModule dataList
+      */
+
+  fields (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling fields"
+      )
+    }
+    if (opts.dataset === undefined || opts.dataset === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.dataset' when calling fields"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier,
+      dataset: opts.dataset
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call fields with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/logpush$$datasets/{dataset}/fields',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  数据集可用的所有默认字段列表。
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {string} opts.dataset
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param logModule dataList
+      */
+
+  fieldsDefault (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling fieldsDefault"
+      )
+    }
+    if (opts.dataset === undefined || opts.dataset === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.dataset' when calling fieldsDefault"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier,
+      dataset: opts.dataset
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call fieldsDefault with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/logpush$$datasets/{dataset}/fieldsDefault',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新日志推送作业
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {string} opts.job_identifier
+      * @param {} [opts.enabled]   optional
+      * @param {} [opts.logpull_options] - 它指定了诸如请求的字段和时间戳格式之类的内容。例如：fields&#x3D;fieldName1,fieldName2,fileNamek&amp;timestamps&#x3D;rfc3339&amp;sample&#x3D;0.1  optional
+      * @param {} [opts.destination_conf] - 唯一标识数据推送目的地的字符串。可能包括目的地支持的其他参数。  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param logpushJob data
+      */
+
+  updateLogpushJob (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling updateLogpushJob"
+      )
+    }
+    if (opts.job_identifier === undefined || opts.job_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.job_identifier' when calling updateLogpushJob"
+      )
+    }
+
+    let postBody = {}
+    if (opts.enabled !== undefined && opts.enabled !== null) {
+      postBody['enabled'] = opts.enabled
+    }
+    if (opts.logpull_options !== undefined && opts.logpull_options !== null) {
+      postBody['logpull_options'] = opts.logpull_options
+    }
+    if (opts.destination_conf !== undefined && opts.destination_conf !== null) {
+      postBody['destination_conf'] = opts.destination_conf
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier,
+      job_identifier: opts.job_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call updateLogpushJob with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/logpush$$jobs/{job_identifier}',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除日志推送作业
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {string} opts.job_identifier
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param logpushJob data
+      */
+
+  deleteLogpushJob (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling deleteLogpushJob"
+      )
+    }
+    if (opts.job_identifier === undefined || opts.job_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.job_identifier' when calling deleteLogpushJob"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier,
+      job_identifier: opts.job_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteLogpushJob with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/logpush$$jobs/{job_identifier}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  检查是否存在作业，处理该目标。
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier
+      * @param {} [opts.destination_conf] - 唯一标识数据推送目的地的字符串。可能包括目的地支持的其他参数。
+例如：splunk://splunk.cf-analytics.com:8088/services/collector/raw?channel&#x3D;xxx&amp;header_Authorization&#x3D;Splunk xxx&amp;sourcetype&#x3D;xxx&amp;insecure-skip-verify&#x3D;false
+  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean data
+      */
+
+  checkDestinationExists (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling checkDestinationExists"
+      )
+    }
+
+    let postBody = {}
+    if (opts.destination_conf !== undefined && opts.destination_conf !== null) {
+      postBody['destination_conf'] = opts.destination_conf
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call checkDestinationExists with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/logpush$$validate$$destination$$exists',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  套餐包列表查询
       * @param {Object} opts - parameters
       * @param {integer} [opts.pageSize] - 页容量，默认10, 范围（1-100）  optional
@@ -3554,7 +9278,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -3665,7 +9389,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -3780,7 +9504,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -3900,7 +9624,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -4027,7 +9751,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -4133,7 +9857,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -4232,7 +9956,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -4345,7 +10069,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -4486,7 +10210,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -4602,7 +10326,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -4723,7 +10447,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -4846,7 +10570,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -4952,7 +10676,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -5067,7 +10791,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -5209,7 +10933,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -5254,6 +10978,1800 @@ SMB_BUSINESS 按流量 商业版
     let request = super.makeRequest(
       '/zones/{zone_id}/firewall$$waf$$packages/{package_id}/rules',
       'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  Individual information about a rule
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_id
+      * @param {string} opts.package_id
+      * @param {string} opts.identifier
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param wAFRule data
+      */
+
+  ruleDetails (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_id === undefined || opts.zone_id === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_id' when calling ruleDetails"
+      )
+    }
+    if (opts.package_id === undefined || opts.package_id === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.package_id' when calling ruleDetails"
+      )
+    }
+    if (opts.identifier === undefined || opts.identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.identifier' when calling ruleDetails"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_id: opts.zone_id,
+      package_id: opts.package_id,
+      identifier: opts.identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call ruleDetails with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_id}/firewall$$waf$$packages/{package_id}/rules/{identifier}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新规则在域上触发时将执行的操作
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_id
+      * @param {string} opts.package_id
+      * @param {string} opts.identifier
+      * @param {} [opts.mode] - 触发规则时使用的模式。值基于规则的allowed_modes进行限制。有效值default/disable/simulate/block/challenge/on/off  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param wAFRule data
+      */
+
+  editRule (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_id === undefined || opts.zone_id === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_id' when calling editRule"
+      )
+    }
+    if (opts.package_id === undefined || opts.package_id === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.package_id' when calling editRule"
+      )
+    }
+    if (opts.identifier === undefined || opts.identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.identifier' when calling editRule"
+      )
+    }
+
+    let postBody = {}
+    if (opts.mode !== undefined && opts.mode !== null) {
+      postBody['mode'] = opts.mode
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_id: opts.zone_id,
+      package_id: opts.package_id,
+      identifier: opts.identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call editRule with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_id}/firewall$$waf$$packages/{package_id}/rules/{identifier}',
+      'PATCH',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  平均峰值带宽。查询范围最近6个月、查询最大跨度1个月。
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier - 域名标识
+      * @param {} opts.queryMode - all - 所有
+normal - 业务
+mitigation - 缓解
+cache - 缓存
+origin - 回源
+
+      * @param {} opts.zoneName - 域名
+      * @param {} opts.since - 开始时间
+      * @param {} opts.until - 结束时间
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param cdnSingleMetric data
+      */
+
+  zoneBandwidthAvg (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling zoneBandwidthAvg"
+      )
+    }
+    if (opts.queryMode === undefined || opts.queryMode === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryMode' when calling zoneBandwidthAvg"
+      )
+    }
+    if (opts.zoneName === undefined || opts.zoneName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zoneName' when calling zoneBandwidthAvg"
+      )
+    }
+    if (opts.since === undefined || opts.since === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.since' when calling zoneBandwidthAvg"
+      )
+    }
+    if (opts.until === undefined || opts.until === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.until' when calling zoneBandwidthAvg"
+      )
+    }
+
+    let postBody = {}
+    if (opts.queryMode !== undefined && opts.queryMode !== null) {
+      postBody['queryMode'] = opts.queryMode
+    }
+    if (opts.zoneName !== undefined && opts.zoneName !== null) {
+      postBody['zoneName'] = opts.zoneName
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call zoneBandwidthAvg with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/zoneBandwidthAvg',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  带宽峰值。查询范围最近6个月、查询最大跨度1个月。
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier - 域名标识
+      * @param {} opts.queryMode - all - 所有
+normal - 业务
+mitigation - 缓解
+cache - 缓存
+origin - 回源
+
+      * @param {} opts.zoneName - 域名
+      * @param {} opts.since - 开始时间
+      * @param {} opts.until - 结束时间
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param cdnBandwidthMax data
+      */
+
+  zoneBandwidthMax (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling zoneBandwidthMax"
+      )
+    }
+    if (opts.queryMode === undefined || opts.queryMode === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryMode' when calling zoneBandwidthMax"
+      )
+    }
+    if (opts.zoneName === undefined || opts.zoneName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zoneName' when calling zoneBandwidthMax"
+      )
+    }
+    if (opts.since === undefined || opts.since === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.since' when calling zoneBandwidthMax"
+      )
+    }
+    if (opts.until === undefined || opts.until === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.until' when calling zoneBandwidthMax"
+      )
+    }
+
+    let postBody = {}
+    if (opts.queryMode !== undefined && opts.queryMode !== null) {
+      postBody['queryMode'] = opts.queryMode
+    }
+    if (opts.zoneName !== undefined && opts.zoneName !== null) {
+      postBody['zoneName'] = opts.zoneName
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call zoneBandwidthMax with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/zoneBandwidthMax',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  95峰值带宽。查询范围最近6个月、查询最大跨度1个月。
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier - 域名标识
+      * @param {} opts.queryMode - all - 所有
+normal - 业务
+mitigation - 缓解
+cache - 缓存
+origin - 回源
+
+      * @param {} opts.zoneName - 域名
+      * @param {} opts.since - 开始时间
+      * @param {} opts.until - 结束时间
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param cdnSingleMetric data
+      */
+
+  zoneBandwidthP95 (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling zoneBandwidthP95"
+      )
+    }
+    if (opts.queryMode === undefined || opts.queryMode === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryMode' when calling zoneBandwidthP95"
+      )
+    }
+    if (opts.zoneName === undefined || opts.zoneName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zoneName' when calling zoneBandwidthP95"
+      )
+    }
+    if (opts.since === undefined || opts.since === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.since' when calling zoneBandwidthP95"
+      )
+    }
+    if (opts.until === undefined || opts.until === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.until' when calling zoneBandwidthP95"
+      )
+    }
+
+    let postBody = {}
+    if (opts.queryMode !== undefined && opts.queryMode !== null) {
+      postBody['queryMode'] = opts.queryMode
+    }
+    if (opts.zoneName !== undefined && opts.zoneName !== null) {
+      postBody['zoneName'] = opts.zoneName
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call zoneBandwidthP95 with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/zoneBandwidthP95',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  带宽图。查询范围最近6个月、查询最大跨度1个月。
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier - 域名标识
+      * @param {} opts.queryMode - all - 所有
+normal - 业务
+mitigation - 缓解
+cache - 缓存
+origin - 回源
+
+      * @param {} opts.zoneName - 域名
+      * @param {} opts.since - 开始时间
+      * @param {} opts.until - 结束时间
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param simpleDateHistogram data
+      */
+
+  zoneBandwidthDateHistogram (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling zoneBandwidthDateHistogram"
+      )
+    }
+    if (opts.queryMode === undefined || opts.queryMode === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryMode' when calling zoneBandwidthDateHistogram"
+      )
+    }
+    if (opts.zoneName === undefined || opts.zoneName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zoneName' when calling zoneBandwidthDateHistogram"
+      )
+    }
+    if (opts.since === undefined || opts.since === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.since' when calling zoneBandwidthDateHistogram"
+      )
+    }
+    if (opts.until === undefined || opts.until === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.until' when calling zoneBandwidthDateHistogram"
+      )
+    }
+
+    let postBody = {}
+    if (opts.queryMode !== undefined && opts.queryMode !== null) {
+      postBody['queryMode'] = opts.queryMode
+    }
+    if (opts.zoneName !== undefined && opts.zoneName !== null) {
+      postBody['zoneName'] = opts.zoneName
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call zoneBandwidthDateHistogram with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/zoneBandwidthDateHistogram',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  多指标的带宽图。查询范围最近6个月、查询最大跨度1个月。
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier - 域名标识
+      * @param {} opts.queryModes - all - 所有
+normal - 业务
+mitigation - 缓解
+cache - 缓存
+origin - 回源
+all/normal/mitigation/cache/origin的任意组合
+
+      * @param {} opts.zoneName - 域名
+      * @param {} opts.since - 开始时间
+      * @param {} opts.until - 结束时间
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param dateHistogram dateHistograms
+      * @param number timeScope
+      * @param string since
+      * @param string util
+      */
+
+  zoneBandwidthMultiDateHistogram (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling zoneBandwidthMultiDateHistogram"
+      )
+    }
+    if (opts.queryModes === undefined || opts.queryModes === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryModes' when calling zoneBandwidthMultiDateHistogram"
+      )
+    }
+    if (opts.zoneName === undefined || opts.zoneName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zoneName' when calling zoneBandwidthMultiDateHistogram"
+      )
+    }
+    if (opts.since === undefined || opts.since === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.since' when calling zoneBandwidthMultiDateHistogram"
+      )
+    }
+    if (opts.until === undefined || opts.until === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.until' when calling zoneBandwidthMultiDateHistogram"
+      )
+    }
+
+    let postBody = {}
+    if (opts.queryModes !== undefined && opts.queryModes !== null) {
+      postBody['queryModes'] = opts.queryModes
+    }
+    if (opts.zoneName !== undefined && opts.zoneName !== null) {
+      postBody['zoneName'] = opts.zoneName
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call zoneBandwidthMultiDateHistogram with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/zoneBandwidthMultiDateHistogram',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  总流量。查询范围最近6个月、查询最大跨度1个月。
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier - 域名标识
+      * @param {} opts.queryMode - all - 所有
+normal - 业务
+mitigation - 缓解
+cache - 缓存
+origin - 回源
+
+      * @param {} opts.zoneName - 域名
+      * @param {} opts.since - 开始时间
+      * @param {} opts.until - 结束时间
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param cdnSingleMetric data
+      */
+
+  zoneTrafficSum (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling zoneTrafficSum"
+      )
+    }
+    if (opts.queryMode === undefined || opts.queryMode === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryMode' when calling zoneTrafficSum"
+      )
+    }
+    if (opts.zoneName === undefined || opts.zoneName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zoneName' when calling zoneTrafficSum"
+      )
+    }
+    if (opts.since === undefined || opts.since === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.since' when calling zoneTrafficSum"
+      )
+    }
+    if (opts.until === undefined || opts.until === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.until' when calling zoneTrafficSum"
+      )
+    }
+
+    let postBody = {}
+    if (opts.queryMode !== undefined && opts.queryMode !== null) {
+      postBody['queryMode'] = opts.queryMode
+    }
+    if (opts.zoneName !== undefined && opts.zoneName !== null) {
+      postBody['zoneName'] = opts.zoneName
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call zoneTrafficSum with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/zoneTrafficSum',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  流量图。查询范围最近6个月、查询最大跨度1个月。
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier - 域名标识
+      * @param {} opts.queryMode - all - 所有
+normal - 业务
+mitigation - 缓解
+cache - 缓存
+origin - 回源
+
+      * @param {} opts.zoneName - 域名
+      * @param {} opts.since - 开始时间
+      * @param {} opts.until - 结束时间
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param simpleDateHistogram data
+      */
+
+  zoneTrafficDateHistogram (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling zoneTrafficDateHistogram"
+      )
+    }
+    if (opts.queryMode === undefined || opts.queryMode === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryMode' when calling zoneTrafficDateHistogram"
+      )
+    }
+    if (opts.zoneName === undefined || opts.zoneName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zoneName' when calling zoneTrafficDateHistogram"
+      )
+    }
+    if (opts.since === undefined || opts.since === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.since' when calling zoneTrafficDateHistogram"
+      )
+    }
+    if (opts.until === undefined || opts.until === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.until' when calling zoneTrafficDateHistogram"
+      )
+    }
+
+    let postBody = {}
+    if (opts.queryMode !== undefined && opts.queryMode !== null) {
+      postBody['queryMode'] = opts.queryMode
+    }
+    if (opts.zoneName !== undefined && opts.zoneName !== null) {
+      postBody['zoneName'] = opts.zoneName
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call zoneTrafficDateHistogram with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/zoneTrafficDateHistogram',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  多指标的流量图。查询范围最近6个月、查询最大跨度1个月。
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier - 域名标识
+      * @param {} opts.queryModes - all - 所有
+normal - 业务
+mitigation - 缓解
+cache - 缓存
+origin - 回源
+all/normal/mitigation/cache/origin的任意组合
+
+      * @param {} opts.zoneName - 域名
+      * @param {} opts.since - 开始时间
+      * @param {} opts.until - 结束时间
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param dateHistogram dateHistograms
+      * @param number timeScope
+      * @param string since
+      * @param string util
+      */
+
+  zoneTrafficMultiDateHistogram (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling zoneTrafficMultiDateHistogram"
+      )
+    }
+    if (opts.queryModes === undefined || opts.queryModes === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryModes' when calling zoneTrafficMultiDateHistogram"
+      )
+    }
+    if (opts.zoneName === undefined || opts.zoneName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zoneName' when calling zoneTrafficMultiDateHistogram"
+      )
+    }
+    if (opts.since === undefined || opts.since === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.since' when calling zoneTrafficMultiDateHistogram"
+      )
+    }
+    if (opts.until === undefined || opts.until === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.until' when calling zoneTrafficMultiDateHistogram"
+      )
+    }
+
+    let postBody = {}
+    if (opts.queryModes !== undefined && opts.queryModes !== null) {
+      postBody['queryModes'] = opts.queryModes
+    }
+    if (opts.zoneName !== undefined && opts.zoneName !== null) {
+      postBody['zoneName'] = opts.zoneName
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call zoneTrafficMultiDateHistogram with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/zoneTrafficMultiDateHistogram',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  总请求量。查询范围最近6个月、查询最大跨度1个月。
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier - 域名标识
+      * @param {} opts.queryMode - all - 所有
+normal - 业务
+mitigation - 缓解
+cache - 缓存
+origin - 回源
+
+      * @param {} opts.zoneName - 域名
+      * @param {} opts.since - 开始时间
+      * @param {} opts.until - 结束时间
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param cdnSingleMetric data
+      */
+
+  zoneRequestSum (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling zoneRequestSum"
+      )
+    }
+    if (opts.queryMode === undefined || opts.queryMode === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryMode' when calling zoneRequestSum"
+      )
+    }
+    if (opts.zoneName === undefined || opts.zoneName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zoneName' when calling zoneRequestSum"
+      )
+    }
+    if (opts.since === undefined || opts.since === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.since' when calling zoneRequestSum"
+      )
+    }
+    if (opts.until === undefined || opts.until === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.until' when calling zoneRequestSum"
+      )
+    }
+
+    let postBody = {}
+    if (opts.queryMode !== undefined && opts.queryMode !== null) {
+      postBody['queryMode'] = opts.queryMode
+    }
+    if (opts.zoneName !== undefined && opts.zoneName !== null) {
+      postBody['zoneName'] = opts.zoneName
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call zoneRequestSum with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/zoneRequestSum',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  请求量图。查询范围最近6个月、查询最大跨度1个月。
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier - 域名标识
+      * @param {} opts.queryMode - all - 所有
+normal - 业务
+mitigation - 缓解
+cache - 缓存
+origin - 回源
+
+      * @param {} opts.zoneName - 域名
+      * @param {} opts.since - 开始时间
+      * @param {} opts.until - 结束时间
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param simpleDateHistogram data
+      */
+
+  zoneRequestDateHistogram (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling zoneRequestDateHistogram"
+      )
+    }
+    if (opts.queryMode === undefined || opts.queryMode === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryMode' when calling zoneRequestDateHistogram"
+      )
+    }
+    if (opts.zoneName === undefined || opts.zoneName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zoneName' when calling zoneRequestDateHistogram"
+      )
+    }
+    if (opts.since === undefined || opts.since === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.since' when calling zoneRequestDateHistogram"
+      )
+    }
+    if (opts.until === undefined || opts.until === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.until' when calling zoneRequestDateHistogram"
+      )
+    }
+
+    let postBody = {}
+    if (opts.queryMode !== undefined && opts.queryMode !== null) {
+      postBody['queryMode'] = opts.queryMode
+    }
+    if (opts.zoneName !== undefined && opts.zoneName !== null) {
+      postBody['zoneName'] = opts.zoneName
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call zoneRequestDateHistogram with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/zoneRequestDateHistogram',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  多指标的请求量图。查询范围最近6个月、查询最大跨度1个月。
+      * @param {Object} opts - parameters
+      * @param {string} opts.zone_identifier - 域名标识
+      * @param {} opts.queryModes - all - 所有
+normal - 业务
+mitigation - 缓解
+cache - 缓存
+origin - 回源
+all/normal/mitigation/cache/origin的任意组合
+
+      * @param {} opts.zoneName - 域名
+      * @param {} opts.since - 开始时间
+      * @param {} opts.until - 结束时间
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param dateHistogram dateHistograms
+      * @param number timeScope
+      * @param string since
+      * @param string util
+      */
+
+  zoneRequestMultiDateHistogram (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zone_identifier === undefined || opts.zone_identifier === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zone_identifier' when calling zoneRequestMultiDateHistogram"
+      )
+    }
+    if (opts.queryModes === undefined || opts.queryModes === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryModes' when calling zoneRequestMultiDateHistogram"
+      )
+    }
+    if (opts.zoneName === undefined || opts.zoneName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zoneName' when calling zoneRequestMultiDateHistogram"
+      )
+    }
+    if (opts.since === undefined || opts.since === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.since' when calling zoneRequestMultiDateHistogram"
+      )
+    }
+    if (opts.until === undefined || opts.until === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.until' when calling zoneRequestMultiDateHistogram"
+      )
+    }
+
+    let postBody = {}
+    if (opts.queryModes !== undefined && opts.queryModes !== null) {
+      postBody['queryModes'] = opts.queryModes
+    }
+    if (opts.zoneName !== undefined && opts.zoneName !== null) {
+      postBody['zoneName'] = opts.zoneName
+    }
+    if (opts.since !== undefined && opts.since !== null) {
+      postBody['since'] = opts.since
+    }
+    if (opts.until !== undefined && opts.until !== null) {
+      postBody['until'] = opts.until
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zone_identifier: opts.zone_identifier
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call zoneRequestMultiDateHistogram with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/zones/{zone_identifier}/zoneRequestMultiDateHistogram',
+      'POST',
       pathParams,
       queryParams,
       headerParams,
@@ -5336,7 +12854,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -5455,7 +12973,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -5554,7 +13072,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -5665,7 +13183,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -5773,7 +13291,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -5890,7 +13408,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -5989,7 +13507,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -6092,7 +13610,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -6192,7 +13710,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -6291,7 +13809,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -6395,7 +13913,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -6495,7 +14013,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -6600,7 +14118,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -6699,7 +14217,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -6803,7 +14321,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -6903,7 +14421,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -7008,7 +14526,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -7108,7 +14626,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -7213,7 +14731,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -7321,7 +14839,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -7421,7 +14939,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -7526,7 +15044,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -7627,7 +15145,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -7733,7 +15251,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -7832,7 +15350,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -7936,7 +15454,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -8037,7 +15555,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -8143,7 +15661,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -8242,7 +15760,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -8346,7 +15864,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -8445,7 +15963,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -8549,7 +16067,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -8648,7 +16166,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -8752,7 +16270,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -8851,7 +16369,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -8955,7 +16473,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -9054,7 +16572,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -9158,7 +16676,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -9258,7 +16776,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -9363,7 +16881,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -9462,7 +16980,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -9566,7 +17084,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -9670,7 +17188,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -9779,7 +17297,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -9879,7 +17397,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -9984,7 +17502,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -10088,7 +17606,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -10187,7 +17705,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -10291,7 +17809,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -10391,7 +17909,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -10496,7 +18014,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -10598,7 +18116,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -10705,7 +18223,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -10804,7 +18322,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -10904,7 +18422,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -11009,7 +18527,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -11113,7 +18631,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -11222,7 +18740,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -11322,7 +18840,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -11427,7 +18945,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -11533,7 +19051,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -11644,7 +19162,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -11743,7 +19261,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -11847,7 +19365,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -11946,7 +19464,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -12050,7 +19568,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -12149,7 +19667,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -12253,7 +19771,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -12352,7 +19870,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -12456,7 +19974,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -12555,7 +20073,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -12659,7 +20177,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -12761,7 +20279,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -12868,7 +20386,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -12967,7 +20485,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -13071,7 +20589,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -13170,7 +20688,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -13274,7 +20792,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -13373,7 +20891,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -13477,7 +20995,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -13576,7 +21094,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -13680,7 +21198,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -13781,7 +21299,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -13887,7 +21405,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -13986,7 +21504,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -14086,7 +21604,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -14191,7 +21709,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -14295,7 +21813,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
     }
 
     let contentTypes = ['application/json']

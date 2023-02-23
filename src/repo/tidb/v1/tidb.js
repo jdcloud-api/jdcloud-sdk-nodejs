@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * tidb service.
- * @version 1.0.4
+ * @version 1.0.6
  */
 
 class TIDB extends Service {
@@ -85,7 +85,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -214,7 +214,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -341,7 +341,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -463,7 +463,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -586,7 +586,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -696,7 +696,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -804,7 +804,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -907,7 +907,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -1022,7 +1022,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -1133,7 +1133,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -1243,7 +1243,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -1320,14 +1320,14 @@ class TIDB extends Service {
       * @param {Object} opts - parameters
       * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页;  optional
       * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为100，取值范围：[10,100]，用于查询列表的接口  optional
-      * @param {array} [opts.filters] - 过滤参数，多个过滤参数之间的关系为“与”(and)
+      * @param {filter} [opts.filters] - 过滤参数，多个过滤参数之间的关系为“与”(and)
 支持以下属性的过滤：
 instanceId, 支持operator选项：eq,ne
 instanceName, 支持operator选项：eq,ne,like
 instanceStatus, 支持operator选项：eq,ne
   optional
-      * @param {array} [opts.tagFilters] - 资源标签  optional
-      * @param {array} [opts.resourceGroupIds] - 资源组id  optional
+      * @param {tagFilter} [opts.tagFilters] - 资源标签  optional
+      * @param {string} [opts.resourceGroupIds] - 资源组id  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1349,31 +1349,30 @@ instanceStatus, 支持operator选项：eq,ne
 
     opts = opts || {}
 
-    let postBody = {}
+    let postBody = null
+    let queryParams = {}
     if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
-      postBody['pageNumber'] = opts.pageNumber
+      queryParams['pageNumber'] = opts.pageNumber
     }
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
-      postBody['pageSize'] = opts.pageSize
+      queryParams['pageSize'] = opts.pageSize
     }
-    if (opts.filters !== undefined && opts.filters !== null) {
-      postBody['filters'] = opts.filters
-    }
-    if (opts.tagFilters !== undefined && opts.tagFilters !== null) {
-      postBody['tagFilters'] = opts.tagFilters
-    }
-    if (opts.resourceGroupIds !== undefined && opts.resourceGroupIds !== null) {
-      postBody['resourceGroupIds'] = opts.resourceGroupIds
-    }
-
-    let queryParams = {}
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(
+      queryParams,
+      super.buildTagFilterParam(opts.tagFilters, 'tagFilters')
+    )
+    Object.assign(
+      queryParams,
+      super.buildArrayParam(opts.resourceGroupIds, 'resourceGroupIds')
+    )
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -1417,7 +1416,7 @@ instanceStatus, 支持operator选项：eq,ne
 
     let request = super.makeRequest(
       '/regions/{regionId}/instances:describeInstances',
-      'POST',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -1491,7 +1490,7 @@ instanceStatus, 支持operator选项：eq,ne
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -1536,6 +1535,137 @@ instanceStatus, 支持operator选项：eq,ne
     let request = super.makeRequest(
       '/regions/{regionId}/instances:describeInstanceClasses',
       'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  根据日志备份创建一个新的 TiDB 实例
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例ID
+      * @param {} opts.restoreTime - 根据源实例的哪个时间点创建新实例, 北京时间，格式为&quot;YYYY-MM-DD HH:mm:ss&quot;
+      * @param {} opts.instanceSpec - 新建实例规格
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string instanceId
+      * @param string orderId
+      */
+
+  createInstanceByTime (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createInstanceByTime"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling createInstanceByTime"
+      )
+    }
+    if (opts.restoreTime === undefined || opts.restoreTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.restoreTime' when calling createInstanceByTime"
+      )
+    }
+    if (opts.instanceSpec === undefined || opts.instanceSpec === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceSpec' when calling createInstanceByTime"
+      )
+    }
+
+    let postBody = {}
+    if (opts.restoreTime !== undefined && opts.restoreTime !== null) {
+      postBody['restoreTime'] = opts.restoreTime
+    }
+    if (opts.instanceSpec !== undefined && opts.instanceSpec !== null) {
+      postBody['instanceSpec'] = opts.instanceSpec
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createInstanceByTime with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}:createInstanceByTime',
+      'POST',
       pathParams,
       queryParams,
       headerParams,
@@ -1615,7 +1745,7 @@ instanceStatus, 支持operator选项：eq,ne
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -1660,6 +1790,120 @@ instanceStatus, 支持operator选项：eq,ne
     let request = super.makeRequest(
       '/regions/{regionId}/instances:createInstanceFromBackup',
       'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取实例按时间点创建时间，可选择的最早时间和最晚时间
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string startTime  实例按时间点创建时,可恢复到的最早时间点, 北京时间, 格式为&quot;YYYY-MM-DD HH:mm:ss&quot;； 字段值为空字符串表示没有最早时间点
+
+      * @param string endTime  实例按时间点创建时,可恢复到的最新时间点, 北京时间, 格式为&quot;YYYY-MM-DD HH:mm:ss&quot;；字段值为空字符串表示没有最新时间点
+
+      */
+
+  describeRestoreTimeInterval (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeRestoreTimeInterval"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling describeRestoreTimeInterval"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeRestoreTimeInterval with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}:describeRestoreTimeInterval',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -1740,7 +1984,7 @@ instanceStatus, 支持operator选项：eq,ne
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -1863,7 +2107,7 @@ instanceStatus, 支持operator选项：eq,ne
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -1983,7 +2227,7 @@ instanceStatus, 支持operator选项：eq,ne
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -2115,7 +2359,7 @@ instanceStatus, 支持operator选项：eq,ne
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -2251,7 +2495,7 @@ instanceStatus, 支持operator选项：eq,ne
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -2380,7 +2624,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -2491,7 +2735,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -2611,7 +2855,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -2731,7 +2975,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -2850,7 +3094,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -2961,7 +3205,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -3074,7 +3318,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -3194,7 +3438,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -3314,7 +3558,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -3425,7 +3669,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -3536,7 +3780,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -3647,7 +3891,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -3720,6 +3964,119 @@ diskUsage - 磁盘使用率
   }
 
   /**
+      *  查询 TiDB支持的基本信息。
+      * @param {Object} opts - parameters
+      * @param {string} [opts.azs] - 用户可用区[多个使用,分隔]  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string engineVersion
+      * @param string architectureType
+      * @param architectureVersion architectureVersion
+      */
+
+  describeAvailableDBInfoInternel (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeAvailableDBInfoInternel"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.azs !== undefined && opts.azs !== null) {
+      queryParams['azs'] = opts.azs
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeAvailableDBInfoInternel with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances:describeAvailableDBInfoInternel',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  查询 TiDB 数据迁移任务的详细信息，例如任务的开始、完成时间，任务状态等等。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
@@ -3762,7 +4119,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -3891,7 +4248,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -4013,7 +4370,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -4125,7 +4482,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -4246,7 +4603,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -4363,7 +4720,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -4481,7 +4838,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -4599,7 +4956,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -4753,7 +5110,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -4864,7 +5221,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -4984,7 +5341,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -5113,7 +5470,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -5232,7 +5589,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
     }
 
     let contentTypes = ['application/json']

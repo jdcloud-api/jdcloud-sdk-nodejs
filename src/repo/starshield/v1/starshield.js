@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * starshield service.
- * @version 0.0.5
+ * @version 0.0.8
  */
 
 class STARSHIELD extends Service {
@@ -106,7 +106,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -226,7 +226,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -346,7 +346,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -473,7 +473,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -600,7 +600,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -716,7 +716,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -836,7 +836,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -956,7 +956,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -1083,7 +1083,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -1210,7 +1210,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -1330,7 +1330,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -1457,7 +1457,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -1573,7 +1573,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -1689,7 +1689,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -1801,7 +1801,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -1917,7 +1917,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -2029,7 +2029,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -2154,7 +2154,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -2279,7 +2279,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -2414,7 +2414,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -2513,7 +2513,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -2616,7 +2616,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -2722,7 +2722,7 @@ class STARSHIELD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -2858,7 +2858,7 @@ validation_method必须是&#39;txt&#39;，validity_days必须是90，cloudflare_
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -2957,7 +2957,7 @@ validation_method必须是&#39;txt&#39;，validity_days必须是90，cloudflare_
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -3072,7 +3072,7 @@ validation_method必须是&#39;txt&#39;，validity_days必须是90，cloudflare_
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -3188,7 +3188,7 @@ validation_method必须是&#39;txt&#39;，validity_days必须是90，cloudflare_
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -3316,7 +3316,7 @@ sni_custom
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -3445,7 +3445,7 @@ force：强制捆绑会验证证书链，但不以其他方式修改证书链。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -3551,7 +3551,7 @@ force：强制捆绑会验证证书链，但不以其他方式修改证书链。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -3686,7 +3686,7 @@ force：强制捆绑会验证证书链，但不以其他方式修改证书链。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -3833,7 +3833,7 @@ force：强制捆绑会验证证书链，但不以其他方式修改证书链。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -3987,7 +3987,7 @@ force：强制捆绑会验证证书链，但不以其他方式修改证书链。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -4093,7 +4093,7 @@ force：强制捆绑会验证证书链，但不以其他方式修改证书链。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -4197,7 +4197,7 @@ force：强制捆绑会验证证书链，但不以其他方式修改证书链。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -4320,7 +4320,7 @@ force：强制捆绑会验证证书链，但不以其他方式修改证书链。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -4443,7 +4443,7 @@ force：强制捆绑会验证证书链，但不以其他方式修改证书链。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -4547,7 +4547,7 @@ force：强制捆绑会验证证书链，但不以其他方式修改证书链。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -4689,7 +4689,7 @@ force：强制捆绑会验证证书链，但不以其他方式修改证书链。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -4802,7 +4802,7 @@ force：强制捆绑会验证证书链，但不以其他方式修改证书链。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -4905,7 +4905,7 @@ force：强制捆绑会验证证书链，但不以其他方式修改证书链。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -5005,7 +5005,7 @@ force：强制捆绑会验证证书链，但不以其他方式修改证书链。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -5050,6 +5050,105 @@ force：强制捆绑会验证证书链，但不以其他方式修改证书链。
     let request = super.makeRequest(
       '/bot/{zoneId}',
       'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  关闭BOT
+      * @param {Object} opts - parameters
+      * @param {string} opts.zoneId
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean success  操作是否成功
+      */
+
+  closeFirewallBot (opts, callback) {
+    opts = opts || {}
+
+    if (opts.zoneId === undefined || opts.zoneId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.zoneId' when calling closeFirewallBot"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      zoneId: opts.zoneId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call closeFirewallBot with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/bot/{zoneId}',
+      'DELETE',
       pathParams,
       queryParams,
       headerParams,
@@ -5123,7 +5222,7 @@ force：强制捆绑会验证证书链，但不以其他方式修改证书链。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -5282,7 +5381,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -5418,7 +5517,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -5546,7 +5645,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -5657,7 +5756,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -5770,7 +5869,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -5882,7 +5981,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -5985,7 +6084,7 @@ SMB_BUSINESS 按流量 商业版
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -6071,7 +6170,7 @@ origin - 回源
       * @param {} opts.until - 查询结束时间
       * @param {string} callback - callback
       @return {Object} result
-      * @param cdnSingleMetric data
+      * @param cdnSingleMetric cdnSingleMetric
       */
 
   instanceBandwidthAvg (opts, callback) {
@@ -6117,7 +6216,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -6203,7 +6302,7 @@ origin - 回源
       * @param {} opts.until - 查询结束时间
       * @param {string} callback - callback
       @return {Object} result
-      * @param cdnBandwidthMax data
+      * @param cdnBandwidthMax cdnBandwidthMax
       */
 
   instanceBandwidthMax (opts, callback) {
@@ -6249,7 +6348,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -6335,7 +6434,7 @@ origin - 回源
       * @param {} opts.until - 查询结束时间
       * @param {string} callback - callback
       @return {Object} result
-      * @param cdnSingleMetric data
+      * @param cdnSingleMetric cdnSingleMetric
       */
 
   instanceBandwidthP95 (opts, callback) {
@@ -6381,7 +6480,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -6513,7 +6612,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -6649,7 +6748,7 @@ all/normal/mitigation/cache/origin的任意组合
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -6784,7 +6883,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -6916,7 +7015,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -7005,7 +7104,7 @@ origin - 回源
       * @param {string} callback - callback
       @return {Object} result
       * @param number total
-      * @param cdnZoneBandwidth dataList
+      * @param cdnZoneBandwidth cdnZoneBandwidths
       */
 
   instanceBandwidthList (opts, callback) {
@@ -7062,7 +7161,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -7148,7 +7247,7 @@ origin - 回源
       * @param {} opts.until - 查询结束时间
       * @param {string} callback - callback
       @return {Object} result
-      * @param cdnSingleMetric data
+      * @param cdnSingleMetric cdnSingleMetric
       */
 
   instanceTrafficSum (opts, callback) {
@@ -7194,7 +7293,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -7326,7 +7425,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -7462,7 +7561,7 @@ all/normal/mitigation/cache/origin的任意组合
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -7597,7 +7696,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -7729,7 +7828,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -7815,7 +7914,7 @@ origin - 回源
       * @param {} opts.until - 查询结束时间
       * @param {string} callback - callback
       @return {Object} result
-      * @param cdnSingleMetric data
+      * @param cdnSingleMetric cdnSingleMetric
       */
 
   instanceRequestSum (opts, callback) {
@@ -7861,7 +7960,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -7993,7 +8092,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -8129,7 +8228,7 @@ all/normal/mitigation/cache/origin的任意组合
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -8264,7 +8363,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -8396,7 +8495,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -8495,7 +8594,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -8621,7 +8720,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -8727,7 +8826,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -8833,7 +8932,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -8952,7 +9051,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -9058,7 +9157,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -9164,7 +9263,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -9278,7 +9377,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -9389,7 +9488,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -9504,7 +9603,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -9624,7 +9723,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -9751,7 +9850,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -9857,7 +9956,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -9956,7 +10055,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -10069,7 +10168,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -10210,7 +10309,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -10326,7 +10425,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -10447,7 +10546,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -10570,7 +10669,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -10676,7 +10775,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -10791,7 +10890,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -10933,7 +11032,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -11046,7 +11145,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -11164,7 +11263,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -11251,7 +11350,7 @@ origin - 回源
       * @param {} opts.until - 结束时间
       * @param {string} callback - callback
       @return {Object} result
-      * @param cdnSingleMetric data
+      * @param cdnSingleMetric cdnSingleMetric
       */
 
   zoneBandwidthAvg (opts, callback) {
@@ -11305,7 +11404,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -11392,7 +11491,7 @@ origin - 回源
       * @param {} opts.until - 结束时间
       * @param {string} callback - callback
       @return {Object} result
-      * @param cdnBandwidthMax data
+      * @param cdnBandwidthMax cdnBandwidthMax
       */
 
   zoneBandwidthMax (opts, callback) {
@@ -11446,7 +11545,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -11533,7 +11632,7 @@ origin - 回源
       * @param {} opts.until - 结束时间
       * @param {string} callback - callback
       @return {Object} result
-      * @param cdnSingleMetric data
+      * @param cdnSingleMetric cdnSingleMetric
       */
 
   zoneBandwidthP95 (opts, callback) {
@@ -11587,7 +11686,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -11728,7 +11827,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -11873,7 +11972,7 @@ all/normal/mitigation/cache/origin的任意组合
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -11960,7 +12059,7 @@ origin - 回源
       * @param {} opts.until - 结束时间
       * @param {string} callback - callback
       @return {Object} result
-      * @param cdnSingleMetric data
+      * @param cdnSingleMetric cdnSingleMetric
       */
 
   zoneTrafficSum (opts, callback) {
@@ -12014,7 +12113,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -12155,7 +12254,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -12300,7 +12399,7 @@ all/normal/mitigation/cache/origin的任意组合
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -12387,7 +12486,7 @@ origin - 回源
       * @param {} opts.until - 结束时间
       * @param {string} callback - callback
       @return {Object} result
-      * @param cdnSingleMetric data
+      * @param cdnSingleMetric cdnSingleMetric
       */
 
   zoneRequestSum (opts, callback) {
@@ -12441,7 +12540,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -12582,7 +12681,7 @@ origin - 回源
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -12727,7 +12826,7 @@ all/normal/mitigation/cache/origin的任意组合
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -12854,7 +12953,7 @@ all/normal/mitigation/cache/origin的任意组合
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -12973,7 +13072,7 @@ all/normal/mitigation/cache/origin的任意组合
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -13072,7 +13171,7 @@ all/normal/mitigation/cache/origin的任意组合
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -13183,7 +13282,7 @@ all/normal/mitigation/cache/origin的任意组合
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -13291,7 +13390,7 @@ all/normal/mitigation/cache/origin的任意组合
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -13408,7 +13507,7 @@ all/normal/mitigation/cache/origin的任意组合
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -13507,7 +13606,7 @@ all/normal/mitigation/cache/origin的任意组合
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -13610,7 +13709,7 @@ all/normal/mitigation/cache/origin的任意组合
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -13710,7 +13809,7 @@ all/normal/mitigation/cache/origin的任意组合
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -13809,7 +13908,7 @@ all/normal/mitigation/cache/origin的任意组合
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -13913,7 +14012,7 @@ all/normal/mitigation/cache/origin的任意组合
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -14013,7 +14112,7 @@ all/normal/mitigation/cache/origin的任意组合
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -14118,7 +14217,7 @@ all/normal/mitigation/cache/origin的任意组合
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -14217,7 +14316,7 @@ all/normal/mitigation/cache/origin的任意组合
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -14321,7 +14420,7 @@ all/normal/mitigation/cache/origin的任意组合
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -14421,7 +14520,7 @@ all/normal/mitigation/cache/origin的任意组合
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -14526,7 +14625,7 @@ all/normal/mitigation/cache/origin的任意组合
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -14626,7 +14725,7 @@ all/normal/mitigation/cache/origin的任意组合
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -14731,7 +14830,7 @@ all/normal/mitigation/cache/origin的任意组合
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -14839,7 +14938,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -14939,7 +15038,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -15044,7 +15143,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -15145,7 +15244,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -15251,7 +15350,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -15350,7 +15449,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -15454,7 +15553,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -15555,7 +15654,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -15661,7 +15760,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -15760,7 +15859,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -15864,7 +15963,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -15963,7 +16062,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -16067,7 +16166,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -16166,7 +16265,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -16270,7 +16369,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -16369,7 +16468,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -16473,7 +16572,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -16572,7 +16671,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -16676,7 +16775,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -16776,7 +16875,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -16881,7 +16980,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -16980,7 +17079,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -17084,7 +17183,7 @@ aggressive设置将缓存所有的静态资源，包括有查询字符串的资�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -17188,7 +17287,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -17297,7 +17396,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -17397,7 +17496,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -17502,7 +17601,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -17606,7 +17705,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -17705,7 +17804,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -17809,7 +17908,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -17909,7 +18008,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -18014,7 +18113,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -18116,7 +18215,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -18223,7 +18322,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -18322,7 +18421,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -18422,7 +18521,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -18527,7 +18626,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -18631,7 +18730,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -18740,7 +18839,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -18840,7 +18939,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -18945,7 +19044,7 @@ Basic+JPEG（有损），进一步减少JPEG文件的大小，以加快图像加
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -19051,7 +19150,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -19162,7 +19261,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -19261,7 +19360,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -19365,7 +19464,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -19464,7 +19563,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -19568,7 +19667,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -19667,7 +19766,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -19771,7 +19870,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -19870,7 +19969,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -19974,7 +20073,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -20073,7 +20172,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -20177,7 +20276,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -20279,7 +20378,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -20386,7 +20485,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -20485,7 +20584,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -20589,7 +20688,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -20688,7 +20787,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -20792,7 +20891,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -20891,7 +20990,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -20995,7 +21094,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -21094,7 +21193,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -21198,7 +21297,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -21299,7 +21398,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -21405,7 +21504,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -21504,7 +21603,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -21604,7 +21703,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -21709,7 +21808,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -21813,7 +21912,7 @@ Full (Strict), 访客和星盾之间的 SSL -- 访客在您的网站上看到 HT
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  starshield/0.0.8'
     }
 
     let contentTypes = ['application/json']

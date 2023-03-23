@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * zfs service.
- * @version 1.0.5
+ * @version 1.0.9
  */
 
 class ZFS extends Service {
@@ -93,7 +93,7 @@ status - 文件系统状态，精确匹配，支持多个 FileSystem Status/crea
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -173,6 +173,7 @@ status - 文件系统状态，精确匹配，支持多个 FileSystem Status/crea
       * @param {string} opts.description - 文件系统描述
       * @param {string} opts.clientToken - 幂等性参数(只支持数字、大小写字母，且不能超过64字符)
       * @param {string} [opts.fileSystemType] - 文件系统类型(通用型:gp1,容量型:std1),默认为通用型  optional
+      * @param {string} [opts.serviceCode] - 文件系统的serviceCode，默认为zfs  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -222,6 +223,9 @@ status - 文件系统状态，精确匹配，支持多个 FileSystem Status/crea
     if (opts.fileSystemType !== undefined && opts.fileSystemType !== null) {
       postBody['fileSystemType'] = opts.fileSystemType
     }
+    if (opts.serviceCode !== undefined && opts.serviceCode !== null) {
+      postBody['serviceCode'] = opts.serviceCode
+    }
 
     let queryParams = {}
 
@@ -230,7 +234,7 @@ status - 文件系统状态，精确匹配，支持多个 FileSystem Status/crea
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -341,7 +345,7 @@ status - 文件系统状态，精确匹配，支持多个 FileSystem Status/crea
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -460,7 +464,7 @@ status - 文件系统状态，精确匹配，支持多个 FileSystem Status/crea
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -571,7 +575,7 @@ status - 文件系统状态，精确匹配，支持多个 FileSystem Status/crea
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -644,6 +648,137 @@ status - 文件系统状态，精确匹配，支持多个 FileSystem Status/crea
   }
 
   /**
+      *  查询挂载客户端IP
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞)  optional
+      * @param {integer} [opts.pageSize] - 分页大小，默认为10，取值范围：[10,100]  optional
+      * @param {string} opts.fileSystemId - 文件系统ID
+      * @param {string} [opts.mountTargetId] - 挂载目标ID  optional
+      * @param {array} [opts.clientIP] - 查询客户端IP数组  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string clientsIPs
+      * @param integer totalCount  结果集数目
+      */
+
+  describeMountedClients (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeMountedClients"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.fileSystemId === undefined || opts.fileSystemId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.fileSystemId' when calling describeMountedClients"
+      )
+    }
+
+    let postBody = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      postBody['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+    if (opts.fileSystemId !== undefined && opts.fileSystemId !== null) {
+      postBody['fileSystemId'] = opts.fileSystemId
+    }
+    if (opts.mountTargetId !== undefined && opts.mountTargetId !== null) {
+      postBody['mountTargetId'] = opts.mountTargetId
+    }
+    if (opts.clientIP !== undefined && opts.clientIP !== null) {
+      postBody['clientIP'] = opts.clientIP
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.9'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeMountedClients with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/describeMountedClients',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  -   查询挂载目标列表。
 
       * @param {Object} opts - parameters
@@ -688,7 +823,7 @@ mountTargetId - 挂载目标ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -835,7 +970,7 @@ mountTargetId - 挂载目标ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -946,7 +1081,7 @@ mountTargetId - 挂载目标ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -1057,7 +1192,7 @@ mountTargetId - 挂载目标ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  zfs/1.0.9'
     }
 
     let contentTypes = ['application/json']

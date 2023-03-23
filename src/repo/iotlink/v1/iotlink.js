@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * iotlink service.
- * @version 1.0.6
+ * @version 1.0.8
  */
 
 class IOTLINK extends Service {
@@ -42,6 +42,932 @@ class IOTLINK extends Service {
       options._defaultEndpoint.host || 'iotlink.jdcloud-api.com'
     options.basePath = '/v1' // 默认要设为空""
     super(serviceId, options)
+  }
+
+  /**
+      *  物联网卡实名制信息清除
+      * @param {Object} opts - parameters
+      * @param {string} opts.requestParam - 物联网卡实名制信息清除请求参数
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status  请求状态(0:成功;其他:失败)
+      * @param string message  消息描述
+      * @param boolean result  物联网卡实名制信息清除返回结果集
+      */
+
+  ordinaryRealNameClear (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  ordinaryRealNameClear"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.requestParam === undefined || opts.requestParam === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.requestParam' when calling ordinaryRealNameClear"
+      )
+    }
+
+    let postBody = {}
+    if (opts.requestParam !== undefined && opts.requestParam !== null) {
+      postBody['requestParam'] = opts.requestParam
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.8'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call ordinaryRealNameClear with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/ordinaryRealNameClear',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  机卡分离状态查询
+      * @param {Object} opts - parameters
+      * @param {string} opts.iccid - 物联网卡iccid
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status  请求状态(0:成功;1:失败)
+      * @param string message  消息描述
+      * @param cardBindStatusResp result  机卡分离状态查询结果
+      */
+
+  cardBindStatus (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  cardBindStatus"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.iccid === undefined || opts.iccid === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.iccid' when calling cardBindStatus"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.iccid !== undefined && opts.iccid !== null) {
+      queryParams['iccid'] = opts.iccid
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.8'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call cardBindStatus with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/cardBindStatus',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  在线状态和会话信息查询
+      * @param {Object} opts - parameters
+      * @param {string} opts.iccid - 物联网卡iccid
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status  请求状态(0:成功;1:失败)
+      * @param string message  消息描述
+      * @param getOnlineStatusResp result  在线状态和会话信息查询结果
+      */
+
+  getOnlineStatus (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getOnlineStatus"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.iccid === undefined || opts.iccid === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.iccid' when calling getOnlineStatus"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.iccid !== undefined && opts.iccid !== null) {
+      queryParams['iccid'] = opts.iccid
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.8'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getOnlineStatus with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/getOnlineStatus',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  NB卡有效期查询
+      * @param {Object} opts - parameters
+      * @param {string} opts.requestParam - 物联网卡NB卡有效期查询请求参数
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status  请求状态(0:成功;其他:失败)
+      * @param string message  消息描述
+      * @param queryValidPeriodForNBResp result
+      */
+
+  queryValidPeriodForNB (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  queryValidPeriodForNB"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.requestParam === undefined || opts.requestParam === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.requestParam' when calling queryValidPeriodForNB"
+      )
+    }
+
+    let postBody = {}
+    if (opts.requestParam !== undefined && opts.requestParam !== null) {
+      postBody['requestParam'] = opts.requestParam
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.8'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call queryValidPeriodForNB with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/queryValidPeriodForNB',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  物联网卡日历史流量查询接口
+      * @param {Object} opts - parameters
+      * @param {string} opts.requestParam - 物联网卡日历史流量查询请求参数
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status  请求状态(0:成功;其他:失败)
+      * @param string message  消息描述
+      * @param object result
+      */
+
+  queryDayHistoryTraffic (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  queryDayHistoryTraffic"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.requestParam === undefined || opts.requestParam === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.requestParam' when calling queryDayHistoryTraffic"
+      )
+    }
+
+    let postBody = {}
+    if (opts.requestParam !== undefined && opts.requestParam !== null) {
+      postBody['requestParam'] = opts.requestParam
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.8'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call queryDayHistoryTraffic with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/queryDayHistoryTraffic',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  物联网卡移动实名登记接口
+      * @param {Object} opts - parameters
+      * @param {string} opts.requestParam - 物联网卡移动实名登记请求参数
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status  请求状态(0:成功;其他:失败)
+      * @param string message  消息描述
+      * @param simRealNameRegResp result  物联网卡移动实名登记信息
+      */
+
+  simRealNameReg (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  simRealNameReg"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.requestParam === undefined || opts.requestParam === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.requestParam' when calling simRealNameReg"
+      )
+    }
+
+    let postBody = {}
+    if (opts.requestParam !== undefined && opts.requestParam !== null) {
+      postBody['requestParam'] = opts.requestParam
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.8'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call simRealNameReg with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/simRealNameReg',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  物联网卡流量查询（时间段）查询接口
+      * @param {Object} opts - parameters
+      * @param {string} opts.requestParam - 物联网卡流量查询（时间段）查询请求参数
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status  请求状态(0:成功;其他:失败)
+      * @param string message  消息描述
+      * @param string result  物联网卡时间段总使用流量
+      */
+
+  queryTrafficByDate (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  queryTrafficByDate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.requestParam === undefined || opts.requestParam === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.requestParam' when calling queryTrafficByDate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.requestParam !== undefined && opts.requestParam !== null) {
+      postBody['requestParam'] = opts.requestParam
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.8'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call queryTrafficByDate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/queryTrafficByDate',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  物联网卡自主限速接口
+      * @param {Object} opts - parameters
+      * @param {string} opts.requestParam - 物联网卡自主限速请求参数
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status  请求状态(0:成功;其他:失败)
+      * @param string message  消息描述
+      * @param boolean result  物联网卡自主限速返回结果集
+      */
+
+  speedLimitAction (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  speedLimitAction"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.requestParam === undefined || opts.requestParam === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.requestParam' when calling speedLimitAction"
+      )
+    }
+
+    let postBody = {}
+    if (opts.requestParam !== undefined && opts.requestParam !== null) {
+      postBody['requestParam'] = opts.requestParam
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.8'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call speedLimitAction with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/speedLimitAction',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
   }
 
   /**
@@ -87,7 +1013,7 @@ class IOTLINK extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -202,7 +1128,7 @@ class IOTLINK extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -317,7 +1243,7 @@ class IOTLINK extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -432,7 +1358,7 @@ class IOTLINK extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -547,7 +1473,7 @@ class IOTLINK extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -662,7 +1588,7 @@ class IOTLINK extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -777,7 +1703,7 @@ class IOTLINK extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -892,7 +1818,7 @@ class IOTLINK extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -1007,7 +1933,7 @@ class IOTLINK extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -1122,7 +2048,7 @@ class IOTLINK extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -1232,7 +2158,7 @@ class IOTLINK extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -1342,7 +2268,7 @@ class IOTLINK extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -1452,7 +2378,7 @@ class IOTLINK extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -1562,7 +2488,7 @@ class IOTLINK extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -1687,7 +2613,7 @@ class IOTLINK extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -1812,7 +2738,7 @@ class IOTLINK extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iotlink/1.0.8'
     }
 
     let contentTypes = ['application/json']

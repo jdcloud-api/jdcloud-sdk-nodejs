@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * cloudsign service.
- * @version 2.0.2
+ * @version 2.0.3
  */
 
 class CLOUDSIGN extends Service {
@@ -76,7 +76,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -184,7 +184,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -286,7 +286,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -403,7 +403,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -501,7 +501,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -615,7 +615,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -692,8 +692,7 @@ class CLOUDSIGN extends Service {
       * @param {Object} opts - parameters
       * @param {string} opts.businessId - 业务流水号
       * @param {string} opts.file - 存证数据json字符串的Base64
-      * @param {string} opts.businessCode - 证据链代码
-      * @param {string} [opts.token] - 业务token  optional
+      * @param {string} [opts.businessCode] - 证据链代码  optional
       * @param {string} [opts.lender] - 资方信息（借钱传：ZY；票据传 PJ_SHOUXIN--授信,PJ_JIEKUAN--借款）  optional
       * @param {string} [opts.messageId] - 请求流水号  optional
       * @param {string} [opts.evidenceType] - 业务类型（JIEQIAN–借钱；PIAOJU--票据）  optional
@@ -719,11 +718,6 @@ class CLOUDSIGN extends Service {
         "Missing the required parameter 'opts.file' when calling saveMultiEvidence"
       )
     }
-    if (opts.businessCode === undefined || opts.businessCode === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.businessCode' when calling saveMultiEvidence"
-      )
-    }
 
     let postBody = {}
     if (opts.businessId !== undefined && opts.businessId !== null) {
@@ -734,9 +728,6 @@ class CLOUDSIGN extends Service {
     }
     if (opts.businessCode !== undefined && opts.businessCode !== null) {
       postBody['businessCode'] = opts.businessCode
-    }
-    if (opts.token !== undefined && opts.token !== null) {
-      postBody['token'] = opts.token
     }
     if (opts.lender !== undefined && opts.lender !== null) {
       postBody['lender'] = opts.lender
@@ -758,7 +749,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -871,7 +862,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -946,12 +937,10 @@ class CLOUDSIGN extends Service {
   /**
       *  带主体标记的取证接口
       * @param {Object} opts - parameters
-      * @param {string} opts.businessId - 业务流水号
-      * @param {string} opts.evidenceId - 存证编号
-      * @param {string} opts.applicantIdType - 申请取证主体的ID类型
-      * @param {string} opts.applicantIdNum - 申请取证主体的ID
-      * @param {string} [opts.businessCode] - 证据链代码  optional
-      * @param {string} [opts.token] - 业务token  optional
+      * @param {string} [opts.businessId] - 业务流水号  optional
+      * @param {string} [opts.evidenceId] - 存证编号  optional
+      * @param {string} [opts.applicantIdType] - 申请取证主体的ID类型  optional
+      * @param {string} [opts.applicantIdNum] - 申请取证主体的ID  optional
       * @param {string} [opts.messageId] - 请求流水号  optional
       * @param {string} [opts.evidenceType] - 业务类型  optional
       * @param {string} [opts.messageDate] - 请求时间  optional
@@ -967,27 +956,6 @@ class CLOUDSIGN extends Service {
   getMultiEvidence (opts, callback) {
     opts = opts || {}
 
-    if (opts.businessId === undefined || opts.businessId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.businessId' when calling getMultiEvidence"
-      )
-    }
-    if (opts.evidenceId === undefined || opts.evidenceId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.evidenceId' when calling getMultiEvidence"
-      )
-    }
-    if (opts.applicantIdType === undefined || opts.applicantIdType === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.applicantIdType' when calling getMultiEvidence"
-      )
-    }
-    if (opts.applicantIdNum === undefined || opts.applicantIdNum === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.applicantIdNum' when calling getMultiEvidence"
-      )
-    }
-
     let postBody = null
     let queryParams = {}
     if (opts.businessId !== undefined && opts.businessId !== null) {
@@ -1001,12 +969,6 @@ class CLOUDSIGN extends Service {
     }
     if (opts.applicantIdNum !== undefined && opts.applicantIdNum !== null) {
       queryParams['applicantIdNum'] = opts.applicantIdNum
-    }
-    if (opts.businessCode !== undefined && opts.businessCode !== null) {
-      queryParams['businessCode'] = opts.businessCode
-    }
-    if (opts.token !== undefined && opts.token !== null) {
-      queryParams['token'] = opts.token
     }
     if (opts.messageId !== undefined && opts.messageId !== null) {
       queryParams['messageId'] = opts.messageId
@@ -1029,7 +991,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1125,7 +1087,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1216,7 +1178,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1307,7 +1269,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1402,7 +1364,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1506,7 +1468,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1608,7 +1570,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1709,7 +1671,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1807,7 +1769,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1918,7 +1880,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -2020,7 +1982,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -2120,7 +2082,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -2229,7 +2191,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -2327,7 +2289,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.3'
     }
 
     let contentTypes = ['application/json']

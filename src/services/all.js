@@ -86,6 +86,7 @@ module.exports = {
   YDSMS: require('./ydsms'),
   CLICKHOUSE: require('./clickhouse'),
   VM: require('./vm'),
+  FC: require('./fc'),
   DCAP: require('./dcap'),
   CLOUDAUTH: require('./cloudauth'),
   IOTCORE: require('./iotcore'),

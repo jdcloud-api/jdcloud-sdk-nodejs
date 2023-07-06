@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * ag service.
- * @version 0.6.0
+ * @version 0.8.0
  */
 
 class AG extends Service {
@@ -45,6 +45,2907 @@ class AG extends Service {
   }
 
   /**
+      *  使用过滤条件查询一个或多个弹性伸缩活动
+      * @param {Object} opts - parameters
+      * @param {string} opts.agId - 高可用组 ID
+      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
+      * @param {filter} [opts.filters] - status - 状态，包括成功：SUCCESS,拒绝：REJECTED,失败：FAILED,执行中：RUNNING,部分成功：WARN，精确匹配
+beginTime - 开始时间，精确匹配，查询大于等于这个时间的记录
+endTime - 结束时间，精确匹配，查询小于等于这个时间的记录
+以上每个filter项仅支持单个值查询,如果传多个值仅取第一个值
+  optional
+      * @param {sort} [opts.sorts] - 排序条件列表，目前只支持单个排序条件，不支持多个排序条件，默认按照 &#x60;startTime&#x60; 降序排序
+支持使用以下关键字进行排序
+- &#x60;startTime&#x60;: 活动开始时间
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param activity scalingActivities
+      * @param integer totalCount
+      */
+
+  describeScalingActivities (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeScalingActivities"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.agId === undefined || opts.agId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.agId' when calling describeScalingActivities"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildSortParam(opts.sorts, 'sorts'))
+
+    let pathParams = {
+      regionId: regionId,
+      agId: opts.agId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeScalingActivities with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/autoScaling/{agId}:describeScalingActivities',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查看告警任务
+- 所有参数取值为字符串类型的都严格区分大小写
+- 伸缩功能开启或者关闭的情况下，都支持调用此接口
+
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码，默认为&#x60;1&#x60;，最小值必须大于0  optional
+      * @param {integer} [opts.pageSize] - 分页大小，默认为&#x60;20&#x60;，取值范围[&#x60;10&#x60; ~ &#x60;100&#x60;]  optional
+      * @param {filter} [opts.filters] - 支持使用以下关键字进行过滤查询
+- &#x60;agId&#x60;: 高可用组ID，精确匹配，支持多个
+- &#x60;asAlarmId&#x60;: 告警任务ID，精确匹配，支持多个
+- &#x60;name&#x60;: 告警任务名称，模糊匹配，支持单个
+- &#x60;metricType&#x60;: 监控项类型，精确匹配，支持多个，取值范围：[&#x60;System&#x60;,&#x60;Custom&#x60;]
+  optional
+      * @param {sort} [opts.sorts] - 排序条件列表，目前只支持单个排序条件，不支持多个排序条件，默认按照 &#x60;createTime&#x60; 降序排序
+支持使用以下关键字进行排序
+- &#x60;createTime&#x60;: 创建时间
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer totalCount  本次查询可匹配到的总记录数，使用者需要结合 &#x60;pageNumber&#x60; 和 &#x60;pageSize&#x60; 计算是否可以继续分页。
+      * @param asAlarmInfo asAlarms
+      */
+
+  describeAsAlarms (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeAsAlarms"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildSortParam(opts.sorts, 'sorts'))
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeAsAlarms with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/asAlarms',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建告警任务
+- 所有参数取值为字符串类型的都严格区分大小写
+- 伸缩功能关闭的情况下，不支持调用此接口
+- 创建告警可以不选择简单伸缩规则，但是最终一个告警只允许关联一个简单规则和一个步进规则，步进规则优先级高于简单规则
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.agId - 高可用组ID
+      * @param {string} opts.name - 名称，长度为1~32个字符，只允许中文、数字、大小写字母、英文下划线（_）、连字符（-）
+      * @param {string} [opts.description] - 描述，最大长度为256个字符  optional
+      * @param {string} opts.metricType - 监控项类型，取值范围：[&#x60;System&#x60;,&#x60;Custom&#x60;]
+- &#x60;System&#x60;：系统监控项
+- &#x60;Custom&#x60;：自定义监控项
+
+      * @param {string} opts.metricName - 监控项，云主机监控指标说明：https://docs.jdcloud.com/cn/monitoring/vm
+目前支持的指标项如下:
+- &#x60;cpu_util&#x60;: &#x60;CPU使用率&#x60;
+- &#x60;memory.usage&#x60;: &#x60;内存使用率&#x60;
+- &#x60;vm.disk.bytes.read&#x60;: &#x60;磁盘读吞吐量(host)&#x60;
+- &#x60;vm.disk.bytes.write&#x60;: &#x60;磁盘写吞吐量(host)&#x60;
+- &#x60;vm.network.bytes.incoming&#x60;: &#x60;网络进速率(host)&#x60;
+- &#x60;vm.network.bytes.outgoing&#x60;: &#x60;网络出速率(host)&#x60;
+
+      * @param {string} [opts.namespace] - 命名空间，当&#x60;metricType&#x60;为&#x60;Custom&#x60;，此参数必填  optional
+      * @param {integer} opts.period - 监控项数据统计周期，单位分钟，取值范围：[&#x60;1&#x60;,&#x60;2&#x60;,&#x60;5&#x60;,&#x60;10&#x60;,&#x60;15&#x60;,&#x60;30&#x60;,&#x60;60&#x60;]
+      * @param {string} opts.statistic - 统计监控项数据的方法
+- 系统监控取值范围：[&#x60;avg&#x60;,&#x60;max&#x60;,&#x60;min&#x60;]
+- 自定义监控取值范围：[&#x60;avg&#x60;]
+
+      * @param {number} opts.threshold - 监控指标的阈值，必须大于0，阈值单位与监控项单位一致
+      * @param {string} opts.comparison - 对监控项阈值的判断方式，取值范围：[&#x60;gte&#x60;:&#x60;大于等于&#x60;,&#x60;lte&#x60;:&#x60;小于等于&#x60;,&#x60;gt&#x60;:&#x60;大于&#x60;,&#x60;lt&#x60;:&#x60;小于&#x60;]
+      * @param {integer} [opts.hitCount] - 触发告警需要满足阈值表达式的次数，默认为&#x60;3&#x60;，取值范围：[&#x60;1&#x60;,&#x60;2&#x60;,&#x60;3&#x60;,&#x60;5&#x60;,&#x60;10&#x60;,&#x60;15&#x60;,&#x60;30&#x60;,&#x60;60&#x60;]  optional
+      * @param {string} [opts.asRuleId] - 伸缩规则ID，可以为告警任务绑定伸缩规则，目前只支持 &#x60;asRuleType&#x60; 为 &#x60;Simple&#x60; 的伸缩规则  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string asAlarmId  告警任务ID
+      */
+
+  createAsAlarm (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createAsAlarm"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.agId === undefined || opts.agId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.agId' when calling createAsAlarm"
+      )
+    }
+    if (opts.name === undefined || opts.name === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.name' when calling createAsAlarm"
+      )
+    }
+    if (opts.metricType === undefined || opts.metricType === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.metricType' when calling createAsAlarm"
+      )
+    }
+    if (opts.metricName === undefined || opts.metricName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.metricName' when calling createAsAlarm"
+      )
+    }
+    if (opts.period === undefined || opts.period === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.period' when calling createAsAlarm"
+      )
+    }
+    if (opts.statistic === undefined || opts.statistic === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.statistic' when calling createAsAlarm"
+      )
+    }
+    if (opts.threshold === undefined || opts.threshold === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.threshold' when calling createAsAlarm"
+      )
+    }
+    if (opts.comparison === undefined || opts.comparison === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.comparison' when calling createAsAlarm"
+      )
+    }
+
+    let postBody = {}
+    if (opts.agId !== undefined && opts.agId !== null) {
+      postBody['agId'] = opts.agId
+    }
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+    if (opts.metricType !== undefined && opts.metricType !== null) {
+      postBody['metricType'] = opts.metricType
+    }
+    if (opts.metricName !== undefined && opts.metricName !== null) {
+      postBody['metricName'] = opts.metricName
+    }
+    if (opts.namespace !== undefined && opts.namespace !== null) {
+      postBody['namespace'] = opts.namespace
+    }
+    if (opts.period !== undefined && opts.period !== null) {
+      postBody['period'] = opts.period
+    }
+    if (opts.statistic !== undefined && opts.statistic !== null) {
+      postBody['statistic'] = opts.statistic
+    }
+    if (opts.threshold !== undefined && opts.threshold !== null) {
+      postBody['threshold'] = opts.threshold
+    }
+    if (opts.comparison !== undefined && opts.comparison !== null) {
+      postBody['comparison'] = opts.comparison
+    }
+    if (opts.hitCount !== undefined && opts.hitCount !== null) {
+      postBody['hitCount'] = opts.hitCount
+    }
+    if (opts.asRuleId !== undefined && opts.asRuleId !== null) {
+      postBody['asRuleId'] = opts.asRuleId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createAsAlarm with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/asAlarms',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改告警任务
+- 所有参数取值为字符串类型的都严格区分大小写
+- 所有告警任务不允许修改高可用组
+- 所有告警任务不允许修改监控类型
+- 目标跟踪规则生成的告警任务不允许修改任何内容
+- 监控类型为自定义监控的告警任务不允许修改命名空间
+- 步进规则绑定的告警任务不允许修改报警指标相关内容
+- 所有参数都为非必传，但是至少需要传入一个参数，否则报错
+- 伸缩功能开启或者关闭的情况下，都支持调用此接口
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.asAlarmId - 告警任务ID
+      * @param {string} [opts.name] - 名称，长度为1~32个字符，只允许中文、数字、大小写字母、英文下划线（_）、连字符（-）  optional
+      * @param {string} [opts.description] - 描述，最大长度为256个字符  optional
+      * @param {string} [opts.metricName] - 监控项，云主机监控指标说明：https://docs.jdcloud.com/cn/monitoring/vm
+目前支持的指标项如下:
+- &#x60;cpu_util&#x60;: &#x60;CPU使用率&#x60;
+- &#x60;memory.usage&#x60;: &#x60;内存使用率&#x60;
+- &#x60;vm.disk.bytes.read&#x60;: &#x60;磁盘读吞吐量(host)&#x60;
+- &#x60;vm.disk.bytes.write&#x60;: &#x60;磁盘写吞吐量(host)&#x60;
+- &#x60;vm.network.bytes.incoming&#x60;: &#x60;网络进速率(host)&#x60;
+- &#x60;vm.network.bytes.outgoing&#x60;: &#x60;网络出速率(host)&#x60;
+  optional
+      * @param {integer} [opts.period] - 监控项数据统计周期，单位分钟，取值范围：[&#x60;1&#x60;,&#x60;2&#x60;,&#x60;5&#x60;,&#x60;10&#x60;,&#x60;15&#x60;,&#x60;30&#x60;,&#x60;60&#x60;]  optional
+      * @param {string} [opts.statistic] - 统计监控项数据的方法
+- 系统监控取值范围：[&#x60;avg&#x60;,&#x60;max&#x60;,&#x60;min&#x60;]
+- 自定义监控取值范围：[&#x60;avg&#x60;]
+  optional
+      * @param {number} [opts.threshold] - 监控指标的阈值，必须大于0，阈值单位与监控项单位一致  optional
+      * @param {string} [opts.comparison] - 对监控项阈值的判断方式，取值范围：[&#x60;gte&#x60;:&#x60;大于等于&#x60;,&#x60;lte&#x60;:&#x60;小于等于&#x60;,&#x60;gt&#x60;:&#x60;大于&#x60;,&#x60;lt&#x60;:&#x60;小于&#x60;]  optional
+      * @param {integer} [opts.hitCount] - 触发告警需要满足阈值表达式的次数，取值范围：[&#x60;1&#x60;,&#x60;2&#x60;,&#x60;3&#x60;,&#x60;5&#x60;,&#x60;10&#x60;,&#x60;15&#x60;,&#x60;30&#x60;,&#x60;60&#x60;]  optional
+      * @param {string} [opts.asRuleId] - 伸缩规则ID，更新告警任务关联的伸缩规则，目前只支持 &#x60;asRuleType&#x60; 为 &#x60;Simple&#x60; 的伸缩规则  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  updateAsAlarm (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  updateAsAlarm"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.asAlarmId === undefined || opts.asAlarmId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.asAlarmId' when calling updateAsAlarm"
+      )
+    }
+
+    let postBody = {}
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+    if (opts.metricName !== undefined && opts.metricName !== null) {
+      postBody['metricName'] = opts.metricName
+    }
+    if (opts.period !== undefined && opts.period !== null) {
+      postBody['period'] = opts.period
+    }
+    if (opts.statistic !== undefined && opts.statistic !== null) {
+      postBody['statistic'] = opts.statistic
+    }
+    if (opts.threshold !== undefined && opts.threshold !== null) {
+      postBody['threshold'] = opts.threshold
+    }
+    if (opts.comparison !== undefined && opts.comparison !== null) {
+      postBody['comparison'] = opts.comparison
+    }
+    if (opts.hitCount !== undefined && opts.hitCount !== null) {
+      postBody['hitCount'] = opts.hitCount
+    }
+    if (opts.asRuleId !== undefined && opts.asRuleId !== null) {
+      postBody['asRuleId'] = opts.asRuleId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      asAlarmId: opts.asAlarmId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call updateAsAlarm with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/asAlarms/{asAlarmId}',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除告警任务
+- 所有参数取值为字符串类型的都严格区分大小写
+- 伸缩功能开启或者关闭的情况下，都支持调用此接口
+- 目标跟踪规则生成的告警任务不允许删除
+- 告警任务关联简单规则，告警任务可以删除
+- 告警任务关联步进规则，告警任务不允许删除，但是可以删除步进规则，删除步进规则后，关联的告警任务会保留
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.asAlarmId - 告警任务ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteAsAlarm (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteAsAlarm"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.asAlarmId === undefined || opts.asAlarmId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.asAlarmId' when calling deleteAsAlarm"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      asAlarmId: opts.asAlarmId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteAsAlarm with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/asAlarms/{asAlarmId}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  禁用告警任务
+- 所有参数取值为字符串类型的都严格区分大小写
+- 伸缩功能开启或者关闭的情况下，都支持调用此接口
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.asAlarmId - 告警任务ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  disableAsAlarm (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  disableAsAlarm"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.asAlarmId === undefined || opts.asAlarmId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.asAlarmId' when calling disableAsAlarm"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      asAlarmId: opts.asAlarmId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call disableAsAlarm with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/asAlarms/{asAlarmId}:disable',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  启用告警任务
+- 所有参数取值为字符串类型的都严格区分大小写
+- 伸缩功能关闭的情况下，不支持调用此接口
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.asAlarmId - 告警任务ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  enableAsAlarm (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  enableAsAlarm"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.asAlarmId === undefined || opts.asAlarmId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.asAlarmId' when calling enableAsAlarm"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      asAlarmId: opts.asAlarmId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call enableAsAlarm with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/asAlarms/{asAlarmId}:enable',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查看定时任务
+- 所有参数取值为字符串类型的都严格区分大小写
+- 所有参数都为非必传，但是至少需要传入一个参数，否则报错
+- 伸缩功能开启或者关闭的情况下，都支持调用此接口
+- 定时任务如果关联伸缩规则，只能关联简单规则，且一个定时任务只能关联一个简单规则
+
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码，默认为&#x60;1&#x60;，最小值必须大于0  optional
+      * @param {integer} [opts.pageSize] - 分页大小，默认为&#x60;20&#x60;，取值范围[&#x60;10&#x60; ~ &#x60;100&#x60;]  optional
+      * @param {filter} [opts.filters] - 支持使用以下关键字进行过滤查询
+- &#x60;agId&#x60;: 高可用组ID，精确匹配，支持多个
+- &#x60;asCronId&#x60;: 定时任务ID，精确匹配，支持多个
+- &#x60;name&#x60;: 定时任务名称，模糊匹配，支持单个
+  optional
+      * @param {sort} [opts.sorts] - 排序条件列表，目前只支持单个排序条件，不支持多个排序条件，默认按照 &#x60;createTime&#x60; 降序排序
+支持使用以下关键字进行排序
+- &#x60;createTime&#x60;: 创建时间
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer totalCount  本次查询可匹配到的总记录数，使用者需要结合 &#x60;pageNumber&#x60; 和 &#x60;pageSize&#x60; 计算是否可以继续分页。
+      * @param asCronInfo asCrons
+      */
+
+  describeAsCrons (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeAsCrons"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildSortParam(opts.sorts, 'sorts'))
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeAsCrons with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/asCrons',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建定时任务
+- 所有参数取值为字符串类型的都严格区分大小写
+- 伸缩功能关闭的情况下，不支持调用此接口
+- 定时任务如果关联伸缩规则，只能关联简单规则，且一个定时任务只能关联一个简单规则
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.agId - 高可用组ID
+      * @param {string} opts.name - 名称，长度为1~32个字符，只允许中文、数字、大小写字母、英文下划线（_）、连字符（-）
+      * @param {string} [opts.description] - 描述，最大长度为256个字符  optional
+      * @param {string} [opts.asRuleId] - 可以为定时任务绑定伸缩规则，目前只支持简单规则，即 &#x60;asRuleType&#x60; 为 &#x60;Simple&#x60; 的伸缩规则
+- 当指定参数&#x60;asRuleId&#x60;时，不允许指定参数&#x60;minSize&#x60;,&#x60;maxSize&#x60;,&#x60;desiredCapacity&#x60;
+  optional
+      * @param {integer} [opts.minSize] - 设置伸缩组最小实例数，必须大于等于0，如果没有设置此参数，则此参数将会保存为 -1
+- 如果没有指定参数&#x60;asRuleId&#x60;，则参数&#x60;minSize&#x60;,&#x60;maxSize&#x60;,&#x60;desiredCapacity&#x60;三者至少填写一个
+  optional
+      * @param {integer} [opts.maxSize] - 设置伸缩组最大实例数，必须大于等于0，如果没有设置此参数，则此参数将会保存为 -1
+- 如果没有指定参数&#x60;asRuleId&#x60;，则参数&#x60;minSize&#x60;,&#x60;maxSize&#x60;,&#x60;desiredCapacity&#x60;三者至少填写一个
+  optional
+      * @param {integer} [opts.desiredCapacity] - 设置伸缩组期望实例数，必须大于等于0，如果没有设置此参数，则此参数将会保存为 -1
+- 如果没有指定参数&#x60;asRuleId&#x60;，则参数&#x60;minSize&#x60;,&#x60;maxSize&#x60;,&#x60;desiredCapacity&#x60;三者至少填写一个
+  optional
+      * @param {string} opts.launchTime - 定时任务触发的时间点
+时间格式：&#x60;2023-05-10 10:10:00&#x60;，目前只支持到分钟，秒数会被忽略，但是需要严格按照此时间格式填写
+- 如果未指定&#x60;repeatType&#x60;，则按指定的日期和时间执行一次
+- 如果指定了&#x60;repeatType&#x60;，则此属性指定的时间点，表示从这个时间之后开始按照重复周期执行定时任务
+时间限制如下：
+- 时间必须大于当前时间
+- 不能填写当前时间起30日后的时间
+- 时间必须小于&#x60;repeatEndTime&#x60;
+
+      * @param {string} [opts.repeatType] - 重复执行定时任务的类型，如果指定了&#x60;repeatType&#x60;，则&#x60;repeatValue&#x60;必填
+取值范围：[&#x60;Daily&#x60;,&#x60;Weekly&#x60;,&#x60;Monthly&#x60;,&#x60;Cron&#x60;]
+- Daily：每多少天重复执行一次定时任务
+- Weekly：每周指定几天重复执行一次定时任务
+- Monthly：每月内指定几天重复执行一次定时任务
+- Cron：按照指定的Cron表达式执行定时任务
+  optional
+      * @param {string} [opts.repeatValue] - 重复执行定时任务的数值，如果指定了&#x60;repeatType&#x60;，则&#x60;repeatValue&#x60;必填
+- &#x60;repeatType&#x60;取值为&#x60;Daily&#x60;时，只能填一个值，取值范围：[ &#x60;1&#x60; ~ &#x60;31&#x60; ]，表示：每几天执行
+- &#x60;repeatType&#x60;取值为&#x60;Weekly&#x60;时，可以填入多个值，填多个值时使用半角逗号（,）分隔。取值范围：[&#x60;0&#x60;,&#x60;1&#x60;,&#x60;2&#x60;,&#x60;3&#x60;,&#x60;4&#x60;,&#x60;5&#x60;,&#x60;6&#x60;]，分别对应：周日、周一、周二、周三、周四、周五、周六，表示：每周几执行
+- &#x60;repeatType&#x60;取值为&#x60;Monthly&#x60;时，格式为A-B。A、B的取值范围：[ &#x60;1&#x60; ~ &#x60;31&#x60; ]，并且B必须大于等于A，表示：每个月的几号到几号执行
+- &#x60;repeatType&#x60;取值为&#x60;Cron&#x60;时，必须填写Cron表达式，不支持秒，最小单位为分钟
+
+支持的Cron格式如下：
+*    *    *    *    *   从左到右依次表示：&#x60;[分] [小时] [日] [月] [周]&#x60;
+
+- 分，取值范围：[&#x60;0&#x60; ~ &#x60;59&#x60;]，允许的连接符号取值范围：[&#x60;*&#x60; &#x60;/&#x60; &#x60;,&#x60; &#x60;-&#x60;]
+- 小时，取值范围：[&#x60;0&#x60; ~ &#x60;23&#x60;]，允许的连接符号取值范围：[&#x60;*&#x60; &#x60;/&#x60; &#x60;,&#x60; &#x60;-&#x60;]
+- 日，取值范围：[&#x60;1&#x60; ~ &#x60;31&#x60;]，允许的连接符号取值范围：[&#x60;*&#x60; &#x60;/&#x60; &#x60;,&#x60; &#x60;-&#x60; &#x60;?&#x60;]
+- 月，取值范围：[&#x60;1&#x60; ~ &#x60;12&#x60;]，允许的连接符号取值范围：[&#x60;*&#x60; &#x60;/&#x60; &#x60;,&#x60; &#x60;-&#x60;]
+- 周，取值范围：[&#x60;0&#x60; ~ &#x60;6&#x60;]，允许的连接符号取值范围：[&#x60;*&#x60; &#x60;/&#x60; &#x60;,&#x60; &#x60;-&#x60; &#x60;?&#x60;]
+
+符号解析：&#x60;*&#x60;表示任意值，&#x60;/&#x60;表示步长，&#x60;,&#x60;表示多个值，&#x60;-&#x60;表示范围，&#x60;?&#x60;表示不指定值
+
+示例：0 10 * * *  表示：每天10点执行
+  optional
+      * @param {string} [opts.repeatEndTime] - 重复执行定时任务的结束时间
+默认为空，表示不限制结束时间，一直重复执行
+时间格式：&#x60;2023-05-10 10:10:00&#x60;，目前只支持到分钟，秒数会被忽略，但是需要严格按照此时间格式填写
+时间限制如下：
+- 时间必须大于&#x60;launchTime&#x60;
+  optional
+      * @param {integer} [opts.launchExpirationTime] - 定时任务触发操作失败后，在此时间内重试，单位为秒，默认为600，取值范围：[&#x60;0&#x60; ~ &#x60;1800&#x60;]  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string asCronId  定时任务ID
+      */
+
+  createAsCron (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createAsCron"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.agId === undefined || opts.agId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.agId' when calling createAsCron"
+      )
+    }
+    if (opts.name === undefined || opts.name === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.name' when calling createAsCron"
+      )
+    }
+    if (opts.launchTime === undefined || opts.launchTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.launchTime' when calling createAsCron"
+      )
+    }
+
+    let postBody = {}
+    if (opts.agId !== undefined && opts.agId !== null) {
+      postBody['agId'] = opts.agId
+    }
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+    if (opts.asRuleId !== undefined && opts.asRuleId !== null) {
+      postBody['asRuleId'] = opts.asRuleId
+    }
+    if (opts.minSize !== undefined && opts.minSize !== null) {
+      postBody['minSize'] = opts.minSize
+    }
+    if (opts.maxSize !== undefined && opts.maxSize !== null) {
+      postBody['maxSize'] = opts.maxSize
+    }
+    if (opts.desiredCapacity !== undefined && opts.desiredCapacity !== null) {
+      postBody['desiredCapacity'] = opts.desiredCapacity
+    }
+    if (opts.launchTime !== undefined && opts.launchTime !== null) {
+      postBody['launchTime'] = opts.launchTime
+    }
+    if (opts.repeatType !== undefined && opts.repeatType !== null) {
+      postBody['repeatType'] = opts.repeatType
+    }
+    if (opts.repeatValue !== undefined && opts.repeatValue !== null) {
+      postBody['repeatValue'] = opts.repeatValue
+    }
+    if (opts.repeatEndTime !== undefined && opts.repeatEndTime !== null) {
+      postBody['repeatEndTime'] = opts.repeatEndTime
+    }
+    if (
+      opts.launchExpirationTime !== undefined &&
+      opts.launchExpirationTime !== null
+    ) {
+      postBody['launchExpirationTime'] = opts.launchExpirationTime
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createAsCron with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/asCrons',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改定时任务
+- 所有参数取值为字符串类型的都严格区分大小写
+- 定时任务换绑高可用组，如果目前伸缩方式是执行简单规则，那么需要重新从新的高可用组中选择一个简单规则
+- 伸缩功能开启或者关闭的情况下，都支持调用此接口
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.asCronId - 定时任务ID
+      * @param {string} [opts.agId] - 高可用组ID  optional
+      * @param {string} [opts.name] - 名称，长度为1~32个字符，只允许中文、数字、大小写字母、英文下划线（_）、连字符（-）  optional
+      * @param {string} [opts.description] - 描述，最大长度为256个字符  optional
+      * @param {string} [opts.asRuleId] - 可以为定时任务绑定伸缩规则，目前只支持简单规则，即 &#x60;asRuleType&#x60; 为 &#x60;Simple&#x60; 的伸缩规则
+- 如果指定了参数&#x60;asRuleId&#x60;，则不允许指定参数&#x60;minSize&#x60;,&#x60;maxSize&#x60;,&#x60;desiredCapacity&#x60;
+- 如果指定了参数&#x60;asRuleId&#x60;，并且当前伸缩方式为执行简单规则，那么表示更换定时任务关联的伸缩规则
+- 如果指定了参数&#x60;asRuleId&#x60;，但是当前伸缩方式为修改伸缩组属性[&#x60;minSize&#x60;,&#x60;maxSize&#x60;,&#x60;desiredCapacity&#x60;]，那么将会清空&#x60;minSize&#x60;,&#x60;maxSize&#x60;,&#x60;desiredCapacity&#x60;的值，同时设置&#x60;asRuleId&#x60;的值
+  optional
+      * @param {integer} [opts.minSize] - 设置伸缩组最小实例数，必须大于等于0，如果没有设置此参数，则此参数将会保存为 -1
+- 如果指定了参数&#x60;minSize&#x60;,&#x60;maxSize&#x60;,&#x60;desiredCapacity&#x60;三者任意一个或多个，则不允许指定参数&#x60;asRuleId&#x60;
+- 如果指定了参数&#x60;minSize&#x60;,&#x60;maxSize&#x60;,&#x60;desiredCapacity&#x60;三者任意一个或多个，并且当前伸缩方式为修改伸缩组属性[&#x60;minSize&#x60;,&#x60;maxSize&#x60;,&#x60;desiredCapacity&#x60;]，那么将会更新&#x60;minSize&#x60;,&#x60;maxSize&#x60;,&#x60;desiredCapacity&#x60;指定的参数值
+- 如果指定了参数&#x60;minSize&#x60;,&#x60;maxSize&#x60;,&#x60;desiredCapacity&#x60;三者任意一个或多个，但是当前伸缩方式为执行简单规则，那么将会清空&#x60;asRuleId&#x60;的值，同时设置&#x60;minSize&#x60;,&#x60;maxSize&#x60;,&#x60;desiredCapacity&#x60;指定的参数值
+  optional
+      * @param {integer} [opts.maxSize] - 设置伸缩组最大实例数，必须大于等于0，如果没有设置此参数，则此参数将会保存为 -1
+- 如果指定了参数&#x60;minSize&#x60;,&#x60;maxSize&#x60;,&#x60;desiredCapacity&#x60;三者任意一个或多个，则不允许指定参数&#x60;asRuleId&#x60;
+- 如果指定了参数&#x60;minSize&#x60;,&#x60;maxSize&#x60;,&#x60;desiredCapacity&#x60;三者任意一个或多个，并且当前伸缩方式为修改伸缩组属性[&#x60;minSize&#x60;,&#x60;maxSize&#x60;,&#x60;desiredCapacity&#x60;]，那么将会更新&#x60;minSize&#x60;,&#x60;maxSize&#x60;,&#x60;desiredCapacity&#x60;指定的参数值
+- 如果指定了参数&#x60;minSize&#x60;,&#x60;maxSize&#x60;,&#x60;desiredCapacity&#x60;三者任意一个或多个，但是当前伸缩方式为执行简单规则，那么将会清空&#x60;asRuleId&#x60;的值，同时设置&#x60;minSize&#x60;,&#x60;maxSize&#x60;,&#x60;desiredCapacity&#x60;指定的参数值
+  optional
+      * @param {integer} [opts.desiredCapacity] - 设置伸缩组期望实例数，必须大于等于0，如果没有设置此参数，则此参数将会保存为 -1
+- 如果指定了参数&#x60;minSize&#x60;,&#x60;maxSize&#x60;,&#x60;desiredCapacity&#x60;三者任意一个或多个，则不允许指定参数&#x60;asRuleId&#x60;
+- 如果指定了参数&#x60;minSize&#x60;,&#x60;maxSize&#x60;,&#x60;desiredCapacity&#x60;三者任意一个或多个，并且当前伸缩方式为修改伸缩组属性[&#x60;minSize&#x60;,&#x60;maxSize&#x60;,&#x60;desiredCapacity&#x60;]，那么将会更新&#x60;minSize&#x60;,&#x60;maxSize&#x60;,&#x60;desiredCapacity&#x60;指定的参数值
+- 如果指定了参数&#x60;minSize&#x60;,&#x60;maxSize&#x60;,&#x60;desiredCapacity&#x60;三者任意一个或多个，但是当前伸缩方式为执行简单规则，那么将会清空&#x60;asRuleId&#x60;的值，同时设置&#x60;minSize&#x60;,&#x60;maxSize&#x60;,&#x60;desiredCapacity&#x60;指定的参数值
+  optional
+      * @param {string} [opts.launchTime] - 定时任务触发的时间点
+时间格式：&#x60;2023-05-10 10:10:00&#x60;，目前只支持到分钟，秒数会被忽略，但是需要严格按照此时间格式填写
+- 如果未指定&#x60;repeatType&#x60;，则按指定的日期和时间执行一次
+- 如果指定了&#x60;repeatType&#x60;，则此属性指定的时间点，表示从这个时间之后开始按照重复周期执行定时任务
+时间限制如下：
+- 时间必须大于当前时间
+- 不能填写当前时间起30日后的时间
+- 时间必须小于&#x60;repeatEndTime&#x60;
+  optional
+      * @param {string} [opts.repeatType] - 重复执行定时任务的类型，如果指定了&#x60;repeatType&#x60;，则&#x60;repeatValue&#x60;必填
+取值范围：[&#x60;Daily&#x60;,&#x60;Weekly&#x60;,&#x60;Monthly&#x60;,&#x60;Cron&#x60;]
+- Daily：每多少天重复执行一次定时任务
+- Weekly：每周指定几天重复执行一次定时任务
+- Monthly：每月内指定几天重复执行一次定时任务
+- Cron：按照指定的Cron表达式执行定时任务
+  optional
+      * @param {string} [opts.repeatValue] - 重复执行定时任务的数值，如果指定了&#x60;repeatType&#x60;，则&#x60;repeatValue&#x60;必填
+- &#x60;repeatType&#x60;取值为&#x60;Daily&#x60;时，只能填一个值，取值范围：[ &#x60;1&#x60; ~ &#x60;31&#x60; ]，表示：每几天执行
+- &#x60;repeatType&#x60;取值为&#x60;Weekly&#x60;时，可以填入多个值，填多个值时使用半角逗号（,）分隔。取值范围：[&#x60;0&#x60;,&#x60;1&#x60;,&#x60;2&#x60;,&#x60;3&#x60;,&#x60;4&#x60;,&#x60;5&#x60;,&#x60;6&#x60;]，分别对应：周日、周一、周二、周三、周四、周五、周六，表示：每周几执行
+- &#x60;repeatType&#x60;取值为&#x60;Monthly&#x60;时，格式为A-B。A、B的取值范围：[ &#x60;1&#x60; ~ &#x60;31&#x60; ]，并且B必须大于等于A，表示：每个月的几号到几号执行
+- &#x60;repeatType&#x60;取值为&#x60;Cron&#x60;时，必须填写Cron表达式，不支持秒，最小单位为分钟
+
+支持的Cron格式如下：
+*    *    *    *    *   从左到右依次表示：&#x60;[分] [小时] [日] [月] [周]&#x60;
+
+- 分，取值范围：[&#x60;0&#x60; ~ &#x60;59&#x60;]，允许的连接符号取值范围：[&#x60;*&#x60; &#x60;/&#x60; &#x60;,&#x60; &#x60;-&#x60;]
+- 小时，取值范围：[&#x60;0&#x60; ~ &#x60;23&#x60;]，允许的连接符号取值范围：[&#x60;*&#x60; &#x60;/&#x60; &#x60;,&#x60; &#x60;-&#x60;]
+- 日，取值范围：[&#x60;1&#x60; ~ &#x60;31&#x60;]，允许的连接符号取值范围：[&#x60;*&#x60; &#x60;/&#x60; &#x60;,&#x60; &#x60;-&#x60; &#x60;?&#x60;]
+- 月，取值范围：[&#x60;1&#x60; ~ &#x60;12&#x60;]，允许的连接符号取值范围：[&#x60;*&#x60; &#x60;/&#x60; &#x60;,&#x60; &#x60;-&#x60;]
+- 周，取值范围：[&#x60;0&#x60; ~ &#x60;6&#x60;]，允许的连接符号取值范围：[&#x60;*&#x60; &#x60;/&#x60; &#x60;,&#x60; &#x60;-&#x60; &#x60;?&#x60;]
+
+符号解析：&#x60;*&#x60;表示任意值，&#x60;/&#x60;表示步长，&#x60;,&#x60;表示多个值，&#x60;-&#x60;表示范围，&#x60;?&#x60;表示不指定值
+
+示例：0 10 * * *  表示：每天10点执行
+  optional
+      * @param {string} [opts.repeatEndTime] - 重复执行定时任务的结束时间
+默认为空，表示不限制结束时间，一直重复执行
+时间格式：&#x60;2023-05-10 10:10:00&#x60;，目前只支持到分钟，秒数会被忽略，但是需要严格按照此时间格式填写
+时间限制如下：
+- 时间必须大于&#x60;launchTime&#x60;
+  optional
+      * @param {integer} [opts.launchExpirationTime] - 定时任务触发操作失败后，在此时间内重试，单位为秒，取值范围：[&#x60;0&#x60; ~ &#x60;1800&#x60;]  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  updateAsCron (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  updateAsCron"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.asCronId === undefined || opts.asCronId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.asCronId' when calling updateAsCron"
+      )
+    }
+
+    let postBody = {}
+    if (opts.agId !== undefined && opts.agId !== null) {
+      postBody['agId'] = opts.agId
+    }
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+    if (opts.asRuleId !== undefined && opts.asRuleId !== null) {
+      postBody['asRuleId'] = opts.asRuleId
+    }
+    if (opts.minSize !== undefined && opts.minSize !== null) {
+      postBody['minSize'] = opts.minSize
+    }
+    if (opts.maxSize !== undefined && opts.maxSize !== null) {
+      postBody['maxSize'] = opts.maxSize
+    }
+    if (opts.desiredCapacity !== undefined && opts.desiredCapacity !== null) {
+      postBody['desiredCapacity'] = opts.desiredCapacity
+    }
+    if (opts.launchTime !== undefined && opts.launchTime !== null) {
+      postBody['launchTime'] = opts.launchTime
+    }
+    if (opts.repeatType !== undefined && opts.repeatType !== null) {
+      postBody['repeatType'] = opts.repeatType
+    }
+    if (opts.repeatValue !== undefined && opts.repeatValue !== null) {
+      postBody['repeatValue'] = opts.repeatValue
+    }
+    if (opts.repeatEndTime !== undefined && opts.repeatEndTime !== null) {
+      postBody['repeatEndTime'] = opts.repeatEndTime
+    }
+    if (
+      opts.launchExpirationTime !== undefined &&
+      opts.launchExpirationTime !== null
+    ) {
+      postBody['launchExpirationTime'] = opts.launchExpirationTime
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      asCronId: opts.asCronId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call updateAsCron with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/asCrons/{asCronId}',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除定时任务
+- 所有参数取值为字符串类型的都严格区分大小写
+- 伸缩功能开启或者关闭的情况下，都支持调用此接口
+- 定时任务关联简单规则，定时任务可以删除
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.asCronId - 定时任务ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteAsCron (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteAsCron"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.asCronId === undefined || opts.asCronId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.asCronId' when calling deleteAsCron"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      asCronId: opts.asCronId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteAsCron with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/asCrons/{asCronId}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  禁用定时任务
+- 所有参数取值为字符串类型的都严格区分大小写
+- 伸缩功能开启或者关闭的情况下，都支持调用此接口
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.asCronId - 定时任务ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  disableAsCron (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  disableAsCron"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.asCronId === undefined || opts.asCronId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.asCronId' when calling disableAsCron"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      asCronId: opts.asCronId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call disableAsCron with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/asCrons/{asCronId}:disable',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  启用定时任务
+- 所有参数取值为字符串类型的都严格区分大小写
+- 伸缩功能关闭的情况下，不支持调用此接口
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.asCronId - 定时任务ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  enableAsCron (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  enableAsCron"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.asCronId === undefined || opts.asCronId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.asCronId' when calling enableAsCron"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      asCronId: opts.asCronId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call enableAsCron with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/asCrons/{asCronId}:enable',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  开启弹性伸缩功能
+      * @param {Object} opts - parameters
+      * @param {string} opts.agId - 高可用组 ID
+      * @param {boolean} [opts.isManaged] - 高可用中实例是否托管给弹性伸缩组，托管后缩容时可以删除该实例，默认false  optional
+      * @param {autoscalingSpec} [opts.autoscalingSpec] - 伸缩组详细信息，如果高可用组已开启过伸缩功能，该参数将被忽略  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  enableAutoScaling (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  enableAutoScaling"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.agId === undefined || opts.agId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.agId' when calling enableAutoScaling"
+      )
+    }
+
+    let postBody = {}
+    if (opts.isManaged !== undefined && opts.isManaged !== null) {
+      postBody['isManaged'] = opts.isManaged
+    }
+    if (opts.autoscalingSpec !== undefined && opts.autoscalingSpec !== null) {
+      postBody['autoscalingSpec'] = opts.autoscalingSpec
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      agId: opts.agId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call enableAutoScaling with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/autoScaling/{agId}',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  关闭弹性伸缩组
+      * @param {Object} opts - parameters
+      * @param {string} opts.agId - 高可用组 ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  disableAutoScaling (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  disableAutoScaling"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.agId === undefined || opts.agId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.agId' when calling disableAutoScaling"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      agId: opts.agId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call disableAutoScaling with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/autoScaling/{agId}:disable',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新弹性伸缩组
+      * @param {Object} opts - parameters
+      * @param {string} opts.agId - 高可用组 ID
+      * @param {autoscalingSpecByUpdate} opts.autoscalingSpec - 伸缩组详细信息
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  updateAutoScaling (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  updateAutoScaling"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.agId === undefined || opts.agId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.agId' when calling updateAutoScaling"
+      )
+    }
+    if (opts.autoscalingSpec === undefined || opts.autoscalingSpec === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.autoscalingSpec' when calling updateAutoScaling"
+      )
+    }
+
+    let postBody = {}
+    if (opts.autoscalingSpec !== undefined && opts.autoscalingSpec !== null) {
+      postBody['autoscalingSpec'] = opts.autoscalingSpec
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      agId: opts.agId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call updateAutoScaling with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/autoScaling/{agId}:updateAutoScaling',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查看伸缩规则
+- 所有参数取值为字符串类型的都严格区分大小写
+- 伸缩功能开启或者关闭的情况下，都支持调用此接口
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.agId - 高可用组ID
+      * @param {integer} [opts.pageNumber] - 页码，默认为&#x60;1&#x60;，最小值必须大于0  optional
+      * @param {integer} [opts.pageSize] - 分页大小，默认为&#x60;20&#x60;，取值范围[&#x60;10&#x60; ~ &#x60;100&#x60;]  optional
+      * @param {filter} [opts.filters] - 支持使用以下关键字进行过滤查询
+- &#x60;asRuleId&#x60;: 伸缩规则ID，精确匹配，支持多个
+- &#x60;name&#x60;: 伸缩规则名称，模糊匹配，支持单个
+- &#x60;asRuleType&#x60;: 伸缩规则类型，精确匹配，支持多个，取值范围：[&#x60;Simple&#x60;,&#x60;Target&#x60;,&#x60;Step&#x60;]
+  optional
+      * @param {sort} [opts.sorts] - 排序条件列表，目前只支持单个排序条件，不支持多个排序条件，默认按照 &#x60;createTime&#x60; 降序排序
+支持使用以下关键字进行排序
+- &#x60;createTime&#x60;: 创建时间
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer totalCount  本次查询可匹配到的总记录数，使用者需要结合 &#x60;pageNumber&#x60; 和 &#x60;pageSize&#x60; 计算是否可以继续分页。
+      * @param asRuleInfo asRules
+      */
+
+  describeAsRules (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeAsRules"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.agId === undefined || opts.agId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.agId' when calling describeAsRules"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.agId !== undefined && opts.agId !== null) {
+      queryParams['agId'] = opts.agId
+    }
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildSortParam(opts.sorts, 'sorts'))
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeAsRules with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/asRules',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建伸缩规则
+- 所有参数取值为字符串类型的都严格区分大小写
+- 伸缩功能关闭的情况下，不支持调用此接口
+- 目标跟踪规则创建后会自动生成两个告警任务，分别用于扩容和缩容
+- 步进规则必须绑定一个告警任务
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.agId - 高可用组ID
+      * @param {string} opts.name - 伸缩规则名称，长度为1~32个字符，只允许中文、数字、大小写字母、英文下划线（_）、连字符（-）
+      * @param {string} [opts.description] - 伸缩规则描述，最大长度为256个字符  optional
+      * @param {string} opts.asRuleType - 伸缩规则类型，取值范围：[&#x60;Simple&#x60;,&#x60;Target&#x60;,&#x60;Step&#x60;]
+- &#x60;Simple&#x60;：简单规则，直接设置调整方式和调整值
+- &#x60;Target&#x60;：目标跟踪规则，根据监控项和目标值计算需要扩缩容的实例数量，尽量将监控项的指标值维持在目标值和目标值的90%之间
+- &#x60;Step&#x60;：步进规则，根据阈值和指标值提供分步扩展方式
+
+      * @param {createSimpleAsRuleSpec} [opts.simpleAsRuleSpec] - 简单规则相关参数，当&#x60;asRuleType&#x60;为&#x60;Simple&#x60;时必填  optional
+      * @param {createTargetAsRuleSpec} [opts.targetAsRuleSpec] - 目标跟踪规则相关参数，当&#x60;asRuleType&#x60;为&#x60;Target&#x60;时必填  optional
+      * @param {createStepAsRuleSpec} [opts.stepAsRuleSpec] - 步进规则相关参数，当&#x60;asRuleType&#x60;为&#x60;Step&#x60;时必填  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string asRuleId  伸缩规则ID
+      */
+
+  createAsRule (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createAsRule"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.agId === undefined || opts.agId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.agId' when calling createAsRule"
+      )
+    }
+    if (opts.name === undefined || opts.name === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.name' when calling createAsRule"
+      )
+    }
+    if (opts.asRuleType === undefined || opts.asRuleType === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.asRuleType' when calling createAsRule"
+      )
+    }
+
+    let postBody = {}
+    if (opts.agId !== undefined && opts.agId !== null) {
+      postBody['agId'] = opts.agId
+    }
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+    if (opts.asRuleType !== undefined && opts.asRuleType !== null) {
+      postBody['asRuleType'] = opts.asRuleType
+    }
+    if (opts.simpleAsRuleSpec !== undefined && opts.simpleAsRuleSpec !== null) {
+      postBody['simpleAsRuleSpec'] = opts.simpleAsRuleSpec
+    }
+    if (opts.targetAsRuleSpec !== undefined && opts.targetAsRuleSpec !== null) {
+      postBody['targetAsRuleSpec'] = opts.targetAsRuleSpec
+    }
+    if (opts.stepAsRuleSpec !== undefined && opts.stepAsRuleSpec !== null) {
+      postBody['stepAsRuleSpec'] = opts.stepAsRuleSpec
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createAsRule with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/asRules',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改伸缩规则
+- 所有参数取值为字符串类型的都严格区分大小写
+- 所有伸缩规则不允许更换高可用组
+- 所有伸缩规则不允许修改伸缩规则类型
+- 步进规则不允许修改监控类型
+- 所有参数都为非必传，但是至少需要传入一个参数，否则报错
+- 伸缩功能开启或者关闭的情况下，都支持调用此接口
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.asRuleId - 伸缩规则ID
+      * @param {string} [opts.name] - 伸缩规则名称，长度为1~32个字符，只允许中文、数字、大小写字母、英文下划线（_）、连字符（-）  optional
+      * @param {string} [opts.description] - 伸缩规则描述，最大长度为256个字符  optional
+      * @param {updateSimpleAsRuleSpec} [opts.simpleAsRuleSpec] - 简单规则相关参数，当待修改的规则类型为&#x60;Simple&#x60;时，填写此参数才有效  optional
+      * @param {updateTargetAsRuleSpec} [opts.targetAsRuleSpec] - 目标跟踪规则相关参数，当待修改的规则类型为&#x60;Target&#x60;时，填写此参数才有效  optional
+      * @param {updateStepAsRuleSpec} [opts.stepAsRuleSpec] - 步进规则相关参数，当待修改的规则类型为&#x60;Step&#x60;时，填写此参数才有效  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  updateAsRule (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  updateAsRule"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.asRuleId === undefined || opts.asRuleId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.asRuleId' when calling updateAsRule"
+      )
+    }
+
+    let postBody = {}
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+    if (opts.simpleAsRuleSpec !== undefined && opts.simpleAsRuleSpec !== null) {
+      postBody['simpleAsRuleSpec'] = opts.simpleAsRuleSpec
+    }
+    if (opts.targetAsRuleSpec !== undefined && opts.targetAsRuleSpec !== null) {
+      postBody['targetAsRuleSpec'] = opts.targetAsRuleSpec
+    }
+    if (opts.stepAsRuleSpec !== undefined && opts.stepAsRuleSpec !== null) {
+      postBody['stepAsRuleSpec'] = opts.stepAsRuleSpec
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      asRuleId: opts.asRuleId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call updateAsRule with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/asRules/{asRuleId}',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除伸缩规则
+- 所有参数取值为字符串类型的都严格区分大小写
+- 伸缩功能开启或者关闭的情况下，都支持调用此接口
+- 删除目标跟踪规则后，会自动删除目标跟踪规则下的所有告警规则
+- 删除步进规则后，关联的告警规则会保留
+- 简单规则关联告警任务或者定时任务时，不允许删除简单规则
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.asRuleId - 伸缩规则ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteAsRule (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteAsRule"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.asRuleId === undefined || opts.asRuleId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.asRuleId' when calling deleteAsRule"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      asRuleId: opts.asRuleId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteAsRule with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/asRules/{asRuleId}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  执行伸缩规则
+- 所有参数取值为字符串类型的都严格区分大小写
+- 只支持手动执行简单规则
+- 伸缩功能关闭的情况下，不支持调用此接口
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.asRuleId - 伸缩规则ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  executeAsRule (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  executeAsRule"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.asRuleId === undefined || opts.asRuleId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.asRuleId' when calling executeAsRule"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      asRuleId: opts.asRuleId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call executeAsRule with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/asRules/{asRuleId}:execute',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  使用过滤条件查询一个或多个高可用组
       * @param {Object} opts - parameters
       * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
@@ -53,6 +2954,7 @@ class AG extends Service {
 agId - ag id，精确匹配
 instanceTemplateId - 实例模板id，精确匹配
 vpcId - vpc id，精确匹配
+placementType - placement type，放置策略
   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -90,7 +2992,7 @@ vpcId - vpc id，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.6.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -171,6 +3073,8 @@ vpcId - vpc id，精确匹配
       * @param {string} [opts.instanceTemplateId] - 实例模板的ID  optional
       * @param {string} [opts.description] - 描述，长度不超过 256 字符  optional
       * @param {string} [opts.configurationType] - 高可用组配置类型，支持strict(关联模板型)、loose(自定义配置型)  optional
+      * @param {string} [opts.placementType] - 高可用资源放置类型，支持fd、switch、host  optional
+      * @param {autoscalingSpec} [opts.autoscalingSpec] - 伸缩组详细信息，当创建时选择打开弹性伸缩功能时需要传该参数  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -222,6 +3126,12 @@ vpcId - vpc id，精确匹配
     ) {
       postBody['configurationType'] = opts.configurationType
     }
+    if (opts.placementType !== undefined && opts.placementType !== null) {
+      postBody['placementType'] = opts.placementType
+    }
+    if (opts.autoscalingSpec !== undefined && opts.autoscalingSpec !== null) {
+      postBody['autoscalingSpec'] = opts.autoscalingSpec
+    }
 
     let queryParams = {}
 
@@ -230,7 +3140,7 @@ vpcId - vpc id，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.6.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -341,7 +3251,7 @@ vpcId - vpc id，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.6.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -460,7 +3370,7 @@ vpcId - vpc id，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.6.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -570,7 +3480,7 @@ vpcId - vpc id，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.6.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -685,7 +3595,7 @@ vpcId - vpc id，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.6.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -811,7 +3721,7 @@ vpcId - vpc id，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.6.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
     }
 
     let contentTypes = ['application/json']
@@ -917,7 +3827,7 @@ vpcId - vpc id，精确匹配
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.6.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
     }
 
     let contentTypes = ['application/json']

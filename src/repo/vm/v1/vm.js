@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * vm service.
- * @version 1.5.13
+ * @version 1.5.14
  */
 
 class VM extends Service {
@@ -91,7 +91,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -216,7 +216,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -379,7 +379,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -557,7 +557,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -677,7 +677,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -794,7 +794,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -918,7 +918,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -1041,7 +1041,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -1162,7 +1162,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -1280,7 +1280,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -1398,7 +1398,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -1531,7 +1531,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -1657,7 +1657,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -1852,7 +1852,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -2007,7 +2007,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -2148,7 +2148,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -2291,7 +2291,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -2394,6 +2394,8 @@ class VM extends Service {
   optional
       * @param {string} [opts.clientToken] - 用于保证请求的幂等性。由客户端生成，并确保不同请求中该参数唯一，长度不能超过64个字符。
   optional
+      * @param {boolean} [opts.isManaged] - 是否托管实例的生命周期，默认为false；若为包年包月实例，可加入但不支持托管；该字段仅AG开启AS时生效。托管实例将在缩容或健康检查失败时被删除，非托管实例仅移出伸缩组
+  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -2430,6 +2432,9 @@ class VM extends Service {
     if (opts.clientToken !== undefined && opts.clientToken !== null) {
       postBody['clientToken'] = opts.clientToken
     }
+    if (opts.isManaged !== undefined && opts.isManaged !== null) {
+      postBody['isManaged'] = opts.isManaged
+    }
 
     let queryParams = {}
 
@@ -2438,7 +2443,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -2581,7 +2586,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -2700,7 +2705,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -2834,7 +2839,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -2969,7 +2974,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -3108,7 +3113,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -3238,7 +3243,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -3359,7 +3364,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -3478,7 +3483,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -3596,7 +3601,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -3741,7 +3746,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -3875,7 +3880,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -4002,7 +4007,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -4131,7 +4136,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -4258,7 +4263,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -4407,7 +4412,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -4555,7 +4560,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -4689,7 +4694,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -4813,7 +4818,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -4966,7 +4971,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -5131,7 +5136,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -5263,7 +5268,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -5384,7 +5389,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -5529,7 +5534,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -5708,7 +5713,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -5841,7 +5846,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -5938,6 +5943,8 @@ class VM extends Service {
   optional
       * @param {boolean} [opts.clearLocalDisk] - 是否确认清除本地盘数据，默认 false
   optional
+      * @param {boolean} [opts.isManaged] - 是否托管实例的生命周期，默认为false；若为包年包月实例，可加入但不支持托管；该字段仅AG开启AS时生效。托管实例将在缩容或健康检查失败时被删除，非托管实例仅移出伸缩组
+  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -5973,6 +5980,9 @@ class VM extends Service {
     if (opts.clearLocalDisk !== undefined && opts.clearLocalDisk !== null) {
       postBody['clearLocalDisk'] = opts.clearLocalDisk
     }
+    if (opts.isManaged !== undefined && opts.isManaged !== null) {
+      postBody['isManaged'] = opts.isManaged
+    }
 
     let queryParams = {}
 
@@ -5982,7 +5992,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -6107,7 +6117,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -6255,7 +6265,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -6377,7 +6387,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -6514,7 +6524,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -6634,7 +6644,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -6754,7 +6764,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -6873,7 +6883,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -7002,7 +7012,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -7126,7 +7136,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -7253,7 +7263,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -7388,7 +7398,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -7506,7 +7516,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -7643,7 +7653,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -7767,7 +7777,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']
@@ -7885,7 +7895,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
     }
 
     let contentTypes = ['application/json']

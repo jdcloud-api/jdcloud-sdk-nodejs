@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * vpc service.
- * @version 1.1.0
+ * @version 1.1.5
  */
 
 class VPC extends Service {
@@ -109,7 +109,7 @@ name - 共享带宽包名称，支持单个进行精确搜索
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -264,7 +264,7 @@ name - 共享带宽包名称，支持单个进行精确搜索
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -386,7 +386,7 @@ name - 共享带宽包名称，支持单个进行精确搜索
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -520,7 +520,7 @@ name - 共享带宽包名称，支持单个进行精确搜索
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -638,7 +638,7 @@ name - 共享带宽包名称，支持单个进行精确搜索
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -777,7 +777,7 @@ name - 共享带宽包名称，支持单个进行精确搜索
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -906,7 +906,7 @@ name - 共享带宽包名称，支持单个进行精确搜索
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -1037,7 +1037,7 @@ name - 共享带宽包名称，支持单个进行精确搜索
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -1165,7 +1165,7 @@ status - IP是否被绑定，取值：ASSOCIATED（被绑定）、NOT_ASSOCIATED
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -1309,7 +1309,7 @@ status - IP是否被绑定，取值：ASSOCIATED（被绑定）、NOT_ASSOCIATED
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -1420,7 +1420,7 @@ status - IP是否被绑定，取值：ASSOCIATED（被绑定）、NOT_ASSOCIATED
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -1540,7 +1540,7 @@ status - IP是否被绑定，取值：ASSOCIATED（被绑定）、NOT_ASSOCIATED
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -1650,7 +1650,7 @@ status - IP是否被绑定，取值：ASSOCIATED（被绑定）、NOT_ASSOCIATED
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -1723,6 +1723,1228 @@ status - IP是否被绑定，取值：ASSOCIATED（被绑定）、NOT_ASSOCIATED
   }
 
   /**
+      *  查询NAT网关列表接口
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞), 页码超过总页数时, 显示最后一页  optional
+      * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围：[10,100]  optional
+      * @param {filter} [opts.filters] - natGatewayIds - NAT网关ID列表，支持多个
+natGatewayNames - NAT网关名称列表，支持多个
+natGatewayPublicIp - NAT网关公网IP，支持单个，即将废弃，请使用elasticIpAddress
+elasticIpAddress - 公网IP，支持单个
+natGatewayPrivateIp - NAT网关私网IP，支持单个
+vpcId - NAT网关所属VPC ID，支持单个
+subnetId - NAT网关所属子网ID，支持单个
+  optional
+      * @param {tagFilter} [opts.tags] - Tag筛选条件  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param natGateway natGateways
+      * @param number totalCount  总数量
+      */
+
+  describeNatGateways (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeNatGateways"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildTagFilterParam(opts.tags, 'tags'))
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeNatGateways with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/natGateways/',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建NAT网关接口
+      * @param {Object} opts - parameters
+      * @param {string} opts.natGatewayName - NAT网关名称
+      * @param {string} [opts.natGatewaySpec] - NAT网关规格，取值small（100万并发连接数），medium（300万并发连接数），large（1000万并发连接数），默认small  optional
+      * @param {string} opts.vpcId - 私有网络ID
+      * @param {string} opts.subnetId - 子网ID
+      * @param {array} [opts.azIpSpecs] - NAT网关的可用区属性，即将废弃  optional
+      * @param {array} [opts.azs] - NAT网关可用区  optional
+      * @param {array} [opts.elasticIpIds] - 选择已有公网IP列表。选择已有和新购公网IP可以同时配置，也可以配置其一  optional
+      * @param {integer} [opts.elasticIpCount] - 新购公网IP数量  optional
+      * @param {elasticIpSpec} [opts.elasticIpSpec] - 新购公网IP配置。NAT网关仅支持打包创建标准公网IP，不支持边缘公网IP。且标准公网IP仅支持按配置、按用量两种计费模式。  optional
+      * @param {chargeSpec} [opts.natGatewayCharge] - 计费配置，仅支持按配置，默认按配置  optional
+      * @param {string} [opts.description] - 描述,​ 允许输入UTF-8编码下的全部字符，不超过256字符  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string natGatewayId  NAT网关ID
+      */
+
+  createNatGateway (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createNatGateway"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.natGatewayName === undefined || opts.natGatewayName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.natGatewayName' when calling createNatGateway"
+      )
+    }
+    if (opts.vpcId === undefined || opts.vpcId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.vpcId' when calling createNatGateway"
+      )
+    }
+    if (opts.subnetId === undefined || opts.subnetId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.subnetId' when calling createNatGateway"
+      )
+    }
+
+    let postBody = {}
+    if (opts.natGatewayName !== undefined && opts.natGatewayName !== null) {
+      postBody['natGatewayName'] = opts.natGatewayName
+    }
+    if (opts.natGatewaySpec !== undefined && opts.natGatewaySpec !== null) {
+      postBody['natGatewaySpec'] = opts.natGatewaySpec
+    }
+    if (opts.vpcId !== undefined && opts.vpcId !== null) {
+      postBody['vpcId'] = opts.vpcId
+    }
+    if (opts.subnetId !== undefined && opts.subnetId !== null) {
+      postBody['subnetId'] = opts.subnetId
+    }
+    if (opts.azIpSpecs !== undefined && opts.azIpSpecs !== null) {
+      postBody['azIpSpecs'] = opts.azIpSpecs
+    }
+    if (opts.azs !== undefined && opts.azs !== null) {
+      postBody['azs'] = opts.azs
+    }
+    if (opts.elasticIpIds !== undefined && opts.elasticIpIds !== null) {
+      postBody['elasticIpIds'] = opts.elasticIpIds
+    }
+    if (opts.elasticIpCount !== undefined && opts.elasticIpCount !== null) {
+      postBody['elasticIpCount'] = opts.elasticIpCount
+    }
+    if (opts.elasticIpSpec !== undefined && opts.elasticIpSpec !== null) {
+      postBody['elasticIpSpec'] = opts.elasticIpSpec
+    }
+    if (opts.natGatewayCharge !== undefined && opts.natGatewayCharge !== null) {
+      postBody['natGatewayCharge'] = opts.natGatewayCharge
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createNatGateway with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/natGateways/',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询NAT网关信息详情接口
+      * @param {Object} opts - parameters
+      * @param {string} opts.natGatewayId - natGateway ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param natGateway natGateway  natGateway资源信息
+      */
+
+  describeNatGateway (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeNatGateway"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.natGatewayId === undefined || opts.natGatewayId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.natGatewayId' when calling describeNatGateway"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      natGatewayId: opts.natGatewayId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeNatGateway with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/natGateways/{natGatewayId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改NAT网关接口，修改网关规格或带宽需要先停止网关
+      * @param {Object} opts - parameters
+      * @param {string} opts.natGatewayId - natGateway ID
+      * @param {string} [opts.natGatewayName] - NAT网关名称  optional
+      * @param {string} [opts.description] - 描述,允许输入UTF-8编码下的全部字符，不超过256字符  optional
+      * @param {string} [opts.natGatewaySpec] - NAT网关规格，取值small（100万并发连接数）,medium(300万并发连接数),large（1000万并发连接数）  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  modifyNatGateway (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyNatGateway"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.natGatewayId === undefined || opts.natGatewayId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.natGatewayId' when calling modifyNatGateway"
+      )
+    }
+
+    let postBody = {}
+    if (opts.natGatewayName !== undefined && opts.natGatewayName !== null) {
+      postBody['natGatewayName'] = opts.natGatewayName
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+    if (opts.natGatewaySpec !== undefined && opts.natGatewaySpec !== null) {
+      postBody['natGatewaySpec'] = opts.natGatewaySpec
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      natGatewayId: opts.natGatewayId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyNatGateway with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/natGateways/{natGatewayId}',
+      'PATCH',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除NAT网关接口，NAT网关需要先停止再删除
+      * @param {Object} opts - parameters
+      * @param {string} opts.natGatewayId - natGateway ID
+      * @param {boolean} [opts.deleteElasticIp] - 是否打包删除公网IP，取值范围：true、false，默认false。true表示删除NAT网关时打包删除其绑定的所有公网IP；false表示删除NAT网关时不删除其绑定的所有公网IP。包年包月公网IP不支持打包删除  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param failedIp failedList
+      */
+
+  deleteNatGateway (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteNatGateway"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.natGatewayId === undefined || opts.natGatewayId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.natGatewayId' when calling deleteNatGateway"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.deleteElasticIp !== undefined && opts.deleteElasticIp !== null) {
+      queryParams['deleteElasticIp'] = opts.deleteElasticIp
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      natGatewayId: opts.natGatewayId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteNatGateway with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/natGateways/{natGatewayId}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  启动NAT网关接口，欠费停服客户不允许启动
+      * @param {Object} opts - parameters
+      * @param {string} opts.natGatewayId - natGateway ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  startNatGateway (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  startNatGateway"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.natGatewayId === undefined || opts.natGatewayId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.natGatewayId' when calling startNatGateway"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      natGatewayId: opts.natGatewayId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call startNatGateway with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/natGateways/{natGatewayId}:startNatGateway',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  停止NAT网关接口，非欠费停服，由客户自己停止的NAT网关继续计费
+      * @param {Object} opts - parameters
+      * @param {string} opts.natGatewayId - natGateway ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  stopNatGateway (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  stopNatGateway"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.natGatewayId === undefined || opts.natGatewayId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.natGatewayId' when calling stopNatGateway"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      natGatewayId: opts.natGatewayId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call stopNatGateway with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/natGateways/{natGatewayId}:stopNatGateway',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  NAT网关绑定已有公网IP接口，NAT网关支持绑定一个或多个公网IP。当NAT网关绑定多个公网IP时，同一内网服务器的业务流量出公网将随机选取其中一个公网IP。由于每个内网服务器的业务流量大小不同，可能出现NAT多公网IP流量不均的情况。建议将多公网IP加入同一个共享带宽包，避免因业务流量达到单公网IP带宽上限，影响业务转发。
+      * @param {Object} opts - parameters
+      * @param {string} opts.natGatewayId - natGateway ID
+      * @param {array} opts.elasticIpIds - 公网IP列表
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  associateElasticIps (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  associateElasticIps"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.natGatewayId === undefined || opts.natGatewayId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.natGatewayId' when calling associateElasticIps"
+      )
+    }
+    if (opts.elasticIpIds === undefined || opts.elasticIpIds === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.elasticIpIds' when calling associateElasticIps"
+      )
+    }
+
+    let postBody = {}
+    if (opts.elasticIpIds !== undefined && opts.elasticIpIds !== null) {
+      postBody['elasticIpIds'] = opts.elasticIpIds
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      natGatewayId: opts.natGatewayId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call associateElasticIps with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/natGateways/{natGatewayId}:associateElasticIps',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  解绑NAT网关上的公网IP接口
+      * @param {Object} opts - parameters
+      * @param {string} opts.natGatewayId - natGateway ID
+      * @param {array} [opts.elasticIpIds] - 公网IP ID，当为弹性公网IP时，为elasticIpId。  optional
+      * @param {boolean} [opts.deleteElasticIp] - 解绑后是否删除公网IP，取值范围：true、false,默认为false.true表示解绑公网IP时删除该公网IP;false表示解绑公网IP时不删除公网IP  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param failedIp failedList
+      */
+
+  disassociateElasticIps (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  disassociateElasticIps"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.natGatewayId === undefined || opts.natGatewayId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.natGatewayId' when calling disassociateElasticIps"
+      )
+    }
+
+    let postBody = {}
+    if (opts.elasticIpIds !== undefined && opts.elasticIpIds !== null) {
+      postBody['elasticIpIds'] = opts.elasticIpIds
+    }
+    if (opts.deleteElasticIp !== undefined && opts.deleteElasticIp !== null) {
+      postBody['deleteElasticIp'] = opts.deleteElasticIp
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      natGatewayId: opts.natGatewayId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call disassociateElasticIps with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/natGateways/{natGatewayId}:disassociateElasticIps',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  设置NAT网关已绑定的公网IP状态接口
+      * @param {Object} opts - parameters
+      * @param {string} opts.natGatewayId - natGateway ID
+      * @param {array} [opts.elasticIpIds] - 公网IP列表  optional
+      * @param {string} opts.status - 公网ip状态，取值范围：online、offline。online表示将NAT绑定的公网IP上线，上线后公网IP可正常转发流量;offline表示将NAT绑定的公网IP下线，下线后，公网IP将不再接受新建连接，已有连接将继续转发流量，从而实现公网IP平滑下线。已下线的公网IP不会自动从NAT网关解绑，如需解绑请执行解绑操作
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  setElasticIpStatus (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  setElasticIpStatus"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.natGatewayId === undefined || opts.natGatewayId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.natGatewayId' when calling setElasticIpStatus"
+      )
+    }
+    if (opts.status === undefined || opts.status === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.status' when calling setElasticIpStatus"
+      )
+    }
+
+    let postBody = {}
+    if (opts.elasticIpIds !== undefined && opts.elasticIpIds !== null) {
+      postBody['elasticIpIds'] = opts.elasticIpIds
+    }
+    if (opts.status !== undefined && opts.status !== null) {
+      postBody['status'] = opts.status
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      natGatewayId: opts.natGatewayId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call setElasticIpStatus with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/natGateways/{natGatewayId}:setElasticIpStatus',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  查询Acl列表
       * @param {Object} opts - parameters
       * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞), 页码超过总页数时, 显示最后一页  optional
@@ -1767,7 +2989,7 @@ vpcId - networkAcl所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -1894,7 +3116,7 @@ vpcId - networkAcl所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -2005,7 +3227,7 @@ vpcId - networkAcl所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -2124,7 +3346,7 @@ vpcId - networkAcl所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -2234,7 +3456,7 @@ vpcId - networkAcl所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -2354,7 +3576,7 @@ vpcId - networkAcl所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -2474,7 +3696,7 @@ vpcId - networkAcl所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -2592,7 +3814,7 @@ vpcId - networkAcl所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -2712,7 +3934,7 @@ vpcId - networkAcl所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -2830,7 +4052,7 @@ vpcId - networkAcl所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -2951,7 +4173,7 @@ azs - 可用区 az名，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -3103,7 +4325,7 @@ azs - 可用区 az名，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -3217,7 +4439,7 @@ azs - 可用区 az名，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -3346,7 +4568,7 @@ azs - 可用区 az名，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -3459,7 +4681,7 @@ azs - 可用区 az名，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -3585,7 +4807,7 @@ azs - 可用区 az名，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -3707,7 +4929,7 @@ azs - 可用区 az名，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -3847,7 +5069,7 @@ azs - 可用区 az名，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -3969,7 +5191,7 @@ azs - 可用区 az名，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -4090,7 +5312,7 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -4223,7 +5445,7 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -4341,7 +5563,7 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -4466,7 +5688,7 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -4579,7 +5801,7 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -4706,7 +5928,7 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -4833,7 +6055,7 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -4959,7 +6181,7 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -5034,8 +6256,8 @@ vpcId - 安全组所属vpc Id，支持单个
   /**
       *  查询配额信息
       * @param {Object} opts - parameters
-      * @param {string} opts.type - 资源类型，取值范围：vpc、elastic_ip、subnet、security_group、vpcpeering、network_interface（配额只统计辅助网卡）、acl、aclRule、routeTable、staticRoute、propagatedRoute、securityGroupRule、network_interface_cidr、bwpByUsage、bandwidthPackageIp、natGateway、natGatewayFip
-      * @param {string} [opts.parentResourceId] - type为vpc、elastic_ip、network_interface、bwpByUsage、natGateway不设置, type为subnet、security_group、vpcpeering、acl、routeTable设置为vpcId, type为aclRule设置为aclId, type为staticRoute、propagatedRoute设置为routeTableId, type为securityGroupRule为securityGroupId, type为network_interface_cidr设置为networkInterfaceId，type为bandwidthPackageIp设置为bandwidthPackageId，natGatewayFip设置为natGatewayId  optional
+      * @param {string} opts.type - 资源类型，取值范围：vpc、elastic_ip、subnet、security_group、vpcpeering、network_interface（配额只统计辅助网卡）、acl、aclRule、routeTable、staticRoute、propagatedRoute、securityGroupRule、network_interface_cidr、bwpByUsage、bandwidthPackageIp、natGateway、natGatewayFip、trafficMirrorSession、trafficMirrorFilter、trafficMirrorFilterRule、trafficMirrorSource,haVip,haVipBinding
+      * @param {string} [opts.parentResourceId] - type为vpc、elastic_ip、network_interface、bwpByUsage、natGateway、trafficMirrorSession、trafficMirrorFilter不设置, type为subnet、security_group、vpcpeering、acl、routeTable设置为vpcId, type为aclRule设置为aclId, type为staticRoute、propagatedRoute设置为routeTableId, type为securityGroupRule为securityGroupId, type为network_interface_cidr设置为networkInterfaceId，type为bandwidthPackageIp设置为bandwidthPackageId，natGatewayFip设置为natGatewayId,trafficMirrorFilterRule设置为trafficMirrorFilterId,trafficMirrorSource设置为trafficMirrorSessionId,haVip设置为vpcId,haVipBinding设置为haVipId  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -5076,7 +6298,7 @@ vpcId - 安全组所属vpc Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -5196,7 +6418,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -5327,7 +6549,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -5438,7 +6660,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -5557,7 +6779,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -5667,7 +6889,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -5785,7 +7007,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -5905,7 +7127,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -6023,7 +7245,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -6138,7 +7360,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -6258,7 +7480,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -6377,7 +7599,7 @@ azs - 边缘公网IP的可用区，分为全可用区（暂不支持）和边缘
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -6499,7 +7721,7 @@ azType - VPC az类型，取值：all(全部类型)，standard(标准可用区子
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -6580,6 +7802,8 @@ azType - VPC az类型，取值：all(全部类型)，standard(标准可用区子
       * @param {string} [opts.routeTableId] - 子网关联的路由表Id, 默认为vpc的默认路由表,子网关联路由表需检查路由表中已绑定的子网与本子网类型是否一致（一致标准为：或者都为标准子网，或者都为相同边缘可用区的边缘子网）  optional
       * @param {string} [opts.description] - 子网描述信息,允许输入UTF-8编码下的全部字符，不超过256字符。  optional
       * @param {integer} [opts.ipMaskLen] - 子网内预留网段掩码长度，此网段IP地址按照单个申请，子网内其余部分IP地址以网段形式分配。此参数非必选，缺省值为0，代表子网内所有IP地址都按照单个申请  optional
+      * @param {array} [opts.domainNames] - 域名后缀，不限制个数。总长度最长254个字符，仅支持字母，数字，中划线，下划线和点。  optional
+      * @param {array} [opts.domainNameServers] - 域名服务器地址。最多支持5个IPv4地址，不同IPv4地址使用逗号分隔。如不输入或输入空数组，默认使用京东云默认DNS域名服务器地址。如不添加默认DNS域名服务器，可能会导致您无法访问京东云云上基础服务，请谨慎操作  optional
       * @param {boolean} [opts.dryRun] - 是否只预检此次请求。true：不会创建子网，只会对参数进行校验；false：正常的创建请求。默认为false。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -6636,6 +7860,15 @@ azType - VPC az类型，取值：all(全部类型)，standard(标准可用区子
     if (opts.ipMaskLen !== undefined && opts.ipMaskLen !== null) {
       postBody['ipMaskLen'] = opts.ipMaskLen
     }
+    if (opts.domainNames !== undefined && opts.domainNames !== null) {
+      postBody['domainNames'] = opts.domainNames
+    }
+    if (
+      opts.domainNameServers !== undefined &&
+      opts.domainNameServers !== null
+    ) {
+      postBody['domainNameServers'] = opts.domainNameServers
+    }
     if (opts.dryRun !== undefined && opts.dryRun !== null) {
       postBody['dryRun'] = opts.dryRun
     }
@@ -6647,7 +7880,7 @@ azType - VPC az类型，取值：all(全部类型)，standard(标准可用区子
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -6758,7 +7991,7 @@ azType - VPC az类型，取值：all(全部类型)，standard(标准可用区子
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -6837,6 +8070,8 @@ azType - VPC az类型，取值：all(全部类型)，standard(标准可用区子
       * @param {string} [opts.subnetName] - 子网名称,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符。  optional
       * @param {string} [opts.description] - 子网描述信息，允许输入UTF-8编码下的全部字符，不超过256字符。  optional
       * @param {integer} [opts.ipMaskLen] - 子网内预留网段掩码长度，此网段IP地址按照单个申请，子网内其余部分IP地址以网段形式分配。此参数非必选，缺省值为0，代表子网内所有IP地址都按照单个申请  optional
+      * @param {array} [opts.domainNames] - 域名后缀，不限制个数。总长度最长254个字符，仅支持字母，数字，中划线，下划线和点。  optional
+      * @param {array} [opts.domainNameServers] - 域名服务器地址。最多支持5个IPv4地址，不同IPv4地址使用逗号分隔。如输入空数组，默认使用京东云默认DNS域名服务器地址。如不添加默认DNS域名服务器，可能会导致您无法访问京东云云上基础服务，请谨慎操作  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -6872,6 +8107,15 @@ azType - VPC az类型，取值：all(全部类型)，standard(标准可用区子
     if (opts.ipMaskLen !== undefined && opts.ipMaskLen !== null) {
       postBody['ipMaskLen'] = opts.ipMaskLen
     }
+    if (opts.domainNames !== undefined && opts.domainNames !== null) {
+      postBody['domainNames'] = opts.domainNames
+    }
+    if (
+      opts.domainNameServers !== undefined &&
+      opts.domainNameServers !== null
+    ) {
+      postBody['domainNameServers'] = opts.domainNameServers
+    }
 
     let queryParams = {}
 
@@ -6881,7 +8125,7 @@ azType - VPC az类型，取值：all(全部类型)，standard(标准可用区子
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -6991,7 +8235,7 @@ azType - VPC az类型，取值：all(全部类型)，standard(标准可用区子
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -7109,7 +8353,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -7187,6 +8431,7 @@ azs - 可用区，支持多个
       * @param {string} opts.vpcName - 私有网络名称,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符。
       * @param {string} [opts.addressPrefix] - 如果为空，则不限制网段，如果不为空，10.0.0.0/8、172.16.0.0/12和192.168.0.0/16及它们包含的子网，且子网掩码长度为16-28之间  optional
       * @param {string} [opts.description] - vpc描述，允许输入UTF-8编码下的全部字符，不超过256字符。  optional
+      * @param {boolean} [opts.enableMulticast] - 取值包括true、false，默认为false，不开启组播。  optional
       * @param {string} [opts.azType] - VPC az类型，取值：standard(标准VPC)，edge(边缘VPC)  optional
       * @param {string} [opts.az] - VPC可用区，边缘VPC必须指定可用区  optional
       * @param {string} regionId - ID of the region
@@ -7225,6 +8470,9 @@ azs - 可用区，支持多个
     if (opts.description !== undefined && opts.description !== null) {
       postBody['description'] = opts.description
     }
+    if (opts.enableMulticast !== undefined && opts.enableMulticast !== null) {
+      postBody['enableMulticast'] = opts.enableMulticast
+    }
     if (opts.azType !== undefined && opts.azType !== null) {
       postBody['azType'] = opts.azType
     }
@@ -7239,7 +8487,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -7350,7 +8598,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -7428,6 +8676,7 @@ azs - 可用区，支持多个
       * @param {string} opts.vpcId - Vpc ID
       * @param {string} [opts.vpcName] - 私有网络名称,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符。  optional
       * @param {string} [opts.description] - vpc描述，允许输入UTF-8编码下的全部字符，不超过256字符。  optional
+      * @param {boolean} [opts.enableMulticast] - 取值包括true、false，默认为false，不开启组播。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -7460,6 +8709,9 @@ azs - 可用区，支持多个
     if (opts.description !== undefined && opts.description !== null) {
       postBody['description'] = opts.description
     }
+    if (opts.enableMulticast !== undefined && opts.enableMulticast !== null) {
+      postBody['enableMulticast'] = opts.enableMulticast
+    }
 
     let queryParams = {}
 
@@ -7469,7 +8721,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -7579,7 +8831,7 @@ azs - 可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -7699,7 +8951,7 @@ azs - vpcPeering本端VPC可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -7835,7 +9087,7 @@ azs - vpcPeering本端VPC可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -7946,7 +9198,7 @@ azs - vpcPeering本端VPC可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -8065,7 +9317,7 @@ azs - vpcPeering本端VPC可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -8175,7 +9427,7 @@ azs - vpcPeering本端VPC可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -8307,7 +9559,7 @@ azs - vpcPeering本端VPC可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -8418,7 +9670,7 @@ azs - vpcPeering本端VPC可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -8546,7 +9798,7 @@ azs - vpcPeering本端VPC可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']
@@ -8656,7 +9908,7 @@ azs - vpcPeering本端VPC可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vpc/1.1.5'
     }
 
     let contentTypes = ['application/json']

@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * yunding service.
- * @version 2.0.7
+ * @version 2.0.8
  */
 
 class YUNDING extends Service {
@@ -71,7 +71,7 @@ class YUNDING extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -217,7 +217,7 @@ class YUNDING extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -363,7 +363,7 @@ class YUNDING extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -408,6 +408,574 @@ class YUNDING extends Service {
     let request = super.makeRequest(
       '/regions/{regionId}/put',
       'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询监控图可用的产品线列表
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.productType] - 要查询的产品线类型   0：all    1：资源监控   2：其它   默认：1。若指定了查询的serviceCode，则忽略该参数  optional
+      * @param {filter} [opts.filters] - 服务码列表
+filter name 为serviceCodes表示查询多个产品线的规则  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param serviceInfoV2 services
+      */
+
+  describeServices (opts, callback) {
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.productType !== undefined && opts.productType !== null) {
+      queryParams['productType'] = opts.productType
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.8'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeServices with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/ydServices',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  根据不同的聚合方式将metric的数据聚合为一个点。downAggrType：last(最后一个点)、max(最大值)、min(最小值)、avg(平均值)。该接口返回值为上报metric的原始值，没有做单位转换。metric介绍：&lt;a href&#x3D;&quot;https://docs.jdcloud.com/cn/monitoring/metrics&quot;&gt;Metrics&lt;/a&gt;
+      * @param {Object} opts - parameters
+      * @param {string} opts.metric - 监控项英文标识(id)
+      * @param {string} opts.serviceCode - 资源的类型，取值vm, lb, ip, database 等。可用的serviceCode请使用describeServices接口查询
+      * @param {string} [opts.dimension] - 资源的维度。serviceCode下可用的dimension请使用describeServices接口查询  optional
+      * @param {string} opts.resourceId - 资源的uuid，支持多个resourceId批量查询，每个id用竖线分隔。 如：id1|id2|id3|id4
+      * @param {string} [opts.startTime] - 查询时间范围的开始时间， UTC时间，格式：2016-12-11T00:00:00+0800（早于30d时，将被重置为30d）（注意在url中+要转译为%2B故url中为2016-12-11T00:00:00%2B0800）  optional
+      * @param {string} [opts.endTime] - 查询时间范围的结束时间， UTC时间，格式：2016-12-11T00:00:00+0800（为空时，将由startTime与timeInterval计算得出）（注意在url中+要转译为%2B故url中为2016-12-11T00:00:00%2B0800）  optional
+      * @param {string} [opts.timeInterval] - 查询的时间间隔，最大不超过30天，支持分钟级别,小时级别，天级别，例如：1m、1h、1d  optional
+      * @param {string} [opts.aggrType] - 聚合方式：max avg min等,用于不同维度之间聚合  optional
+      * @param {string} [opts.downAggrType] - 聚合方式：max avg min等,用于将维度内一个周期数据聚合为一个点的聚合方式,默认last  optional
+      * @param {tagFilter} [opts.tags] - 自定义标签  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param lastDownsampleRespItem items
+      */
+
+  lastDownsample (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  lastDownsample"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.metric === undefined || opts.metric === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.metric' when calling lastDownsample"
+      )
+    }
+    if (opts.serviceCode === undefined || opts.serviceCode === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.serviceCode' when calling lastDownsample"
+      )
+    }
+    if (opts.resourceId === undefined || opts.resourceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.resourceId' when calling lastDownsample"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.serviceCode !== undefined && opts.serviceCode !== null) {
+      queryParams['serviceCode'] = opts.serviceCode
+    }
+    if (opts.dimension !== undefined && opts.dimension !== null) {
+      queryParams['dimension'] = opts.dimension
+    }
+    if (opts.resourceId !== undefined && opts.resourceId !== null) {
+      queryParams['resourceId'] = opts.resourceId
+    }
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+    if (opts.timeInterval !== undefined && opts.timeInterval !== null) {
+      queryParams['timeInterval'] = opts.timeInterval
+    }
+    if (opts.aggrType !== undefined && opts.aggrType !== null) {
+      queryParams['aggrType'] = opts.aggrType
+    }
+    if (opts.downAggrType !== undefined && opts.downAggrType !== null) {
+      queryParams['downAggrType'] = opts.downAggrType
+    }
+    Object.assign(queryParams, super.buildTagFilterParam(opts.tags, 'tags'))
+
+    let pathParams = {
+      regionId: regionId,
+      metric: opts.metric
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.8'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call lastDownsample with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/ydMetrics/{metric}/lastDownsample',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查看某资源单个监控项数据，metric介绍：&lt;a href&#x3D;&quot;https://docs.jdcloud.com/cn/monitoring/metrics&quot;&gt;Metrics&lt;/a&gt;，可以使用接口&lt;a href&#x3D;&quot;https://docs.jdcloud.com/cn/monitoring/metrics&quot;&gt;describeMetrics&lt;/a&gt;：查询产品线可用的metric列表。
+      * @param {Object} opts - parameters
+      * @param {string} opts.metric - 监控项英文标识(id)
+      * @param {string} [opts.aggrType] - 聚合方式，用于不同时间轴上的聚合。如balance产品同一个resourceId下存在port&#x3D;80和port&#x3D;8080等多种维度。可选值参考:sum、avg、min、max  optional
+      * @param {string} [opts.downSampleType] - 采样方式，用于在时间轴维度上将聚合周期内的数据聚合为一个点。可选值参考：sum(聚合周期内的数据求和)、avg(求平均)、last(最新值)、min(最小值)、max(最大值)  optional
+      * @param {string} [opts.startTime] - 查询时间范围的开始时间， UTC时间，格式：2016-12-11T00:00:00+0800（注意在url中+要转译为%2B故url中为2016-12-11T00:00:00%2B0800）  optional
+      * @param {string} [opts.endTime] - 查询时间范围的结束时间， UTC时间，格式：2016-12-11T00:00:00+0800（为空时，将由startTime与timeInterval计算得出）（注意在url中+要转译为%2B故url中为2016-12-11T00:00:00%2B0800）  optional
+      * @param {string} [opts.timeInterval] - 时间间隔：1h，6h，12h，1d，3d，7d，14d，固定时间间隔，timeInterval默认为1h，当前时间往 前1h  optional
+      * @param {boolean} [opts.groupBy] - 是否对查询的tags分组  optional
+      * @param {boolean} [opts.rate] - 是否求速率  optional
+      * @param {string} [opts.serviceCode] - 资源的类型，取值vm, lb, ip, database 等,&lt;a href&#x3D;&quot;https://docs.jdcloud.com/cn/monitoring/api/describeservices?content&#x3D;API&amp;SOP&#x3D;JDCloud&quot;&gt;describeServices&lt;/a&gt;：查询己接入云监控的产品线列表  optional
+      * @param {string} [opts.dimension] - 资源的维度。查询serviceCode下可用的维度请使用describeServices接口  optional
+      * @param {string} opts.resourceId - 资源的uuid
+      * @param {tagFilter} [opts.tags] - 监控指标数据的维度信息,根据tags来筛选指标数据不同的维度  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param metricData metricDatas
+      */
+
+  describeMetricData (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeMetricData"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.metric === undefined || opts.metric === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.metric' when calling describeMetricData"
+      )
+    }
+    if (opts.resourceId === undefined || opts.resourceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.resourceId' when calling describeMetricData"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.aggrType !== undefined && opts.aggrType !== null) {
+      queryParams['aggrType'] = opts.aggrType
+    }
+    if (opts.downSampleType !== undefined && opts.downSampleType !== null) {
+      queryParams['downSampleType'] = opts.downSampleType
+    }
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+    if (opts.timeInterval !== undefined && opts.timeInterval !== null) {
+      queryParams['timeInterval'] = opts.timeInterval
+    }
+    if (opts.groupBy !== undefined && opts.groupBy !== null) {
+      queryParams['groupBy'] = opts.groupBy
+    }
+    if (opts.rate !== undefined && opts.rate !== null) {
+      queryParams['rate'] = opts.rate
+    }
+    if (opts.serviceCode !== undefined && opts.serviceCode !== null) {
+      queryParams['serviceCode'] = opts.serviceCode
+    }
+    if (opts.dimension !== undefined && opts.dimension !== null) {
+      queryParams['dimension'] = opts.dimension
+    }
+    if (opts.resourceId !== undefined && opts.resourceId !== null) {
+      queryParams['resourceId'] = opts.resourceId
+    }
+    Object.assign(queryParams, super.buildTagFilterParam(opts.tags, 'tags'))
+
+    let pathParams = {
+      regionId: regionId,
+      metric: opts.metric
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.8'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeMetricData with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/ydMetrics/{metric}/metricData',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查看某资源多个监控项数据，metric介绍：&lt;a href&#x3D;&quot;https://docs.jdcloud.com/cn/monitoring/metrics&quot;&gt;Metrics&lt;/a&gt;，可以使用接口&lt;a href&#x3D;&quot;https://docs.jdcloud.com/cn/monitoring/metrics&quot;&gt;describeMetrics&lt;/a&gt;：查询产品线可用的metric列表。
+      * @param {Object} opts - parameters
+      * @param {string} [opts.aggrType] - 聚合方式，用于不同时间轴上的聚合。如balance产品同一个resourceId下存在port&#x3D;80和port&#x3D;8080等多种维度。可选值参考:sum、avg、min、max  optional
+      * @param {string} [opts.downSampleType] - 采样方式，用于在时间轴维度上将聚合周期内的数据聚合为一个点。可选值参考：sum(聚合周期内的数据求和)、avg(求平均)、last(最新值)、min(最小值)、max(最大值)  optional
+      * @param {string} [opts.startTime] - 查询时间范围的开始时间， UTC时间，格式：2016-12-11T00:00:00+0800（注意在url中+要转译为%2B故url中为2016-12-11T00:00:00%2B0800）  optional
+      * @param {string} [opts.endTime] - 查询时间范围的结束时间， UTC时间，格式：2016-12-11T00:00:00+0800（为空时，将由startTime与timeInterval计算得出）（注意在url中+要转译为%2B故url中为2016-12-11T00:00:00%2B0800）  optional
+      * @param {string} [opts.timeInterval] - 时间间隔：1h，6h，12h，1d，3d，7d，14d，固定时间间隔，timeInterval默认为1h，当前时间往 前1h  optional
+      * @param {boolean} [opts.groupBy] - 是否对查询的tags分组  optional
+      * @param {boolean} [opts.rate] - 是否求速率  optional
+      * @param {string} [opts.serviceCode] - 资源的类型，取值vm, lb, ip, database 等,&lt;a href&#x3D;&quot;https://docs.jdcloud.com/cn/monitoring/api/describeservices?content&#x3D;API&amp;SOP&#x3D;JDCloud&quot;&gt;describeServices&lt;/a&gt;：查询己接入云监控的产品线列表  optional
+      * @param {string} [opts.dimension] - 资源的维度。查询serviceCode下可用的维度请使用describeServices接口  optional
+      * @param {string} opts.resourceId - 资源的uuid
+      * @param {boolean} [opts.multiResources] - 是否跨资源查询，默认为false。当该字段为false时，取resourceId字段进行查询；当该子弹为true时，忽略resourceId字段，从tags中取resourceId作为实际的多资源id处理。  optional
+      * @param {filter} [opts.filters] - 自定义过滤标签，查询时必须在filters中指定要查询的metric，支持多个metric。如：  name&#x3D;&#39;metric&#39;,values&#x3D;[&quot;metric1&quot;,&quot;metric2&quot;]  optional
+      * @param {tagFilter} [opts.tags] - 监控指标数据的维度信息,根据tags来筛选指标数据不同的维度  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param metricData metricDatas
+      */
+
+  batchDescribeMetricData (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  batchDescribeMetricData"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.resourceId === undefined || opts.resourceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.resourceId' when calling batchDescribeMetricData"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.aggrType !== undefined && opts.aggrType !== null) {
+      queryParams['aggrType'] = opts.aggrType
+    }
+    if (opts.downSampleType !== undefined && opts.downSampleType !== null) {
+      queryParams['downSampleType'] = opts.downSampleType
+    }
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+    if (opts.timeInterval !== undefined && opts.timeInterval !== null) {
+      queryParams['timeInterval'] = opts.timeInterval
+    }
+    if (opts.groupBy !== undefined && opts.groupBy !== null) {
+      queryParams['groupBy'] = opts.groupBy
+    }
+    if (opts.rate !== undefined && opts.rate !== null) {
+      queryParams['rate'] = opts.rate
+    }
+    if (opts.serviceCode !== undefined && opts.serviceCode !== null) {
+      queryParams['serviceCode'] = opts.serviceCode
+    }
+    if (opts.dimension !== undefined && opts.dimension !== null) {
+      queryParams['dimension'] = opts.dimension
+    }
+    if (opts.resourceId !== undefined && opts.resourceId !== null) {
+      queryParams['resourceId'] = opts.resourceId
+    }
+    if (opts.multiResources !== undefined && opts.multiResources !== null) {
+      queryParams['multiResources'] = opts.multiResources
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildTagFilterParam(opts.tags, 'tags'))
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.8'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call batchDescribeMetricData with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/ydMetricsData',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -503,7 +1071,7 @@ class YUNDING extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -625,7 +1193,7 @@ class YUNDING extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -739,7 +1307,7 @@ class YUNDING extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -852,7 +1420,7 @@ class YUNDING extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -971,7 +1539,7 @@ role - 网卡角色，取值范围：Primary（主网卡）、Secondary（辅助
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -1123,7 +1691,7 @@ role - 网卡角色，取值范围：Primary（主网卡）、Secondary（辅助
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -1250,7 +1818,7 @@ vpcId, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -1361,7 +1929,7 @@ vpcId, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -1473,7 +2041,7 @@ vpcId, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -1584,7 +2152,7 @@ vpcId, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -1704,7 +2272,7 @@ vpcId, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -1824,7 +2392,7 @@ vpcId, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -1953,7 +2521,7 @@ vpcId, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -2070,7 +2638,7 @@ vpcId, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -2203,7 +2771,7 @@ vpcId, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -2325,7 +2893,7 @@ vpcId, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -2449,7 +3017,7 @@ vpcId, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -2578,7 +3146,7 @@ vpcId, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -2695,7 +3263,7 @@ vpcId, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -2810,7 +3378,7 @@ vpcId, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -2933,7 +3501,7 @@ vpcId - 子网所属VPC Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -3014,6 +3582,9 @@ vpcId - 子网所属VPC Id，支持单个
       * @param {string} [opts.routeTableId] - 子网关联的路由表Id, 默认为vpc的默认路由表,子网关联路由表需检查路由表中已绑定的子网与本子网类型是否一致（一致标准为：或者都为标准子网，或者都为相同边缘可用区的边缘子网）  optional
       * @param {string} [opts.description] - 子网描述信息,允许输入UTF-8编码下的全部字符，不超过256字符。  optional
       * @param {integer} [opts.ipMaskLen] - 子网内预留网段掩码长度，此网段IP地址按照单个申请，子网内其余部分IP地址以网段形式分配。此参数非必选，缺省值为0，代表子网内所有IP地址都按照单个申请  optional
+      * @param {array} [opts.domainNames] - 域名后缀，不限制个数。总长度最长254个字符，仅支持字母，数字，中划线，下划线和点。  optional
+      * @param {array} [opts.domainNameServers] - 域名服务器地址。最多支持5个IPv4地址，不同IPv4地址使用逗号分隔。如不输入或输入空数组，默认使用京东云默认DNS域名服务器地址。如不添加默认DNS域名服务器，可能会导致您无法访问京东云云上基础服务，请谨慎操作  optional
+      * @param {boolean} [opts.dryRun] - 是否只预检此次请求。true：不会创建子网，只会对参数进行校验；false：正常的创建请求。默认为false。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -3069,6 +3640,18 @@ vpcId - 子网所属VPC Id，支持单个
     if (opts.ipMaskLen !== undefined && opts.ipMaskLen !== null) {
       postBody['ipMaskLen'] = opts.ipMaskLen
     }
+    if (opts.domainNames !== undefined && opts.domainNames !== null) {
+      postBody['domainNames'] = opts.domainNames
+    }
+    if (
+      opts.domainNameServers !== undefined &&
+      opts.domainNameServers !== null
+    ) {
+      postBody['domainNameServers'] = opts.domainNameServers
+    }
+    if (opts.dryRun !== undefined && opts.dryRun !== null) {
+      postBody['dryRun'] = opts.dryRun
+    }
 
     let queryParams = {}
 
@@ -3077,7 +3660,7 @@ vpcId - 子网所属VPC Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -3188,7 +3771,7 @@ vpcId - 子网所属VPC Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -3298,7 +3881,7 @@ vpcId - 子网所属VPC Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -3423,7 +4006,7 @@ faultDomain - 错误域，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -3534,7 +4117,7 @@ faultDomain - 错误域，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -3669,7 +4252,7 @@ faultDomain - 错误域，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.8'
     }
 
     let contentTypes = ['application/json']
@@ -3798,7 +4381,7 @@ faultDomain - 错误域，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yunding/2.0.8'
     }
 
     let contentTypes = ['application/json']

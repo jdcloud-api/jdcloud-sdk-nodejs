@@ -102,6 +102,7 @@ module.exports = {
   WAF: require('./waf'),
   LIVE: require('./live'),
   JDWORKSPACE: require('./jdworkspace'),
+  DTS: require('./dts'),
   VPC: require('./vpc'),
   MONITOR: require('./monitor'),
   XDATA: require('./xdata'),

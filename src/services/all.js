@@ -96,6 +96,7 @@ module.exports = {
   VOD: require('./vod'),
   YUNDINGDATAPUSH: require('./yundingdatapush'),
   OSSOPENAPI: require('./ossopenapi'),
+  BGW: require('./bgw'),
   CLOUDSIGN: require('./cloudsign'),
   BASEANTI: require('./baseanti'),
   MONGODB: require('./mongodb'),

@@ -4,6 +4,7 @@ module.exports = {
   SMARTDBA: require('./smartdba'),
   DMS: require('./dms'),
   STREAMCOMPUTER: require('./streamcomputer'),
+  FLOWLOG: require('./flowlog'),
   SSL: require('./ssl'),
   OSS: require('./oss'),
   REDIS: require('./redis'),

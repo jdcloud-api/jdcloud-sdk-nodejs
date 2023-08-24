@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * fc service.
- * @version 1.0.1
+ * @version 1.0.2
  */
 
 class FC extends Service {
@@ -97,7 +97,7 @@ class FC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -223,7 +223,7 @@ class FC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -267,127 +267,6 @@ class FC extends Service {
 
     let request = super.makeRequest(
       '/regions/{regionId}/services/{serviceName}/functions',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  functionName 名称校验。
-
-      * @param {Object} opts - parameters
-      * @param {string} opts.serviceName - Service Name
-      * @param {string} opts.functionName - Function Name
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param integer code  用户指定 函数名称 是否通过校验 0 通过 1 不符合规范 。
-      * @param string reason  code 字段非零时，给出详细原因。
-      */
-
-  checkFunction (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  checkFunction"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.serviceName === undefined || opts.serviceName === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.serviceName' when calling checkFunction"
-      )
-    }
-    if (opts.functionName === undefined || opts.functionName === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.functionName' when calling checkFunction"
-      )
-    }
-
-    let postBody = {}
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      serviceName: opts.serviceName,
-      functionName: opts.functionName
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.1'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call checkFunction with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/services/{serviceName}/functions/{functionName}:check',
       'POST',
       pathParams,
       queryParams,
@@ -463,7 +342,7 @@ class FC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -618,7 +497,7 @@ class FC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -692,11 +571,11 @@ class FC extends Service {
 
   /**
       *  删除function
-function 状态必须为 active、failed状态。 &lt;br&gt;
  [MFA enabled]
       * @param {Object} opts - parameters
       * @param {string} opts.serviceName - Service Name
       * @param {string} opts.functionName - Function Name
+      * @param {boolean} [opts.deleteTrigger] - 触发器是否随函数删除  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -729,6 +608,9 @@ function 状态必须为 active、failed状态。 &lt;br&gt;
 
     let postBody = null
     let queryParams = {}
+    if (opts.deleteTrigger !== undefined && opts.deleteTrigger !== null) {
+      queryParams['deleteTrigger'] = opts.deleteTrigger
+    }
 
     let pathParams = {
       regionId: regionId,
@@ -737,7 +619,7 @@ function 状态必须为 active、failed状态。 &lt;br&gt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -857,7 +739,7 @@ function 状态必须为 active、failed状态。 &lt;br&gt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -962,7 +844,7 @@ function 状态必须为 active、failed状态。 &lt;br&gt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1091,7 +973,7 @@ function 状态必须为 active、failed状态。 &lt;br&gt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1136,404 +1018,6 @@ function 状态必须为 active、failed状态。 &lt;br&gt;
     let request = super.makeRequest(
       '/regions/{regionId}/services/{serviceName}/functions/{functionName}/invocations',
       'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  批量查询 function 的详细信息&lt;br&gt;
-此接口支持分页查询，默认每页20条。
-
-      * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
-      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
-      * @param {filter} [opts.filters] - functionId - function id, 精确匹配，支持多个
-  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param function functions
-      * @param number totalCount
-      */
-
-  describeAllFunctions (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeAllFunctions"
-      )
-    }
-
-    opts = opts || {}
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
-      queryParams['pageNumber'] = opts.pageNumber
-    }
-    if (opts.pageSize !== undefined && opts.pageSize !== null) {
-      queryParams['pageSize'] = opts.pageSize
-    }
-    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.1'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeAllFunctions with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/functions',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  内部创建函数
-
-      * @param {Object} opts - parameters
-      * @param {string} opts.serviceName - Service Name
-      * @param {internalFunctionSpec} opts.functionSpec - 函数 创建参数
-      * @param {string} [opts.clientToken] - 保证请求幂等性的字符串；最大长度64个ASCII字符  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param string functionName
-      */
-
-  internalCreateFunction (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  internalCreateFunction"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.serviceName === undefined || opts.serviceName === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.serviceName' when calling internalCreateFunction"
-      )
-    }
-    if (opts.functionSpec === undefined || opts.functionSpec === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.functionSpec' when calling internalCreateFunction"
-      )
-    }
-
-    let postBody = {}
-    if (opts.functionSpec !== undefined && opts.functionSpec !== null) {
-      postBody['functionSpec'] = opts.functionSpec
-    }
-    if (opts.clientToken !== undefined && opts.clientToken !== null) {
-      postBody['clientToken'] = opts.clientToken
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      serviceName: opts.serviceName
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.1'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call internalCreateFunction with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/services/{serviceName}/functions:internal',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  修改 function
-
-      * @param {Object} opts - parameters
-      * @param {string} opts.serviceName - Service Name
-      * @param {string} opts.functionName - Function Name
-      * @param {internalCode} [opts.code] - 修改后的代码  optional
-      * @param {integer} [opts.timeout] - 修改后的超时时间  optional
-      * @param {string} [opts.runtime] - 修改后的运行时语言  optional
-      * @param {string} [opts.handler] - 修改后的函数执行入口  optional
-      * @param {string} [opts.description] - 修改后的描述  optional
-      * @param {array} [opts.envs] - 修改后的环境变量  optional
-      * @param {number} [opts.cpu] - 修改后的cpu  optional
-      * @param {integer} [opts.memorySize] - 修改后的内存  optional
-      * @param {integer} [opts.diskSize] - 修改后的磁盘  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  internalUpdateFunction (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  internalUpdateFunction"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.serviceName === undefined || opts.serviceName === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.serviceName' when calling internalUpdateFunction"
-      )
-    }
-    if (opts.functionName === undefined || opts.functionName === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.functionName' when calling internalUpdateFunction"
-      )
-    }
-
-    let postBody = {}
-    if (opts.code !== undefined && opts.code !== null) {
-      postBody['code'] = opts.code
-    }
-    if (opts.timeout !== undefined && opts.timeout !== null) {
-      postBody['timeout'] = opts.timeout
-    }
-    if (opts.runtime !== undefined && opts.runtime !== null) {
-      postBody['runtime'] = opts.runtime
-    }
-    if (opts.handler !== undefined && opts.handler !== null) {
-      postBody['handler'] = opts.handler
-    }
-    if (opts.description !== undefined && opts.description !== null) {
-      postBody['description'] = opts.description
-    }
-    if (opts.envs !== undefined && opts.envs !== null) {
-      postBody['envs'] = opts.envs
-    }
-    if (opts.cpu !== undefined && opts.cpu !== null) {
-      postBody['cpu'] = opts.cpu
-    }
-    if (opts.memorySize !== undefined && opts.memorySize !== null) {
-      postBody['memorySize'] = opts.memorySize
-    }
-    if (opts.diskSize !== undefined && opts.diskSize !== null) {
-      postBody['diskSize'] = opts.diskSize
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      serviceName: opts.serviceName,
-      functionName: opts.functionName
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.1'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call internalUpdateFunction with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/services/{serviceName}/functions/{functionName}:internal',
-      'PATCH',
       pathParams,
       queryParams,
       headerParams,
@@ -1607,7 +1091,7 @@ memorySize: - 内存，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1725,7 +1209,7 @@ serviceId - 服务 ID, 精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1844,7 +1328,7 @@ serviceId - 服务 ID, 精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1917,120 +1401,6 @@ serviceId - 服务 ID, 精确匹配，支持多个
   }
 
   /**
-      *  serviceName 名称校验。
-
-      * @param {Object} opts - parameters
-      * @param {string} opts.serviceName - Service Name
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param integer code  用户指定 服务名称 是否通过校验 0 通过 1 不符合规范 。
-      * @param string reason  code 字段非零时，给出详细原因。
-      */
-
-  checkService (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  checkService"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.serviceName === undefined || opts.serviceName === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.serviceName' when calling checkService"
-      )
-    }
-
-    let postBody = {}
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      serviceName: opts.serviceName
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.1'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call checkService with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/services/{serviceName}:check',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
       *  查询一个 service 的详细信息
 
       * @param {Object} opts - parameters
@@ -2070,7 +1440,7 @@ serviceId - 服务 ID, 精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2190,7 +1560,7 @@ serviceId - 服务 ID, 精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2301,7 +1671,7 @@ serviceId - 服务 ID, 精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2421,7 +1791,7 @@ serviceId - 服务 ID, 精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2558,7 +1928,7 @@ serviceId - 服务 ID, 精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2684,7 +2054,7 @@ serviceId - 服务 ID, 精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2822,7 +2192,7 @@ serviceId - 服务 ID, 精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2947,7 +2317,7 @@ serviceId - 服务 ID, 精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  fc/1.0.2'
     }
 
     let contentTypes = ['application/json']

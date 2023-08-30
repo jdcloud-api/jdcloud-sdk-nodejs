@@ -105,6 +105,7 @@ module.exports = {
   LIVE: require('./live'),
   JDWORKSPACE: require('./jdworkspace'),
   DTS: require('./dts'),
+  ASSISTANT: require('./assistant'),
   VPC: require('./vpc'),
   MONITOR: require('./monitor'),
   XDATA: require('./xdata'),

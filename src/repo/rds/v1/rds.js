@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * rds service.
- * @version 1.1.6
+ * @version 1.3.4
  */
 
 class RDS extends Service {
@@ -48,7 +48,7 @@ class RDS extends Service {
       *  查看某个RDS实例下所有账号信息，包括账号名称、对各个数据库的访问权限信息等
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
-      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页;  optional
+      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；  optional
       * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为100，取值范围：[10,100]，用于查询列表的接口  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -92,7 +92,7 @@ class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -225,7 +225,7 @@ class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -344,7 +344,7 @@ class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -461,7 +461,7 @@ class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -594,7 +594,7 @@ class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -716,7 +716,7 @@ class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -843,7 +843,7 @@ class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -972,7 +972,7 @@ class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -1101,7 +1101,7 @@ class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -1213,7 +1213,7 @@ class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -1328,7 +1328,7 @@ class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -1447,7 +1447,7 @@ class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -1558,7 +1558,7 @@ class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -1678,7 +1678,7 @@ class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -1788,7 +1788,7 @@ class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -1909,7 +1909,7 @@ class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -2028,7 +2028,7 @@ class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -2139,7 +2139,7 @@ class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -2260,7 +2260,7 @@ class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -2371,7 +2371,7 @@ class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -2482,7 +2482,7 @@ class RDS extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -2555,18 +2555,21 @@ class RDS extends Service {
   }
 
   /**
-      *  仅支持查看MySQL实例的审计内容&lt;br&gt;- 仅支持 MySQL 5.6, MySQL 5.7, Percona, MariaDB, PostgreSQL
+      *  查看RDS实例的审计内容&lt;br&gt;- 仅支持 MySQL 5.6, MySQL 5.7, Percona, MariaDB, PostgreSQL
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
-      * @param {string} opts.startTime - 查询开始时间，格式为：YYYY-MM-DD HH:mm:ss，开始时间不能早于当前时间30天
+      * @param {string} opts.startTime - 查询开始时间，格式为：YYYY-MM-DD HH:mm:ss，开始时间不能早于当前时间3天
       * @param {string} opts.endTime - 查询截止时间，格式为：YYYY-MM-DD HH:mm:ss，开始时间到结束时间不能超过3天
-      * @param {string} [opts.dbName] - 数据库名  optional
-      * @param {string} [opts.accountName] - 账号名  optional
+      * @param {string} [opts.dbName] - 废弃，使用filter，数据库名  optional
+      * @param {string} [opts.accountName] - 废弃，使用filter，账号名  optional
       * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,∞)  optional
-      * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为10，取值范围：10、20、50  optional
-      * @param {filter} [opts.filters] - 过滤参数，多个过滤参数之间的关系为“与”(and)
-支持以下属性的过滤：
-operation
+      * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为10，取值范围：[10,100]  optional
+      * @param {filter} [opts.filters] - 过滤参数，多个过滤参数之间的关系为“与”(and支持以下属性的过滤(默认等值)：)
+- operation：仅第一个value生效，语句类型【create/alter/drop/truncate/select/insert/update/delete/replace/ddl/dml/disconnect/connect/failed_connect/query】,operator仅支持eq或者in
+- account：实例账号名，operator仅支持eq或者in
+- keyword：SQL 关键词，模糊查询，operator仅支持eq或者in
+- database：实例库名，operator仅支持eq或者in
+- threadId：会话id，operator仅支持eq或者in
   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -2633,7 +2636,7 @@ operation
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -2713,6 +2716,7 @@ operation
       * @param {string} callback - callback
       @return {Object} result
       * @param string azs
+      * @param azInfo azInfos
       */
 
   describeAzs (opts, regionId = this.config.regionId, callback) {
@@ -2746,7 +2750,7 @@ operation
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -2827,8 +2831,16 @@ operation
       * @param {string} [opts.dbNameFilter] - 返回dbName等于指定值的备份列表，不传或为空返回全部&lt;br&gt;**- 测试参数，仅支持SQL Server，后续可能被其他参数取代**  optional
       * @param {string} [opts.backupTimeRangeStartFilter] - 返回备份开始时间大于该时间的备份列表&lt;br&gt;**- 测试参数，仅支持SQL Server，后续可能被其他参数取代**  optional
       * @param {string} [opts.backupTimeRangeEndFilter] - 返回备份开始时间小于等于该时间的备份列表&lt;br&gt;**- 测试参数，仅支持SQL Server，后续可能被其他参数取代**  optional
-      * @param {integer} opts.pageNumber - 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页。
-      * @param {integer} opts.pageSize - 每页显示的数据条数，默认为10，取值范围：10、20、30、50、100
+      * @param {integer} opts.pageNumber - 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；
+      * @param {integer} opts.pageSize - 每页显示的数据条数，默认为10，取值范围：[10,100]
+      * @param {filter} [opts.filters] - 过滤参数，多个过滤参数之间的关系为“与”(and支持以下属性的过滤(默认等值)：)
+- instanceId：RDS实例ID，唯一标识一个实例，operator仅支持eq
+- instanceName：RDS实例名称，模糊搜索，operator仅支持eq、like
+- backupId：备份ID，唯一标识一个备份，operator仅支持eq
+- backupName：备份名称，模糊搜索，operator仅支持eq、like
+- auto：备份类型，0为手动备份，1为自动备份，operator仅支持eq
+- backupMethod：返回backupMethod等于指定值的备份列表，physical为物理备份，snapshot为快照备份备注，operator仅支持eq
+  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -2899,13 +2911,14 @@ operation
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -3017,7 +3030,7 @@ operation
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -3127,7 +3140,7 @@ operation
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -3250,7 +3263,7 @@ operation
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -3325,7 +3338,7 @@ operation
   /**
       *  查询跨地域备份同步服务列表。
       * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[1,∞)，页码超过总页数时，显示最后一页，用于查询列表的接口  optional
+      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[1,∞)，用于查询列表的接口  optional
       * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为10，取值范围：10、20、30、50、100  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -3366,7 +3379,7 @@ operation
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -3489,7 +3502,7 @@ operation
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -3599,7 +3612,7 @@ operation
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -3736,7 +3749,7 @@ operation
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -3812,10 +3825,16 @@ operation
       *  获取MySQL实例中binlog的详细信息&lt;br&gt;- 仅支持 MySQL, Percona, MariaDB
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
-      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页。  optional
-      * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为10，取值范围：10、20、30、50、100  optional
-      * @param {string} [opts.startTime] - 查询开始时间，格式为：YYYY-MM-DD HH:mm:ss，开始时间到结束时间不超过三天  optional
-      * @param {string} [opts.endTime] - 查询结束时间，格式为：YYYY-MM-DD HH:mm:ss，开始时间到结束时间不超过三天  optional
+      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；  optional
+      * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为10，取值范围：[10,100]  optional
+      * @param {string} [opts.startTime] - 查询开始时间，格式为：YYYY-MM-DDTHH:mm:ssZ，开始时间到结束时间不超过7天  optional
+      * @param {string} [opts.endTime] - 查询结束时间，格式为：YYYY-MM-DDTHH:mm:ssZ，开始时间到结束时间不超过7天  optional
+      * @param {filter} [opts.filters] - 过滤参数，多个过滤参数之间的关系为“与”(and支持以下属性的过滤(默认等值)：)
+- instanceId：RDS实例ID，唯一标识一个实例，operator仅支持eq
+- instanceName：RDS实例名称，模糊搜索，operator仅支持eq、like
+- binlogId：Binlog ID，唯一标识一个备份，operator仅支持eq
+- binlogName：Binlog名称，模糊搜索，operator仅支持eq、like
+  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -3857,6 +3876,7 @@ operation
     if (opts.endTime !== undefined && opts.endTime !== null) {
       queryParams['endTime'] = opts.endTime
     }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId,
@@ -3864,7 +3884,7 @@ operation
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -3987,7 +4007,7 @@ operation
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -4098,7 +4118,7 @@ operation
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -4143,6 +4163,132 @@ operation
     let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/binlogs:clearBinlogs',
       'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取MySQL实例的binlog的内网下载链接&lt;br&gt;- 仅支持 MySQL, Percona, MariaDB
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
+      * @param {string} opts.binlogBackupId - binlog的备份ID，可以通过describeBinlogs获得
+      * @param {integer} [opts.seconds] - 设置链接地址的过期时间，单位是秒，默认值是 300 秒，最长不能超过取值范围为 1 ~ 86400 秒  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string internalURL  内网下载链接
+      */
+
+  describeBinlogDownloadInternalURL (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeBinlogDownloadInternalURL"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling describeBinlogDownloadInternalURL"
+      )
+    }
+    if (opts.binlogBackupId === undefined || opts.binlogBackupId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.binlogBackupId' when calling describeBinlogDownloadInternalURL"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.seconds !== undefined && opts.seconds !== null) {
+      queryParams['seconds'] = opts.seconds
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      binlogBackupId: opts.binlogBackupId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeBinlogDownloadInternalURL with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/binlogs/{binlogBackupId}:describeBinlogDownloadInternalURL',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -4236,7 +4382,7 @@ operation
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -4362,7 +4508,7 @@ operation
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -4439,7 +4585,7 @@ operation
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
       * @param {string} [opts.dbName] - 数据库名。如果不指定数据库名，则返回所有数据库列表&lt;br&gt;- **MySQL：不支持该字段**&lt;br&gt;- **SQL Server：支持该字段**  optional
-      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页;  optional
+      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；  optional
       * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为100，取值范围：[10,100]，用于查询列表的接口  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -4486,7 +4632,7 @@ operation
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -4615,7 +4761,7 @@ operation
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -4732,7 +4878,7 @@ operation
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -4868,7 +5014,7 @@ operation
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -4999,7 +5145,7 @@ operation
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -5126,7 +5272,7 @@ operation
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -5253,7 +5399,7 @@ operation
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -5364,7 +5510,7 @@ operation
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -5475,7 +5621,7 @@ operation
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -5587,7 +5733,7 @@ operation
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -5714,7 +5860,7 @@ operation
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -5835,7 +5981,7 @@ operation
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -5910,7 +6056,7 @@ operation
   /**
       *  获取当前账号下所有RDS实例及MySQL/PostgreSQL只读实例的概要信息，例如实例类型，版本，计费信息等
       * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页;  optional
+      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,∞]。pageNumber为-1时，返回所有数据页码；  optional
       * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为10，取值范围：[10,100]，且为10的整数倍  optional
       * @param {filter} [opts.filters] - 过滤参数，多个过滤参数之间的关系为“与”(and)
 支持以下属性的过滤：
@@ -5923,8 +6069,11 @@ vpcId, 支持operator选项：eq
 instanceType, 支持operator选项：eq
 internalDomainName, 支持operator选项：eq
 publicDomainName, 支持operator选项：eq
+roInstanceProxyInternalDomainName, 支持operator选项：like
+readWriteProxyInternalDomainName, 支持operator选项：like
   optional
       * @param {tagFilter} [opts.tagFilters] - 资源标签  optional
+      * @param {string} [opts.resourceGroupIds] - 资源组id  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -5959,13 +6108,17 @@ publicDomainName, 支持operator选项：eq
       queryParams,
       super.buildTagFilterParam(opts.tagFilters, 'tagFilters')
     )
+    Object.assign(
+      queryParams,
+      super.buildArrayParam(opts.resourceGroupIds, 'resourceGroupIds')
+    )
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -6080,7 +6233,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -6156,6 +6309,7 @@ publicDomainName, 支持operator选项：eq
       *  查询RDS实例（MySQL、SQL Server等）的详细信息以及MySQL/PostgreSQL只读实例详细信息
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
+      * @param {integer} [opts.instanceExistence] - 默认不传，返回当前未删除的实例的实例详情 **仅支持 MySQL，Percona，MariaDB。&lt;br&gt;请求参数：&lt;br&gt;- 0:当前存在的实例；&lt;br&gt;- 1:已删除的实例；&lt;br&gt;- 2:全部实例，不区分实例是否删除;  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -6184,6 +6338,12 @@ publicDomainName, 支持operator选项：eq
 
     let postBody = null
     let queryParams = {}
+    if (
+      opts.instanceExistence !== undefined &&
+      opts.instanceExistence !== null
+    ) {
+      queryParams['instanceExistence'] = opts.instanceExistence
+    }
 
     let pathParams = {
       regionId: regionId,
@@ -6191,7 +6351,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -6301,7 +6461,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -6381,13 +6541,16 @@ publicDomainName, 支持operator选项：eq
       * @param {string} callback - callback
       @return {Object} result
       * @param string startWindow  自动备份开始时间窗口，范围00:00-23:59，时间范围差不得小于30分钟。&lt;br&gt;例如：00:00-01:00，表示0点到1点开始进行数据库自动备份，备份完成时间则跟实例大小有关，不一定在这个时间范围中
-      * @param integer retentionPeriod  自动备份保留周期，单位天,缺省为7天，范围7-730
-      * @param integer binlogRetentionPeriod  binlog本地保留周期，单位天，范围1-7，默认为1
-      * @param integer binlogUsageLimit  binlog本地占用空间上限，单位%，范围1-50，默认为10
-      * @param string binlogSpaceProtection  空间保护是否开启，开启：on，关闭：off &lt;br&gt;- 仅支持MySQL
+      * @param integer retentionPeriod  自动备份保留周期，单位天，默认为7
+      * @param integer binlogRetentionPeriod  binlog本地保留周期，单位小时，默认为24
+      * @param integer binlogUsageLimit  binlog本地占用空间上限，单位%，默认为30
+      * @param string binlogSpaceProtection  空间保护是否开启，开启后，磁盘剩余空间小于20%或剩余空间不足5GB时，将自动清理本地binlog。开启：on，关闭：off，默认为off &lt;br&gt;- 仅支持MySQL
       * @param integer cycleMode  自动备份循环模式&lt;br&gt;1:表示每天都是全量备份&lt;br&gt;2:表示自动备份按照全量、增量、增量这样的方式进行，例如第1天是全量备份，第2、3天是增量备份；第4天又是全量备份，以此类推.&lt;br&gt; - 仅支持 SQL Server
-      * @param string backupBinlog  是否备份binlog&lt;br&gt;true:表示备份&lt;br&gt;false:表示不备份&lt;br&gt; - **仅支持 MySQL，Percona，MariaDB
+      * @param string backupBinlog  是否备份binlog，默认为true&lt;br&gt;true:表示备份&lt;br&gt;false:表示不备份&lt;br&gt; - **仅支持 MySQL，Percona，MariaDB
       * @param string enhancedBackup  是否开启增强备份模式&lt;br&gt;true:当前实例已开启增强备份模式&lt;br&gt;false或为空：表示当前实例未开启增强备份模式&lt;br&gt; - **仅支持 SQL Server
+      * @param string releasedKeepPolicy  已删除实例的备份保留策略,取值：&lt;br&gt;• CreateAndKeep：删除时新创建备份并保留&lt;br&gt;• All：全部保留&lt;br&gt;• None：不保留&lt;br&gt;- 仅支持 MySQL，Percona，MariaDB&lt;br&gt; - **仅支持 SQL Server
+      * @param string backupPeriod  备份周期
+      * @param integer binlogRetentionNumber  本地binlog最大保留数量，默认为-1，不限保留个数。
       */
 
   describeBackupPolicy (opts, regionId = this.config.regionId, callback) {
@@ -6419,7 +6582,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -6496,11 +6659,14 @@ publicDomainName, 支持operator选项：eq
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
       * @param {} [opts.startWindow] - 自动备份开始时间窗口,例如：00:00-01:00，表示0点到1点开始进行数据库自动备份，备份完成时间则跟实例大小有关，不一定在这个时间范围中&lt;br&gt;SQL Server:范围00:00-23:59，时间范围差不得小于30分钟。&lt;br&gt;MySQL,只能是以下取值:&lt;br&gt;00:00-01:00&lt;br&gt;01:00-02:00&lt;br&gt;......&lt;br&gt;23:00-24:00  optional
-      * @param {} [opts.binlogRetentionPeriod] - binlog本地保留周期，单位小时,范围1-168  optional
-      * @param {} [opts.binlogUsageLimit] - binlog本地占用空间上限，单位%，范围1-50  optional
-      * @param {} [opts.binlogSpaceProtection] - 设置空间保护，开启：on，关闭：off &lt;br&gt;- 仅支持MySQL  optional
-      * @param {} [opts.retentionPeriod] - 自动备份保留周期，单位天，范围7-730&lt;br&gt;当enhancedBackup为true时可修改&lt;br&gt;- 仅支持SQL Server  optional
+      * @param {} [opts.binlogRetentionPeriod] - binlog本地保留周期，单位小时，范围1-168，默认为24  optional
+      * @param {} [opts.binlogUsageLimit] - binlog本地占用空间上限，单位%，范围5-50，默认为30  optional
+      * @param {} [opts.binlogSpaceProtection] - 设置空间保护，开启：on，关闭：off；开启后，磁盘剩余空间小于20%或剩余空间不足5GB时，将自动清理本地binlog。 &lt;br&gt;- 仅支持MySQL  optional
+      * @param {} [opts.retentionPeriod] - 自动备份保留周期，单位天，范围7-730&lt;br&gt;SQL Server需要当enhancedBackup为true时才可修改  optional
       * @param {} [opts.cycleMode] - 自动备份循环模式&lt;br&gt;1：表示每天都是全量备份&lt;br&gt;2：表示自动备份按照全量、增量、增量这样的方式进行，例如第1天是全量备份，第2、3天是增量备份；第4天又是全量备份，以此类推&lt;br&gt;当enhancedBackup为true时可修改&lt;br&gt;- 仅支持SQL Server  optional
+      * @param {} [opts.releasedKeepPolicy] - 已删除实例的备份保留策略,取值：&lt;br&gt;• CreateAndKeep：删除时新创建备份并保留&lt;br&gt;• All：全部保留&lt;br&gt;• None：不保留  optional
+      * @param {} [opts.backupPeriod] - 备份周期。至少需要指定2天，取值：&lt;br&gt;• Monday：周一&lt;br&gt;• Tuesday：周二&lt;br&gt;• Wednesday：周三&lt;br&gt;• Thursday：周四&lt;br&gt;• Friday：周五&lt;br&gt;• Saturday：周六&lt;br&gt;• Sunday：周日  optional
+      * @param {} [opts.binlogRetentionNumber] - 本地binlog最大保留数量，支持设置保留个数为6-1000个，可传-1表示不限保留个数，默认为-1。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -6551,6 +6717,21 @@ publicDomainName, 支持operator选项：eq
     if (opts.cycleMode !== undefined && opts.cycleMode !== null) {
       postBody['cycleMode'] = opts.cycleMode
     }
+    if (
+      opts.releasedKeepPolicy !== undefined &&
+      opts.releasedKeepPolicy !== null
+    ) {
+      postBody['releasedKeepPolicy'] = opts.releasedKeepPolicy
+    }
+    if (opts.backupPeriod !== undefined && opts.backupPeriod !== null) {
+      postBody['backupPeriod'] = opts.backupPeriod
+    }
+    if (
+      opts.binlogRetentionNumber !== undefined &&
+      opts.binlogRetentionNumber !== null
+    ) {
+      postBody['binlogRetentionNumber'] = opts.binlogRetentionNumber
+    }
 
     let queryParams = {}
 
@@ -6560,7 +6741,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -6671,7 +6852,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -6784,7 +6965,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -6897,7 +7078,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -7017,7 +7198,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -7128,7 +7309,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -7251,7 +7432,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -7362,7 +7543,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -7473,7 +7654,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -7588,7 +7769,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -7721,7 +7902,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -7880,7 +8061,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -8011,7 +8192,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -8099,6 +8280,8 @@ publicDomainName, 支持operator选项：eq
       * @param {integer} [opts.count] - 创建只读实例的数目,缺省为1  optional
       * @param {string} [opts.roInstanceProxy] - 只读代理服务的ID，缺省值为 “NULL”，表示不绑定代理服务  optional
       * @param {array} [opts.tagSpec] - 标签信息  optional
+      * @param {string} [opts.resourceGroupId] - 资源组id  optional
+      * @param {chargeSpec} [opts.chargeSpec] - 计费规格，包括计费类型，计费周期等  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -8192,6 +8375,12 @@ publicDomainName, 支持operator选项：eq
     if (opts.tagSpec !== undefined && opts.tagSpec !== null) {
       postBody['tagSpec'] = opts.tagSpec
     }
+    if (opts.resourceGroupId !== undefined && opts.resourceGroupId !== null) {
+      postBody['resourceGroupId'] = opts.resourceGroupId
+    }
+    if (opts.chargeSpec !== undefined && opts.chargeSpec !== null) {
+      postBody['chargeSpec'] = opts.chargeSpec
+    }
 
     let queryParams = {}
 
@@ -8201,7 +8390,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -8321,7 +8510,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -8432,7 +8621,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -8552,7 +8741,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -8672,7 +8861,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -8792,7 +8981,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -8903,7 +9092,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -9014,7 +9203,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -9125,7 +9314,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -9254,7 +9443,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -9383,7 +9572,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -9502,7 +9691,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -9618,7 +9807,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -9733,7 +9922,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -9844,7 +10033,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -9956,7 +10145,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -10080,7 +10269,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -10191,7 +10380,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -10302,7 +10491,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -10378,7 +10567,7 @@ publicDomainName, 支持operator选项：eq
       *  查看开启高安全模式后，当前实例的 SQL 拦截记录&lt;br&gt;- 仅支持MySQL
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - Instance ID
-      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页;  optional
+      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；  optional
       * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为10，取值范围：[10,100]，且为10的整数倍  optional
       * @param {filter} [opts.filters] - 过滤参数，多个过滤参数之间的关系为“与”(and);
 支持以下属性的过滤：account,database,keyword; 支持operator选项：eq,in; 仅支持 MySQL，Percona，MariaDB
@@ -10426,7 +10615,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -10537,7 +10726,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -10613,7 +10802,7 @@ publicDomainName, 支持operator选项：eq
       *  获取日志文件列表&lt;br&gt;- 仅支持PostgreSQL, MySQL, Percona, MariaDB
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
-      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页;  optional
+      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；  optional
       * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为100，取值范围：[10,100]，用于查询列表的接口  optional
       * @param {filter} [opts.filters] - 过滤参数，多个过滤参数之间的关系为“与”(and)
 支持以下属性的过滤：logType, 支持operator选项：eq, 仅支持 MySQL，Percona，MariaDB
@@ -10661,7 +10850,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -10794,7 +10983,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -10918,7 +11107,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -11029,7 +11218,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -11149,7 +11338,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -11259,7 +11448,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -11393,7 +11582,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -11468,7 +11657,7 @@ publicDomainName, 支持operator选项：eq
   /**
       *  获取当前账号下所有的参数组列表&lt;br&gt;- 仅支持MySQL，Percona，MariaDB，PostgreSQL
       * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页;  optional
+      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；  optional
       * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为10，取值范围：[10,100]，且为10的整数倍  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -11505,7 +11694,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -11647,7 +11836,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -11762,7 +11951,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -11886,7 +12075,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -11962,7 +12151,7 @@ publicDomainName, 支持operator选项：eq
       *  查看参数的修改历史&lt;br&gt;- 仅支持MySQL，Percona，MariaDB，PostgreSQL
       * @param {Object} opts - parameters
       * @param {string} opts.parameterGroupId - Parameter Group ID
-      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页;  optional
+      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；  optional
       * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为10，取值范围：[10,100]，且为10的整数倍  optional
       * @param {string} [opts.startTime] - 查询开始时间，格式为：YYYY-MM-DD HH:mm:ss  optional
       * @param {string} [opts.endTime] - 查询结束时间，格式为：YYYY-MM-DD HH:mm:ss  optional
@@ -12018,7 +12207,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -12151,7 +12340,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -12227,7 +12416,7 @@ publicDomainName, 支持operator选项：eq
       *  查看参数组绑定的云数据库实例&lt;br&gt;- 仅支持MySQL，Percona，MariaDB，PostgreSQL
       * @param {Object} opts - parameters
       * @param {string} opts.parameterGroupId - Parameter Group ID
-      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页  optional
+      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；  optional
       * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为10，取值范围：[10,100]，且为10的整数倍  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -12275,7 +12464,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -12353,7 +12542,7 @@ publicDomainName, 支持operator选项：eq
       * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
       * @param {string} opts.queryType - 查询类型，不同的查询类型按照相应的字段从高到低返回结果。&lt;br&gt;支持如下类型：&lt;br&gt;Missing：缺失索引&lt;br&gt;Size：索引大小，单位KB&lt;br&gt;Updates：索引更新次数&lt;br&gt;Scans：表扫描次数&lt;br&gt;Used：最少使用&lt;br&gt;
       * @param {string} [opts.db] - 需要查询的数据库名，多个数据库名之间用英文逗号分隔，默认所有数据库  optional
-      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,1000)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页。  optional
+      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,∞]。pageNumber为-1时，返回所有数据页码；  optional
       * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为50，取值范围：[1,100]，只能为10的倍数，用于查询列表的接口  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -12411,7 +12600,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -12489,7 +12678,7 @@ publicDomainName, 支持operator选项：eq
       * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
       * @param {string} opts.queryType - 查询类型，不同的查询类型按照相应的字段从高到低返回结果。&lt;br&gt;支持如下类型：&lt;br&gt;ExecutionCount：执行次数&lt;br&gt;LastRows：上次返回行数&lt;br&gt;ElapsedTime：平均执行时间&lt;br&gt;CPUTime：平均CPU时间&lt;br&gt;LogicalReads：平均逻辑读&lt;br&gt;LogicalWrites：平均逻辑写&lt;br&gt;PhysicalReads：平均物理读&lt;br&gt;
       * @param {integer} [opts.threshold] - 只返回查询条件大于等于threshold的记录，默认为0  optional
-      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,1000]。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页。  optional
+      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,1000]。pageNumber为-1时，返回所有数据页码；  optional
       * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为50，取值范围：[1,100]，只能为10的倍数，用于查询列表的接口  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -12546,7 +12735,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -12622,12 +12811,15 @@ publicDomainName, 支持operator选项：eq
       *  查询MySQL实例的慢日志的详细信息。&lt;br&gt;- 仅支持MySQL
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
-      * @param {string} opts.startTime - 慢日志开始时间，格式为：YYYY-MM-DD HH:mm:ss，开始时间到当前时间不能大于 7 天, 开始时间不能大于结束时间，结束时间不能大于当前时间
-      * @param {string} opts.endTime - 慢日志结束时间，格式为：YYYY-MM-DD HH:mm:ss，开始时间到当前时间不能大于 7 天, 开始时间不能大于结束时间，结束时间不能大于当前时间
-      * @param {string} [opts.dbName] - 查询哪个数据库的慢日志，不填表示返回所有数据库的慢日志  optional
-      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,1000)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页。  optional
-      * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为10，取值范围：10、20、30、50、100  optional
-      * @param {filter} [opts.filters]   optional
+      * @param {string} opts.startTime - 慢日志开始时间，格式为：YYYY-MM-DD HH:mm:ss，开始时间到当前时间不能大于 7 天, 开始时间不能大于结束时间
+      * @param {string} opts.endTime - 慢日志结束时间，格式为：YYYY-MM-DD HH:mm:ss，开始时间到当前时间不能大于 7 天, 开始时间不能大于结束时间
+      * @param {string} [opts.dbName] - 废弃字段，查询哪个数据库的慢日志，不填表示返回所有数据库的慢日志。  optional
+      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,∞]。pageNumber为-1时，返回所有数据页码  optional
+      * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为10，取值范围：[10,100]  optional
+      * @param {filter} [opts.filters] - 过滤参数，多个过滤参数之间的关系为“与”(and支持以下属性的过滤(默认等值)：)
+- account：实例账号名，operator仅支持eq或者in
+- keyword：SQL 关键词，模糊查询，operator仅支持eq或者in
+  optional
       * @param {sort} [opts.sorts] - 慢日志明细的排序规则，不指定时按上报日志的时间戳降序返回所有的日志  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -12692,7 +12884,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -12768,12 +12960,15 @@ publicDomainName, 支持operator选项：eq
       *  查询MySQL实例的慢日志的概要信息。&lt;br&gt;- 仅支持MySQL
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
-      * @param {string} opts.startTime - 慢日志开始时间，格式为：YYYY-MM-DD HH:mm:ss，开始时间到当前时间不能大于 7 天，开始时间不能大于结束时间，结束时间不能大于当前时间
-      * @param {string} opts.endTime - 慢日志结束时间，格式为：YYYY-MM-DD HH:mm:ss，开始时间到当前时间不能大于 7 天，开始时间不能大于结束时间，结束时间不能大于当前时间
-      * @param {string} [opts.dbName] - 查询哪个数据库的慢日志，不填表示返回所有数据库的慢日志  optional
-      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,1000)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页。  optional
-      * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为10，取值范围：10、20、30、50、100  optional
-      * @param {filter} [opts.filters]   optional
+      * @param {string} opts.startTime - 慢日志开始时间，格式为：YYYY-MM-DD HH:mm:ss，开始时间到当前时间不能大于 7 天，开始时间不能大于结束时间
+      * @param {string} opts.endTime - 慢日志结束时间，格式为：YYYY-MM-DD HH:mm:ss，开始时间到当前时间不能大于 7 天，开始时间不能大于结束时间
+      * @param {string} [opts.dbName] - 废弃字段，查询哪个数据库的慢日志，不填表示返回所有数据库的慢日志  optional
+      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,∞]。pageNumber为-1时，返回所有数据页码；  optional
+      * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为10，取值范围：[10,100]  optional
+      * @param {filter} [opts.filters] - 过滤参数，多个过滤参数之间的关系为“与”(and支持以下属性的过滤(默认等值)：)
+- account：实例账号名，operator仅支持eq或者in
+- keyword：SQL 关键词，模糊查询，operator仅支持eq或者in
+  optional
       * @param {sort} [opts.sorts] - 排序参数，支持rowsExaminedSum、rowsSentSum、lockTimeSum、executionCount、executionTimeSum  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -12838,7 +13033,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -12916,7 +13111,7 @@ publicDomainName, 支持operator选项：eq
       * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
       * @param {string} [opts.db] - 需要查询的数据库名，多个数据库名之间用英文逗号分隔，默认所有数据库  optional
       * @param {integer} [opts.threshold] - 返回执行时间大于等于threshold的记录，默认10，单位秒  optional
-      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,1000)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页。  optional
+      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,∞]。pageNumber为-1时，返回所有数据页码；  optional
       * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为50，取值范围：[1,100]，只能为10的倍数  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -12972,7 +13167,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -13045,14 +13240,14 @@ publicDomainName, 支持operator选项：eq
   }
 
   /**
-      *  查询PostgreSQL实例的错误日志的概要信息。&lt;br&gt;- 仅支持PostgreSQL
+      *  查询错误日志的概要信息
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
-      * @param {string} opts.startTime - 慢日志开始时间，格式为：YYYY-MM-DD HH:mm:ss，开始时间到当前时间不能大于 7 天，开始时间不能大于结束时间，结束时间不能大于当前时间
-      * @param {string} opts.endTime - 慢日志结束时间，格式为：YYYY-MM-DD HH:mm:ss，开始时间到当前时间不能大于 7 天，开始时间不能大于结束时间，结束时间不能大于当前时间
-      * @param {string} [opts.dbName] - 查询哪个数据库的慢日志，不填表示返回所有数据库的慢日志  optional
-      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,1000)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页。  optional
-      * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为10，取值范围：10、20、30、50、100  optional
+      * @param {string} opts.startTime - 错误日志开始时间，格式为：YYYY-MM-DD HH:mm:ss，开始时间到当前时间不能大于 7 天，开始时间不能大于结束时间，结束时间不能大于当前时间
+      * @param {string} opts.endTime - 错误日志结束时间，格式为：YYYY-MM-DD HH:mm:ss，开始时间到当前时间不能大于 7 天，开始时间不能大于结束时间，结束时间不能大于当前时间
+      * @param {string} [opts.dbName] - 查询哪个数据库的慢日志，不填表示返回所有数据库的错误日志。&lt;br&gt;- MySQL不支持  optional
+      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,∞]。pageNumber为-1时，返回所有数据页码；  optional
+      * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为50，取值范围：[1,100]，只能为10的倍数  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -13114,7 +13309,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -13187,7 +13382,7 @@ publicDomainName, 支持operator选项：eq
   }
 
   /**
-      *  查看RDS读写分离代理列表&lt;br&gt;- 仅支持MySQL
+      *  查看RDS读写分离代理列表&lt;br&gt;- 仅支持MySQL、PostgreSQL
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - RDS实例ID，唯一标识一个实例
       * @param {string} regionId - ID of the region
@@ -13228,7 +13423,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -13301,10 +13496,11 @@ publicDomainName, 支持operator选项：eq
   }
 
   /**
-      *  创建数据库读写分离代理服务&lt;br&gt;- 仅支持MySQL
+      *  创建数据库读写分离代理服务&lt;br&gt;- 仅支持MySQL、PostgreSQL
       * @param {Object} opts - parameters
       * @param {} opts.instanceId - RDS 实例ID
-      * @param {} [opts.delayThreshold] - 延迟阈值，范围是0~1000，单位：秒，默认为100  optional
+      * @param {} [opts.delayThreshold] - 延迟阈值，范围是1~1000，单位：秒，默认为100，仅MySQL  optional
+      * @param {} [opts.walDelayThreshold] - wal日志延迟阈值，范围是1~1024，单位：MB，默认为200，仅PostgreSQL  optional
       * @param {} [opts.loadBalancerPolicy] - 读写分离代理后端实例负载均衡策略，默认值为LEAST_CURRENT_OPERATIONS；当前支持的负载均衡策略请查看[枚举参数定义](../Enum-Definitions/Enum-Definitions.md)  optional
       * @param {} [opts.healthCheckSpec] - 后端实例健康检查配置  optional
       * @param {string} regionId - ID of the region
@@ -13341,6 +13537,12 @@ publicDomainName, 支持operator选项：eq
       postBody['delayThreshold'] = opts.delayThreshold
     }
     if (
+      opts.walDelayThreshold !== undefined &&
+      opts.walDelayThreshold !== null
+    ) {
+      postBody['walDelayThreshold'] = opts.walDelayThreshold
+    }
+    if (
       opts.loadBalancerPolicy !== undefined &&
       opts.loadBalancerPolicy !== null
     ) {
@@ -13357,7 +13559,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -13430,7 +13632,7 @@ publicDomainName, 支持operator选项：eq
   }
 
   /**
-      *  查看指定RDS读写分离代理详情&lt;br&gt;- 仅支持MySQL
+      *  查看指定RDS读写分离代理详情&lt;br&gt;- 仅支持MySQL、PostgreSQL
       * @param {Object} opts - parameters
       * @param {string} opts.readWriteProxyId - 读写分离代理服务ID
       * @param {string} regionId - ID of the region
@@ -13472,7 +13674,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -13582,7 +13784,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -13655,7 +13857,7 @@ publicDomainName, 支持operator选项：eq
   }
 
   /**
-      *  开启读写分离代理服务的外网访问功能。开启后，用户可以通过 internet 连接读写分离代理服务&lt;br&gt;- 仅支持MySQL
+      *  开启读写分离代理服务的外网访问功能。开启后，用户可以通过 internet 连接读写分离代理服务&lt;br&gt;- 仅支持MySQL、PostgreSQL
       * @param {Object} opts - parameters
       * @param {string} opts.readWriteProxyId - 读写分离代理服务ID
       * @param {string} regionId - ID of the region
@@ -13697,7 +13899,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -13770,7 +13972,7 @@ publicDomainName, 支持operator选项：eq
   }
 
   /**
-      *  关闭读写分离代理服务的外网访问功能。关闭后，用户无法通过 Internet 连接读写分离代理服务，但可以在京东云内网通过内网域名连接&lt;br&gt;- 仅支持MySQL
+      *  关闭读写分离代理服务的外网访问功能。关闭后，用户无法通过 Internet 连接读写分离代理服务，但可以在京东云内网通过内网域名连接&lt;br&gt;- 仅支持MySQL、PostgreSQL
       * @param {Object} opts - parameters
       * @param {string} opts.readWriteProxyId - 读写分离代理服务ID
       * @param {string} regionId - ID of the region
@@ -13812,7 +14014,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -13885,10 +14087,11 @@ publicDomainName, 支持operator选项：eq
   }
 
   /**
-      *  修改数据库读写分离代理服务配置&lt;br&gt;- 仅支持MySQL
+      *  修改数据库读写分离代理服务配置&lt;br&gt;- 仅支持MySQL、PostgreSQL
       * @param {Object} opts - parameters
       * @param {string} opts.readWriteProxyId - 读写分离代理服务ID
-      * @param {} [opts.delayThreshold] - 延迟阈值，范围是0~1000，单位：秒，默认为100  optional
+      * @param {} [opts.delayThreshold] - 延迟阈值，范围是1~1000，单位：秒，默认为100，仅MySQL  optional
+      * @param {} [opts.walDelayThreshold] - wal日志延迟阈值，范围是1~1024，单位：MB，默认为200，仅PostgreSQL  optional
       * @param {} [opts.loadBalancerPolicy] - 读写分离代理后端实例负载均衡策略，默认值为LEAST_CURRENT_OPERATIONS；当前支持的负载均衡策略请查看[枚举参数定义](../Enum-Definitions/Enum-Definitions.md)  optional
       * @param {} [opts.healthCheckSpec] - 后端实例健康检查配置  optional
       * @param {string} regionId - ID of the region
@@ -13921,6 +14124,12 @@ publicDomainName, 支持operator选项：eq
       postBody['delayThreshold'] = opts.delayThreshold
     }
     if (
+      opts.walDelayThreshold !== undefined &&
+      opts.walDelayThreshold !== null
+    ) {
+      postBody['walDelayThreshold'] = opts.walDelayThreshold
+    }
+    if (
       opts.loadBalancerPolicy !== undefined &&
       opts.loadBalancerPolicy !== null
     ) {
@@ -13938,7 +14147,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -14015,7 +14224,7 @@ publicDomainName, 支持operator选项：eq
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
       * @param {string} opts.dbName - 库名称
-      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页;  optional
+      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；  optional
       * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为100，取值范围：[10,100]，用于查询列表的接口  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -14065,7 +14274,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -14177,7 +14386,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -14288,7 +14497,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -14399,7 +14608,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -14472,10 +14681,140 @@ publicDomainName, 支持operator选项：eq
   }
 
   /**
+      *  创建一个白名单分组并设置白名单允许访问的IP，仅MySQL、Percona、MariaDB支持。修改允许访问实例的IP白名单。白名单是允许访问当前实例的IP/IP段列表，缺省情况下，白名单对本VPC开放。如果用户开启了外网访问的功能，还需要对外网的IP配置白名单。
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
+      * @param {} opts.whiteListName - 白名单名称
+      * @param {} opts.ips - IP或IP段，不同的IP/IP段之间用英文逗号分隔，例如0.0.0.0/0,192.168.0.10
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  createWhiteListGroup (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createWhiteListGroup"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling createWhiteListGroup"
+      )
+    }
+    if (opts.whiteListName === undefined || opts.whiteListName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.whiteListName' when calling createWhiteListGroup"
+      )
+    }
+    if (opts.ips === undefined || opts.ips === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.ips' when calling createWhiteListGroup"
+      )
+    }
+
+    let postBody = {}
+    if (opts.whiteListName !== undefined && opts.whiteListName !== null) {
+      postBody['whiteListName'] = opts.whiteListName
+    }
+    if (opts.ips !== undefined && opts.ips !== null) {
+      postBody['ips'] = opts.ips
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createWhiteListGroup with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/whiteList',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  修改允许访问实例的IP白名单。白名单是允许访问当前实例的IP/IP段列表，缺省情况下，白名单对本VPC开放。如果用户开启了外网访问的功能，还需要对外网的IP配置白名单。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
-      * @param {string} opts.ips - IP或IP段，不同的IP/IP段之间用英文逗号分隔，例如0.0.0.0/0,192.168.0.10
+      * @param {} [opts.whiteListName] - 白名单名称，默认Default  optional
+      * @param {} opts.ips - IP或IP段，不同的IP/IP段之间用英文逗号分隔，例如0.0.0.0/0,192.168.0.10
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -14507,6 +14846,9 @@ publicDomainName, 支持operator选项：eq
     }
 
     let postBody = {}
+    if (opts.whiteListName !== undefined && opts.whiteListName !== null) {
+      postBody['whiteListName'] = opts.whiteListName
+    }
     if (opts.ips !== undefined && opts.ips !== null) {
       postBody['ips'] = opts.ips
     }
@@ -14519,7 +14861,7 @@ publicDomainName, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
     }
 
     let contentTypes = ['application/json']
@@ -14564,6 +14906,125 @@ publicDomainName, 支持operator选项：eq
     let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}/whiteList',
       'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  当该白名单分组用户无需使用时，可进行删除。仅适用于MySQL、Percona、MariaDB。
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - RDS 实例ID，唯一标识一个RDS实例
+      * @param {string} opts.whiteListName - 白名单名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteWhiteListGroup (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteWhiteListGroup"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling deleteWhiteListGroup"
+      )
+    }
+    if (opts.whiteListName === undefined || opts.whiteListName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.whiteListName' when calling deleteWhiteListGroup"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.whiteListName !== undefined && opts.whiteListName !== null) {
+      queryParams['whiteListName'] = opts.whiteListName
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  rds/1.3.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteWhiteListGroup with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/whiteList',
+      'DELETE',
       pathParams,
       queryParams,
       headerParams,

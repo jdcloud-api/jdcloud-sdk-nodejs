@@ -30,10 +30,10 @@ Service._services[serviceId] = true
 
 /**
  * iam service.
- * @version 0.2.3
+ * @version 0.3.6
  */
 
-JDCloud.IAM = class IAM extends Service {
+class IAM extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
@@ -45,7 +45,8 @@ JDCloud.IAM = class IAM extends Service {
   }
 
   /**
-      *  启用子用户AccessKey
+      *  启用子用户AccessKey &lt;br&gt;, 启用后accessKey 的状态变成 1 &lt;b&gt;启用&lt;/b&gt;
+
       * @param {Object} opts - parameters
       * @param {string} opts.subUser - 子用户名称
       * @param {string} opts.accessKey - accessKey
@@ -78,7 +79,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -120,7 +121,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/subUser/{subUser}/accessKey/{accessKey}:enable',
       'PUT',
       pathParams,
@@ -151,7 +152,8 @@ JDCloud.IAM = class IAM extends Service {
   }
 
   /**
-      *  禁用子用户的AccessKey
+      *  禁用子用户的AccessKey &lt;br&gt;, 禁用后accessKey 的状态变成 0 &lt;b&gt;禁用&lt;/b&gt;
+
       * @param {Object} opts - parameters
       * @param {string} opts.subUser - 子用户名称
       * @param {string} opts.accessKey - accessKey
@@ -184,7 +186,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -226,7 +228,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/subUser/{subUser}/accessKey/{accessKey}:disable',
       'PUT',
       pathParams,
@@ -258,6 +260,7 @@ JDCloud.IAM = class IAM extends Service {
 
   /**
       *  删除子用户的AccessKey
+
       * @param {Object} opts - parameters
       * @param {string} opts.subUser - 子用户名称
       * @param {string} opts.accessKey - accessKey
@@ -289,7 +292,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -331,7 +334,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/subUser/{subUser}/accessKey/{accessKey}',
       'DELETE',
       pathParams,
@@ -362,7 +365,9 @@ JDCloud.IAM = class IAM extends Service {
   }
 
   /**
-      *  创建用户组
+      *  创建用户组, &lt;br&gt;
+可访问&lt;a href&#x3D;&quot;https://docs.jdcloud.com/cn/iam/group-management&quot;&gt;用户组管理&lt;/a&gt;了解更多&lt;br&gt;
+
       * @param {Object} opts - parameters
       * @param {createGroupInfo} opts.createGroupInfo
       * @param {string} callback - callback
@@ -391,7 +396,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -433,7 +438,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/group',
       'POST',
       pathParams,
@@ -490,7 +495,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -532,7 +537,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/group/{groupName}',
       'GET',
       pathParams,
@@ -598,7 +603,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -640,7 +645,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/group/{groupName}',
       'PUT',
       pathParams,
@@ -696,7 +701,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -738,7 +743,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/group/{groupName}',
       'DELETE',
       pathParams,
@@ -804,7 +809,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -846,7 +851,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/group/{groupName}/subUsers',
       'GET',
       pathParams,
@@ -912,7 +917,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -954,7 +959,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/groups',
       'GET',
       pathParams,
@@ -1012,7 +1017,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -1054,8 +1059,124 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/group/{groupName}/policies',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  列举用户组的策略的资源组列表
+      * @param {Object} opts - parameters
+      * @param {string} opts.groupName - 用户组名称
+      * @param {string} opts.policyID - 策略ID
+      * @param {string} [opts.filterBindResGroup] - 滤绑定策略资源组：&quot;Deny&quot; 不允许，Allow 允许，空情况默认不允许，兼容历史数据  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer total  总数
+      * @param resourceGroup policies
+      */
+
+  describeAttachedGroupPoliciesScope (opts, callback) {
+    opts = opts || {}
+
+    if (opts.groupName === undefined || opts.groupName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.groupName' when calling describeAttachedGroupPoliciesScope"
+      )
+    }
+    if (opts.policyID === undefined || opts.policyID === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.policyID' when calling describeAttachedGroupPoliciesScope"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.policyID !== undefined && opts.policyID !== null) {
+      queryParams['policyID'] = opts.policyID
+    }
+    if (
+      opts.filterBindResGroup !== undefined &&
+      opts.filterBindResGroup !== null
+    ) {
+      queryParams['filterBindResGroup'] = opts.filterBindResGroup
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      groupName: opts.groupName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeAttachedGroupPoliciesScope with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/group/{groupName}/policiesScope',
       'GET',
       pathParams,
       queryParams,
@@ -1089,6 +1210,8 @@ JDCloud.IAM = class IAM extends Service {
       * @param {Object} opts - parameters
       * @param {string} opts.groupName - 用户组名称
       * @param {string} opts.policyName - 策略名称
+      * @param {string} [opts.scopeId] - 资源组id  optional
+      * @param {string} [opts.allowDetachAddPolicy] - 允许解除策略：&quot;Deny&quot; 不允许，Allow 允许，空情况默认允许，兼容历史数据  optional
       * @param {string} callback - callback
       @return {Object} result
       */
@@ -1112,6 +1235,15 @@ JDCloud.IAM = class IAM extends Service {
     if (opts.policyName !== undefined && opts.policyName !== null) {
       queryParams['policyName'] = opts.policyName
     }
+    if (opts.scopeId !== undefined && opts.scopeId !== null) {
+      queryParams['scopeId'] = opts.scopeId
+    }
+    if (
+      opts.allowDetachAddPolicy !== undefined &&
+      opts.allowDetachAddPolicy !== null
+    ) {
+      queryParams['allowDetachAddPolicy'] = opts.allowDetachAddPolicy
+    }
 
     let pathParams = {
       regionId: 'jdcloud',
@@ -1119,7 +1251,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -1161,7 +1293,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/group/{groupName}:detachGroupPolicy',
       'DELETE',
       pathParams,
@@ -1196,6 +1328,8 @@ JDCloud.IAM = class IAM extends Service {
       * @param {Object} opts - parameters
       * @param {string} opts.groupName - 用户组名称
       * @param {string} opts.policyName - 策略名称
+      * @param {string} [opts.scopeId] - 资源组id  optional
+      * @param {string} [opts.allowAddPolicy] - 允许添加策略绑定：&quot;Deny&quot; 不允许，Allow 允许，空情况默认允许，兼容历史数据  optional
       * @param {string} callback - callback
       @return {Object} result
       */
@@ -1218,6 +1352,12 @@ JDCloud.IAM = class IAM extends Service {
     if (opts.policyName !== undefined && opts.policyName !== null) {
       postBody['policyName'] = opts.policyName
     }
+    if (opts.scopeId !== undefined && opts.scopeId !== null) {
+      postBody['scopeId'] = opts.scopeId
+    }
+    if (opts.allowAddPolicy !== undefined && opts.allowAddPolicy !== null) {
+      postBody['allowAddPolicy'] = opts.allowAddPolicy
+    }
 
     let queryParams = {}
 
@@ -1227,7 +1367,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -1269,7 +1409,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/group/{groupName}:attachGroupPolicy',
       'POST',
       pathParams,
@@ -1334,7 +1474,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -1376,7 +1516,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/group/{groupName}:removeSubUserFromGroup',
       'DELETE',
       pathParams,
@@ -1442,7 +1582,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -1484,7 +1624,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/group/{groupName}:addSubUserToGroup',
       'POST',
       pathParams,
@@ -1515,7 +1655,646 @@ JDCloud.IAM = class IAM extends Service {
   }
 
   /**
-      *  创建策略
+      *  初始化虚拟MFA设备
+      * @param {Object} opts - parameters
+      * @param {string} [opts.boundAccount] - 初始化的账号（目前支持：默认不填的情况表示为自己初始化，填写子用户名表示为子用户化初始)  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param virtualMFADevice virtualMFADevice
+      */
+
+  createVirtualMFADevice (opts, callback) {
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.boundAccount !== undefined && opts.boundAccount !== null) {
+      postBody['boundAccount'] = opts.boundAccount
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createVirtualMFADevice with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/virtualMFADevice',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询虚拟MFA设备状态
+      * @param {Object} opts - parameters
+      * @param {string} [opts.queriedAccount] - 被查询的账号（目前支持：默认不填的情况表示查询自己，填写子用户名表示查询子用户)  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer status  0-关闭，1-启用
+      */
+
+  describeVirtualMFA (opts, callback) {
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.queriedAccount !== undefined && opts.queriedAccount !== null) {
+      queryParams['queriedAccount'] = opts.queriedAccount
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeVirtualMFA with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/virtualMFA',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  绑定虚拟MFA设备
+      * @param {Object} opts - parameters
+      * @param {string} [opts.boundAccount] - 被绑定的账号（目前支持：默认不填的情况表示给自己绑定，填写子用户名表示主账号给子用户绑定)  optional
+      * @param {string} opts.authenticationCode1 - 第一组动态密码（连续的两组）
+      * @param {string} opts.authenticationCode2 - 第二组动态密码（连续的两组）
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  bindMFADevice (opts, callback) {
+    opts = opts || {}
+
+    if (
+      opts.authenticationCode1 === undefined ||
+      opts.authenticationCode1 === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.authenticationCode1' when calling bindMFADevice"
+      )
+    }
+    if (
+      opts.authenticationCode2 === undefined ||
+      opts.authenticationCode2 === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.authenticationCode2' when calling bindMFADevice"
+      )
+    }
+
+    let postBody = {}
+    if (opts.boundAccount !== undefined && opts.boundAccount !== null) {
+      postBody['boundAccount'] = opts.boundAccount
+    }
+    if (
+      opts.authenticationCode1 !== undefined &&
+      opts.authenticationCode1 !== null
+    ) {
+      postBody['authenticationCode1'] = opts.authenticationCode1
+    }
+    if (
+      opts.authenticationCode2 !== undefined &&
+      opts.authenticationCode2 !== null
+    ) {
+      postBody['authenticationCode2'] = opts.authenticationCode2
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call bindMFADevice with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/virtualMFADevice:bind',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  绑定虚拟MFA设备（一组动态密码）
+      * @param {Object} opts - parameters
+      * @param {string} [opts.boundAccount] - 被绑定的账号（目前支持：默认不填的情况表示给自己绑定，填写子用户名表示主账号给子用户绑定)  optional
+      * @param {string} opts.authenticationCode - 一组动态密码
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  bindMFADeviceByOneCode (opts, callback) {
+    opts = opts || {}
+
+    if (
+      opts.authenticationCode === undefined ||
+      opts.authenticationCode === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.authenticationCode' when calling bindMFADeviceByOneCode"
+      )
+    }
+
+    let postBody = {}
+    if (opts.boundAccount !== undefined && opts.boundAccount !== null) {
+      postBody['boundAccount'] = opts.boundAccount
+    }
+    if (
+      opts.authenticationCode !== undefined &&
+      opts.authenticationCode !== null
+    ) {
+      postBody['authenticationCode'] = opts.authenticationCode
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call bindMFADeviceByOneCode with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/virtualMFADevice:bindByOneCode',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  解绑虚拟MFA设备
+      * @param {Object} opts - parameters
+      * @param {string} [opts.unboundAccount] - 被解绑的账号（目前支持：默认不填的情况表示给自己解绑，填写子用户名表示为子用户解绑)  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  unbindMFADevice (opts, callback) {
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.unboundAccount !== undefined && opts.unboundAccount !== null) {
+      queryParams['unboundAccount'] = opts.unboundAccount
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call unbindMFADevice with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/virtualMFADevice:unbind',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  新建组织用户关联关系
+      * @param {Object} opts - parameters
+      * @param {string} opts.orgId - 组织ID
+      * @param {addOrganizationUserRelationInfo} opts.addOrganizationUserRelationInfo - 新建组织用户关联子用户关系参数
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  addOrganizationUserRelation (opts, callback) {
+    opts = opts || {}
+
+    if (opts.orgId === undefined || opts.orgId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.orgId' when calling addOrganizationUserRelation"
+      )
+    }
+    if (
+      opts.addOrganizationUserRelationInfo === undefined ||
+      opts.addOrganizationUserRelationInfo === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.addOrganizationUserRelationInfo' when calling addOrganizationUserRelation"
+      )
+    }
+
+    let postBody = {}
+    if (
+      opts.addOrganizationUserRelationInfo !== undefined &&
+      opts.addOrganizationUserRelationInfo !== null
+    ) {
+      postBody['addOrganizationUserRelationInfo'] =
+        opts.addOrganizationUserRelationInfo
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      orgId: opts.orgId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call addOrganizationUserRelation with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/organization/{orgId}/userRelation:add',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建策略 &lt;br&gt;
+关于策略的详细介绍，可以查询&lt;a href&#x3D;&quot;https://docs.jdcloud.com/cn/iam/policy-overview&quot;&gt;策略概览&lt;/a&gt; &lt;br&gt;
+
       * @param {Object} opts - parameters
       * @param {createPermissionInfo} opts.createPermissionInfo - 权限信息
       * @param {string} regionId - ID of the region
@@ -1561,7 +2340,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -1603,7 +2382,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/permission',
       'POST',
       pathParams,
@@ -1672,7 +2451,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -1714,7 +2493,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/permission/{permissionId}',
       'GET',
       pathParams,
@@ -1798,7 +2577,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -1840,7 +2619,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/permission/{permissionId}',
       'PUT',
       pathParams,
@@ -1934,7 +2713,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -1976,7 +2755,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/permissions',
       'GET',
       pathParams,
@@ -2064,7 +2843,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -2106,7 +2885,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/subUser/{subUser}/permisssions',
       'GET',
       pathParams,
@@ -2190,7 +2969,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -2232,7 +3011,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/subUser/{subUser}/permisssions',
       'POST',
       pathParams,
@@ -2307,7 +3086,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -2349,7 +3128,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/subUser/{subUser}/permissions/{permissionId}',
       'DELETE',
       pathParams,
@@ -2380,7 +3159,9 @@ JDCloud.IAM = class IAM extends Service {
   }
 
   /**
-      *  创建策略
+      *  创建策略, &lt;br&gt;
+访问 &lt;a href&#x3D;&quot;https://docs.jdcloud.com/cn/iam/policy-overview&quot;&gt;策略管理&lt;/a&gt; 了解更多内容 &lt;br&gt;
+
       * @param {Object} opts - parameters
       * @param {createPolicyInfo} opts.createPolicyInfo - 策略信息
       * @param {string} callback - callback
@@ -2409,7 +3190,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -2451,7 +3232,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/policy',
       'POST',
       pathParams,
@@ -2487,7 +3268,8 @@ JDCloud.IAM = class IAM extends Service {
       * @param {string} opts.policyName - 策略名称
       * @param {string} callback - callback
       @return {Object} result
-      * @param policyDetail policy  策略信息
+      * @param policyDetail policy  权限策略信息
+      * @param policyEdition defaultPolicyEdition  权限策略的默认版本信息
       */
 
   describePolicy (opts, callback) {
@@ -2508,7 +3290,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -2550,7 +3332,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/policy/{policyName}',
       'GET',
       pathParams,
@@ -2581,7 +3363,7 @@ JDCloud.IAM = class IAM extends Service {
   }
 
   /**
-      *  修改策略文档
+      *  修改权限策略
       * @param {Object} opts - parameters
       * @param {string} opts.policyName - 策略名称
       * @param {updatePolicyInfo} opts.updatePolicyInfo - 策略文档信息
@@ -2616,7 +3398,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -2658,7 +3440,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/policy/{policyName}',
       'PUT',
       pathParams,
@@ -2714,7 +3496,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -2756,7 +3538,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/policy/{policyName}',
       'DELETE',
       pathParams,
@@ -2828,7 +3610,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -2870,7 +3652,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/policy/{policyName}/description',
       'PUT',
       pathParams,
@@ -2940,7 +3722,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -2982,7 +3764,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/policies',
       'GET',
       pathParams,
@@ -3013,7 +3795,9 @@ JDCloud.IAM = class IAM extends Service {
   }
 
   /**
-      *  创建角色
+      *  创建角色 &lt;br&gt;
+关于角色的详细介绍，请请参考 &lt;a href&#x3D;&quot;https://docs.jdcloud.com/cn/iam/role-overview&quot;&gt;角色概览&lt;/a&gt; &lt;br&gt;
+
       * @param {Object} opts - parameters
       * @param {createRoleInfo} opts.createRoleInfo - 角色信息
       * @param {string} callback - callback
@@ -3042,7 +3826,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -3084,8 +3868,110 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/role',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  复制角色
+      * @param {Object} opts - parameters
+      * @param {copyRoleInfo} opts.copyRoleInfo - 角色信息
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param roleInfo roleInfo  角色信息
+      */
+
+  copyRole (opts, callback) {
+    opts = opts || {}
+
+    if (opts.copyRoleInfo === undefined || opts.copyRoleInfo === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.copyRoleInfo' when calling copyRole"
+      )
+    }
+
+    let postBody = {}
+    if (opts.copyRoleInfo !== undefined && opts.copyRoleInfo !== null) {
+      postBody['copyRoleInfo'] = opts.copyRoleInfo
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call copyRole with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/copyRole',
       'POST',
       pathParams,
       queryParams,
@@ -3141,7 +4027,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -3183,7 +4069,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/role/{roleName}',
       'GET',
       pathParams,
@@ -3239,7 +4125,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -3281,7 +4167,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/role/{roleName}',
       'DELETE',
       pathParams,
@@ -3353,7 +4239,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -3395,7 +4281,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/role/{roleName}/assumeRolePolicy',
       'PUT',
       pathParams,
@@ -3465,7 +4351,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -3507,7 +4393,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/roles',
       'GET',
       pathParams,
@@ -3542,6 +4428,8 @@ JDCloud.IAM = class IAM extends Service {
       * @param {Object} opts - parameters
       * @param {string} opts.roleName - 角色名称
       * @param {string} opts.policyName - 策略名称
+      * @param {string} [opts.scopeId] - 资源组id  optional
+      * @param {string} [opts.allowAddPolicy] - 允许添加策略绑定：&quot;Deny&quot; 不允许，Allow 允许，空情况默认允许，兼容历史数据  optional
       * @param {string} callback - callback
       @return {Object} result
       */
@@ -3564,6 +4452,12 @@ JDCloud.IAM = class IAM extends Service {
     if (opts.policyName !== undefined && opts.policyName !== null) {
       postBody['policyName'] = opts.policyName
     }
+    if (opts.scopeId !== undefined && opts.scopeId !== null) {
+      postBody['scopeId'] = opts.scopeId
+    }
+    if (opts.allowAddPolicy !== undefined && opts.allowAddPolicy !== null) {
+      postBody['allowAddPolicy'] = opts.allowAddPolicy
+    }
 
     let queryParams = {}
 
@@ -3573,7 +4467,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -3615,7 +4509,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/role/{roleName}:attachRolePolicy',
       'POST',
       pathParams,
@@ -3650,6 +4544,8 @@ JDCloud.IAM = class IAM extends Service {
       * @param {Object} opts - parameters
       * @param {string} opts.roleName - 角色名称
       * @param {string} opts.policyName - 策略名称
+      * @param {string} [opts.scopeId] - 资源组id  optional
+      * @param {string} [opts.allowDetachAddPolicy] - 允许解除策略：&quot;Deny&quot; 不允许，Allow 允许，空情况默认允许，兼容历史数据  optional
       * @param {string} callback - callback
       @return {Object} result
       */
@@ -3673,6 +4569,15 @@ JDCloud.IAM = class IAM extends Service {
     if (opts.policyName !== undefined && opts.policyName !== null) {
       queryParams['policyName'] = opts.policyName
     }
+    if (opts.scopeId !== undefined && opts.scopeId !== null) {
+      queryParams['scopeId'] = opts.scopeId
+    }
+    if (
+      opts.allowDetachAddPolicy !== undefined &&
+      opts.allowDetachAddPolicy !== null
+    ) {
+      queryParams['allowDetachAddPolicy'] = opts.allowDetachAddPolicy
+    }
 
     let pathParams = {
       regionId: 'jdcloud',
@@ -3680,7 +4585,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -3722,7 +4627,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/role/{roleName}:detachRolePolicy',
       'DELETE',
       pathParams,
@@ -3801,7 +4706,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -3843,7 +4748,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/role/{roleName}/policies',
       'GET',
       pathParams,
@@ -3874,7 +4779,125 @@ JDCloud.IAM = class IAM extends Service {
   }
 
   /**
-      *  创建子用户
+      *  查询角色授权策略列表
+      * @param {Object} opts - parameters
+      * @param {string} opts.roleName - 角色名称
+      * @param {string} opts.policyID - 策略ID
+      * @param {string} [opts.filterBindResGroup] - 滤绑定策略资源组：&quot;Deny&quot; 不允许，Allow 允许，空情况默认不允许，兼容历史数据  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer total  总数
+      * @param rolePolicy policies
+      */
+
+  describeRolePoliciesScope (opts, callback) {
+    opts = opts || {}
+
+    if (opts.roleName === undefined || opts.roleName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.roleName' when calling describeRolePoliciesScope"
+      )
+    }
+    if (opts.policyID === undefined || opts.policyID === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.policyID' when calling describeRolePoliciesScope"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.policyID !== undefined && opts.policyID !== null) {
+      queryParams['policyID'] = opts.policyID
+    }
+    if (
+      opts.filterBindResGroup !== undefined &&
+      opts.filterBindResGroup !== null
+    ) {
+      queryParams['filterBindResGroup'] = opts.filterBindResGroup
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      roleName: opts.roleName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeRolePoliciesScope with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/role/{roleName}/policiesScope',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建子用户, &lt;br&gt;
+请访问&lt;a href&#x3D;&quot;https://docs.jdcloud.com/cn/iam/subuser-management&quot;&gt;子用户管理&lt;/a&gt;了解更多 &lt;br&gt;
+
       * @param {Object} opts - parameters
       * @param {createSubUserInfo} opts.createSubUserInfo - 子用户信息
       * @param {string} callback - callback
@@ -3909,7 +4932,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -3951,7 +4974,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/subUser',
       'POST',
       pathParams,
@@ -4008,7 +5031,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -4050,7 +5073,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/subUser/{subUser}',
       'GET',
       pathParams,
@@ -4123,7 +5146,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -4165,7 +5188,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/subUser/{subUser}',
       'PUT',
       pathParams,
@@ -4221,7 +5244,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -4263,7 +5286,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/subUser/{subUser}',
       'DELETE',
       pathParams,
@@ -4300,6 +5323,11 @@ JDCloud.IAM = class IAM extends Service {
       * @param {integer} [opts.pageSize] - 分页大小，默认50，取值范围[10, 100]  optional
       * @param {string} [opts.keyword] - 关键字  optional
       * @param {integer} [opts.sort] - 排序规则：0-创建时间顺序排序，1-创建时间倒序排序  optional
+      * @param {string} [opts.phone] - 手机号，和keyword互斥，不要都传  optional
+      * @param {string} [opts.email] - 邮箱，和keyword互斥，不要都传  optional
+      * @param {string} [opts.description] - 用户姓名，和keyword互斥，不要都传  optional
+      * @param {string} [opts.nickName] - 子用户别名  optional
+      * @param {string} [opts.name] - 子用户姓名  optional
       * @param {string} callback - callback
       @return {Object} result
       * @param subUser subUsers
@@ -4323,13 +5351,28 @@ JDCloud.IAM = class IAM extends Service {
     if (opts.sort !== undefined && opts.sort !== null) {
       queryParams['sort'] = opts.sort
     }
+    if (opts.phone !== undefined && opts.phone !== null) {
+      queryParams['phone'] = opts.phone
+    }
+    if (opts.email !== undefined && opts.email !== null) {
+      queryParams['email'] = opts.email
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      queryParams['description'] = opts.description
+    }
+    if (opts.nickName !== undefined && opts.nickName !== null) {
+      queryParams['nickName'] = opts.nickName
+    }
+    if (opts.name !== undefined && opts.name !== null) {
+      queryParams['name'] = opts.name
+    }
 
     let pathParams = {
       regionId: 'jdcloud'
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -4371,7 +5414,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/subUsers',
       'GET',
       pathParams,
@@ -4429,7 +5472,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -4471,7 +5514,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/subUser/{subUser}/groups',
       'GET',
       pathParams,
@@ -4529,7 +5572,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -4571,8 +5614,124 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/subUser/{subUser}/policies',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询子用户绑定的策略对应资源组列表
+      * @param {Object} opts - parameters
+      * @param {string} opts.subUser - 子用户名
+      * @param {string} opts.policyID - 策略ID
+      * @param {string} [opts.filterBindResGroup] - 滤绑定策略资源组：&quot;Deny&quot; 不允许，Allow 允许，空情况默认不允许，兼容历史数据  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer total  总数
+      * @param resourceGroup policies
+      */
+
+  describeAttachedSubUserPoliciesScope (opts, callback) {
+    opts = opts || {}
+
+    if (opts.subUser === undefined || opts.subUser === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.subUser' when calling describeAttachedSubUserPoliciesScope"
+      )
+    }
+    if (opts.policyID === undefined || opts.policyID === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.policyID' when calling describeAttachedSubUserPoliciesScope"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.policyID !== undefined && opts.policyID !== null) {
+      queryParams['policyID'] = opts.policyID
+    }
+    if (
+      opts.filterBindResGroup !== undefined &&
+      opts.filterBindResGroup !== null
+    ) {
+      queryParams['filterBindResGroup'] = opts.filterBindResGroup
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      subUser: opts.subUser
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeAttachedSubUserPoliciesScope with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/subUser/{subUser}/policiesScope',
       'GET',
       pathParams,
       queryParams,
@@ -4606,6 +5765,8 @@ JDCloud.IAM = class IAM extends Service {
       * @param {Object} opts - parameters
       * @param {string} opts.subUser - 子用户名
       * @param {string} opts.policyName - 策略名称
+      * @param {string} [opts.scopeId] - 资源组id  optional
+      * @param {string} [opts.allowDetachAddPolicy] - 允许解除策略：&quot;Deny&quot; 不允许，Allow 允许，空情况默认允许，兼容历史数据  optional
       * @param {string} callback - callback
       @return {Object} result
       */
@@ -4629,6 +5790,15 @@ JDCloud.IAM = class IAM extends Service {
     if (opts.policyName !== undefined && opts.policyName !== null) {
       queryParams['policyName'] = opts.policyName
     }
+    if (opts.scopeId !== undefined && opts.scopeId !== null) {
+      queryParams['scopeId'] = opts.scopeId
+    }
+    if (
+      opts.allowDetachAddPolicy !== undefined &&
+      opts.allowDetachAddPolicy !== null
+    ) {
+      queryParams['allowDetachAddPolicy'] = opts.allowDetachAddPolicy
+    }
 
     let pathParams = {
       regionId: 'jdcloud',
@@ -4636,7 +5806,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -4678,7 +5848,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/subUser/{subUser}:detachSubUserPolicy',
       'DELETE',
       pathParams,
@@ -4713,6 +5883,8 @@ JDCloud.IAM = class IAM extends Service {
       * @param {Object} opts - parameters
       * @param {string} opts.subUser - 子用户名
       * @param {string} opts.policyName - 策略名称
+      * @param {string} [opts.scopeId] - 资源组id  optional
+      * @param {string} [opts.allowAddPolicy] - 允许添加策略绑定：&quot;Deny&quot; 不允许，Allow 允许，空情况默认允许，兼容历史数据  optional
       * @param {string} callback - callback
       @return {Object} result
       */
@@ -4735,6 +5907,12 @@ JDCloud.IAM = class IAM extends Service {
     if (opts.policyName !== undefined && opts.policyName !== null) {
       postBody['policyName'] = opts.policyName
     }
+    if (opts.scopeId !== undefined && opts.scopeId !== null) {
+      postBody['scopeId'] = opts.scopeId
+    }
+    if (opts.allowAddPolicy !== undefined && opts.allowAddPolicy !== null) {
+      postBody['allowAddPolicy'] = opts.allowAddPolicy
+    }
 
     let queryParams = {}
 
@@ -4744,7 +5922,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -4786,7 +5964,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/subUser/{subUser}:attachSubUserPolicy',
       'POST',
       pathParams,
@@ -4817,7 +5995,119 @@ JDCloud.IAM = class IAM extends Service {
   }
 
   /**
-      *  查询主账号AccessKey列表
+      *  创建子用户, &lt;br&gt;
+请访问&lt;a href&#x3D;&quot;https://docs.jdcloud.com/cn/iam/subuser-management&quot;&gt;子用户管理&lt;/a&gt;了解更多 &lt;br&gt;
+
+      * @param {Object} opts - parameters
+      * @param {createSubUserInfoInner} opts.createSubUserInfo - 子用户信息
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param createSubUserRes subUser
+      */
+
+  createSubUserInner (opts, callback) {
+    opts = opts || {}
+
+    if (
+      opts.createSubUserInfo === undefined ||
+      opts.createSubUserInfo === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.createSubUserInfo' when calling createSubUserInner"
+      )
+    }
+
+    let postBody = {}
+    if (
+      opts.createSubUserInfo !== undefined &&
+      opts.createSubUserInfo !== null
+    ) {
+      postBody['createSubUserInfo'] = opts.createSubUserInfo
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createSubUserInner with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/subUserInner',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询主账号AccessKey列表 &lt;br&gt;
+关于AccessKey的介绍和使用，请参考 &lt;a href&#x3D;&quot;https://docs.jdcloud.com/cn/account-management/accesskey-management&quot;&gt;Accesskey管理&lt;/a&gt; &lt;br&gt;
+
       * @param {Object} opts - parameters
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -4847,7 +6137,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -4889,7 +6179,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/userAccessKeys',
       'GET',
       pathParams,
@@ -4920,7 +6210,8 @@ JDCloud.IAM = class IAM extends Service {
   }
 
   /**
-      *  创建主账号AccessKey
+      *  创建主账号AccessKey, &lt;br&gt; 最多可创建5个
+
       * @param {Object} opts - parameters
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -4950,7 +6241,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -4992,7 +6283,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/userAccessKey',
       'POST',
       pathParams,
@@ -5023,7 +6314,8 @@ JDCloud.IAM = class IAM extends Service {
   }
 
   /**
-      *  启用主账号AccessKey
+      *  启用主账号AccessKey, &lt;br&gt; 启用后accessKey的状态变成 1 &lt;b&gt;启用&lt;/b&gt;
+
       * @param {Object} opts - parameters
       * @param {string} opts.accessKey - accessKey
       * @param {string} regionId - ID of the region
@@ -5061,7 +6353,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -5103,7 +6395,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/userAccessKey/{accessKey}:enabled',
       'PUT',
       pathParams,
@@ -5134,7 +6426,8 @@ JDCloud.IAM = class IAM extends Service {
   }
 
   /**
-      *  禁用主账号AccessKey
+      *  禁用主账号AccessKey, &lt;br&gt; 禁用后accessKey的状态变成 0 &lt;b&gt;禁用&lt;/b&gt;
+
       * @param {Object} opts - parameters
       * @param {string} opts.accessKey - accessKey
       * @param {string} regionId - ID of the region
@@ -5172,7 +6465,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -5214,7 +6507,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/userAccessKey/{accessKey}:disabled',
       'PUT',
       pathParams,
@@ -5245,7 +6538,8 @@ JDCloud.IAM = class IAM extends Service {
   }
 
   /**
-      *  删除AccessKey
+      *  删除主账号AccessKey, &lt;br&gt;
+
       * @param {Object} opts - parameters
       * @param {string} opts.accessKey - accessKey
       * @param {string} regionId - ID of the region
@@ -5282,7 +6576,7 @@ JDCloud.IAM = class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
     }
 
     let contentTypes = ['application/json']
@@ -5324,7 +6618,7 @@ JDCloud.IAM = class IAM extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/userAccessKey/{accessKey}',
       'DELETE',
       pathParams,
@@ -5353,5 +6647,116 @@ JDCloud.IAM = class IAM extends Service {
       }
     )
   }
+
+  /**
+      *  根据AccessKey或者AccountId获取用户Pin
+      * @param {Object} opts - parameters
+      * @param {string} [opts.accessKey] - 用户accessKey  optional
+      * @param {string} [opts.accountId] - 用户唯一id  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string pin  用户pin，如果是子账号，则格式为主账号pin @ 子账号pin
+      */
+
+  describeUserPin (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeUserPin"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.accessKey !== undefined && opts.accessKey !== null) {
+      queryParams['accessKey'] = opts.accessKey
+    }
+    if (opts.accountId !== undefined && opts.accountId !== null) {
+      queryParams['accountId'] = opts.accountId
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeUserPin with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/user:describeUserPin',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
 }
-module.exports = JDCloud.IAM
+module.exports = IAM

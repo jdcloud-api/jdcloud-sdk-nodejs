@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 统计概览接口
- * 实名认证-统计概览接口
+ * 用户管理接口
+ * 实名认证-用户管理接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * cloudauth service.
- * @version 1.0.4
+ * @version 1.0.11
  */
 
 class CLOUDAUTH extends Service {
@@ -74,7 +74,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -147,6 +147,522 @@ class CLOUDAUTH extends Service {
   }
 
   /**
+      *  个人手机号三要素详版
+      * @param {Object} opts - parameters
+      * @param {personalMobileSpec} opts.personalMobileSpec
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param authInfo authInfo
+      */
+
+  personalMobile (opts, callback) {
+    opts = opts || {}
+
+    if (
+      opts.personalMobileSpec === undefined ||
+      opts.personalMobileSpec === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.personalMobileSpec' when calling personalMobile"
+      )
+    }
+
+    let postBody = {}
+    if (
+      opts.personalMobileSpec !== undefined &&
+      opts.personalMobileSpec !== null
+    ) {
+      postBody['personalMobileSpec'] = opts.personalMobileSpec
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.11'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call personalMobile with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/detail:mobile3',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  个人银行卡三要素详版
+      * @param {Object} opts - parameters
+      * @param {personalBankcard} opts.personalSpec
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param authInfo authInfo
+      */
+
+  personalBankcard3Detail (opts, callback) {
+    opts = opts || {}
+
+    if (opts.personalSpec === undefined || opts.personalSpec === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.personalSpec' when calling personalBankcard3Detail"
+      )
+    }
+
+    let postBody = {}
+    if (opts.personalSpec !== undefined && opts.personalSpec !== null) {
+      postBody['personalSpec'] = opts.personalSpec
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.11'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call personalBankcard3Detail with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/detail:bankcard3',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  个人银行卡三要素非身份证版
+      * @param {Object} opts - parameters
+      * @param {personalBankcardOther} opts.personalSpec
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param authInfo authInfo
+      */
+
+  personalBankcard3Other (opts, callback) {
+    opts = opts || {}
+
+    if (opts.personalSpec === undefined || opts.personalSpec === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.personalSpec' when calling personalBankcard3Other"
+      )
+    }
+
+    let postBody = {}
+    if (opts.personalSpec !== undefined && opts.personalSpec !== null) {
+      postBody['personalSpec'] = opts.personalSpec
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.11'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call personalBankcard3Other with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/other:bankcard3',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  个人银行卡四要素详版
+      * @param {Object} opts - parameters
+      * @param {personalBankcard} opts.personalSpec
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param authInfo authInfo
+      */
+
+  personalBankcard4Detail (opts, callback) {
+    opts = opts || {}
+
+    if (opts.personalSpec === undefined || opts.personalSpec === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.personalSpec' when calling personalBankcard4Detail"
+      )
+    }
+
+    let postBody = {}
+    if (opts.personalSpec !== undefined && opts.personalSpec !== null) {
+      postBody['personalSpec'] = opts.personalSpec
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.11'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call personalBankcard4Detail with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/detail:bankcard4',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  个人银行卡四要素非身份证版
+      * @param {Object} opts - parameters
+      * @param {personalBankcardOther} opts.personalSpec
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param authInfo authInfo
+      */
+
+  personalBankcard4Other (opts, callback) {
+    opts = opts || {}
+
+    if (opts.personalSpec === undefined || opts.personalSpec === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.personalSpec' when calling personalBankcard4Other"
+      )
+    }
+
+    let postBody = {}
+    if (opts.personalSpec !== undefined && opts.personalSpec !== null) {
+      postBody['personalSpec'] = opts.personalSpec
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.11'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call personalBankcard4Other with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/other:bankcard4',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  对公银行账户打款(随机小额)
       * @param {Object} opts - parameters
       * @param {accountInfo} opts.accountInfo
@@ -176,7 +692,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -249,7 +765,7 @@ class CLOUDAUTH extends Service {
   }
 
   /**
-      *  对公打款查询
+      *  对公打款验证
       * @param {Object} opts - parameters
       * @param {checkInfo} opts.checkInfo
       * @param {string} callback - callback
@@ -278,7 +794,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -351,6 +867,108 @@ class CLOUDAUTH extends Service {
   }
 
   /**
+      *  对公打款状态查询
+      * @param {Object} opts - parameters
+      * @param {string} opts.orderNumber - 订单号
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param authInfo authInfo
+      */
+
+  queryCompanyTransfer (opts, callback) {
+    opts = opts || {}
+
+    if (opts.orderNumber === undefined || opts.orderNumber === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.orderNumber' when calling queryCompanyTransfer"
+      )
+    }
+
+    let postBody = {}
+    if (opts.orderNumber !== undefined && opts.orderNumber !== null) {
+      postBody['orderNumber'] = opts.orderNumber
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.11'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call queryCompanyTransfer with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/company:transferStatus',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  企业基础信息核验
       * @param {Object} opts - parameters
       * @param {companyInfo} opts.companyInfo
@@ -380,7 +998,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -482,7 +1100,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -555,26 +1173,26 @@ class CLOUDAUTH extends Service {
   }
 
   /**
-      *  代理人信息核验
+      *  法人信息校验(详版)
       * @param {Object} opts - parameters
-      * @param {agentSpec} opts.agentSpec
+      * @param {legalPersonSpec} opts.legalPersonSpec
       * @param {string} callback - callback
       @return {Object} result
       * @param authInfo authInfo
       */
 
-  checkAgent (opts, callback) {
+  checkLegalPersonDetail (opts, callback) {
     opts = opts || {}
 
-    if (opts.agentSpec === undefined || opts.agentSpec === null) {
+    if (opts.legalPersonSpec === undefined || opts.legalPersonSpec === null) {
       throw new Error(
-        "Missing the required parameter 'opts.agentSpec' when calling checkAgent"
+        "Missing the required parameter 'opts.legalPersonSpec' when calling checkLegalPersonDetail"
       )
     }
 
     let postBody = {}
-    if (opts.agentSpec !== undefined && opts.agentSpec !== null) {
-      postBody['agentSpec'] = opts.agentSpec
+    if (opts.legalPersonSpec !== undefined && opts.legalPersonSpec !== null) {
+      postBody['legalPersonSpec'] = opts.legalPersonSpec
     }
 
     let queryParams = {}
@@ -584,7 +1202,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -614,7 +1232,7 @@ class CLOUDAUTH extends Service {
     let returnType = null
 
     this.config.logger(
-      `call checkAgent with params:\npathParams:${JSON.stringify(
+      `call checkLegalPersonDetail with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -627,7 +1245,7 @@ class CLOUDAUTH extends Service {
     )
 
     let request = super.makeRequest(
-      '/company:agent',
+      '/company:legalPersonDetail',
       'POST',
       pathParams,
       queryParams,
@@ -657,32 +1275,26 @@ class CLOUDAUTH extends Service {
   }
 
   /**
-      *  企业所有信息核验
+      *  企业三要素
       * @param {Object} opts - parameters
-      * @param {legalPersonAndAgentSpec} opts.legalPersonAndAgentSpec
+      * @param {companyInfo3Spec} opts.companyInfo3Spec
       * @param {string} callback - callback
       @return {Object} result
       * @param authInfo authInfo
       */
 
-  checkLegalPersonAndAgent (opts, callback) {
+  checkCompanyInfo3 (opts, callback) {
     opts = opts || {}
 
-    if (
-      opts.legalPersonAndAgentSpec === undefined ||
-      opts.legalPersonAndAgentSpec === null
-    ) {
+    if (opts.companyInfo3Spec === undefined || opts.companyInfo3Spec === null) {
       throw new Error(
-        "Missing the required parameter 'opts.legalPersonAndAgentSpec' when calling checkLegalPersonAndAgent"
+        "Missing the required parameter 'opts.companyInfo3Spec' when calling checkCompanyInfo3"
       )
     }
 
     let postBody = {}
-    if (
-      opts.legalPersonAndAgentSpec !== undefined &&
-      opts.legalPersonAndAgentSpec !== null
-    ) {
-      postBody['legalPersonAndAgentSpec'] = opts.legalPersonAndAgentSpec
+    if (opts.companyInfo3Spec !== undefined && opts.companyInfo3Spec !== null) {
+      postBody['companyInfo3Spec'] = opts.companyInfo3Spec
     }
 
     let queryParams = {}
@@ -692,7 +1304,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -722,7 +1334,7 @@ class CLOUDAUTH extends Service {
     let returnType = null
 
     this.config.logger(
-      `call checkLegalPersonAndAgent with params:\npathParams:${JSON.stringify(
+      `call checkCompanyInfo3 with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -735,7 +1347,7 @@ class CLOUDAUTH extends Service {
     )
 
     let request = super.makeRequest(
-      '/company:legalPersonAndAgent',
+      '/company:info3',
       'POST',
       pathParams,
       queryParams,
@@ -797,7 +1409,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -870,6 +1482,108 @@ class CLOUDAUTH extends Service {
   }
 
   /**
+      *  对公银行账户打款(随机小额)——简单版
+      * @param {Object} opts - parameters
+      * @param {accountInfoSimple} opts.accountInfo
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param authInfo authInfo
+      */
+
+  companyTransferSimple (opts, callback) {
+    opts = opts || {}
+
+    if (opts.accountInfo === undefined || opts.accountInfo === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.accountInfo' when calling companyTransferSimple"
+      )
+    }
+
+    let postBody = {}
+    if (opts.accountInfo !== undefined && opts.accountInfo !== null) {
+      postBody['accountInfo'] = opts.accountInfo
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.11'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call companyTransferSimple with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/company:transferSimple',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  查询所有省份列表
       * @param {Object} opts - parameters
       * @param {string} callback - callback
@@ -892,7 +1606,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -987,7 +1701,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -1101,7 +1815,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -1174,6 +1888,438 @@ class CLOUDAUTH extends Service {
   }
 
   /**
+      *  个人身份证OCR
+      * @param {Object} opts - parameters
+      * @param {string} opts.imageData - 身份证图像base64(支持base64编码后小于4M，分辨率不高于4096x4096的图像)
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param oCRInfo oCRInfo
+      */
+
+  iDCard (opts, callback) {
+    opts = opts || {}
+
+    if (opts.imageData === undefined || opts.imageData === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.imageData' when calling iDCard"
+      )
+    }
+
+    let postBody = {}
+    if (opts.imageData !== undefined && opts.imageData !== null) {
+      postBody['imageData'] = opts.imageData
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.11'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call iDCard with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/ocr:IDCard',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  H5活体检测获取采集页面链接
+      * @param {Object} opts - parameters
+      * @param {string} [opts.name] - 姓名（需要进行身份核验时传递此参数）  optional
+      * @param {string} [opts.idcard] - 身份证号（需要进行身份核验时传递此参数）  optional
+      * @param {string} opts.returnUrl - 采集结束后自动跳转的目标地址（须以http或https开头，长度不超过128字符）
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param aliveUrlInfo aliveUrlInfo
+      */
+
+  getAliveUrl (opts, callback) {
+    opts = opts || {}
+
+    if (opts.returnUrl === undefined || opts.returnUrl === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.returnUrl' when calling getAliveUrl"
+      )
+    }
+
+    let postBody = {}
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.idcard !== undefined && opts.idcard !== null) {
+      postBody['idcard'] = opts.idcard
+    }
+    if (opts.returnUrl !== undefined && opts.returnUrl !== null) {
+      postBody['returnUrl'] = opts.returnUrl
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.11'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getAliveUrl with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/alive:getUrl',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  H5活体检测结果
+      * @param {Object} opts - parameters
+      * @param {string} opts.token - 检测token
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param aliveResultInfo aliveResultInfo
+      */
+
+  getAliveResult (opts, callback) {
+    opts = opts || {}
+
+    if (opts.token === undefined || opts.token === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.token' when calling getAliveResult"
+      )
+    }
+
+    let postBody = {}
+    if (opts.token !== undefined && opts.token !== null) {
+      postBody['token'] = opts.token
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.11'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getAliveResult with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/alive:getResult',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  一键登录
+      * @param {Object} opts - parameters
+      * @param {string} opts.token - 移动端获取的token
+      * @param {string} [opts.userInformation] - 浏览器加密指纹（H5时必传）  optional
+      * @param {integer} opts.appType - 应用类型（1 ios应用；2 H5应用；3 安卓应用）
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string chargeFlag  1收费，0不收费
+      * @param string msisdn  手机号（AES加密，用对应appkey解密）
+      * @param string code  认证结果状态码
+      * @param string message  认证结果
+      */
+
+  oneClick (opts, callback) {
+    opts = opts || {}
+
+    if (opts.token === undefined || opts.token === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.token' when calling oneClick"
+      )
+    }
+    if (opts.appType === undefined || opts.appType === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appType' when calling oneClick"
+      )
+    }
+
+    let postBody = {}
+    if (opts.token !== undefined && opts.token !== null) {
+      postBody['token'] = opts.token
+    }
+    if (opts.userInformation !== undefined && opts.userInformation !== null) {
+      postBody['userInformation'] = opts.userInformation
+    }
+    if (opts.appType !== undefined && opts.appType !== null) {
+      postBody['appType'] = opts.appType
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.11'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call oneClick with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/oneClick:login',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  查询服务开通状态
       * @param {Object} opts - parameters
       * @param {string} callback - callback
@@ -1194,7 +2340,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.11'
     }
 
     let contentTypes = ['application/json']

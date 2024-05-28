@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 统计概览接口
- * 实名认证-统计概览接口
+ * 用户管理接口
+ * 实名认证-用户管理接口
  *
  * OpenAPI spec version: v1
  * Contact:

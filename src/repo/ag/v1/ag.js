@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * ag service.
- * @version 0.8.0
+ * @version 0.8.5
  */
 
 class AG extends Service {
@@ -103,7 +103,7 @@ endTime - 结束时间，精确匹配，查询小于等于这个时间的记录
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.5'
     }
 
     let contentTypes = ['application/json']
@@ -230,7 +230,7 @@ endTime - 结束时间，精确匹配，查询小于等于这个时间的记录
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.5'
     }
 
     let contentTypes = ['application/json']
@@ -441,7 +441,7 @@ endTime - 结束时间，精确匹配，查询小于等于这个时间的记录
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.5'
     }
 
     let contentTypes = ['application/json']
@@ -608,7 +608,7 @@ endTime - 结束时间，精确匹配，查询小于等于这个时间的记录
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.5'
     }
 
     let contentTypes = ['application/json']
@@ -724,7 +724,7 @@ endTime - 结束时间，精确匹配，查询小于等于这个时间的记录
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.5'
     }
 
     let contentTypes = ['application/json']
@@ -838,7 +838,7 @@ endTime - 结束时间，精确匹配，查询小于等于这个时间的记录
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.5'
     }
 
     let contentTypes = ['application/json']
@@ -952,7 +952,7 @@ endTime - 结束时间，精确匹配，查询小于等于这个时间的记录
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.5'
     }
 
     let contentTypes = ['application/json']
@@ -1080,7 +1080,7 @@ endTime - 结束时间，精确匹配，查询小于等于这个时间的记录
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.5'
     }
 
     let contentTypes = ['application/json']
@@ -1300,7 +1300,7 @@ endTime - 结束时间，精确匹配，查询小于等于这个时间的记录
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.5'
     }
 
     let contentTypes = ['application/json']
@@ -1519,7 +1519,7 @@ endTime - 结束时间，精确匹配，查询小于等于这个时间的记录
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.5'
     }
 
     let contentTypes = ['application/json']
@@ -1633,7 +1633,7 @@ endTime - 结束时间，精确匹配，查询小于等于这个时间的记录
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.5'
     }
 
     let contentTypes = ['application/json']
@@ -1747,7 +1747,7 @@ endTime - 结束时间，精确匹配，查询小于等于这个时间的记录
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.5'
     }
 
     let contentTypes = ['application/json']
@@ -1861,7 +1861,7 @@ endTime - 结束时间，精确匹配，查询小于等于这个时间的记录
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.5'
     }
 
     let contentTypes = ['application/json']
@@ -1980,7 +1980,7 @@ endTime - 结束时间，精确匹配，查询小于等于这个时间的记录
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.5'
     }
 
     let contentTypes = ['application/json']
@@ -2091,7 +2091,7 @@ endTime - 结束时间，精确匹配，查询小于等于这个时间的记录
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.5'
     }
 
     let contentTypes = ['application/json']
@@ -2211,7 +2211,7 @@ endTime - 结束时间，精确匹配，查询小于等于这个时间的记录
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.5'
     }
 
     let contentTypes = ['application/json']
@@ -2255,6 +2255,254 @@ endTime - 结束时间，精确匹配，查询小于等于这个时间的记录
 
     let request = super.makeRequest(
       '/regions/{regionId}/autoScaling/{agId}:updateAutoScaling',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  弹性伸缩组内资源托管设置
+      * @param {Object} opts - parameters
+      * @param {string} opts.agId - 高可用组 ID
+      * @param {boolean} opts.isManaged - 实例是否托管给弹性伸缩组，托管后缩容时可以删除该实例。
+      * @param {array} [opts.instanceIds] - 资源ID数组。  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  modifyInstancesManaged (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyInstancesManaged"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.agId === undefined || opts.agId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.agId' when calling modifyInstancesManaged"
+      )
+    }
+    if (opts.isManaged === undefined || opts.isManaged === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.isManaged' when calling modifyInstancesManaged"
+      )
+    }
+
+    let postBody = {}
+    if (opts.isManaged !== undefined && opts.isManaged !== null) {
+      postBody['isManaged'] = opts.isManaged
+    }
+    if (opts.instanceIds !== undefined && opts.instanceIds !== null) {
+      postBody['instanceIds'] = opts.instanceIds
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      agId: opts.agId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyInstancesManaged with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/autoScaling/{agId}:modifyInstancesManaged',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  弹性伸缩组内资源保护设置
+      * @param {Object} opts - parameters
+      * @param {string} opts.agId - 高可用组 ID
+      * @param {boolean} opts.isProtected - 实例在弹性伸缩组是否为保护状态，保护状态的实例缩容时不可以删除。
+      * @param {array} [opts.instanceIds] - 资源ID数组。  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  modifyInstancesProtected (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyInstancesProtected"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.agId === undefined || opts.agId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.agId' when calling modifyInstancesProtected"
+      )
+    }
+    if (opts.isProtected === undefined || opts.isProtected === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.isProtected' when calling modifyInstancesProtected"
+      )
+    }
+
+    let postBody = {}
+    if (opts.isProtected !== undefined && opts.isProtected !== null) {
+      postBody['isProtected'] = opts.isProtected
+    }
+    if (opts.instanceIds !== undefined && opts.instanceIds !== null) {
+      postBody['instanceIds'] = opts.instanceIds
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      agId: opts.agId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyInstancesProtected with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/autoScaling/{agId}:modifyInstancesProtected',
       'POST',
       pathParams,
       queryParams,
@@ -2347,7 +2595,7 @@ endTime - 结束时间，精确匹配，查询小于等于这个时间的记录
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.5'
     }
 
     let contentTypes = ['application/json']
@@ -2504,7 +2752,7 @@ endTime - 结束时间，精确匹配，查询小于等于这个时间的记录
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.5'
     }
 
     let contentTypes = ['application/json']
@@ -2642,7 +2890,7 @@ endTime - 结束时间，精确匹配，查询小于等于这个时间的记录
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.5'
     }
 
     let contentTypes = ['application/json']
@@ -2758,7 +3006,7 @@ endTime - 结束时间，精确匹配，查询小于等于这个时间的记录
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.5'
     }
 
     let contentTypes = ['application/json']
@@ -2873,7 +3121,7 @@ endTime - 结束时间，精确匹配，查询小于等于这个时间的记录
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.5'
     }
 
     let contentTypes = ['application/json']
@@ -2992,7 +3240,7 @@ placementType - placement type，放置策略
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.5'
     }
 
     let contentTypes = ['application/json']
@@ -3140,7 +3388,7 @@ placementType - placement type，放置策略
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.5'
     }
 
     let contentTypes = ['application/json']
@@ -3251,7 +3499,7 @@ placementType - placement type，放置策略
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.5'
     }
 
     let contentTypes = ['application/json']
@@ -3370,7 +3618,7 @@ placementType - placement type，放置策略
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.5'
     }
 
     let contentTypes = ['application/json']
@@ -3480,7 +3728,7 @@ placementType - placement type，放置策略
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.5'
     }
 
     let contentTypes = ['application/json']
@@ -3595,7 +3843,7 @@ placementType - placement type，放置策略
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.5'
     }
 
     let contentTypes = ['application/json']
@@ -3721,7 +3969,7 @@ placementType - placement type，放置策略
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.5'
     }
 
     let contentTypes = ['application/json']
@@ -3827,7 +4075,7 @@ placementType - placement type，放置策略
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ag/0.8.5'
     }
 
     let contentTypes = ['application/json']

@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * assistant service.
- * @version 1.0.1
+ * @version 1.0.2
  */
 
 class ASSISTANT extends Service {
@@ -136,7 +136,7 @@ class ASSISTANT extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  assistant/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  assistant/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -283,7 +283,7 @@ class ASSISTANT extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  assistant/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  assistant/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -399,7 +399,7 @@ class ASSISTANT extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  assistant/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  assistant/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -566,7 +566,7 @@ class ASSISTANT extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  assistant/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  assistant/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -718,7 +718,7 @@ class ASSISTANT extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  assistant/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  assistant/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -844,7 +844,7 @@ class ASSISTANT extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  assistant/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  assistant/1.0.2'
     }
 
     let contentTypes = ['application/json']

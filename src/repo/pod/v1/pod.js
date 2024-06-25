@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * pod service.
- * @version 2.3.4
+ * @version 2.5.1
  */
 
 class POD extends Service {
@@ -94,7 +94,7 @@ class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -206,7 +206,7 @@ class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -317,7 +317,7 @@ class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -445,7 +445,7 @@ class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -563,7 +563,7 @@ class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -681,7 +681,7 @@ class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -809,7 +809,7 @@ class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -936,7 +936,7 @@ class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -1062,7 +1062,7 @@ class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -1202,7 +1202,7 @@ class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -1275,6 +1275,827 @@ class POD extends Service {
   }
 
   /**
+      *  创建一个镜像缓存信息。镜像缓存加速是将镜像预先拉取到一个云盘中并制作为云盘快照，
+用户在创建Pod/NC时，若使用的镜像已经有镜像缓存，则可以直接基于该镜像缓存对应的快照制作云盘，并挂载为该容器的系统盘，避免重复拉取镜像并加快创建速度。
+
+      * @param {Object} opts - parameters
+      * @param {string} [opts.name] - 镜像缓存名称  optional
+      * @param {imageCacheSpec} opts.imageCacheSpec - 镜像缓存创建参数
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string imageCacheId
+      */
+
+  createImageCache (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createImageCache"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.imageCacheSpec === undefined || opts.imageCacheSpec === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.imageCacheSpec' when calling createImageCache"
+      )
+    }
+
+    let postBody = {}
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.imageCacheSpec !== undefined && opts.imageCacheSpec !== null) {
+      postBody['imageCacheSpec'] = opts.imageCacheSpec
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createImageCache with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/imageCache',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  批量查询镜像缓存。支持分页查询，默认每页20条。
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
+      * @param {filter} [opts.filters] - imageCacheId - imageCacheId，精确匹配，支持多个
+status - 镜像缓存状态，精确匹配，支持多个
+name - 镜像缓存名称，模糊匹配，支持单个
+image - 镜像名称，模糊匹配，支持单个
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param imageCache imageCaches
+      * @param number totalCount
+      */
+
+  describeImageCaches (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeImageCaches"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeImageCaches with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/imageCaches',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  批量创建镜像缓存。
+
+      * @param {Object} opts - parameters
+      * @param {string} [opts.name] - 镜像缓存名称
+  optional
+      * @param {array} [opts.imageCacheSpecs] - 镜像缓存创建参数  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string imageCacheId
+      */
+
+  createImageCaches (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createImageCaches"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.imageCacheSpecs !== undefined && opts.imageCacheSpecs !== null) {
+      postBody['imageCacheSpecs'] = opts.imageCacheSpecs
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createImageCaches with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/imageCaches',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询镜像缓存的详细信息
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.imageCacheId - imageCacheId
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param imageCache imageCache
+      */
+
+  describeImageCache (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeImageCache"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.imageCacheId === undefined || opts.imageCacheId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.imageCacheId' when calling describeImageCache"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      imageCacheId: opts.imageCacheId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeImageCache with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/imageCache/{imageCacheId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除镜像缓存，镜像缓存状态必须为Ready或Error状态。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.imageCacheId - imageCacheId
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteImageCache (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteImageCache"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.imageCacheId === undefined || opts.imageCacheId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.imageCacheId' when calling deleteImageCache"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      imageCacheId: opts.imageCacheId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteImageCache with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/imageCache/{imageCacheId}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  根据镜像信息匹配镜像缓存，根据镜像缓存的体积（体积小的优先）和创建时间（创建时间晚的优先）进行匹配
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.image - 镜像名称
+
+      * @param {string} [opts.secret] - 镜像仓库认证信息；使用Docker Hub和京东云CR的镜像不需要secret
+  optional
+      * @param {integer} [opts.size] - 限制返回的镜像缓存的大小不大于该值，用于避免镜像缓存大于系统盘导致创建失败的情况。
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean found  是否匹配到镜像缓存
+      * @param imageCache imageCache  镜像缓存详情
+      */
+
+  getMostSuitableImageCache (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getMostSuitableImageCache"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.image === undefined || opts.image === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.image' when calling getMostSuitableImageCache"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.image !== undefined && opts.image !== null) {
+      queryParams['image'] = opts.image
+    }
+    if (opts.secret !== undefined && opts.secret !== null) {
+      queryParams['secret'] = opts.secret
+    }
+    if (opts.size !== undefined && opts.size !== null) {
+      queryParams['size'] = opts.size
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getMostSuitableImageCache with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/imageCache:getMostSuitable',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改镜像缓存的属性。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.imageCacheId - imageCacheId
+      * @param {string} [opts.name] - 新的镜像缓存名称  optional
+      * @param {integer} [opts.retentionDays] - 新的保留日期，以创建时间为准计算过期时间，新的过期时间不得为当前时间之前  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  updateImageCache (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  updateImageCache"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.imageCacheId === undefined || opts.imageCacheId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.imageCacheId' when calling updateImageCache"
+      )
+    }
+
+    let postBody = {}
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.retentionDays !== undefined && opts.retentionDays !== null) {
+      postBody['retentionDays'] = opts.retentionDays
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      imageCacheId: opts.imageCacheId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call updateImageCache with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/imageCache/{imageCacheId}:update',
+      'PATCH',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  查询实例规格信息列表
 
       * @param {Object} opts - parameters
@@ -1312,7 +2133,7 @@ az - 可用区，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -1438,7 +2259,7 @@ agId - 镜像ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -1626,7 +2447,7 @@ agId - 镜像ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -1746,7 +2567,7 @@ agId - 镜像ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -1858,7 +2679,7 @@ agId - 镜像ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -1937,6 +2758,8 @@ agId - 镜像ID，精确匹配，支持多个
  [MFA enabled]
       * @param {Object} opts - parameters
       * @param {string} opts.podId - Pod ID
+      * @param {boolean} [opts.deletePrimaryNetworkInterfaceAllElasticIp] - 是否删除主机的主网卡绑定的所有弹性公网IP，默认为否。可选值：&#x60;true&#x60;，&#x60;false&#x60;。
+  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1964,6 +2787,13 @@ agId - 镜像ID，精确匹配，支持多个
 
     let postBody = null
     let queryParams = {}
+    if (
+      opts.deletePrimaryNetworkInterfaceAllElasticIp !== undefined &&
+      opts.deletePrimaryNetworkInterfaceAllElasticIp !== null
+    ) {
+      queryParams['deletePrimaryNetworkInterfaceAllElasticIp'] =
+        opts.deletePrimaryNetworkInterfaceAllElasticIp
+    }
 
     let pathParams = {
       regionId: regionId,
@@ -1971,7 +2801,7 @@ agId - 镜像ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -2084,7 +2914,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -2196,7 +3026,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -2312,7 +3142,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -2435,7 +3265,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -2556,7 +3386,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -2700,7 +3530,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -2816,7 +3646,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -2952,7 +3782,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -3025,10 +3855,10 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
   }
 
   /**
-      *  查询资源的配额，支持：原生容器 pod 和 secret.
+      *  查询资源的配额，支持：原生容器,pod,secret,镜像缓存
 
       * @param {Object} opts - parameters
-      * @param {string} opts.resourceType - resourceType - 资源类型，支持 [container, pod, secret]
+      * @param {string} opts.resourceType - resourceType - 资源类型，支持 [container, pod, secret, imageCache]
 
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -3067,7 +3897,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -3184,7 +4014,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -3323,7 +4153,7 @@ value 是 Base64 编码的字符串，不能包含换行符（在 linux 下使�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -3435,7 +4265,7 @@ value 是 Base64 编码的字符串，不能包含换行符（在 linux 下使�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
     }
 
     let contentTypes = ['application/json']
@@ -3546,7 +4376,7 @@ value 是 Base64 编码的字符串，不能包含换行符（在 linux 下使�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.3.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
     }
 
     let contentTypes = ['application/json']

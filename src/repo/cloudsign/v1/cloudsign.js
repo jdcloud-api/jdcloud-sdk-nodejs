@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 合同模板管理接口
- * 电子签章-合同模板管理接口
+ * OLD合同模板管理接口
+ * OLD合同模板管理接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * cloudsign service.
- * @version 2.0.4
+ * @version 2.0.7
  */
 
 class CLOUDSIGN extends Service {
@@ -76,7 +76,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -184,7 +184,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -286,7 +286,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -403,7 +403,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -501,7 +501,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -605,7 +605,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -716,7 +716,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -834,7 +834,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -945,7 +945,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -1046,7 +1046,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -1160,7 +1160,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -1294,7 +1294,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -1407,7 +1407,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -1536,7 +1536,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -1618,7 +1618,7 @@ class CLOUDSIGN extends Service {
       * @param string code
       * @param string message
       * @param boolean success
-      * @param object data
+      * @param evidenceFile data  存证报告文件
       */
 
   getSaveReport (opts, callback) {
@@ -1644,7 +1644,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -1740,7 +1740,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -1831,7 +1831,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -1922,7 +1922,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -2017,7 +2017,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -2123,7 +2123,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -2198,7 +2198,7 @@ class CLOUDSIGN extends Service {
   /**
       *  上传印章
       * @param {Object} opts - parameters
-      * @param {stampSpec} opts.stampSpec
+      * @param {stampSpec} [opts.stampSpec]   optional
       * @param {string} callback - callback
       @return {Object} result
       * @param string stampId  印章ID
@@ -2206,12 +2206,6 @@ class CLOUDSIGN extends Service {
 
   uploadStamp (opts, callback) {
     opts = opts || {}
-
-    if (opts.stampSpec === undefined || opts.stampSpec === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.stampSpec' when calling uploadStamp"
-      )
-    }
 
     let postBody = {}
     if (opts.stampSpec !== undefined && opts.stampSpec !== null) {
@@ -2225,7 +2219,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -2305,7 +2299,6 @@ class CLOUDSIGN extends Service {
       * @param {string} opts.stampId - 印章ID
       * @param {string} callback - callback
       @return {Object} result
-      * @param stampInfo stampList
       */
 
   downloadStamps (opts, callback) {
@@ -2326,7 +2319,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -2424,7 +2417,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -2526,7 +2519,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -2599,7 +2592,7 @@ class CLOUDSIGN extends Service {
   }
 
   /**
-      *  获取印章列表
+      *  获取印章日志列表
       * @param {Object} opts - parameters
       * @param {integer} [opts.pageSize] - 分页大小, 默认为10, 取值范围[10, 100]  optional
       * @param {integer} [opts.pageNumber] - 页码, 默认为1  optional
@@ -2638,7 +2631,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -2751,7 +2744,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -2794,7 +2787,7 @@ class CLOUDSIGN extends Service {
     )
 
     let request = super.makeRequest(
-      '/smqTmplate:describeTemplateList',
+      '/smqTemplate:describeTemplateList',
       'GET',
       pathParams,
       queryParams,
@@ -2826,7 +2819,7 @@ class CLOUDSIGN extends Service {
   /**
       *  上传合同模板
       * @param {Object} opts - parameters
-      * @param {templateSpec} opts.templateSpec
+      * @param {templateSpec} [opts.templateSpec]   optional
       * @param {string} callback - callback
       @return {Object} result
       * @param string templateId  模板ID
@@ -2834,12 +2827,6 @@ class CLOUDSIGN extends Service {
 
   uploadTemplate (opts, callback) {
     opts = opts || {}
-
-    if (opts.templateSpec === undefined || opts.templateSpec === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.templateSpec' when calling uploadTemplate"
-      )
-    }
 
     let postBody = {}
     if (opts.templateSpec !== undefined && opts.templateSpec !== null) {
@@ -2853,7 +2840,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -2896,7 +2883,7 @@ class CLOUDSIGN extends Service {
     )
 
     let request = super.makeRequest(
-      '/smqTmplate:uploadTemplate',
+      '/smqTemplate:uploadTemplate',
       'POST',
       pathParams,
       queryParams,
@@ -2933,7 +2920,6 @@ class CLOUDSIGN extends Service {
       * @param {string} opts.templateId - 合同模板ID
       * @param {string} callback - callback
       @return {Object} result
-      * @param templateInfo templateList
       */
 
   downloadTemplates (opts, callback) {
@@ -2954,7 +2940,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -2997,7 +2983,7 @@ class CLOUDSIGN extends Service {
     )
 
     let request = super.makeRequest(
-      '/smqTmplate/{templateId}:downloadTemplates',
+      '/smqTemplate/{templateId}:downloadTemplates',
       'GET',
       pathParams,
       queryParams,
@@ -3052,7 +3038,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -3095,7 +3081,7 @@ class CLOUDSIGN extends Service {
     )
 
     let request = super.makeRequest(
-      '/smqTmplate/{templateId}:deleteTemplate',
+      '/smqTemplate/{templateId}:deleteTemplate',
       'DELETE',
       pathParams,
       queryParams,
@@ -3161,7 +3147,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -3204,7 +3190,7 @@ class CLOUDSIGN extends Service {
     )
 
     let request = super.makeRequest(
-      '/smqTmplate/{templateId}:paddingTemplate',
+      '/smqTemplate/{templateId}:paddingTemplate',
       'PATCH',
       pathParams,
       queryParams,
@@ -3242,7 +3228,9 @@ class CLOUDSIGN extends Service {
       * @param {string} callback - callback
       @return {Object} result
       * @param stampInfo stampList
-      * @param integer totalCount  印章的数量
+      * @param integer totalCount  印章数量
+      * @param integer pageNumber  页码,默认为1
+      * @param integer pageSize  分页大小, 默认为10, 取值范围[10, 100]
       */
 
   describeStampList (opts, callback) {
@@ -3265,7 +3253,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -3367,7 +3355,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -3447,7 +3435,6 @@ class CLOUDSIGN extends Service {
       * @param {string} opts.stampId - 印章ID
       * @param {string} callback - callback
       @return {Object} result
-      * @param stampInfo stampInfo
       */
 
   downloadStamps (opts, callback) {
@@ -3468,7 +3455,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -3566,7 +3553,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -3649,6 +3636,8 @@ class CLOUDSIGN extends Service {
       @return {Object} result
       * @param templateInfo templateList
       * @param integer totalCount  合同模板数量
+      * @param integer pageNumber  页码，默认为1
+      * @param integer pageSize  分页大小, 默认为10, 取值范围[10, 100]
       */
 
   describeTemplateList (opts, callback) {
@@ -3677,7 +3666,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -3755,7 +3744,7 @@ class CLOUDSIGN extends Service {
       * @param {templateSpec} opts.templateSpec
       * @param {string} callback - callback
       @return {Object} result
-      * @param string templateId  合同模板ID
+      * @param string templateId  模板ID
       */
 
   uploadTemplate (opts, callback) {
@@ -3779,7 +3768,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -3879,7 +3868,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -3988,7 +3977,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -4086,7 +4075,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
     }
 
     let contentTypes = ['application/json']

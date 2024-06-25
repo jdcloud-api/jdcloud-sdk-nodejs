@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * assistant service.
- * @version 1.0.0
+ * @version 1.0.2
  */
 
 class ASSISTANT extends Service {
@@ -42,127 +42,6 @@ class ASSISTANT extends Service {
       options._defaultEndpoint.host || 'assistant.jdcloud-api.com'
     options.basePath = '/v1' // 默认要设为空""
     super(serviceId, options)
-  }
-
-  /**
-      *
-查询云助手客户端状态。
-
-详细操作说明请参考帮助文档：[用户自定义命令概述](https://docs.jdcloud.com/cn/virtual-machines/assistant-overview)
-
-## 接口说明
-- 该接口用于查询云助手客户端状态。
-
-      * @param {Object} opts - parameters
-      * @param {array} opts.instances - 云主机Id
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param assistant assistants
-      */
-
-  describeAssistants (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeAssistants"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.instances === undefined || opts.instances === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.instances' when calling describeAssistants"
-      )
-    }
-
-    let postBody = {}
-    if (opts.instances !== undefined && opts.instances !== null) {
-      postBody['instances'] = opts.instances
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  assistant/1.0.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeAssistants with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/describeAssistants',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
   }
 
   /**
@@ -179,7 +58,7 @@ class ASSISTANT extends Service {
 
       * @param {string} [opts.commandType] - 命令类型，可选值：shell和powershell，默认shell
   optional
-      * @param {string} opts.commandContent - 以base64编码的命令内容，编码后长度小于16KB
+      * @param {string} opts.commandContent - 以base64编码的命令内容，编码后长度小于36KB
 
       * @param {integer} [opts.timeout] - 超时时间，取值范围：[10, 86400], 超过该时间后，尚未执行完的命令会置为失败。默认60s
   optional
@@ -257,7 +136,7 @@ class ASSISTANT extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  assistant/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  assistant/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -343,9 +222,9 @@ class ASSISTANT extends Service {
   optional
       * @param {integer} [opts.pageSize] - 每页命令数，默认为20，最大为100
   optional
-      * @param {array} [opts.commandIds] - 命令Id
+      * @param {array} [opts.commandIds] - 命令Id，最多可传入100个命令Id
   optional
-      * @param {array} [opts.commandNames] - 命令名称，长度为1\~128个字符，只允许中文、数字、大小写字母、英文下划线（\_）、连字符（-）及点（.）。
+      * @param {array} [opts.commandNames] - 命令名称，长度为1\~128个字符，只允许中文、数字、大小写字母、英文下划线（\_）、连字符（-）及点（.）。最多可传入100个命令名称。
   optional
       * @param {array} [opts.commandTypes] - 命令类型，可选值：shell和powershell，默认shell
   optional
@@ -404,7 +283,7 @@ class ASSISTANT extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  assistant/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  assistant/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -478,166 +357,6 @@ class ASSISTANT extends Service {
 
   /**
       *
-修改用户自定义命令。
-
-详细操作说明请参考帮助文档：[用户自定义命令概述](https://docs.jdcloud.com/cn/virtual-machines/assistant-overview)
-
-## 接口说明
-- 该接口用于修改用户自定义命令。
-
-      * @param {Object} opts - parameters
-      * @param {string} opts.commandId - 命令Id
-
-      * @param {string} [opts.commandName] - 命令名称，长度为1\~128个字符，只允许中文、数字、大小写字母、英文下划线（\_）、连字符（-）及点（.）。
-  optional
-      * @param {string} [opts.commandType] - 命令类型，可选值：shell和powershell。默认shell
-  optional
-      * @param {string} [opts.commandContent] - 以base64编码的命令内容，编码后长度小于16KB
-  optional
-      * @param {string} [opts.commandDescription] - 命令描述，描述该命令详细信息，如功能、使用注意事项等。长度小于256。
-  optional
-      * @param {string} [opts.workdir] - 命令执行路径，在linux上默认为用户的home目录：/root, 在windows上默认为：C:\Windows\system32
-  optional
-      * @param {integer} [opts.timeout] - 超时时间，取值范围：[10, 86400], 超过该时间后，尚未执行完的命令会置为失败。默认60s
-  optional
-      * @param {string} [opts.username] - 用户名，执行该命令时的用户身份。在linux上默认是root，windows上默认是administrator。长度小于256
-  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param string commandId  命令Id。
-      */
-
-  modifyCommand (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  modifyCommand"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.commandId === undefined || opts.commandId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.commandId' when calling modifyCommand"
-      )
-    }
-
-    let postBody = {}
-    if (opts.commandId !== undefined && opts.commandId !== null) {
-      postBody['commandId'] = opts.commandId
-    }
-    if (opts.commandName !== undefined && opts.commandName !== null) {
-      postBody['commandName'] = opts.commandName
-    }
-    if (opts.commandType !== undefined && opts.commandType !== null) {
-      postBody['commandType'] = opts.commandType
-    }
-    if (opts.commandContent !== undefined && opts.commandContent !== null) {
-      postBody['commandContent'] = opts.commandContent
-    }
-    if (
-      opts.commandDescription !== undefined &&
-      opts.commandDescription !== null
-    ) {
-      postBody['commandDescription'] = opts.commandDescription
-    }
-    if (opts.workdir !== undefined && opts.workdir !== null) {
-      postBody['workdir'] = opts.workdir
-    }
-    if (opts.timeout !== undefined && opts.timeout !== null) {
-      postBody['timeout'] = opts.timeout
-    }
-    if (opts.username !== undefined && opts.username !== null) {
-      postBody['username'] = opts.username
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  assistant/1.0.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call modifyCommand with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/modifyCommand',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *
 删除用户自定义命令。
 
 详细操作说明请参考帮助文档：[用户自定义命令概述](https://docs.jdcloud.com/cn/virtual-machines/assistant-overview)
@@ -680,7 +399,7 @@ class ASSISTANT extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  assistant/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  assistant/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -764,7 +483,11 @@ class ASSISTANT extends Service {
       * @param {Object} opts - parameters
       * @param {string} opts.commandId - 命令Id
 
-      * @param {array} [opts.instances] - 运行该命令的云主机，最多云主机数50
+      * @param {array} [opts.instances] - 运行该命令的云主机，与tags查到云主机取并集，一次最多云主机数50
+  optional
+      * @param {array} [opts.tags] - 根据tags确定运行该命令的云主机，与指定instances云主机取并集，一次最多云主机数50
+  optional
+      * @param {string} [opts.execTime] - 配置运行该命令的时刻，格式&#x60;yyyy-MM-dd HH:mm:ss&#x60;。不传该参数，立即执行命令。默认为空，可配置的时间范围为&#x60;当前时间+10minute&#x60;~&#x60;当前时间+6month&#x60;。
   optional
       * @param {integer} [opts.timeout] - 超时时间，取值范围：[10, 86400], 超过该时间后，尚未执行完的命令会置为失败。默认60s
   optional
@@ -811,6 +534,12 @@ class ASSISTANT extends Service {
     if (opts.instances !== undefined && opts.instances !== null) {
       postBody['instances'] = opts.instances
     }
+    if (opts.tags !== undefined && opts.tags !== null) {
+      postBody['tags'] = opts.tags
+    }
+    if (opts.execTime !== undefined && opts.execTime !== null) {
+      postBody['execTime'] = opts.execTime
+    }
     if (opts.timeout !== undefined && opts.timeout !== null) {
       postBody['timeout'] = opts.timeout
     }
@@ -837,7 +566,7 @@ class ASSISTANT extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  assistant/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  assistant/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -881,192 +610,6 @@ class ASSISTANT extends Service {
 
     let request = super.makeRequest(
       '/regions/{regionId}/invokeCommand',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *
-执行用户保存的自定义命令。
-
-详细操作说明请参考帮助文档：[用户自定义命令概述](https://docs.jdcloud.com/cn/virtual-machines/assistant-overview)
-
-## 接口说明
-- 该接口用于执行用户保存的自定义命令。
-
-      * @param {Object} opts - parameters
-      * @param {string} opts.commandName - 命令名称，长度为1\~128个字符，只允许中文、数字、大小写字母、英文下划线（\_）、连字符（-）及点（.）。
-
-      * @param {string} [opts.commandType] - 命令类型，可选值：shell和powershell。默认shell
-  optional
-      * @param {string} opts.commandContent - 以base64编码的命令内容，编码后长度小于16KB
-
-      * @param {string} [opts.windowsPassword] - 和用户名相匹配的密码，仅适用于windows系统
-  optional
-      * @param {array} [opts.instances] - 运行该命令的云主机，最多云主机数为50.
-  optional
-      * @param {integer} [opts.timeout] - 超时时间，取值范围：[10, 86400], 超过该时间后，尚未执行完的命令会置为失败。默认60s
-  optional
-      * @param {string} [opts.username] - 用户名，执行该命令时的用户身份。在linux上默认是root，windows上默认是administrator。长度小于256
-  optional
-      * @param {string} [opts.workdir] - 命令执行路径，在linux上默认为用户的home目录：/root, 在windows上默认为：C:\Windows\system32
-  optional
-      * @param {boolean} [opts.enableParameter] - 脚本中是否启用参数，true：启用，false：不启用。
-  optional
-      * @param {boolean} [opts.keepCommand] - 是否保存命令，true：保存，false：不保存
-  optional
-      * @param {string} [opts.commandDescription] - 命令描述，描述该命令详细信息，如功能、使用注意事项等。长度小于256。
-  optional
-      * @param {array} [opts.parameters] - 用户自定义参数和对应的参数值，数量不超过20个。
-  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param string commandId  命令Id
-      * @param string invokeId  命令调用Id。
-      */
-
-  runCommand (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  runCommand"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.commandName === undefined || opts.commandName === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.commandName' when calling runCommand"
-      )
-    }
-    if (opts.commandContent === undefined || opts.commandContent === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.commandContent' when calling runCommand"
-      )
-    }
-
-    let postBody = {}
-    if (opts.commandName !== undefined && opts.commandName !== null) {
-      postBody['commandName'] = opts.commandName
-    }
-    if (opts.commandType !== undefined && opts.commandType !== null) {
-      postBody['commandType'] = opts.commandType
-    }
-    if (opts.commandContent !== undefined && opts.commandContent !== null) {
-      postBody['commandContent'] = opts.commandContent
-    }
-    if (opts.windowsPassword !== undefined && opts.windowsPassword !== null) {
-      postBody['windowsPassword'] = opts.windowsPassword
-    }
-    if (opts.instances !== undefined && opts.instances !== null) {
-      postBody['instances'] = opts.instances
-    }
-    if (opts.timeout !== undefined && opts.timeout !== null) {
-      postBody['timeout'] = opts.timeout
-    }
-    if (opts.username !== undefined && opts.username !== null) {
-      postBody['username'] = opts.username
-    }
-    if (opts.workdir !== undefined && opts.workdir !== null) {
-      postBody['workdir'] = opts.workdir
-    }
-    if (opts.enableParameter !== undefined && opts.enableParameter !== null) {
-      postBody['enableParameter'] = opts.enableParameter
-    }
-    if (opts.keepCommand !== undefined && opts.keepCommand !== null) {
-      postBody['keepCommand'] = opts.keepCommand
-    }
-    if (
-      opts.commandDescription !== undefined &&
-      opts.commandDescription !== null
-    ) {
-      postBody['commandDescription'] = opts.commandDescription
-    }
-    if (opts.parameters !== undefined && opts.parameters !== null) {
-      postBody['parameters'] = opts.parameters
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  assistant/1.0.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call runCommand with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/runCommand',
       'POST',
       pathParams,
       queryParams,
@@ -1175,7 +718,7 @@ class ASSISTANT extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  assistant/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  assistant/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1219,133 +762,6 @@ class ASSISTANT extends Service {
 
     let request = super.makeRequest(
       '/regions/{regionId}/describeInvocations',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *
-停止执行命令。
-
-详细操作说明请参考帮助文档：[用户自定义命令概述](https://docs.jdcloud.com/cn/virtual-machines/assistant-overview)
-
-## 接口说明
-- 该接口用于停止执行命令。
-- 对于已经开始执行的命令，有可能会停止失败
-
-      * @param {Object} opts - parameters
-      * @param {string} opts.invokeId - 命令调用Id
-
-      * @param {array} [opts.instances] - 要停止执行的虚机Id  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param string invokeId  命令调用Id。
-      */
-
-  stopInvocation (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  stopInvocation"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.invokeId === undefined || opts.invokeId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.invokeId' when calling stopInvocation"
-      )
-    }
-
-    let postBody = {}
-    if (opts.invokeId !== undefined && opts.invokeId !== null) {
-      postBody['invokeId'] = opts.invokeId
-    }
-    if (opts.instances !== undefined && opts.instances !== null) {
-      postBody['instances'] = opts.instances
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  assistant/1.0.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call stopInvocation with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/stopInvocation',
       'POST',
       pathParams,
       queryParams,
@@ -1428,7 +844,7 @@ class ASSISTANT extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  assistant/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  assistant/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1472,132 +888,6 @@ class ASSISTANT extends Service {
 
     let request = super.makeRequest(
       '/regions/{regionId}/addLogConfig',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *
-配置用户日志信息。
-
-详细操作说明请参考帮助文档：[用户自定义命令概述](https://docs.jdcloud.com/cn/virtual-machines/assistant-overview)
-
-## 接口说明
-- 该接口用于配置用户日志信息。
-
-      * @param {Object} opts - parameters
-      * @param {string} [opts.logset] - 用户日志集名字
-  optional
-      * @param {string} opts.logtopic - 用户日志主题名字
-
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  modifyLogConfig (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  modifyLogConfig"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.logtopic === undefined || opts.logtopic === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.logtopic' when calling modifyLogConfig"
-      )
-    }
-
-    let postBody = {}
-    if (opts.logset !== undefined && opts.logset !== null) {
-      postBody['logset'] = opts.logset
-    }
-    if (opts.logtopic !== undefined && opts.logtopic !== null) {
-      postBody['logtopic'] = opts.logtopic
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  assistant/1.0.0'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call modifyLogConfig with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/modifyLogConfig',
       'POST',
       pathParams,
       queryParams,

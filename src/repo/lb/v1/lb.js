@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * lb service.
- * @version 0.5.7
+ * @version 0.6.6
  */
 
 class LB extends Service {
@@ -92,7 +92,7 @@ protocol - 后端服务的协议【alb】支持Http、Tcp和Udp，【nlb】支�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
     }
 
     let contentTypes = ['application/json']
@@ -175,6 +175,7 @@ protocol - 后端服务的协议【alb】支持Http、Tcp和Udp，【nlb】支�
       * @param {string} [opts.algorithm] - 调度算法 &lt;br&gt;【alb,nlb】取值范围为[IpHash, RoundRobin, LeastConn]（取值范围的含义：加权源Ip哈希，加权轮询和加权最小连接），alb和nlb默认为加权轮询 &lt;br&gt;【dnlb】取值范围为[IpHash, QuintupleHash]（取值范围的含义分别为：加权源Ip哈希和加权五元组哈希），dnlb默认为加权源Ip哈希  optional
       * @param {array} [opts.targetGroupIds] - 虚拟服务器组的Id列表，目前只支持一个，且与agIds不能同时存在  optional
       * @param {array} [opts.agIds] - 高可用组的Id列表，目前只支持一个，且与targetGroupIds不能同时存在  optional
+      * @param {array} [opts.agInfoSpec] - 高可用组属性设置:1.defatult_weight:默认权重, 优先级 agInfoSpec &gt; agIds  optional
       * @param {boolean} [opts.proxyProtocol] - 【alb Tcp、Udp协议】获取真实ip, 取值为False(不获取)或者True(获取,支持Proxy Protocol v1版本)，默认为False  optional
       * @param {string} [opts.description] - 描述,允许输入UTF-8编码下的全部字符，不超过256字符  optional
       * @param {boolean} [opts.sessionStickiness] - 会话保持, 取值为false(不开启)或者true(开启)，默认为false &lt;br&gt;【alb Http协议，RoundRobin算法】支持基于cookie的会话保持 &lt;br&gt;【nlb】支持基于报文源目的IP的会话保持  optional
@@ -257,6 +258,9 @@ protocol - 后端服务的协议【alb】支持Http、Tcp和Udp，【nlb】支�
     if (opts.agIds !== undefined && opts.agIds !== null) {
       postBody['agIds'] = opts.agIds
     }
+    if (opts.agInfoSpec !== undefined && opts.agInfoSpec !== null) {
+      postBody['agInfoSpec'] = opts.agInfoSpec
+    }
     if (opts.proxyProtocol !== undefined && opts.proxyProtocol !== null) {
       postBody['proxyProtocol'] = opts.proxyProtocol
     }
@@ -322,7 +326,7 @@ protocol - 后端服务的协议【alb】支持Http、Tcp和Udp，【nlb】支�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
     }
 
     let contentTypes = ['application/json']
@@ -433,7 +437,7 @@ protocol - 后端服务的协议【alb】支持Http、Tcp和Udp，【nlb】支�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
     }
 
     let contentTypes = ['application/json']
@@ -514,6 +518,7 @@ protocol - 后端服务的协议【alb】支持Http、Tcp和Udp，【nlb】支�
       * @param {string} [opts.algorithm] - 调度算法 &lt;br&gt;【alb,nlb】取值范围为[IpHash, RoundRobin, LeastConn]（含义分别为：加权源Ip哈希，加权轮询和加权最小连接） &lt;br&gt;【dnlb】取值范围为[IpHash, QuintupleHash]（含义分别为：加权源Ip哈希和加权五元组哈希）  optional
       * @param {array} [opts.targetGroupIds] - 虚拟服务器组的Id列表，目前只支持一个，且与agIds不能同时存在  optional
       * @param {array} [opts.agIds] - 高可用组的Id列表，目前只支持一个，且与targetGroupIds不能同时存在  optional
+      * @param {array} [opts.agInfoSpec] - 高可用组属性设置:1.defatult_weight:默认权重, 优先级 agInfoSpec &gt; agIds  optional
       * @param {boolean} [opts.proxyProtocol] - 【alb Tcp、Udp协议】是否启用Proxy ProtocolV1协议获取真实源ip, 取值为false(不开启)或者true(开启), 默认为false  optional
       * @param {string} [opts.description] - 描述,允许输入UTF-8编码下的全部字符，不超过256字符  optional
       * @param {boolean} [opts.sessionStickiness] - 会话保持, 取值为false(不开启)或者true(开启)，默认为false &lt;br&gt;【alb Http协议，RoundRobin算法】支持基于cookie的会话保持 &lt;br&gt;【nlb】支持基于报文源目的IP的会话保持  optional
@@ -566,6 +571,9 @@ protocol - 后端服务的协议【alb】支持Http、Tcp和Udp，【nlb】支�
     }
     if (opts.agIds !== undefined && opts.agIds !== null) {
       postBody['agIds'] = opts.agIds
+    }
+    if (opts.agInfoSpec !== undefined && opts.agInfoSpec !== null) {
+      postBody['agInfoSpec'] = opts.agInfoSpec
     }
     if (opts.proxyProtocol !== undefined && opts.proxyProtocol !== null) {
       postBody['proxyProtocol'] = opts.proxyProtocol
@@ -636,7 +644,7 @@ protocol - 后端服务的协议【alb】支持Http、Tcp和Udp，【nlb】支�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
     }
 
     let contentTypes = ['application/json']
@@ -746,7 +754,7 @@ protocol - 后端服务的协议【alb】支持Http、Tcp和Udp，【nlb】支�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
     }
 
     let contentTypes = ['application/json']
@@ -822,10 +830,13 @@ protocol - 后端服务的协议【alb】支持Http、Tcp和Udp，【nlb】支�
       *  查询后端服务下的target的健康状态
       * @param {Object} opts - parameters
       * @param {string} opts.backendId - Backend Id
+      * @param {integer} [opts.pageNumber] - 页码, 默认为1,取值范围：[1,∞), 页码超过总页数时, 显示最后一页  optional
+      * @param {integer} [opts.pageSize] - 分页大小，默认返回全部，取值范围：[10,100]  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       * @param targetHealth targetHealths
+      * @param integer totalCount  总数量
       */
 
   describeTargetHealth (opts, regionId = this.config.regionId, callback) {
@@ -850,6 +861,12 @@ protocol - 后端服务的协议【alb】支持Http、Tcp和Udp，【nlb】支�
 
     let postBody = null
     let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
 
     let pathParams = {
       regionId: regionId,
@@ -857,7 +874,7 @@ protocol - 后端服务的协议【alb】支持Http、Tcp和Udp，【nlb】支�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
     }
 
     let contentTypes = ['application/json']
@@ -930,6 +947,1144 @@ protocol - 后端服务的协议【alb】支持Http、Tcp和Udp，【nlb】支�
   }
 
   /**
+      *  修改后端服务-高可用组(ag)下target信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.backendId - Backend Id
+      * @param {array} opts.targetUpdateSpecs - 修改ag target信息
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  updateAgTargets (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  updateAgTargets"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.backendId === undefined || opts.backendId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.backendId' when calling updateAgTargets"
+      )
+    }
+    if (
+      opts.targetUpdateSpecs === undefined ||
+      opts.targetUpdateSpecs === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.targetUpdateSpecs' when calling updateAgTargets"
+      )
+    }
+
+    let postBody = {}
+    if (
+      opts.targetUpdateSpecs !== undefined &&
+      opts.targetUpdateSpecs !== null
+    ) {
+      postBody['targetUpdateSpecs'] = opts.targetUpdateSpecs
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      backendId: opts.backendId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call updateAgTargets with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/backends/{backendId}:updateAgTargets',
+      'PATCH',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询 后端服务-高可用组 Target列表详情
+      * @param {Object} opts - parameters
+      * @param {string} opts.backendId - Backend Id
+      * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞), 页码超过总页数时, 显示最后一页  optional
+      * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围：[10,100]  optional
+      * @param {filter} [opts.filters] - weight - 权重, 支持多个
+targetIds - Target ID列表，支持多个
+instanceId - Instance ID,仅支持单个
+ipAddress - ip地址,仅支持单个
+  optional
+      * @param {sort} [opts.sorts] - createdTime - 默认值,默认按 createdTime 倒序
+weight - 权重值
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param agTarget targets
+      * @param integer totalCount  总数量
+      */
+
+  describeAgTargets (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeAgTargets"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.backendId === undefined || opts.backendId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.backendId' when calling describeAgTargets"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildSortParam(opts.sorts, 'sorts'))
+
+    let pathParams = {
+      regionId: regionId,
+      backendId: opts.backendId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeAgTargets with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/backends/{backendId}/agTargets',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询个性化配置列表详情
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞), 页码超过总页数时, 显示最后一页  optional
+      * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围：[10,100]  optional
+      * @param {filter} [opts.filters] - customizedConfigurationIds - 个性化配置ID，支持多个
+customizedConfigurationNames - 个性化配置名称，支持多个
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param customizedConfiguration customizedConfigurations
+      * @param integer totalCount  总数量
+      */
+
+  describeCustomizedConfigurations (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeCustomizedConfigurations"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeCustomizedConfigurations with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/customizedConfigurations/',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建一个个性化配置
+      * @param {Object} opts - parameters
+      * @param {string} opts.customizedConfigurationName - 个性化配置名称,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符
+      * @param {string} [opts.description] - 描述,允许输入UTF-8编码下的全部字符，不超过256字符  optional
+      * @param {customizedConfigurationContentSpec} [opts.customizedConfigurationContent] - 个性化配置内容  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string customizedConfigurationId  个性化配置Id
+      */
+
+  createCustomizedConfiguration (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createCustomizedConfiguration"
+      )
+    }
+
+    opts = opts || {}
+
+    if (
+      opts.customizedConfigurationName === undefined ||
+      opts.customizedConfigurationName === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.customizedConfigurationName' when calling createCustomizedConfiguration"
+      )
+    }
+
+    let postBody = {}
+    if (
+      opts.customizedConfigurationName !== undefined &&
+      opts.customizedConfigurationName !== null
+    ) {
+      postBody['customizedConfigurationName'] = opts.customizedConfigurationName
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+    if (
+      opts.customizedConfigurationContent !== undefined &&
+      opts.customizedConfigurationContent !== null
+    ) {
+      postBody['customizedConfigurationContent'] =
+        opts.customizedConfigurationContent
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createCustomizedConfiguration with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/customizedConfigurations/',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询个性化配置详情
+      * @param {Object} opts - parameters
+      * @param {string} opts.customizedConfigurationId - Customized Configuration Id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param customizedConfiguration customizedConfiguration  个性化配置资源信息
+      */
+
+  describeCustomizedConfiguration (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeCustomizedConfiguration"
+      )
+    }
+
+    opts = opts || {}
+
+    if (
+      opts.customizedConfigurationId === undefined ||
+      opts.customizedConfigurationId === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.customizedConfigurationId' when calling describeCustomizedConfiguration"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      customizedConfigurationId: opts.customizedConfigurationId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeCustomizedConfiguration with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/customizedConfigurations/{customizedConfigurationId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改一个个性化配置的信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.customizedConfigurationId - Customized Configuration Id
+      * @param {string} [opts.customizedConfigurationName] - 个性化配置名称,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符  optional
+      * @param {string} [opts.description] - 描述,允许输入UTF-8编码下的全部字符，不超过256字符  optional
+      * @param {customizedConfigurationContentSpec} [opts.customizedConfigurationContent] - 个性化配置内容  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  updateCustomizedConfiguration (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  updateCustomizedConfiguration"
+      )
+    }
+
+    opts = opts || {}
+
+    if (
+      opts.customizedConfigurationId === undefined ||
+      opts.customizedConfigurationId === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.customizedConfigurationId' when calling updateCustomizedConfiguration"
+      )
+    }
+
+    let postBody = {}
+    if (
+      opts.customizedConfigurationName !== undefined &&
+      opts.customizedConfigurationName !== null
+    ) {
+      postBody['customizedConfigurationName'] = opts.customizedConfigurationName
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+    if (
+      opts.customizedConfigurationContent !== undefined &&
+      opts.customizedConfigurationContent !== null
+    ) {
+      postBody['customizedConfigurationContent'] =
+        opts.customizedConfigurationContent
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      customizedConfigurationId: opts.customizedConfigurationId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call updateCustomizedConfiguration with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/customizedConfigurations/{customizedConfigurationId}',
+      'PATCH',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除一个个性化配置
+      * @param {Object} opts - parameters
+      * @param {string} opts.customizedConfigurationId - Customized Configuration Id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteCustomizedConfiguration (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteCustomizedConfiguration"
+      )
+    }
+
+    opts = opts || {}
+
+    if (
+      opts.customizedConfigurationId === undefined ||
+      opts.customizedConfigurationId === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.customizedConfigurationId' when calling deleteCustomizedConfiguration"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      customizedConfigurationId: opts.customizedConfigurationId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteCustomizedConfiguration with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/customizedConfigurations/{customizedConfigurationId}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  给资源绑定个性化配置
+      * @param {Object} opts - parameters
+      * @param {string} opts.customizedConfigurationId - Customized Configuration Id
+      * @param {array} opts.resourceIds - 个性化配置要绑定的资源ID列表, 对于已绑定配置的资源需要先解绑
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  associateCustomizedConfiguration (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  associateCustomizedConfiguration"
+      )
+    }
+
+    opts = opts || {}
+
+    if (
+      opts.customizedConfigurationId === undefined ||
+      opts.customizedConfigurationId === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.customizedConfigurationId' when calling associateCustomizedConfiguration"
+      )
+    }
+    if (opts.resourceIds === undefined || opts.resourceIds === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.resourceIds' when calling associateCustomizedConfiguration"
+      )
+    }
+
+    let postBody = {}
+    if (opts.resourceIds !== undefined && opts.resourceIds !== null) {
+      postBody['resourceIds'] = opts.resourceIds
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      customizedConfigurationId: opts.customizedConfigurationId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call associateCustomizedConfiguration with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/customizedConfigurations/{customizedConfigurationId}:associateCustomizedConfiguration',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  给资源解绑个性化配置
+      * @param {Object} opts - parameters
+      * @param {string} opts.customizedConfigurationId - Customized Configuration Id
+      * @param {array} opts.resourceIds - 个性化配置要解绑的资源ID列表
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  disassociateCustomizedConfiguration (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  disassociateCustomizedConfiguration"
+      )
+    }
+
+    opts = opts || {}
+
+    if (
+      opts.customizedConfigurationId === undefined ||
+      opts.customizedConfigurationId === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.customizedConfigurationId' when calling disassociateCustomizedConfiguration"
+      )
+    }
+    if (opts.resourceIds === undefined || opts.resourceIds === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.resourceIds' when calling disassociateCustomizedConfiguration"
+      )
+    }
+
+    let postBody = {}
+    if (opts.resourceIds !== undefined && opts.resourceIds !== null) {
+      postBody['resourceIds'] = opts.resourceIds
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      customizedConfigurationId: opts.customizedConfigurationId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call disassociateCustomizedConfiguration with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/customizedConfigurations/{customizedConfigurationId}:disassociateCustomizedConfiguration',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  查询监听器列表
       * @param {Object} opts - parameters
       * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞), 页码超过总页数时, 显示最后一页  optional
@@ -939,6 +2094,7 @@ listenerIds - 监听器Id列表，支持多个
 loadBalancerId - 负载均衡器Id，支持单个
 loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb，支持单个
 urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
+securityPolicyIds - 监听器绑定的安全策略ID，支持多个
   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -976,7 +2132,7 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
     }
 
     let contentTypes = ['application/json']
@@ -1061,8 +2217,10 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
       * @param {string} [opts.urlMapId] - 【alb Https和Http协议】转发规则组Id  optional
       * @param {string} [opts.action] - 默认后端服务的转发策略,取值为Forward或Redirect, 现只支持Forward, 默认为Forward  optional
       * @param {array} [opts.certificateSpecs] - 【alb Https和Tls协议】Listener绑定的默认证书，最多支持两个，两个证书的加密算法需要不同  optional
+      * @param {limitationSpec} [opts.limitation] - 【仅ALB支持】限速配置  optional
       * @param {integer} [opts.connectionIdleTimeSeconds] - 【alb、nlb】空闲连接超时时间, 范围为[1,86400]。 &lt;br&gt;（Tcp和Tls协议）默认为：1800s &lt;br&gt;（Udp协议）默认为：300s &lt;br&gt;（Http和Https协议）默认为：60s &lt;br&gt;【dnlb】不支持  optional
       * @param {string} [opts.description] - 描述,允许输入UTF-8编码下的全部字符，不超过256字符  optional
+      * @param {string} [opts.securityPolicyId] - 绑定的安全策略id，仅支持应用负载均衡的HTTPS、TLS监听配置，不传默认使用默认安全策略  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1140,6 +2298,9 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
     if (opts.certificateSpecs !== undefined && opts.certificateSpecs !== null) {
       postBody['certificateSpecs'] = opts.certificateSpecs
     }
+    if (opts.limitation !== undefined && opts.limitation !== null) {
+      postBody['limitation'] = opts.limitation
+    }
     if (
       opts.connectionIdleTimeSeconds !== undefined &&
       opts.connectionIdleTimeSeconds !== null
@@ -1149,6 +2310,9 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
     if (opts.description !== undefined && opts.description !== null) {
       postBody['description'] = opts.description
     }
+    if (opts.securityPolicyId !== undefined && opts.securityPolicyId !== null) {
+      postBody['securityPolicyId'] = opts.securityPolicyId
+    }
 
     let queryParams = {}
 
@@ -1157,7 +2321,7 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
     }
 
     let contentTypes = ['application/json']
@@ -1268,7 +2432,7 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
     }
 
     let contentTypes = ['application/json']
@@ -1349,10 +2513,12 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
       * @param {boolean} [opts.hstsEnable] - 【alb使用https时支持】是否开启HSTS，True(开启)， False(关闭)，缺省为不改变原值  optional
       * @param {integer} [opts.hstsMaxAge] - 【alb使用https时支持】HSTS过期时间(秒)，取值范围为[1, 94608000(3年)]，缺省为不改变原值  optional
       * @param {array} [opts.certificateSpecs] - 【alb Https和Tls协议】Listener绑定的默认证书，最多支持两个，两个证书的加密算法需要不同  optional
+      * @param {limitationSpec} [opts.limitation] - 【仅ALB支持】限速配置  optional
       * @param {integer} [opts.connectionIdleTimeSeconds] - 【alb、nlb】空闲连接超时时间, 范围为[1,86400]。 &lt;br&gt;（Tcp和Tls协议）默认为：1800s &lt;br&gt;（Http和Https协议）默认为：60s &lt;br&gt;【dnlb】不支持该功能  optional
       * @param {string} [opts.backendId] - 默认后端服务Id  optional
       * @param {string} [opts.urlMapId] - 【alb Https和Http协议】转发规则组Id  optional
       * @param {string} [opts.description] - 监听器描述,允许输入UTF-8编码下的全部字符，不超过256字符  optional
+      * @param {string} [opts.securityPolicyId] - 绑定的安全策略id，仅支持应用负载均衡的HTTPS、TLS监听配置  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1394,6 +2560,9 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
     if (opts.certificateSpecs !== undefined && opts.certificateSpecs !== null) {
       postBody['certificateSpecs'] = opts.certificateSpecs
     }
+    if (opts.limitation !== undefined && opts.limitation !== null) {
+      postBody['limitation'] = opts.limitation
+    }
     if (
       opts.connectionIdleTimeSeconds !== undefined &&
       opts.connectionIdleTimeSeconds !== null
@@ -1409,6 +2578,9 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
     if (opts.description !== undefined && opts.description !== null) {
       postBody['description'] = opts.description
     }
+    if (opts.securityPolicyId !== undefined && opts.securityPolicyId !== null) {
+      postBody['securityPolicyId'] = opts.securityPolicyId
+    }
 
     let queryParams = {}
 
@@ -1418,7 +2590,7 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
     }
 
     let contentTypes = ['application/json']
@@ -1528,7 +2700,7 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
     }
 
     let contentTypes = ['application/json']
@@ -1643,7 +2815,7 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
     }
 
     let contentTypes = ['application/json']
@@ -1758,7 +2930,7 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
     }
 
     let contentTypes = ['application/json']
@@ -1876,7 +3048,7 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
     }
 
     let contentTypes = ['application/json']
@@ -1955,10 +3127,17 @@ urlMapIds - 【仅alb支持】转发规则组Id列表，支持多个
       * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围：[10,100]  optional
       * @param {filter} [opts.filters] - loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb，支持单个
 loadBalancerIds - 负载均衡ID列表，支持多个
-loadBalancerNames - 负载均衡名称列表，支持多个
+loadBalancerNames - 负载均衡名称列表，支持多个; 支持operator为like的模糊搜索，此时name只能传单个
 vpcId - 负载均衡所在Vpc的Id，支持单个
-azType - 负载均衡所在可用区类型，取值包括：all(全部可用区)、standard(标准可用区)、edge(边缘可用区)。默认standard ，支持单个
-azs - 边缘可用区，支持多个
+azType - 负载均衡az类型，取值：all(全部类型)，standard(标准负载均衡)，edge(边缘负载均衡)，默认all，支持单个
+azs - 可用区，仅支持边缘可用区，支持多个
+privateIpAddresses - 负载均衡的vip地址，支持多个
+ipv6Addresses - 负载均衡的ipv6地址，支持多个
+serviceCodes -  产品唯一掩码，支持多个
+serviceIds   - 产品唯一ID，支持多个
+elasticIpAddress - 负载均衡的弹性公网ip地址，支持单个
+targetPrivateIpAddress - 后端target的内网IP地址，支持单个
+customizedConfigurationIds - 负载均衡绑定的个性化配置ID，支持多个
   optional
       * @param {tagFilter} [opts.tags] - Tag筛选条件  optional
       * @param {string} regionId - ID of the region
@@ -1998,7 +3177,7 @@ azs - 边缘可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
     }
 
     let contentTypes = ['application/json']
@@ -2157,7 +3336,7 @@ azs - 边缘可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
     }
 
     let contentTypes = ['application/json']
@@ -2268,7 +3447,7 @@ azs - 边缘可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
     }
 
     let contentTypes = ['application/json']
@@ -2403,7 +3582,7 @@ azs - 边缘可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
     }
 
     let contentTypes = ['application/json']
@@ -2479,6 +3658,7 @@ azs - 边缘可用区，支持多个
       *  删除负载均衡，负载均衡下的监听器，转发规则组(仅alb支持)，后端服务，服务器组会一起删除
       * @param {Object} opts - parameters
       * @param {string} opts.loadBalancerId - LB ID
+      * @param {boolean} [opts.deleteElasticIp] - 是否打包删除弹性公网IP，取值范围：true、false，默认false。true表示删除负载均衡时打包删除其绑定的弹性公网IP；false表示删除负载均衡时不删除其绑定的弹性公网IP。包年包月和无计费信息的弹性公网IP不支持打包删除  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -2506,6 +3686,9 @@ azs - 边缘可用区，支持多个
 
     let postBody = null
     let queryParams = {}
+    if (opts.deleteElasticIp !== undefined && opts.deleteElasticIp !== null) {
+      queryParams['deleteElasticIp'] = opts.deleteElasticIp
+    }
 
     let pathParams = {
       regionId: regionId,
@@ -2513,7 +3696,7 @@ azs - 边缘可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
     }
 
     let contentTypes = ['application/json']
@@ -2558,6 +3741,131 @@ azs - 边缘可用区，支持多个
     let request = super.makeRequest(
       '/regions/{regionId}/loadBalancers/{loadBalancerId}',
       'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询安全组绑定负载均衡列表
+      * @param {Object} opts - parameters
+      * @param {string} opts.securityGroupId - securityGroup ID
+      * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞), 页码超过总页数时, 显示最后一页  optional
+      * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围：[10,100]  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer totalCount  总数量
+      * @param loadBalancer loadBalancers
+      */
+
+  describeLoadBalancersBySecurityGroup (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeLoadBalancersBySecurityGroup"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.securityGroupId === undefined || opts.securityGroupId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.securityGroupId' when calling describeLoadBalancersBySecurityGroup"
+      )
+    }
+
+    let postBody = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      postBody['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      securityGroupId: opts.securityGroupId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeLoadBalancersBySecurityGroup with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/loadBalancers/{securityGroupId}:describeLoadBalancersBySecurityGroup',
+      'POST',
       pathParams,
       queryParams,
       headerParams,
@@ -2633,7 +3941,7 @@ azs - 边缘可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
     }
 
     let contentTypes = ['application/json']
@@ -2710,6 +4018,7 @@ azs - 边缘可用区，支持多个
       * @param {Object} opts - parameters
       * @param {string} opts.loadBalancerId - LB ID
       * @param {string} opts.elasticIpId - 弹性公网IP ID
+      * @param {boolean} [opts.deleteElasticIp] - 解绑时是否同时删除弹性公网IP，取值范围：true、false，默认false。true表示解绑弹性公网IP时删除该弹性公网IP；false表示解绑弹性公网IP时不删除该弹性公网IP。包年包月和无计费信息的弹性公网IP不支持解绑时删除  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -2744,6 +4053,9 @@ azs - 边缘可用区，支持多个
     if (opts.elasticIpId !== undefined && opts.elasticIpId !== null) {
       postBody['elasticIpId'] = opts.elasticIpId
     }
+    if (opts.deleteElasticIp !== undefined && opts.deleteElasticIp !== null) {
+      postBody['deleteElasticIp'] = opts.deleteElasticIp
+    }
 
     let queryParams = {}
 
@@ -2753,7 +4065,7 @@ azs - 边缘可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
     }
 
     let contentTypes = ['application/json']
@@ -2868,7 +4180,7 @@ azs - 边缘可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
     }
 
     let contentTypes = ['application/json']
@@ -2983,7 +4295,7 @@ azs - 边缘可用区，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
     }
 
     let contentTypes = ['application/json']
@@ -3028,6 +4340,844 @@ azs - 边缘可用区，支持多个
     let request = super.makeRequest(
       '/regions/{regionId}/loadBalancers/{loadBalancerId}:disassociateSecurityGroup',
       'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询安全策略列表详情
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞), 页码超过总页数时, 显示最后一页  optional
+      * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围：[10,100]  optional
+      * @param {filter} [opts.filters] - securityPolicyIds - 安全策略ID，支持多个
+securityPolicyNames - 安全策略名称，支持多个; 支持operator为like的模糊搜索，此时name只能传单个
+securityPolicyType - 安全策略类型(SYSTEM/CUSTOM/ALL)，支持单个
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param securityPolicy securityPolicies
+      * @param integer totalCount  总数量
+      */
+
+  describeSecurityPolicies (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeSecurityPolicies"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeSecurityPolicies with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/securityPolicies/',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建一个安全策略
+      * @param {Object} opts - parameters
+      * @param {string} opts.securityPolicyName - 安全策略名称,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符
+      * @param {string} [opts.description] - 安全策略描述,允许输入UTF-8编码下的全部字符，不超过256字符  optional
+      * @param {array} [opts.protocols] - TLS协议版本列表，目前支持TLSv1、TLSv1.1、TLSv1.2和TLSv1.3，传入的每个protocol至少需要传入一个支持的cipher  optional
+      * @param {array} [opts.ciphers] - TLS加密套件列表，传入的每个cipher至少需要传入一个能够支持的protocol
+TLSv1和TLSv1.1支持的加密套件：
+AES128-SHA
+AES256-SHA
+CAMELLIA128-SHA
+CAMELLIA256-SHA
+DES-CBC3-SHA
+ECDHE-RSA-AES128-SHA
+ECDHE-RSA-AES256-SHA
+ECDHE-RSA-DES-CBC3-SHA
+IDEA-CBC-SHA
+SEED-SHA
+ECDHE-ECDSA-AES256-SHA
+ECDHE-ECDSA-AES128-SHA
+ECDHE-ECDSA-DES-CBC3-SHA
+TLSv1.2支持的加密套件：
+AES128-CCM
+AES128-CCM8
+AES128-GCM-SHA256
+AES128-SHA
+AES128-SHA256
+AES256-CCM
+AES256-CCM8
+AES256-GCM-SHA384
+AES256-SHA
+AES256-SHA256
+ARIA128-GCM-SHA256
+ARIA256-GCM-SHA384
+CAMELLIA128-SHA
+CAMELLIA128-SHA256
+CAMELLIA256-SHA
+CAMELLIA256-SHA256
+DES-CBC3-SHA
+ECDHE-ARIA128-GCM-SHA256
+ECDHE-ARIA256-GCM-SHA384
+ECDHE-RSA-AES128-GCM-SHA256
+ECDHE-RSA-AES128-SHA
+ECDHE-RSA-AES128-SHA256
+ECDHE-RSA-AES256-GCM-SHA384
+ECDHE-RSA-AES256-SHA
+ECDHE-RSA-AES256-SHA384
+ECDHE-RSA-CAMELLIA128-SHA256
+ECDHE-RSA-CAMELLIA256-SHA384
+ECDHE-RSA-CHACHA20-POLY1305
+ECDHE-RSA-DES-CBC3-SHA
+SEED-SHA
+ECDHE-ECDSA-AES256-GCM-SHA384
+ECDHE-ECDSA-CHACHA20-POLY1305
+ECDHE-ECDSA-AES256-CCM8
+ECDHE-ECDSA-AES256-CCM
+ECDHE-ECDSA-ARIA256-GCM-SHA384
+ECDHE-ECDSA-AES128-GCM-SHA256
+ECDHE-ECDSA-AES128-CCM8
+ECDHE-ECDSA-AES128-CCM
+ECDHE-ECDSA-ARIA128-GCM-SHA256
+ECDHE-ECDSA-AES256-SHA384
+ECDHE-ECDSA-CAMELLIA256-SHA384
+ECDHE-ECDSA-AES128-SHA256
+ECDHE-ECDSA-CAMELLIA128-SHA256
+ECDHE-ECDSA-AES256-SHA
+ECDHE-ECDSA-AES128-SHA
+ECDHE-ECDSA-DES-CBC3-SHA
+TLSv1.3支持的加密套件：
+TLS_AES_256_GCM_SHA384
+TLS_CHACHA20_POLY1305_SHA256
+TLS_AES_128_GCM_SHA256  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string securityPolicyId  安全策略Id
+      */
+
+  createSecurityPolicy (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createSecurityPolicy"
+      )
+    }
+
+    opts = opts || {}
+
+    if (
+      opts.securityPolicyName === undefined ||
+      opts.securityPolicyName === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.securityPolicyName' when calling createSecurityPolicy"
+      )
+    }
+
+    let postBody = {}
+    if (
+      opts.securityPolicyName !== undefined &&
+      opts.securityPolicyName !== null
+    ) {
+      postBody['securityPolicyName'] = opts.securityPolicyName
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+    if (opts.protocols !== undefined && opts.protocols !== null) {
+      postBody['protocols'] = opts.protocols
+    }
+    if (opts.ciphers !== undefined && opts.ciphers !== null) {
+      postBody['ciphers'] = opts.ciphers
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createSecurityPolicy with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/securityPolicies/',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询安全策略详情
+      * @param {Object} opts - parameters
+      * @param {string} opts.securityPolicyId - Security Policy Id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param securityPolicy securityPolicy  安全策略资源信息
+      */
+
+  describeSecurityPolicy (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeSecurityPolicy"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.securityPolicyId === undefined || opts.securityPolicyId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.securityPolicyId' when calling describeSecurityPolicy"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      securityPolicyId: opts.securityPolicyId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeSecurityPolicy with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/securityPolicies/{securityPolicyId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改一个安全策略的信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.securityPolicyId - Security Policy Id
+      * @param {string} [opts.securityPolicyName] - 安全策略名称,只允许输入中文、数字、大小写字母、英文下划线“_”及中划线“-”，不允许为空且不超过32字符  optional
+      * @param {string} [opts.description] - 安全策略描述,允许输入UTF-8编码下的全部字符，不超过256字符  optional
+      * @param {array} [opts.protocols] - TLS协议版本列表，目前支持TLSv1、TLSv1.1、TLSv1.2和TLSv1.3，传入的每个protocol至少需要传入一个支持的cipher  optional
+      * @param {array} [opts.ciphers] - TLS加密套件列表，传入的每个cipher至少需要传入一个能够支持的protocol
+TLSv1和TLSv1.1支持的加密套件：
+AES128-SHA
+AES256-SHA
+CAMELLIA128-SHA
+CAMELLIA256-SHA
+DES-CBC3-SHA
+ECDHE-RSA-AES128-SHA
+ECDHE-RSA-AES256-SHA
+ECDHE-RSA-DES-CBC3-SHA
+IDEA-CBC-SHA
+SEED-SHA
+ECDHE-ECDSA-AES256-SHA
+ECDHE-ECDSA-AES128-SHA
+ECDHE-ECDSA-DES-CBC3-SHA
+TLSv1.2支持的加密套件：
+AES128-CCM
+AES128-CCM8
+AES128-GCM-SHA256
+AES128-SHA
+AES128-SHA256
+AES256-CCM
+AES256-CCM8
+AES256-GCM-SHA384
+AES256-SHA
+AES256-SHA256
+ARIA128-GCM-SHA256
+ARIA256-GCM-SHA384
+CAMELLIA128-SHA
+CAMELLIA128-SHA256
+CAMELLIA256-SHA
+CAMELLIA256-SHA256
+DES-CBC3-SHA
+ECDHE-ARIA128-GCM-SHA256
+ECDHE-ARIA256-GCM-SHA384
+ECDHE-RSA-AES128-GCM-SHA256
+ECDHE-RSA-AES128-SHA
+ECDHE-RSA-AES128-SHA256
+ECDHE-RSA-AES256-GCM-SHA384
+ECDHE-RSA-AES256-SHA
+ECDHE-RSA-AES256-SHA384
+ECDHE-RSA-CAMELLIA128-SHA256
+ECDHE-RSA-CAMELLIA256-SHA384
+ECDHE-RSA-CHACHA20-POLY1305
+ECDHE-RSA-DES-CBC3-SHA
+SEED-SHA
+ECDHE-ECDSA-AES256-GCM-SHA384
+ECDHE-ECDSA-CHACHA20-POLY1305
+ECDHE-ECDSA-AES256-CCM8
+ECDHE-ECDSA-AES256-CCM
+ECDHE-ECDSA-ARIA256-GCM-SHA384
+ECDHE-ECDSA-AES128-GCM-SHA256
+ECDHE-ECDSA-AES128-CCM8
+ECDHE-ECDSA-AES128-CCM
+ECDHE-ECDSA-ARIA128-GCM-SHA256
+ECDHE-ECDSA-AES256-SHA384
+ECDHE-ECDSA-CAMELLIA256-SHA384
+ECDHE-ECDSA-AES128-SHA256
+ECDHE-ECDSA-CAMELLIA128-SHA256
+ECDHE-ECDSA-AES256-SHA
+ECDHE-ECDSA-AES128-SHA
+ECDHE-ECDSA-DES-CBC3-SHA
+TLSv1.3支持的加密套件：
+TLS_AES_256_GCM_SHA384
+TLS_CHACHA20_POLY1305_SHA256
+TLS_AES_128_GCM_SHA256  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  updateSecurityPolicy (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  updateSecurityPolicy"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.securityPolicyId === undefined || opts.securityPolicyId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.securityPolicyId' when calling updateSecurityPolicy"
+      )
+    }
+
+    let postBody = {}
+    if (
+      opts.securityPolicyName !== undefined &&
+      opts.securityPolicyName !== null
+    ) {
+      postBody['securityPolicyName'] = opts.securityPolicyName
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+    if (opts.protocols !== undefined && opts.protocols !== null) {
+      postBody['protocols'] = opts.protocols
+    }
+    if (opts.ciphers !== undefined && opts.ciphers !== null) {
+      postBody['ciphers'] = opts.ciphers
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      securityPolicyId: opts.securityPolicyId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call updateSecurityPolicy with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/securityPolicies/{securityPolicyId}',
+      'PATCH',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除一个安全策略
+      * @param {Object} opts - parameters
+      * @param {string} opts.securityPolicyId - Security Policy Id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteSecurityPolicy (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteSecurityPolicy"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.securityPolicyId === undefined || opts.securityPolicyId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.securityPolicyId' when calling deleteSecurityPolicy"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      securityPolicyId: opts.securityPolicyId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteSecurityPolicy with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/securityPolicies/{securityPolicyId}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询安全策略支持Cipher列表详情
+      * @param {Object} opts - parameters
+      * @param {filter} [opts.filters] - protocols - 安全策略支持的协议，支持多个
+ciphers - 安全策略支持的加密套件，支持多个
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param supportedCipher supportedCiphers
+      * @param integer totalCount  总数量
+      */
+
+  describeSupportedCiphers (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeSupportedCiphers"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeSupportedCiphers with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/supportedCiphers/',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -3101,7 +5251,7 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
     }
 
     let contentTypes = ['application/json']
@@ -3232,7 +5382,7 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
     }
 
     let contentTypes = ['application/json']
@@ -3343,7 +5493,7 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
     }
 
     let contentTypes = ['application/json']
@@ -3462,7 +5612,7 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
     }
 
     let contentTypes = ['application/json']
@@ -3572,7 +5722,7 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
     }
 
     let contentTypes = ['application/json']
@@ -3692,7 +5842,7 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
     }
 
     let contentTypes = ['application/json']
@@ -3812,7 +5962,7 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
     }
 
     let contentTypes = ['application/json']
@@ -3938,7 +6088,7 @@ loadBalancerType - 负载均衡类型，取值为：alb、nlb、dnlb，默认alb
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
     }
 
     let contentTypes = ['application/json']
@@ -4065,7 +6215,7 @@ ipAddress - ip地址,仅支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
     }
 
     let contentTypes = ['application/json']
@@ -4182,7 +6332,7 @@ loadBalancerId - 负载均衡器Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
     }
 
     let contentTypes = ['application/json']
@@ -4309,7 +6459,7 @@ loadBalancerId - 负载均衡器Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
     }
 
     let contentTypes = ['application/json']
@@ -4420,7 +6570,7 @@ loadBalancerId - 负载均衡器Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
     }
 
     let contentTypes = ['application/json']
@@ -4539,7 +6689,7 @@ loadBalancerId - 负载均衡器Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
     }
 
     let contentTypes = ['application/json']
@@ -4649,7 +6799,7 @@ loadBalancerId - 负载均衡器Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
     }
 
     let contentTypes = ['application/json']
@@ -4764,7 +6914,7 @@ loadBalancerId - 负载均衡器Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
     }
 
     let contentTypes = ['application/json']
@@ -4879,7 +7029,7 @@ loadBalancerId - 负载均衡器Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
     }
 
     let contentTypes = ['application/json']
@@ -4994,7 +7144,7 @@ loadBalancerId - 负载均衡器Id，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.5.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  lb/0.6.6'
     }
 
     let contentTypes = ['application/json']

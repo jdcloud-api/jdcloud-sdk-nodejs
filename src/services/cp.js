@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * OLD合同模板管理接口
- * OLD合同模板管理接口
+ * Partner UserAuth Management
+ * Partner UserAuth Management API
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -24,20 +24,20 @@
 
 const JDCloud = require('../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'cloudsign'
+var serviceId = 'cp'
 Service._services[serviceId] = true
 
 /**
- * cloudsign service.
+ * cp service.
  */
 
-JDCloud.CLOUDSIGN = class CLOUDSIGN {
+JDCloud.CP = class CP {
   constructor (config = {}) {
     this.init(config)
     return new this.service(config)
   }
   init (config) {
-    let serviceName = 'cloudsign'
+    let serviceName = 'cp'
     let version = config.version || JDCloud.config.version
     let versionFlag = 'v1'
     if (version && version[serviceName]) {
@@ -53,4 +53,4 @@ JDCloud.CLOUDSIGN = class CLOUDSIGN {
   }
 }
 
-module.exports = JDCloud.CLOUDSIGN
+module.exports = JDCloud.CP

@@ -31,6 +31,7 @@ module.exports = {
   PRIVATEZONE: require('./privatezone'),
   STARSHIELD: require('./starshield'),
   REFUND: require('./refund'),
+  EID: require('./eid'),
   POD: require('./pod'),
   JKE: require('./jke'),
   DATASTAR: require('./datastar'),

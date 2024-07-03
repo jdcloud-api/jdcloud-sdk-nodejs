@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * returnRule
- * 渠道管理平台返还规则
+ * 合作信息管理
+ * 合作信息管理
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -30,10 +30,10 @@ Service._services[serviceId] = true
 
 /**
  * partner service.
- * @version 1.0.5
+ * @version 1.3.13
  */
 
-JDCloud.PARTNER = class PARTNER extends Service {
+class PARTNER extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
@@ -45,10 +45,1199 @@ JDCloud.PARTNER = class PARTNER extends Service {
   }
 
   /**
+      *  查询合作产品列表
+      * @param {Object} opts - parameters
+      * @param {string} [opts.cooperationId] - 合作id  optional
+      * @param {string} [opts.companyName] - 公司名称  optional
+      * @param {string} [opts.name] - 合作名称  optional
+      * @param {string} [opts.productName] - 产品名称  optional
+      * @param {string} [opts.contractNo] - 合同编号  optional
+      * @param {integer} [opts.productType] - 产品类型  optional
+      * @param {integer} [opts.productMode] - 产品模式  optional
+      * @param {integer} [opts.productStatus] - 产品状态  optional
+      * @param {integer} [opts.settlementMode] - 结算方式  optional
+      * @param {integer} [opts.settlementCycle] - 结算周期  optional
+      * @param {integer} [opts.pageIndex] - 页码  optional
+      * @param {integer} [opts.pageSize] - 每页记录数  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param pagination pagination  分页信息
+      * @param coProductVo result
+      * @param string requestId  请求id
+      */
+
+  describeCoProducts (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeCoProducts"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.cooperationId !== undefined && opts.cooperationId !== null) {
+      postBody['cooperationId'] = opts.cooperationId
+    }
+    if (opts.companyName !== undefined && opts.companyName !== null) {
+      postBody['companyName'] = opts.companyName
+    }
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.productName !== undefined && opts.productName !== null) {
+      postBody['productName'] = opts.productName
+    }
+    if (opts.contractNo !== undefined && opts.contractNo !== null) {
+      postBody['contractNo'] = opts.contractNo
+    }
+    if (opts.productType !== undefined && opts.productType !== null) {
+      postBody['productType'] = opts.productType
+    }
+    if (opts.productMode !== undefined && opts.productMode !== null) {
+      postBody['productMode'] = opts.productMode
+    }
+    if (opts.productStatus !== undefined && opts.productStatus !== null) {
+      postBody['productStatus'] = opts.productStatus
+    }
+    if (opts.settlementMode !== undefined && opts.settlementMode !== null) {
+      postBody['settlementMode'] = opts.settlementMode
+    }
+    if (opts.settlementCycle !== undefined && opts.settlementCycle !== null) {
+      postBody['settlementCycle'] = opts.settlementCycle
+    }
+    if (opts.pageIndex !== undefined && opts.pageIndex !== null) {
+      postBody['pageIndex'] = opts.pageIndex
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  partner/1.3.13'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeCoProducts with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/CooperationInfo:describeCoProducts',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  合作产品列表导出
+      * @param {Object} opts - parameters
+      * @param {string} [opts.cooperationId] - 合作id  optional
+      * @param {string} [opts.companyName] - 公司名称  optional
+      * @param {string} [opts.name] - 合作名称  optional
+      * @param {string} [opts.productName] - 产品名称  optional
+      * @param {string} [opts.contractNo] - 合同编号  optional
+      * @param {integer} [opts.productType] - 产品类型  optional
+      * @param {integer} [opts.productMode] - 产品模式  optional
+      * @param {integer} [opts.productStatus] - 产品状态  optional
+      * @param {integer} [opts.settlementMode] - 结算方式  optional
+      * @param {integer} [opts.settlementCycle] - 结算周期  optional
+      * @param {integer} [opts.pageIndex] - 页码  optional
+      * @param {integer} [opts.pageSize] - 每页记录数  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string result  导出文件的下载url
+      * @param string requestId  请求id
+      */
+
+  exportCoProducts (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  exportCoProducts"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.cooperationId !== undefined && opts.cooperationId !== null) {
+      postBody['cooperationId'] = opts.cooperationId
+    }
+    if (opts.companyName !== undefined && opts.companyName !== null) {
+      postBody['companyName'] = opts.companyName
+    }
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.productName !== undefined && opts.productName !== null) {
+      postBody['productName'] = opts.productName
+    }
+    if (opts.contractNo !== undefined && opts.contractNo !== null) {
+      postBody['contractNo'] = opts.contractNo
+    }
+    if (opts.productType !== undefined && opts.productType !== null) {
+      postBody['productType'] = opts.productType
+    }
+    if (opts.productMode !== undefined && opts.productMode !== null) {
+      postBody['productMode'] = opts.productMode
+    }
+    if (opts.productStatus !== undefined && opts.productStatus !== null) {
+      postBody['productStatus'] = opts.productStatus
+    }
+    if (opts.settlementMode !== undefined && opts.settlementMode !== null) {
+      postBody['settlementMode'] = opts.settlementMode
+    }
+    if (opts.settlementCycle !== undefined && opts.settlementCycle !== null) {
+      postBody['settlementCycle'] = opts.settlementCycle
+    }
+    if (opts.pageIndex !== undefined && opts.pageIndex !== null) {
+      postBody['pageIndex'] = opts.pageIndex
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  partner/1.3.13'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call exportCoProducts with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/CooperationInfo:exportCoProducts',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  合作产品详情
+      * @param {Object} opts - parameters
+      * @param {string} opts.uuid - 合作产品唯一标识
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param coProductDetailVo result  合作产品详情
+      * @param string requestId  请求id
+      */
+
+  describeCoProduct (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeCoProduct"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.uuid === undefined || opts.uuid === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.uuid' when calling describeCoProduct"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      uuid: opts.uuid
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  partner/1.3.13'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeCoProduct with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/uuid/{uuid}:describeCoProduct',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  编辑合作产品
+      * @param {Object} opts - parameters
+      * @param {string} [opts.cooperationId] - 合作id  optional
+      * @param {string} [opts.productName] - 合作产品名称  optional
+      * @param {string} [opts.name] - 合作名称  optional
+      * @param {integer} [opts.productType] - 产品类型  optional
+      * @param {integer} [opts.productMode] - 产品模式  optional
+      * @param {string} [opts.productDesc] - 产品简介  optional
+      * @param {string} [opts.targetCustomer] - 目标客户  optional
+      * @param {string} [opts.marketSize] - 市场规模  optional
+      * @param {string} [opts.comparableProduct] - 主要竞品  optional
+      * @param {integer} [opts.sellingForm] - 售卖形态  1套/n年、2套/n月、3套、4次  optional
+      * @param {string} [opts.sellingMode] - 售卖方式  1直销，2渠道，3代理  optional
+      * @param {string} [opts.pricing] - 定价  optional
+      * @param {integer} [opts.productStatus] - 产品状态  optional
+      * @param {string} [opts.incomeForecast] - 收入预测  optional
+      * @param {string} [opts.costStructure] - 成本结构  optional
+      * @param {string} [opts.grossMarginForecast] - 毛利率预测  optional
+      * @param {integer} [opts.pricingStrategy] - 定价策略 1市场对标， 2总成本加成，3变动成本加成  optional
+      * @param {integer} [opts.settlementMode] - 结算方式 1固定金额结算，2实际售价固定比例结算，3实际售价浮动比例结算  optional
+      * @param {integer} [opts.settlementCycle] - 结算周期 1周结后付款、2月结后付款、3季结后付款、4年结后付款，5 PO预付款  optional
+      * @param {string} [opts.riskSuggestion] - 风险及建议  optional
+      * @param {string} [opts.erp] - erp  optional
+      * @param {string} [opts.uuid] - 产品唯一标识id  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean result  true:修改成功 false:修改失败
+      * @param string requestId  请求id
+      */
+
+  modifyCoProduct (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyCoProduct"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.cooperationId !== undefined && opts.cooperationId !== null) {
+      postBody['cooperationId'] = opts.cooperationId
+    }
+    if (opts.productName !== undefined && opts.productName !== null) {
+      postBody['productName'] = opts.productName
+    }
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.productType !== undefined && opts.productType !== null) {
+      postBody['productType'] = opts.productType
+    }
+    if (opts.productMode !== undefined && opts.productMode !== null) {
+      postBody['productMode'] = opts.productMode
+    }
+    if (opts.productDesc !== undefined && opts.productDesc !== null) {
+      postBody['productDesc'] = opts.productDesc
+    }
+    if (opts.targetCustomer !== undefined && opts.targetCustomer !== null) {
+      postBody['targetCustomer'] = opts.targetCustomer
+    }
+    if (opts.marketSize !== undefined && opts.marketSize !== null) {
+      postBody['marketSize'] = opts.marketSize
+    }
+    if (
+      opts.comparableProduct !== undefined &&
+      opts.comparableProduct !== null
+    ) {
+      postBody['comparableProduct'] = opts.comparableProduct
+    }
+    if (opts.sellingForm !== undefined && opts.sellingForm !== null) {
+      postBody['sellingForm'] = opts.sellingForm
+    }
+    if (opts.sellingMode !== undefined && opts.sellingMode !== null) {
+      postBody['sellingMode'] = opts.sellingMode
+    }
+    if (opts.pricing !== undefined && opts.pricing !== null) {
+      postBody['pricing'] = opts.pricing
+    }
+    if (opts.productStatus !== undefined && opts.productStatus !== null) {
+      postBody['productStatus'] = opts.productStatus
+    }
+    if (opts.incomeForecast !== undefined && opts.incomeForecast !== null) {
+      postBody['incomeForecast'] = opts.incomeForecast
+    }
+    if (opts.costStructure !== undefined && opts.costStructure !== null) {
+      postBody['costStructure'] = opts.costStructure
+    }
+    if (
+      opts.grossMarginForecast !== undefined &&
+      opts.grossMarginForecast !== null
+    ) {
+      postBody['grossMarginForecast'] = opts.grossMarginForecast
+    }
+    if (opts.pricingStrategy !== undefined && opts.pricingStrategy !== null) {
+      postBody['pricingStrategy'] = opts.pricingStrategy
+    }
+    if (opts.settlementMode !== undefined && opts.settlementMode !== null) {
+      postBody['settlementMode'] = opts.settlementMode
+    }
+    if (opts.settlementCycle !== undefined && opts.settlementCycle !== null) {
+      postBody['settlementCycle'] = opts.settlementCycle
+    }
+    if (opts.riskSuggestion !== undefined && opts.riskSuggestion !== null) {
+      postBody['riskSuggestion'] = opts.riskSuggestion
+    }
+    if (opts.erp !== undefined && opts.erp !== null) {
+      postBody['erp'] = opts.erp
+    }
+    if (opts.uuid !== undefined && opts.uuid !== null) {
+      postBody['uuid'] = opts.uuid
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  partner/1.3.13'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyCoProduct with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/CooperationInfo:modifyCoProduct',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  添加合作产品
+      * @param {Object} opts - parameters
+      * @param {string} [opts.cooperationId] - 合作id  optional
+      * @param {string} [opts.productName] - 合作产品名称  optional
+      * @param {string} [opts.name] - 合作名称  optional
+      * @param {integer} [opts.productType] - 产品类型  optional
+      * @param {integer} [opts.productMode] - 产品模式  optional
+      * @param {string} [opts.productDesc] - 产品简介  optional
+      * @param {string} [opts.targetCustomer] - 目标客户  optional
+      * @param {string} [opts.marketSize] - 市场规模  optional
+      * @param {string} [opts.comparableProduct] - 主要竞品  optional
+      * @param {integer} [opts.sellingForm] - 售卖形态  1套/n年、2套/n月、3套、4次  optional
+      * @param {string} [opts.sellingMode] - 售卖方式  1直销，2渠道，3代理  optional
+      * @param {string} [opts.pricing] - 定价  optional
+      * @param {integer} [opts.productStatus] - 产品状态  optional
+      * @param {string} [opts.incomeForecast] - 收入预测  optional
+      * @param {string} [opts.costStructure] - 成本结构  optional
+      * @param {string} [opts.grossMarginForecast] - 毛利率预测  optional
+      * @param {integer} [opts.pricingStrategy] - 定价策略 1市场对标， 2总成本加成，3变动成本加成  optional
+      * @param {integer} [opts.settlementMode] - 结算方式 1固定金额结算，2实际售价固定比例结算，3实际售价浮动比例结算  optional
+      * @param {integer} [opts.settlementCycle] - 结算周期 1周结后付款、2月结后付款、3季结后付款、4年结后付款，5 PO预付款  optional
+      * @param {string} [opts.riskSuggestion] - 风险及建议  optional
+      * @param {string} [opts.erp] - erp  optional
+      * @param {string} [opts.uuid] - 产品唯一标识id  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean result  true:添加成功 false:添加失败
+      * @param string requestId  请求id
+      */
+
+  addCoProduct (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  addCoProduct"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.cooperationId !== undefined && opts.cooperationId !== null) {
+      postBody['cooperationId'] = opts.cooperationId
+    }
+    if (opts.productName !== undefined && opts.productName !== null) {
+      postBody['productName'] = opts.productName
+    }
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.productType !== undefined && opts.productType !== null) {
+      postBody['productType'] = opts.productType
+    }
+    if (opts.productMode !== undefined && opts.productMode !== null) {
+      postBody['productMode'] = opts.productMode
+    }
+    if (opts.productDesc !== undefined && opts.productDesc !== null) {
+      postBody['productDesc'] = opts.productDesc
+    }
+    if (opts.targetCustomer !== undefined && opts.targetCustomer !== null) {
+      postBody['targetCustomer'] = opts.targetCustomer
+    }
+    if (opts.marketSize !== undefined && opts.marketSize !== null) {
+      postBody['marketSize'] = opts.marketSize
+    }
+    if (
+      opts.comparableProduct !== undefined &&
+      opts.comparableProduct !== null
+    ) {
+      postBody['comparableProduct'] = opts.comparableProduct
+    }
+    if (opts.sellingForm !== undefined && opts.sellingForm !== null) {
+      postBody['sellingForm'] = opts.sellingForm
+    }
+    if (opts.sellingMode !== undefined && opts.sellingMode !== null) {
+      postBody['sellingMode'] = opts.sellingMode
+    }
+    if (opts.pricing !== undefined && opts.pricing !== null) {
+      postBody['pricing'] = opts.pricing
+    }
+    if (opts.productStatus !== undefined && opts.productStatus !== null) {
+      postBody['productStatus'] = opts.productStatus
+    }
+    if (opts.incomeForecast !== undefined && opts.incomeForecast !== null) {
+      postBody['incomeForecast'] = opts.incomeForecast
+    }
+    if (opts.costStructure !== undefined && opts.costStructure !== null) {
+      postBody['costStructure'] = opts.costStructure
+    }
+    if (
+      opts.grossMarginForecast !== undefined &&
+      opts.grossMarginForecast !== null
+    ) {
+      postBody['grossMarginForecast'] = opts.grossMarginForecast
+    }
+    if (opts.pricingStrategy !== undefined && opts.pricingStrategy !== null) {
+      postBody['pricingStrategy'] = opts.pricingStrategy
+    }
+    if (opts.settlementMode !== undefined && opts.settlementMode !== null) {
+      postBody['settlementMode'] = opts.settlementMode
+    }
+    if (opts.settlementCycle !== undefined && opts.settlementCycle !== null) {
+      postBody['settlementCycle'] = opts.settlementCycle
+    }
+    if (opts.riskSuggestion !== undefined && opts.riskSuggestion !== null) {
+      postBody['riskSuggestion'] = opts.riskSuggestion
+    }
+    if (opts.erp !== undefined && opts.erp !== null) {
+      postBody['erp'] = opts.erp
+    }
+    if (opts.uuid !== undefined && opts.uuid !== null) {
+      postBody['uuid'] = opts.uuid
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  partner/1.3.13'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call addCoProduct with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/CooperationInfo:addCoProduct',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除合同附件
+      * @param {Object} opts - parameters
+      * @param {string} opts.fileUuid - 合同附件唯一标识
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean result  true-删除成功,false-删除失败
+      */
+
+  deleteFile (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteFile"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.fileUuid === undefined || opts.fileUuid === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.fileUuid' when calling deleteFile"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      fileUuid: opts.fileUuid
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  partner/1.3.13'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteFile with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/fileUuid/{fileUuid}/Contract:deleteFile',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  添加合同信息
+      * @param {Object} opts - parameters
+      * @param {string} [opts.contractUuid] - 合同唯一标识(添加不需要传，编辑必传)  optional
+      * @param {string} [opts.contractNo] - 合同编号  optional
+      * @param {string} [opts.startDate] - 开始时间  optional
+      * @param {string} [opts.endDate] - 结束时间  optional
+      * @param {string} [opts.remark] - 备注  optional
+      * @param {string} [opts.fileUuid] - 合同附件文件标识  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string result  合同唯一标识(添加失败为空)
+      * @param string requestId  请求id
+      */
+
+  addContract (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  addContract"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.contractUuid !== undefined && opts.contractUuid !== null) {
+      postBody['contractUuid'] = opts.contractUuid
+    }
+    if (opts.contractNo !== undefined && opts.contractNo !== null) {
+      postBody['contractNo'] = opts.contractNo
+    }
+    if (opts.startDate !== undefined && opts.startDate !== null) {
+      postBody['startDate'] = opts.startDate
+    }
+    if (opts.endDate !== undefined && opts.endDate !== null) {
+      postBody['endDate'] = opts.endDate
+    }
+    if (opts.remark !== undefined && opts.remark !== null) {
+      postBody['remark'] = opts.remark
+    }
+    if (opts.fileUuid !== undefined && opts.fileUuid !== null) {
+      postBody['fileUuid'] = opts.fileUuid
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  partner/1.3.13'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call addContract with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/Contract:addContract',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  编辑合同信息
+      * @param {Object} opts - parameters
+      * @param {string} [opts.contractUuid] - 合同唯一标识(添加不需要传，编辑必传)  optional
+      * @param {string} [opts.contractNo] - 合同编号  optional
+      * @param {string} [opts.startDate] - 开始时间  optional
+      * @param {string} [opts.endDate] - 结束时间  optional
+      * @param {string} [opts.remark] - 备注  optional
+      * @param {string} [opts.fileUuid] - 合同附件文件标识  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean result  true:修改成功 false:修改失败
+      * @param string requestId  请求id
+      */
+
+  modifyContract (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyContract"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.contractUuid !== undefined && opts.contractUuid !== null) {
+      postBody['contractUuid'] = opts.contractUuid
+    }
+    if (opts.contractNo !== undefined && opts.contractNo !== null) {
+      postBody['contractNo'] = opts.contractNo
+    }
+    if (opts.startDate !== undefined && opts.startDate !== null) {
+      postBody['startDate'] = opts.startDate
+    }
+    if (opts.endDate !== undefined && opts.endDate !== null) {
+      postBody['endDate'] = opts.endDate
+    }
+    if (opts.remark !== undefined && opts.remark !== null) {
+      postBody['remark'] = opts.remark
+    }
+    if (opts.fileUuid !== undefined && opts.fileUuid !== null) {
+      postBody['fileUuid'] = opts.fileUuid
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  partner/1.3.13'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyContract with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/Contract:modifyContract',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  查询客户信息
       * @param {Object} opts - parameters
-      * @param {string} [opts.customerPin] - 客户pin（客户账户）  optional
-      * @param {string} [opts.aliasName] - 客户昵称  optional
+      * @param {string} [opts.customerPin] - 客户pin  optional
+      * @param {string} [opts.aliasName]   optional
+      * @param {string} [opts.nameLike] - 客户名称  optional
+      * @param {integer} [opts.accountType] - 账户类型（1个人2企业）  optional
+      * @param {string} [opts.loginName] - 帐户名  optional
       * @param {string} [opts.startRelTime] - 关联开始时间（格式：yyyy-MM-dd HH:mm:ss）  optional
       * @param {string} [opts.endRelTime] - 关联结束时间（格式：yyyy-MM-dd HH:mm:ss）  optional
       * @param {integer} [opts.pageIndex] - 当前页序号  optional
@@ -81,6 +1270,15 @@ JDCloud.PARTNER = class PARTNER extends Service {
     if (opts.aliasName !== undefined && opts.aliasName !== null) {
       postBody['aliasName'] = opts.aliasName
     }
+    if (opts.nameLike !== undefined && opts.nameLike !== null) {
+      postBody['nameLike'] = opts.nameLike
+    }
+    if (opts.accountType !== undefined && opts.accountType !== null) {
+      postBody['accountType'] = opts.accountType
+    }
+    if (opts.loginName !== undefined && opts.loginName !== null) {
+      postBody['loginName'] = opts.loginName
+    }
     if (opts.startRelTime !== undefined && opts.startRelTime !== null) {
       postBody['startRelTime'] = opts.startRelTime
     }
@@ -101,7 +1299,7 @@ JDCloud.PARTNER = class PARTNER extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  partner/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  partner/1.3.13'
     }
 
     let contentTypes = ['application/json']
@@ -143,8 +1341,8 @@ JDCloud.PARTNER = class PARTNER extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
-      '/regions/{regionId}/customerManage/queryMyCustomerList',
+    let request = super.makeRequest(
+      '/regions/{regionId}/customerManage:queryMyCustomerList',
       'POST',
       pathParams,
       queryParams,
@@ -172,5 +1370,820 @@ JDCloud.PARTNER = class PARTNER extends Service {
       }
     )
   }
+
+  /**
+      *  查询渠道用户信息
+      * @param {Object} opts - parameters
+      * @param {string} [opts.pin]   optional
+      * @param {string} [opts.loginName] - 帐户名  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param partnerUserDTO partnerUserDTOList
+      */
+
+  getPartnerUserList (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getPartnerUserList"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pin !== undefined && opts.pin !== null) {
+      queryParams['pin'] = opts.pin
+    }
+    if (opts.loginName !== undefined && opts.loginName !== null) {
+      queryParams['loginName'] = opts.loginName
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  partner/1.3.13'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getPartnerUserList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/getPartnerUserList',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  编辑字典
+      * @param {Object} opts - parameters
+      * @param {number} [opts.id] - ID  optional
+      * @param {string} [opts.codeType] - 字典类型  optional
+      * @param {string} [opts.code] - 字典编码  optional
+      * @param {string} [opts.name] - 字典编码名称  optional
+      * @param {string} [opts.value] - 字典编码值  optional
+      * @param {boolean} [opts.useFlag] - null  optional
+      * @param {string} [opts.systemType] - 系统类型  optional
+      * @param {string} [opts.refValue] - 引用值  optional
+      * @param {integer} [opts.seq] - 顺序  optional
+      * @param {string} [opts.remark] - 字典说明  optional
+      * @param {string} [opts.createTime] - 创建时间  optional
+      * @param {string} [opts.createUser] - 创建人  optional
+      * @param {string} [opts.updateTime] - 修改时间  optional
+      * @param {string} [opts.updateUser] - 修改人  optional
+      * @param {integer} [opts.yn] - 是否删除0未删除,1已删除  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返还编码0成功,其他失败
+      * @param string message  返回消息
+      */
+
+  modifyDicDetail (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyDicDetail"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.id !== undefined && opts.id !== null) {
+      postBody['id'] = opts.id
+    }
+    if (opts.codeType !== undefined && opts.codeType !== null) {
+      postBody['codeType'] = opts.codeType
+    }
+    if (opts.code !== undefined && opts.code !== null) {
+      postBody['code'] = opts.code
+    }
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.value !== undefined && opts.value !== null) {
+      postBody['value'] = opts.value
+    }
+    if (opts.useFlag !== undefined && opts.useFlag !== null) {
+      postBody['useFlag'] = opts.useFlag
+    }
+    if (opts.systemType !== undefined && opts.systemType !== null) {
+      postBody['systemType'] = opts.systemType
+    }
+    if (opts.refValue !== undefined && opts.refValue !== null) {
+      postBody['refValue'] = opts.refValue
+    }
+    if (opts.seq !== undefined && opts.seq !== null) {
+      postBody['seq'] = opts.seq
+    }
+    if (opts.remark !== undefined && opts.remark !== null) {
+      postBody['remark'] = opts.remark
+    }
+    if (opts.createTime !== undefined && opts.createTime !== null) {
+      postBody['createTime'] = opts.createTime
+    }
+    if (opts.createUser !== undefined && opts.createUser !== null) {
+      postBody['createUser'] = opts.createUser
+    }
+    if (opts.updateTime !== undefined && opts.updateTime !== null) {
+      postBody['updateTime'] = opts.updateTime
+    }
+    if (opts.updateUser !== undefined && opts.updateUser !== null) {
+      postBody['updateUser'] = opts.updateUser
+    }
+    if (opts.yn !== undefined && opts.yn !== null) {
+      postBody['yn'] = opts.yn
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  partner/1.3.13'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyDicDetail with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/dictionary:modifyDicDetail',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取伙伴账单
+      * @param {Object} opts - parameters
+      * @param {string} [opts.pin] - 渠道商pin  optional
+      * @param {string} [opts.loginName] - 账号名  optional
+      * @param {string} opts.billDate - 账期，yyyy-MM
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param pinBill pinBills
+      * @param productBill productBills
+      */
+
+  describePartnerBills (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describePartnerBills"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.billDate === undefined || opts.billDate === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.billDate' when calling describePartnerBills"
+      )
+    }
+
+    let postBody = {}
+    if (opts.pin !== undefined && opts.pin !== null) {
+      postBody['pin'] = opts.pin
+    }
+    if (opts.loginName !== undefined && opts.loginName !== null) {
+      postBody['loginName'] = opts.loginName
+    }
+    if (opts.billDate !== undefined && opts.billDate !== null) {
+      postBody['billDate'] = opts.billDate
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  partner/1.3.13'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describePartnerBills with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/describePartnerBills',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询服务商相关的总消费数据
+      * @param {Object} opts - parameters
+      * @param {string} opts.startTime - 按月查询开始时间（yyyy/MM/dd）
+      * @param {string} opts.endTime - 按月查询结束时间（yyyy/MM/dd）
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param summaryBill result
+      */
+
+  getTotalConsumption (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getTotalConsumption"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.startTime === undefined || opts.startTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.startTime' when calling getTotalConsumption"
+      )
+    }
+    if (opts.endTime === undefined || opts.endTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.endTime' when calling getTotalConsumption"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  partner/1.3.13'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getTotalConsumption with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/accountingBill:getTotalConsumption',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询服务商下每个客户总消费数据
+      * @param {Object} opts - parameters
+      * @param {string} opts.startTime - 按月查询开始时间（yyyy/MM/dd）
+      * @param {string} opts.endTime - 按月查询结束时间（yyyy/MM/dd）
+      * @param {string} [opts.pin] - pin  optional
+      * @param {integer} opts.pageSize - 每页条数
+      * @param {integer} opts.pageIndex - 第几页
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param pagination pagination
+      * @param summaryBill result
+      */
+
+  getEachConsumption (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getEachConsumption"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.startTime === undefined || opts.startTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.startTime' when calling getEachConsumption"
+      )
+    }
+    if (opts.endTime === undefined || opts.endTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.endTime' when calling getEachConsumption"
+      )
+    }
+    if (opts.pageSize === undefined || opts.pageSize === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.pageSize' when calling getEachConsumption"
+      )
+    }
+    if (opts.pageIndex === undefined || opts.pageIndex === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.pageIndex' when calling getEachConsumption"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+    if (opts.pin !== undefined && opts.pin !== null) {
+      queryParams['pin'] = opts.pin
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    if (opts.pageIndex !== undefined && opts.pageIndex !== null) {
+      queryParams['pageIndex'] = opts.pageIndex
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  partner/1.3.13'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getEachConsumption with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/accountingBill:getEachConsumption',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询服务商相关pin下每个产品的消费数据
+      * @param {Object} opts - parameters
+      * @param {string} [opts.pin] - pin  optional
+      * @param {string} opts.startTime - 按月查询开始时间（yyyy-MM-dd）,不可跨月
+      * @param {string} opts.endTime - 按月查询结束时间（yyyy-MM-dd）,不可跨月
+      * @param {integer} opts.pageSize - 每页条数,不超过100
+      * @param {integer} opts.pageIndex - 第几页
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param pagination pagination
+      * @param serviceCodeBill result
+      */
+
+  describeCustomerBillByProduct (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeCustomerBillByProduct"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.startTime === undefined || opts.startTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.startTime' when calling describeCustomerBillByProduct"
+      )
+    }
+    if (opts.endTime === undefined || opts.endTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.endTime' when calling describeCustomerBillByProduct"
+      )
+    }
+    if (opts.pageSize === undefined || opts.pageSize === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.pageSize' when calling describeCustomerBillByProduct"
+      )
+    }
+    if (opts.pageIndex === undefined || opts.pageIndex === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.pageIndex' when calling describeCustomerBillByProduct"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pin !== undefined && opts.pin !== null) {
+      queryParams['pin'] = opts.pin
+    }
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    if (opts.pageIndex !== undefined && opts.pageIndex !== null) {
+      queryParams['pageIndex'] = opts.pageIndex
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  partner/1.3.13'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeCustomerBillByProduct with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/accountingBill:describeCustomerBillByProduct',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
 }
-module.exports = JDCloud.PARTNER
+module.exports = PARTNER

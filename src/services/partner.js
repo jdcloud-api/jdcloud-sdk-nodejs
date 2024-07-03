@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * selfBuilt
- * 自建平台账单管理
+ * 合作信息管理
+ * 合作信息管理
  *
  * OpenAPI spec version: v1
  * Contact:

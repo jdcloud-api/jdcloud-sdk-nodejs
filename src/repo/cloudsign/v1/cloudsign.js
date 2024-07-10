@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * cloudsign service.
- * @version 2.0.7
+ * @version 2.0.9
  */
 
 class CLOUDSIGN extends Service {
@@ -76,7 +76,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -184,7 +184,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -286,7 +286,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -403,7 +403,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -501,7 +501,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -605,7 +605,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -716,7 +716,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -834,7 +834,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -945,7 +945,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -1046,7 +1046,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -1160,7 +1160,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -1294,7 +1294,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -1407,7 +1407,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -1536,7 +1536,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -1644,7 +1644,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -1740,7 +1740,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -1831,7 +1831,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -1922,7 +1922,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -2017,7 +2017,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -2090,6 +2090,545 @@ class CLOUDSIGN extends Service {
   }
 
   /**
+      *  申请证书
+      * @param {Object} opts - parameters
+      * @param {certSpec} opts.certSpec
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean success
+      * @param string message
+      * @param string code
+      * @param certResp data
+      */
+
+  applyCert (opts, callback) {
+    opts = opts || {}
+
+    if (opts.certSpec === undefined || opts.certSpec === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.certSpec' when calling applyCert"
+      )
+    }
+
+    let postBody = {}
+    if (opts.certSpec !== undefined && opts.certSpec !== null) {
+      postBody['certSpec'] = opts.certSpec
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call applyCert with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/smqCert:applyCert',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新证书
+      * @param {Object} opts - parameters
+      * @param {renewCertSpec} opts.renewCertSpec
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean success
+      * @param string message
+      * @param string code
+      * @param certResp data
+      */
+
+  renewCert (opts, callback) {
+    opts = opts || {}
+
+    if (opts.renewCertSpec === undefined || opts.renewCertSpec === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.renewCertSpec' when calling renewCert"
+      )
+    }
+
+    let postBody = {}
+    if (opts.renewCertSpec !== undefined && opts.renewCertSpec !== null) {
+      postBody['renewCertSpec'] = opts.renewCertSpec
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call renewCert with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/smqCert:renewCert',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  变更证书
+      * @param {Object} opts - parameters
+      * @param {updateCertSpec} opts.updateCertSpec
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean success
+      * @param string message
+      * @param string code
+      * @param certResp data
+      */
+
+  updateCert (opts, callback) {
+    opts = opts || {}
+
+    if (opts.updateCertSpec === undefined || opts.updateCertSpec === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.updateCertSpec' when calling updateCert"
+      )
+    }
+
+    let postBody = {}
+    if (opts.updateCertSpec !== undefined && opts.updateCertSpec !== null) {
+      postBody['updateCertSpec'] = opts.updateCertSpec
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call updateCert with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/smqCert:updateCert',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  吊销证书
+      * @param {Object} opts - parameters
+      * @param {revokeCertSpec} opts.revokeCertSpec
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean success  吊销是否成功，true 成功 false 失败
+      * @param string message
+      * @param string code
+      */
+
+  revokeCert (opts, callback) {
+    opts = opts || {}
+
+    if (opts.revokeCertSpec === undefined || opts.revokeCertSpec === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.revokeCertSpec' when calling revokeCert"
+      )
+    }
+
+    let postBody = {}
+    if (opts.revokeCertSpec !== undefined && opts.revokeCertSpec !== null) {
+      postBody['revokeCertSpec'] = opts.revokeCertSpec
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call revokeCert with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/smqCert:revokeCert',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取已申请证书列表
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码, 默认为1  optional
+      * @param {integer} [opts.pageSize] - 分页大小, 默认为10, 取值范围[10, 100]  optional
+      * @param {string} [opts.caType] - 证书渠道  optional
+      * @param {string} [opts.name] - 个人用户姓名或企业名  optional
+      * @param {string} [opts.serialNo] - 证书序列号  optional
+      * @param {string} [opts.keyAlg] - 证书算法  optional
+      * @param {integer} [opts.certStatus] - 证书状态  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param certInfo certList
+      * @param integer totalCount  证书数量
+      */
+
+  describeCertList (opts, callback) {
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    if (opts.caType !== undefined && opts.caType !== null) {
+      queryParams['caType'] = opts.caType
+    }
+    if (opts.name !== undefined && opts.name !== null) {
+      queryParams['name'] = opts.name
+    }
+    if (opts.serialNo !== undefined && opts.serialNo !== null) {
+      queryParams['serialNo'] = opts.serialNo
+    }
+    if (opts.keyAlg !== undefined && opts.keyAlg !== null) {
+      queryParams['keyAlg'] = opts.keyAlg
+    }
+    if (opts.certStatus !== undefined && opts.certStatus !== null) {
+      queryParams['certStatus'] = opts.certStatus
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeCertList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/smqCert:list',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  获取印章列表
       * @param {Object} opts - parameters
       * @param {integer} [opts.pageNumber] - 页码, 默认为1  optional
@@ -2123,7 +2662,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -2219,7 +2758,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -2292,7 +2831,8 @@ class CLOUDSIGN extends Service {
   }
 
   /**
-      *  1. 下载印章
+      *  此接口仅供前端使用
+1. 下载印章
 2. 多个印章id用逗号分隔
  [MFA enabled]
       * @param {Object} opts - parameters
@@ -2319,7 +2859,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -2392,6 +2932,108 @@ class CLOUDSIGN extends Service {
   }
 
   /**
+      *  此接口仅供api使用
+1. 下载印章
+2. 多个印章id用逗号分隔
+ [MFA enabled]
+      * @param {Object} opts - parameters
+      * @param {string} opts.stampId - 印章ID
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param stampInfo stampList
+      */
+
+  downloadStampsNew (opts, callback) {
+    opts = opts || {}
+
+    if (opts.stampId === undefined || opts.stampId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.stampId' when calling downloadStampsNew"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      stampId: opts.stampId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call downloadStampsNew with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/smqStampApi/{stampId}:downloadStamps',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  删除印章 [MFA enabled]
       * @param {Object} opts - parameters
       * @param {string} opts.stampId - 印章ID
@@ -2417,7 +3059,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -2519,7 +3161,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -2631,7 +3273,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -2744,7 +3386,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -2840,7 +3482,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -2913,7 +3555,8 @@ class CLOUDSIGN extends Service {
   }
 
   /**
-      *  1. 下载合同模板
+      *  此接口仅供前端使用
+1. 下载合同模板
 2. 多个合同id用逗号分隔
  [MFA enabled]
       * @param {Object} opts - parameters
@@ -2940,7 +3583,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -3013,6 +3656,108 @@ class CLOUDSIGN extends Service {
   }
 
   /**
+      *  此接口仅供api使用
+1. 下载合同模板
+2. 多个合同id用逗号分隔
+ [MFA enabled]
+      * @param {Object} opts - parameters
+      * @param {string} opts.templateId - 合同模板ID
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param templateInfo templateList
+      */
+
+  downloadTemplatesNew (opts, callback) {
+    opts = opts || {}
+
+    if (opts.templateId === undefined || opts.templateId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.templateId' when calling downloadTemplatesNew"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      templateId: opts.templateId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call downloadTemplatesNew with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/smqTemplateApi/{templateId}:downloadTemplates',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  删除合同模板 [MFA enabled]
       * @param {Object} opts - parameters
       * @param {string} opts.templateId - 合同模板ID
@@ -3038,7 +3783,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -3147,7 +3892,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -3253,7 +3998,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -3355,7 +4100,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -3455,7 +4200,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -3553,7 +4298,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -3666,7 +4411,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -3768,7 +4513,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -3868,7 +4613,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -3977,7 +4722,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -4075,7 +4820,7 @@ class CLOUDSIGN extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudsign/2.0.9'
     }
 
     let contentTypes = ['application/json']

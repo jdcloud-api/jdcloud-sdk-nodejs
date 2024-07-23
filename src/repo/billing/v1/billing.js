@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * billing service.
- * @version 1.1.4
+ * @version 1.1.13
  */
 
 class BILLING extends Service {
@@ -124,7 +124,7 @@ class BILLING extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.13'
     }
 
     let contentTypes = ['application/json']
@@ -280,7 +280,7 @@ class BILLING extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.13'
     }
 
     let contentTypes = ['application/json']
@@ -432,7 +432,7 @@ class BILLING extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.13'
     }
 
     let contentTypes = ['application/json']
@@ -588,7 +588,7 @@ class BILLING extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.13'
     }
 
     let contentTypes = ['application/json']
@@ -727,7 +727,7 @@ class BILLING extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.13'
     }
 
     let contentTypes = ['application/json']
@@ -896,7 +896,7 @@ class BILLING extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.13'
     }
 
     let contentTypes = ['application/json']

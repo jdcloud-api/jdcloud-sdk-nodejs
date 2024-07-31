@@ -30,10 +30,10 @@ Service._services[serviceId] = true
 
 /**
  * user service.
- * @version 0.1.5
+ * @version 0.2.8
  */
 
-JDCloud.USER = class USER extends Service {
+class USER extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
@@ -66,7 +66,7 @@ JDCloud.USER = class USER extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  user/0.1.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  user/0.2.8'
     }
 
     let contentTypes = ['application/json']
@@ -137,5 +137,101 @@ JDCloud.USER = class USER extends Service {
       }
     )
   }
+
+  /**
+      *  创建免登录ticket
+      * @param {Object} opts - parameters
+      * @param {} [opts.expire] - 有效期（默认24，最小1，最大24，单位小时）  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string ticket  免登录ticket
+      */
+
+  createTicket (opts, callback) {
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.expire !== undefined && opts.expire !== null) {
+      postBody['expire'] = opts.expire
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  user/0.2.8'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createTicket with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/user:createTicket',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
 }
-module.exports = JDCloud.USER
+module.exports = USER

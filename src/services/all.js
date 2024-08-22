@@ -114,5 +114,6 @@ module.exports = {
   XDATA: require('./xdata'),
   OPENJRTC: require('./openjrtc'),
   IOTCLOUDGATEWAY: require('./iotcloudgateway'),
+  INVOICE: require('./invoice'),
   USER: require('./user')
 }

@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * cloudauth service.
- * @version 1.0.15
+ * @version 1.0.16
  */
 
 class CLOUDAUTH extends Service {
@@ -74,7 +74,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.16'
     }
 
     let contentTypes = ['application/json']
@@ -182,7 +182,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.16'
     }
 
     let contentTypes = ['application/json']
@@ -284,7 +284,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.16'
     }
 
     let contentTypes = ['application/json']
@@ -386,7 +386,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.16'
     }
 
     let contentTypes = ['application/json']
@@ -488,7 +488,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.16'
     }
 
     let contentTypes = ['application/json']
@@ -590,7 +590,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.16'
     }
 
     let contentTypes = ['application/json']
@@ -692,7 +692,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.16'
     }
 
     let contentTypes = ['application/json']
@@ -794,7 +794,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.16'
     }
 
     let contentTypes = ['application/json']
@@ -896,7 +896,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.16'
     }
 
     let contentTypes = ['application/json']
@@ -998,7 +998,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.16'
     }
 
     let contentTypes = ['application/json']
@@ -1100,7 +1100,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.16'
     }
 
     let contentTypes = ['application/json']
@@ -1202,7 +1202,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.16'
     }
 
     let contentTypes = ['application/json']
@@ -1304,7 +1304,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.16'
     }
 
     let contentTypes = ['application/json']
@@ -1409,7 +1409,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.16'
     }
 
     let contentTypes = ['application/json']
@@ -1511,7 +1511,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.16'
     }
 
     let contentTypes = ['application/json']
@@ -1606,7 +1606,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.16'
     }
 
     let contentTypes = ['application/json']
@@ -1701,7 +1701,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.16'
     }
 
     let contentTypes = ['application/json']
@@ -1815,7 +1815,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.16'
     }
 
     let contentTypes = ['application/json']
@@ -1917,7 +1917,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.16'
     }
 
     let contentTypes = ['application/json']
@@ -1990,6 +1990,210 @@ class CLOUDAUTH extends Service {
   }
 
   /**
+      *  银行卡OCR
+      * @param {Object} opts - parameters
+      * @param {string} opts.imageData - 银行卡图像base64(支持base64编码后小于3M)
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param bankCardOCRInfo bankCardOCRInfo
+      */
+
+  bankCardOCR (opts, callback) {
+    opts = opts || {}
+
+    if (opts.imageData === undefined || opts.imageData === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.imageData' when calling bankCardOCR"
+      )
+    }
+
+    let postBody = {}
+    if (opts.imageData !== undefined && opts.imageData !== null) {
+      postBody['imageData'] = opts.imageData
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.16'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call bankCardOCR with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/ocr:BankCard',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  营业执照OCR
+      * @param {Object} opts - parameters
+      * @param {string} opts.imageData - 营业执照图像base64(支持base64编码后小于3M)
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param businessOCRInfo businessOCRInfo
+      */
+
+  businessOCR (opts, callback) {
+    opts = opts || {}
+
+    if (opts.imageData === undefined || opts.imageData === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.imageData' when calling businessOCR"
+      )
+    }
+
+    let postBody = {}
+    if (opts.imageData !== undefined && opts.imageData !== null) {
+      postBody['imageData'] = opts.imageData
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.16'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call businessOCR with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/ocr:Business',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  H5活体检测获取采集页面链接
       * @param {Object} opts - parameters
       * @param {string} [opts.name] - 姓名（需要进行身份核验时传递此参数）  optional
@@ -2027,7 +2231,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.16'
     }
 
     let contentTypes = ['application/json']
@@ -2129,7 +2333,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.16'
     }
 
     let contentTypes = ['application/json']
@@ -2208,6 +2412,9 @@ class CLOUDAUTH extends Service {
       * @param {string} [opts.idcard] - 身份证号（需要进行身份核验时传递此参数）  optional
       * @param {string} opts.returnUrl - 采集结束后自动跳转的目标地址（须以http或https开头，长度不超过128字符）
       * @param {string} [opts.actions] - 指定动作，逗号隔开。（LookLeft 向左，LookRight 向右，OpenMouth 张嘴，BlinkEye 眨眼，ShakeHead 摇头，NodHead 点头）  optional
+      * @param {boolean} [opts.showFail] - 是否展示失败结果页面  optional
+      * @param {string} [opts.photo] - 自有源照片（不超过2M）  optional
+      * @param {integer} [opts.photoThresh] - 自有源照片对比通过阈值（0-1000）  optional
       * @param {string} callback - callback
       @return {Object} result
       * @param aliveUrlInfo aliveUrlInfo
@@ -2235,6 +2442,15 @@ class CLOUDAUTH extends Service {
     if (opts.actions !== undefined && opts.actions !== null) {
       postBody['actions'] = opts.actions
     }
+    if (opts.showFail !== undefined && opts.showFail !== null) {
+      postBody['showFail'] = opts.showFail
+    }
+    if (opts.photo !== undefined && opts.photo !== null) {
+      postBody['photo'] = opts.photo
+    }
+    if (opts.photoThresh !== undefined && opts.photoThresh !== null) {
+      postBody['photoThresh'] = opts.photoThresh
+    }
 
     let queryParams = {}
 
@@ -2243,7 +2459,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.16'
     }
 
     let contentTypes = ['application/json']
@@ -2345,7 +2561,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.16'
     }
 
     let contentTypes = ['application/json']
@@ -2463,7 +2679,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.16'
     }
 
     let contentTypes = ['application/json']
@@ -2581,7 +2797,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.16'
     }
 
     let contentTypes = ['application/json']
@@ -2694,7 +2910,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.16'
     }
 
     let contentTypes = ['application/json']
@@ -2802,7 +3018,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.16'
     }
 
     let contentTypes = ['application/json']
@@ -2895,7 +3111,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.15'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.16'
     }
 
     let contentTypes = ['application/json']

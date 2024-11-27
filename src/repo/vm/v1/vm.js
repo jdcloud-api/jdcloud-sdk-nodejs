@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * vm service.
- * @version 1.5.14
+ * @version 1.6.1
  */
 
 class VM extends Service {
@@ -91,7 +91,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -216,7 +216,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -313,6 +313,8 @@ class VM extends Service {
   optional
       * @param {string} [opts.clientToken] - 用于保证请求的幂等性。由客户端生成，并确保不同请求中该参数唯一，长度不能超过64个字符。
   optional
+      * @param {string} opts.bootMode - 启动模式，支持uefi、bios。
+
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -348,6 +350,11 @@ class VM extends Service {
         "Missing the required parameter 'opts.architecture' when calling createImageFromSnapshots"
       )
     }
+    if (opts.bootMode === undefined || opts.bootMode === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.bootMode' when calling createImageFromSnapshots"
+      )
+    }
 
     let postBody = {}
     if (opts.name !== undefined && opts.name !== null) {
@@ -371,6 +378,9 @@ class VM extends Service {
     if (opts.clientToken !== undefined && opts.clientToken !== null) {
       postBody['clientToken'] = opts.clientToken
     }
+    if (opts.bootMode !== undefined && opts.bootMode !== null) {
+      postBody['bootMode'] = opts.bootMode
+    }
 
     let queryParams = {}
 
@@ -379,7 +389,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -492,8 +502,10 @@ class VM extends Service {
       * @param {string} [opts.architecture] - CPU架构。支持范围：&#x60;x86_64&#x60;、&#x60;arm64&#x60;。  optional
       * @param {integer} [opts.pageNumber] - 页码；默认为1。  optional
       * @param {integer} [opts.pageSize] - 分页大小；&lt;br&gt;默认为20；取值范围[10, 100]。  optional
+      * @param {string} [opts.bootMode] - 镜像启动模式，默认bios，支持范围：&#x60;bios&#x60;、&#x60;uefi&#x60;。  optional
       * @param {string} [opts.ids] - 指定镜像ID查询，如果指定了此参数，其它参数可以不传。
   optional
+      * @param {string} [opts.instanceIds] - 虚机ID， 精确匹配  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -550,14 +562,21 @@ class VM extends Service {
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
+    if (opts.bootMode !== undefined && opts.bootMode !== null) {
+      queryParams['bootMode'] = opts.bootMode
+    }
     Object.assign(queryParams, super.buildArrayParam(opts.ids, 'ids'))
+    Object.assign(
+      queryParams,
+      super.buildArrayParam(opts.instanceIds, 'instanceIds')
+    )
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -677,7 +696,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -794,7 +813,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -879,7 +898,8 @@ class VM extends Service {
 
       * @param {Object} opts - parameters
       * @param {string} opts.imageId - 镜像ID。
-      * @param {array} [opts.pins] - 共享的目标京东云帐户列表。  optional
+      * @param {array} [opts.pins] - 共享的目标用户pin列表。  optional
+      * @param {array} [opts.loginNames] - 共享的目标京东云帐户列表。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -909,6 +929,9 @@ class VM extends Service {
     if (opts.pins !== undefined && opts.pins !== null) {
       postBody['pins'] = opts.pins
     }
+    if (opts.loginNames !== undefined && opts.loginNames !== null) {
+      postBody['loginNames'] = opts.loginNames
+    }
 
     let queryParams = {}
 
@@ -918,7 +941,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -1002,7 +1025,8 @@ class VM extends Service {
 
       * @param {Object} opts - parameters
       * @param {string} opts.imageId - 镜像ID。
-      * @param {array} [opts.pins] - 需要取消的京东云帐户列表。  optional
+      * @param {array} [opts.pins] - 需要取消的用户pin列表。  optional
+      * @param {array} [opts.loginNames] - 需要取消的京东云帐户列表。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1032,6 +1056,9 @@ class VM extends Service {
     if (opts.pins !== undefined && opts.pins !== null) {
       postBody['pins'] = opts.pins
     }
+    if (opts.loginNames !== undefined && opts.loginNames !== null) {
+      postBody['loginNames'] = opts.loginNames
+    }
 
     let queryParams = {}
 
@@ -1041,7 +1068,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -1162,7 +1189,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -1280,7 +1307,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -1367,6 +1394,7 @@ class VM extends Service {
       * @param {string} callback - callback
       @return {Object} result
       * @param string pins
+      * @param string loginNames
       */
 
   describeImageMembers (opts, regionId = this.config.regionId, callback) {
@@ -1398,7 +1426,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -1472,18 +1500,29 @@ class VM extends Service {
 
   /**
       *
-镜像跨地域复制。
+镜像复制。
 
 详细操作说明请参考帮助文档：[镜像复制](https://docs.jdcloud.com/cn/virtual-machines/copy-image)
 
 ## 接口说明
-- 调用该接口将私有镜像复制到其它地域下。
+- 调用该接口可以复制私有或共享镜像。
+- 复制私有镜像时，只允许镜像拥有者进行复制。
+- 复制共享镜像时，允许共享的用户将镜像复制为私有镜像。
+- 支持同地域复制镜像。
 - 只支持云盘系统盘的镜像。
 - 不支持带有加密快照的镜像。
 
       * @param {Object} opts - parameters
       * @param {array} [opts.sourceImageIds] - 要复制的私有镜像ID列表，最多支持10个。  optional
       * @param {string} opts.destinationRegion - 目标地域。
+      * @param {string} [opts.name] - 复制出新镜像的名称，长度为1\~32个字符，只允许中文、数字、大小写字母、英文下划线（\_）、连字符（-）及点（.）。
+指定该参数时，所有复制出的镜像都设置相同的名称。
+不指定该参数时，复制的镜像使用源镜像名称。
+  optional
+      * @param {string} [opts.description] - 复制出新镜像的描述，不超过256个字符。
+指定该参数时，所有复制出的镜像都设置相同的描述。
+不指定该参数时，复制的镜像使用系统生成的描述信息。
+  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1523,6 +1562,12 @@ class VM extends Service {
     ) {
       postBody['destinationRegion'] = opts.destinationRegion
     }
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
 
     let queryParams = {}
 
@@ -1531,7 +1576,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -1657,7 +1702,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -1736,8 +1781,7 @@ class VM extends Service {
 详细操作说明请参考帮助文档：[导入私有镜像](https://docs.jdcloud.com/cn/virtual-machines/import-private-image)
 
 ## 接口说明
-- 当前仅支持导入系统盘镜像。
-- 导入后的镜像将以 &#x60;云硬盘系统盘镜像&#x60; 格式作为私有镜像使用，同时会自动生成一个与导入镜像关联的快照。
+- 导入后的镜像将以 &#x60;云硬盘系统盘镜像&#x60; 格式作为私有镜像使用，同时会自动生成与导入镜像关联的快照。
 
       * @param {Object} opts - parameters
       * @param {string} opts.architecture - 镜像架构。取值范围：&#x60;x86_64、arm64&#x60;。
@@ -1752,7 +1796,10 @@ class VM extends Service {
       * @param {string} opts.imageName - 导入镜像的自定义名称。参考 [公共参数规范](https://docs.jdcloud.com/virtual-machines/api/general_parameters)。
       * @param {string} [opts.description] - 导入镜像的描述信息。参考 [公共参数规范](https://docs.jdcloud.com/virtual-machines/api/general_parameters)。  optional
       * @param {boolean} [opts.forceImport] - 是否强制导入。强制导入会忽略镜像的合规性检测。默认为false。  optional
+      * @param {array} [opts.dataDisks] - 云盘快照信息。
+  optional
       * @param {string} [opts.clientToken] - 用户导出镜像的幂等性保证。每次导出请传入不同的值，如果传值与某次的clientToken相同，则返还同一个请求结果，不能超过64个字符。  optional
+      * @param {string} [opts.bootMode] - 镜像启动模式，默认bios，支持范围：&#x60;bios&#x60;、&#x60;uefi&#x60;。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1841,8 +1888,14 @@ class VM extends Service {
     if (opts.forceImport !== undefined && opts.forceImport !== null) {
       postBody['forceImport'] = opts.forceImport
     }
+    if (opts.dataDisks !== undefined && opts.dataDisks !== null) {
+      postBody['dataDisks'] = opts.dataDisks
+    }
     if (opts.clientToken !== undefined && opts.clientToken !== null) {
       postBody['clientToken'] = opts.clientToken
+    }
+    if (opts.bootMode !== undefined && opts.bootMode !== null) {
+      postBody['bootMode'] = opts.bootMode
     }
 
     let queryParams = {}
@@ -1852,7 +1905,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -2007,7 +2060,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -2148,7 +2201,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -2291,7 +2344,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -2390,11 +2443,8 @@ class VM extends Service {
 
       * @param {integer} [opts.maxCount] - 创建实例的数量，不能超过用户配额。
 取值范围：[1,100]；默认值：1。
-如果在弹性网卡中指定了内网IP地址，那么单次创建 &#x60;maxCount&#x60; 只能是 1。
   optional
       * @param {string} [opts.clientToken] - 用于保证请求的幂等性。由客户端生成，并确保不同请求中该参数唯一，长度不能超过64个字符。
-  optional
-      * @param {boolean} [opts.isManaged] - 是否托管实例的生命周期，默认为false；若为包年包月实例，可加入但不支持托管；该字段仅AG开启AS时生效。托管实例将在缩容或健康检查失败时被删除，非托管实例仅移出伸缩组
   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -2432,9 +2482,6 @@ class VM extends Service {
     if (opts.clientToken !== undefined && opts.clientToken !== null) {
       postBody['clientToken'] = opts.clientToken
     }
-    if (opts.isManaged !== undefined && opts.isManaged !== null) {
-      postBody['isManaged'] = opts.isManaged
-    }
 
     let queryParams = {}
 
@@ -2443,7 +2490,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -2586,7 +2633,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -2705,7 +2752,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -2839,7 +2886,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -2974,7 +3021,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -3113,7 +3160,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -3243,7 +3290,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -3364,7 +3411,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -3483,7 +3530,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -3601,7 +3648,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -3746,7 +3793,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -3880,7 +3927,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -4007,7 +4054,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -4136,7 +4183,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -4263,7 +4310,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -4412,7 +4459,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -4560,7 +4607,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -4694,7 +4741,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -4818,7 +4865,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -4971,7 +5018,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -5053,7 +5100,7 @@ class VM extends Service {
 - 调该接口之前实例必须处于停止 &#x60;stopped&#x60; 状态。
 - 修改VPC及子网
   - 内网IPv4：可指定或由系统分配。
-  - IPv6：如新子网支持IPv6，可选是否分配，如分配仅支持系统分配。
+  - IPv6：如新子网支持IPv6，可选是否分配，如果选择分配但不指定Ipv6地址，系统会自动分配。
   - 安全组：须指定新VPC下的安全组。
 - 不修改VPC，仅修改子网
   - 内网IPv4：可指定或由系统分配。
@@ -5076,6 +5123,8 @@ class VM extends Service {
       * @param {string} opts.subnetId - 子网Id。
       * @param {boolean} [opts.assignIpv6] - &#x60;true&#x60;: 分配IPV6地址。
 &#x60;false&#x60;: 不分配IPV6地址。
+  optional
+      * @param {string} [opts.ipv6Address] - 切换子网后的IPV6地址，不可与assignIpv6同时指定。
   optional
       * @param {string} [opts.privateIpAddress] - Ipv4地址。
 不变更 &#x60;vpc&#x60; 及子网时必须指定Ipv4地址
@@ -5121,6 +5170,9 @@ class VM extends Service {
     if (opts.assignIpv6 !== undefined && opts.assignIpv6 !== null) {
       postBody['assignIpv6'] = opts.assignIpv6
     }
+    if (opts.ipv6Address !== undefined && opts.ipv6Address !== null) {
+      postBody['ipv6Address'] = opts.ipv6Address
+    }
     if (opts.privateIpAddress !== undefined && opts.privateIpAddress !== null) {
       postBody['privateIpAddress'] = opts.privateIpAddress
     }
@@ -5136,7 +5188,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -5268,7 +5320,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -5389,7 +5441,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -5534,7 +5586,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -5713,7 +5765,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -5846,7 +5898,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -5992,7 +6044,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -6036,6 +6088,345 @@ class VM extends Service {
 
     let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}:modifyInstancePlacement',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *
+暂停云主机实例。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 云主机ID。
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  suspendInstance (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  suspendInstance"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling suspendInstance"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call suspendInstance with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}:suspendInstance',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *
+恢复云主机实例。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 云主机ID。
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  resumeInstance (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  resumeInstance"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling resumeInstance"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call resumeInstance with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}:resumeInstance',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更改云主机定时删除信息。
+
+      * @param {Object} opts - parameters
+      * @param {array} [opts.instanceIds] - 需要更改定时删除信息的云主机id列表。
+  optional
+      * @param {string} [opts.autoReleaseTime] - ｜ 为云主机设置或修改定时删除时间，如果为空，若云主机存在定时删除任务，则取消其定时删除任务。 支持的时间范围为当前时间+1小时至当前时间+10年。示例：&quot;2025-01-01 00:00:00&quot;  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  modifyInstanceReleaseTime (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyInstanceReleaseTime"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = {}
+    if (opts.instanceIds !== undefined && opts.instanceIds !== null) {
+      postBody['instanceIds'] = opts.instanceIds
+    }
+    if (opts.autoReleaseTime !== undefined && opts.autoReleaseTime !== null) {
+      postBody['autoReleaseTime'] = opts.autoReleaseTime
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyInstanceReleaseTime with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances:modifyInstanceReleaseTime',
       'POST',
       pathParams,
       queryParams,
@@ -6117,7 +6508,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -6265,7 +6656,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -6387,7 +6778,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -6524,7 +6915,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -6644,7 +7035,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -6764,7 +7155,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -6883,7 +7274,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -7012,7 +7403,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -7136,7 +7527,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -7263,7 +7654,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -7398,7 +7789,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -7516,7 +7907,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -7653,7 +8044,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -7777,7 +8168,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -7895,7 +8286,7 @@ class VM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.5.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  vm/1.6.1'
     }
 
     let contentTypes = ['application/json']

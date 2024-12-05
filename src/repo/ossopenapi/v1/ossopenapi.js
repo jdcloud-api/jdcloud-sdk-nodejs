@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * user bill code openapi
- * user bill code openapi
+ * vpc policy openapi v1
+ * vpc policy openapi v1
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * ossopenapi service.
- * @version 0.8.5
+ * @version 0.9.7
  */
 
 class OSSOPENAPI extends Service {
@@ -42,6 +42,141 @@ class OSSOPENAPI extends Service {
       options._defaultEndpoint.host || 'ossopenapi.jdcloud-api.com'
     options.basePath = '/v1' // 默认要设为空""
     super(serviceId, options)
+  }
+
+  /**
+      *  根据type获取bucket用量数据
+      * @param {Object} opts - parameters
+      * @param {array} [opts.capacityTypes] - &lt;p&gt;查询用量数据类型：&lt;/p&gt;&lt;br&gt;&lt;code&gt;1000040&lt;/code&gt;:标准存储&lt;br&gt;&lt;code&gt;1000041&lt;/code&gt;:低冗余存储&lt;br&gt;&lt;code&gt;1000042&lt;/code&gt;:归档存储&lt;br&gt;&lt;code&gt;1000043&lt;/code&gt;归档overHead存储:&lt;br&gt;&lt;code&gt;1000044&lt;/code&gt;低频存储:&lt;br&gt;&lt;code&gt;1000045&lt;/code&gt;低频overHead存储:&lt;br&gt;&lt;code&gt;1&lt;/code&gt;:内网GET流量&lt;br&gt;&lt;code&gt;2&lt;/code&gt;:内网HEAD流量&lt;br&gt;&lt;code&gt;3&lt;/code&gt;:内网PUT流量&lt;br&gt;&lt;code&gt;4&lt;/code&gt;:内网POST流量&lt;br&gt;&lt;code&gt;5&lt;/code&gt;:内网DELETE流量&lt;br&gt;&lt;code&gt;6&lt;/code&gt;:内网OPTIONS流量&lt;br&gt;&lt;code&gt;7&lt;/code&gt;:内网TRACE流量&lt;br&gt;&lt;code&gt;11&lt;/code&gt;:外网GET流量&lt;br&gt;&lt;code&gt;12&lt;/code&gt;:外网HEAD流量&lt;br&gt;&lt;code&gt;13&lt;/code&gt;:外网PUT流量&lt;br&gt;&lt;code&gt;14&lt;/code&gt;:外网POST流量&lt;br&gt;&lt;code&gt;15&lt;/code&gt;:外网DELETE流量&lt;br&gt;&lt;code&gt;16&lt;/code&gt;:外网OPTIONS流量&lt;br&gt;&lt;code&gt;17&lt;/code&gt;:外网TRACE流量&lt;br&gt;&lt;code&gt;21&lt;/code&gt;:CDN GET流量&lt;br&gt;&lt;code&gt;22&lt;/code&gt;:CDN HEAD流量&lt;br&gt;&lt;code&gt;23&lt;/code&gt;:CDN PUT流量&lt;br&gt;&lt;code&gt;24&lt;/code&gt;:CDN POST流量&lt;br&gt;&lt;code&gt;25&lt;/code&gt;:CDN DELETE流量&lt;br&gt;&lt;code&gt;26&lt;/code&gt;:CDN OPTIONS流量&lt;br&gt;&lt;code&gt;27&lt;/code&gt;:CDN TRACE流量&lt;br&gt;&lt;code&gt;31&lt;/code&gt;:内网GET数&lt;br&gt;&lt;code&gt;32&lt;/code&gt;:内网HEAD数&lt;br&gt;&lt;code&gt;33&lt;/code&gt;:内网PUT数&lt;br&gt;&lt;code&gt;34&lt;/code&gt;:内网POST数&lt;br&gt;&lt;code&gt;35&lt;/code&gt;:内网DELETE数&lt;br&gt;&lt;code&gt;36&lt;/code&gt;:内网OPTIONS数&lt;br&gt;&lt;code&gt;37&lt;/code&gt;:内网TRACE数&lt;br&gt;&lt;code&gt;51&lt;/code&gt;:外网GET数&lt;br&gt;&lt;code&gt;52&lt;/code&gt;:外网HEAD数&lt;br&gt;&lt;code&gt;53&lt;/code&gt;:外网PUT数&lt;br&gt;&lt;code&gt;54&lt;/code&gt;:外网POST数&lt;br&gt;&lt;code&gt;55&lt;/code&gt;:外网DELETE数&lt;br&gt;&lt;code&gt;56&lt;/code&gt;:外网OPTIONS数&lt;br&gt;&lt;code&gt;57&lt;/code&gt;:外网TRACE数&lt;br&gt;&lt;code&gt;61&lt;/code&gt;:CDN GET数&lt;br&gt;&lt;code&gt;62&lt;/code&gt;:CDN HEAD数&lt;br&gt;&lt;code&gt;63&lt;/code&gt;:CDN PUT数&lt;br&gt;&lt;code&gt;64&lt;/code&gt;:CDN POST数&lt;br&gt;&lt;code&gt;65&lt;/code&gt;:CDN DELETE数&lt;br&gt;&lt;code&gt;66&lt;/code&gt;:CDN OPTIONS数&lt;br&gt;&lt;code&gt;67&lt;/code&gt;:CDN TRACE数&lt;br&gt;&lt;code&gt;71&lt;/code&gt;:归档提前删除&lt;br&gt;&lt;code&gt;72&lt;/code&gt;:低频提前删除&lt;br&gt;&lt;code&gt;81&lt;/code&gt;:归档取回Bulk&lt;br&gt;&lt;code&gt;82&lt;/code&gt;:归档取回Std&lt;br&gt;&lt;code&gt;83&lt;/code&gt;:归档取回Exp&lt;br&gt;&lt;code&gt;84&lt;/code&gt;:低频数据取回
+  optional
+      * @param {string} [opts.beginTime] - 开始时间，使用UTC时间，格式为：YYYY-MM-DDTHH:mm:ss&#39;Z&#39;  optional
+      * @param {string} [opts.endTime] - 结束时间，使用UTC时间，格式为：YYYY-MM-DDTHH:mm:ss&#39;Z&#39;  optional
+      * @param {integer} [opts.periodType] - 查询数据的聚合方式:&lt;br&gt;&lt;code&gt;0&lt;/code&gt;:all, 最大查询区间365天 &lt;br&gt;&lt;code&gt;1&lt;/code&gt;:hour，最大查询区间31天。默认1&lt;br&gt;&lt;code&gt;2&lt;/code&gt;:day, 最大查询区间365天。  optional
+      * @param {integer} opts.method - 返回数据的方式： &lt;code&gt;1&lt;/code&gt;:recent(区间值), &lt;code&gt;2&lt;/code&gt;:current(当前值。method &#x3D; 2 时如果查询当前值时传入beginTime，则按照beginTime时间来进行查询；如果不传beginTime，则按照后端系统时间查询。)
+      * @param {array} [opts.bucketNames] - 查询的bucket Names。如果查询用户全部Bucket,则不传  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param bucketCapacityQueryResult bucketCapacityQueryResult
+      */
+
+  getBucketCapacity (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getBucketCapacity"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.method === undefined || opts.method === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.method' when calling getBucketCapacity"
+      )
+    }
+
+    let postBody = {}
+    if (opts.capacityTypes !== undefined && opts.capacityTypes !== null) {
+      postBody['capacityTypes'] = opts.capacityTypes
+    }
+    if (opts.beginTime !== undefined && opts.beginTime !== null) {
+      postBody['beginTime'] = opts.beginTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      postBody['endTime'] = opts.endTime
+    }
+    if (opts.periodType !== undefined && opts.periodType !== null) {
+      postBody['periodType'] = opts.periodType
+    }
+    if (opts.method !== undefined && opts.method !== null) {
+      postBody['method'] = opts.method
+    }
+    if (opts.bucketNames !== undefined && opts.bucketNames !== null) {
+      postBody['bucketNames'] = opts.bucketNames
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.9.7'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getBucketCapacity with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/capacity/',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
   }
 
   /**
@@ -110,7 +245,7 @@ class OSSOPENAPI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.8.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.9.7'
     }
 
     let contentTypes = ['application/json']
@@ -221,7 +356,7 @@ class OSSOPENAPI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.8.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.9.7'
     }
 
     let contentTypes = ['application/json']
@@ -336,7 +471,7 @@ class OSSOPENAPI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.8.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.9.7'
     }
 
     let contentTypes = ['application/json']
@@ -450,7 +585,7 @@ class OSSOPENAPI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.8.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.9.7'
     }
 
     let contentTypes = ['application/json']
@@ -568,7 +703,7 @@ class OSSOPENAPI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.8.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.9.7'
     }
 
     let contentTypes = ['application/json']
@@ -686,7 +821,7 @@ class OSSOPENAPI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.8.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.9.7'
     }
 
     let contentTypes = ['application/json']
@@ -805,7 +940,7 @@ class OSSOPENAPI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.8.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.9.7'
     }
 
     let contentTypes = ['application/json']
@@ -985,7 +1120,7 @@ class OSSOPENAPI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.8.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.9.7'
     }
 
     let contentTypes = ['application/json']
@@ -1029,6 +1164,131 @@ class OSSOPENAPI extends Service {
 
     let request = super.makeRequest(
       '/regions/{regionId}/buckets/{bucketName}/historical_replicat_task/',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  开通对象存储服务
+      * @param {Object} opts - parameters
+      * @param {string} opts.userId - 用户Id
+      * @param {string} opts.appCode - app code
+      * @param {string} opts.serviceCode - service code
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  openService (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  openService"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.userId === undefined || opts.userId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.userId' when calling openService"
+      )
+    }
+    if (opts.appCode === undefined || opts.appCode === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appCode' when calling openService"
+      )
+    }
+    if (opts.serviceCode === undefined || opts.serviceCode === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.serviceCode' when calling openService"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      userId: opts.userId,
+      appCode: opts.appCode,
+      serviceCode: opts.serviceCode
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.9.7'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call openService with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/users/{userId}/appCodes/{appCode}/serviceCodes/{serviceCode}/openService',
       'POST',
       pathParams,
       queryParams,

@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * user bill code openapi
- * user bill code openapi
+ * vpc policy openapi v1
+ * vpc policy openapi v1
  *
  * OpenAPI spec version: v1
  * Contact:

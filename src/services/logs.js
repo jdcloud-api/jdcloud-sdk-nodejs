@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * CollectTemplate APIS
- * 日志服务采集模板（云产品）的查询接口
+ * WebConf APIs
+ * 日志服务webconf相关的管理控制接口
  *
  * OpenAPI spec version: v1
  * Contact:

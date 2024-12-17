@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * billing service.
- * @version 1.1.13
+ * @version 1.1.16
  */
 
 class BILLING extends Service {
@@ -124,7 +124,7 @@ class BILLING extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.16'
     }
 
     let contentTypes = ['application/json']
@@ -280,7 +280,7 @@ class BILLING extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.16'
     }
 
     let contentTypes = ['application/json']
@@ -432,7 +432,7 @@ class BILLING extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.16'
     }
 
     let contentTypes = ['application/json']
@@ -588,7 +588,7 @@ class BILLING extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.16'
     }
 
     let contentTypes = ['application/json']
@@ -727,7 +727,7 @@ class BILLING extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.16'
     }
 
     let contentTypes = ['application/json']
@@ -771,6 +771,462 @@ class BILLING extends Service {
 
     let request = super.makeRequest(
       '/regions/{regionId}/describeFormulaSummaryList',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询分账账单天汇总数据
+      * @param {Object} opts - parameters
+      * @param {string} opts.startTime - 账期开始时间,不支持跨月查询。格式:yyyy-MM-dd HH:mm:ss
+      * @param {string} opts.endTime - 账期结束时间,不支持跨月查询。格式:yyyy-MM-dd HH:mm:ss
+      * @param {string} [opts.appCode] - 产品线代码  optional
+      * @param {string} [opts.serviceCode] - 产品代码  optional
+      * @param {array} [opts.subIds] - 拆分项ID列表,最多支持传入500个  optional
+      * @param {array} [opts.tags] - 标签,JSON格式:[{&quot;k1&quot;:&quot;v1&quot;},{&quot;k1&quot;:&quot;v2&quot;},{&quot;k2&quot;:&quot;&quot;}]
+示例:
+选择的标签为, 部门:广告部、部门:物流部、项目
+则传值为:[{&quot;部门&quot;:&quot;广告部&quot;},{&quot;部门&quot;:&quot;物流部&quot;},{&quot;项目&quot;:&quot;&quot;}]
+  optional
+      * @param {integer} [opts.pageIndex] - pageIndex 分页,默认从1开始  optional
+      * @param {integer} [opts.pageSize] - pageSize 每页查询数据条数,最多支持1000条  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param pagination pagination
+      * @param splitItemBillSummary result
+      */
+
+  querySplitItemDaySummary (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  querySplitItemDaySummary"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.startTime === undefined || opts.startTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.startTime' when calling querySplitItemDaySummary"
+      )
+    }
+    if (opts.endTime === undefined || opts.endTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.endTime' when calling querySplitItemDaySummary"
+      )
+    }
+
+    let postBody = {}
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      postBody['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      postBody['endTime'] = opts.endTime
+    }
+    if (opts.appCode !== undefined && opts.appCode !== null) {
+      postBody['appCode'] = opts.appCode
+    }
+    if (opts.serviceCode !== undefined && opts.serviceCode !== null) {
+      postBody['serviceCode'] = opts.serviceCode
+    }
+    if (opts.subIds !== undefined && opts.subIds !== null) {
+      postBody['subIds'] = opts.subIds
+    }
+    if (opts.tags !== undefined && opts.tags !== null) {
+      postBody['tags'] = opts.tags
+    }
+    if (opts.pageIndex !== undefined && opts.pageIndex !== null) {
+      postBody['pageIndex'] = opts.pageIndex
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.16'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call querySplitItemDaySummary with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/splitItemBillDaySummary:List',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询分账账单月汇总数据
+      * @param {Object} opts - parameters
+      * @param {string} opts.startTime - 账期开始时间,不支持跨月查询。格式:yyyy-MM-dd HH:mm:ss
+      * @param {string} opts.endTime - 账期结束时间,不支持跨月查询。格式:yyyy-MM-dd HH:mm:ss
+      * @param {string} [opts.appCode] - 产品线代码  optional
+      * @param {string} [opts.serviceCode] - 产品代码  optional
+      * @param {array} [opts.subIds] - 拆分项ID列表,最多支持传入500个  optional
+      * @param {array} [opts.tags] - 标签,JSON格式:[{&quot;k1&quot;:&quot;v1&quot;},{&quot;k1&quot;:&quot;v2&quot;},{&quot;k2&quot;:&quot;&quot;}]
+示例:
+选择的标签为, 部门:广告部、部门:物流部、项目
+则传值为:[{&quot;部门&quot;:&quot;广告部&quot;},{&quot;部门&quot;:&quot;物流部&quot;},{&quot;项目&quot;:&quot;&quot;}]
+  optional
+      * @param {integer} [opts.pageIndex] - pageIndex 分页,默认从1开始  optional
+      * @param {integer} [opts.pageSize] - pageSize 每页查询数据条数,最多支持1000条  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param pagination pagination
+      * @param splitItemBillSummary result
+      */
+
+  querySplitItemMonthSummary (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  querySplitItemMonthSummary"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.startTime === undefined || opts.startTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.startTime' when calling querySplitItemMonthSummary"
+      )
+    }
+    if (opts.endTime === undefined || opts.endTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.endTime' when calling querySplitItemMonthSummary"
+      )
+    }
+
+    let postBody = {}
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      postBody['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      postBody['endTime'] = opts.endTime
+    }
+    if (opts.appCode !== undefined && opts.appCode !== null) {
+      postBody['appCode'] = opts.appCode
+    }
+    if (opts.serviceCode !== undefined && opts.serviceCode !== null) {
+      postBody['serviceCode'] = opts.serviceCode
+    }
+    if (opts.subIds !== undefined && opts.subIds !== null) {
+      postBody['subIds'] = opts.subIds
+    }
+    if (opts.tags !== undefined && opts.tags !== null) {
+      postBody['tags'] = opts.tags
+    }
+    if (opts.pageIndex !== undefined && opts.pageIndex !== null) {
+      postBody['pageIndex'] = opts.pageIndex
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.16'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call querySplitItemMonthSummary with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/splitItemBillMonthSummary:List',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询账单资源天汇总数据
+      * @param {Object} opts - parameters
+      * @param {string} opts.startTime - 账期开始时间,不支持跨月查询。格式:yyyy-MM-dd HH:mm:ss
+      * @param {string} opts.endTime - 账期结束时间,不支持跨月查询。格式:yyyy-MM-dd HH:mm:ss
+      * @param {string} [opts.appCode] - 产品线代码  optional
+      * @param {string} [opts.serviceCode] - 产品代码  optional
+      * @param {array} [opts.resourceIds] - 资源单id列表,最多支持传入500个  optional
+      * @param {array} [opts.tags] - 标签,JSON格式:[{&quot;k1&quot;:&quot;v1&quot;},{&quot;k1&quot;:&quot;v2&quot;},{&quot;k2&quot;:&quot;&quot;}]
+示例:
+选择的标签为, 部门:广告部、部门:物流部、项目
+则传值为:[{&quot;部门&quot;:&quot;广告部&quot;},{&quot;部门&quot;:&quot;物流部&quot;},{&quot;项目&quot;:&quot;&quot;}]
+  optional
+      * @param {integer} [opts.pageIndex] - pageIndex 分页,默认从1开始  optional
+      * @param {integer} [opts.pageSize] - pageSize 每页查询数据条数,最多支持1000条  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param pagination pagination
+      * @param billSummary result
+      */
+
+  queryBillDaySummary (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  queryBillDaySummary"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.startTime === undefined || opts.startTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.startTime' when calling queryBillDaySummary"
+      )
+    }
+    if (opts.endTime === undefined || opts.endTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.endTime' when calling queryBillDaySummary"
+      )
+    }
+
+    let postBody = {}
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      postBody['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      postBody['endTime'] = opts.endTime
+    }
+    if (opts.appCode !== undefined && opts.appCode !== null) {
+      postBody['appCode'] = opts.appCode
+    }
+    if (opts.serviceCode !== undefined && opts.serviceCode !== null) {
+      postBody['serviceCode'] = opts.serviceCode
+    }
+    if (opts.resourceIds !== undefined && opts.resourceIds !== null) {
+      postBody['resourceIds'] = opts.resourceIds
+    }
+    if (opts.tags !== undefined && opts.tags !== null) {
+      postBody['tags'] = opts.tags
+    }
+    if (opts.pageIndex !== undefined && opts.pageIndex !== null) {
+      postBody['pageIndex'] = opts.pageIndex
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.16'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call queryBillDaySummary with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/billDaySummary:list',
       'POST',
       pathParams,
       queryParams,
@@ -896,7 +1352,7 @@ class BILLING extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.13'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.16'
     }
 
     let contentTypes = ['application/json']

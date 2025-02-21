@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * pod service.
- * @version 2.5.1
+ * @version 2.6.1
  */
 
 class POD extends Service {
@@ -94,7 +94,7 @@ class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -206,7 +206,7 @@ class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -317,7 +317,7 @@ class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -445,7 +445,7 @@ class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -563,7 +563,7 @@ class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -681,7 +681,7 @@ class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -809,7 +809,7 @@ class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -936,7 +936,7 @@ class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -1062,7 +1062,7 @@ class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -1202,7 +1202,7 @@ class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -1322,7 +1322,7 @@ class POD extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -1440,7 +1440,7 @@ image - 镜像名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -1554,7 +1554,7 @@ image - 镜像名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -1666,7 +1666,7 @@ image - 镜像名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -1777,7 +1777,7 @@ image - 镜像名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -1903,7 +1903,7 @@ image - 镜像名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -2023,7 +2023,7 @@ image - 镜像名称，模糊匹配，支持单个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -2133,7 +2133,7 @@ az - 可用区，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -2219,7 +2219,7 @@ vpcId - 私有网络ID，精确匹配，支持多个
 phase - pod 状态，精确匹配，支持多个
 name - 实例名称，模糊匹配，支持单个
 subnetId - 镜像ID，精确匹配，支持多个
-agId - 镜像ID，精确匹配，支持多个
+agId - 高可用组ID，精确匹配，支持多个
   optional
       * @param {tagFilter} [opts.tags] - Tag筛选条件  optional
       * @param {string} regionId - ID of the region
@@ -2259,7 +2259,7 @@ agId - 镜像ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -2447,7 +2447,7 @@ agId - 镜像ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -2492,6 +2492,130 @@ agId - 镜像ID，精确匹配，支持多个
     let request = super.makeRequest(
       '/regions/{regionId}/pods',
       'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  批量查询 pod 的状态信息&lt;br&gt;
+此接口支持分页查询，默认每页20条。
+
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码；默认为1  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 500]  optional
+      * @param {filter} [opts.filters] - podId - pod ID，精确匹配，支持多个
+privateIpAddress - 主网卡IP地址，模糊匹配，支持单个
+az - 可用区，精确匹配，支持多个
+vpcId - 私有网络ID，精确匹配，支持多个
+phase - pod 状态，精确匹配，支持多个
+name - 实例名称，模糊匹配，支持单个
+subnetId - 镜像ID，精确匹配，支持多个
+agId - 高可用组ID，精确匹配，支持多个
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param briefPodStatus podsStatus
+      * @param number totalCount
+      */
+
+  describePodsStatus (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describePodsStatus"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describePodsStatus with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/podsStatus',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -2567,7 +2691,7 @@ agId - 镜像ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -2679,7 +2803,7 @@ agId - 镜像ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -2801,7 +2925,7 @@ agId - 镜像ID，精确匹配，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -2914,7 +3038,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -3026,7 +3150,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -3142,7 +3266,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -3265,7 +3389,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -3386,7 +3510,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -3530,7 +3654,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -3646,7 +3770,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -3782,7 +3906,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -3855,10 +3979,711 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
   }
 
   /**
-      *  查询资源的配额，支持：原生容器,pod,secret,镜像缓存
+      *  批量查询Pod模板。支持分页查询，默认每页20条。
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码；默认为1。取值范围：[1,∞)  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]  optional
+      * @param {filter} [opts.filters] - podTemplateIds - podTemplate ID，精确匹配，支持多个
+name - pod模板名称，模糊匹配，支持单个
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param podTemplate podTemplates
+      * @param number totalCount
+      */
+
+  describePodTemplates (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describePodTemplates"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describePodTemplates with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/podTemplates',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建Pod模板
+      * @param {Object} opts - parameters
+      * @param {string} opts.name - pod模板的名称，参考 [公共参数规范](https://docs.jdcloud.com/virtual-machines/api/general_parameters)。
+      * @param {string} [opts.description] - pod模板描述，参考 [公共参数规范](https://docs.jdcloud.com/virtual-machines/api/general_parameters)。  optional
+      * @param {podTemplateSpec} opts.podTemplateSpec - pod模板创建参数
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string podTemplateId  Pod模板ID。
+      */
+
+  createPodTemplate (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createPodTemplate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.name === undefined || opts.name === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.name' when calling createPodTemplate"
+      )
+    }
+    if (opts.podTemplateSpec === undefined || opts.podTemplateSpec === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.podTemplateSpec' when calling createPodTemplate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+    if (opts.podTemplateSpec !== undefined && opts.podTemplateSpec !== null) {
+      postBody['podTemplateSpec'] = opts.podTemplateSpec
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createPodTemplate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/podTemplates',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询Pod模板的详细信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.podTemplateId - Pod模板ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param podTemplate podTemplate
+      */
+
+  describePodTemplate (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describePodTemplate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.podTemplateId === undefined || opts.podTemplateId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.podTemplateId' when calling describePodTemplate"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      podTemplateId: opts.podTemplateId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describePodTemplate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/podTemplates/{podTemplateId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改Pod模板的配置
+      * @param {Object} opts - parameters
+      * @param {string} opts.podTemplateId - Pod模板ID
+      * @param {string} [opts.name] - pod模板的名称，参考 [公共参数规范](https://docs.jdcloud.com/virtual-machines/api/general_parameters)。  optional
+      * @param {string} [opts.description] - pod模板描述，参考 [公共参数规范](https://docs.jdcloud.com/virtual-machines/api/general_parameters)。  optional
+      * @param {updatePodTemplateSpec} [opts.podTemplateSpec] - pod模板修改参。如果没有指定，那么就意味着不进行修改。在不特殊说明的情况下，这个规则也适用于此结构体内的其他字段。  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  updatePodTemplate (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  updatePodTemplate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.podTemplateId === undefined || opts.podTemplateId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.podTemplateId' when calling updatePodTemplate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+    if (opts.podTemplateSpec !== undefined && opts.podTemplateSpec !== null) {
+      postBody['podTemplateSpec'] = opts.podTemplateSpec
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      podTemplateId: opts.podTemplateId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call updatePodTemplate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/podTemplates/{podTemplateId}',
+      'PATCH',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除单个pod模板
+      * @param {Object} opts - parameters
+      * @param {string} opts.podTemplateId - Pod模板ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deletePodTemplate (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deletePodTemplate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.podTemplateId === undefined || opts.podTemplateId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.podTemplateId' when calling deletePodTemplate"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      podTemplateId: opts.podTemplateId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deletePodTemplate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/podTemplates/{podTemplateId}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  校验pod模板的有效性。
+
+## 接口说明
+- 调用该接口可以校验Pod模板是否有效，例如某些关联资源（如子网、镜像等）已经被删除了。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.resourceType - resourceType - 资源类型，支持 [container, pod, secret, imageCache]
+      * @param {string} opts.podTemplateId - Pod模板ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  verifyPodTemplate (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  verifyPodTemplate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.podTemplateId === undefined || opts.podTemplateId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.podTemplateId' when calling verifyPodTemplate"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      podTemplateId: opts.podTemplateId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call verifyPodTemplate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/podTemplates/{podTemplateId}:verify',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询资源的配额，支持：原生容器,pod,secret,镜像缓存,Pod模板
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.resourceType - resourceType - 资源类型，支持 [container, pod, secret, imageCache,podTemplate]
 
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -3897,7 +4722,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -4014,7 +4839,7 @@ pod 实例或其绑定的云盘已欠费时，容器将无法正常启动。&lt;
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -4153,7 +4978,7 @@ value 是 Base64 编码的字符串，不能包含换行符（在 linux 下使�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -4265,7 +5090,7 @@ value 是 Base64 编码的字符串，不能包含换行符（在 linux 下使�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
     }
 
     let contentTypes = ['application/json']
@@ -4376,7 +5201,7 @@ value 是 Base64 编码的字符串，不能包含换行符（在 linux 下使�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.5.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  pod/2.6.1'
     }
 
     let contentTypes = ['application/json']

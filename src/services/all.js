@@ -10,6 +10,7 @@ module.exports = {
   REDIS: require('./redis'),
   DOMAINSERVICE: require('./domainservice'),
   BILLING: require('./billing'),
+  GCS: require('./gcs'),
   QUOTA: require('./quota'),
   BRI: require('./bri'),
   EDCPS: require('./edcps'),

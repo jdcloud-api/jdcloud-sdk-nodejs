@@ -47,6 +47,7 @@ module.exports = {
   IAS: require('./ias'),
   JDFUSION: require('./jdfusion'),
   DETECTION: require('./detection'),
+  ROCKETMQ: require('./rocketmq'),
   RENEWAL: require('./renewal'),
   IOTLINK: require('./iotlink'),
   YUNDING: require('./yunding'),

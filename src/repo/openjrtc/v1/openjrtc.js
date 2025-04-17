@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * openjrtc service.
- * @version 1.1.8
+ * @version 1.1.9
  */
 
 class OPENJRTC extends Service {
@@ -50,9 +50,13 @@ class OPENJRTC extends Service {
       * @param {Object} opts - parameters
       * @param {string} [opts.appId] - 应用ID  optional
       * @param {string} [opts.userRoomId] - 业务接入方定义的且在JRTC系统内注册过的房间号  optional
-      * @param {integer} [opts.asrTaskType] - 语音识别场景 0-全部识别转文字  optional
+      * @param {integer} [opts.asrTaskType] - 语音任务类型 0-转写 1-翻译； asrTaskType &#x3D;0 Subtitle不生效；asrTaskType &#x3D;1 Subtitle.enableTranslate&#x3D;true(转写+翻译)Subtitle.enableTranslate&#x3D;false(只转写)  optional
+      * @param {string} [opts.aiModel] - ai模型  optional
+      * @param {string} [opts.extInfo] - 附加参数  optional
+      * @param {subtitle} [opts.subtitle] - 字幕配置  optional
       * @param {string} callback - callback
       @return {Object} result
+      * @param startAsrTaskResult resultObject
       */
 
   startAsrTask (opts, callback) {
@@ -68,6 +72,15 @@ class OPENJRTC extends Service {
     if (opts.asrTaskType !== undefined && opts.asrTaskType !== null) {
       postBody['asrTaskType'] = opts.asrTaskType
     }
+    if (opts.aiModel !== undefined && opts.aiModel !== null) {
+      postBody['aiModel'] = opts.aiModel
+    }
+    if (opts.extInfo !== undefined && opts.extInfo !== null) {
+      postBody['extInfo'] = opts.extInfo
+    }
+    if (opts.subtitle !== undefined && opts.subtitle !== null) {
+      postBody['subtitle'] = opts.subtitle
+    }
 
     let queryParams = {}
 
@@ -76,7 +89,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -154,7 +167,7 @@ class OPENJRTC extends Service {
       * @param {Object} opts - parameters
       * @param {string} [opts.appId] - 应用ID  optional
       * @param {string} [opts.userRoomId] - 业务接入方定义的且在JRTC系统内注册过的房间号  optional
-      * @param {integer} [opts.asrTaskType] - 语音识别场景 0-全部识别转文字  optional
+      * @param {integer} [opts.asrTaskType] - 语音任务类型 0-转写 1-翻译  optional
       * @param {string} callback - callback
       @return {Object} result
       */
@@ -180,7 +193,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -280,7 +293,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -380,7 +393,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -480,7 +493,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -593,7 +606,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -702,7 +715,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -811,7 +824,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -919,7 +932,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -1025,7 +1038,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -1125,7 +1138,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -1236,7 +1249,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -1343,7 +1356,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -1455,7 +1468,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -1569,7 +1582,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -1728,7 +1741,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -1801,12 +1814,12 @@ class OPENJRTC extends Service {
   }
 
   /**
-      *  获取历史音频、区分视频码率通讯时长
+      *  获取历史音频、区分视频码率通讯时长(分钟)
 
       * @param {Object} opts - parameters
       * @param {string} [opts.appId] - 应用ID  optional
       * @param {string} opts.startTime - 开始时间 UTC格式
-      * @param {string} [opts.endTime] - 结束时间 UTC格式  optional
+      * @param {string} opts.endTime - 结束时间 UTC格式
       * @param {string} callback - callback
       @return {Object} result
       * @param callDurationByCodeRate content
@@ -1818,6 +1831,11 @@ class OPENJRTC extends Service {
     if (opts.startTime === undefined || opts.startTime === null) {
       throw new Error(
         "Missing the required parameter 'opts.startTime' when calling describeCallDurationByCodeRate"
+      )
+    }
+    if (opts.endTime === undefined || opts.endTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.endTime' when calling describeCallDurationByCodeRate"
       )
     }
 
@@ -1838,7 +1856,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -1930,7 +1948,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -2009,6 +2027,7 @@ class OPENJRTC extends Service {
       * @param {string} [opts.appId] - 应用ID  optional
       * @param {string} [opts.userName] - 用户名称  optional
       * @param {string} [opts.userId] - 业务接入方的用户ID  optional
+      * @param {string} [opts.portraitUrl] - 用户头像url  optional
       * @param {boolean} [opts.temporary] - 是否临时用户  optional
       * @param {string} callback - callback
       @return {Object} result
@@ -2028,6 +2047,9 @@ class OPENJRTC extends Service {
     if (opts.userId !== undefined && opts.userId !== null) {
       postBody['userId'] = opts.userId
     }
+    if (opts.portraitUrl !== undefined && opts.portraitUrl !== null) {
+      postBody['portraitUrl'] = opts.portraitUrl
+    }
     if (opts.temporary !== undefined && opts.temporary !== null) {
       postBody['temporary'] = opts.temporary
     }
@@ -2039,7 +2061,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -2141,7 +2163,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -2219,14 +2241,21 @@ class OPENJRTC extends Service {
       * @param {Object} opts - parameters
       * @param {string} [opts.appId] - 应用ID  optional
       * @param {string} [opts.userRoomId] - 业务接入方定义的且在JRTC系统内注册过的房间号  optional
-      * @param {integer} [opts.layoutTemplate] - 布局模板-支持参数1  optional
+      * @param {integer} [opts.layoutTemplate] - 布局模板 1-九宫格 2-左右屏幕分享 3-上下屏幕分享 4-画中画  optional
       * @param {string} [opts.mainUserId] - 主人员userId  optional
+      * @param {integer} [opts.mainVideoStreamType] - 1:摄像头  2：屏幕分享  optional
+      * @param {integer} [opts.showAudioIcon] - 是否显示音频图标 0：不显示  1:显示  optional
+      * @param {integer} [opts.showNickName] - 是否显示昵称  0：不显示  1:显示  optional
       * @param {integer} [opts.outputType] - 输出类型 1：录制 2：旁路转推  optional
-      * @param {string} [opts.outputName] - 输出名称  optional
-      * @param {array} [opts.mcuUserInfos] - 参与混流人员参数  optional
+      * @param {string} [opts.outputName] - 输出录制文件的名称  optional
+      * @param {string} [opts.outputRecordFormat] - 输出录制文件的格式：mp4、flv、m3u8；为空时默认m3u8。  optional
+      * @param {string} [opts.pushLiveUrl] - 转推直播地址（outputType&#x3D;2生效）  optional
+      * @param {array} [opts.mcuUserInfos] - 参与混流人员参数；为空时，默认使用房间参会人进行混流  optional
       * @param {outputEncode} [opts.outputEncode] - 输出格式  optional
+      * @param {waterMarkInfo} [opts.waterMarkInfo] - 水印信息  optional
       * @param {string} callback - callback
       @return {Object} result
+      * @param startMcuTranscodeResp resultObject
       */
 
   startMcuTranscode (opts, callback) {
@@ -2245,17 +2274,41 @@ class OPENJRTC extends Service {
     if (opts.mainUserId !== undefined && opts.mainUserId !== null) {
       postBody['mainUserId'] = opts.mainUserId
     }
+    if (
+      opts.mainVideoStreamType !== undefined &&
+      opts.mainVideoStreamType !== null
+    ) {
+      postBody['mainVideoStreamType'] = opts.mainVideoStreamType
+    }
+    if (opts.showAudioIcon !== undefined && opts.showAudioIcon !== null) {
+      postBody['showAudioIcon'] = opts.showAudioIcon
+    }
+    if (opts.showNickName !== undefined && opts.showNickName !== null) {
+      postBody['showNickName'] = opts.showNickName
+    }
     if (opts.outputType !== undefined && opts.outputType !== null) {
       postBody['outputType'] = opts.outputType
     }
     if (opts.outputName !== undefined && opts.outputName !== null) {
       postBody['outputName'] = opts.outputName
     }
+    if (
+      opts.outputRecordFormat !== undefined &&
+      opts.outputRecordFormat !== null
+    ) {
+      postBody['outputRecordFormat'] = opts.outputRecordFormat
+    }
+    if (opts.pushLiveUrl !== undefined && opts.pushLiveUrl !== null) {
+      postBody['pushLiveUrl'] = opts.pushLiveUrl
+    }
     if (opts.mcuUserInfos !== undefined && opts.mcuUserInfos !== null) {
       postBody['mcuUserInfos'] = opts.mcuUserInfos
     }
     if (opts.outputEncode !== undefined && opts.outputEncode !== null) {
       postBody['outputEncode'] = opts.outputEncode
+    }
+    if (opts.waterMarkInfo !== undefined && opts.waterMarkInfo !== null) {
+      postBody['waterMarkInfo'] = opts.waterMarkInfo
     }
 
     let queryParams = {}
@@ -2265,7 +2318,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -2343,6 +2396,7 @@ class OPENJRTC extends Service {
       * @param {Object} opts - parameters
       * @param {string} [opts.appId] - 应用ID  optional
       * @param {string} [opts.userRoomId] - 业务接入方定义的且在JRTC系统内注册过的房间号  optional
+      * @param {string} [opts.taskId] - 混流任务ID  optional
       * @param {string} callback - callback
       @return {Object} result
       */
@@ -2357,6 +2411,9 @@ class OPENJRTC extends Service {
     if (opts.userRoomId !== undefined && opts.userRoomId !== null) {
       postBody['userRoomId'] = opts.userRoomId
     }
+    if (opts.taskId !== undefined && opts.taskId !== null) {
+      postBody['taskId'] = opts.taskId
+    }
 
     let queryParams = {}
 
@@ -2365,7 +2422,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -2483,7 +2540,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -2597,7 +2654,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -2697,7 +2754,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -2797,7 +2854,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -2876,6 +2933,7 @@ class OPENJRTC extends Service {
       * @param {string} [opts.appId] - 应用ID  optional
       * @param {string} [opts.userName] - 用户名称  optional
       * @param {string} [opts.userId] - 业务接入方用户体系定义的userId  optional
+      * @param {string} [opts.portraitUrl] - 用户头像url  optional
       * @param {boolean} [opts.temporary] - 是否临时用户  optional
       * @param {string} callback - callback
       @return {Object} result
@@ -2895,6 +2953,9 @@ class OPENJRTC extends Service {
     if (opts.userId !== undefined && opts.userId !== null) {
       postBody['userId'] = opts.userId
     }
+    if (opts.portraitUrl !== undefined && opts.portraitUrl !== null) {
+      postBody['portraitUrl'] = opts.portraitUrl
+    }
     if (opts.temporary !== undefined && opts.temporary !== null) {
       postBody['temporary'] = opts.temporary
     }
@@ -2906,7 +2967,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -3015,7 +3076,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -3131,7 +3192,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -3208,6 +3269,8 @@ class OPENJRTC extends Service {
 允许通过条件过滤查询，支持的过滤字段如下：
            - status[eq] 在线状态 1-在线 2-离线
            - kind[eq] 在线状态 1-音频流 2-视频流 100-数据流
+           - deviceType[eq]  推流设备类型 kind&#x3D;1时,取值: 1-默认音频 2-蓝牙 3-手机音频 4-文件音频; kind&#x3D;2时,取值: 1-前置摄像头 2-后置摄像头 3-屏幕共享 4-文件视频;
+           - userIds[eq] 业务接入方用户体系定义的且在JRTC系统内注册过的userId,userId个数上限为50
            - startTime[eq] 用户推流开始时间-UTC时间  startTime,endTime同时指定时生效
            - endTime[eq]   用户推流结束时间-UTC时间  startTime,endTime同时指定时生效
 
@@ -3219,6 +3282,8 @@ class OPENJRTC extends Service {
       * @param {filter} [opts.filters] - 传参字段描述:
 - status[eq] 在线状态 1-在线 2-离线
 - kind[eq] 在线状态 1-音频流 2-视频流 100-数据流
+- deviceType[eq] 推流设备类型 kind&#x3D;1时,取值: 1-默认音频 2-蓝牙 3-手机音频 4-文件音频; kind&#x3D;2时,取值: 1-前置摄像头 2-后置摄像头 3-屏幕共享 4-文件视频;
+- userIds[eq] 业务接入方用户体系定义的且在JRTC系统内注册过的userId,userId个数上限为50
 - startTime[eq] 用户推流开始时间-UTC时间  startTime,endTime同时指定时生效
 - endTime[eq]   用户推流结束时间-UTC时间  startTime,endTime同时指定时生效
   optional
@@ -3260,7 +3325,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -3378,7 +3443,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -3487,7 +3552,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -3623,7 +3688,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -3748,7 +3813,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -3856,7 +3921,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -3960,7 +4025,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -4087,7 +4152,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -4205,7 +4270,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -4314,7 +4379,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -4426,7 +4491,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -4539,7 +4604,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -4646,7 +4711,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -4757,7 +4822,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -4866,7 +4931,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -4979,7 +5044,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -5088,7 +5153,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']
@@ -5204,7 +5269,7 @@ class OPENJRTC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  openjrtc/1.1.9'
     }
 
     let contentTypes = ['application/json']

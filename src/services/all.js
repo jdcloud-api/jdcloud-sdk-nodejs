@@ -91,6 +91,7 @@ module.exports = {
   YDSMS: require('./ydsms'),
   CLICKHOUSE: require('./clickhouse'),
   VM: require('./vm'),
+  SHENHAIPLATFORM: require('./shenhaiplatform'),
   FC: require('./fc'),
   DCAP: require('./dcap'),
   CLOUDAUTH: require('./cloudauth'),

@@ -116,6 +116,7 @@ module.exports = {
   VPC: require('./vpc'),
   MONITOR: require('./monitor'),
   XDATA: require('./xdata'),
+  YDAPP: require('./ydapp'),
   OPENJRTC: require('./openjrtc'),
   IOTCLOUDGATEWAY: require('./iotcloudgateway'),
   INVOICE: require('./invoice'),

@@ -51,6 +51,7 @@ module.exports = {
   RENEWAL: require('./renewal'),
   IOTLINK: require('./iotlink'),
   YUNDING: require('./yunding'),
+  AISEARCH: require('./aisearch'),
   CP: require('./cp'),
   CR: require('./cr'),
   PIPELINE: require('./pipeline'),

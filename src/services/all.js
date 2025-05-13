@@ -86,6 +86,7 @@ module.exports = {
   HUFU: require('./hufu'),
   ES: require('./es'),
   HTTPDNS: require('./httpdns'),
+  AISEARCHDATA: require('./aisearchdata'),
   DISK: require('./disk'),
   DBS: require('./dbs'),
   NC: require('./nc'),

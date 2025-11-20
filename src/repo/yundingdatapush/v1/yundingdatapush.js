@@ -30,10 +30,10 @@ Service._services[serviceId] = true
 
 /**
  * yundingdatapush service.
- * @version 1.0.3
+ * @version 1.0.7
  */
 
-JDCloud.YUNDINGDATAPUSH = class YUNDINGDATAPUSH extends Service {
+class YUNDINGDATAPUSH extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
@@ -97,7 +97,7 @@ JDCloud.YUNDINGDATAPUSH = class YUNDINGDATAPUSH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yundingdatapush/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yundingdatapush/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -139,7 +139,7 @@ JDCloud.YUNDINGDATAPUSH = class YUNDINGDATAPUSH extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/datapushVenders',
       'GET',
       pathParams,
@@ -200,7 +200,7 @@ JDCloud.YUNDINGDATAPUSH = class YUNDINGDATAPUSH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yundingdatapush/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yundingdatapush/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -242,7 +242,7 @@ JDCloud.YUNDINGDATAPUSH = class YUNDINGDATAPUSH extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/datapushVenders',
       'POST',
       pathParams,
@@ -319,7 +319,7 @@ JDCloud.YUNDINGDATAPUSH = class YUNDINGDATAPUSH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yundingdatapush/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yundingdatapush/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -361,7 +361,7 @@ JDCloud.YUNDINGDATAPUSH = class YUNDINGDATAPUSH extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/datapushVenders',
       'DELETE',
       pathParams,
@@ -420,7 +420,7 @@ JDCloud.YUNDINGDATAPUSH = class YUNDINGDATAPUSH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  yundingdatapush/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yundingdatapush/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -462,7 +462,7 @@ JDCloud.YUNDINGDATAPUSH = class YUNDINGDATAPUSH extends Service {
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/describeRdsInstances',
       'GET',
       pathParams,
@@ -491,5 +491,108 @@ JDCloud.YUNDINGDATAPUSH = class YUNDINGDATAPUSH extends Service {
       }
     )
   }
+
+  /**
+      *  创建历史订单同步
+      * @param {Object} opts - parameters
+      * @param {orderSyncSpec} opts.orderSyncSpec - 历史订单同步对象
+
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param orderSync orderSync
+      */
+
+  createOrderSync (opts, callback) {
+    opts = opts || {}
+
+    if (opts.orderSyncSpec === undefined || opts.orderSyncSpec === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.orderSyncSpec' when calling createOrderSync"
+      )
+    }
+
+    let postBody = {}
+    if (opts.orderSyncSpec !== undefined && opts.orderSyncSpec !== null) {
+      postBody['orderSyncSpec'] = opts.orderSyncSpec
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  yundingdatapush/1.0.7'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createOrderSync with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/createOrderSync',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
 }
-module.exports = JDCloud.YUNDINGDATAPUSH
+module.exports = YUNDINGDATAPUSH

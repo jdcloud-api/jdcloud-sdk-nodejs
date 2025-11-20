@@ -66,6 +66,7 @@ module.exports = {
   AUTOTASKPOLICY: require('./autotaskpolicy'),
   RDS: require('./rds'),
   KUBERNETES: require('./kubernetes'),
+  JOYGRID: require('./joygrid'),
   DH: require('./dh'),
   TIDB: require('./tidb'),
   IPANTI: require('./ipanti'),
@@ -94,6 +95,7 @@ module.exports = {
   CLICKHOUSE: require('./clickhouse'),
   VM: require('./vm'),
   SHENHAIPLATFORM: require('./shenhaiplatform'),
+  AICVM: require('./aicvm'),
   FC: require('./fc'),
   DCAP: require('./dcap'),
   CLOUDAUTH: require('./cloudauth'),
@@ -102,6 +104,7 @@ module.exports = {
   JDRO: require('./jdro'),
   ZFS: require('./zfs'),
   VOD: require('./vod'),
+  JDAIP: require('./jdaip'),
   YUNDINGDATAPUSH: require('./yundingdatapush'),
   OSSOPENAPI: require('./ossopenapi'),
   BGW: require('./bgw'),
@@ -121,5 +124,6 @@ module.exports = {
   OPENJRTC: require('./openjrtc'),
   IOTCLOUDGATEWAY: require('./iotcloudgateway'),
   INVOICE: require('./invoice'),
+  VIDEOSURVEILLANCE: require('./videosurveillance'),
   USER: require('./user')
 }

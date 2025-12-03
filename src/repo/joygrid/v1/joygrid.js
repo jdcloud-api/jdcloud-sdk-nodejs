@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * joygrid service.
- * @version 1.0.0
+ * @version 1.0.1
  */
 
 class JOYGRID extends Service {
@@ -82,7 +82,7 @@ class JOYGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -157,7 +157,15 @@ class JOYGRID extends Service {
   /**
       *  创建一个codeInterpreter服务
       * @param {Object} opts - parameters
-      * @param {createCodeInterpreterSpec} [opts.body]   optional
+      * @param {string} [opts.erpAccount] - x-jdcloud-erp   base64(username)
+in: header  optional
+      * @param {string} opts.pin - 用户（主、子）账号。base64编码。格式为：base64(subuser-pin) @ base64(owner-pin)。@前后有空格。若不支持主子账号，则不需要@，格式为 base64(owner-pin)
+in: header
+      * @param {string} opts.requestId - 请求ID
+in: header
+      * @param {string} [opts.description]   optional
+      * @param {string} [opts.name]   optional
+      * @param {string} opts.regionId - 地域 Id
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -177,9 +185,40 @@ class JOYGRID extends Service {
 
     opts = opts || {}
 
+    if (opts.pin === undefined || opts.pin === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.pin' when calling createCodeInterpreter"
+      )
+    }
+    if (opts.requestId === undefined || opts.requestId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.requestId' when calling createCodeInterpreter"
+      )
+    }
+    if (opts.regionId === undefined || opts.regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionId' when calling createCodeInterpreter"
+      )
+    }
+
     let postBody = {}
-    if (opts.body !== undefined && opts.body !== null) {
-      postBody['body'] = opts.body
+    if (opts.erpAccount !== undefined && opts.erpAccount !== null) {
+      postBody['erpAccount'] = opts.erpAccount
+    }
+    if (opts.pin !== undefined && opts.pin !== null) {
+      postBody['pin'] = opts.pin
+    }
+    if (opts.requestId !== undefined && opts.requestId !== null) {
+      postBody['requestId'] = opts.requestId
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.regionId !== undefined && opts.regionId !== null) {
+      postBody['regionId'] = opts.regionId
     }
 
     let queryParams = {}
@@ -189,7 +228,7 @@ class JOYGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -307,7 +346,7 @@ class JOYGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -383,7 +422,16 @@ class JOYGRID extends Service {
       *  更新一个codeInterpreter服务
       * @param {Object} opts - parameters
       * @param {string} opts.codeInterpreterId - CodeInterpreter id
-      * @param {updateCodeInterpreterSpec} [opts.body]   optional
+      * @param {string} [opts.erpAccount] - x-jdcloud-erp   base64(username)
+in: header  optional
+      * @param {string} opts.pin - 用户（主、子）账号。base64编码。格式为：base64(subuser-pin) @ base64(owner-pin)。@前后有空格。若不支持主子账号，则不需要@，格式为 base64(owner-pin)
+in: header
+      * @param {string} opts.requestId - 请求ID
+in: header
+      * @param {string} opts.codeInterpreterId - CodeInterpreter id
+      * @param {string} [opts.description]   optional
+      * @param {string} [opts.name]   optional
+      * @param {string} opts.regionId - 地域 Id
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -411,6 +459,29 @@ class JOYGRID extends Service {
         "Missing the required parameter 'opts.codeInterpreterId' when calling updateCodeInterpreter"
       )
     }
+    if (opts.pin === undefined || opts.pin === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.pin' when calling updateCodeInterpreter"
+      )
+    }
+    if (opts.requestId === undefined || opts.requestId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.requestId' when calling updateCodeInterpreter"
+      )
+    }
+    if (
+      opts.codeInterpreterId === undefined ||
+      opts.codeInterpreterId === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.codeInterpreterId' when calling updateCodeInterpreter"
+      )
+    }
+    if (opts.regionId === undefined || opts.regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionId' when calling updateCodeInterpreter"
+      )
+    }
 
     let postBody = {}
     if (
@@ -419,8 +490,29 @@ class JOYGRID extends Service {
     ) {
       postBody['codeInterpreterId'] = opts.codeInterpreterId
     }
-    if (opts.body !== undefined && opts.body !== null) {
-      postBody['body'] = opts.body
+    if (opts.erpAccount !== undefined && opts.erpAccount !== null) {
+      postBody['erpAccount'] = opts.erpAccount
+    }
+    if (opts.pin !== undefined && opts.pin !== null) {
+      postBody['pin'] = opts.pin
+    }
+    if (opts.requestId !== undefined && opts.requestId !== null) {
+      postBody['requestId'] = opts.requestId
+    }
+    if (
+      opts.codeInterpreterId !== undefined &&
+      opts.codeInterpreterId !== null
+    ) {
+      postBody['codeInterpreterId'] = opts.codeInterpreterId
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.regionId !== undefined && opts.regionId !== null) {
+      postBody['regionId'] = opts.regionId
     }
 
     let queryParams = {}
@@ -430,7 +522,7 @@ class JOYGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -548,7 +640,7 @@ class JOYGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -678,7 +770,7 @@ class JOYGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -797,7 +889,7 @@ class JOYGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -922,7 +1014,7 @@ class JOYGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -1052,7 +1144,7 @@ class JOYGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -1162,7 +1254,7 @@ class JOYGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -1237,7 +1329,15 @@ class JOYGRID extends Service {
   /**
       *  创建一个memory服务
       * @param {Object} opts - parameters
-      * @param {createMemorySpec} [opts.body]   optional
+      * @param {string} [opts.erpAccount] - x-jdcloud-erp   base64(username)
+in: header  optional
+      * @param {string} opts.pin - 用户（主、子）账号。base64编码。格式为：base64(subuser-pin) @ base64(owner-pin)。@前后有空格。若不支持主子账号，则不需要@，格式为 base64(owner-pin)
+in: header
+      * @param {string} opts.requestId - 请求ID
+in: header
+      * @param {string} [opts.description]   optional
+      * @param {string} [opts.name]   optional
+      * @param {string} opts.regionId - 地域 Id
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1257,9 +1357,40 @@ class JOYGRID extends Service {
 
     opts = opts || {}
 
+    if (opts.pin === undefined || opts.pin === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.pin' when calling createMemory"
+      )
+    }
+    if (opts.requestId === undefined || opts.requestId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.requestId' when calling createMemory"
+      )
+    }
+    if (opts.regionId === undefined || opts.regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionId' when calling createMemory"
+      )
+    }
+
     let postBody = {}
-    if (opts.body !== undefined && opts.body !== null) {
-      postBody['body'] = opts.body
+    if (opts.erpAccount !== undefined && opts.erpAccount !== null) {
+      postBody['erpAccount'] = opts.erpAccount
+    }
+    if (opts.pin !== undefined && opts.pin !== null) {
+      postBody['pin'] = opts.pin
+    }
+    if (opts.requestId !== undefined && opts.requestId !== null) {
+      postBody['requestId'] = opts.requestId
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.regionId !== undefined && opts.regionId !== null) {
+      postBody['regionId'] = opts.regionId
     }
 
     let queryParams = {}
@@ -1269,7 +1400,7 @@ class JOYGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -1381,7 +1512,7 @@ class JOYGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -1457,7 +1588,16 @@ class JOYGRID extends Service {
       *  更新一个memory服务
       * @param {Object} opts - parameters
       * @param {string} opts.memoryId - 内存id
-      * @param {updateMemorySpec} [opts.body]   optional
+      * @param {string} [opts.erpAccount] - x-jdcloud-erp   base64(username)
+in: header  optional
+      * @param {string} opts.pin - 用户（主、子）账号。base64编码。格式为：base64(subuser-pin) @ base64(owner-pin)。@前后有空格。若不支持主子账号，则不需要@，格式为 base64(owner-pin)
+in: header
+      * @param {string} opts.requestId - 请求ID
+in: header
+      * @param {string} [opts.description]   optional
+      * @param {string} opts.memoryId - 内存id
+      * @param {string} [opts.name]   optional
+      * @param {string} opts.regionId - 地域 Id
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1482,13 +1622,51 @@ class JOYGRID extends Service {
         "Missing the required parameter 'opts.memoryId' when calling updateMemory"
       )
     }
+    if (opts.pin === undefined || opts.pin === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.pin' when calling updateMemory"
+      )
+    }
+    if (opts.requestId === undefined || opts.requestId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.requestId' when calling updateMemory"
+      )
+    }
+    if (opts.memoryId === undefined || opts.memoryId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.memoryId' when calling updateMemory"
+      )
+    }
+    if (opts.regionId === undefined || opts.regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionId' when calling updateMemory"
+      )
+    }
 
     let postBody = {}
     if (opts.memoryId !== undefined && opts.memoryId !== null) {
       postBody['memoryId'] = opts.memoryId
     }
-    if (opts.body !== undefined && opts.body !== null) {
-      postBody['body'] = opts.body
+    if (opts.erpAccount !== undefined && opts.erpAccount !== null) {
+      postBody['erpAccount'] = opts.erpAccount
+    }
+    if (opts.pin !== undefined && opts.pin !== null) {
+      postBody['pin'] = opts.pin
+    }
+    if (opts.requestId !== undefined && opts.requestId !== null) {
+      postBody['requestId'] = opts.requestId
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+    if (opts.memoryId !== undefined && opts.memoryId !== null) {
+      postBody['memoryId'] = opts.memoryId
+    }
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.regionId !== undefined && opts.regionId !== null) {
+      postBody['regionId'] = opts.regionId
     }
 
     let queryParams = {}
@@ -1498,7 +1676,7 @@ class JOYGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -1610,7 +1788,7 @@ class JOYGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -1720,31 +1898,30 @@ class JOYGRID extends Service {
       )
     }
 
-    let postBody = {}
+    let postBody = null
+    let queryParams = {}
     if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
-      postBody['pageNumber'] = opts.pageNumber
+      queryParams['pageNumber'] = opts.pageNumber
     }
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
-      postBody['pageSize'] = opts.pageSize
+      queryParams['pageSize'] = opts.pageSize
     }
     if (opts.memoryId !== undefined && opts.memoryId !== null) {
-      postBody['memoryId'] = opts.memoryId
+      queryParams['memoryId'] = opts.memoryId
     }
     if (opts.actor !== undefined && opts.actor !== null) {
-      postBody['actor'] = opts.actor
+      queryParams['actor'] = opts.actor
     }
     if (opts.sessionId !== undefined && opts.sessionId !== null) {
-      postBody['sessionId'] = opts.sessionId
+      queryParams['sessionId'] = opts.sessionId
     }
-
-    let queryParams = {}
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -1775,6 +1952,174 @@ class JOYGRID extends Service {
 
     this.config.logger(
       `call describeEvents with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/memories/{memoryId}/events',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建一个 event
+      * @param {Object} opts - parameters
+      * @param {string} [opts.erpAccount] - x-jdcloud-erp   base64(username)
+in: header  optional
+      * @param {string} opts.pin - 用户（主、子）账号。base64编码。格式为：base64(subuser-pin) @ base64(owner-pin)。@前后有空格。若不支持主子账号，则不需要@，格式为 base64(owner-pin)
+in: header
+      * @param {string} opts.requestId - 请求ID
+in: header
+      * @param {string} opts.actor - 触发用户
+      * @param {boolean} [opts.infer] - 是否进行推理并保存长期记忆。 默认为 true。  optional
+      * @param {string} opts.memoryId - 内存id
+      * @param {array} [opts.messages] - 消息内容  optional
+      * @param {string} opts.regionId - 地域 Id
+      * @param {string} [opts.sessionId] - 会话ID： 传入会话 ID 的，会保存为临时记忆  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  createEvent (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createEvent"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.pin === undefined || opts.pin === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.pin' when calling createEvent"
+      )
+    }
+    if (opts.requestId === undefined || opts.requestId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.requestId' when calling createEvent"
+      )
+    }
+    if (opts.actor === undefined || opts.actor === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.actor' when calling createEvent"
+      )
+    }
+    if (opts.memoryId === undefined || opts.memoryId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.memoryId' when calling createEvent"
+      )
+    }
+    if (opts.regionId === undefined || opts.regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionId' when calling createEvent"
+      )
+    }
+
+    let postBody = {}
+    if (opts.erpAccount !== undefined && opts.erpAccount !== null) {
+      postBody['erpAccount'] = opts.erpAccount
+    }
+    if (opts.pin !== undefined && opts.pin !== null) {
+      postBody['pin'] = opts.pin
+    }
+    if (opts.requestId !== undefined && opts.requestId !== null) {
+      postBody['requestId'] = opts.requestId
+    }
+    if (opts.actor !== undefined && opts.actor !== null) {
+      postBody['actor'] = opts.actor
+    }
+    if (opts.infer !== undefined && opts.infer !== null) {
+      postBody['infer'] = opts.infer
+    }
+    if (opts.memoryId !== undefined && opts.memoryId !== null) {
+      postBody['memoryId'] = opts.memoryId
+    }
+    if (opts.messages !== undefined && opts.messages !== null) {
+      postBody['messages'] = opts.messages
+    }
+    if (opts.regionId !== undefined && opts.regionId !== null) {
+      postBody['regionId'] = opts.regionId
+    }
+    if (opts.sessionId !== undefined && opts.sessionId !== null) {
+      postBody['sessionId'] = opts.sessionId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createEvent with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1876,7 +2221,7 @@ class JOYGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -2008,7 +2353,7 @@ class JOYGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -2084,7 +2429,9 @@ class JOYGRID extends Service {
       *  搜索 event
       * @param {Object} opts - parameters
       * @param {string} opts.memoryId - 内存id
-      * @param {searchEventsSpec} [opts.body]   optional
+      * @param {string} opts.actor - 触发用户
+      * @param {string} opts.query - 查询条件
+      * @param {string} [opts.sessionId] - 会话ID  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -2109,13 +2456,29 @@ class JOYGRID extends Service {
         "Missing the required parameter 'opts.memoryId' when calling searchEvents"
       )
     }
+    if (opts.actor === undefined || opts.actor === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.actor' when calling searchEvents"
+      )
+    }
+    if (opts.query === undefined || opts.query === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.query' when calling searchEvents"
+      )
+    }
 
     let postBody = {}
     if (opts.memoryId !== undefined && opts.memoryId !== null) {
       postBody['memoryId'] = opts.memoryId
     }
-    if (opts.body !== undefined && opts.body !== null) {
-      postBody['body'] = opts.body
+    if (opts.actor !== undefined && opts.actor !== null) {
+      postBody['actor'] = opts.actor
+    }
+    if (opts.query !== undefined && opts.query !== null) {
+      postBody['query'] = opts.query
+    }
+    if (opts.sessionId !== undefined && opts.sessionId !== null) {
+      postBody['sessionId'] = opts.sessionId
     }
 
     let queryParams = {}
@@ -2125,7 +2488,7 @@ class JOYGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -2236,7 +2599,7 @@ class JOYGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -2311,7 +2674,9 @@ class JOYGRID extends Service {
   /**
       *  创建一个Agent运行时环境
       * @param {Object} opts - parameters
-      * @param {createRuntimeSpec} [opts.body]   optional
+      * @param {agentRuntimeArtifact} opts.agentRuntimeArtifact
+      * @param {string} opts.agentRuntimeName - 名称
+      * @param {string} [opts.description] - 描述  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -2335,9 +2700,32 @@ class JOYGRID extends Service {
 
     opts = opts || {}
 
+    if (
+      opts.agentRuntimeArtifact === undefined ||
+      opts.agentRuntimeArtifact === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.agentRuntimeArtifact' when calling createRuntime"
+      )
+    }
+    if (opts.agentRuntimeName === undefined || opts.agentRuntimeName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.agentRuntimeName' when calling createRuntime"
+      )
+    }
+
     let postBody = {}
-    if (opts.body !== undefined && opts.body !== null) {
-      postBody['body'] = opts.body
+    if (
+      opts.agentRuntimeArtifact !== undefined &&
+      opts.agentRuntimeArtifact !== null
+    ) {
+      postBody['agentRuntimeArtifact'] = opts.agentRuntimeArtifact
+    }
+    if (opts.agentRuntimeName !== undefined && opts.agentRuntimeName !== null) {
+      postBody['agentRuntimeName'] = opts.agentRuntimeName
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
     }
 
     let queryParams = {}
@@ -2347,7 +2735,7 @@ class JOYGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -2469,7 +2857,7 @@ class JOYGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -2545,7 +2933,9 @@ class JOYGRID extends Service {
       *  更新指定Agent运行时环境的信息
       * @param {Object} opts - parameters
       * @param {string} opts.agentRuntimeId - Runtime ID
-      * @param {createRuntimeSpec} [opts.body]   optional
+      * @param {agentRuntimeArtifact} opts.agentRuntimeArtifact
+      * @param {string} opts.agentRuntimeName - 名称
+      * @param {string} [opts.description] - 描述  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -2573,10 +2963,32 @@ class JOYGRID extends Service {
         "Missing the required parameter 'opts.agentRuntimeId' when calling updateRuntime"
       )
     }
+    if (
+      opts.agentRuntimeArtifact === undefined ||
+      opts.agentRuntimeArtifact === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.agentRuntimeArtifact' when calling updateRuntime"
+      )
+    }
+    if (opts.agentRuntimeName === undefined || opts.agentRuntimeName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.agentRuntimeName' when calling updateRuntime"
+      )
+    }
 
     let postBody = {}
-    if (opts.body !== undefined && opts.body !== null) {
-      postBody['body'] = opts.body
+    if (
+      opts.agentRuntimeArtifact !== undefined &&
+      opts.agentRuntimeArtifact !== null
+    ) {
+      postBody['agentRuntimeArtifact'] = opts.agentRuntimeArtifact
+    }
+    if (opts.agentRuntimeName !== undefined && opts.agentRuntimeName !== null) {
+      postBody['agentRuntimeName'] = opts.agentRuntimeName
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
     }
 
     let queryParams = {}
@@ -2587,7 +2999,7 @@ class JOYGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -2698,7 +3110,7 @@ class JOYGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -2774,7 +3186,6 @@ class JOYGRID extends Service {
       *  调用运行时
       * @param {Object} opts - parameters
       * @param {string} opts.agentRuntimeId - Runtime ID
-      * @param {string} opts.proxyPath - proxy path
       * @param {string} [opts.sessionId] - session id  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -2800,11 +3211,6 @@ class JOYGRID extends Service {
         "Missing the required parameter 'opts.agentRuntimeId' when calling invokeRuntime"
       )
     }
-    if (opts.proxyPath === undefined || opts.proxyPath === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.proxyPath' when calling invokeRuntime"
-      )
-    }
 
     let postBody = {}
     if (opts.sessionId !== undefined && opts.sessionId !== null) {
@@ -2815,12 +3221,11 @@ class JOYGRID extends Service {
 
     let pathParams = {
       regionId: regionId,
-      agentRuntimeId: opts.agentRuntimeId,
-      proxyPath: opts.proxyPath
+      agentRuntimeId: opts.agentRuntimeId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  joygrid/1.0.1'
     }
 
     let contentTypes = ['application/json']
@@ -2863,7 +3268,7 @@ class JOYGRID extends Service {
     )
 
     let request = super.makeRequest(
-      '/regions/{regionId}/runtimes/{agentRuntimeId}/invocations/{proxyPath}',
+      '/regions/{regionId}/runtimes/{agentRuntimeId}/invocations',
       'POST',
       pathParams,
       queryParams,

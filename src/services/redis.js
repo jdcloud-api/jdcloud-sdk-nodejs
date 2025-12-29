@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * Redis SpecConfig API
- * 缓存Redis实例规格配置接口
+ * White-List-API
+ * 白名单相关接口
  *
  * OpenAPI spec version: v1
  * Contact:

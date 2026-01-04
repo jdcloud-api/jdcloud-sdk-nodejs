@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * aisearch service.
- * @version 1.0.0
+ * @version 0.2.0
  */
 
 class AISEARCH extends Service {
@@ -45,10 +45,526 @@ class AISEARCH extends Service {
   }
 
   /**
-      *  webSearch
+      *  提交虚拟试衣任务
+      * @param {Object} opts - parameters
+      * @param {string} opts.apiKey - api key编号
+      * @param {string} opts.requestId - 请求id,api key下唯一
+      * @param {string} opts.modelImageBase64 - 模特图片Base64
+      * @param {string} opts.clothesImageBase64 - 服装图片Base64
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string requestId  requestId
+      * @param string code  状态码
+      * @param string msg  响应信息
+      * @param cloudTaskSubmitResponseVo data  任务提交结果
+      */
+
+  externalSubmitVirtualTryOnTaskBase64 (opts, callback) {
+    opts = opts || {}
+
+    if (opts.apiKey === undefined || opts.apiKey === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.apiKey' when calling externalSubmitVirtualTryOnTaskBase64"
+      )
+    }
+    if (opts.requestId === undefined || opts.requestId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.requestId' when calling externalSubmitVirtualTryOnTaskBase64"
+      )
+    }
+    if (opts.modelImageBase64 === undefined || opts.modelImageBase64 === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.modelImageBase64' when calling externalSubmitVirtualTryOnTaskBase64"
+      )
+    }
+    if (
+      opts.clothesImageBase64 === undefined ||
+      opts.clothesImageBase64 === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.clothesImageBase64' when calling externalSubmitVirtualTryOnTaskBase64"
+      )
+    }
+
+    let postBody = {}
+    if (opts.apiKey !== undefined && opts.apiKey !== null) {
+      postBody['apiKey'] = opts.apiKey
+    }
+    if (opts.requestId !== undefined && opts.requestId !== null) {
+      postBody['requestId'] = opts.requestId
+    }
+    if (opts.modelImageBase64 !== undefined && opts.modelImageBase64 !== null) {
+      postBody['modelImageBase64'] = opts.modelImageBase64
+    }
+    if (
+      opts.clothesImageBase64 !== undefined &&
+      opts.clothesImageBase64 !== null
+    ) {
+      postBody['clothesImageBase64'] = opts.clothesImageBase64
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  aisearch/0.2.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call externalSubmitVirtualTryOnTaskBase64 with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/external:submitVirtualTryOnTaskBase64',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  提交方图转长图任务
       * @param {Object} opts - parameters
       * @param {string} opts.apiKey - api key编号
       * @param {string} opts.requestId - 请求id，api key下唯一
+      * @param {string} opts.imageBase64 - 方形图片
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string requestId  requestId
+      * @param string code  状态码
+      * @param string msg  响应信息
+      * @param cloudTaskSubmitResponseVo data  任务提交结果
+      */
+
+  externalSubmitSquareToLongTaskBase64 (opts, callback) {
+    opts = opts || {}
+
+    if (opts.apiKey === undefined || opts.apiKey === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.apiKey' when calling externalSubmitSquareToLongTaskBase64"
+      )
+    }
+    if (opts.requestId === undefined || opts.requestId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.requestId' when calling externalSubmitSquareToLongTaskBase64"
+      )
+    }
+    if (opts.imageBase64 === undefined || opts.imageBase64 === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.imageBase64' when calling externalSubmitSquareToLongTaskBase64"
+      )
+    }
+
+    let postBody = {}
+    if (opts.apiKey !== undefined && opts.apiKey !== null) {
+      postBody['apiKey'] = opts.apiKey
+    }
+    if (opts.requestId !== undefined && opts.requestId !== null) {
+      postBody['requestId'] = opts.requestId
+    }
+    if (opts.imageBase64 !== undefined && opts.imageBase64 !== null) {
+      postBody['imageBase64'] = opts.imageBase64
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  aisearch/0.2.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call externalSubmitSquareToLongTaskBase64 with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/external:submitSquareToLongTaskBase64',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询任务状态
+      * @param {Object} opts - parameters
+      * @param {string} opts.apiKey - api key编号
+      * @param {string} opts.requestId - 请求id，api key下唯一
+      * @param {string} opts.taskId - 任务ID
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string requestId  requestId
+      * @param string code  状态码
+      * @param string msg  响应信息
+      * @param cloudTaskStatusResponseVo data  任务状态信息
+      */
+
+  externalQueryTaskStatus (opts, callback) {
+    opts = opts || {}
+
+    if (opts.apiKey === undefined || opts.apiKey === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.apiKey' when calling externalQueryTaskStatus"
+      )
+    }
+    if (opts.requestId === undefined || opts.requestId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.requestId' when calling externalQueryTaskStatus"
+      )
+    }
+    if (opts.taskId === undefined || opts.taskId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.taskId' when calling externalQueryTaskStatus"
+      )
+    }
+
+    let postBody = {}
+    if (opts.apiKey !== undefined && opts.apiKey !== null) {
+      postBody['apiKey'] = opts.apiKey
+    }
+    if (opts.requestId !== undefined && opts.requestId !== null) {
+      postBody['requestId'] = opts.requestId
+    }
+    if (opts.taskId !== undefined && opts.taskId !== null) {
+      postBody['taskId'] = opts.taskId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  aisearch/0.2.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call externalQueryTaskStatus with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/external:queryTaskStatus',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  下载图片
+      * @param {Object} opts - parameters
+      * @param {string} opts.apiKey - api key编号
+      * @param {string} opts.requestId - 请求id,api key下唯一
+      * @param {string} opts.imageId - 图片ID
+      * @param {string} opts.taskId - 任务ID
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string requestId  requestId
+      * @param string code  状态码
+      * @param string msg  响应信息
+      * @param cloudImageDownloadResponseVo data  图片下载信息
+      */
+
+  externalDownloadImage (opts, callback) {
+    opts = opts || {}
+
+    if (opts.apiKey === undefined || opts.apiKey === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.apiKey' when calling externalDownloadImage"
+      )
+    }
+    if (opts.requestId === undefined || opts.requestId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.requestId' when calling externalDownloadImage"
+      )
+    }
+    if (opts.imageId === undefined || opts.imageId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.imageId' when calling externalDownloadImage"
+      )
+    }
+    if (opts.taskId === undefined || opts.taskId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.taskId' when calling externalDownloadImage"
+      )
+    }
+
+    let postBody = {}
+    if (opts.apiKey !== undefined && opts.apiKey !== null) {
+      postBody['apiKey'] = opts.apiKey
+    }
+    if (opts.requestId !== undefined && opts.requestId !== null) {
+      postBody['requestId'] = opts.requestId
+    }
+    if (opts.imageId !== undefined && opts.imageId !== null) {
+      postBody['imageId'] = opts.imageId
+    }
+    if (opts.taskId !== undefined && opts.taskId !== null) {
+      postBody['taskId'] = opts.taskId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  aisearch/0.2.0'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call externalDownloadImage with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/external:downloadImage',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  webSearch
+      * @param {Object} opts - parameters
+      * @param {string} opts.apiKey - api key编号
+      * @param {string} opts.requestId - 请求id,api key下唯一
       * @param {string} opts.query - 查询内容
       * @param {integer} [opts.page] - page 默认1  optional
       * @param {integer} [opts.pageSize] - pageSize 默认10  optional
@@ -103,7 +619,7 @@ class AISEARCH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  aisearch/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  aisearch/0.2.0'
     }
 
     let contentTypes = ['application/json']

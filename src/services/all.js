@@ -35,6 +35,7 @@ module.exports = {
   EID: require('./eid'),
   POD: require('./pod'),
   JKE: require('./jke'),
+  CMP: require('./cmp'),
   DATASTAR: require('./datastar'),
   USERPOOL: require('./userpool'),
   KMS: require('./kms'),

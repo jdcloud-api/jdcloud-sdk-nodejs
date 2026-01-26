@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * ES White list API
- * es white list
+ * Maintenance
+ * 运维事件相关的接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -25,403 +25,50 @@
 require('../../../lib/node_loader')
 var JDCloud = require('../../../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'es'
+var serviceId = 'cmp'
 Service._services[serviceId] = true
 
 /**
- * es service.
- * @version 1.0.1
+ * cmp service.
+ * @version 0.2.2
  */
 
-class ES extends Service {
+class CMP extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
       options._defaultEndpoint.protocol || 'https'
     options._defaultEndpoint.host =
-      options._defaultEndpoint.host || 'es.jdcloud-api.com'
+      options._defaultEndpoint.host || 'cmp.jdcloud-api.com'
     options.basePath = '/v1' // 默认要设为空""
     super(serviceId, options)
   }
 
   /**
-      *  查询鉴权功能开启/关闭状态
+      *  查询自定义运维策略
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例ID
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param boolean enabled  鉴权功能开启(true)/关闭(false)状态
-      */
-
-  describeAuthStatus (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeAuthStatus"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.instanceId === undefined || opts.instanceId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.instanceId' when calling describeAuthStatus"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      instanceId: opts.instanceId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  es/1.0.1'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeAuthStatus with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/instances/{instanceId}/authStatus',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询鉴权role信息
-      * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例ID
-      * @param {integer} [opts.pageNumber] - 页码，默认1  optional
-      * @param {integer} [opts.pageSize] - 分页大小，默认10  optional
-      * @param {string} [opts.nameFilter] - 用于模糊查找的role名称  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param roleModel roles
-      * @param integer totalCount  role记录总数
-      */
-
-  describeRoles (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeRoles"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.instanceId === undefined || opts.instanceId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.instanceId' when calling describeRoles"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
-      queryParams['pageNumber'] = opts.pageNumber
-    }
-    if (opts.pageSize !== undefined && opts.pageSize !== null) {
-      queryParams['pageSize'] = opts.pageSize
-    }
-    if (opts.nameFilter !== undefined && opts.nameFilter !== null) {
-      queryParams['nameFilter'] = opts.nameFilter
-    }
-
-    let pathParams = {
-      regionId: regionId,
-      instanceId: opts.instanceId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  es/1.0.1'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeRoles with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/instances/{instanceId}/authRole',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询鉴权user信息
-      * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例ID
-      * @param {integer} [opts.pageNumber] - 页码，默认1  optional
-      * @param {integer} [opts.pageSize] - 分页大小，默认10  optional
-      * @param {string} [opts.nameFilter] - 用于模糊查找的user名称  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param userModel users
-      * @param integer totalCount  user记录总数
-      */
-
-  describeUsers (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeUsers"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.instanceId === undefined || opts.instanceId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.instanceId' when calling describeUsers"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
-      queryParams['pageNumber'] = opts.pageNumber
-    }
-    if (opts.pageSize !== undefined && opts.pageSize !== null) {
-      queryParams['pageSize'] = opts.pageSize
-    }
-    if (opts.nameFilter !== undefined && opts.nameFilter !== null) {
-      queryParams['nameFilter'] = opts.nameFilter
-    }
-
-    let pathParams = {
-      regionId: regionId,
-      instanceId: opts.instanceId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  es/1.0.1'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeUsers with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/instances/{instanceId}/authUser',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询统一计费实例的详细信息列表。为避免数据变动导致的重复或遗漏，请按照实例创建时间以及实例ID排序
-      * @param {Object} opts - parameters
-      * @param {integer} [opts.status] - 实例计费状态
-1: 计费中
-2: 停止计费
+      * @param {integer} [opts.pageNumber] - 页码；默认为1。  optional
+      * @param {integer} [opts.pageSize] - 分页大小；&lt;br&gt;默认为20；取值范围[10, 100]。  optional
+      * @param {string} [opts.order] - 排序字段
+- create_time: 创建时间
+- update_time: 更新时间
   optional
-      * @param {integer} [opts.limit] - 每页数量，默认100，最大1000  optional
-      * @param {string} [opts.cursor] - 游标，用于分页，第一页传null。
-例：按照创建时间排序，传递上一次结果的最大 &#x60;createTime&#x60; 作为 cursor。
+      * @param {string} [opts.sort] - 排序方式
+- desc: 降序
+- asc: 升序
+  optional
+      * @param {filter} [opts.filters] - &lt;b&gt;filters 中支持使用以下关键字进行过滤&lt;/b&gt;
+&#x60;maintenancePolicyId&#x60;：运维策略ID，精确匹配，支持多个
+&#x60;instanceId&#x60;: 主机ID，精确匹配，支持多个
   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param billingInstance instances
-      * @param integer total  实例总数（可选，统计成本高时可不返回）
+      * @param maintenancePolicy maintenancePolicies
+      * @param integer totalCount  本次查询可匹配到的总记录数，使用者需要结合 &#x60;pageNumber&#x60; 和 &#x60;pageSize&#x60; 计算是否可以继续分页。
       */
 
-  describeBillingInstances (opts, regionId = this.config.regionId, callback) {
+  describeMaintenancePolicies (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -429,244 +76,7 @@ class ES extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeBillingInstances"
-      )
-    }
-
-    opts = opts || {}
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.status !== undefined && opts.status !== null) {
-      queryParams['status'] = opts.status
-    }
-    if (opts.limit !== undefined && opts.limit !== null) {
-      queryParams['limit'] = opts.limit
-    }
-    if (opts.cursor !== undefined && opts.cursor !== null) {
-      queryParams['cursor'] = opts.cursor
-    }
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  es/1.0.1'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeBillingInstances with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/describeBillingInstances',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  关闭自定义字典。同时清除用户已上传的字典
-      * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例ID
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param string instanceId  实例ID
-      */
-
-  disableDicts (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  disableDicts"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.instanceId === undefined || opts.instanceId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.instanceId' when calling disableDicts"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId,
-      instanceId: opts.instanceId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  es/1.0.1'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call disableDicts with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/instances/{instanceId}/dicts',
-      'DELETE',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  查询es实例列表
-      * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNumber] - 页码，默认1  optional
-      * @param {integer} [opts.pageSize] - 分页大小，默认10  optional
-      * @param {filter} [opts.filters] - 过滤条件：
-instanceId -实例Id，精确匹配，支持多个
-instanceVersion -实例版本，模糊匹配，支持单个
-azId -azId，精确匹配，支持单个
-instanceName - 实例名称，模糊匹配，支持单个
-instanceStatus - 实例状态，精确匹配，支持多个(running：运行，error：错误，creating：创建中，changing：变配中，stop：已停止，backing：处理中，configuring：配置中)
-chargeMode - 计费类型，按配置postpaid_by_duration或者包年包月prepaid_by_duration
-clusterType - 集群类型,
-  optional
-      * @param {tagFilter} [opts.tagFilters] - 标签过滤条件  optional
-      * @param {string} [opts.resourceGroupIds] - 资源组id列表  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param instance instances
-      * @param integer totalCount  es实例总数
-      */
-
-  describeInstances (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeInstances"
+        "Missing the required parameter 'regionId' when calling  describeMaintenancePolicies"
       )
     }
 
@@ -679,23 +89,21 @@ clusterType - 集群类型,
     }
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
+    }
+    if (opts.order !== undefined && opts.order !== null) {
+      queryParams['order'] = opts.order
+    }
+    if (opts.sort !== undefined && opts.sort !== null) {
+      queryParams['sort'] = opts.sort
     }
     Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
-    Object.assign(
-      queryParams,
-      super.buildTagFilterParam(opts.tagFilters, 'tagFilters')
-    )
-    Object.assign(
-      queryParams,
-      super.buildArrayParam(opts.resourceGroupIds, 'resourceGroupIds')
-    )
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  es/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -725,7 +133,7 @@ clusterType - 集群类型,
     let returnType = null
 
     this.config.logger(
-      `call describeInstances with params:\npathParams:${JSON.stringify(
+      `call describeMaintenancePolicies with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -738,7 +146,7 @@ clusterType - 集群类型,
     )
 
     let request = super.makeRequest(
-      '/regions/{regionId}/instances',
+      '/regions/{regionId}/maintenancePolicies',
       'GET',
       pathParams,
       queryParams,
@@ -768,18 +176,30 @@ clusterType - 集群类型,
   }
 
   /**
-      *  创建一个指定配置的es实例
+      *  创建自定义运维策略
       * @param {Object} opts - parameters
-      * @param {instanceSpec} opts.instance - es实例的相关配置
-      * @param {chargeSpec} [opts.charge] - 计费信息的相关配置，es只有prepaid_by_duration和postpaid_by_duration 2种计费模式  optional
+      * @param {string} opts.maintenancePolicyName - 策略名称，1~128字符，仅支持中文、大小写字母、数字、英文下划线 “-”、中划线“-”或点“.”，不能以“.”作为首尾
+
+      * @param {string} opts.maintenancePolicyType - 策略类型
+- SystemMaintenance：系统运维，maintenancePolicyOperate仅支持Migrate
+- LocalDataDiskFailure：本地盘异常，maintenancePolicyOperate仅支持AbandonDiskAndMigrate
+
+      * @param {string} opts.maintenancePolicyOperate - 策略操作
+- Migrate：迁移
+- AbandonDiskAndMigrate：弃盘迁移
+
+      * @param {string} [opts.description] - 描述信息，最长256个字符
+  optional
+      * @param {string} [opts.eventTime] - 执行开始时间，例：23:00:00
+仅在maintenancePolicyType.maintenancePolicyOperate&#x3D;SystemMaintenance.Migrate时生效
+  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param string orderNum  订单编号
-      * @param string instanceId  es实例编号
+      * @param string maintenancePolicyId  运维策略ID
       */
 
-  createInstance (opts, regionId = this.config.regionId, callback) {
+  createMaintenancePolicy (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -787,24 +207,61 @@ clusterType - 集群类型,
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  createInstance"
+        "Missing the required parameter 'regionId' when calling  createMaintenancePolicy"
       )
     }
 
     opts = opts || {}
 
-    if (opts.instance === undefined || opts.instance === null) {
+    if (
+      opts.maintenancePolicyName === undefined ||
+      opts.maintenancePolicyName === null
+    ) {
       throw new Error(
-        "Missing the required parameter 'opts.instance' when calling createInstance"
+        "Missing the required parameter 'opts.maintenancePolicyName' when calling createMaintenancePolicy"
+      )
+    }
+    if (
+      opts.maintenancePolicyType === undefined ||
+      opts.maintenancePolicyType === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.maintenancePolicyType' when calling createMaintenancePolicy"
+      )
+    }
+    if (
+      opts.maintenancePolicyOperate === undefined ||
+      opts.maintenancePolicyOperate === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.maintenancePolicyOperate' when calling createMaintenancePolicy"
       )
     }
 
     let postBody = {}
-    if (opts.instance !== undefined && opts.instance !== null) {
-      postBody['instance'] = opts.instance
+    if (
+      opts.maintenancePolicyName !== undefined &&
+      opts.maintenancePolicyName !== null
+    ) {
+      postBody['maintenancePolicyName'] = opts.maintenancePolicyName
     }
-    if (opts.charge !== undefined && opts.charge !== null) {
-      postBody['charge'] = opts.charge
+    if (
+      opts.maintenancePolicyType !== undefined &&
+      opts.maintenancePolicyType !== null
+    ) {
+      postBody['maintenancePolicyType'] = opts.maintenancePolicyType
+    }
+    if (
+      opts.maintenancePolicyOperate !== undefined &&
+      opts.maintenancePolicyOperate !== null
+    ) {
+      postBody['maintenancePolicyOperate'] = opts.maintenancePolicyOperate
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+    if (opts.eventTime !== undefined && opts.eventTime !== null) {
+      postBody['eventTime'] = opts.eventTime
     }
 
     let queryParams = {}
@@ -814,7 +271,7 @@ clusterType - 集群类型,
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  es/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -844,7 +301,7 @@ clusterType - 集群类型,
     let returnType = null
 
     this.config.logger(
-      `call createInstance with params:\npathParams:${JSON.stringify(
+      `call createMaintenancePolicy with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -857,7 +314,7 @@ clusterType - 集群类型,
     )
 
     let request = super.makeRequest(
-      '/regions/{regionId}/instances',
+      '/regions/{regionId}/maintenancePolicies',
       'POST',
       pathParams,
       queryParams,
@@ -887,16 +344,22 @@ clusterType - 集群类型,
   }
 
   /**
-      *  查询es实例的详细信息
+      *  修改自定义运维策略
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例Id
+      * @param {string} opts.maintenancePolicyId - 运维策略ID
+      * @param {string} [opts.maintenancePolicyName] - 策略名称，1~128字符，仅支持中文、大小写字母、数字、英文下划线 “-”、中划线“-”或点“.”，不能以“.”作为首尾  optional
+      * @param {string} [opts.description] - 描述信息，最长256个字符
+  optional
+      * @param {string} [opts.eventTime] - 执行开始时间，例：23:00:00
+仅在maintenancePolicyType.maintenancePolicyOperate&#x3D;SystemMaintenance.Migrate时可修改
+  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param instance instance  es实例详细信息
+      * @param string maintenancePolicyId  运维策略ID
       */
 
-  describeInstance (opts, regionId = this.config.regionId, callback) {
+  modifyMaintenancePolicy (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -904,28 +367,44 @@ clusterType - 集群类型,
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeInstance"
+        "Missing the required parameter 'regionId' when calling  modifyMaintenancePolicy"
       )
     }
 
     opts = opts || {}
 
-    if (opts.instanceId === undefined || opts.instanceId === null) {
+    if (
+      opts.maintenancePolicyId === undefined ||
+      opts.maintenancePolicyId === null
+    ) {
       throw new Error(
-        "Missing the required parameter 'opts.instanceId' when calling describeInstance"
+        "Missing the required parameter 'opts.maintenancePolicyId' when calling modifyMaintenancePolicy"
       )
     }
 
-    let postBody = null
+    let postBody = {}
+    if (
+      opts.maintenancePolicyName !== undefined &&
+      opts.maintenancePolicyName !== null
+    ) {
+      postBody['maintenancePolicyName'] = opts.maintenancePolicyName
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+    if (opts.eventTime !== undefined && opts.eventTime !== null) {
+      postBody['eventTime'] = opts.eventTime
+    }
+
     let queryParams = {}
 
     let pathParams = {
       regionId: regionId,
-      instanceId: opts.instanceId
+      maintenancePolicyId: opts.maintenancePolicyId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  es/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -955,7 +434,7 @@ clusterType - 集群类型,
     let returnType = null
 
     this.config.logger(
-      `call describeInstance with params:\npathParams:${JSON.stringify(
+      `call modifyMaintenancePolicy with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -968,8 +447,8 @@ clusterType - 集群类型,
     )
 
     let request = super.makeRequest(
-      '/regions/{regionId}/instances/{instanceId}',
-      'GET',
+      '/regions/{regionId}/maintenancePolicies/{maintenancePolicyId}',
+      'PATCH',
       pathParams,
       queryParams,
       headerParams,
@@ -998,18 +477,15 @@ clusterType - 集群类型,
   }
 
   /**
-      *  删除按配置计费或包年包月已到期的es实例，包年包月未到期不可删除。
-状态为创建中和变配中的不可删除。
- [MFA enabled]
+      *  删除自定义运维策略
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例Id
-      * @param {integer} [opts.reservedOfHour] - 软删除保留时间  optional
+      * @param {string} opts.maintenancePolicyId - 运维策略ID
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       */
 
-  deleteInstance (opts, regionId = this.config.regionId, callback) {
+  deleteMaintenancePolicy (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -1017,31 +493,31 @@ clusterType - 集群类型,
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  deleteInstance"
+        "Missing the required parameter 'regionId' when calling  deleteMaintenancePolicy"
       )
     }
 
     opts = opts || {}
 
-    if (opts.instanceId === undefined || opts.instanceId === null) {
+    if (
+      opts.maintenancePolicyId === undefined ||
+      opts.maintenancePolicyId === null
+    ) {
       throw new Error(
-        "Missing the required parameter 'opts.instanceId' when calling deleteInstance"
+        "Missing the required parameter 'opts.maintenancePolicyId' when calling deleteMaintenancePolicy"
       )
     }
 
     let postBody = null
     let queryParams = {}
-    if (opts.reservedOfHour !== undefined && opts.reservedOfHour !== null) {
-      queryParams['reservedOfHour'] = opts.reservedOfHour
-    }
 
     let pathParams = {
       regionId: regionId,
-      instanceId: opts.instanceId
+      maintenancePolicyId: opts.maintenancePolicyId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  es/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -1071,7 +547,7 @@ clusterType - 集群类型,
     let returnType = null
 
     this.config.logger(
-      `call deleteInstance with params:\npathParams:${JSON.stringify(
+      `call deleteMaintenancePolicy with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1084,7 +560,7 @@ clusterType - 集群类型,
     )
 
     let request = super.makeRequest(
-      '/regions/{regionId}/instances/{instanceId}',
+      '/regions/{regionId}/maintenancePolicies/{maintenancePolicyId}',
       'DELETE',
       pathParams,
       queryParams,
@@ -1114,34 +590,17 @@ clusterType - 集群类型,
   }
 
   /**
-      *  变更es实例的配置，实例为running状态才可变更配置，每次只能变更一种且不可与原来的相同。
-实例配置（cpu核数、内存、磁盘容量、节点数量）目前只允许变大
-
+      *  云主机关联自定义运维策略
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例Id
-      * @param {string} [opts.azId] - 可用区  optional
-      * @param {string} [opts.nodeClass] - data节点规格  optional
-      * @param {integer} [opts.nodeDiskGB] - data节点磁盘  optional
-      * @param {integer} [opts.nodeCount] - data节点数  optional
-      * @param {string} [opts.warmNodeClass] - warmdata节点规格  optional
-      * @param {integer} [opts.warmNodeDiskGB] - warmdata节点磁盘  optional
-      * @param {integer} [opts.warmNodeCount] - warmdata节点数  optional
-      * @param {string} [opts.warmNodeDiskType] - warmdata存储类型  optional
-      * @param {string} [opts.masterClass] - master节点规格  optional
-      * @param {string} [opts.coordinatingClass] - coordinating节点规格  optional
-      * @param {integer} [opts.coordinatingCount] - coordinating节点数  optional
-      * @param {string} [opts.changeType] - 变配类型  optional
-      * @param {string} [opts.kibanaClass] - kibana节点规格  optional
-      * @param {integer} [opts.kibanaCount] - kibana节点数  optional
-      * @param {modifyInstanceSpecValidatedAllowed} [opts.validatedAllowed] - 经过验证的允许项  optional
+      * @param {string} opts.maintenancePolicyId - 运维策略ID
+      * @param {array} opts.instanceIds - 主机ID列表。带本地数据盘的云主机不能绑定系统运维策略，每条策略最多关联100个云主机。
+
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param string orderNum  订单编号
-      * @param string instanceId  es实例编号
       */
 
-  modifyInstanceSpec (opts, regionId = this.config.regionId, callback) {
+  associateMaintenancePolicy (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -1149,80 +608,40 @@ clusterType - 集群类型,
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  modifyInstanceSpec"
+        "Missing the required parameter 'regionId' when calling  associateMaintenancePolicy"
       )
     }
 
     opts = opts || {}
 
-    if (opts.instanceId === undefined || opts.instanceId === null) {
+    if (
+      opts.maintenancePolicyId === undefined ||
+      opts.maintenancePolicyId === null
+    ) {
       throw new Error(
-        "Missing the required parameter 'opts.instanceId' when calling modifyInstanceSpec"
+        "Missing the required parameter 'opts.maintenancePolicyId' when calling associateMaintenancePolicy"
+      )
+    }
+    if (opts.instanceIds === undefined || opts.instanceIds === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceIds' when calling associateMaintenancePolicy"
       )
     }
 
     let postBody = {}
-    if (opts.azId !== undefined && opts.azId !== null) {
-      postBody['azId'] = opts.azId
-    }
-    if (opts.nodeClass !== undefined && opts.nodeClass !== null) {
-      postBody['nodeClass'] = opts.nodeClass
-    }
-    if (opts.nodeDiskGB !== undefined && opts.nodeDiskGB !== null) {
-      postBody['nodeDiskGB'] = opts.nodeDiskGB
-    }
-    if (opts.nodeCount !== undefined && opts.nodeCount !== null) {
-      postBody['nodeCount'] = opts.nodeCount
-    }
-    if (opts.warmNodeClass !== undefined && opts.warmNodeClass !== null) {
-      postBody['warmNodeClass'] = opts.warmNodeClass
-    }
-    if (opts.warmNodeDiskGB !== undefined && opts.warmNodeDiskGB !== null) {
-      postBody['warmNodeDiskGB'] = opts.warmNodeDiskGB
-    }
-    if (opts.warmNodeCount !== undefined && opts.warmNodeCount !== null) {
-      postBody['warmNodeCount'] = opts.warmNodeCount
-    }
-    if (opts.warmNodeDiskType !== undefined && opts.warmNodeDiskType !== null) {
-      postBody['warmNodeDiskType'] = opts.warmNodeDiskType
-    }
-    if (opts.masterClass !== undefined && opts.masterClass !== null) {
-      postBody['masterClass'] = opts.masterClass
-    }
-    if (
-      opts.coordinatingClass !== undefined &&
-      opts.coordinatingClass !== null
-    ) {
-      postBody['coordinatingClass'] = opts.coordinatingClass
-    }
-    if (
-      opts.coordinatingCount !== undefined &&
-      opts.coordinatingCount !== null
-    ) {
-      postBody['coordinatingCount'] = opts.coordinatingCount
-    }
-    if (opts.changeType !== undefined && opts.changeType !== null) {
-      postBody['changeType'] = opts.changeType
-    }
-    if (opts.kibanaClass !== undefined && opts.kibanaClass !== null) {
-      postBody['kibanaClass'] = opts.kibanaClass
-    }
-    if (opts.kibanaCount !== undefined && opts.kibanaCount !== null) {
-      postBody['kibanaCount'] = opts.kibanaCount
-    }
-    if (opts.validatedAllowed !== undefined && opts.validatedAllowed !== null) {
-      postBody['validatedAllowed'] = opts.validatedAllowed
+    if (opts.instanceIds !== undefined && opts.instanceIds !== null) {
+      postBody['instanceIds'] = opts.instanceIds
     }
 
     let queryParams = {}
 
     let pathParams = {
       regionId: regionId,
-      instanceId: opts.instanceId
+      maintenancePolicyId: opts.maintenancePolicyId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  es/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -1252,7 +671,7 @@ clusterType - 集群类型,
     let returnType = null
 
     this.config.logger(
-      `call modifyInstanceSpec with params:\npathParams:${JSON.stringify(
+      `call associateMaintenancePolicy with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1265,7 +684,7 @@ clusterType - 集群类型,
     )
 
     let request = super.makeRequest(
-      '/regions/{regionId}/instances/{instanceId}:modifyInstanceSpec',
+      '/regions/{regionId}/maintenancePolicies/{maintenancePolicyId}:associateInstance',
       'POST',
       pathParams,
       queryParams,
@@ -1295,27 +714,20 @@ clusterType - 集群类型,
   }
 
   /**
-      *  获取变配类型，只有垂直变配需要请求；垂直变配即节点规格变配、存储变配；非节点个数变配，非开启/关闭master、协调节点和warm节点等
-
+      *  云主机解关联运维策略
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例Id
-      * @param {string} [opts.nodeClass] - data节点规格  optional
-      * @param {integer} [opts.nodeDiskGB] - data节点磁盘  optional
-      * @param {integer} [opts.nodeCount] - data节点数  optional
-      * @param {string} [opts.warmNodeClass] - warmdata节点规格  optional
-      * @param {integer} [opts.warmNodeDiskGB] - warmdata节点磁盘  optional
-      * @param {integer} [opts.warmNodeCount] - warmdata节点数  optional
-      * @param {string} [opts.warmNodeDiskType] - warmdata存储类型  optional
-      * @param {string} [opts.masterClass] - master节点规格  optional
-      * @param {string} [opts.coordinatingClass] - coordinating节点规格  optional
-      * @param {integer} [opts.coordinatingCount] - coordinating节点数  optional
+      * @param {string} opts.maintenancePolicyId - 运维策略ID
+      * @param {array} opts.instanceIds - 主机ID列表
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param changeType changeTypes
       */
 
-  instanceChangeType (opts, regionId = this.config.regionId, callback) {
+  disassociateMaintenancePolicy (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -1323,65 +735,40 @@ clusterType - 集群类型,
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  instanceChangeType"
+        "Missing the required parameter 'regionId' when calling  disassociateMaintenancePolicy"
       )
     }
 
     opts = opts || {}
 
-    if (opts.instanceId === undefined || opts.instanceId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.instanceId' when calling instanceChangeType"
-      )
-    }
-
-    let postBody = {}
-    if (opts.nodeClass !== undefined && opts.nodeClass !== null) {
-      postBody['nodeClass'] = opts.nodeClass
-    }
-    if (opts.nodeDiskGB !== undefined && opts.nodeDiskGB !== null) {
-      postBody['nodeDiskGB'] = opts.nodeDiskGB
-    }
-    if (opts.nodeCount !== undefined && opts.nodeCount !== null) {
-      postBody['nodeCount'] = opts.nodeCount
-    }
-    if (opts.warmNodeClass !== undefined && opts.warmNodeClass !== null) {
-      postBody['warmNodeClass'] = opts.warmNodeClass
-    }
-    if (opts.warmNodeDiskGB !== undefined && opts.warmNodeDiskGB !== null) {
-      postBody['warmNodeDiskGB'] = opts.warmNodeDiskGB
-    }
-    if (opts.warmNodeCount !== undefined && opts.warmNodeCount !== null) {
-      postBody['warmNodeCount'] = opts.warmNodeCount
-    }
-    if (opts.warmNodeDiskType !== undefined && opts.warmNodeDiskType !== null) {
-      postBody['warmNodeDiskType'] = opts.warmNodeDiskType
-    }
-    if (opts.masterClass !== undefined && opts.masterClass !== null) {
-      postBody['masterClass'] = opts.masterClass
-    }
     if (
-      opts.coordinatingClass !== undefined &&
-      opts.coordinatingClass !== null
+      opts.maintenancePolicyId === undefined ||
+      opts.maintenancePolicyId === null
     ) {
-      postBody['coordinatingClass'] = opts.coordinatingClass
+      throw new Error(
+        "Missing the required parameter 'opts.maintenancePolicyId' when calling disassociateMaintenancePolicy"
+      )
     }
-    if (
-      opts.coordinatingCount !== undefined &&
-      opts.coordinatingCount !== null
-    ) {
-      postBody['coordinatingCount'] = opts.coordinatingCount
+    if (opts.instanceIds === undefined || opts.instanceIds === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceIds' when calling disassociateMaintenancePolicy"
+      )
+    }
+
+    let postBody = {}
+    if (opts.instanceIds !== undefined && opts.instanceIds !== null) {
+      postBody['instanceIds'] = opts.instanceIds
     }
 
     let queryParams = {}
 
     let pathParams = {
       regionId: regionId,
-      instanceId: opts.instanceId
+      maintenancePolicyId: opts.maintenancePolicyId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  es/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -1411,7 +798,7 @@ clusterType - 集群类型,
     let returnType = null
 
     this.config.logger(
-      `call instanceChangeType with params:\npathParams:${JSON.stringify(
+      `call disassociateMaintenancePolicy with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1424,7 +811,7 @@ clusterType - 集群类型,
     )
 
     let request = super.makeRequest(
-      '/regions/{regionId}/instances/{instanceId}:changeType',
+      '/regions/{regionId}/maintenancePolicies/{maintenancePolicyId}:disassociateInstance',
       'POST',
       pathParams,
       queryParams,
@@ -1454,15 +841,39 @@ clusterType - 集群类型,
   }
 
   /**
-      *  确认删除
+      *  查询云主机的运维事件
+
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例Id
+      * @param {integer} [opts.pageNumber] - 页码；默认为1。  optional
+      * @param {integer} [opts.pageSize] - 分页大小；&lt;br&gt;默认为20；取值范围[10, 100]。  optional
+      * @param {string} opts.eventType - 事件类型
+- Evacuate：非预期
+- Maintenance：预期
+- OfflineMachine：实例所在宿主机下线
+- HpcEvacuate：异构计算实例非预期
+
+      * @param {string} [opts.order] - 排序字段
+- create_time: 创建时间
+- event_time: 执行时间
+- finish_time: 完成时间
+  optional
+      * @param {string} [opts.sort] - 排序方式
+- desc: 降序
+- asc: 升序
+  optional
+      * @param {filter} [opts.filters] - &lt;b&gt;filters 中支持使用以下关键字进行过滤&lt;/b&gt;
+&#x60;eventId&#x60;: 运维事件ID，精确匹配，支持多个。
+&#x60;resourceId&#x60;: 资源ID，精确匹配，支持多个。
+&#x60;eventStatus&#x60;: 运维事件状态，精确匹配，支持多个。
+  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param maintenanceEvent instanceEvents
+      * @param integer totalCount  本次查询可匹配到的总记录数，用户需要结合 &#x60;pageNumber&#x60; 和 &#x60;pageSize&#x60; 计算是否可以继续分页。
       */
 
-  instanceConfirmDelete (opts, regionId = this.config.regionId, callback) {
+  describeMaintenanceEvents (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -1470,29 +881,43 @@ clusterType - 集群类型,
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  instanceConfirmDelete"
+        "Missing the required parameter 'regionId' when calling  describeMaintenanceEvents"
       )
     }
 
     opts = opts || {}
 
-    if (opts.instanceId === undefined || opts.instanceId === null) {
+    if (opts.eventType === undefined || opts.eventType === null) {
       throw new Error(
-        "Missing the required parameter 'opts.instanceId' when calling instanceConfirmDelete"
+        "Missing the required parameter 'opts.eventType' when calling describeMaintenanceEvents"
       )
     }
 
-    let postBody = {}
-
+    let postBody = null
     let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    if (opts.eventType !== undefined && opts.eventType !== null) {
+      queryParams['eventType'] = opts.eventType
+    }
+    if (opts.order !== undefined && opts.order !== null) {
+      queryParams['order'] = opts.order
+    }
+    if (opts.sort !== undefined && opts.sort !== null) {
+      queryParams['sort'] = opts.sort
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
-      regionId: regionId,
-      instanceId: opts.instanceId
+      regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  es/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -1522,7 +947,7 @@ clusterType - 集群类型,
     let returnType = null
 
     this.config.logger(
-      `call instanceConfirmDelete with params:\npathParams:${JSON.stringify(
+      `call describeMaintenanceEvents with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1535,7 +960,132 @@ clusterType - 集群类型,
     )
 
     let request = super.makeRequest(
-      '/regions/{regionId}/instances/{instanceId}:confirmDelete',
+      '/regions/{regionId}/maintenanceEvents',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建自定义运维事件，仅支持实例资源。
+仅灰度用户可用（元数据 vm_submithost&#x3D;1）。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.resourceId - 资源ID（实例ID）
+      * @param {string} [opts.description] - 描述信息，最长256个字符
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string eventId  运维事件ID
+      */
+
+  createCustomEventsOnResource (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createCustomEventsOnResource"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.resourceId === undefined || opts.resourceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.resourceId' when calling createCustomEventsOnResource"
+      )
+    }
+
+    let postBody = {}
+    if (opts.resourceId !== undefined && opts.resourceId !== null) {
+      postBody['resourceId'] = opts.resourceId
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createCustomEventsOnResource with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/maintenanceEvents',
       'POST',
       pathParams,
       queryParams,
@@ -1565,16 +1115,26 @@ clusterType - 集群类型,
   }
 
   /**
-      *  modifyInstanceKibanaSpec
+      *  修改（预约）云主机的事件
+
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例Id
-      * @param {boolean} [opts.kibana] - kibana  optional
+      * @param {string} opts.eventId - 运维事件ID
+
+      * @param {string} [opts.eventTime] - 预约执行时间，形如2023-01-01 12:00:00
+参数条件：
+ 1. 事件的eventState为Scheduled，预约时间需晚于当前时间至少15分钟，且在deadlineTime前15分钟。与eventState二者只能填入其一。
+ 2. 当事件类型为实例所在宿主机下线时，该参数为必填项。
+  optional
+      * @param {string} [opts.eventState] - 运维事件状态，目前仅支持Reject（灰度）
+参数条件：
+1. eventState为Scheduled，与eventTime二者只能填入其一。
+  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       */
 
-  modifyInstanceKibanaSpec (opts, regionId = this.config.regionId, callback) {
+  modifyMaintenanceEvent (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -1582,32 +1142,35 @@ clusterType - 集群类型,
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  modifyInstanceKibanaSpec"
+        "Missing the required parameter 'regionId' when calling  modifyMaintenanceEvent"
       )
     }
 
     opts = opts || {}
 
-    if (opts.instanceId === undefined || opts.instanceId === null) {
+    if (opts.eventId === undefined || opts.eventId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.instanceId' when calling modifyInstanceKibanaSpec"
+        "Missing the required parameter 'opts.eventId' when calling modifyMaintenanceEvent"
       )
     }
 
     let postBody = {}
-    if (opts.kibana !== undefined && opts.kibana !== null) {
-      postBody['kibana'] = opts.kibana
+    if (opts.eventTime !== undefined && opts.eventTime !== null) {
+      postBody['eventTime'] = opts.eventTime
+    }
+    if (opts.eventState !== undefined && opts.eventState !== null) {
+      postBody['eventState'] = opts.eventState
     }
 
     let queryParams = {}
 
     let pathParams = {
       regionId: regionId,
-      instanceId: opts.instanceId
+      eventId: opts.eventId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  es/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -1637,7 +1200,7 @@ clusterType - 集群类型,
     let returnType = null
 
     this.config.logger(
-      `call modifyInstanceKibanaSpec with params:\npathParams:${JSON.stringify(
+      `call modifyMaintenanceEvent with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1650,8 +1213,8 @@ clusterType - 集群类型,
     )
 
     let request = super.makeRequest(
-      '/regions/{regionId}/instances/{instanceId}:modifyInstanceKibanaSpec',
-      'POST',
+      '/regions/{regionId}/maintenanceEvents/{eventId}',
+      'PATCH',
       pathParams,
       queryParams,
       headerParams,
@@ -1680,16 +1243,16 @@ clusterType - 集群类型,
   }
 
   /**
-      *  modifyInstanceExtendInfo
+      *  授权计划迁移系统中的运维事件，授权前会校验事件是否存在且归属当前账号，仅支持计划迁移系统内的事件。
+
       * @param {Object} opts - parameters
-      * @param {string} opts.instanceId - 实例Id
-      * @param {modifyInstanceExtendInfoSettings} opts.settings
+      * @param {string} opts.eventId - 运维事件ID
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       */
 
-  modifyInstanceExtendInfo (opts, regionId = this.config.regionId, callback) {
+  authorizeEvent (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -1697,37 +1260,29 @@ clusterType - 集群类型,
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  modifyInstanceExtendInfo"
+        "Missing the required parameter 'regionId' when calling  authorizeEvent"
       )
     }
 
     opts = opts || {}
 
-    if (opts.instanceId === undefined || opts.instanceId === null) {
+    if (opts.eventId === undefined || opts.eventId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.instanceId' when calling modifyInstanceExtendInfo"
-      )
-    }
-    if (opts.settings === undefined || opts.settings === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.settings' when calling modifyInstanceExtendInfo"
+        "Missing the required parameter 'opts.eventId' when calling authorizeEvent"
       )
     }
 
     let postBody = {}
-    if (opts.settings !== undefined && opts.settings !== null) {
-      postBody['settings'] = opts.settings
-    }
 
     let queryParams = {}
 
     let pathParams = {
       regionId: regionId,
-      instanceId: opts.instanceId
+      eventId: opts.eventId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  es/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.2'
     }
 
     let contentTypes = ['application/json']
@@ -1757,7 +1312,7 @@ clusterType - 集群类型,
     let returnType = null
 
     this.config.logger(
-      `call modifyInstanceExtendInfo with params:\npathParams:${JSON.stringify(
+      `call authorizeEvent with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1770,8 +1325,118 @@ clusterType - 集群类型,
     )
 
     let request = super.makeRequest(
-      '/regions/{regionId}/instances/{instanceId}:modifyInstanceExtendInfo',
-      'POST',
+      '/regions/{regionId}/maintenanceEvents/{eventId}:authorizeEvent',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询规格实例的推荐规格（用于实例所在宿主机器下线事件）
+如果实例规格没有查询到对应的推荐规格，返回的推荐规格为空
+
+      * @param {Object} opts - parameters
+      * @param {string} [opts.instanceTypes] - 规格实例列表  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param recommendedInstanceTypeItem recommendedInstanceTypes
+      */
+
+  recommendedInstanceTypes (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  recommendedInstanceTypes"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    Object.assign(
+      queryParams,
+      super.buildArrayParam(opts.instanceTypes, 'instanceTypes')
+    )
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call recommendedInstanceTypes with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/recommendedInstanceTypes',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -1799,4 +1464,4 @@ clusterType - 集群类型,
     )
   }
 }
-module.exports = ES
+module.exports = CMP

@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * ES White list API
- * es white list
+ * Maintenance
+ * 运维事件相关的接口
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -24,20 +24,20 @@
 
 const JDCloud = require('../lib/core')
 var Service = JDCloud.Service
-var serviceId = 'es'
+var serviceId = 'cmp'
 Service._services[serviceId] = true
 
 /**
- * es service.
+ * cmp service.
  */
 
-JDCloud.ES = class ES {
+JDCloud.CMP = class CMP {
   constructor (config = {}) {
     this.init(config)
     return new this.service(config)
   }
   init (config) {
-    let serviceName = 'es'
+    let serviceName = 'cmp'
     let version = config.version || JDCloud.config.version
     let versionFlag = 'v1'
     if (version && version[serviceName]) {
@@ -53,4 +53,4 @@ JDCloud.ES = class ES {
   }
 }
 
-module.exports = JDCloud.ES
+module.exports = JDCloud.CMP

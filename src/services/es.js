@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * ES Snapshot API
- * es快照创建、查询，自动快照的设置、查询接口
+ * ES White list API
+ * es white list
  *
  * OpenAPI spec version: v1
  * Contact:

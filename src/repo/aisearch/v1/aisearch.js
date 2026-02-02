@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * aisearch service.
- * @version 0.2.0
+ * @version 2.0.0
  */
 
 class AISEARCH extends Service {
@@ -110,7 +110,7 @@ class AISEARCH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  aisearch/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  aisearch/2.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -188,6 +188,8 @@ class AISEARCH extends Service {
       * @param {string} opts.apiKey - api key编号
       * @param {string} opts.requestId - 请求id，api key下唯一
       * @param {string} opts.imageBase64 - 方形图片
+      * @param {integer} [opts.taskType] - 任务类型  optional
+      * @param {integer} [opts.hwType] - 扩图类型:1-竖向扩图,2-横向扩图（仅对方转长无文字任务有效）  optional
       * @param {string} callback - callback
       @return {Object} result
       * @param string requestId  requestId
@@ -225,6 +227,12 @@ class AISEARCH extends Service {
     if (opts.imageBase64 !== undefined && opts.imageBase64 !== null) {
       postBody['imageBase64'] = opts.imageBase64
     }
+    if (opts.taskType !== undefined && opts.taskType !== null) {
+      postBody['taskType'] = opts.taskType
+    }
+    if (opts.hwType !== undefined && opts.hwType !== null) {
+      postBody['hwType'] = opts.hwType
+    }
 
     let queryParams = {}
 
@@ -233,7 +241,7 @@ class AISEARCH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  aisearch/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  aisearch/2.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -356,7 +364,7 @@ class AISEARCH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  aisearch/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  aisearch/2.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -488,7 +496,7 @@ class AISEARCH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  aisearch/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  aisearch/2.0.0'
     }
 
     let contentTypes = ['application/json']
@@ -619,7 +627,7 @@ class AISEARCH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  aisearch/0.2.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  aisearch/2.0.0'
     }
 
     let contentTypes = ['application/json']

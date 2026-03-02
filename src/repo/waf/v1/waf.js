@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * waf service.
- * @version 1.0.8
+ * @version 1.0.9
  */
 
 class WAF extends Service {
@@ -75,7 +75,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -120,6 +120,1482 @@ class WAF extends Service {
     let request = super.makeRequest(
       '/regions/{regionId}/admin:lboutIp',
       'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  开启/关闭api安全功能
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {apiEnableReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  apiEnable (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  apiEnable"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling apiEnable"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling apiEnable"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call apiEnable with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/api:enable',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取api安全功能状态
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {getApiEnableReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string wafInstanceId  实例id
+      * @param string domain  域名
+      * @param integer apiDetectPreActive  api识别默认规则
+      * @param integer apiDetectUserActive  api识别自定义规则
+      * @param integer apiTokenPreActive  登录凭证识别默认规则
+      * @param integer apiTokenUserActive  登录凭证识别自定义规则
+      * @param integer apiRiskPreActive  风险识别默认规则
+      * @param integer apiRiskUserActive  风险识别自定义规则
+      * @param integer apiSenPreActive  敏感数据识别默认规则
+      * @param integer apiSenUserActive  敏感数据识别自定义规则
+      */
+
+  getApiEnable (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getApiEnable"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling getApiEnable"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling getApiEnable"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getApiEnable with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/api:getEnable',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取api自定义规则数量
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {getApiEnableReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string wafInstanceId  实例id
+      * @param string domain  域名
+      * @param integer detectUser  api识别自定义规则
+      * @param integer tokenUser  登录凭证识别自定义规则
+      * @param integer riskUser  风险识别自定义规则
+      * @param integer senUser  敏感数据识别自定义规则
+      * @param integer detectPre  api识别默认规则
+      * @param integer tokenPre  登录凭证识别默认规则
+      * @param integer riskPre  风险识别默认规则
+      * @param integer senPre  敏感数据识别默认规则
+      */
+
+  getApiUserCount (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getApiUserCount"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling getApiUserCount"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling getApiUserCount"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getApiUserCount with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/api:getUserCount',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  设置api识别自定义规则
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {setApiDetectUser} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  setApiDetectUser (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  setApiDetectUser"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling setApiDetectUser"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling setApiDetectUser"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call setApiDetectUser with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/api:setDetectUser',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  设置敏感数据识别自定义规则
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {setApiSenUser} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  setApiSenUser (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  setApiSenUser"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling setApiSenUser"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling setApiSenUser"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call setApiSenUser with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/api:setSenUser',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  设置登录凭证识别自定义规则
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {setApiTokenUser} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  setApiTokenUser (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  setApiTokenUser"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling setApiTokenUser"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling setApiTokenUser"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call setApiTokenUser with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/api:setTokenUser',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  设置风险识别自定义规则
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {setApiRiskUser} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  setApiRiskUser (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  setApiRiskUser"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling setApiRiskUser"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling setApiRiskUser"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call setApiRiskUser with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/api:setRiskUser',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取api识别自定义规则
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {listApiUserReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param setApiDetectUser list
+      * @param integer pageIndex  页码
+      * @param integer pageSize  页大小
+      * @param integer totalCount  该域名下总数
+      */
+
+  listApiDetectUser (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  listApiDetectUser"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling listApiDetectUser"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling listApiDetectUser"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call listApiDetectUser with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/api:listDetectUser',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取敏感数据识别自定义规则
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {listApiUserReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param setApiSenUser list
+      * @param integer pageIndex  页码
+      * @param integer pageSize  页大小
+      * @param integer totalCount  该域名下总数
+      */
+
+  listApiSenUser (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  listApiSenUser"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling listApiSenUser"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling listApiSenUser"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call listApiSenUser with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/api:listSenUser',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取登录凭证识别自定义规则
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {listApiUserReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param setApiTokenUser list
+      * @param integer pageIndex  页码
+      * @param integer pageSize  页大小
+      * @param integer totalCount  该域名下总数
+      */
+
+  listApiTokenUser (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  listApiTokenUser"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling listApiTokenUser"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling listApiTokenUser"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call listApiTokenUser with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/api:listTokenUser',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取风险识别自定义规则
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {listApiUserReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param setApiRiskUser list
+      * @param integer pageIndex  页码
+      * @param integer pageSize  页大小
+      * @param integer totalCount  该域名下总数
+      */
+
+  listApiRiskUser (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  listApiRiskUser"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling listApiRiskUser"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling listApiRiskUser"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call listApiRiskUser with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/api:listRiskUser',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  自定义规则批量设置
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {apiOperateUserReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  apiOperateUser (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  apiOperateUser"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling apiOperateUser"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling apiOperateUser"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call apiOperateUser with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/api:operateUser',
+      'POST',
       pathParams,
       queryParams,
       headerParams,
@@ -198,7 +1674,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -314,7 +1790,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -440,7 +1916,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -560,7 +2036,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -675,7 +2151,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -790,7 +2266,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -904,7 +2380,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -1032,7 +2508,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -1116,8 +2592,8 @@ class WAF extends Service {
       * @param {string} [opts.request_method] - 请求方法，检索字段  optional
       * @param {string} [opts.action] - 动作，检索字段，支持类型：&quot;&quot;(为空时，默认查询全部动作类型)，&quot;-&quot;(放行)，&quot;notice&quot;(观察)，&quot;forbidden OR status&quot;(拦截)，&quot;redirect&quot;(浏览器跳转)，&quot;verify&quot;(人机交互)  optional
       * @param {string} [opts.status] - 状态码，检索字段  optional
-      * @param {string} [opts.logId] - 日志Id，检索字段  optional
       * @param {string} [opts.request_id] - 请求Id，检索字段  optional
+      * @param {string} [opts.upstreamErr] - 状态标识，检索字段  optional
       * @param {integer} opts.start - 开始时间戳，单位秒，时间间隔要求大于5分钟，小于30天。
       * @param {integer} opts.end - 结束时间戳，单位秒，时间间隔要求大于5分钟，小于30天。
       * @param {integer} opts.pageSize - 每页显示的个数，默认是10。
@@ -1196,11 +2672,11 @@ class WAF extends Service {
     if (opts.status !== undefined && opts.status !== null) {
       queryParams['status'] = opts.status
     }
-    if (opts.logId !== undefined && opts.logId !== null) {
-      queryParams['logId'] = opts.logId
-    }
     if (opts.request_id !== undefined && opts.request_id !== null) {
       queryParams['request_id'] = opts.request_id
+    }
+    if (opts.upstreamErr !== undefined && opts.upstreamErr !== null) {
+      queryParams['upstreamErr'] = opts.upstreamErr
     }
     if (opts.start !== undefined && opts.start !== null) {
       queryParams['start'] = opts.start
@@ -1221,7 +2697,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -1338,7 +2814,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -1460,7 +2936,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -1580,7 +3056,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -1700,7 +3176,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -1820,7 +3296,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -1946,7 +3422,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -2090,7 +3566,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -2210,7 +3686,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -2341,7 +3817,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -2461,7 +3937,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -2581,7 +4057,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -2701,7 +4177,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -2821,7 +4297,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -2941,7 +4417,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -3061,7 +4537,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -3181,7 +4657,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -3305,7 +4781,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -3349,6 +4825,126 @@ class WAF extends Service {
 
     let request = super.makeRequest(
       '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/waf:listRules',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  导入ip集
+      * @param {Object} opts - parameters
+      * @param {string} opts.wafInstanceId - 实例Id
+      * @param {importIpsetReq} opts.req - 请求
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  importIpset (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  importIpset"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.wafInstanceId === undefined || opts.wafInstanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.wafInstanceId' when calling importIpset"
+      )
+    }
+    if (opts.req === undefined || opts.req === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.req' when calling importIpset"
+      )
+    }
+
+    let postBody = {}
+    if (opts.req !== undefined && opts.req !== null) {
+      postBody['req'] = opts.req
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      wafInstanceId: opts.wafInstanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call importIpset with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/wafInstanceIds/{wafInstanceId}/userdefine:importIpset',
       'POST',
       pathParams,
       queryParams,
@@ -3425,7 +5021,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -3545,7 +5141,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -3672,7 +5268,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -3792,7 +5388,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -3912,7 +5508,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -4032,7 +5628,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -4156,7 +5752,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -4280,7 +5876,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -4400,7 +5996,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -4520,7 +6116,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -4644,7 +6240,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
     }
 
     let contentTypes = ['application/json']
@@ -4766,7 +6362,7 @@ class WAF extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  waf/1.0.9'
     }
 
     let contentTypes = ['application/json']

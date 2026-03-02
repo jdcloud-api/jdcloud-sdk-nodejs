@@ -1,0 +1,129 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/nodejs/bin/node', '/usr/local/bin/npm', 'publish' ]
+2 info using npm@3.10.10
+3 info using node@v6.17.1
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   escapedName: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: '/root/jdcloud-sdk-nodejs',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory /root/.npm/jdcloud-sdk-js/1.2.308/package.tgz not in flight; packing
+9 verbose correctMkdir /root/.npm correctMkdir not in flight; initializing
+10 verbose makeDirectory /root/.npm creation not in flight; initializing
+11 silly makeDirectory /root/.npm uid: 0 gid: 0
+12 info lifecycle jdcloud-sdk-js@1.2.308~prepublish: jdcloud-sdk-js@1.2.308
+13 silly lifecycle jdcloud-sdk-js@1.2.308~prepublish: no script for prepublish, continuing
+14 verbose tar pack [ '/root/.npm/jdcloud-sdk-js/1.2.308/package.tgz',
+14 verbose tar pack   '/root/jdcloud-sdk-nodejs' ]
+15 verbose tarball /root/.npm/jdcloud-sdk-js/1.2.308/package.tgz
+16 verbose folder /root/jdcloud-sdk-nodejs
+17 verbose addLocalTarball adding from inside cache /root/.npm/jdcloud-sdk-js/1.2.308/package.tgz
+18 verbose correctMkdir /root/.npm correctMkdir not in flight; initializing
+19 silly cache afterAdd jdcloud-sdk-js@1.2.308
+20 verbose afterAdd /root/.npm/jdcloud-sdk-js/1.2.308/package/package.json not in flight; writing
+21 verbose correctMkdir /root/.npm correctMkdir not in flight; initializing
+22 verbose afterAdd /root/.npm/jdcloud-sdk-js/1.2.308/package/package.json written
+23 silly publish { name: 'jdcloud-sdk-js',
+23 silly publish   version: '1.2.308',
+23 silly publish   description: 'jdcloud openApi sdk',
+23 silly publish   main: 'src/jdcloud.js',
+23 silly publish   scripts:
+23 silly publish    { test: 'cross-env NODE_CONFIG_DIR=./test/config  mocha --recursive --require babel-register',
+23 silly publish      dev: 'babel src --out-dir babel -w' },
+23 silly publish   author: '',
+23 silly publish   license: 'Apache',
+23 silly publish   dependencies:
+23 silly publish    { 'babel-register': '^6.26.0',
+23 silly publish      buffer: '^5.0.8',
+23 silly publish      'create-hash': '^1.1.3',
+23 silly publish      'create-hmac': '^1.1.6',
+23 silly publish      debug: '^3.1.0',
+23 silly publish      'node-fetch': '^2.1.2',
+23 silly publish      querystring: '^0.2.0',
+23 silly publish      url: '^0.11.0',
+23 silly publish      uuid: '^3.1.0' },
+23 silly publish   devDependencies:
+23 silly publish    { mocha: '^5.0.0',
+23 silly publish      chai: '^4.1.2',
+23 silly publish      'babel-cli': '^6.26.0',
+23 silly publish      'babel-preset-env': '^1.6.1',
+23 silly publish      config: '^1.30.0',
+23 silly publish      'cross-env': '^5.1.4',
+23 silly publish      'js-yaml': '^3.11.0' },
+23 silly publish   engines: { node: '>= 8.6.0', npm: '>= 5.6.0' },
+23 silly publish   browserslist: [ '> 1%', 'last 2 versions', 'not ie <= 9' ],
+23 silly publish   standard:
+23 silly publish    { env: [ 'node', 'mocha', 'browser' ],
+23 silly publish      globals: [ 'Request', 'Headers', 'fetch' ] },
+23 silly publish   readme: '---\n[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)\n\n# 简介 #\n  欢迎使用京东云开发者Node.js工具套件（Node.js SDK）。使用京东云Node.js SDK，您无需复杂编程就可以访问京东云提供的各种服务。 \n\n  为了方便您理解SDK中的一些概念和参数的含义，使用SDK前建议您先查看[京东云OpenAPI使用入门](http://www.jdcloud.com/help/detail/355/isCatalog/0)。要了解每个API的具体参数和含义，请参考程序注释或参考OpenAPI&SDK下具体产品线的API文档。\n\n\n\n# 环境准备 #\n 1.京东云Node.js SDK适用于Node.js 8.6.0及以上，npm 5.6.0及以上。\n\n 2.在开始调用京东云open API之前，需提前在京东云用户中心账户管理下的[AccessKey管理页面](https://uc.jdcloud.com/accesskey/index)申请accesskey和secretKey密钥对（简称AK/SK）。AK/SK信息请妥善保管，如果遗失可能会造成非法用户使用此信息操作您在云上的资源，给你造成数据和财产损失。\n\n\n\n# SDK使用方法 #\n建议使用npm安装京东云Node.js SDK，如下所示： \n\nnpm install jdcloud-sdk-js\n\n \n\n您还可以下载sdk源代码自行使用，[源代码地址](https://github.com/jdcloud-api/jdcloud-sdk-nodejs)。\n\n \n\nSDK使用中的任何问题，欢迎您在[SDK使用问题反馈页面](https://github.com/jdcloud-api/jdcloud-sdk-nodejs/issues)交流。\n\n\n\n注意：京东云并没有提供其他下载方式，请务必使用上述官方下载方式！\n\n \n\n# 调用SDK #\n\n## 两种引用方式 ##\n\tvar JDCloud = require(\'jdcloud-sdk-js\');\n\n这种引用方式会加载所有的可用的services\n\n\n\n\tvar NC = require(\'jdcloud-sdk-js/services/nativecontainer\');\n\n这种引用方式只会加载用到的service，此时仍然可以使用var JDCloud = require(\'jdcloud-sdk-js/global\')来引用JDCloud对象\n\n## 配置方法  ##\n\n对JDCloud的配置为通用配置，所有services共享配置:\n\n\tJDCloud.config.update({//*配置项/*/});\n\n对某个service的配置会覆盖通用配置：\n\n\tvar NC = require(\'jdcloud-sdk-js/services/nativecontainer\'); \n\tvar nc = new NATIVECONTAINER({//*配置项/*/});\n\n\n## 配置项 ##\n\n\tlet config = { \n\t\tcredentials: { \n\t\t\taccessKeyId: global.accessKeyId, secretAccessKey: global.secretAccessKey \n\t\t},\n\t\tregionId: \'cn-north-1\' //地域信息，某个api调用可以单独传参regionId，如果不传则会使用此配置中的regionId \n\t}\n\n\n## 调用示例 ##\n\n以下是查询单个云主机实例详情的调用示例\n\n\n###  引用和配置  ###\n\n    var VM = require(\'jdcloud-sdk-js/services/vm\')\n    var vm = new VM({\n            credentials: {\n        accessKeyId: global.accessKeyId,\n                secretAccessKey: global.secretAccessKey\n    },\n    regionId: \'cn-north-1\'\n    })\n\n\n\n### Promise方式调用 ####\n\n\tvm.createInstances({\n        instanceSpec: {\n            instanceType: \'g.s1.micro\',\n                    az: \'cn-north-1a\',\n                    imageId: \'98d44a0f-88c1-451a-8971-f1f769073b6c\',\n                    name: \'node-sdk-test\',\n                    elasticIp: {\n                bandwidthMbps: 2, provider: \'BGP\'\n            },\n            primaryNetworkInterface: {\n                networkInterface: {\n                    subnetId: \'subnet-3dm13k30gh\',\n                            az: \'cn-north-1a\'\n                }\n            },\n            systemDisk: {\n                diskCategory: \'local\'\n            },\n            description: \'sdk\'\n        },\n        maxCount: 1\n    },\'cn-north-1\').then(function(data){ // 返回数据处理 data \n    },\n    function(e){ // 调用API失败，错误处理 \n    })\n\n\n\n### callback方式调用 ###\n\n\tvm.createInstances({\n        instanceSpec: {\n            instanceType: \'g.s1.micro\',\n                    az: \'cn-north-1a\',\n                    imageId: \'98d44a0f-88c1-451a-8971-f1f769073b6c\',\n                    name: \'node-sdk-test\',\n                    elasticIp: {\n                bandwidthMbps: 2,\n                        provider: \'BGP\'\n            },\n            primaryNetworkInterface: {\n                networkInterface: {\n                    subnetId: \'subnet-3dm13k30gh\',\n                            az: \'cn-north-1a\'\n                }\n            },\n            systemDisk: {\n                diskCategory: \'local\'\n            },\n            description: \'sdk\'\n        },\n        maxCount: 1\n    },\'cn-north-1\',\n    function(err, data){\n        if(err){ // 调用API失败，错误处理 \n        } \n\t\telse { // 返回数据处理 data \n        } \n    })\n\n如果需要设置访问点，配置超时,额外请求头等，请参考如下更复杂的例子：\n\n```\n    var nc = new NATIVECONTAINER({\n        credentials: {\n            accessKeyId: global.accessKeyId,\n            secretAccessKey: global.secretAccessKey\n        },\n        endpoint: {\n            host: \'nativecontainer.internal.cn-north-1.jdcloud-api.com\', //指定非默认Endpoint\n            protocol: \'http\' //设置使用HTTP而不是HTTPS，vpc专用域名不支持HTTPS\n        },\n        \'x-extra-header\': { //指定额外header\n            "x-jdcloud-security-token" : "xxx", //要调用开启了MFA操作保护的接口需要传递\n            "x-jdcloud-content-sha256" : "xxx", //body过大，希望用此value替代对body进行哈希的过程\n            "MyOwn" : "xxx"\n        },\n        version: {\n            nativecontainer: \'v1\'\n        }\n    })\n```\n    \n\n更多调用示例参考  [SDK使用Demo](https://github.com/jdcloud-api/jdcloud-sdk-nodejs/tree/master/test)\n\n',
+23 silly publish   readmeFilename: 'README.md',
+23 silly publish   gitHead: '8d248738e3d94ff2227385918d9328238d29fc77',
+23 silly publish   _id: 'jdcloud-sdk-js@1.2.308',
+23 silly publish   _shasum: '4405676321d88328664d14b7590cae5fb4bdc585',
+23 silly publish   _from: '.' }
+24 verbose getPublishConfig undefined
+25 silly mapToRegistry name jdcloud-sdk-js
+26 silly mapToRegistry using default registry
+27 silly mapToRegistry registry https://registry.npmjs.org/
+28 silly mapToRegistry data Result {
+28 silly mapToRegistry   raw: 'jdcloud-sdk-js',
+28 silly mapToRegistry   scope: null,
+28 silly mapToRegistry   escapedName: 'jdcloud-sdk-js',
+28 silly mapToRegistry   name: 'jdcloud-sdk-js',
+28 silly mapToRegistry   rawSpec: '',
+28 silly mapToRegistry   spec: 'latest',
+28 silly mapToRegistry   type: 'tag' }
+29 silly mapToRegistry uri https://registry.npmjs.org/jdcloud-sdk-js
+30 verbose publish registryBase https://registry.npmjs.org/
+31 silly publish uploading /root/.npm/jdcloud-sdk-js/1.2.308/package.tgz
+32 verbose request uri https://registry.npmjs.org/jdcloud-sdk-js
+33 verbose request sending authorization for write operation
+34 info attempt registry request try #1 at 12:48:34 PM
+35 verbose request using bearer token for auth
+36 verbose request id 8cd6141d0baa4bd1
+37 http request PUT https://registry.npmjs.org/jdcloud-sdk-js
+38 http 404 https://registry.npmjs.org/jdcloud-sdk-js
+39 verbose headers { date: 'Wed, 04 Feb 2026 12:48:36 GMT',
+39 verbose headers   'content-type': 'application/json',
+39 verbose headers   'content-length': '21',
+39 verbose headers   connection: 'keep-alive',
+39 verbose headers   server: 'cloudflare',
+39 verbose headers   'cf-ray': '9c8a487dba822994-SJC',
+39 verbose headers   'npm-notice': 'Access token expired or revoked. Please try logging in again.',
+39 verbose headers   vary: 'Accept-Encoding',
+39 verbose headers   'set-cookie': [ '_cfuvid=EiRWme35QL.q67_Tht8W2tyQfph0hbh7Ezwsbbv1dX0-1770209316703-0.0.1.1-604800000; path=/; domain=.npmjs.org; HttpOnly; Secure; SameSite=None' ] }
+40 warn notice Access token expired or revoked. Please try logging in again.
+41 verbose request invalidating /root/.npm/registry.npmjs.org/jdcloud-sdk-js on PUT
+42 error publish Failed PUT 404
+43 verbose stack Error: Not found : jdcloud-sdk-js
+43 verbose stack     at makeError (/usr/local/nodejs/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:302:12)
+43 verbose stack     at CachingRegistryClient.<anonymous> (/usr/local/nodejs/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:290:14)
+43 verbose stack     at Request._callback (/usr/local/nodejs/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:210:14)
+43 verbose stack     at Request.self.callback (/usr/local/nodejs/lib/node_modules/npm/node_modules/request/request.js:187:22)
+43 verbose stack     at emitTwo (events.js:106:13)
+43 verbose stack     at Request.emit (events.js:191:7)
+43 verbose stack     at Request.<anonymous> (/usr/local/nodejs/lib/node_modules/npm/node_modules/request/request.js:1048:10)
+43 verbose stack     at emitOne (events.js:96:13)
+43 verbose stack     at Request.emit (events.js:188:7)
+43 verbose stack     at IncomingMessage.<anonymous> (/usr/local/nodejs/lib/node_modules/npm/node_modules/request/request.js:969:12)
+44 verbose statusCode 404
+45 verbose pkgid jdcloud-sdk-js
+46 verbose cwd /root/jdcloud-sdk-nodejs
+47 error Linux 3.10.0-514.21.2.el7.x86_64
+48 error argv "/usr/local/nodejs/bin/node" "/usr/local/bin/npm" "publish"
+49 error node v6.17.1
+50 error npm  v3.10.10
+51 error code E404
+52 error 404 Not found : jdcloud-sdk-js
+53 error 404
+54 error 404 'jdcloud-sdk-js' is not in the npm registry.
+55 error 404 You should bug the author to publish it (or use the name yourself!)
+56 error 404 Note that you can also install from a
+57 error 404 tarball, folder, http url, or git url.
+58 verbose exit [ 1, true ]

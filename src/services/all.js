@@ -103,6 +103,7 @@ module.exports = {
   DCAP: require('./dcap'),
   CLOUDAUTH: require('./cloudauth'),
   IOTCORE: require('./iotcore'),
+  JDSTARROCKS: require('./jdstarrocks'),
   AMS: require('./ams'),
   JDRO: require('./jdro'),
   ZFS: require('./zfs'),

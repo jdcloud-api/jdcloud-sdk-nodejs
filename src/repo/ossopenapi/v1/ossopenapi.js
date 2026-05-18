@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * ossopenapi service.
- * @version 0.9.7
+ * @version 0.9.12
  */
 
 class OSSOPENAPI extends Service {
@@ -107,7 +107,7 @@ class OSSOPENAPI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.9.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.9.12'
     }
 
     let contentTypes = ['application/json']
@@ -245,7 +245,7 @@ class OSSOPENAPI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.9.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.9.12'
     }
 
     let contentTypes = ['application/json']
@@ -356,7 +356,7 @@ class OSSOPENAPI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.9.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.9.12'
     }
 
     let contentTypes = ['application/json']
@@ -471,7 +471,7 @@ class OSSOPENAPI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.9.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.9.12'
     }
 
     let contentTypes = ['application/json']
@@ -585,7 +585,7 @@ class OSSOPENAPI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.9.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.9.12'
     }
 
     let contentTypes = ['application/json']
@@ -630,6 +630,780 @@ class OSSOPENAPI extends Service {
     let request = super.makeRequest(
       '/regions/{regionId}/buckets/{bucketName}/backSource',
       'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询所有云信息，JDStack跨云同步使用
+      * @param {Object} opts - parameters
+      * @param {string} opts.regionId - 区域ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param responseMessageRemoteCloudList responseMessageRemoteCloudList
+      */
+
+  listClouds (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  listClouds"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.regionId === undefined || opts.regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionId' when calling listClouds"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      regionId: opts.regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.9.12'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call listClouds with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/clouds',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  添加云信息，JDStack跨云同步使用
+      * @param {Object} opts - parameters
+      * @param {string} opts.regionId - 区域ID
+      * @param {remoteCloud} opts.remoteCloud - 云集群信息
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param responseMessageRemoteCloud responseMessageRemoteCloud
+      */
+
+  createCloud (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createCloud"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.regionId === undefined || opts.regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionId' when calling createCloud"
+      )
+    }
+    if (opts.remoteCloud === undefined || opts.remoteCloud === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.remoteCloud' when calling createCloud"
+      )
+    }
+
+    let postBody = {}
+    if (opts.remoteCloud !== undefined && opts.remoteCloud !== null) {
+      postBody['remoteCloud'] = opts.remoteCloud
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      regionId: opts.regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.9.12'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createCloud with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/clouds',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询云详情，JDStack跨云同步使用
+      * @param {Object} opts - parameters
+      * @param {string} opts.cloudName - 云集群名称
+      * @param {string} opts.regionName - 区域名称
+      * @param {string} opts.regionId - 区域ID
+      * @param {string} opts.cloudName - 云集群名称
+      * @param {string} opts.regionName - 区域名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param responseMessageRemoteCloud responseMessageRemoteCloud
+      */
+
+  getCloud (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getCloud"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.cloudName === undefined || opts.cloudName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.cloudName' when calling getCloud"
+      )
+    }
+    if (opts.regionName === undefined || opts.regionName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionName' when calling getCloud"
+      )
+    }
+    if (opts.regionId === undefined || opts.regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionId' when calling getCloud"
+      )
+    }
+    if (opts.cloudName === undefined || opts.cloudName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.cloudName' when calling getCloud"
+      )
+    }
+    if (opts.regionName === undefined || opts.regionName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionName' when calling getCloud"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      cloudName: opts.cloudName,
+      regionName: opts.regionName,
+      regionId: opts.regionId,
+      cloudName: opts.cloudName,
+      regionName: opts.regionName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.9.12'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getCloud with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/clouds/{cloudName}/region/{regionName}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改云信息，JDStack跨云同步使用
+      * @param {Object} opts - parameters
+      * @param {string} opts.cloudName - 云集群名称
+      * @param {string} opts.regionName - 区域名称
+      * @param {string} opts.regionId - 区域ID
+      * @param {string} opts.cloudName - 云集群名称
+      * @param {string} opts.regionName - 区域名称
+      * @param {remoteCloudUpdate} opts.remoteCloud - 云集群更新信息
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param responseMessageRemoteCloud responseMessageRemoteCloud
+      */
+
+  updateCloud (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  updateCloud"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.cloudName === undefined || opts.cloudName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.cloudName' when calling updateCloud"
+      )
+    }
+    if (opts.regionName === undefined || opts.regionName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionName' when calling updateCloud"
+      )
+    }
+    if (opts.regionId === undefined || opts.regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionId' when calling updateCloud"
+      )
+    }
+    if (opts.cloudName === undefined || opts.cloudName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.cloudName' when calling updateCloud"
+      )
+    }
+    if (opts.regionName === undefined || opts.regionName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionName' when calling updateCloud"
+      )
+    }
+    if (opts.remoteCloud === undefined || opts.remoteCloud === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.remoteCloud' when calling updateCloud"
+      )
+    }
+
+    let postBody = {}
+    if (opts.remoteCloud !== undefined && opts.remoteCloud !== null) {
+      postBody['remoteCloud'] = opts.remoteCloud
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      cloudName: opts.cloudName,
+      regionName: opts.regionName,
+      regionId: opts.regionId,
+      cloudName: opts.cloudName,
+      regionName: opts.regionName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.9.12'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call updateCloud with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/clouds/{cloudName}/region/{regionName}',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除云，JDStack跨云同步使用
+      * @param {Object} opts - parameters
+      * @param {string} opts.cloudName - 云集群名称
+      * @param {string} opts.regionName - 区域名称
+      * @param {string} opts.regionId - 区域ID
+      * @param {string} opts.cloudName - 云集群名称
+      * @param {string} opts.regionName - 区域名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param responseMessageBoolean responseMessageBoolean
+      */
+
+  deleteCloud (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteCloud"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.cloudName === undefined || opts.cloudName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.cloudName' when calling deleteCloud"
+      )
+    }
+    if (opts.regionName === undefined || opts.regionName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionName' when calling deleteCloud"
+      )
+    }
+    if (opts.regionId === undefined || opts.regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionId' when calling deleteCloud"
+      )
+    }
+    if (opts.cloudName === undefined || opts.cloudName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.cloudName' when calling deleteCloud"
+      )
+    }
+    if (opts.regionName === undefined || opts.regionName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionName' when calling deleteCloud"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      cloudName: opts.cloudName,
+      regionName: opts.regionName,
+      regionId: opts.regionId,
+      cloudName: opts.cloudName,
+      regionName: opts.regionName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.9.12'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteCloud with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/clouds/{cloudName}/region/{regionName}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  自定义域名列表
+      * @param {Object} opts - parameters
+      * @param {string} opts.bucketName - Bucket名称
+      * @param {integer} [opts.status] - 自定义域名状态(0无效；1有效；2被找回；3删除；4备案异常)  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param cNameQueryResult cNameQueryResult
+      */
+
+  listCNames (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  listCNames"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.bucketName === undefined || opts.bucketName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.bucketName' when calling listCNames"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.status !== undefined && opts.status !== null) {
+      queryParams['status'] = opts.status
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      bucketName: opts.bucketName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.9.12'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call listCNames with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/buckets/{bucketName}/cname/',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -703,7 +1477,7 @@ class OSSOPENAPI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.9.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.9.12'
     }
 
     let contentTypes = ['application/json']
@@ -821,7 +1595,7 @@ class OSSOPENAPI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.9.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.9.12'
     }
 
     let contentTypes = ['application/json']
@@ -940,7 +1714,7 @@ class OSSOPENAPI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.9.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.9.12'
     }
 
     let contentTypes = ['application/json']
@@ -1021,6 +1795,13 @@ class OSSOPENAPI extends Service {
       * @param {string} opts.bucketRegion - bucket所属区域
       * @param {string} opts.targetBucketName - 目标bucket名称
       * @param {string} opts.targetBucketRegion - 目标bucket所属区域
+      * @param {string} [opts.sourceBucketCloud] - 源bucket云名称，JDStack跨云同步使用  optional
+      * @param {string} [opts.targetBucketCloudEndpoint] - 目标bucket云endpoint，JDStack跨云同步使用  optional
+      * @param {string} [opts.targetBucketCloudAk] - 目标bucket云代理密钥Ak，JDStack跨云同步使用  optional
+      * @param {string} [opts.targetBucketCloudSk] - 目标bucket云代理密钥Sk，JDStack跨云同步使用  optional
+      * @param {string} [opts.targetBucketUserPin] - 目标bucket用户Pin，JDStack跨云同步使用  optional
+      * @param {string} [opts.targetBucketUserId] - 目标bucket用户Id，JDStack跨云同步使用  optional
+      * @param {string} [opts.targetBucketCloud] - 目标bucket云名称，JDStack跨云同步使用  optional
       * @param {string} opts.storageClass - 存储类型
       * @param {array} [opts.prefixSet]   optional
       * @param {string} regionId - ID of the region
@@ -1105,6 +1886,48 @@ class OSSOPENAPI extends Service {
     ) {
       postBody['targetBucketRegion'] = opts.targetBucketRegion
     }
+    if (
+      opts.sourceBucketCloud !== undefined &&
+      opts.sourceBucketCloud !== null
+    ) {
+      postBody['sourceBucketCloud'] = opts.sourceBucketCloud
+    }
+    if (
+      opts.targetBucketCloudEndpoint !== undefined &&
+      opts.targetBucketCloudEndpoint !== null
+    ) {
+      postBody['targetBucketCloudEndpoint'] = opts.targetBucketCloudEndpoint
+    }
+    if (
+      opts.targetBucketCloudAk !== undefined &&
+      opts.targetBucketCloudAk !== null
+    ) {
+      postBody['targetBucketCloudAk'] = opts.targetBucketCloudAk
+    }
+    if (
+      opts.targetBucketCloudSk !== undefined &&
+      opts.targetBucketCloudSk !== null
+    ) {
+      postBody['targetBucketCloudSk'] = opts.targetBucketCloudSk
+    }
+    if (
+      opts.targetBucketUserPin !== undefined &&
+      opts.targetBucketUserPin !== null
+    ) {
+      postBody['targetBucketUserPin'] = opts.targetBucketUserPin
+    }
+    if (
+      opts.targetBucketUserId !== undefined &&
+      opts.targetBucketUserId !== null
+    ) {
+      postBody['targetBucketUserId'] = opts.targetBucketUserId
+    }
+    if (
+      opts.targetBucketCloud !== undefined &&
+      opts.targetBucketCloud !== null
+    ) {
+      postBody['targetBucketCloud'] = opts.targetBucketCloud
+    }
     if (opts.storageClass !== undefined && opts.storageClass !== null) {
       postBody['storageClass'] = opts.storageClass
     }
@@ -1120,7 +1943,7 @@ class OSSOPENAPI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.9.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.9.12'
     }
 
     let contentTypes = ['application/json']
@@ -1245,7 +2068,7 @@ class OSSOPENAPI extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.9.7'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.9.12'
     }
 
     let contentTypes = ['application/json']
@@ -1290,6 +2113,347 @@ class OSSOPENAPI extends Service {
     let request = super.makeRequest(
       '/regions/{regionId}/users/{userId}/appCodes/{appCode}/serviceCodes/{serviceCode}/openService',
       'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取用户的bucket最大数量，jdstack使用
+      * @param {Object} opts - parameters
+      * @param {string} opts.userId - 用户Id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer bucketMaxCount  bucket最大数量
+      */
+
+  getBucketMaxCount (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getBucketMaxCount"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.userId === undefined || opts.userId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.userId' when calling getBucketMaxCount"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      userId: opts.userId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.9.12'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getBucketMaxCount with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/users/{userId}/bucketMaxCount',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  设置用户的bucket最大数量，jdstack使用
+      * @param {Object} opts - parameters
+      * @param {string} opts.userId - 用户Id
+      * @param {integer} opts.bucketMaxCount - bucket最大数量
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  putBucketMaxCount (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  putBucketMaxCount"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.userId === undefined || opts.userId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.userId' when calling putBucketMaxCount"
+      )
+    }
+    if (opts.bucketMaxCount === undefined || opts.bucketMaxCount === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.bucketMaxCount' when calling putBucketMaxCount"
+      )
+    }
+
+    let postBody = {}
+    if (opts.bucketMaxCount !== undefined && opts.bucketMaxCount !== null) {
+      postBody['bucketMaxCount'] = opts.bucketMaxCount
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      userId: opts.userId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.9.12'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call putBucketMaxCount with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/users/{userId}/bucketMaxCount',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除用户的bucket最大数量设置，jdstack使用
+      * @param {Object} opts - parameters
+      * @param {string} opts.userId - 用户Id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteBucketMaxCount (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteBucketMaxCount"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.userId === undefined || opts.userId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.userId' when calling deleteBucketMaxCount"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      userId: opts.userId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ossopenapi/0.9.12'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteBucketMaxCount with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/users/{userId}/bucketMaxCount',
+      'DELETE',
       pathParams,
       queryParams,
       headerParams,

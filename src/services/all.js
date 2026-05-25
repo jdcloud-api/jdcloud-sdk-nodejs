@@ -56,6 +56,7 @@ module.exports = {
   AISEARCH: require('./aisearch'),
   CP: require('./cp'),
   CR: require('./cr'),
+  AGENTGRID: require('./agentgrid'),
   PIPELINE: require('./pipeline'),
   CONTAINERREGISTRY: require('./containerregistry'),
   PARTNER: require('./partner'),

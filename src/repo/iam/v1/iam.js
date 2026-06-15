@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * iam service.
- * @version 0.3.23
+ * @version 0.3.24
  */
 
 class IAM extends Service {
@@ -71,7 +71,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -171,7 +171,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -278,7 +278,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -385,7 +385,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -491,7 +491,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -564,6 +564,112 @@ class IAM extends Service {
   }
 
   /**
+      *  查询子用户的AccessKey最新访问记录
+      * @param {Object} opts - parameters
+      * @param {string} opts.subUser - 子用户名称
+      * @param {string} opts.accessKey - accessKey
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param subUserAuditRecord auditRecords
+      */
+
+  describeSubUserAccessKeyAuditRecords (opts, callback) {
+    opts = opts || {}
+
+    if (opts.subUser === undefined || opts.subUser === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.subUser' when calling describeSubUserAccessKeyAuditRecords"
+      )
+    }
+    if (opts.accessKey === undefined || opts.accessKey === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.accessKey' when calling describeSubUserAccessKeyAuditRecords"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      subUser: opts.subUser,
+      accessKey: opts.accessKey
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeSubUserAccessKeyAuditRecords with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/subUser/{subUser}/accessKey/{accessKey}:auditRecords',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  创建用户组, &lt;br&gt;
 可访问&lt;a href&#x3D;&quot;https://docs.jdcloud.com/cn/iam/group-management&quot;&gt;用户组管理&lt;/a&gt;了解更多&lt;br&gt;
 
@@ -595,7 +701,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -694,7 +800,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -802,7 +908,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -900,7 +1006,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -1008,7 +1114,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -1116,7 +1222,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -1231,7 +1337,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -1347,7 +1453,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -1465,7 +1571,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -1581,7 +1687,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -1688,7 +1794,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -1796,7 +1902,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -1892,7 +1998,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -1987,7 +2093,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -2113,7 +2219,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -2224,7 +2330,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -2318,7 +2424,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -2433,7 +2539,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -2554,7 +2660,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -2665,7 +2771,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -2791,7 +2897,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -2927,7 +3033,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -3057,7 +3163,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -3183,7 +3289,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -3300,7 +3406,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -3404,7 +3510,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -3504,7 +3610,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -3612,7 +3718,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -3710,7 +3816,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -3824,7 +3930,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -3940,7 +4046,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -4044,7 +4150,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -4146,7 +4252,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -4245,7 +4351,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -4343,7 +4449,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -4457,7 +4563,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -4569,7 +4675,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -4685,7 +4791,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -4803,7 +4909,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -4924,7 +5030,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -5040,7 +5146,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -5150,7 +5256,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -5249,7 +5355,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -5364,7 +5470,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -5462,7 +5568,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -5594,7 +5700,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -5694,7 +5800,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -5794,7 +5900,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -5910,7 +6016,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -6028,7 +6134,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -6144,7 +6250,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -6292,7 +6398,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -6410,7 +6516,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -6514,7 +6620,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -6619,7 +6725,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -6723,7 +6829,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -6835,7 +6941,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -6947,7 +7053,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -7058,7 +7164,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']
@@ -7169,7 +7275,7 @@ class IAM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.23'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  iam/0.3.24'
     }
 
     let contentTypes = ['application/json']

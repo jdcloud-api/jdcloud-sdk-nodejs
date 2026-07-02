@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 停删规则
- * 停删规则
+ * SplitItemBill APIs
+ * 分账账单
  *
  * OpenAPI spec version: v1
  * Contact:

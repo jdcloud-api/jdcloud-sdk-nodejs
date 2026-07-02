@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 停删规则
- * 停删规则
+ * SplitItemBill APIs
+ * 分账账单
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * billing service.
- * @version 1.1.16
+ * @version 1.1.18
  */
 
 class BILLING extends Service {
@@ -124,7 +124,7 @@ class BILLING extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -280,7 +280,7 @@ class BILLING extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -432,7 +432,7 @@ class BILLING extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -588,7 +588,7 @@ class BILLING extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -727,7 +727,7 @@ class BILLING extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -879,7 +879,7 @@ class BILLING extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -1031,7 +1031,7 @@ class BILLING extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -1183,7 +1183,7 @@ class BILLING extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -1352,7 +1352,7 @@ class BILLING extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.18'
     }
 
     let contentTypes = ['application/json']
@@ -1396,6 +1396,190 @@ class BILLING extends Service {
 
     let request = super.makeRequest(
       '/regions/{regionId}/calculateTotalPrice',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  分账账单计费项明细分页查询
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageIndex] - 当前页序号  optional
+      * @param {integer} [opts.pageSize] - 每页结果数量  optional
+      * @param {integer} opts.queryType - 查询类型，1.按天，2.按月
+      * @param {string} opts.billStartDate - 开始查询账期，按月：yyyy-MM，按天：yyyy-MM-dd
+      * @param {string} opts.billEndDate - 结束查询账期，按月：yyyy-MM，按天：yyyy-MM-dd
+      * @param {string} [opts.serviceCode] - 产品  optional
+      * @param {array} [opts.serviceCodes] - 产品 List  optional
+      * @param {string} [opts.region] - 地域  optional
+      * @param {string} [opts.az] - 可用区  optional
+      * @param {string} [opts.resourceId] - 资源id  optional
+      * @param {string} [opts.subId] - 分拆项id  optional
+      * @param {string} [opts.subName] - 分拆项名称  optional
+      * @param {array} [opts.subIds] - 分拆项id List  optional
+      * @param {string} [opts.billItem] - 计费项key，精确匹配  optional
+      * @param {array} [opts.tags] - 标签  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer current  当前页码
+      * @param integer size  每页记录数
+      * @param integer total  总记录数
+      * @param integer pages  总页数
+      * @param splitItemBillItemVO records
+      */
+
+  describeSplitBillItems (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeSplitBillItems"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.queryType === undefined || opts.queryType === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.queryType' when calling describeSplitBillItems"
+      )
+    }
+    if (opts.billStartDate === undefined || opts.billStartDate === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.billStartDate' when calling describeSplitBillItems"
+      )
+    }
+    if (opts.billEndDate === undefined || opts.billEndDate === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.billEndDate' when calling describeSplitBillItems"
+      )
+    }
+
+    let postBody = {}
+    if (opts.pageIndex !== undefined && opts.pageIndex !== null) {
+      postBody['pageIndex'] = opts.pageIndex
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+    if (opts.queryType !== undefined && opts.queryType !== null) {
+      postBody['queryType'] = opts.queryType
+    }
+    if (opts.billStartDate !== undefined && opts.billStartDate !== null) {
+      postBody['billStartDate'] = opts.billStartDate
+    }
+    if (opts.billEndDate !== undefined && opts.billEndDate !== null) {
+      postBody['billEndDate'] = opts.billEndDate
+    }
+    if (opts.serviceCode !== undefined && opts.serviceCode !== null) {
+      postBody['serviceCode'] = opts.serviceCode
+    }
+    if (opts.serviceCodes !== undefined && opts.serviceCodes !== null) {
+      postBody['serviceCodes'] = opts.serviceCodes
+    }
+    if (opts.region !== undefined && opts.region !== null) {
+      postBody['region'] = opts.region
+    }
+    if (opts.az !== undefined && opts.az !== null) {
+      postBody['az'] = opts.az
+    }
+    if (opts.resourceId !== undefined && opts.resourceId !== null) {
+      postBody['resourceId'] = opts.resourceId
+    }
+    if (opts.subId !== undefined && opts.subId !== null) {
+      postBody['subId'] = opts.subId
+    }
+    if (opts.subName !== undefined && opts.subName !== null) {
+      postBody['subName'] = opts.subName
+    }
+    if (opts.subIds !== undefined && opts.subIds !== null) {
+      postBody['subIds'] = opts.subIds
+    }
+    if (opts.billItem !== undefined && opts.billItem !== null) {
+      postBody['billItem'] = opts.billItem
+    }
+    if (opts.tags !== undefined && opts.tags !== null) {
+      postBody['tags'] = opts.tags
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  billing/1.1.18'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeSplitBillItems with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/describeSplitBillItems',
       'POST',
       pathParams,
       queryParams,

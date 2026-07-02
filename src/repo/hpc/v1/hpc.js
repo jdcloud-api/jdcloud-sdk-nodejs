@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * hpc service.
- * @version 4.2.9
+ * @version 4.3.11
  */
 
 class HPC extends Service {
@@ -46,19 +46,30 @@ class HPC extends Service {
 
   /**
       *  查询诊断任务列表。
-支持按诊断类型筛选与分页。
+支持按筛选条件过滤与分页。
 
 ## 接口说明
-- 不支持通过 &#x60;state&#x60;、&#x60;diagnosticState&#x60;、&#x60;status&#x60; 进行筛选。
+- 通过 &#x60;filters&#x60; 进行条件筛选，支持以下过滤键(每个key均只支持一个value)：
+  - &#x60;diagnosticId&#x60;：诊断任务ID
+  - &#x60;diagnosticType&#x60;：诊断类型
+  - &#x60;clusterId&#x60;：集群ID
+  - &#x60;instanceId&#x60;：节点ID
+  - &#x60;diagnosticState&#x60;：诊断任务状态
 
       * @param {Object} opts - parameters
-      * @param {string} [opts.diagnosticType] - 诊断类型。  optional
       * @param {integer} [opts.pageNumber] - 页码；默认为1。  optional
-      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[1, 100]。  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]。  optional
+      * @param {filter} [opts.filters] - &lt;b&gt;filters 中支持使用以下关键字进行过滤&lt;/b&gt;
+&#x60;diagnosticId&#x60;：诊断任务ID
+&#x60;diagnosticType&#x60;：诊断类型
+&#x60;clusterId&#x60;：集群ID
+&#x60;instanceId&#x60;：节点ID
+&#x60;diagnosticState&#x60;：诊断任务状态
+  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param diagnosticResult diagnosticResults
+      * @param diagnosticTaskSummary diagnosticResults
       * @param integer totalCount  本次查询可匹配到的总记录数。
       */
 
@@ -78,22 +89,20 @@ class HPC extends Service {
 
     let postBody = null
     let queryParams = {}
-    if (opts.diagnosticType !== undefined && opts.diagnosticType !== null) {
-      queryParams['diagnosticType'] = opts.diagnosticType
-    }
     if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
       queryParams['pageNumber'] = opts.pageNumber
     }
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.2.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
     }
 
     let contentTypes = ['application/json']
@@ -168,12 +177,34 @@ class HPC extends Service {
   /**
       *  创建诊断任务。
 
+## 接口说明
+- &#x60;diagnosticType&#x60; 与对应的 spec 必须一一匹配，且仅能填写一个 spec：
+  - &#x60;HardwareStaticCheck&#x60; → &#x60;hardwareStaticCheckSpec&#x60;
+  - &#x60;NetworkNcclTest&#x60; → &#x60;networkNcclTestSpec&#x60;
+  - &#x60;OneClickDiagnosis&#x60; → &#x60;oneClickDiagnosisSpec&#x60;
+- 当 spec 中 &#x60;scopeType&#x60; 为 &#x60;instances&#x60; 时，&#x60;instanceIds&#x60; 必填；当 &#x60;scopeType&#x60; 为 &#x60;cluster&#x60; 时，&#x60;instanceIds&#x60; 可为空。
+
       * @param {Object} opts - parameters
-      * @param {diagnosticTaskSpec} opts.diagnosticTaskSpec - 诊断任务配置。
+      * @param {string} opts.clusterName - 集群名称。
+      * @param {array} [opts.instanceIds] - 诊断目标实例ID列表。
+当 spec 中 &#x60;scopeType&#x60; 为 &#x60;instances&#x60; 时必填；当 &#x60;scopeType&#x60; 为 &#x60;cluster&#x60; 时可为空。
+  optional
+      * @param {string} opts.diagnosticType - 诊断类型。
+取值：&#x60;HardwareStaticCheck&#x60;、&#x60;NetworkNcclTest&#x60;、&#x60;OneClickDiagnosis&#x60;。
+
+      * @param {hardwareStaticCheckSpec} [opts.hardwareStaticCheckSpec] - 硬件静态检查配置。
+当 &#x60;diagnosticType&#x60; 为 &#x60;HardwareStaticCheck&#x60; 时必填。
+  optional
+      * @param {networkNcclTestSpec} [opts.networkNcclTestSpec] - NCCL 网络测试配置。
+当 &#x60;diagnosticType&#x60; 为 &#x60;NetworkNcclTest&#x60; 时必填。
+  optional
+      * @param {oneClickDiagnosisSpec} [opts.oneClickDiagnosisSpec] - 一键诊断配置。
+当 &#x60;diagnosticType&#x60; 为 &#x60;OneClickDiagnosis&#x60; 时必填。
+  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param createDiagnosticTaskResult createDiagnosticTaskResult  创建诊断任务结果。
+      * @param string diagnosticId  诊断任务ID。
       */
 
   createDiagnosticTask (opts, regionId = this.config.regionId, callback) {
@@ -190,21 +221,44 @@ class HPC extends Service {
 
     opts = opts || {}
 
-    if (
-      opts.diagnosticTaskSpec === undefined ||
-      opts.diagnosticTaskSpec === null
-    ) {
+    if (opts.clusterName === undefined || opts.clusterName === null) {
       throw new Error(
-        "Missing the required parameter 'opts.diagnosticTaskSpec' when calling createDiagnosticTask"
+        "Missing the required parameter 'opts.clusterName' when calling createDiagnosticTask"
+      )
+    }
+    if (opts.diagnosticType === undefined || opts.diagnosticType === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.diagnosticType' when calling createDiagnosticTask"
       )
     }
 
     let postBody = {}
+    if (opts.clusterName !== undefined && opts.clusterName !== null) {
+      postBody['clusterName'] = opts.clusterName
+    }
+    if (opts.instanceIds !== undefined && opts.instanceIds !== null) {
+      postBody['instanceIds'] = opts.instanceIds
+    }
+    if (opts.diagnosticType !== undefined && opts.diagnosticType !== null) {
+      postBody['diagnosticType'] = opts.diagnosticType
+    }
     if (
-      opts.diagnosticTaskSpec !== undefined &&
-      opts.diagnosticTaskSpec !== null
+      opts.hardwareStaticCheckSpec !== undefined &&
+      opts.hardwareStaticCheckSpec !== null
     ) {
-      postBody['diagnosticTaskSpec'] = opts.diagnosticTaskSpec
+      postBody['hardwareStaticCheckSpec'] = opts.hardwareStaticCheckSpec
+    }
+    if (
+      opts.networkNcclTestSpec !== undefined &&
+      opts.networkNcclTestSpec !== null
+    ) {
+      postBody['networkNcclTestSpec'] = opts.networkNcclTestSpec
+    }
+    if (
+      opts.oneClickDiagnosisSpec !== undefined &&
+      opts.oneClickDiagnosisSpec !== null
+    ) {
+      postBody['oneClickDiagnosisSpec'] = opts.oneClickDiagnosisSpec
     }
 
     let queryParams = {}
@@ -214,7 +268,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.2.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
     }
 
     let contentTypes = ['application/json']
@@ -289,6 +343,11 @@ class HPC extends Service {
   /**
       *  查询单个诊断任务详情。
 
+## 接口说明
+- 返回结果中，仅与 &#x60;diagnosticType&#x60; 匹配的 spec 和 result 字段有值，其余为空。
+- 当 &#x60;diagnosticType&#x60; 为 &#x60;HardwareStaticCheck&#x60; 时，&#x60;hardwareStaticCheckResult.nodeSummary&#x60; 返回节点名称、实例ID、内网IP、公网IP、实例规格、操作系统和检查结论。
+- 当 &#x60;diagnosticType&#x60; 为 &#x60;OneClickDiagnosis&#x60; 时，&#x60;oneClickDiagnosisResult.instanceResults&#x60; 返回节点名称、实例ID、内网IP、公网IP、实例规格、操作系统、检查结论、诊断结果和失败原因。
+
       * @param {Object} opts - parameters
       * @param {string} opts.diagnosticId - 诊断任务ID。
       * @param {string} regionId - ID of the region
@@ -326,7 +385,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.2.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
     }
 
     let contentTypes = ['application/json']
@@ -371,6 +430,518 @@ class HPC extends Service {
     let request = super.makeRequest(
       '/regions/{regionId}/diagnosis/{diagnosticId}',
       'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除诊断任务。
+
+## 接口说明
+- 删除成功后，该任务将不再返回。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.diagnosticId - 诊断任务ID。
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteDiagnosticTask (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteDiagnosticTask"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.diagnosticId === undefined || opts.diagnosticId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.diagnosticId' when calling deleteDiagnosticTask"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      diagnosticId: opts.diagnosticId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteDiagnosticTask with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/diagnosis/{diagnosticId}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除hpc网络诊断
+      * @param {Object} opts - parameters
+      * @param {string} opts.hpcNetworkDiagnoseId - hpc net diagnosis ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteHpcNetDiagnose (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteHpcNetDiagnose"
+      )
+    }
+
+    opts = opts || {}
+
+    if (
+      opts.hpcNetworkDiagnoseId === undefined ||
+      opts.hpcNetworkDiagnoseId === null
+    ) {
+      throw new Error(
+        "Missing the required parameter 'opts.hpcNetworkDiagnoseId' when calling deleteHpcNetDiagnose"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      hpcNetworkDiagnoseId: opts.hpcNetworkDiagnoseId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteHpcNetDiagnose with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/hpcNetDiagnose/{hpcNetworkDiagnoseId}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询hpc网络诊断
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码, 默认为1, 取值范围：[1,∞), 页码超过总页数时, 显示最后一页  optional
+      * @param {integer} [opts.pageSize] - 分页大小，默认为20，取值范围：[10,100]  optional
+      * @param {filter} [opts.filters] - ids - 诊断报告ID列表，支持多个
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param hpcNetDiagnoses hpcNetworkDiagnoseViews
+      * @param integer totalCount  总数量
+      */
+
+  describeHpcNetDiagnoses (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeHpcNetDiagnoses"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeHpcNetDiagnoses with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/hpcNetDiagnose/',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建hpc网络诊断
+      * @param {Object} opts - parameters
+      * @param {string} opts.az - 可用区
+      * @param {string} opts.vpcId - vpc id
+      * @param {string} opts.hpcClusterName - 集群名字
+      * @param {string} opts.type - BANDWIDTH:带宽测试；LATENCY:时延测试
+      * @param {string} [opts.traffic] - MTON,FULLMESH (带宽测试独有，必填)  optional
+      * @param {integer} [opts.duration] - 测试时长 （带宽测试独有，必填）  optional
+      * @param {integer} [opts.qp] - qp [1-16384]（带宽测试独有,必填）  optional
+      * @param {boolean} [opts.gdr] - 是否启用 GDR（带宽测试独有，默认false）  optional
+      * @param {integer} opts.port - 端口 [5000-65535]
+      * @param {array} [opts.instances] - 节点信息  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string hpcNetworkDiagnoseId  诊断id
+      */
+
+  createHpcNetDiagnose (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createHpcNetDiagnose"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.az === undefined || opts.az === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.az' when calling createHpcNetDiagnose"
+      )
+    }
+    if (opts.vpcId === undefined || opts.vpcId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.vpcId' when calling createHpcNetDiagnose"
+      )
+    }
+    if (opts.hpcClusterName === undefined || opts.hpcClusterName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.hpcClusterName' when calling createHpcNetDiagnose"
+      )
+    }
+    if (opts.type === undefined || opts.type === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.type' when calling createHpcNetDiagnose"
+      )
+    }
+    if (opts.port === undefined || opts.port === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.port' when calling createHpcNetDiagnose"
+      )
+    }
+
+    let postBody = {}
+    if (opts.az !== undefined && opts.az !== null) {
+      postBody['az'] = opts.az
+    }
+    if (opts.vpcId !== undefined && opts.vpcId !== null) {
+      postBody['vpcId'] = opts.vpcId
+    }
+    if (opts.hpcClusterName !== undefined && opts.hpcClusterName !== null) {
+      postBody['hpcClusterName'] = opts.hpcClusterName
+    }
+    if (opts.type !== undefined && opts.type !== null) {
+      postBody['type'] = opts.type
+    }
+    if (opts.traffic !== undefined && opts.traffic !== null) {
+      postBody['traffic'] = opts.traffic
+    }
+    if (opts.duration !== undefined && opts.duration !== null) {
+      postBody['duration'] = opts.duration
+    }
+    if (opts.qp !== undefined && opts.qp !== null) {
+      postBody['qp'] = opts.qp
+    }
+    if (opts.gdr !== undefined && opts.gdr !== null) {
+      postBody['gdr'] = opts.gdr
+    }
+    if (opts.port !== undefined && opts.port !== null) {
+      postBody['port'] = opts.port
+    }
+    if (opts.instances !== undefined && opts.instances !== null) {
+      postBody['instances'] = opts.instances
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createHpcNetDiagnose with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/hpcNetDiagnose/',
+      'POST',
       pathParams,
       queryParams,
       headerParams,
@@ -444,7 +1015,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.2.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
     }
 
     let contentTypes = ['application/json']
@@ -535,6 +1106,7 @@ class HPC extends Service {
 &#x60;hpcClusterId&#x60;: 实例网络集群ID。支持精确批量
 &#x60;_privateIpAddress&#x60;: 实例内网ip地址。支持精确单个（内部使用）
   optional
+      * @param {tagFilter} [opts.tags] - Tag筛选条件。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -565,13 +1137,14 @@ class HPC extends Service {
       queryParams['pageSize'] = opts.pageSize
     }
     Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildTagFilterParam(opts.tags, 'tags'))
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.2.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
     }
 
     let contentTypes = ['application/json']
@@ -699,7 +1272,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.2.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
     }
 
     let contentTypes = ['application/json']
@@ -812,7 +1385,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.2.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
     }
 
     let contentTypes = ['application/json']
@@ -924,7 +1497,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.2.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
     }
 
     let contentTypes = ['application/json']
@@ -1036,7 +1609,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.2.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
     }
 
     let contentTypes = ['application/json']
@@ -1148,7 +1721,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.2.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
     }
 
     let contentTypes = ['application/json']
@@ -1245,6 +1818,7 @@ class HPC extends Service {
 **linux系统**：支持 &#x60;bash&#x60; 和 &#x60;python&#x60;，编码前须分别以 &#x60;#!/bin/bash&#x60; 和 &#x60;#!/usr/bin/env python&#x60; 作为内容首行。
   optional
       * @param {boolean} [opts.clearDataDisks] - 是否清空数据盘数据，false为不清空，true为清空，默认不清空。  optional
+      * @param {integer} [opts.secondaryIpMaskLen] - 指定分配的网段掩码长度, 支持24-28位掩码长度，不能与secondaryIpCount同时指定，不支持抢占重分配。该参数依赖子网的预分配网段。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1294,6 +1868,12 @@ class HPC extends Service {
     if (opts.clearDataDisks !== undefined && opts.clearDataDisks !== null) {
       postBody['clearDataDisks'] = opts.clearDataDisks
     }
+    if (
+      opts.secondaryIpMaskLen !== undefined &&
+      opts.secondaryIpMaskLen !== null
+    ) {
+      postBody['secondaryIpMaskLen'] = opts.secondaryIpMaskLen
+    }
 
     let queryParams = {}
 
@@ -1303,7 +1883,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.2.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
     }
 
     let contentTypes = ['application/json']
@@ -1429,7 +2009,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.2.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
     }
 
     let contentTypes = ['application/json']
@@ -1551,7 +2131,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.2.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
     }
 
     let contentTypes = ['application/json']
@@ -1673,7 +2253,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.2.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
     }
 
     let contentTypes = ['application/json']
@@ -1795,7 +2375,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.2.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
     }
 
     let contentTypes = ['application/json']
@@ -1926,7 +2506,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.2.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
     }
 
     let contentTypes = ['application/json']
@@ -2029,7 +2609,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.2.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
     }
 
     let contentTypes = ['application/json']
@@ -2108,6 +2688,7 @@ class HPC extends Service {
       * @param {integer} [opts.startPage] - 要导出的起始页码，startPage、endPage、pageSize都没有指定的情况下代表导出全部  optional
       * @param {integer} [opts.endPage] - 要导出的结束页码，startPage、endPage、pageSize都没有指定的情况下代表导出全部。  optional
       * @param {integer} [opts.pageSize] - 每页大小，startPage、endPage、pageSize都没有指定的情况下代表导出全部。  optional
+      * @param {array} [opts.tags] - Tag筛选条件  optional
       * @param {array} [opts.filters] - &lt;b&gt;filters 中支持使用以下关键字进行过滤&lt;/b&gt;
 &#x60;instanceId&#x60;: 实例Id，精确匹配，支持多个
 &#x60;instanceName&#x60;: 实例名称。支持单个模糊查询
@@ -2130,6 +2711,8 @@ class HPC extends Service {
 &quot;status&quot;: 运行状态
 &quot;instanceType&quot;: 实例规格
 &quot;charge&quot;: 计费信息
+&quot;tag&quot;: &quot;标签&quot;
+&quot;resourceGroup&quot;: &quot;资源组ID&quot;,&quot;资源组名称&quot;
   optional
       * @param {boolean} [opts.networkTopologyOrder] - 排序方式，默认为按创建时间降序排序  optional
       * @param {string} regionId - ID of the region
@@ -2162,6 +2745,9 @@ class HPC extends Service {
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       postBody['pageSize'] = opts.pageSize
     }
+    if (opts.tags !== undefined && opts.tags !== null) {
+      postBody['tags'] = opts.tags
+    }
     if (opts.filters !== undefined && opts.filters !== null) {
       postBody['filters'] = opts.filters
     }
@@ -2182,7 +2768,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.2.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
     }
 
     let contentTypes = ['application/json']
@@ -2301,7 +2887,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.2.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
     }
 
     let contentTypes = ['application/json']
@@ -2426,7 +3012,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.2.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
     }
 
     let contentTypes = ['application/json']
@@ -2579,7 +3165,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.2.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
     }
 
     let contentTypes = ['application/json']
@@ -2692,7 +3278,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.2.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
     }
 
     let contentTypes = ['application/json']
@@ -2823,7 +3409,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.2.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
     }
 
     let contentTypes = ['application/json']
@@ -2954,7 +3540,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.2.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
     }
 
     let contentTypes = ['application/json']
@@ -3084,7 +3670,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.2.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
     }
 
     let contentTypes = ['application/json']
@@ -3197,7 +3783,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.2.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
     }
 
     let contentTypes = ['application/json']
@@ -3305,7 +3891,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.2.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
     }
 
     let contentTypes = ['application/json']
@@ -3404,7 +3990,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.2.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
     }
 
     let contentTypes = ['application/json']
@@ -3506,7 +4092,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.2.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
     }
 
     let contentTypes = ['application/json']
@@ -3620,7 +4206,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.2.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
     }
 
     let contentTypes = ['application/json']
@@ -3732,7 +4318,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.2.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
     }
 
     let contentTypes = ['application/json']
@@ -3827,7 +4413,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.2.9'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
     }
 
     let contentTypes = ['application/json']

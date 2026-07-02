@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * agentgrid service.
- * @version 1.0.1
+ * @version 1.0.2
  */
 
 class AGENTGRID extends Service {
@@ -93,7 +93,7 @@ class AGENTGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -244,7 +244,7 @@ class AGENTGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -356,7 +356,7 @@ class AGENTGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -471,7 +471,7 @@ class AGENTGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -602,7 +602,7 @@ class AGENTGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -732,7 +732,7 @@ class AGENTGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -851,7 +851,7 @@ class AGENTGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -974,7 +974,7 @@ class AGENTGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1092,7 +1092,7 @@ class AGENTGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1204,7 +1204,7 @@ class AGENTGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1313,7 +1313,7 @@ class AGENTGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1424,7 +1424,7 @@ class AGENTGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1497,6 +1497,291 @@ class AGENTGRID extends Service {
   }
 
   /**
+      *  接收 OpenTelemetry Trace 数据。
+
+## 接口说明
+- 当前接口仅作为占位定义，请求体为任意 Object，不展开具体字段。
+
+      * @param {Object} opts - parameters
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  ingestTraces (opts, callback) {
+    opts = opts || {}
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call ingestTraces with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/traces',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  接收 OpenTelemetry Metrics 数据。
+
+## 接口说明
+- 当前接口仅作为占位定义，请求体为任意 Object，不展开具体字段。
+
+      * @param {Object} opts - parameters
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  ingestMetrics (opts, callback) {
+    opts = opts || {}
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call ingestMetrics with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/metrics',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  接收 OpenTelemetry Logs 数据。
+
+## 接口说明
+- 当前接口仅作为占位定义，请求体为任意 Object，不展开具体字段。
+
+      * @param {Object} opts - parameters
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  ingestLogs (opts, callback) {
+    opts = opts || {}
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call ingestLogs with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/logs',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  查询 Runtime 列表，默认返回当前生效版本的信息。
 
 ## 接口说明
@@ -1508,9 +1793,9 @@ class AGENTGRID extends Service {
       * @param {integer} [opts.pageSize] - 每页返回的数据条数。取值范围 10～100，默认值为 10。  optional
       * @param {integer} [opts.pageNumber] - 页码。默认值为 1。  optional
       * @param {filter} [opts.filters] - 过滤条件。支持的键如下：
-- runtimeId：按 Runtime ID 精确匹配，支持多个值。
-- runtimeName：按 Runtime 名称模糊匹配，仅支持单个值。
-- state：按 Runtime 状态过滤，支持多个值。可选值：&#x60;pending&#x60;、&#x60;creating&#x60;、&#x60;running&#x60;、&#x60;updating&#x60;、&#x60;failed&#x60;、&#x60;deleted&#x60;
+&#x60;runtimeId&#x60;：按 Runtime ID 精确匹配，支持多个值。
+&#x60;runtimeName&#x60;：按 Runtime 名称模糊匹配，仅支持单个值。
+&#x60;state&#x60;：按 Runtime 状态过滤，支持多个值。可选值：&#x60;pending&#x60;、&#x60;creating&#x60;、&#x60;running&#x60;、&#x60;updating&#x60;、&#x60;failed&#x60;、&#x60;deleted&#x60;
   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -1548,7 +1833,7 @@ class AGENTGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1640,8 +1925,10 @@ class AGENTGRID extends Service {
       * @param {authorizerConfiguration} opts.authorizerConfiguration - Runtime 鉴权配置。
       * @param {lifecycleConfiguration} [opts.lifecycleConfiguration] - Runtime 生命周期配置。  optional
       * @param {networkConfiguration} opts.networkConfiguration - Runtime 网络配置。
+      * @param {string} opts.roleName - 绑定 IAM 角色名。
       * @param {array} [opts.envs] - Runtime 环境变量配置，最多 50 组。  optional
-      * @param {string} [opts.protocol] - Runtime 支持的协议类型。当前支持 HTTP 。  optional
+      * @param {filesystemConfiguration} [opts.filesystemConfiguration] - Runtime 文件系统配置。  optional
+      * @param {string} [opts.protocol] - Runtime 支持的协议类型。当前支持http、mcp、a2a 。  optional
       * @param {string} [opts.clientToken] - 用于保证请求幂等性。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -1693,6 +1980,11 @@ class AGENTGRID extends Service {
         "Missing the required parameter 'opts.networkConfiguration' when calling createRuntime"
       )
     }
+    if (opts.roleName === undefined || opts.roleName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.roleName' when calling createRuntime"
+      )
+    }
 
     let postBody = {}
     if (opts.name !== undefined && opts.name !== null) {
@@ -1731,8 +2023,17 @@ class AGENTGRID extends Service {
     ) {
       postBody['networkConfiguration'] = opts.networkConfiguration
     }
+    if (opts.roleName !== undefined && opts.roleName !== null) {
+      postBody['roleName'] = opts.roleName
+    }
     if (opts.envs !== undefined && opts.envs !== null) {
       postBody['envs'] = opts.envs
+    }
+    if (
+      opts.filesystemConfiguration !== undefined &&
+      opts.filesystemConfiguration !== null
+    ) {
+      postBody['filesystemConfiguration'] = opts.filesystemConfiguration
     }
     if (opts.protocol !== undefined && opts.protocol !== null) {
       postBody['protocol'] = opts.protocol
@@ -1748,7 +2049,7 @@ class AGENTGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1868,7 +2169,7 @@ class AGENTGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1984,7 +2285,7 @@ class AGENTGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2073,20 +2374,24 @@ class AGENTGRID extends Service {
       * @param {networkConfiguration} [opts.networkConfiguration] - Runtime 网络配置。  optional
       * @param {integer} [opts.warmSession] - Runtime 预热 Session 数量，进行预热后，将会提前生成对应数量的 Session 实例，可以大幅减少会话初次启动时间。取值范围1～10，默认值为 1，且应小于等于 &#x60;maxSession&#x60;。  optional
       * @param {integer} [opts.maxSession] - Runtime 可承载的最大 Session 数量，取值范围1～10，默认值为 10。  optional
+      * @param {string} [opts.roleName] - runtime 绑定的实例角色  optional
       * @param {array} [opts.envs] - Runtime 环境变量配置，以 &#x60;key-value&#x60; 键值对形式指定，单次请求最多支持 50 组。
 
-## 参数说明
-- 不传该参数时，保留当前生效版本中的环境变量配置。
-- 当 &#x60;key&#x60; 以连字符 &#x60;-&#x60; 结尾时，表示删除旧版本中对应 &#x60;key&#x60; 的环境变量。
-- 当 &#x60;key&#x60; 不以连字符 &#x60;-&#x60; 结尾时，表示新增或更新该环境变量。
-- 本次调用后，环境变量不能超过50组
-- &#x60;key&#x60; 长度上限为 256 个字符。
+参数说明
+不传该参数时，保留当前生效版本中的环境变量配置。
+当 &#x60;key&#x60; 以连字符 &#x60;-&#x60; 结尾时，表示删除旧版本中对应 &#x60;key&#x60; 的环境变量。
+当 &#x60;key&#x60; 不以连字符 &#x60;-&#x60; 结尾时，表示新增或更新该环境变量。
+本次调用后，环境变量不能超过50组
+&#x60;key&#x60; 长度上限为 256 个字符。
   optional
-      * @param {string} [opts.protocol] - Runtime 支持的协议类型，当前仅支持 HTTP。  optional
+      * @param {filesystemConfiguration} [opts.filesystemConfiguration] - Runtime 文件系统配置。不传该参数时，保留当前生效版本中的文件系统配置；传入该参数时，将用本次配置替换新版本中的文件系统配置。  optional
+      * @param {string} [opts.protocol] - Runtime 支持的协议类型，当前支持http、mcp、a2a。  optional
       * @param {lifecycleConfiguration} [opts.lifecycleConfiguration] - Runtime 生命周期配置。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
+      * @param string runtimeId  Runtime ID。
+      * @param string runtimeVersion  Runtime 版本号。
       */
 
   updateRuntime (opts, regionId = this.config.regionId, callback) {
@@ -2137,8 +2442,17 @@ class AGENTGRID extends Service {
     if (opts.maxSession !== undefined && opts.maxSession !== null) {
       postBody['maxSession'] = opts.maxSession
     }
+    if (opts.roleName !== undefined && opts.roleName !== null) {
+      postBody['roleName'] = opts.roleName
+    }
     if (opts.envs !== undefined && opts.envs !== null) {
       postBody['envs'] = opts.envs
+    }
+    if (
+      opts.filesystemConfiguration !== undefined &&
+      opts.filesystemConfiguration !== null
+    ) {
+      postBody['filesystemConfiguration'] = opts.filesystemConfiguration
     }
     if (opts.protocol !== undefined && opts.protocol !== null) {
       postBody['protocol'] = opts.protocol
@@ -2158,7 +2472,7 @@ class AGENTGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2277,7 +2591,7 @@ class AGENTGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2400,7 +2714,7 @@ class AGENTGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2518,7 +2832,7 @@ class AGENTGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2635,7 +2949,7 @@ class AGENTGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2757,7 +3071,7 @@ class AGENTGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2878,7 +3192,7 @@ class AGENTGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3029,7 +3343,7 @@ class AGENTGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3144,7 +3458,7 @@ class AGENTGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3261,7 +3575,7 @@ class AGENTGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3399,7 +3713,7 @@ class AGENTGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3535,7 +3849,7 @@ class AGENTGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3661,7 +3975,7 @@ class AGENTGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3791,7 +4105,7 @@ class AGENTGRID extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.1'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  agentgrid/1.0.2'
     }
 
     let contentTypes = ['application/json']

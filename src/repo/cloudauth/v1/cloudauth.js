@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * cloudauth service.
- * @version 1.0.17
+ * @version 1.0.19
  */
 
 class CLOUDAUTH extends Service {
@@ -74,7 +74,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.19'
     }
 
     let contentTypes = ['application/json']
@@ -182,7 +182,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.19'
     }
 
     let contentTypes = ['application/json']
@@ -284,7 +284,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.19'
     }
 
     let contentTypes = ['application/json']
@@ -386,7 +386,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.19'
     }
 
     let contentTypes = ['application/json']
@@ -488,7 +488,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.19'
     }
 
     let contentTypes = ['application/json']
@@ -590,7 +590,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.19'
     }
 
     let contentTypes = ['application/json']
@@ -692,7 +692,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.19'
     }
 
     let contentTypes = ['application/json']
@@ -765,6 +765,312 @@ class CLOUDAUTH extends Service {
   }
 
   /**
+      *  对公银行账户打款(新版idb0041)
+      * @param {Object} opts - parameters
+      * @param {accountInfoNew} opts.accountInfo
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param authInfo authInfo
+      */
+
+  companyTransferNew (opts, callback) {
+    opts = opts || {}
+
+    if (opts.accountInfo === undefined || opts.accountInfo === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.accountInfo' when calling companyTransferNew"
+      )
+    }
+
+    let postBody = {}
+    if (opts.accountInfo !== undefined && opts.accountInfo !== null) {
+      postBody['accountInfo'] = opts.accountInfo
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.19'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call companyTransferNew with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/company:transferNew',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  对公打款验证(新版idb0041)
+      * @param {Object} opts - parameters
+      * @param {checkInfo} opts.checkInfo
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param authInfo authInfo
+      */
+
+  checkCompanyTransferNew (opts, callback) {
+    opts = opts || {}
+
+    if (opts.checkInfo === undefined || opts.checkInfo === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.checkInfo' when calling checkCompanyTransferNew"
+      )
+    }
+
+    let postBody = {}
+    if (opts.checkInfo !== undefined && opts.checkInfo !== null) {
+      postBody['checkInfo'] = opts.checkInfo
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.19'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call checkCompanyTransferNew with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/company:checkNew',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  对公打款状态查询(新版idb0041)
+      * @param {Object} opts - parameters
+      * @param {string} opts.orderNumber - 订单号
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param authInfo authInfo
+      */
+
+  queryCompanyTransferNew (opts, callback) {
+    opts = opts || {}
+
+    if (opts.orderNumber === undefined || opts.orderNumber === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.orderNumber' when calling queryCompanyTransferNew"
+      )
+    }
+
+    let postBody = {}
+    if (opts.orderNumber !== undefined && opts.orderNumber !== null) {
+      postBody['orderNumber'] = opts.orderNumber
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.19'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call queryCompanyTransferNew with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/company:transferStatusNew',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  对公打款验证
       * @param {Object} opts - parameters
       * @param {checkInfo} opts.checkInfo
@@ -794,7 +1100,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.19'
     }
 
     let contentTypes = ['application/json']
@@ -896,7 +1202,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.19'
     }
 
     let contentTypes = ['application/json']
@@ -998,7 +1304,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.19'
     }
 
     let contentTypes = ['application/json']
@@ -1100,7 +1406,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.19'
     }
 
     let contentTypes = ['application/json']
@@ -1202,7 +1508,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.19'
     }
 
     let contentTypes = ['application/json']
@@ -1304,7 +1610,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.19'
     }
 
     let contentTypes = ['application/json']
@@ -1409,7 +1715,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.19'
     }
 
     let contentTypes = ['application/json']
@@ -1511,7 +1817,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.19'
     }
 
     let contentTypes = ['application/json']
@@ -1606,7 +1912,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.19'
     }
 
     let contentTypes = ['application/json']
@@ -1701,7 +2007,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.19'
     }
 
     let contentTypes = ['application/json']
@@ -1815,7 +2121,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.19'
     }
 
     let contentTypes = ['application/json']
@@ -1917,7 +2223,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.19'
     }
 
     let contentTypes = ['application/json']
@@ -2019,7 +2325,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.19'
     }
 
     let contentTypes = ['application/json']
@@ -2121,7 +2427,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.19'
     }
 
     let contentTypes = ['application/json']
@@ -2235,7 +2541,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.19'
     }
 
     let contentTypes = ['application/json']
@@ -2337,7 +2643,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.19'
     }
 
     let contentTypes = ['application/json']
@@ -2465,7 +2771,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.19'
     }
 
     let contentTypes = ['application/json']
@@ -2575,7 +2881,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.19'
     }
 
     let contentTypes = ['application/json']
@@ -2677,7 +2983,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.19'
     }
 
     let contentTypes = ['application/json']
@@ -2803,7 +3109,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.19'
     }
 
     let contentTypes = ['application/json']
@@ -2905,7 +3211,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.19'
     }
 
     let contentTypes = ['application/json']
@@ -3023,7 +3329,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.19'
     }
 
     let contentTypes = ['application/json']
@@ -3141,7 +3447,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.19'
     }
 
     let contentTypes = ['application/json']
@@ -3254,7 +3560,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.19'
     }
 
     let contentTypes = ['application/json']
@@ -3362,7 +3668,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.19'
     }
 
     let contentTypes = ['application/json']
@@ -3435,6 +3741,115 @@ class CLOUDAUTH extends Service {
   }
 
   /**
+      *  手机号码在网时长
+      * @param {Object} opts - parameters
+      * @param {string} opts.mobile - 手机号码
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  认证结果状态码
+      * @param string message  认证结果描述
+      * @param string chargeFlag  是否收费：0不收费，1收费
+      * @param string orderNo  交易流水号
+      * @param string dataMsg  结果状态描述 查无此号 请求成功 未开通移动服务
+      * @param integer rangeStart  在网时长范围起始值（含）,单位为月（枚举值：0，3，6，12，24）
+      * @param integer rangeEnd  在网时长范围结束值（不含）,单位为月，如果是 -1 代表在网时长超过24个月，[0,3), [3,6), [6,12),[12,24), [24,-1)（单位为月）
+      * @param integer provider  1 移动 2 电信 3 联通 4 广电； 携号转网的返回对应的运营商-1 移动 -2 电信 -3 联通 -4 广电
+      */
+
+  mobileZwsc (opts, callback) {
+    opts = opts || {}
+
+    if (opts.mobile === undefined || opts.mobile === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.mobile' when calling mobileZwsc"
+      )
+    }
+
+    let postBody = {}
+    if (opts.mobile !== undefined && opts.mobile !== null) {
+      postBody['mobile'] = opts.mobile
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.19'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call mobileZwsc with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/mobile:zwsc',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  查询服务开通状态
       * @param {Object} opts - parameters
       * @param {string} callback - callback
@@ -3455,7 +3870,7 @@ class CLOUDAUTH extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.17'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cloudauth/1.0.19'
     }
 
     let contentTypes = ['application/json']

@@ -177,8 +177,8 @@ class AGENTGRID extends Service {
       * @param {Object} opts - parameters
       * @param {string} opts.name - Browser Tool 名称。长度为 1~32 个字符，可包含中文、数字、大小写字母、下划线、中划线或点。
       * @param {string} [opts.description] - Browser Tool 描述信息，长度不超过 256 个字符。  optional
-      * @param {string} [opts.authenticationType] - Browser Tool 鉴权方式，当前仅支持 &#x60;APIKey&#x60;  optional
-      * @param {string} opts.networkConfiguration - Code Interpreter 网络配置。支持 public｜sandbox 两种。默认为sandbox。
+      * @param {string} [opts.authenticationType] - Browser Tool 鉴权方式，当前仅支持 &#x60;API_KEY&#x60;  optional
+      * @param {string} opts.networkConfiguration - Code Interpreter 网络配置。支持 public｜sandbox 两种。
       * @param {string} [opts.clientToken] - 用于保证请求幂等性。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -1925,10 +1925,10 @@ class AGENTGRID extends Service {
       * @param {authorizerConfiguration} opts.authorizerConfiguration - Runtime 鉴权配置。
       * @param {lifecycleConfiguration} [opts.lifecycleConfiguration] - Runtime 生命周期配置。  optional
       * @param {networkConfiguration} opts.networkConfiguration - Runtime 网络配置。
-      * @param {string} opts.roleName - 绑定 IAM 角色名。
+      * @param {string} [opts.roleName] - 绑定 IAM 服务角色名。  optional
       * @param {array} [opts.envs] - Runtime 环境变量配置，最多 50 组。  optional
-      * @param {filesystemConfiguration} [opts.filesystemConfiguration] - Runtime 文件系统配置。  optional
-      * @param {string} [opts.protocol] - Runtime 支持的协议类型。当前支持http、mcp、a2a 。  optional
+      * @param {filesystemConfiguration} [opts.filesystemConfiguration] - Runtime 文件系统配置，最多支持配置 5 个文件系统。  optional
+      * @param {string} [opts.protocol] - Runtime 支持的协议类型。当前支持http、mcp、a2a。  optional
       * @param {string} [opts.clientToken] - 用于保证请求幂等性。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -1978,11 +1978,6 @@ class AGENTGRID extends Service {
     ) {
       throw new Error(
         "Missing the required parameter 'opts.networkConfiguration' when calling createRuntime"
-      )
-    }
-    if (opts.roleName === undefined || opts.roleName === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.roleName' when calling createRuntime"
       )
     }
 
@@ -2384,7 +2379,7 @@ class AGENTGRID extends Service {
 本次调用后，环境变量不能超过50组
 &#x60;key&#x60; 长度上限为 256 个字符。
   optional
-      * @param {filesystemConfiguration} [opts.filesystemConfiguration] - Runtime 文件系统配置。不传该参数时，保留当前生效版本中的文件系统配置；传入该参数时，将用本次配置替换新版本中的文件系统配置。  optional
+      * @param {filesystemConfiguration} [opts.filesystemConfiguration] - Runtime 文件系统配置。不传该参数时，保留当前生效版本中的文件系统配置；传入该参数时，将用本次配置替换新版本中的文件系统配置，最多支持配置 5 个文件系统。  optional
       * @param {string} [opts.protocol] - Runtime 支持的协议类型，当前支持http、mcp、a2a。  optional
       * @param {lifecycleConfiguration} [opts.lifecycleConfiguration] - Runtime 生命周期配置。  optional
       * @param {string} regionId - ID of the region
@@ -3274,11 +3269,11 @@ class AGENTGRID extends Service {
 - 本接口为异步接口。请求受理成功后，资源通常先进入 &#x60;pending&#x60;，待底层资源准备完成后进入 &#x60;ready&#x60;；如创建失败则进入 &#x60;failed&#x60;。建议通过“查询 Code Interpreter 详情”或“查询 Code Interpreter 列表”轮询确认最终状态。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.name - Code Interpreter 名称，全局唯一。
+      * @param {string} opts.name - Code Interpreter 名称。长度为 1~32 个字符，可包含中文、数字、大小写字母、下划线、中划线或点。
       * @param {string} [opts.description] - Code Interpreter 描述信息。  optional
-      * @param {string} [opts.authenticationType] - Code Interpreter 鉴权方式，当前仅支持 &#x60;APIKey&#x60;  optional
+      * @param {string} [opts.authenticationType] - Code Interpreter 鉴权方式，当前仅支持 &#x60;API_KEY&#x60;  optional
       * @param {string} [opts.clientToken] - 用于保证请求幂等性。  optional
-      * @param {string} opts.networkConfiguration - Code Interpreter 网络配置类型。当前支持 &#x60;Public&#x60; 和 &#x60;SandBox&#x60;，建议显式传值。
+      * @param {string} opts.networkConfiguration - Code Interpreter 网络配置类型。当前支持 &#x60;public&#x60; 和 &#x60;sandbox&#x60;。
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result

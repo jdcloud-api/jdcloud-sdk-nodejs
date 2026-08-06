@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * tidb service.
- * @version 1.0.6
+ * @version 1.1.1
  */
 
 class TIDB extends Service {
@@ -45,14 +45,15 @@ class TIDB extends Service {
   }
 
   /**
-      *  查看当前实例下的账号信息。
+      *  查看当前实例下的账号信息，老接口。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       * @param string accountName  账号名称
-      * @param string accountStatus  账号状态(&quot;BUILDING&quot;,&quot;RUNNING&quot;,&quot;RESETING&quot;)
+      * @param string accountHost  账号Host
+      * @param string accountStatus  账号状态(&quot;BUILDING&quot;,&quot;RUNNING&quot;,&quot;RESETING&quot;,&quot;DELETING&quot;,&quot;GRANTING&quot;)
       * @param string createTime  创建时间，格式为：YYYY-MM-DD HH:mm:ss
       */
 
@@ -85,7 +86,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -162,7 +163,9 @@ class TIDB extends Service {
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {} opts.accountName - 账号名
+      * @param {} [opts.accountHost] - 账号Host, 默认为%  optional
       * @param {} opts.accountPassword - 密码
+      * @param {} [opts.bindResourceGroup] - 为账号绑定资源组 (该字段仅支持v7及其以上实例)  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -202,8 +205,17 @@ class TIDB extends Service {
     if (opts.accountName !== undefined && opts.accountName !== null) {
       postBody['accountName'] = opts.accountName
     }
+    if (opts.accountHost !== undefined && opts.accountHost !== null) {
+      postBody['accountHost'] = opts.accountHost
+    }
     if (opts.accountPassword !== undefined && opts.accountPassword !== null) {
       postBody['accountPassword'] = opts.accountPassword
+    }
+    if (
+      opts.bindResourceGroup !== undefined &&
+      opts.bindResourceGroup !== null
+    ) {
+      postBody['bindResourceGroup'] = opts.bindResourceGroup
     }
 
     let queryParams = {}
@@ -214,7 +226,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -287,11 +299,774 @@ class TIDB extends Service {
   }
 
   /**
+      *  创建数据库的未授权的账号
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例ID
+      * @param {} opts.accountName - 账号名
+      * @param {} [opts.accountHost] - 账号Host, 默认为%  optional
+      * @param {} opts.accountPassword - 密码
+      * @param {} [opts.bindResourceGroup] - 为账号绑定资源组 (该字段仅支持v7及其以上实例)  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  createAccountWithoutPrivilege (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createAccountWithoutPrivilege"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling createAccountWithoutPrivilege"
+      )
+    }
+    if (opts.accountName === undefined || opts.accountName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.accountName' when calling createAccountWithoutPrivilege"
+      )
+    }
+    if (opts.accountPassword === undefined || opts.accountPassword === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.accountPassword' when calling createAccountWithoutPrivilege"
+      )
+    }
+
+    let postBody = {}
+    if (opts.accountName !== undefined && opts.accountName !== null) {
+      postBody['accountName'] = opts.accountName
+    }
+    if (opts.accountHost !== undefined && opts.accountHost !== null) {
+      postBody['accountHost'] = opts.accountHost
+    }
+    if (opts.accountPassword !== undefined && opts.accountPassword !== null) {
+      postBody['accountPassword'] = opts.accountPassword
+    }
+    if (
+      opts.bindResourceGroup !== undefined &&
+      opts.bindResourceGroup !== null
+    ) {
+      postBody['bindResourceGroup'] = opts.bindResourceGroup
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createAccountWithoutPrivilege with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/accounts:createAccountWithoutPrivilege',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查看某个TiDB实例下所有账号信息，包括账号名称、对各个数据库的访问权限信息等
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例ID
+      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；  optional
+      * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为10，取值范围：[10,100]，用于查询列表的接口  optional
+      * @param {filter} [opts.filters] - 过滤参数，多个过滤参数之间的关系为“与”(and)
+支持以下属性的等值过滤：
+name, 支持operator选项：eq ne
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param account accounts
+      * @param integer totalCount
+      */
+
+  describeAccountList (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeAccountList"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling describeAccountList"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeAccountList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/accountsList',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取数据库内用户的权限，包括全局、库级别、表级别权限
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例ID
+      * @param {string} opts.accountName - 账号名
+      * @param {string} [opts.accountHost] - 账号Host, 默认为%  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string accountName  用户名
+      * @param string accountHost  用户Host
+      * @param string globalPrivileges
+      * @param dBPrivilege dbPrivileges
+      * @param tablePrivileges tablePrivileges
+      */
+
+  showAccountPrivilege (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  showAccountPrivilege"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling showAccountPrivilege"
+      )
+    }
+    if (opts.accountName === undefined || opts.accountName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.accountName' when calling showAccountPrivilege"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.accountHost !== undefined && opts.accountHost !== null) {
+      queryParams['accountHost'] = opts.accountHost
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      accountName: opts.accountName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call showAccountPrivilege with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/accounts/{accountName}/privilege',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取该实例所有的可调整权限
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param grantablePrivilege globalPrivileges  全局权限
+      * @param grantablePrivilege dbPrivileges  库权限
+      * @param grantablePrivilege tablePrivileges  表权限
+      */
+
+  showGrantablePrivileges (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  showGrantablePrivileges"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling showGrantablePrivileges"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call showGrantablePrivileges with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/privileges',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除数据库账号，账号删除后不可恢复，用户无法再使用该账号登录TiDB实例
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例ID
+      * @param {string} opts.accountName - 账号名
+      * @param {string} [opts.accountHost] - 账号Host, 默认为%  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteAccount (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteAccount"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling deleteAccount"
+      )
+    }
+    if (opts.accountName === undefined || opts.accountName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.accountName' when calling deleteAccount"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.accountHost !== undefined && opts.accountHost !== null) {
+      queryParams['accountHost'] = opts.accountHost
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      accountName: opts.accountName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteAccount with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/accounts/{accountName}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  授予账号的数据库细粒度的访问权限
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例ID
+      * @param {string} opts.accountName - 账号名
+      * @param {} [opts.accountHost] - 账号Host, 默认为%  optional
+      * @param {} [opts.globalPrivileges] - 设置全局权限内容  optional
+      * @param {} [opts.databasePrivileges] - 设置数据库细粒度权限内容  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  grantAccountPrivilege (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  grantAccountPrivilege"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling grantAccountPrivilege"
+      )
+    }
+    if (opts.accountName === undefined || opts.accountName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.accountName' when calling grantAccountPrivilege"
+      )
+    }
+
+    let postBody = {}
+    if (opts.accountHost !== undefined && opts.accountHost !== null) {
+      postBody['accountHost'] = opts.accountHost
+    }
+    if (opts.globalPrivileges !== undefined && opts.globalPrivileges !== null) {
+      postBody['globalPrivileges'] = opts.globalPrivileges
+    }
+    if (
+      opts.databasePrivileges !== undefined &&
+      opts.databasePrivileges !== null
+    ) {
+      postBody['databasePrivileges'] = opts.databasePrivileges
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      accountName: opts.accountName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call grantAccountPrivilege with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/accounts/{accountName}:grantAccountPrivilege',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  重置 TiDB 实例的高权限账号的密码。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {string} opts.accountName - 账号名
       * @param {} opts.accountPassword - 新密码
+      * @param {} [opts.accountHost] - 账号Host, 默认为%  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -331,6 +1106,9 @@ class TIDB extends Service {
     if (opts.accountPassword !== undefined && opts.accountPassword !== null) {
       postBody['accountPassword'] = opts.accountPassword
     }
+    if (opts.accountHost !== undefined && opts.accountHost !== null) {
+      postBody['accountHost'] = opts.accountHost
+    }
 
     let queryParams = {}
 
@@ -341,7 +1119,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -417,6 +1195,7 @@ class TIDB extends Service {
       *  查看该实例下所有备份的详细信息。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID，唯一标识一个实例
+      * @param {string} opts.sortType - 排序方式（asc:正序, desc:倒序）
       * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页。  optional
       * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为10，取值范围：[10,100]，且为10的整数倍。  optional
       * @param {string} regionId - ID of the region
@@ -424,6 +1203,8 @@ class TIDB extends Service {
       @return {Object} result
       * @param backup backups
       * @param integer totalCount  总记录数
+      * @param boolean canCreateBackup  是否可以创建手动备份
+      * @param integer backupMaxCount  该实例最多可拥有的手动备份数量
       */
 
   describeBackups (opts, regionId = this.config.regionId, callback) {
@@ -445,11 +1226,19 @@ class TIDB extends Service {
         "Missing the required parameter 'opts.instanceId' when calling describeBackups"
       )
     }
+    if (opts.sortType === undefined || opts.sortType === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.sortType' when calling describeBackups"
+      )
+    }
 
     let postBody = null
     let queryParams = {}
     if (opts.instanceId !== undefined && opts.instanceId !== null) {
       queryParams['instanceId'] = opts.instanceId
+    }
+    if (opts.sortType !== undefined && opts.sortType !== null) {
+      queryParams['sortType'] = opts.sortType
     }
     if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
       queryParams['pageNumber'] = opts.pageNumber
@@ -463,7 +1252,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -586,7 +1375,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -696,7 +1485,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -804,7 +1593,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -907,7 +1696,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -980,6 +1769,490 @@ class TIDB extends Service {
   }
 
   /**
+      *  获取当前实例的所有数据库详细信息的列表
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例ID
+      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页;  optional
+      * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为10，取值范围：[10,100]，用于查询列表的接口  optional
+      * @param {filter} [opts.filters] - 过滤参数，多个过滤参数之间的关系为“与”(and)
+支持以下属性的等值过滤：
+name, 支持operator选项：eq ne
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param database databases
+      * @param number totalCount
+      */
+
+  describeDatabases (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeDatabases"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling describeDatabases"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeDatabases with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/databases',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建数据库
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例ID
+      * @param {} opts.dbName - 数据库名
+      * @param {} [opts.characterSetName] - 数据库的字符集名，缺省utf8mb4  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  createDatabase (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createDatabase"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling createDatabase"
+      )
+    }
+    if (opts.dbName === undefined || opts.dbName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.dbName' when calling createDatabase"
+      )
+    }
+
+    let postBody = {}
+    if (opts.dbName !== undefined && opts.dbName !== null) {
+      postBody['dbName'] = opts.dbName
+    }
+    if (opts.characterSetName !== undefined && opts.characterSetName !== null) {
+      postBody['characterSetName'] = opts.characterSetName
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createDatabase with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/databases',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除数据库
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例ID
+      * @param {string} opts.dbName - 数据库名
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteDatabase (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteDatabase"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling deleteDatabase"
+      )
+    }
+    if (opts.dbName === undefined || opts.dbName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.dbName' when calling deleteDatabase"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      dbName: opts.dbName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteDatabase with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/databases/{dbName}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取数据库的tables
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例ID
+      * @param {string} opts.dbName - 数据库名
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string tableNames  表名
+      */
+
+  showTables (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  showTables"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling showTables"
+      )
+    }
+    if (opts.dbName === undefined || opts.dbName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.dbName' when calling showTables"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId,
+      dbName: opts.dbName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call showTables with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}/databases/{dbName}/tables',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  创建一个 TiDB 实例。创建时需要指定 TiDB 各类节点的数目，规格，存储空间等。 TiFlash和TiCDC节点在创建时不是必须的，可以在需要时，通过扩容的功能创建TiFlash和TiCDC节点。
       * @param {Object} opts - parameters
       * @param {tidbInstanceSpec} opts.instanceSpec - 新建实例规格
@@ -1022,7 +2295,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -1133,7 +2406,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -1209,6 +2482,7 @@ class TIDB extends Service {
       *  删除指定的 TiDB 实例。实例删除后，数据不可恢复，请谨慎使用。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
+      * @param {} [opts.opsTagSpecs]   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1236,6 +2510,10 @@ class TIDB extends Service {
 
     let postBody = null
     let queryParams = {}
+    Object.assign(
+      queryParams,
+      super.buildArrayParam(opts.opsTagSpecs, 'opsTagSpecs')
+    )
 
     let pathParams = {
       regionId: regionId,
@@ -1243,7 +2521,7 @@ class TIDB extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -1325,6 +2603,9 @@ class TIDB extends Service {
 instanceId, 支持operator选项：eq,ne
 instanceName, 支持operator选项：eq,ne,like
 instanceStatus, 支持operator选项：eq,ne
+engineVersion, 支持operator选项：eq
+subnetId, 支持operator选项：eq, ne, in
+vpcId, 支持operator选项：eq, ne, in
   optional
       * @param {tagFilter} [opts.tagFilters] - 资源标签  optional
       * @param {string} [opts.resourceGroupIds] - 资源组id  optional
@@ -1372,7 +2653,7 @@ instanceStatus, 支持operator选项：eq,ne
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -1448,6 +2729,7 @@ instanceStatus, 支持operator选项：eq,ne
       *  获取各种 TiDB 节点支持的具体规格。
       * @param {Object} opts - parameters
       * @param {string} opts.storageType - 存储类型,目前只支持本地SSD;
+      * @param {string} [opts.classGroup] - 规格类型：general(通用型)、exclusive(独享型);  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1484,13 +2766,16 @@ instanceStatus, 支持operator选项：eq,ne
     if (opts.storageType !== undefined && opts.storageType !== null) {
       queryParams['storageType'] = opts.storageType
     }
+    if (opts.classGroup !== undefined && opts.classGroup !== null) {
+      queryParams['classGroup'] = opts.classGroup
+    }
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -1621,7 +2906,7 @@ instanceStatus, 支持operator选项：eq,ne
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -1745,7 +3030,7 @@ instanceStatus, 支持operator选项：eq,ne
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -1859,7 +3144,7 @@ instanceStatus, 支持operator选项：eq,ne
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -1984,7 +3269,7 @@ instanceStatus, 支持operator选项：eq,ne
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -2107,7 +3392,7 @@ instanceStatus, 支持operator选项：eq,ne
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -2227,7 +3512,7 @@ instanceStatus, 支持operator选项：eq,ne
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -2359,7 +3644,7 @@ instanceStatus, 支持operator选项：eq,ne
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -2495,7 +3780,7 @@ instanceStatus, 支持operator选项：eq,ne
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -2624,7 +3909,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -2735,7 +4020,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -2855,7 +4140,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -2932,6 +4217,8 @@ diskUsage - 磁盘使用率
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {} opts.nodeType - 重启指定类型的pod,支持Tikv,TiDB,PD,TiFlash
+      * @param {} [opts.timing] - 版本升级的时间点,时间格式yyyy-mm-dd hh:mm:ss。不传或者传入空表示当前时间  optional
+      * @param {} [opts.cancel] - 是否取消重启任务, 为 true 则取消该实例的重启任务  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -2966,6 +4253,12 @@ diskUsage - 磁盘使用率
     if (opts.nodeType !== undefined && opts.nodeType !== null) {
       postBody['nodeType'] = opts.nodeType
     }
+    if (opts.timing !== undefined && opts.timing !== null) {
+      postBody['timing'] = opts.timing
+    }
+    if (opts.cancel !== undefined && opts.cancel !== null) {
+      postBody['cancel'] = opts.cancel
+    }
 
     let queryParams = {}
 
@@ -2975,7 +4268,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -3020,6 +4313,119 @@ diskUsage - 磁盘使用率
     let request = super.makeRequest(
       '/regions/{regionId}/instances/{instanceId}:rebootpod',
       'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询当前 TiDB 实例的节点重启计划。
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string nodeTypes
+      * @param string scheduledTime  计划开始执行的时间
+      * @param string status  任务状态 (INIT:未开始, COMPLETED:已完成, FAILED:失败, 其他:执行中)
+      */
+
+  describeRebootPlan (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeRebootPlan"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling describeRebootPlan"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeRebootPlan with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{instanceId}:describeRebootPlan',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -3094,7 +4500,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -3205,7 +4611,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -3318,7 +4724,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -3438,7 +4844,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -3558,7 +4964,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -3669,7 +5075,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -3780,7 +5186,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -3891,7 +5297,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -3964,119 +5370,6 @@ diskUsage - 磁盘使用率
   }
 
   /**
-      *  查询 TiDB支持的基本信息。
-      * @param {Object} opts - parameters
-      * @param {string} [opts.azs] - 用户可用区[多个使用,分隔]  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param string engineVersion
-      * @param string architectureType
-      * @param architectureVersion architectureVersion
-      */
-
-  describeAvailableDBInfoInternel (
-    opts,
-    regionId = this.config.regionId,
-    callback
-  ) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeAvailableDBInfoInternel"
-      )
-    }
-
-    opts = opts || {}
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.azs !== undefined && opts.azs !== null) {
-      queryParams['azs'] = opts.azs
-    }
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeAvailableDBInfoInternel with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/instances:describeAvailableDBInfoInternel',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
       *  查询 TiDB 数据迁移任务的详细信息，例如任务的开始、完成时间，任务状态等等。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
@@ -4119,7 +5412,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -4248,7 +5541,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -4370,7 +5663,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -4482,7 +5775,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -4603,7 +5896,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -4720,7 +6013,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -4838,7 +6131,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -4956,7 +6249,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -5033,13 +6326,7 @@ diskUsage - 磁盘使用率
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {string} opts.taskId - 复制任务ID
-      * @param {string} opts.taskId - 复制任务ID
-      * @param {string} [opts.targetComment] - 目标实例备注说明  optional
-      * @param {string} [opts.targetUser] - 目标类型为TiDB或MySQL时，连接目标实例的用户名  optional
-      * @param {string} [opts.targetPassword] - 目标类型为TiDB或MySQL时，连接目标实例的密码  optional
-      * @param {string} [opts.kafkaTopic] - Kafka的Topic  optional
-      * @param {string} [opts.kafkaVersion] - Kafka的版本  optional
-      * @param {array} [opts.replicationObjects] - 过滤规则列表  optional
+      * @param {replicationModifySpec} opts.replicationModify - 数据复制任务的修改信息
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -5069,36 +6356,21 @@ diskUsage - 磁盘使用率
         "Missing the required parameter 'opts.taskId' when calling modifyReplication"
       )
     }
-    if (opts.taskId === undefined || opts.taskId === null) {
+    if (
+      opts.replicationModify === undefined ||
+      opts.replicationModify === null
+    ) {
       throw new Error(
-        "Missing the required parameter 'opts.taskId' when calling modifyReplication"
+        "Missing the required parameter 'opts.replicationModify' when calling modifyReplication"
       )
     }
 
     let postBody = {}
-    if (opts.taskId !== undefined && opts.taskId !== null) {
-      postBody['taskId'] = opts.taskId
-    }
-    if (opts.targetComment !== undefined && opts.targetComment !== null) {
-      postBody['targetComment'] = opts.targetComment
-    }
-    if (opts.targetUser !== undefined && opts.targetUser !== null) {
-      postBody['targetUser'] = opts.targetUser
-    }
-    if (opts.targetPassword !== undefined && opts.targetPassword !== null) {
-      postBody['targetPassword'] = opts.targetPassword
-    }
-    if (opts.kafkaTopic !== undefined && opts.kafkaTopic !== null) {
-      postBody['kafkaTopic'] = opts.kafkaTopic
-    }
-    if (opts.kafkaVersion !== undefined && opts.kafkaVersion !== null) {
-      postBody['kafkaVersion'] = opts.kafkaVersion
-    }
     if (
-      opts.replicationObjects !== undefined &&
-      opts.replicationObjects !== null
+      opts.replicationModify !== undefined &&
+      opts.replicationModify !== null
     ) {
-      postBody['replicationObjects'] = opts.replicationObjects
+      postBody['replicationModify'] = opts.replicationModify
     }
 
     let queryParams = {}
@@ -5110,7 +6382,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -5183,6 +6455,1324 @@ diskUsage - 磁盘使用率
   }
 
   /**
+      *  根据 ID 获取参数模板
+      * @param {Object} opts - parameters
+      * @param {string} opts.templateId - 模板ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param template template  模板
+      */
+
+  getTemplate (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getTemplate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.templateId === undefined || opts.templateId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.templateId' when calling getTemplate"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      templateId: opts.templateId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getTemplate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/templates/{templateId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改参数模板
+      * @param {Object} opts - parameters
+      * @param {string} opts.templateId - 模板ID
+      * @param {} [opts.templateName] - 模板名称，长度1-32字符，如果不传则为不修改  optional
+      * @param {} [opts.templateDescription] - 模板描述，长度0-64字符，如果不传则为不修改  optional
+      * @param {} opts.parameters - 修改后的参数（全量，必传）
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param template template
+      */
+
+  modifyTemplate (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyTemplate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.templateId === undefined || opts.templateId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.templateId' when calling modifyTemplate"
+      )
+    }
+    if (opts.parameters === undefined || opts.parameters === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.parameters' when calling modifyTemplate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.templateName !== undefined && opts.templateName !== null) {
+      postBody['templateName'] = opts.templateName
+    }
+    if (
+      opts.templateDescription !== undefined &&
+      opts.templateDescription !== null
+    ) {
+      postBody['templateDescription'] = opts.templateDescription
+    }
+    if (opts.parameters !== undefined && opts.parameters !== null) {
+      postBody['parameters'] = opts.parameters
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      templateId: opts.templateId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyTemplate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/templates/{templateId}',
+      'PATCH',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除参数模板
+      * @param {Object} opts - parameters
+      * @param {string} opts.templateId - 模板ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteTemplate (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteTemplate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.templateId === undefined || opts.templateId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.templateId' when calling deleteTemplate"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      templateId: opts.templateId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteTemplate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/templates/{templateId}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取所有的模板（分页&amp;筛选）
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,∞)。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页;  optional
+      * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为10，取值范围：[10,100]，用于查询列表的接口  optional
+      * @param {string} [opts.orderBy] - 排序的字段(默认根据创建时间排序)。支持字段 :created，updated  optional
+      * @param {boolean} [opts.desc] - 排序是否为倒序(默认为倒序)  optional
+      * @param {filter} [opts.filters] - 过滤参数，多个过滤参数之间的关系为“与”(and)
+某参数不传 name，只传 operator 时，请求成功，但该项过滤参数会被忽略。
+支持以下属性的过滤：
+name, 支持operator选项：like
+id, 支持operator选项：eq
+type, 支持operator选择：eq；支持value值：0: 系统默认模板，1: 用户自定义模板，2: 自动备份模板
+engineVersion, 支持operator选项：eq；value值格式如：5.4
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param number totalCount  符合条件的总数
+      * @param template parameterTemplate
+      */
+
+  getTemplates (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getTemplates"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    if (opts.orderBy !== undefined && opts.orderBy !== null) {
+      queryParams['orderBy'] = opts.orderBy
+    }
+    if (opts.desc !== undefined && opts.desc !== null) {
+      queryParams['desc'] = opts.desc
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getTemplates with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/templates',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建参数模板
+      * @param {Object} opts - parameters
+      * @param {} opts.template - 参数模板详细信息
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param template template
+      */
+
+  createTemplate (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createTemplate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.template === undefined || opts.template === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.template' when calling createTemplate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.template !== undefined && opts.template !== null) {
+      postBody['template'] = opts.template
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createTemplate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/templates',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  应用模板到实例
+      * @param {Object} opts - parameters
+      * @param {string} opts.gid - 实例ID
+      * @param {string} opts.id - 模板ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  applyTemplate (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  applyTemplate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.gid === undefined || opts.gid === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.gid' when calling applyTemplate"
+      )
+    }
+    if (opts.id === undefined || opts.id === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.id' when calling applyTemplate"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      gid: opts.gid,
+      id: opts.id
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call applyTemplate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{gid}/templates/{id}',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  批量应用模板到实例
+      * @param {Object} opts - parameters
+      * @param {string} opts.id - 模板ID
+      * @param {array} opts.instanceIds - 需要应用到的模板 id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  applyTemplateBatch (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  applyTemplateBatch"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.id === undefined || opts.id === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.id' when calling applyTemplateBatch"
+      )
+    }
+    if (opts.instanceIds === undefined || opts.instanceIds === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceIds' when calling applyTemplateBatch"
+      )
+    }
+
+    let postBody = {}
+    if (opts.instanceIds !== undefined && opts.instanceIds !== null) {
+      postBody['instanceIds'] = opts.instanceIds
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      id: opts.id
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call applyTemplateBatch with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/templates/{id}/apply',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取所有可配置参数（筛选）
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,1000]。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页;  optional
+      * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为10，取值范围：[10,100]，用于查询列表的接口  optional
+      * @param {filter} [opts.filters] - 过滤参数，多个过滤参数之间的关系为“与”(and)
+支持以下属性的过滤：
+name, 支持operator选项：like
+engineVersion, 支持operator选项：eq
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param number totalCount  符合条件的总数
+      * @param parameterSpec parameters
+      */
+
+  getConfigurableParameters (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getConfigurableParameters"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getConfigurableParameters with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/parameters',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取实例参数修改记录（分页）
+      * @param {Object} opts - parameters
+      * @param {string} opts.id - 实例ID
+      * @param {integer} [opts.pageNumber] - 显示数据的页码，默认为1，取值范围：[-1,1000]。pageNumber为-1时，返回所有数据页码；超过总页数时，显示最后一页;  optional
+      * @param {integer} [opts.pageSize] - 每页显示的数据条数，默认为10，取值范围：[10,100]，用于查询列表的接口  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param number totalCount  记录总数
+      * @param instanceParameterChangeLog changeLog
+      */
+
+  getInstanceParameterLog (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getInstanceParameterLog"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.id === undefined || opts.id === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.id' when calling getInstanceParameterLog"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      id: opts.id
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getInstanceParameterLog with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/instances/{id}/changeLog',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  克隆参数模板
+      * @param {Object} opts - parameters
+      * @param {string} opts.id - 参数模板ID
+      * @param {} opts.templateName - 复制后新建的模板名称
+      * @param {} [opts.templateDescription] - 复制后新建的模板描述  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param template template
+      */
+
+  cloneTemplate (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  cloneTemplate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.id === undefined || opts.id === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.id' when calling cloneTemplate"
+      )
+    }
+    if (opts.templateName === undefined || opts.templateName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.templateName' when calling cloneTemplate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.templateName !== undefined && opts.templateName !== null) {
+      postBody['templateName'] = opts.templateName
+    }
+    if (
+      opts.templateDescription !== undefined &&
+      opts.templateDescription !== null
+    ) {
+      postBody['templateDescription'] = opts.templateDescription
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      id: opts.id
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call cloneTemplate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/templates/{id}/clone',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  比较实例和参数模板的参数
+      * @param {Object} opts - parameters
+      * @param {string} opts.tid - 模板ID
+      * @param {string} opts.gid - 实例ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param parameterComparison parameterComparison
+      */
+
+  compareParameter (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  compareParameter"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.tid === undefined || opts.tid === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.tid' when calling compareParameter"
+      )
+    }
+    if (opts.gid === undefined || opts.gid === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.gid' when calling compareParameter"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      tid: opts.tid,
+      gid: opts.gid
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call compareParameter with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/templates/{tid}/instance/{gid}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  查看实例当前白名单。白名单是允许访问当前实例的IP/IP段列表，缺省情况下，白名单对本VPC开放。如果用户开启了外网访问的功能，还需要对外网的IP配置白名单。
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
@@ -5221,7 +7811,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -5298,6 +7888,7 @@ diskUsage - 磁盘使用率
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID
       * @param {} opts.name - 白名单分组名
+      * @param {} [opts.ips] - IP或IP段,不同的IP/IP段之间用英文逗号分隔,例如0.0.0.0/0,192.168.0.10  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -5332,6 +7923,9 @@ diskUsage - 磁盘使用率
     if (opts.name !== undefined && opts.name !== null) {
       postBody['name'] = opts.name
     }
+    if (opts.ips !== undefined && opts.ips !== null) {
+      postBody['ips'] = opts.ips
+    }
 
     let queryParams = {}
 
@@ -5341,7 +7935,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -5470,7 +8064,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']
@@ -5589,7 +8183,7 @@ diskUsage - 磁盘使用率
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.0.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  tidb/1.1.1'
     }
 
     let contentTypes = ['application/json']

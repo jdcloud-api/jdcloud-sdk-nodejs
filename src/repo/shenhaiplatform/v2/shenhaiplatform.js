@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * shenhaiplatform service.
- * @version 1.0.0
+ * @version 1.0.2
  */
 
 class SHENHAIPLATFORM extends Service {
@@ -85,7 +85,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -202,7 +202,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -323,7 +323,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -444,7 +444,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -557,7 +557,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -687,7 +687,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -809,7 +809,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -940,7 +940,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1053,7 +1053,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1097,6 +1097,245 @@ class SHENHAIPLATFORM extends Service {
 
     let request = super.makeRequest(
       '/regions/{regionId}/apps/{appName}/copilotVerify',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  列出所有表
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.env] - 工作空间的开发环境，dev 开发、prod 生产  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param jtlasWarehouseStringListResp jtlasWarehouseStringListResp
+      */
+
+  jtlasForeignTableList (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  jtlasForeignTableList"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling jtlasForeignTableList"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.env !== undefined && opts.env !== null) {
+      queryParams['env'] = opts.env
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call jtlasForeignTableList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/jtlasForeignTableList',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询表详情信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.env] - 工作空间的开发环境，dev 开发、prod 生产  optional
+      * @param {string} opts.tableName - 表名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param jtlasTableDetailResp jtlasTableDetailResp
+      */
+
+  jtlasForeignTableDetail (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  jtlasForeignTableDetail"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling jtlasForeignTableDetail"
+      )
+    }
+    if (opts.tableName === undefined || opts.tableName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.tableName' when calling jtlasForeignTableDetail"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.env !== undefined && opts.env !== null) {
+      queryParams['env'] = opts.env
+    }
+    if (opts.tableName !== undefined && opts.tableName !== null) {
+      queryParams['tableName'] = opts.tableName
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call jtlasForeignTableDetail with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/jtlasForeignTableDetail',
       'GET',
       pathParams,
       queryParams,
@@ -1178,7 +1417,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1321,7 +1560,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1464,7 +1703,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1646,7 +1885,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1802,7 +2041,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -1958,7 +2197,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2078,7 +2317,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2198,7 +2437,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2318,7 +2557,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2438,7 +2677,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2568,7 +2807,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2689,7 +2928,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2819,7 +3058,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -2952,7 +3191,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3090,7 +3329,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3228,7 +3467,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3370,7 +3609,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3508,7 +3747,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3637,7 +3876,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3761,7 +4000,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -3912,7 +4151,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -4077,7 +4316,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -4285,7 +4524,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -4419,7 +4658,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -4571,7 +4810,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -4717,7 +4956,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -4863,7 +5102,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -5009,7 +5248,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -5137,7 +5376,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -5283,7 +5522,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -5411,7 +5650,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -5539,7 +5778,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -5663,7 +5902,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -5787,7 +6026,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -5921,7 +6160,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -6099,7 +6338,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -6269,7 +6508,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -6415,7 +6654,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -6561,7 +6800,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -6703,7 +6942,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -6841,7 +7080,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -6987,7 +7226,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -7137,7 +7376,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -7275,7 +7514,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -7759,7 +7998,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -7905,7 +8144,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -8051,7 +8290,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -8535,7 +8774,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -9019,7 +9258,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -9148,7 +9387,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -9284,7 +9523,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -9420,7 +9659,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -9582,7 +9821,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -9716,7 +9955,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -9858,7 +10097,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -9996,7 +10235,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -10133,7 +10372,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -10359,7 +10598,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -10561,7 +10800,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -10684,7 +10923,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -10826,7 +11065,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -10968,7 +11207,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -11096,7 +11335,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -11215,7 +11454,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -11343,7 +11582,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -11471,7 +11710,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -11595,7 +11834,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -11759,7 +11998,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -11887,7 +12126,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -12038,7 +12277,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -12174,7 +12413,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -12325,7 +12564,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -12469,7 +12708,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -12609,7 +12848,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -12741,7 +12980,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -12873,7 +13112,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -12996,7 +13235,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -13115,7 +13354,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -13247,7 +13486,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -13370,7 +13609,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -13493,7 +13732,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -13616,7 +13855,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -13757,7 +13996,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -13898,7 +14137,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -14039,7 +14278,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -14167,7 +14406,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -14331,7 +14570,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -14451,7 +14690,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -14575,7 +14814,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -14725,7 +14964,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -14853,7 +15092,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -14981,7 +15220,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -15109,7 +15348,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -15237,7 +15476,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -15365,7 +15604,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -15690,7 +15929,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -15818,7 +16057,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -15942,7 +16181,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -15986,6 +16225,1924 @@ class SHENHAIPLATFORM extends Service {
 
     let request = super.makeRequest(
       '/regions/{regionId}/apps/{appName}/gravityParticleConfigUserMatchUser',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建集群
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.clusterCode] - 集群编码  optional
+      * @param {string} [opts.clusterName] - 集群名称  optional
+      * @param {string} [opts.region] - 地域  optional
+      * @param {string} [opts.remark] - 备注  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      */
+
+  manageHubClusterCreate (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  manageHubClusterCreate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling manageHubClusterCreate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.clusterCode !== undefined && opts.clusterCode !== null) {
+      postBody['clusterCode'] = opts.clusterCode
+    }
+    if (opts.clusterName !== undefined && opts.clusterName !== null) {
+      postBody['clusterName'] = opts.clusterName
+    }
+    if (opts.region !== undefined && opts.region !== null) {
+      postBody['region'] = opts.region
+    }
+    if (opts.remark !== undefined && opts.remark !== null) {
+      postBody['remark'] = opts.remark
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call manageHubClusterCreate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/manageHubClusterCreate',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除集群
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} [opts.clusterId] - 集群ID  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      */
+
+  manageHubClusterDelete (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  manageHubClusterDelete"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling manageHubClusterDelete"
+      )
+    }
+
+    let postBody = {}
+    if (opts.clusterId !== undefined && opts.clusterId !== null) {
+      postBody['clusterId'] = opts.clusterId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call manageHubClusterDelete with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/manageHubClusterDelete',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新集群
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} [opts.clusterId] - 集群ID  optional
+      * @param {string} [opts.clusterCode] - 集群编码  optional
+      * @param {string} [opts.clusterName] - 集群名称  optional
+      * @param {string} [opts.remark] - 备注  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      */
+
+  manageHubClusterUpdate (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  manageHubClusterUpdate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling manageHubClusterUpdate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.clusterId !== undefined && opts.clusterId !== null) {
+      postBody['clusterId'] = opts.clusterId
+    }
+    if (opts.clusterCode !== undefined && opts.clusterCode !== null) {
+      postBody['clusterCode'] = opts.clusterCode
+    }
+    if (opts.clusterName !== undefined && opts.clusterName !== null) {
+      postBody['clusterName'] = opts.clusterName
+    }
+    if (opts.remark !== undefined && opts.remark !== null) {
+      postBody['remark'] = opts.remark
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call manageHubClusterUpdate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/manageHubClusterUpdate',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取集群信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} [opts.clusterId] - 集群ID  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param clusterDetailVo result
+      */
+
+  manageHubClusterGet (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  manageHubClusterGet"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling manageHubClusterGet"
+      )
+    }
+
+    let postBody = {}
+    if (opts.clusterId !== undefined && opts.clusterId !== null) {
+      postBody['clusterId'] = opts.clusterId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call manageHubClusterGet with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/manageHubClusterGet',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  检索集群列表
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} [opts.pageNum] - 页号  optional
+      * @param {integer} [opts.pageSize] - 页大小  optional
+      * @param {string} [opts.clusterCode] - 集群编码  optional
+      * @param {string} [opts.clusterName] - 集群名称  optional
+      * @param {string} [opts.region] - 地域  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param clusterPageOverviewVo result
+      */
+
+  manageHubClusterList (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  manageHubClusterList"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling manageHubClusterList"
+      )
+    }
+
+    let postBody = {}
+    if (opts.pageNum !== undefined && opts.pageNum !== null) {
+      postBody['pageNum'] = opts.pageNum
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+    if (opts.clusterCode !== undefined && opts.clusterCode !== null) {
+      postBody['clusterCode'] = opts.clusterCode
+    }
+    if (opts.clusterName !== undefined && opts.clusterName !== null) {
+      postBody['clusterName'] = opts.clusterName
+    }
+    if (opts.region !== undefined && opts.region !== null) {
+      postBody['region'] = opts.region
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call manageHubClusterList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/manageHubClusterList',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取集群下的元数据列表
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} [opts.pageNum] - 页号  optional
+      * @param {integer} [opts.pageSize] - 页大小  optional
+      * @param {string} [opts.clusterCode] - 集群编码  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param clusterMetaPageVo result
+      */
+
+  manageHubClusterMetaList (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  manageHubClusterMetaList"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling manageHubClusterMetaList"
+      )
+    }
+
+    let postBody = {}
+    if (opts.pageNum !== undefined && opts.pageNum !== null) {
+      postBody['pageNum'] = opts.pageNum
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+    if (opts.clusterCode !== undefined && opts.clusterCode !== null) {
+      postBody['clusterCode'] = opts.clusterCode
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call manageHubClusterMetaList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/manageHubClusterMetaList',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  为集群增加元数据：如果元数据的key已经存在，则进行更新，否则插入
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.clusterCode] - 集群编码  optional
+      * @param {array} [opts.metaList] - 元数据列表  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      */
+
+  manageHubClusterMetaAdd (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  manageHubClusterMetaAdd"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling manageHubClusterMetaAdd"
+      )
+    }
+
+    let postBody = {}
+    if (opts.clusterCode !== undefined && opts.clusterCode !== null) {
+      postBody['clusterCode'] = opts.clusterCode
+    }
+    if (opts.metaList !== undefined && opts.metaList !== null) {
+      postBody['metaList'] = opts.metaList
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call manageHubClusterMetaAdd with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/manageHubClusterMetaAdd',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除集群的元数据
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {array} [opts.metaIdList] - 元数据ID列表  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      */
+
+  manageHubClusterMetaDelete (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  manageHubClusterMetaDelete"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling manageHubClusterMetaDelete"
+      )
+    }
+
+    let postBody = {}
+    if (opts.metaIdList !== undefined && opts.metaIdList !== null) {
+      postBody['metaIdList'] = opts.metaIdList
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call manageHubClusterMetaDelete with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/manageHubClusterMetaDelete',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  替换集群元数据：清空集群现有元数据，完全以参数中的内容重建
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.clusterCode] - 集群编码  optional
+      * @param {array} [opts.metaList] - 元数据列表  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      */
+
+  manageHubClusterMetaReplace (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  manageHubClusterMetaReplace"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling manageHubClusterMetaReplace"
+      )
+    }
+
+    let postBody = {}
+    if (opts.clusterCode !== undefined && opts.clusterCode !== null) {
+      postBody['clusterCode'] = opts.clusterCode
+    }
+    if (opts.metaList !== undefined && opts.metaList !== null) {
+      postBody['metaList'] = opts.metaList
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call manageHubClusterMetaReplace with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/manageHubClusterMetaReplace',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  任务调度周期字典
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param dictVo result
+      */
+
+  rotorDictTaskScheduleCycles (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorDictTaskScheduleCycles"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorDictTaskScheduleCycles"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorDictTaskScheduleCycles with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorDictTaskScheduleCycles',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  任务类型字典
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param dictVo result
+      */
+
+  rotorDictTaskTypes (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorDictTaskTypes"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorDictTaskTypes"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorDictTaskTypes with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorDictTaskTypes',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  任务调度状态字典
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param dictVo result
+      */
+
+  rotorDictTaskScheduleStates (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorDictTaskScheduleStates"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorDictTaskScheduleStates"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorDictTaskScheduleStates with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorDictTaskScheduleStates',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  实例状态字典
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param dictVo result
+      */
+
+  rotorDictInstanceDisplayStates (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorDictInstanceDisplayStates"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorDictInstanceDisplayStates"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorDictInstanceDisplayStates with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorDictInstanceDisplayStates',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  补数方式字典
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param dictVo result
+      */
+
+  rotorDictSupplementMethod (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorDictSupplementMethod"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorDictSupplementMethod"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorDictSupplementMethod with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorDictSupplementMethod',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  补数执行顺序字典
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param dictVo result
+      */
+
+  rotorDictSupplementOrder (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorDictSupplementOrder"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorDictSupplementOrder"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorDictSupplementOrder with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorDictSupplementOrder',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  补数资源组策略字典
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param dictVo result
+      */
+
+  rotorDictSupplementResourceGroupStrategy (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorDictSupplementResourceGroupStrategy"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorDictSupplementResourceGroupStrategy"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorDictSupplementResourceGroupStrategy with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorDictSupplementResourceGroupStrategy',
       'POST',
       pathParams,
       queryParams,
@@ -16070,7 +18227,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -16201,7 +18358,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -16348,7 +18505,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -16479,7 +18636,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -16630,7 +18787,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -16758,7 +18915,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -16894,7 +19051,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -17038,7 +19195,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -17178,7 +19335,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -17318,7 +19475,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -17462,7 +19619,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -17610,7 +19767,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -17822,7 +19979,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -17957,7 +20114,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -18088,7 +20245,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -18223,7 +20380,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -18351,7 +20508,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -18545,7 +20702,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -18739,7 +20896,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -18878,7 +21035,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -19033,7 +21190,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -19177,7 +21334,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -19312,7 +21469,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -19356,6 +21513,3476 @@ class SHENHAIPLATFORM extends Service {
 
     let request = super.makeRequest(
       '/regions/{regionId}/apps/{appName}/manageHubGravityOneClickRerunResubmit',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  实例检索
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} [opts.pageNum] - 页码  optional
+      * @param {integer} [opts.pageSize] - 每页数量  optional
+      * @param {string} [opts.taskId] - 任务ID  optional
+      * @param {string} [opts.taskName] - 任务名称  optional
+      * @param {string} [opts.instanceId] - 实例ID  optional
+      * @param {array} [opts.displayStateList] - 实例状态  optional
+      * @param {string} [opts.resourceGroupCode] - 资源组编码  optional
+      * @param {string} [opts.type] - 任务类型  optional
+      * @param {string} [opts.cycle] - 任务调度周期  optional
+      * @param {integer} [opts.txDateTimestampStart] - 数据日期-开始  optional
+      * @param {integer} [opts.txDateTimestampEnd] - 数据日期-结束  optional
+      * @param {integer} [opts.updateTimestampStart] - 更新时间-开始  optional
+      * @param {integer} [opts.updateTimestampEnd] - 更新时间-结束  optional
+      * @param {integer} [opts.createTimestampStart] - 创建时间-开始  optional
+      * @param {integer} [opts.createTimestampEnd] - 创建时间-结束  optional
+      * @param {string} [opts.ownerPin] - 负责人pin  optional
+      * @param {string} [opts.companyCode] - 租户编码  optional
+      * @param {string} [opts.workspaceCode] - 工作空间编码  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param instanceInfoPageVo result
+      */
+
+  rotorInstances (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorInstances"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorInstances"
+      )
+    }
+
+    let postBody = {}
+    if (opts.pageNum !== undefined && opts.pageNum !== null) {
+      postBody['pageNum'] = opts.pageNum
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+    if (opts.taskId !== undefined && opts.taskId !== null) {
+      postBody['taskId'] = opts.taskId
+    }
+    if (opts.taskName !== undefined && opts.taskName !== null) {
+      postBody['taskName'] = opts.taskName
+    }
+    if (opts.instanceId !== undefined && opts.instanceId !== null) {
+      postBody['instanceId'] = opts.instanceId
+    }
+    if (opts.displayStateList !== undefined && opts.displayStateList !== null) {
+      postBody['displayStateList'] = opts.displayStateList
+    }
+    if (
+      opts.resourceGroupCode !== undefined &&
+      opts.resourceGroupCode !== null
+    ) {
+      postBody['resourceGroupCode'] = opts.resourceGroupCode
+    }
+    if (opts.type !== undefined && opts.type !== null) {
+      postBody['type'] = opts.type
+    }
+    if (opts.cycle !== undefined && opts.cycle !== null) {
+      postBody['cycle'] = opts.cycle
+    }
+    if (
+      opts.txDateTimestampStart !== undefined &&
+      opts.txDateTimestampStart !== null
+    ) {
+      postBody['txDateTimestampStart'] = opts.txDateTimestampStart
+    }
+    if (
+      opts.txDateTimestampEnd !== undefined &&
+      opts.txDateTimestampEnd !== null
+    ) {
+      postBody['txDateTimestampEnd'] = opts.txDateTimestampEnd
+    }
+    if (
+      opts.updateTimestampStart !== undefined &&
+      opts.updateTimestampStart !== null
+    ) {
+      postBody['updateTimestampStart'] = opts.updateTimestampStart
+    }
+    if (
+      opts.updateTimestampEnd !== undefined &&
+      opts.updateTimestampEnd !== null
+    ) {
+      postBody['updateTimestampEnd'] = opts.updateTimestampEnd
+    }
+    if (
+      opts.createTimestampStart !== undefined &&
+      opts.createTimestampStart !== null
+    ) {
+      postBody['createTimestampStart'] = opts.createTimestampStart
+    }
+    if (
+      opts.createTimestampEnd !== undefined &&
+      opts.createTimestampEnd !== null
+    ) {
+      postBody['createTimestampEnd'] = opts.createTimestampEnd
+    }
+    if (opts.ownerPin !== undefined && opts.ownerPin !== null) {
+      postBody['ownerPin'] = opts.ownerPin
+    }
+    if (opts.companyCode !== undefined && opts.companyCode !== null) {
+      postBody['companyCode'] = opts.companyCode
+    }
+    if (opts.workspaceCode !== undefined && opts.workspaceCode !== null) {
+      postBody['workspaceCode'] = opts.workspaceCode
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorInstances with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorInstances',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  实例依赖关系
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.instanceId] - 任务ID  optional
+      * @param {string} [opts.relation] - 关系类型: upstream-上游, downstream-下游  optional
+      * @param {integer} [opts.depth] - 深度  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param instanceDependencyVo result
+      */
+
+  rotorInstanceDependency (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorInstanceDependency"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorInstanceDependency"
+      )
+    }
+
+    let postBody = {}
+    if (opts.instanceId !== undefined && opts.instanceId !== null) {
+      postBody['instanceId'] = opts.instanceId
+    }
+    if (opts.relation !== undefined && opts.relation !== null) {
+      postBody['relation'] = opts.relation
+    }
+    if (opts.depth !== undefined && opts.depth !== null) {
+      postBody['depth'] = opts.depth
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorInstanceDependency with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorInstanceDependency',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  实例详细信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.instanceId] - 实例ID  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param instanceDetailVo result
+      */
+
+  rotorInstanceDetail (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorInstanceDetail"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorInstanceDetail"
+      )
+    }
+
+    let postBody = {}
+    if (opts.instanceId !== undefined && opts.instanceId !== null) {
+      postBody['instanceId'] = opts.instanceId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorInstanceDetail with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorInstanceDetail',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  实例历史信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.instanceId] - 实例ID  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param instanceHistoryVo result
+      */
+
+  rotorInstanceHistories (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorInstanceHistories"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorInstanceHistories"
+      )
+    }
+
+    let postBody = {}
+    if (opts.instanceId !== undefined && opts.instanceId !== null) {
+      postBody['instanceId'] = opts.instanceId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorInstanceHistories with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorInstanceHistories',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  终止任务实例
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.instanceId] - 实例ID  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      */
+
+  rotorKillInstance (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorKillInstance"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorKillInstance"
+      )
+    }
+
+    let postBody = {}
+    if (opts.instanceId !== undefined && opts.instanceId !== null) {
+      postBody['instanceId'] = opts.instanceId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorKillInstance with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorKillInstance',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  重跑任务实例
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.instanceId] - 实例ID  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      */
+
+  rotorRerunInstance (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorRerunInstance"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorRerunInstance"
+      )
+    }
+
+    let postBody = {}
+    if (opts.instanceId !== undefined && opts.instanceId !== null) {
+      postBody['instanceId'] = opts.instanceId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorRerunInstance with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorRerunInstance',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  重置任务实例
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.instanceId] - 实例ID  optional
+      * @param {string} [opts.state] - 重置状态  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      */
+
+  rotorResetInstance (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorResetInstance"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorResetInstance"
+      )
+    }
+
+    let postBody = {}
+    if (opts.instanceId !== undefined && opts.instanceId !== null) {
+      postBody['instanceId'] = opts.instanceId
+    }
+    if (opts.state !== undefined && opts.state !== null) {
+      postBody['state'] = opts.state
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorResetInstance with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorResetInstance',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  实例操作日志
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.instanceId] - 实例ID  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param instanceOperationVo result
+      */
+
+  rotorInstanceOperationLogs (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorInstanceOperationLogs"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorInstanceOperationLogs"
+      )
+    }
+
+    let postBody = {}
+    if (opts.instanceId !== undefined && opts.instanceId !== null) {
+      postBody['instanceId'] = opts.instanceId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorInstanceOperationLogs with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorInstanceOperationLogs',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  重跑下游
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.instanceId] - 实例ID  optional
+      * @param {array} [opts.downstreamInstanceIds] - 下游重跑实例ID列表  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      */
+
+  rotorRerunDownstream (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorRerunDownstream"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorRerunDownstream"
+      )
+    }
+
+    let postBody = {}
+    if (opts.instanceId !== undefined && opts.instanceId !== null) {
+      postBody['instanceId'] = opts.instanceId
+    }
+    if (
+      opts.downstreamInstanceIds !== undefined &&
+      opts.downstreamInstanceIds !== null
+    ) {
+      postBody['downstreamInstanceIds'] = opts.downstreamInstanceIds
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorRerunDownstream with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorRerunDownstream',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  实例调度日志
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} [opts.pageNum] - 页码，从0开始  optional
+      * @param {integer} [opts.pageSize] - 每页数量，最大5000  optional
+      * @param {integer} [opts.historyId] - 实例历史ID  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param logPageVo result
+      */
+
+  rotorInstanceScheduleLogs (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorInstanceScheduleLogs"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorInstanceScheduleLogs"
+      )
+    }
+
+    let postBody = {}
+    if (opts.pageNum !== undefined && opts.pageNum !== null) {
+      postBody['pageNum'] = opts.pageNum
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+    if (opts.historyId !== undefined && opts.historyId !== null) {
+      postBody['historyId'] = opts.historyId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorInstanceScheduleLogs with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorInstanceScheduleLogs',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  实例运行日志
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} [opts.pageNum] - 页码，从0开始  optional
+      * @param {integer} [opts.pageSize] - 每页数量，最大5000  optional
+      * @param {integer} [opts.historyId] - 实例历史ID  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param logPageVo result
+      */
+
+  rotorInstanceRunLogs (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorInstanceRunLogs"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorInstanceRunLogs"
+      )
+    }
+
+    let postBody = {}
+    if (opts.pageNum !== undefined && opts.pageNum !== null) {
+      postBody['pageNum'] = opts.pageNum
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+    if (opts.historyId !== undefined && opts.historyId !== null) {
+      postBody['historyId'] = opts.historyId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorInstanceRunLogs with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorInstanceRunLogs',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询今日实例每次运行各状态百分比
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param statusPercentageData result
+      */
+
+  statusPercentageToday (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  statusPercentageToday"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling statusPercentageToday"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call statusPercentageToday with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/statusPercentageToday',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取历史平均每小时实例运行成功次数
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param hourData result
+      */
+
+  historySuccessInstanceAvgPerHour (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  historySuccessInstanceAvgPerHour"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling historySuccessInstanceAvgPerHour"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call historySuccessInstanceAvgPerHour with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/historySuccessInstanceAvgPerHour',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取 offset 天前 每个小时实例运行成功次数
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} [opts.offset] - offset  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param hourData result
+      */
+
+  successInstancePerHour (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  successInstancePerHour"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling successInstancePerHour"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.offset !== undefined && opts.offset !== null) {
+      queryParams['offset'] = opts.offset
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call successInstancePerHour with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/successInstancePerHour',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取历史平均每小时实例运行失败次数
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param hourData result
+      */
+
+  historyFailedInstanceAvgPerHour (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  historyFailedInstanceAvgPerHour"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling historyFailedInstanceAvgPerHour"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call historyFailedInstanceAvgPerHour with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/historyFailedInstanceAvgPerHour',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取 offset 天前 每个小时实例运行失败次数
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} [opts.offset] - offset  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param hourData result
+      */
+
+  failedInstancePerHour (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  failedInstancePerHour"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling failedInstancePerHour"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.offset !== undefined && opts.offset !== null) {
+      queryParams['offset'] = opts.offset
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call failedInstancePerHour with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/failedInstancePerHour',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  未就绪实例排名
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param jobCountData result
+      */
+
+  jobPendingInstanceRanking (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  jobPendingInstanceRanking"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling jobPendingInstanceRanking"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call jobPendingInstanceRanking with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/jobPendingInstanceRanking',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  实例失败次数排名
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param jobCountData result
+      */
+
+  jobFailedInstanceRanking (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  jobFailedInstanceRanking"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling jobFailedInstanceRanking"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call jobFailedInstanceRanking with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/jobFailedInstanceRanking',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  等待中实例
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param awaitingInstanceVo result
+      */
+
+  awaitingInstance (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  awaitingInstance"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling awaitingInstance"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call awaitingInstance with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/awaitingInstance',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  运行中实例
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param runningInstanceVo result
+      */
+
+  runningInstance (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  runningInstance"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling runningInstance"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call runningInstance with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/runningInstance',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  运行失败记录
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param failedInstanceVo result
+      */
+
+  failedHistories (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  failedHistories"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling failedHistories"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call failedHistories with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/failedHistories',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  实例指标卡
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} [opts.pageNum] - 页码  optional
+      * @param {integer} [opts.pageSize] - 每页数量  optional
+      * @param {string} [opts.taskId] - 任务ID  optional
+      * @param {string} [opts.taskName] - 任务名称  optional
+      * @param {string} [opts.instanceId] - 实例ID  optional
+      * @param {array} [opts.displayStateList] - 实例状态  optional
+      * @param {string} [opts.resourceGroupCode] - 资源组编码  optional
+      * @param {string} [opts.type] - 任务类型  optional
+      * @param {string} [opts.cycle] - 任务调度周期  optional
+      * @param {integer} [opts.txDateTimestampStart] - 数据日期-开始  optional
+      * @param {integer} [opts.txDateTimestampEnd] - 数据日期-结束  optional
+      * @param {integer} [opts.updateTimestampStart] - 更新时间-开始  optional
+      * @param {integer} [opts.updateTimestampEnd] - 更新时间-结束  optional
+      * @param {integer} [opts.createTimestampStart] - 创建时间-开始  optional
+      * @param {integer} [opts.createTimestampEnd] - 创建时间-结束  optional
+      * @param {string} [opts.ownerPin] - 负责人pin  optional
+      * @param {string} [opts.companyCode] - 租户编码  optional
+      * @param {string} [opts.workspaceCode] - 工作空间编码  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param instanceStatisticsInfoVo result  数据内容
+      */
+
+  queryStatisticsInSelectTime (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  queryStatisticsInSelectTime"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling queryStatisticsInSelectTime"
+      )
+    }
+
+    let postBody = {}
+    if (opts.pageNum !== undefined && opts.pageNum !== null) {
+      postBody['pageNum'] = opts.pageNum
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+    if (opts.taskId !== undefined && opts.taskId !== null) {
+      postBody['taskId'] = opts.taskId
+    }
+    if (opts.taskName !== undefined && opts.taskName !== null) {
+      postBody['taskName'] = opts.taskName
+    }
+    if (opts.instanceId !== undefined && opts.instanceId !== null) {
+      postBody['instanceId'] = opts.instanceId
+    }
+    if (opts.displayStateList !== undefined && opts.displayStateList !== null) {
+      postBody['displayStateList'] = opts.displayStateList
+    }
+    if (
+      opts.resourceGroupCode !== undefined &&
+      opts.resourceGroupCode !== null
+    ) {
+      postBody['resourceGroupCode'] = opts.resourceGroupCode
+    }
+    if (opts.type !== undefined && opts.type !== null) {
+      postBody['type'] = opts.type
+    }
+    if (opts.cycle !== undefined && opts.cycle !== null) {
+      postBody['cycle'] = opts.cycle
+    }
+    if (
+      opts.txDateTimestampStart !== undefined &&
+      opts.txDateTimestampStart !== null
+    ) {
+      postBody['txDateTimestampStart'] = opts.txDateTimestampStart
+    }
+    if (
+      opts.txDateTimestampEnd !== undefined &&
+      opts.txDateTimestampEnd !== null
+    ) {
+      postBody['txDateTimestampEnd'] = opts.txDateTimestampEnd
+    }
+    if (
+      opts.updateTimestampStart !== undefined &&
+      opts.updateTimestampStart !== null
+    ) {
+      postBody['updateTimestampStart'] = opts.updateTimestampStart
+    }
+    if (
+      opts.updateTimestampEnd !== undefined &&
+      opts.updateTimestampEnd !== null
+    ) {
+      postBody['updateTimestampEnd'] = opts.updateTimestampEnd
+    }
+    if (
+      opts.createTimestampStart !== undefined &&
+      opts.createTimestampStart !== null
+    ) {
+      postBody['createTimestampStart'] = opts.createTimestampStart
+    }
+    if (
+      opts.createTimestampEnd !== undefined &&
+      opts.createTimestampEnd !== null
+    ) {
+      postBody['createTimestampEnd'] = opts.createTimestampEnd
+    }
+    if (opts.ownerPin !== undefined && opts.ownerPin !== null) {
+      postBody['ownerPin'] = opts.ownerPin
+    }
+    if (opts.companyCode !== undefined && opts.companyCode !== null) {
+      postBody['companyCode'] = opts.companyCode
+    }
+    if (opts.workspaceCode !== undefined && opts.workspaceCode !== null) {
+      postBody['workspaceCode'] = opts.workspaceCode
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call queryStatisticsInSelectTime with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/queryStatisticsInSelectTime',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  getScheduledInstancesCountPerHour
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} [opts.offset] - 偏移量  optional
+      * @param {string} [opts.state] - 调度状态  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param hourDataStatisticsVo result  数据内容
+      */
+
+  getScheduledInstancesCountPerHour (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getScheduledInstancesCountPerHour"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling getScheduledInstancesCountPerHour"
+      )
+    }
+
+    let postBody = {}
+    if (opts.offset !== undefined && opts.offset !== null) {
+      postBody['offset'] = opts.offset
+    }
+    if (opts.state !== undefined && opts.state !== null) {
+      postBody['state'] = opts.state
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getScheduledInstancesCountPerHour with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/getScheduledInstancesCountPerHour',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  getFailedInstancesReason
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} [opts.offset] - 偏移量  optional
+      * @param {string} [opts.state] - 调度状态  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param instanceHistoryStatisticsVo result
+      */
+
+  getFailedInstancesReason (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getFailedInstancesReason"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling getFailedInstancesReason"
+      )
+    }
+
+    let postBody = {}
+    if (opts.offset !== undefined && opts.offset !== null) {
+      postBody['offset'] = opts.offset
+    }
+    if (opts.state !== undefined && opts.state !== null) {
+      postBody['state'] = opts.state
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getFailedInstancesReason with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/getFailedInstancesReason',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  getTaskStateStatistics
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} [opts.offset] - 偏移量  optional
+      * @param {string} [opts.state] - 调度状态  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param taskScheduleStatisticVo result
+      */
+
+  getTaskStateStatistics (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getTaskStateStatistics"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling getTaskStateStatistics"
+      )
+    }
+
+    let postBody = {}
+    if (opts.offset !== undefined && opts.offset !== null) {
+      postBody['offset'] = opts.offset
+    }
+    if (opts.state !== undefined && opts.state !== null) {
+      postBody['state'] = opts.state
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getTaskStateStatistics with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/getTaskStateStatistics',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  getTaskTypeStatistics
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} [opts.offset] - 偏移量  optional
+      * @param {string} [opts.state] - 调度状态  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param taskStatisticVo result
+      */
+
+  getTaskTypeStatistics (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getTaskTypeStatistics"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling getTaskTypeStatistics"
+      )
+    }
+
+    let postBody = {}
+    if (opts.offset !== undefined && opts.offset !== null) {
+      postBody['offset'] = opts.offset
+    }
+    if (opts.state !== undefined && opts.state !== null) {
+      postBody['state'] = opts.state
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getTaskTypeStatistics with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/getTaskTypeStatistics',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  实例检索
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} [opts.pageNum] - 页码  optional
+      * @param {integer} [opts.pageSize] - 每页数量  optional
+      * @param {string} [opts.taskId] - 任务ID  optional
+      * @param {string} [opts.taskName] - 任务名称  optional
+      * @param {string} [opts.instanceId] - 实例ID  optional
+      * @param {array} [opts.displayStateList] - 实例状态  optional
+      * @param {string} [opts.resourceGroupCode] - 资源组编码  optional
+      * @param {string} [opts.type] - 任务类型  optional
+      * @param {string} [opts.cycle] - 任务调度周期  optional
+      * @param {integer} [opts.txDateTimestampStart] - 数据日期-开始  optional
+      * @param {integer} [opts.txDateTimestampEnd] - 数据日期-结束  optional
+      * @param {integer} [opts.updateTimestampStart] - 更新时间-开始  optional
+      * @param {integer} [opts.updateTimestampEnd] - 更新时间-结束  optional
+      * @param {integer} [opts.createTimestampStart] - 创建时间-开始  optional
+      * @param {integer} [opts.createTimestampEnd] - 创建时间-结束  optional
+      * @param {string} [opts.ownerPin] - 负责人pin  optional
+      * @param {string} [opts.companyCode] - 租户编码  optional
+      * @param {string} [opts.workspaceCode] - 工作空间编码  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param instanceInfoPageVo result
+      */
+
+  rotorInstances (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorInstances"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorInstances"
+      )
+    }
+
+    let postBody = {}
+    if (opts.pageNum !== undefined && opts.pageNum !== null) {
+      postBody['pageNum'] = opts.pageNum
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+    if (opts.taskId !== undefined && opts.taskId !== null) {
+      postBody['taskId'] = opts.taskId
+    }
+    if (opts.taskName !== undefined && opts.taskName !== null) {
+      postBody['taskName'] = opts.taskName
+    }
+    if (opts.instanceId !== undefined && opts.instanceId !== null) {
+      postBody['instanceId'] = opts.instanceId
+    }
+    if (opts.displayStateList !== undefined && opts.displayStateList !== null) {
+      postBody['displayStateList'] = opts.displayStateList
+    }
+    if (
+      opts.resourceGroupCode !== undefined &&
+      opts.resourceGroupCode !== null
+    ) {
+      postBody['resourceGroupCode'] = opts.resourceGroupCode
+    }
+    if (opts.type !== undefined && opts.type !== null) {
+      postBody['type'] = opts.type
+    }
+    if (opts.cycle !== undefined && opts.cycle !== null) {
+      postBody['cycle'] = opts.cycle
+    }
+    if (
+      opts.txDateTimestampStart !== undefined &&
+      opts.txDateTimestampStart !== null
+    ) {
+      postBody['txDateTimestampStart'] = opts.txDateTimestampStart
+    }
+    if (
+      opts.txDateTimestampEnd !== undefined &&
+      opts.txDateTimestampEnd !== null
+    ) {
+      postBody['txDateTimestampEnd'] = opts.txDateTimestampEnd
+    }
+    if (
+      opts.updateTimestampStart !== undefined &&
+      opts.updateTimestampStart !== null
+    ) {
+      postBody['updateTimestampStart'] = opts.updateTimestampStart
+    }
+    if (
+      opts.updateTimestampEnd !== undefined &&
+      opts.updateTimestampEnd !== null
+    ) {
+      postBody['updateTimestampEnd'] = opts.updateTimestampEnd
+    }
+    if (
+      opts.createTimestampStart !== undefined &&
+      opts.createTimestampStart !== null
+    ) {
+      postBody['createTimestampStart'] = opts.createTimestampStart
+    }
+    if (
+      opts.createTimestampEnd !== undefined &&
+      opts.createTimestampEnd !== null
+    ) {
+      postBody['createTimestampEnd'] = opts.createTimestampEnd
+    }
+    if (opts.ownerPin !== undefined && opts.ownerPin !== null) {
+      postBody['ownerPin'] = opts.ownerPin
+    }
+    if (opts.companyCode !== undefined && opts.companyCode !== null) {
+      postBody['companyCode'] = opts.companyCode
+    }
+    if (opts.workspaceCode !== undefined && opts.workspaceCode !== null) {
+      postBody['workspaceCode'] = opts.workspaceCode
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorInstances with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorInstances',
       'POST',
       pathParams,
       queryParams,
@@ -19439,7 +25066,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -19588,7 +25215,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -19748,7 +25375,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -19902,7 +25529,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -20078,7 +25705,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -20123,6 +25750,564 @@ class SHENHAIPLATFORM extends Service {
     let request = super.makeRequest(
       '/regions/{regionId}/apps/{appName}/manageHubStoragePartitionList',
       'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  任务检索
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} [opts.pageNum] - 页码  optional
+      * @param {integer} [opts.pageSize] - 每页数量  optional
+      * @param {string} [opts.name] - 任务名称  optional
+      * @param {string} [opts.id] - 任务ID  optional
+      * @param {string} [opts.ownerOrCollaboratorPin] - 负责人/协作人pin  optional
+      * @param {string} [opts.resourceCode] - 资源组  optional
+      * @param {string} [opts.type] - 任务类型  optional
+      * @param {string} [opts.cycle] - 调度周期  optional
+      * @param {integer} [opts.updateTimestampStart] - 更新时间-开始  optional
+      * @param {integer} [opts.updateTimestampEnd] - 更新时间-结束  optional
+      * @param {integer} [opts.createTimestampStart] - 创建时间-开始  optional
+      * @param {integer} [opts.createTimestampEnd] - 创建时间-结束  optional
+      * @param {string} [opts.scheduleState] - 调度状态  optional
+      * @param {string} [opts.companyCode] - 租户代码  optional
+      * @param {string} [opts.workspaceCode] - 工作空间代码  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param taskInfoPageVo result
+      */
+
+  rotorTasks (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorTasks"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorTasks"
+      )
+    }
+
+    let postBody = {}
+    if (opts.pageNum !== undefined && opts.pageNum !== null) {
+      postBody['pageNum'] = opts.pageNum
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.id !== undefined && opts.id !== null) {
+      postBody['id'] = opts.id
+    }
+    if (
+      opts.ownerOrCollaboratorPin !== undefined &&
+      opts.ownerOrCollaboratorPin !== null
+    ) {
+      postBody['ownerOrCollaboratorPin'] = opts.ownerOrCollaboratorPin
+    }
+    if (opts.resourceCode !== undefined && opts.resourceCode !== null) {
+      postBody['resourceCode'] = opts.resourceCode
+    }
+    if (opts.type !== undefined && opts.type !== null) {
+      postBody['type'] = opts.type
+    }
+    if (opts.cycle !== undefined && opts.cycle !== null) {
+      postBody['cycle'] = opts.cycle
+    }
+    if (
+      opts.updateTimestampStart !== undefined &&
+      opts.updateTimestampStart !== null
+    ) {
+      postBody['updateTimestampStart'] = opts.updateTimestampStart
+    }
+    if (
+      opts.updateTimestampEnd !== undefined &&
+      opts.updateTimestampEnd !== null
+    ) {
+      postBody['updateTimestampEnd'] = opts.updateTimestampEnd
+    }
+    if (
+      opts.createTimestampStart !== undefined &&
+      opts.createTimestampStart !== null
+    ) {
+      postBody['createTimestampStart'] = opts.createTimestampStart
+    }
+    if (
+      opts.createTimestampEnd !== undefined &&
+      opts.createTimestampEnd !== null
+    ) {
+      postBody['createTimestampEnd'] = opts.createTimestampEnd
+    }
+    if (opts.scheduleState !== undefined && opts.scheduleState !== null) {
+      postBody['scheduleState'] = opts.scheduleState
+    }
+    if (opts.companyCode !== undefined && opts.companyCode !== null) {
+      postBody['companyCode'] = opts.companyCode
+    }
+    if (opts.workspaceCode !== undefined && opts.workspaceCode !== null) {
+      postBody['workspaceCode'] = opts.workspaceCode
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorTasks with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorTasks',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  任务详细信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.taskId] - 任务ID  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param taskDetailVo result
+      */
+
+  rotorTaskDetail (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorTaskDetail"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorTaskDetail"
+      )
+    }
+
+    let postBody = {}
+    if (opts.taskId !== undefined && opts.taskId !== null) {
+      postBody['taskId'] = opts.taskId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorTaskDetail with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorTaskDetail',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  任务依赖关系
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.taskId] - 任务ID  optional
+      * @param {string} [opts.relation] - 关系类型: upstream-上游, downstream-下游  optional
+      * @param {integer} [opts.depth] - 深度  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param taskDependencyVo result
+      */
+
+  rotorTaskDependency (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorTaskDependency"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorTaskDependency"
+      )
+    }
+
+    let postBody = {}
+    if (opts.taskId !== undefined && opts.taskId !== null) {
+      postBody['taskId'] = opts.taskId
+    }
+    if (opts.relation !== undefined && opts.relation !== null) {
+      postBody['relation'] = opts.relation
+    }
+    if (opts.depth !== undefined && opts.depth !== null) {
+      postBody['depth'] = opts.depth
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorTaskDependency with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorTaskDependency',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新任务调度状态
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.taskId] - 任务ID  optional
+      * @param {string} [opts.state] - 状态: normal-正常调度, paused-暂停调度  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      */
+
+  rotorUpdateTaskScheduleState (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorUpdateTaskScheduleState"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorUpdateTaskScheduleState"
+      )
+    }
+
+    let postBody = {}
+    if (opts.taskId !== undefined && opts.taskId !== null) {
+      postBody['taskId'] = opts.taskId
+    }
+    if (opts.state !== undefined && opts.state !== null) {
+      postBody['state'] = opts.state
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorUpdateTaskScheduleState with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorUpdateTaskScheduleState',
+      'POST',
       pathParams,
       queryParams,
       headerParams,
@@ -20245,7 +26430,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -20380,7 +26565,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -20512,7 +26697,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -20648,7 +26833,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -20783,7 +26968,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -20964,7 +27149,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -21096,7 +27281,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -21231,7 +27416,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -21366,7 +27551,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -21410,6 +27595,4993 @@ class SHENHAIPLATFORM extends Service {
 
     let request = super.makeRequest(
       '/regions/{regionId}/apps/{appName}/publishPkg',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  实例指标卡
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} [opts.pageNum] - 页码，从0开始  optional
+      * @param {integer} [opts.pageSize] - 每页数量，最大500  optional
+      * @param {string} [opts.taskId] - 任务ID  optional
+      * @param {string} [opts.taskName] - 任务名称，支持模糊匹配  optional
+      * @param {string} [opts.instanceId] - 实例ID  optional
+      * @param {array} [opts.displayStateList] - 实例展示状态列表，可选值: pending(未就绪), awaiting(等待中), running(运行中), done(运行成功), failed(运行失败), killed(手动终止)  optional
+      * @param {string} [opts.resourceGroupCode] - 资源组编码  optional
+      * @param {array} [opts.typeList] - 任务类型列表，可选值: workflow(工作流), pipe(数据集成), jcw_sql(JCW SQL), python(Python), ai(AI), spark_jar(Spark Jar), pyspark(PySpark), shell(Shell), starrocks(StarRocks), mysql(MySQL), ailake(AI 数据湖), joybuilder(JoyBuilder), virtual(虚拟任务)  optional
+      * @param {string} [opts.cycle] - 任务调度周期，可选值: day(天), week(周), month(月), minute(分钟), hour(小时), manual(手动)  optional
+      * @param {integer} [opts.txDateTimestampStart] - 数据日期-开始，13位毫秒级时间戳  optional
+      * @param {integer} [opts.txDateTimestampEnd] - 数据日期-结束，13位毫秒级时间戳  optional
+      * @param {integer} [opts.updateTimestampStart] - 更新时间-开始，13位毫秒级时间戳  optional
+      * @param {integer} [opts.updateTimestampEnd] - 更新时间-结束，13位毫秒级时间戳  optional
+      * @param {integer} [opts.createTimestampStart] - 创建时间-开始，13位毫秒级时间戳  optional
+      * @param {integer} [opts.createTimestampEnd] - 创建时间-结束，13位毫秒级时间戳  optional
+      * @param {integer} [opts.runStartTimeStart] - 运行开始时间-开始，13位毫秒级时间戳  optional
+      * @param {integer} [opts.runStartTimeEnd] - 运行开始时间-结束，13位毫秒级时间戳  optional
+      * @param {integer} [opts.runEndTimeStart] - 运行结束时间-开始，13位毫秒级时间戳  optional
+      * @param {integer} [opts.runEndTimeEnd] - 运行结束时间-结束，13位毫秒级时间戳  optional
+      * @param {string} [opts.ownerPin] - 负责人pin  optional
+      * @param {string} [opts.companyCode] - 租户编码  optional
+      * @param {string} [opts.workspaceCode] - 工作空间编码  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param instanceStatisticsInfoVo result  数据内容
+      */
+
+  queryStatisticsInSelectTime (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  queryStatisticsInSelectTime"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling queryStatisticsInSelectTime"
+      )
+    }
+
+    let postBody = {}
+    if (opts.pageNum !== undefined && opts.pageNum !== null) {
+      postBody['pageNum'] = opts.pageNum
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+    if (opts.taskId !== undefined && opts.taskId !== null) {
+      postBody['taskId'] = opts.taskId
+    }
+    if (opts.taskName !== undefined && opts.taskName !== null) {
+      postBody['taskName'] = opts.taskName
+    }
+    if (opts.instanceId !== undefined && opts.instanceId !== null) {
+      postBody['instanceId'] = opts.instanceId
+    }
+    if (opts.displayStateList !== undefined && opts.displayStateList !== null) {
+      postBody['displayStateList'] = opts.displayStateList
+    }
+    if (
+      opts.resourceGroupCode !== undefined &&
+      opts.resourceGroupCode !== null
+    ) {
+      postBody['resourceGroupCode'] = opts.resourceGroupCode
+    }
+    if (opts.typeList !== undefined && opts.typeList !== null) {
+      postBody['typeList'] = opts.typeList
+    }
+    if (opts.cycle !== undefined && opts.cycle !== null) {
+      postBody['cycle'] = opts.cycle
+    }
+    if (
+      opts.txDateTimestampStart !== undefined &&
+      opts.txDateTimestampStart !== null
+    ) {
+      postBody['txDateTimestampStart'] = opts.txDateTimestampStart
+    }
+    if (
+      opts.txDateTimestampEnd !== undefined &&
+      opts.txDateTimestampEnd !== null
+    ) {
+      postBody['txDateTimestampEnd'] = opts.txDateTimestampEnd
+    }
+    if (
+      opts.updateTimestampStart !== undefined &&
+      opts.updateTimestampStart !== null
+    ) {
+      postBody['updateTimestampStart'] = opts.updateTimestampStart
+    }
+    if (
+      opts.updateTimestampEnd !== undefined &&
+      opts.updateTimestampEnd !== null
+    ) {
+      postBody['updateTimestampEnd'] = opts.updateTimestampEnd
+    }
+    if (
+      opts.createTimestampStart !== undefined &&
+      opts.createTimestampStart !== null
+    ) {
+      postBody['createTimestampStart'] = opts.createTimestampStart
+    }
+    if (
+      opts.createTimestampEnd !== undefined &&
+      opts.createTimestampEnd !== null
+    ) {
+      postBody['createTimestampEnd'] = opts.createTimestampEnd
+    }
+    if (
+      opts.runStartTimeStart !== undefined &&
+      opts.runStartTimeStart !== null
+    ) {
+      postBody['runStartTimeStart'] = opts.runStartTimeStart
+    }
+    if (opts.runStartTimeEnd !== undefined && opts.runStartTimeEnd !== null) {
+      postBody['runStartTimeEnd'] = opts.runStartTimeEnd
+    }
+    if (opts.runEndTimeStart !== undefined && opts.runEndTimeStart !== null) {
+      postBody['runEndTimeStart'] = opts.runEndTimeStart
+    }
+    if (opts.runEndTimeEnd !== undefined && opts.runEndTimeEnd !== null) {
+      postBody['runEndTimeEnd'] = opts.runEndTimeEnd
+    }
+    if (opts.ownerPin !== undefined && opts.ownerPin !== null) {
+      postBody['ownerPin'] = opts.ownerPin
+    }
+    if (opts.companyCode !== undefined && opts.companyCode !== null) {
+      postBody['companyCode'] = opts.companyCode
+    }
+    if (opts.workspaceCode !== undefined && opts.workspaceCode !== null) {
+      postBody['workspaceCode'] = opts.workspaceCode
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call queryStatisticsInSelectTime with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/queryStatisticsInSelectTime',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  getScheduledInstancesCountPerHour
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} [opts.offset] - 偏移量  optional
+      * @param {string} [opts.state] - 调度状态  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param hourDataStatisticsVo result  数据内容
+      */
+
+  getScheduledInstancesCountPerHour (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getScheduledInstancesCountPerHour"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling getScheduledInstancesCountPerHour"
+      )
+    }
+
+    let postBody = {}
+    if (opts.offset !== undefined && opts.offset !== null) {
+      postBody['offset'] = opts.offset
+    }
+    if (opts.state !== undefined && opts.state !== null) {
+      postBody['state'] = opts.state
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getScheduledInstancesCountPerHour with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/getScheduledInstancesCountPerHour',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  getFailedInstancesReason
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} [opts.offset] - 偏移量  optional
+      * @param {string} [opts.state] - 调度状态  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param instanceHistoryStatisticsVo result
+      */
+
+  getFailedInstancesReason (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getFailedInstancesReason"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling getFailedInstancesReason"
+      )
+    }
+
+    let postBody = {}
+    if (opts.offset !== undefined && opts.offset !== null) {
+      postBody['offset'] = opts.offset
+    }
+    if (opts.state !== undefined && opts.state !== null) {
+      postBody['state'] = opts.state
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getFailedInstancesReason with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/getFailedInstancesReason',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  getTaskStateStatistics
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} [opts.offset] - 偏移量  optional
+      * @param {string} [opts.state] - 调度状态  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param taskScheduleStatisticVo result
+      */
+
+  getTaskStateStatistics (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getTaskStateStatistics"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling getTaskStateStatistics"
+      )
+    }
+
+    let postBody = {}
+    if (opts.offset !== undefined && opts.offset !== null) {
+      postBody['offset'] = opts.offset
+    }
+    if (opts.state !== undefined && opts.state !== null) {
+      postBody['state'] = opts.state
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getTaskStateStatistics with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/getTaskStateStatistics',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  getTaskTypeStatistics
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} [opts.offset] - 偏移量  optional
+      * @param {string} [opts.state] - 调度状态  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param taskStatisticVo result
+      */
+
+  getTaskTypeStatistics (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getTaskTypeStatistics"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling getTaskTypeStatistics"
+      )
+    }
+
+    let postBody = {}
+    if (opts.offset !== undefined && opts.offset !== null) {
+      postBody['offset'] = opts.offset
+    }
+    if (opts.state !== undefined && opts.state !== null) {
+      postBody['state'] = opts.state
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getTaskTypeStatistics with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/getTaskTypeStatistics',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  getLongTimeRunningInstances
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} [opts.offset] - 偏移量  optional
+      * @param {string} [opts.state] - 调度状态  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param instancesRunningLongTimeOrderVo result
+      */
+
+  getLongTimeRunningInstances (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getLongTimeRunningInstances"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling getLongTimeRunningInstances"
+      )
+    }
+
+    let postBody = {}
+    if (opts.offset !== undefined && opts.offset !== null) {
+      postBody['offset'] = opts.offset
+    }
+    if (opts.state !== undefined && opts.state !== null) {
+      postBody['state'] = opts.state
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getLongTimeRunningInstances with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/getLongTimeRunningInstances',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  getMostFailedTimesInstances
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} [opts.offset] - 偏移量  optional
+      * @param {string} [opts.state] - 调度状态  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param mostFailedTimesInstancesVo result
+      */
+
+  getMostFailedTimesInstances (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getMostFailedTimesInstances"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling getMostFailedTimesInstances"
+      )
+    }
+
+    let postBody = {}
+    if (opts.offset !== undefined && opts.offset !== null) {
+      postBody['offset'] = opts.offset
+    }
+    if (opts.state !== undefined && opts.state !== null) {
+      postBody['state'] = opts.state
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getMostFailedTimesInstances with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/getMostFailedTimesInstances',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  任务调度周期字典
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param dictVo result
+      */
+
+  rotorDictTaskScheduleCycles (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorDictTaskScheduleCycles"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorDictTaskScheduleCycles"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorDictTaskScheduleCycles with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorDictTaskScheduleCycles',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  任务类型字典
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param dictVo result
+      */
+
+  rotorDictTaskTypes (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorDictTaskTypes"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorDictTaskTypes"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorDictTaskTypes with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorDictTaskTypes',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  任务调度状态字典
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param dictVo result
+      */
+
+  rotorDictTaskScheduleStates (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorDictTaskScheduleStates"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorDictTaskScheduleStates"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorDictTaskScheduleStates with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorDictTaskScheduleStates',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  实例状态字典
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param dictVo result
+      */
+
+  rotorDictInstanceDisplayStates (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorDictInstanceDisplayStates"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorDictInstanceDisplayStates"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorDictInstanceDisplayStates with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorDictInstanceDisplayStates',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  补数方式字典
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param dictVo result
+      */
+
+  rotorDictSupplementMethod (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorDictSupplementMethod"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorDictSupplementMethod"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorDictSupplementMethod with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorDictSupplementMethod',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  补数执行顺序字典
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param dictVo result
+      */
+
+  rotorDictSupplementOrder (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorDictSupplementOrder"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorDictSupplementOrder"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorDictSupplementOrder with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorDictSupplementOrder',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  补数资源组策略字典
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param dictVo result
+      */
+
+  rotorDictSupplementResourceGroupStrategy (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorDictSupplementResourceGroupStrategy"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorDictSupplementResourceGroupStrategy"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorDictSupplementResourceGroupStrategy with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorDictSupplementResourceGroupStrategy',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  补数方案状态字典
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param dictVo result
+      */
+
+  rotorDictSupplementPlanStates (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorDictSupplementPlanStates"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorDictSupplementPlanStates"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorDictSupplementPlanStates with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorDictSupplementPlanStates',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  实例检索
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} [opts.pageNum] - 页码，从0开始  optional
+      * @param {integer} [opts.pageSize] - 每页数量，最大500  optional
+      * @param {string} [opts.taskId] - 任务ID  optional
+      * @param {string} [opts.taskName] - 任务名称，支持模糊匹配  optional
+      * @param {string} [opts.instanceId] - 实例ID  optional
+      * @param {array} [opts.displayStateList] - 实例展示状态列表，可选值: pending(未就绪), awaiting(等待中), running(运行中), done(运行成功), failed(运行失败), killed(手动终止)  optional
+      * @param {string} [opts.resourceGroupCode] - 资源组编码  optional
+      * @param {array} [opts.typeList] - 任务类型列表，可选值: workflow(工作流), pipe(数据集成), jcw_sql(JCW SQL), python(Python), ai(AI), spark_jar(Spark Jar), pyspark(PySpark), shell(Shell), starrocks(StarRocks), mysql(MySQL), ailake(AI 数据湖), joybuilder(JoyBuilder), virtual(虚拟任务)  optional
+      * @param {string} [opts.cycle] - 任务调度周期，可选值: day(天), week(周), month(月), minute(分钟), hour(小时), manual(手动)  optional
+      * @param {integer} [opts.txDateTimestampStart] - 数据日期-开始，13位毫秒级时间戳  optional
+      * @param {integer} [opts.txDateTimestampEnd] - 数据日期-结束，13位毫秒级时间戳  optional
+      * @param {integer} [opts.updateTimestampStart] - 更新时间-开始，13位毫秒级时间戳  optional
+      * @param {integer} [opts.updateTimestampEnd] - 更新时间-结束，13位毫秒级时间戳  optional
+      * @param {integer} [opts.createTimestampStart] - 创建时间-开始，13位毫秒级时间戳  optional
+      * @param {integer} [opts.createTimestampEnd] - 创建时间-结束，13位毫秒级时间戳  optional
+      * @param {integer} [opts.runStartTimeStart] - 运行开始时间-开始，13位毫秒级时间戳  optional
+      * @param {integer} [opts.runStartTimeEnd] - 运行开始时间-结束，13位毫秒级时间戳  optional
+      * @param {integer} [opts.runEndTimeStart] - 运行结束时间-开始，13位毫秒级时间戳  optional
+      * @param {integer} [opts.runEndTimeEnd] - 运行结束时间-结束，13位毫秒级时间戳  optional
+      * @param {string} [opts.ownerPin] - 负责人pin  optional
+      * @param {string} [opts.companyCode] - 租户编码  optional
+      * @param {string} [opts.workspaceCode] - 工作空间编码  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param instanceInfoPageVo result
+      */
+
+  rotorInstances (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorInstances"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorInstances"
+      )
+    }
+
+    let postBody = {}
+    if (opts.pageNum !== undefined && opts.pageNum !== null) {
+      postBody['pageNum'] = opts.pageNum
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+    if (opts.taskId !== undefined && opts.taskId !== null) {
+      postBody['taskId'] = opts.taskId
+    }
+    if (opts.taskName !== undefined && opts.taskName !== null) {
+      postBody['taskName'] = opts.taskName
+    }
+    if (opts.instanceId !== undefined && opts.instanceId !== null) {
+      postBody['instanceId'] = opts.instanceId
+    }
+    if (opts.displayStateList !== undefined && opts.displayStateList !== null) {
+      postBody['displayStateList'] = opts.displayStateList
+    }
+    if (
+      opts.resourceGroupCode !== undefined &&
+      opts.resourceGroupCode !== null
+    ) {
+      postBody['resourceGroupCode'] = opts.resourceGroupCode
+    }
+    if (opts.typeList !== undefined && opts.typeList !== null) {
+      postBody['typeList'] = opts.typeList
+    }
+    if (opts.cycle !== undefined && opts.cycle !== null) {
+      postBody['cycle'] = opts.cycle
+    }
+    if (
+      opts.txDateTimestampStart !== undefined &&
+      opts.txDateTimestampStart !== null
+    ) {
+      postBody['txDateTimestampStart'] = opts.txDateTimestampStart
+    }
+    if (
+      opts.txDateTimestampEnd !== undefined &&
+      opts.txDateTimestampEnd !== null
+    ) {
+      postBody['txDateTimestampEnd'] = opts.txDateTimestampEnd
+    }
+    if (
+      opts.updateTimestampStart !== undefined &&
+      opts.updateTimestampStart !== null
+    ) {
+      postBody['updateTimestampStart'] = opts.updateTimestampStart
+    }
+    if (
+      opts.updateTimestampEnd !== undefined &&
+      opts.updateTimestampEnd !== null
+    ) {
+      postBody['updateTimestampEnd'] = opts.updateTimestampEnd
+    }
+    if (
+      opts.createTimestampStart !== undefined &&
+      opts.createTimestampStart !== null
+    ) {
+      postBody['createTimestampStart'] = opts.createTimestampStart
+    }
+    if (
+      opts.createTimestampEnd !== undefined &&
+      opts.createTimestampEnd !== null
+    ) {
+      postBody['createTimestampEnd'] = opts.createTimestampEnd
+    }
+    if (
+      opts.runStartTimeStart !== undefined &&
+      opts.runStartTimeStart !== null
+    ) {
+      postBody['runStartTimeStart'] = opts.runStartTimeStart
+    }
+    if (opts.runStartTimeEnd !== undefined && opts.runStartTimeEnd !== null) {
+      postBody['runStartTimeEnd'] = opts.runStartTimeEnd
+    }
+    if (opts.runEndTimeStart !== undefined && opts.runEndTimeStart !== null) {
+      postBody['runEndTimeStart'] = opts.runEndTimeStart
+    }
+    if (opts.runEndTimeEnd !== undefined && opts.runEndTimeEnd !== null) {
+      postBody['runEndTimeEnd'] = opts.runEndTimeEnd
+    }
+    if (opts.ownerPin !== undefined && opts.ownerPin !== null) {
+      postBody['ownerPin'] = opts.ownerPin
+    }
+    if (opts.companyCode !== undefined && opts.companyCode !== null) {
+      postBody['companyCode'] = opts.companyCode
+    }
+    if (opts.workspaceCode !== undefined && opts.workspaceCode !== null) {
+      postBody['workspaceCode'] = opts.workspaceCode
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorInstances with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorInstances',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  实例依赖关系
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.instanceId] - 任务ID  optional
+      * @param {string} [opts.relation] - 关系类型: upstream-上游, downstream-下游  optional
+      * @param {integer} [opts.depth] - 深度  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param instanceDependencyVo result
+      */
+
+  rotorInstanceDependency (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorInstanceDependency"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorInstanceDependency"
+      )
+    }
+
+    let postBody = {}
+    if (opts.instanceId !== undefined && opts.instanceId !== null) {
+      postBody['instanceId'] = opts.instanceId
+    }
+    if (opts.relation !== undefined && opts.relation !== null) {
+      postBody['relation'] = opts.relation
+    }
+    if (opts.depth !== undefined && opts.depth !== null) {
+      postBody['depth'] = opts.depth
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorInstanceDependency with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorInstanceDependency',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  实例详细信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.instanceId] - 实例ID  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param instanceDetailVo result
+      */
+
+  rotorInstanceDetail (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorInstanceDetail"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorInstanceDetail"
+      )
+    }
+
+    let postBody = {}
+    if (opts.instanceId !== undefined && opts.instanceId !== null) {
+      postBody['instanceId'] = opts.instanceId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorInstanceDetail with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorInstanceDetail',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  实例历史信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.instanceId] - 实例ID  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param instanceHistoryVo result
+      */
+
+  rotorInstanceHistories (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorInstanceHistories"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorInstanceHistories"
+      )
+    }
+
+    let postBody = {}
+    if (opts.instanceId !== undefined && opts.instanceId !== null) {
+      postBody['instanceId'] = opts.instanceId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorInstanceHistories with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorInstanceHistories',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  终止任务实例
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.instanceId] - 实例ID  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      */
+
+  rotorKillInstance (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorKillInstance"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorKillInstance"
+      )
+    }
+
+    let postBody = {}
+    if (opts.instanceId !== undefined && opts.instanceId !== null) {
+      postBody['instanceId'] = opts.instanceId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorKillInstance with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorKillInstance',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  重跑任务实例
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.instanceId] - 实例ID  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      */
+
+  rotorRerunInstance (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorRerunInstance"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorRerunInstance"
+      )
+    }
+
+    let postBody = {}
+    if (opts.instanceId !== undefined && opts.instanceId !== null) {
+      postBody['instanceId'] = opts.instanceId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorRerunInstance with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorRerunInstance',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  重置任务实例
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.instanceId] - 实例ID  optional
+      * @param {string} [opts.state] - 重置状态  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      */
+
+  rotorResetInstance (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorResetInstance"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorResetInstance"
+      )
+    }
+
+    let postBody = {}
+    if (opts.instanceId !== undefined && opts.instanceId !== null) {
+      postBody['instanceId'] = opts.instanceId
+    }
+    if (opts.state !== undefined && opts.state !== null) {
+      postBody['state'] = opts.state
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorResetInstance with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorResetInstance',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  实例操作日志
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.instanceId] - 实例ID  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param instanceOperationVo result
+      */
+
+  rotorInstanceOperationLogs (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorInstanceOperationLogs"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorInstanceOperationLogs"
+      )
+    }
+
+    let postBody = {}
+    if (opts.instanceId !== undefined && opts.instanceId !== null) {
+      postBody['instanceId'] = opts.instanceId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorInstanceOperationLogs with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorInstanceOperationLogs',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  重跑下游
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.instanceId] - 实例ID  optional
+      * @param {array} [opts.downstreamInstanceIds] - 下游重跑实例ID列表  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      */
+
+  rotorRerunDownstream (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorRerunDownstream"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorRerunDownstream"
+      )
+    }
+
+    let postBody = {}
+    if (opts.instanceId !== undefined && opts.instanceId !== null) {
+      postBody['instanceId'] = opts.instanceId
+    }
+    if (
+      opts.downstreamInstanceIds !== undefined &&
+      opts.downstreamInstanceIds !== null
+    ) {
+      postBody['downstreamInstanceIds'] = opts.downstreamInstanceIds
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorRerunDownstream with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorRerunDownstream',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  实例调度日志
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} [opts.pageNum] - 页码，从0开始  optional
+      * @param {integer} [opts.pageSize] - 每页数量，最大5000  optional
+      * @param {integer} [opts.historyId] - 实例历史ID  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param logPageVo result
+      */
+
+  rotorInstanceScheduleLogs (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorInstanceScheduleLogs"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorInstanceScheduleLogs"
+      )
+    }
+
+    let postBody = {}
+    if (opts.pageNum !== undefined && opts.pageNum !== null) {
+      postBody['pageNum'] = opts.pageNum
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+    if (opts.historyId !== undefined && opts.historyId !== null) {
+      postBody['historyId'] = opts.historyId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorInstanceScheduleLogs with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorInstanceScheduleLogs',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  实例运行日志
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} [opts.pageNum] - 页码，从0开始  optional
+      * @param {integer} [opts.pageSize] - 每页数量，最大5000  optional
+      * @param {integer} [opts.historyId] - 实例历史ID  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param logPageVo result
+      */
+
+  rotorInstanceRunLogs (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorInstanceRunLogs"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorInstanceRunLogs"
+      )
+    }
+
+    let postBody = {}
+    if (opts.pageNum !== undefined && opts.pageNum !== null) {
+      postBody['pageNum'] = opts.pageNum
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+    if (opts.historyId !== undefined && opts.historyId !== null) {
+      postBody['historyId'] = opts.historyId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorInstanceRunLogs with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorInstanceRunLogs',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建补数方案
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.name] - 补数方案名称  optional
+      * @param {string} [opts.method] - 补数方式：batch-批量补数、chain-链路补数  optional
+      * @param {array} [opts.txDateRanges] - 补数数据日期范围列表  optional
+      * @param {integer} [opts.groupNums] - 并行分组数量  optional
+      * @param {string} [opts.timeRangeStart] - 时间范围-开始时间（HH:mm）  optional
+      * @param {string} [opts.timeRangeEnd] - 时间范围-结束时间（HH:mm）  optional
+      * @param {string} [opts.order] - 补数顺序：asc-正序、desc-倒序  optional
+      * @param {string} [opts.resourceGroupStrategy] - 补数资源组策略：default-跟随任务配置、specify-指定资源组  optional
+      * @param {string} [opts.calculateTaskResourceGroup] - 计算任务资源组编码：仅当 resourceGroupStrategy 指定为 specify 时有效  optional
+      * @param {string} [opts.integrationTaskResourceGroup] - 集成任务资源组：仅当 resourceGroupStrategy 指定为 specify 时有效  optional
+      * @param {string} [opts.remark] - 补数原因  optional
+      * @param {array} [opts.taskIds] - 补数任务ID列表：批量补数时必传  optional
+      * @param {string} [opts.rootTaskId] - 根任务ID：链路补数时必传  optional
+      * @param {array} [opts.downStreamTaskIds] - 下游任务ID列表：链路补数时必传  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      */
+
+  rotorSupplementPlanCreate (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorSupplementPlanCreate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorSupplementPlanCreate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.method !== undefined && opts.method !== null) {
+      postBody['method'] = opts.method
+    }
+    if (opts.txDateRanges !== undefined && opts.txDateRanges !== null) {
+      postBody['txDateRanges'] = opts.txDateRanges
+    }
+    if (opts.groupNums !== undefined && opts.groupNums !== null) {
+      postBody['groupNums'] = opts.groupNums
+    }
+    if (opts.timeRangeStart !== undefined && opts.timeRangeStart !== null) {
+      postBody['timeRangeStart'] = opts.timeRangeStart
+    }
+    if (opts.timeRangeEnd !== undefined && opts.timeRangeEnd !== null) {
+      postBody['timeRangeEnd'] = opts.timeRangeEnd
+    }
+    if (opts.order !== undefined && opts.order !== null) {
+      postBody['order'] = opts.order
+    }
+    if (
+      opts.resourceGroupStrategy !== undefined &&
+      opts.resourceGroupStrategy !== null
+    ) {
+      postBody['resourceGroupStrategy'] = opts.resourceGroupStrategy
+    }
+    if (
+      opts.calculateTaskResourceGroup !== undefined &&
+      opts.calculateTaskResourceGroup !== null
+    ) {
+      postBody['calculateTaskResourceGroup'] = opts.calculateTaskResourceGroup
+    }
+    if (
+      opts.integrationTaskResourceGroup !== undefined &&
+      opts.integrationTaskResourceGroup !== null
+    ) {
+      postBody['integrationTaskResourceGroup'] =
+        opts.integrationTaskResourceGroup
+    }
+    if (opts.remark !== undefined && opts.remark !== null) {
+      postBody['remark'] = opts.remark
+    }
+    if (opts.taskIds !== undefined && opts.taskIds !== null) {
+      postBody['taskIds'] = opts.taskIds
+    }
+    if (opts.rootTaskId !== undefined && opts.rootTaskId !== null) {
+      postBody['rootTaskId'] = opts.rootTaskId
+    }
+    if (
+      opts.downStreamTaskIds !== undefined &&
+      opts.downStreamTaskIds !== null
+    ) {
+      postBody['downStreamTaskIds'] = opts.downStreamTaskIds
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorSupplementPlanCreate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorSupplementPlanCreate',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询补数方案列表
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.name] - 补数方案名称  optional
+      * @param {array} [opts.stateList] - 补数方案状态  optional
+      * @param {string} [opts.creator] - 创建人Pin  optional
+      * @param {integer} [opts.createTimestampStart] - 创建时间-开始时间戳  optional
+      * @param {integer} [opts.createTimestampEnd] - 创建时间-结束时间戳  optional
+      * @param {integer} [opts.pageNum] - 页号  optional
+      * @param {integer} [opts.pageSize] - 页面容量  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param supplementPlanInfoPageVo result
+      */
+
+  rotorSupplementPlanList (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorSupplementPlanList"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorSupplementPlanList"
+      )
+    }
+
+    let postBody = {}
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.stateList !== undefined && opts.stateList !== null) {
+      postBody['stateList'] = opts.stateList
+    }
+    if (opts.creator !== undefined && opts.creator !== null) {
+      postBody['creator'] = opts.creator
+    }
+    if (
+      opts.createTimestampStart !== undefined &&
+      opts.createTimestampStart !== null
+    ) {
+      postBody['createTimestampStart'] = opts.createTimestampStart
+    }
+    if (
+      opts.createTimestampEnd !== undefined &&
+      opts.createTimestampEnd !== null
+    ) {
+      postBody['createTimestampEnd'] = opts.createTimestampEnd
+    }
+    if (opts.pageNum !== undefined && opts.pageNum !== null) {
+      postBody['pageNum'] = opts.pageNum
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorSupplementPlanList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorSupplementPlanList',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取补数方案配置
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} [opts.planId] - 方案ID  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param supplementPlanConfigVo result
+      */
+
+  rotorSupplementPlanInfo (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorSupplementPlanInfo"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorSupplementPlanInfo"
+      )
+    }
+
+    let postBody = {}
+    if (opts.planId !== undefined && opts.planId !== null) {
+      postBody['planId'] = opts.planId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorSupplementPlanInfo with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorSupplementPlanInfo',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询补数实例
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} [opts.pageNum] - 页码  optional
+      * @param {integer} [opts.pageSize] - 每页数量  optional
+      * @param {integer} [opts.planId] - 补数方案ID  optional
+      * @param {string} [opts.taskName] - 任务名称  optional
+      * @param {string} [opts.instanceId] - 实例ID  optional
+      * @param {array} [opts.displayStateList] - 实例状态  optional
+      * @param {string} [opts.taskId] - 任务ID  optional
+      * @param {string} [opts.taskType] - 任务类型  optional
+      * @param {string} [opts.ownerPin] - 负责人  optional
+      * @param {integer} [opts.runStartTimestampBegin] - 运行开始时间戳 - 开始  optional
+      * @param {integer} [opts.runStartTimestampEnd] - 运行开始时间戳 - 结束  optional
+      * @param {integer} [opts.runEndTimestampBegin] - 运行结束时间戳 - 开始  optional
+      * @param {integer} [opts.runEndTimestampBeginEnd] - 运行结束时间戳 - 结束  optional
+      * @param {integer} [opts.txDateTimestampStart] - 数据日期时间戳 - 开始  optional
+      * @param {integer} [opts.txDateTimestampEnd] - 数据日期时间戳 - 结束  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param supplementInstancePageVO result
+      */
+
+  rotorSupplementInstances (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorSupplementInstances"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorSupplementInstances"
+      )
+    }
+
+    let postBody = {}
+    if (opts.pageNum !== undefined && opts.pageNum !== null) {
+      postBody['pageNum'] = opts.pageNum
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+    if (opts.planId !== undefined && opts.planId !== null) {
+      postBody['planId'] = opts.planId
+    }
+    if (opts.taskName !== undefined && opts.taskName !== null) {
+      postBody['taskName'] = opts.taskName
+    }
+    if (opts.instanceId !== undefined && opts.instanceId !== null) {
+      postBody['instanceId'] = opts.instanceId
+    }
+    if (opts.displayStateList !== undefined && opts.displayStateList !== null) {
+      postBody['displayStateList'] = opts.displayStateList
+    }
+    if (opts.taskId !== undefined && opts.taskId !== null) {
+      postBody['taskId'] = opts.taskId
+    }
+    if (opts.taskType !== undefined && opts.taskType !== null) {
+      postBody['taskType'] = opts.taskType
+    }
+    if (opts.ownerPin !== undefined && opts.ownerPin !== null) {
+      postBody['ownerPin'] = opts.ownerPin
+    }
+    if (
+      opts.runStartTimestampBegin !== undefined &&
+      opts.runStartTimestampBegin !== null
+    ) {
+      postBody['runStartTimestampBegin'] = opts.runStartTimestampBegin
+    }
+    if (
+      opts.runStartTimestampEnd !== undefined &&
+      opts.runStartTimestampEnd !== null
+    ) {
+      postBody['runStartTimestampEnd'] = opts.runStartTimestampEnd
+    }
+    if (
+      opts.runEndTimestampBegin !== undefined &&
+      opts.runEndTimestampBegin !== null
+    ) {
+      postBody['runEndTimestampBegin'] = opts.runEndTimestampBegin
+    }
+    if (
+      opts.runEndTimestampBeginEnd !== undefined &&
+      opts.runEndTimestampBeginEnd !== null
+    ) {
+      postBody['runEndTimestampBeginEnd'] = opts.runEndTimestampBeginEnd
+    }
+    if (
+      opts.txDateTimestampStart !== undefined &&
+      opts.txDateTimestampStart !== null
+    ) {
+      postBody['txDateTimestampStart'] = opts.txDateTimestampStart
+    }
+    if (
+      opts.txDateTimestampEnd !== undefined &&
+      opts.txDateTimestampEnd !== null
+    ) {
+      postBody['txDateTimestampEnd'] = opts.txDateTimestampEnd
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorSupplementInstances with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorSupplementInstances',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除补数方案
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} [opts.planId] - 补数方案ID  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param string result  返回结果
+      */
+
+  rotorSupplementPlanDelete (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorSupplementPlanDelete"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorSupplementPlanDelete"
+      )
+    }
+
+    let postBody = {}
+    if (opts.planId !== undefined && opts.planId !== null) {
+      postBody['planId'] = opts.planId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorSupplementPlanDelete with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorSupplementPlanDelete',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  停止补数方案
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} [opts.planId] - 补数方案ID  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param string result  返回结果
+      */
+
+  rotorSupplementPlanCancel (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorSupplementPlanCancel"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorSupplementPlanCancel"
+      )
+    }
+
+    let postBody = {}
+    if (opts.planId !== undefined && opts.planId !== null) {
+      postBody['planId'] = opts.planId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorSupplementPlanCancel with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorSupplementPlanCancel',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  任务检索
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} [opts.pageNum] - 页码，从0开始  optional
+      * @param {integer} [opts.pageSize] - 每页数量，最大500  optional
+      * @param {string} [opts.name] - 任务名称，支持模糊匹配  optional
+      * @param {string} [opts.id] - 任务ID  optional
+      * @param {string} [opts.ownerOrCollaboratorPin] - 负责人/协作人pin  optional
+      * @param {string} [opts.resourceCode] - 资源组编码  optional
+      * @param {array} [opts.typeList] - 任务类型列表，可选值: workflow(工作流), pipe(数据集成), jcw_sql(JCW SQL), python(Python), ai(AI), spark_jar(Spark Jar), pyspark(PySpark), shell(Shell), starrocks(StarRocks), mysql(MySQL), ailake(AI 数据湖), joybuilder(JoyBuilder), virtual(虚拟任务)  optional
+      * @param {string} [opts.cycle] - 调度周期，可选值: day(天), week(周), month(月), minute(分钟), hour(小时), manual(手动)  optional
+      * @param {integer} [opts.updateTimestampStart] - 更新时间-开始，13位毫秒级时间戳  optional
+      * @param {integer} [opts.updateTimestampEnd] - 更新时间-结束，13位毫秒级时间戳  optional
+      * @param {integer} [opts.createTimestampStart] - 创建时间-开始，13位毫秒级时间戳  optional
+      * @param {integer} [opts.createTimestampEnd] - 创建时间-结束，13位毫秒级时间戳  optional
+      * @param {string} [opts.scheduleState] - 调度状态，可选值: normal(正常调度), paused(暂停调度)  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param taskInfoPageVo result
+      */
+
+  rotorTasks (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorTasks"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorTasks"
+      )
+    }
+
+    let postBody = {}
+    if (opts.pageNum !== undefined && opts.pageNum !== null) {
+      postBody['pageNum'] = opts.pageNum
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.id !== undefined && opts.id !== null) {
+      postBody['id'] = opts.id
+    }
+    if (
+      opts.ownerOrCollaboratorPin !== undefined &&
+      opts.ownerOrCollaboratorPin !== null
+    ) {
+      postBody['ownerOrCollaboratorPin'] = opts.ownerOrCollaboratorPin
+    }
+    if (opts.resourceCode !== undefined && opts.resourceCode !== null) {
+      postBody['resourceCode'] = opts.resourceCode
+    }
+    if (opts.typeList !== undefined && opts.typeList !== null) {
+      postBody['typeList'] = opts.typeList
+    }
+    if (opts.cycle !== undefined && opts.cycle !== null) {
+      postBody['cycle'] = opts.cycle
+    }
+    if (
+      opts.updateTimestampStart !== undefined &&
+      opts.updateTimestampStart !== null
+    ) {
+      postBody['updateTimestampStart'] = opts.updateTimestampStart
+    }
+    if (
+      opts.updateTimestampEnd !== undefined &&
+      opts.updateTimestampEnd !== null
+    ) {
+      postBody['updateTimestampEnd'] = opts.updateTimestampEnd
+    }
+    if (
+      opts.createTimestampStart !== undefined &&
+      opts.createTimestampStart !== null
+    ) {
+      postBody['createTimestampStart'] = opts.createTimestampStart
+    }
+    if (
+      opts.createTimestampEnd !== undefined &&
+      opts.createTimestampEnd !== null
+    ) {
+      postBody['createTimestampEnd'] = opts.createTimestampEnd
+    }
+    if (opts.scheduleState !== undefined && opts.scheduleState !== null) {
+      postBody['scheduleState'] = opts.scheduleState
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorTasks with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorTasks',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  任务详细信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.taskId] - 任务ID  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param taskDetailVo result
+      */
+
+  rotorTaskDetail (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorTaskDetail"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorTaskDetail"
+      )
+    }
+
+    let postBody = {}
+    if (opts.taskId !== undefined && opts.taskId !== null) {
+      postBody['taskId'] = opts.taskId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorTaskDetail with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorTaskDetail',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  任务依赖关系
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.taskId] - 任务ID  optional
+      * @param {string} [opts.relation] - 关系类型: upstream-上游, downstream-下游  optional
+      * @param {integer} [opts.depth] - 深度  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param taskDependencyVo result
+      */
+
+  rotorTaskDependency (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorTaskDependency"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorTaskDependency"
+      )
+    }
+
+    let postBody = {}
+    if (opts.taskId !== undefined && opts.taskId !== null) {
+      postBody['taskId'] = opts.taskId
+    }
+    if (opts.relation !== undefined && opts.relation !== null) {
+      postBody['relation'] = opts.relation
+    }
+    if (opts.depth !== undefined && opts.depth !== null) {
+      postBody['depth'] = opts.depth
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorTaskDependency with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorTaskDependency',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  运行手动任务
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.taskId] - 任务ID  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      */
+
+  rotorRunManualTaskInstance (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorRunManualTaskInstance"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorRunManualTaskInstance"
+      )
+    }
+
+    let postBody = {}
+    if (opts.taskId !== undefined && opts.taskId !== null) {
+      postBody['taskId'] = opts.taskId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorRunManualTaskInstance with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorRunManualTaskInstance',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  运行手动任务-外部调用
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.taskId] - 任务ID  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      */
+
+  rotorRunManualTaskInstanceExternal (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorRunManualTaskInstanceExternal"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorRunManualTaskInstanceExternal"
+      )
+    }
+
+    let postBody = {}
+    if (opts.taskId !== undefined && opts.taskId !== null) {
+      postBody['taskId'] = opts.taskId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorRunManualTaskInstanceExternal with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorRunManualTaskInstanceExternal',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新任务调度状态
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.taskId] - 任务ID  optional
+      * @param {string} [opts.state] - 状态: normal-正常调度, paused-暂停调度  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      */
+
+  rotorUpdateTaskScheduleState (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  rotorUpdateTaskScheduleState"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling rotorUpdateTaskScheduleState"
+      )
+    }
+
+    let postBody = {}
+    if (opts.taskId !== undefined && opts.taskId !== null) {
+      postBody['taskId'] = opts.taskId
+    }
+    if (opts.state !== undefined && opts.state !== null) {
+      postBody['state'] = opts.state
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call rotorUpdateTaskScheduleState with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/rotorUpdateTaskScheduleState',
       'POST',
       pathParams,
       queryParams,
@@ -21486,7 +32658,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -21606,7 +32778,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -21734,7 +32906,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -21875,7 +33047,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -22004,7 +33176,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -22154,7 +33326,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -22361,7 +33533,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -22519,7 +33691,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -22663,7 +33835,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -22799,7 +33971,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -22936,7 +34108,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -23047,7 +34219,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -23158,7 +34330,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -23278,7 +34450,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -23360,6 +34532,7 @@ class SHENHAIPLATFORM extends Service {
       * @param {uranusTaskParamReq} [opts.args] - 脚本内容的变量参数配置  optional
       * @param {string} [opts.resourceName] - 资源组名称  optional
       * @param {string} [opts.resourceCode] - 资源组code  optional
+      * @param {jcwSQLRunParams} [opts.jcwSQLRunParams] - 任务资源配置  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -23405,6 +34578,9 @@ class SHENHAIPLATFORM extends Service {
     if (opts.resourceCode !== undefined && opts.resourceCode !== null) {
       postBody['resourceCode'] = opts.resourceCode
     }
+    if (opts.jcwSQLRunParams !== undefined && opts.jcwSQLRunParams !== null) {
+      postBody['jcwSQLRunParams'] = opts.jcwSQLRunParams
+    }
 
     let queryParams = {}
 
@@ -23414,7 +34590,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -23534,7 +34710,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -23654,7 +34830,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -23783,7 +34959,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -23903,7 +35079,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -23948,6 +35124,246 @@ class SHENHAIPLATFORM extends Service {
     let request = super.makeRequest(
       '/regions/{regionId}/apps/{appName}/uranusExtraRunnerParamParse',
       'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取临时查询运行日志
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} opts.runId - 临时查询id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultString2 uranusResultString2
+      */
+
+  uranusTaskExtraRunnerLog (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskExtraRunnerLog"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskExtraRunnerLog"
+      )
+    }
+    if (opts.runId === undefined || opts.runId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.runId' when calling uranusTaskExtraRunnerLog"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.runId !== undefined && opts.runId !== null) {
+      queryParams['runId'] = opts.runId
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskExtraRunnerLog with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskExtraRunnerLog',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取临时查询运行详情
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} opts.runId - 临时查询id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultTaskDebugDetail uranusResultTaskDebugDetail
+      */
+
+  uranusTaskExtraRunnerDetail (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskExtraRunnerDetail"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskExtraRunnerDetail"
+      )
+    }
+    if (opts.runId === undefined || opts.runId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.runId' when calling uranusTaskExtraRunnerDetail"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.runId !== undefined && opts.runId !== null) {
+      queryParams['runId'] = opts.runId
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskExtraRunnerDetail with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskExtraRunnerDetail',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -24027,7 +35443,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -24156,7 +35572,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -24300,7 +35716,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -24436,7 +35852,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -24565,7 +35981,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -24685,7 +36101,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -24805,7 +36221,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -24929,7 +36345,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -25045,7 +36461,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -25165,7 +36581,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -25277,7 +36693,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -25401,7 +36817,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -25521,7 +36937,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -25641,7 +37057,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -25774,7 +37190,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -25907,7 +37323,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -26027,7 +37443,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -26115,6 +37531,7 @@ class SHENHAIPLATFORM extends Service {
       * @param {string} [opts.resourceName] - 队列名称  optional
       * @param {string} [opts.resourceCode] - 队列code  optional
       * @param {array} [opts.loopInfo] - 循环节点信息  optional
+      * @param {jcwSQLRunParams} [opts.jcwSQLRunParams] - 任务的资源控制  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -26218,6 +37635,9 @@ class SHENHAIPLATFORM extends Service {
     if (opts.loopInfo !== undefined && opts.loopInfo !== null) {
       postBody['loopInfo'] = opts.loopInfo
     }
+    if (opts.jcwSQLRunParams !== undefined && opts.jcwSQLRunParams !== null) {
+      postBody['jcwSQLRunParams'] = opts.jcwSQLRunParams
+    }
 
     let queryParams = {}
 
@@ -26227,7 +37647,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -26315,6 +37735,7 @@ class SHENHAIPLATFORM extends Service {
       * @param {string} [opts.resourceName] - 队列名称  optional
       * @param {string} [opts.resourceCode] - 队列code  optional
       * @param {array} [opts.loopInfo] - 循环节点信息  optional
+      * @param {jcwSQLRunParams} [opts.jcwSQLRunParams] - 任务的资源控制  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -26418,6 +37839,9 @@ class SHENHAIPLATFORM extends Service {
     if (opts.loopInfo !== undefined && opts.loopInfo !== null) {
       postBody['loopInfo'] = opts.loopInfo
     }
+    if (opts.jcwSQLRunParams !== undefined && opts.jcwSQLRunParams !== null) {
+      postBody['jcwSQLRunParams'] = opts.jcwSQLRunParams
+    }
 
     let queryParams = {}
 
@@ -26427,7 +37851,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -26563,7 +37987,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -26699,7 +38123,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -26870,7 +38294,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -27031,7 +38455,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -27179,7 +38603,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -27307,7 +38731,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -27432,7 +38856,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -27556,7 +38980,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -27676,7 +39100,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -27796,7 +39220,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -27916,7 +39340,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -28085,7 +39509,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -28222,7 +39646,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -28346,7 +39770,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -28467,7 +39891,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -28596,7 +40020,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -28725,7 +40149,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -28894,7 +40318,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -29009,7 +40433,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -29128,7 +40552,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -29239,7 +40663,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -29363,7 +40787,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -29407,6 +40831,7087 @@ class SHENHAIPLATFORM extends Service {
 
     let request = super.makeRequest(
       '/regions/{regionId}/apps/{appName}/uranusTableDDL',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询表来源列表并标识默认项
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.regionId - 地域ID
+      * @param {string} opts.appName - 应用名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultListTableSourceVo uranusResultListTableSourceVo
+      */
+
+  uranusTableSources (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTableSources"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTableSources"
+      )
+    }
+    if (opts.regionId === undefined || opts.regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionId' when calling uranusTableSources"
+      )
+    }
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTableSources"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName,
+      regionId: opts.regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTableSources with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTableSources',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新用户默认表来源
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.regionId - 地域ID
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.sourceType - 表来源类型：JCW、AI_LAKE
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean uranusResultBoolean
+      */
+
+  uranusTableDefaultSource (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTableDefaultSource"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTableDefaultSource"
+      )
+    }
+    if (opts.regionId === undefined || opts.regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionId' when calling uranusTableDefaultSource"
+      )
+    }
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTableDefaultSource"
+      )
+    }
+    if (opts.sourceType === undefined || opts.sourceType === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.sourceType' when calling uranusTableDefaultSource"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.sourceType !== undefined && opts.sourceType !== null) {
+      queryParams['sourceType'] = opts.sourceType
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName,
+      regionId: opts.regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTableDefaultSource with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTableDefaultSource',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  任务业务目录是否存在
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.catalogName - 执行id
+      * @param {string} [opts.parentBizId] - 父目录的id，例如 biz_12  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean2 uranusResultBoolean2
+      */
+
+  uranusTaskCatalogExisted (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskCatalogExisted"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskCatalogExisted"
+      )
+    }
+    if (opts.catalogName === undefined || opts.catalogName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.catalogName' when calling uranusTaskCatalogExisted"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.catalogName !== undefined && opts.catalogName !== null) {
+      queryParams['catalogName'] = opts.catalogName
+    }
+    if (opts.parentBizId !== undefined && opts.parentBizId !== null) {
+      queryParams['parentBizId'] = opts.parentBizId
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskCatalogExisted with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskCatalogExisted',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建任务业务目录
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.companyCode] - 租户code  optional
+      * @param {string} [opts.workspaceCode] - 工作空间code  optional
+      * @param {string} [opts.pin] - 操作用户  optional
+      * @param {string} [opts.catalogName] - 业务目录名称  optional
+      * @param {string} [opts.desc] - 业务目录描述  optional
+      * @param {string} [opts.parentId] - 父目录id，例如 biz_12  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultString uranusResultString
+      */
+
+  uranusTaskCatalogCreate (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskCatalogCreate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskCatalogCreate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.companyCode !== undefined && opts.companyCode !== null) {
+      postBody['companyCode'] = opts.companyCode
+    }
+    if (opts.workspaceCode !== undefined && opts.workspaceCode !== null) {
+      postBody['workspaceCode'] = opts.workspaceCode
+    }
+    if (opts.pin !== undefined && opts.pin !== null) {
+      postBody['pin'] = opts.pin
+    }
+    if (opts.catalogName !== undefined && opts.catalogName !== null) {
+      postBody['catalogName'] = opts.catalogName
+    }
+    if (opts.desc !== undefined && opts.desc !== null) {
+      postBody['desc'] = opts.desc
+    }
+    if (opts.parentId !== undefined && opts.parentId !== null) {
+      postBody['parentId'] = opts.parentId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskCatalogCreate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskCatalogCreate',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  列出业务目录
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.companyCode] - 租户code  optional
+      * @param {string} [opts.workspaceCode] - 工作空间code  optional
+      * @param {string} [opts.pin] - 操作用户  optional
+      * @param {string} [opts.catalogId] - 业务目录ID, 根目录：ROOT, 业务：biz_xxx, 任务流：flw_xxx, 任务分类虚节点：flw_xxx_分类id, 任务：tsk_xxx  optional
+      * @param {string} [opts.unfoldType] - 展开方式，ONE_DEPTH：展开该目录的下面一层；ALL_DEPTH：展开该目录的下面所有层  optional
+      * @param {string} [opts.listType] - 列出的目录类型，ALL：列出所有的；暂时写死这一个常量即可（为后续的收藏夹、最近访问的工作流预留）  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultTaskCatalogList uranusResultTaskCatalogList
+      */
+
+  uranusTaskCatalogList (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskCatalogList"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskCatalogList"
+      )
+    }
+
+    let postBody = {}
+    if (opts.companyCode !== undefined && opts.companyCode !== null) {
+      postBody['companyCode'] = opts.companyCode
+    }
+    if (opts.workspaceCode !== undefined && opts.workspaceCode !== null) {
+      postBody['workspaceCode'] = opts.workspaceCode
+    }
+    if (opts.pin !== undefined && opts.pin !== null) {
+      postBody['pin'] = opts.pin
+    }
+    if (opts.catalogId !== undefined && opts.catalogId !== null) {
+      postBody['catalogId'] = opts.catalogId
+    }
+    if (opts.unfoldType !== undefined && opts.unfoldType !== null) {
+      postBody['unfoldType'] = opts.unfoldType
+    }
+    if (opts.listType !== undefined && opts.listType !== null) {
+      postBody['listType'] = opts.listType
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskCatalogList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskCatalogList',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除业务目录
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.companyCode] - 租户code  optional
+      * @param {string} [opts.workspaceCode] - 工作空间code  optional
+      * @param {string} [opts.pin] - 操作用户  optional
+      * @param {string} [opts.catalogId] - 业务目录ID  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean2 uranusResultBoolean2
+      */
+
+  uranusTaskCatalogDelete (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskCatalogDelete"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskCatalogDelete"
+      )
+    }
+
+    let postBody = {}
+    if (opts.companyCode !== undefined && opts.companyCode !== null) {
+      postBody['companyCode'] = opts.companyCode
+    }
+    if (opts.workspaceCode !== undefined && opts.workspaceCode !== null) {
+      postBody['workspaceCode'] = opts.workspaceCode
+    }
+    if (opts.pin !== undefined && opts.pin !== null) {
+      postBody['pin'] = opts.pin
+    }
+    if (opts.catalogId !== undefined && opts.catalogId !== null) {
+      postBody['catalogId'] = opts.catalogId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskCatalogDelete with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskCatalogDelete',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  任务/工作流按照名称模糊查询
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.companyCode] - 租户code  optional
+      * @param {string} [opts.workspaceCode] - 工作空间code  optional
+      * @param {string} [opts.pin] - 操作用户  optional
+      * @param {string} [opts.fuzzName] - 查询任务名称关键词，前后模糊  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultTaskCatalogList uranusResultTaskCatalogList
+      */
+
+  uranusTaskCatalogQuery (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskCatalogQuery"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskCatalogQuery"
+      )
+    }
+
+    let postBody = {}
+    if (opts.companyCode !== undefined && opts.companyCode !== null) {
+      postBody['companyCode'] = opts.companyCode
+    }
+    if (opts.workspaceCode !== undefined && opts.workspaceCode !== null) {
+      postBody['workspaceCode'] = opts.workspaceCode
+    }
+    if (opts.pin !== undefined && opts.pin !== null) {
+      postBody['pin'] = opts.pin
+    }
+    if (opts.fuzzName !== undefined && opts.fuzzName !== null) {
+      postBody['fuzzName'] = opts.fuzzName
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskCatalogQuery with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskCatalogQuery',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新业务目录信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.companyCode] - 租户code  optional
+      * @param {string} [opts.workspaceCode] - 工作空间code  optional
+      * @param {string} [opts.pin] - 操作用户  optional
+      * @param {string} [opts.bizId] - 业务目录id，例如 biz_123  optional
+      * @param {string} [opts.catalogName] - 业务目录名称  optional
+      * @param {string} [opts.desc] - 业务目录描述  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean2 uranusResultBoolean2
+      */
+
+  uranusTaskCatalogUpdate (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskCatalogUpdate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskCatalogUpdate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.companyCode !== undefined && opts.companyCode !== null) {
+      postBody['companyCode'] = opts.companyCode
+    }
+    if (opts.workspaceCode !== undefined && opts.workspaceCode !== null) {
+      postBody['workspaceCode'] = opts.workspaceCode
+    }
+    if (opts.pin !== undefined && opts.pin !== null) {
+      postBody['pin'] = opts.pin
+    }
+    if (opts.bizId !== undefined && opts.bizId !== null) {
+      postBody['bizId'] = opts.bizId
+    }
+    if (opts.catalogName !== undefined && opts.catalogName !== null) {
+      postBody['catalogName'] = opts.catalogName
+    }
+    if (opts.desc !== undefined && opts.desc !== null) {
+      postBody['desc'] = opts.desc
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskCatalogUpdate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskCatalogUpdate',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  移动外部任务、工作流、业务目录等所在的业务目录
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.companyCode] - 租户code  optional
+      * @param {string} [opts.workspaceCode] - 工作空间code  optional
+      * @param {string} [opts.pin] - 操作用户  optional
+      * @param {string} [opts.targetBizId] - 目标业务目录id，例如 biz_123  optional
+      * @param {string} [opts.objectId] - 需要移动的对象（不支持工作流内部任务移动），例如 任务 tsk_23; 工作流 flw_12; 目录 biz_2。  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean2 uranusResultBoolean2
+      */
+
+  uranusTaskObjectMove (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskObjectMove"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskObjectMove"
+      )
+    }
+
+    let postBody = {}
+    if (opts.companyCode !== undefined && opts.companyCode !== null) {
+      postBody['companyCode'] = opts.companyCode
+    }
+    if (opts.workspaceCode !== undefined && opts.workspaceCode !== null) {
+      postBody['workspaceCode'] = opts.workspaceCode
+    }
+    if (opts.pin !== undefined && opts.pin !== null) {
+      postBody['pin'] = opts.pin
+    }
+    if (opts.targetBizId !== undefined && opts.targetBizId !== null) {
+      postBody['targetBizId'] = opts.targetBizId
+    }
+    if (opts.objectId !== undefined && opts.objectId !== null) {
+      postBody['objectId'] = opts.objectId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskObjectMove with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskObjectMove',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  列出所有目录的简要信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultListCatalogNodeBriefVO uranusResultListCatalogNodeBriefVO
+      */
+
+  uranusTaskCatalogListAllBiz (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskCatalogListAllBiz"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskCatalogListAllBiz"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskCatalogListAllBiz with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskCatalogListAllBiz',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取任务的发布状态
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.draftId - 任务/工作流的草稿ID，例如：tsk_11、flw_9
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultString2 uranusResultString2
+      */
+
+  uranusTaskGetTaskStatus (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskGetTaskStatus"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskGetTaskStatus"
+      )
+    }
+    if (opts.draftId === undefined || opts.draftId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.draftId' when calling uranusTaskGetTaskStatus"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.draftId !== undefined && opts.draftId !== null) {
+      queryParams['draftId'] = opts.draftId
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskGetTaskStatus with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskGetTaskStatus',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  以KV的方式将目录与ID列出来
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultTaskCatalogNodePublicVo uranusResultTaskCatalogNodePublicVo
+      */
+
+  uranusTaskPublicListFlatCatalog (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskPublicListFlatCatalog"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskPublicListFlatCatalog"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskPublicListFlatCatalog with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskPublicListFlatCatalog',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询任务所有信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.taskDraftId - 任务的草稿id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultTaskInfoRes uranusResultTaskInfoRes
+      */
+
+  uranusTaskAllInfo (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskAllInfo"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskAllInfo"
+      )
+    }
+    if (opts.taskDraftId === undefined || opts.taskDraftId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.taskDraftId' when calling uranusTaskAllInfo"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.taskDraftId !== undefined && opts.taskDraftId !== null) {
+      queryParams['taskDraftId'] = opts.taskDraftId
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskAllInfo with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskAllInfo',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询任务镜像
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultTaskImageRes uranusResultTaskImageRes
+      */
+
+  uranusTaskImageList (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskImageList"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskImageList"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskImageList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskImageList',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新任务的基本信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.draftId] - 草稿 ID  optional
+      * @param {string} [opts.taskName] - 任务名称  optional
+      * @param {string} [opts.taskId] - 任务 ID  optional
+      * @param {string} [opts.workId] - 工作 ID  optional
+      * @param {string} [opts.taskKind] - 任务种类， WORKFLOW 工作流、TASK 单任务、INTERNAL_TASK 工作流内部任务  optional
+      * @param {string} [opts.taskType] - 任务类型, JCW_SQL jcw引擎的SQL任务、PYTHON python任务、SHELL Linux脚本任务、SPARK_JAR sparkJar任务、STAR_ROCKS starrocks任务、MYSQL mysql任务、LOOP 循环节点任务、PIPE 数据集成任务  optional
+      * @param {string} [opts.taskClassify] - 任务的种类, INTEGRATION 数据集成、JCW jcw引擎、DATA_SOURCE 数据源类型、COMMON 通用类型  optional
+      * @param {string} [opts.taskStatus] - 任务的提交到运维中心的状态, UNPUBLISH 未提交、PUBLISHED 已提交、UPDATE_UNPUBLISH 更新未提交  optional
+      * @param {string} [opts.manager] - 负责人  optional
+      * @param {array} [opts.collaborators] - 协作人列表  optional
+      * @param {string} [opts.desc] - 描述信息  optional
+      * @param {integer} [opts.version] - 版本号  optional
+      * @param {string} [opts.bizId] - 业务目录id  optional
+      * @param {string} [opts.bizName] - 业务目录名称  optional
+      * @param {string} [opts.flowDraftId] - 所属工作流Id  optional
+      * @param {string} [opts.flowName] - 所属工作流名称  optional
+      * @param {string} [opts.nodeIcon] - 节点图标  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean2 uranusResultBoolean2
+      */
+
+  uranusTaskBaseInfoUpdate (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskBaseInfoUpdate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskBaseInfoUpdate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.draftId !== undefined && opts.draftId !== null) {
+      postBody['draftId'] = opts.draftId
+    }
+    if (opts.taskName !== undefined && opts.taskName !== null) {
+      postBody['taskName'] = opts.taskName
+    }
+    if (opts.taskId !== undefined && opts.taskId !== null) {
+      postBody['taskId'] = opts.taskId
+    }
+    if (opts.workId !== undefined && opts.workId !== null) {
+      postBody['workId'] = opts.workId
+    }
+    if (opts.taskKind !== undefined && opts.taskKind !== null) {
+      postBody['taskKind'] = opts.taskKind
+    }
+    if (opts.taskType !== undefined && opts.taskType !== null) {
+      postBody['taskType'] = opts.taskType
+    }
+    if (opts.taskClassify !== undefined && opts.taskClassify !== null) {
+      postBody['taskClassify'] = opts.taskClassify
+    }
+    if (opts.taskStatus !== undefined && opts.taskStatus !== null) {
+      postBody['taskStatus'] = opts.taskStatus
+    }
+    if (opts.manager !== undefined && opts.manager !== null) {
+      postBody['manager'] = opts.manager
+    }
+    if (opts.collaborators !== undefined && opts.collaborators !== null) {
+      postBody['collaborators'] = opts.collaborators
+    }
+    if (opts.desc !== undefined && opts.desc !== null) {
+      postBody['desc'] = opts.desc
+    }
+    if (opts.version !== undefined && opts.version !== null) {
+      postBody['version'] = opts.version
+    }
+    if (opts.bizId !== undefined && opts.bizId !== null) {
+      postBody['bizId'] = opts.bizId
+    }
+    if (opts.bizName !== undefined && opts.bizName !== null) {
+      postBody['bizName'] = opts.bizName
+    }
+    if (opts.flowDraftId !== undefined && opts.flowDraftId !== null) {
+      postBody['flowDraftId'] = opts.flowDraftId
+    }
+    if (opts.flowName !== undefined && opts.flowName !== null) {
+      postBody['flowName'] = opts.flowName
+    }
+    if (opts.nodeIcon !== undefined && opts.nodeIcon !== null) {
+      postBody['nodeIcon'] = opts.nodeIcon
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskBaseInfoUpdate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskBaseInfoUpdate',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新任务的调度信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.draftId] - 草稿 ID  optional
+      * @param {string} [opts.cronExpression] - Cron 表达式  optional
+      * @param {string} [opts.effectiveDateStart] - 生效开始日期  optional
+      * @param {string} [opts.effectiveDateEnd] - 生效结束日期  optional
+      * @param {integer} [opts.delay] - 延迟时间  optional
+      * @param {string} [opts.priority] - 任务优先级类型  optional
+      * @param {integer} [opts.timeout] - 超时时间  optional
+      * @param {string} [opts.taskStatus] - 任务的提交到运维中心的状态, UNPUBLISH 未提交、PUBLISHED 已提交、UPDATE_UNPUBLISH 更新未提交  optional
+      * @param {integer} [opts.retryTimes] - 重试次数  optional
+      * @param {integer} [opts.retryInterval] - 重试间隔  optional
+      * @param {string} [opts.resourceGroup] - 资源组  optional
+      * @param {string} [opts.crossCycleDependType] - 跨周期依赖类型，目前只支持SELF  optional
+      * @param {string} [opts.scheduleCycle] - 任务调度周期类型，当为手动调度任务是该字段必填，且为 manual  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean2 uranusResultBoolean2
+      */
+
+  uranusTaskScheduleInfoUpdate (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskScheduleInfoUpdate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskScheduleInfoUpdate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.draftId !== undefined && opts.draftId !== null) {
+      postBody['draftId'] = opts.draftId
+    }
+    if (opts.cronExpression !== undefined && opts.cronExpression !== null) {
+      postBody['cronExpression'] = opts.cronExpression
+    }
+    if (
+      opts.effectiveDateStart !== undefined &&
+      opts.effectiveDateStart !== null
+    ) {
+      postBody['effectiveDateStart'] = opts.effectiveDateStart
+    }
+    if (opts.effectiveDateEnd !== undefined && opts.effectiveDateEnd !== null) {
+      postBody['effectiveDateEnd'] = opts.effectiveDateEnd
+    }
+    if (opts.delay !== undefined && opts.delay !== null) {
+      postBody['delay'] = opts.delay
+    }
+    if (opts.priority !== undefined && opts.priority !== null) {
+      postBody['priority'] = opts.priority
+    }
+    if (opts.timeout !== undefined && opts.timeout !== null) {
+      postBody['timeout'] = opts.timeout
+    }
+    if (opts.taskStatus !== undefined && opts.taskStatus !== null) {
+      postBody['taskStatus'] = opts.taskStatus
+    }
+    if (opts.retryTimes !== undefined && opts.retryTimes !== null) {
+      postBody['retryTimes'] = opts.retryTimes
+    }
+    if (opts.retryInterval !== undefined && opts.retryInterval !== null) {
+      postBody['retryInterval'] = opts.retryInterval
+    }
+    if (opts.resourceGroup !== undefined && opts.resourceGroup !== null) {
+      postBody['resourceGroup'] = opts.resourceGroup
+    }
+    if (
+      opts.crossCycleDependType !== undefined &&
+      opts.crossCycleDependType !== null
+    ) {
+      postBody['crossCycleDependType'] = opts.crossCycleDependType
+    }
+    if (opts.scheduleCycle !== undefined && opts.scheduleCycle !== null) {
+      postBody['scheduleCycle'] = opts.scheduleCycle
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskScheduleInfoUpdate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskScheduleInfoUpdate',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新任务的预警信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.draftId] - 草稿 ID  optional
+      * @param {array} [opts.method] - 任务告警方式，mail(&quot;邮件&quot;)、website(&quot;站内信&quot;)、phone(&quot;语音&quot;)、message(&quot;短信&quot;)、outWebsite(&quot;机器人&quot;)  optional
+      * @param {array} [opts.timing] - 任务告警时机，finalFailed(&quot;最终失败&quot;)、everyFailed(&quot;每次失败&quot;)、success(&quot;成功完成&quot;)、startDelay(&quot;启动延迟&quot;)、finishDelay(&quot;结束延迟&quot;)  optional
+      * @param {string} [opts.startdelayTime] - 开始延迟时间  optional
+      * @param {string} [opts.finishdelayTime] - 完成延迟时间  optional
+      * @param {array} [opts.receiver] - 接收者列表  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean2 uranusResultBoolean2
+      */
+
+  uranusTaskAlarmInfoUpdate (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskAlarmInfoUpdate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskAlarmInfoUpdate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.draftId !== undefined && opts.draftId !== null) {
+      postBody['draftId'] = opts.draftId
+    }
+    if (opts.method !== undefined && opts.method !== null) {
+      postBody['method'] = opts.method
+    }
+    if (opts.timing !== undefined && opts.timing !== null) {
+      postBody['timing'] = opts.timing
+    }
+    if (opts.startdelayTime !== undefined && opts.startdelayTime !== null) {
+      postBody['startdelayTime'] = opts.startdelayTime
+    }
+    if (opts.finishdelayTime !== undefined && opts.finishdelayTime !== null) {
+      postBody['finishdelayTime'] = opts.finishdelayTime
+    }
+    if (opts.receiver !== undefined && opts.receiver !== null) {
+      postBody['receiver'] = opts.receiver
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskAlarmInfoUpdate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskAlarmInfoUpdate',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新任务的依赖信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.draftId] - 草稿 ID  optional
+      * @param {array} [opts.dependencies] - 该任务的依赖任务信息  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean2 uranusResultBoolean2
+      */
+
+  uranusTaskDependInfoUpdate (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskDependInfoUpdate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskDependInfoUpdate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.draftId !== undefined && opts.draftId !== null) {
+      postBody['draftId'] = opts.draftId
+    }
+    if (opts.dependencies !== undefined && opts.dependencies !== null) {
+      postBody['dependencies'] = opts.dependencies
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskDependInfoUpdate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskDependInfoUpdate',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新任务的输入参数信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.draftId] - 草稿 ID  optional
+      * @param {array} [opts.inputParams] - 输入参数列表  optional
+      * @param {array} [opts.outputParams] - 输出参数列表  optional
+      * @param {taskRunParam} [opts.runParams] - 运行参数  optional
+      * @param {array} [opts.debugParams] - 调试参数列表  optional
+      * @param {taskLoopParam} [opts.loopParams] - 循环节点参数  optional
+      * @param {taskSparkJarParam} [opts.sparkJarParams] - Spark Jar 节点参数  optional
+      * @param {taskDatasourceParam} [opts.datasourceParams] - 数据源节点参数  optional
+      * @param {taskPipeInfoRes} [opts.pipeInfoRes] - 数据集成相关参数  optional
+      * @param {taskImageParam} [opts.imageParams] - Image镜像参数  optional
+      * @param {array} [opts.specialParams] - 特有参数列表  optional
+      * @param {taskAlcGeneralParam} [opts.alcGeneralParams] - ALC_GENERAL 任务参数（含 alcTaskId / alcTaskType / originalName / alcWorkspaceCode）  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean2 uranusResultBoolean2
+      */
+
+  uranusTaskInputParamInfoUpdate (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskInputParamInfoUpdate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskInputParamInfoUpdate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.draftId !== undefined && opts.draftId !== null) {
+      postBody['draftId'] = opts.draftId
+    }
+    if (opts.inputParams !== undefined && opts.inputParams !== null) {
+      postBody['inputParams'] = opts.inputParams
+    }
+    if (opts.outputParams !== undefined && opts.outputParams !== null) {
+      postBody['outputParams'] = opts.outputParams
+    }
+    if (opts.runParams !== undefined && opts.runParams !== null) {
+      postBody['runParams'] = opts.runParams
+    }
+    if (opts.debugParams !== undefined && opts.debugParams !== null) {
+      postBody['debugParams'] = opts.debugParams
+    }
+    if (opts.loopParams !== undefined && opts.loopParams !== null) {
+      postBody['loopParams'] = opts.loopParams
+    }
+    if (opts.sparkJarParams !== undefined && opts.sparkJarParams !== null) {
+      postBody['sparkJarParams'] = opts.sparkJarParams
+    }
+    if (opts.datasourceParams !== undefined && opts.datasourceParams !== null) {
+      postBody['datasourceParams'] = opts.datasourceParams
+    }
+    if (opts.pipeInfoRes !== undefined && opts.pipeInfoRes !== null) {
+      postBody['pipeInfoRes'] = opts.pipeInfoRes
+    }
+    if (opts.imageParams !== undefined && opts.imageParams !== null) {
+      postBody['imageParams'] = opts.imageParams
+    }
+    if (opts.specialParams !== undefined && opts.specialParams !== null) {
+      postBody['specialParams'] = opts.specialParams
+    }
+    if (opts.alcGeneralParams !== undefined && opts.alcGeneralParams !== null) {
+      postBody['alcGeneralParams'] = opts.alcGeneralParams
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskInputParamInfoUpdate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskInputParamInfoUpdate',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新任务的输入参数信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.draftId] - 草稿 ID  optional
+      * @param {array} [opts.inputParams] - 输入参数列表  optional
+      * @param {array} [opts.outputParams] - 输出参数列表  optional
+      * @param {taskRunParam} [opts.runParams] - 运行参数  optional
+      * @param {array} [opts.debugParams] - 调试参数列表  optional
+      * @param {taskLoopParam} [opts.loopParams] - 循环节点参数  optional
+      * @param {taskSparkJarParam} [opts.sparkJarParams] - Spark Jar 节点参数  optional
+      * @param {taskDatasourceParam} [opts.datasourceParams] - 数据源节点参数  optional
+      * @param {taskPipeInfoRes} [opts.pipeInfoRes] - 数据集成相关参数  optional
+      * @param {taskImageParam} [opts.imageParams] - Image镜像参数  optional
+      * @param {array} [opts.specialParams] - 特有参数列表  optional
+      * @param {taskAlcGeneralParam} [opts.alcGeneralParams] - ALC_GENERAL 任务参数（含 alcTaskId / alcTaskType / originalName / alcWorkspaceCode）  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean2 uranusResultBoolean2
+      */
+
+  uranusTaskOutputParamInfoUpdate (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskOutputParamInfoUpdate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskOutputParamInfoUpdate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.draftId !== undefined && opts.draftId !== null) {
+      postBody['draftId'] = opts.draftId
+    }
+    if (opts.inputParams !== undefined && opts.inputParams !== null) {
+      postBody['inputParams'] = opts.inputParams
+    }
+    if (opts.outputParams !== undefined && opts.outputParams !== null) {
+      postBody['outputParams'] = opts.outputParams
+    }
+    if (opts.runParams !== undefined && opts.runParams !== null) {
+      postBody['runParams'] = opts.runParams
+    }
+    if (opts.debugParams !== undefined && opts.debugParams !== null) {
+      postBody['debugParams'] = opts.debugParams
+    }
+    if (opts.loopParams !== undefined && opts.loopParams !== null) {
+      postBody['loopParams'] = opts.loopParams
+    }
+    if (opts.sparkJarParams !== undefined && opts.sparkJarParams !== null) {
+      postBody['sparkJarParams'] = opts.sparkJarParams
+    }
+    if (opts.datasourceParams !== undefined && opts.datasourceParams !== null) {
+      postBody['datasourceParams'] = opts.datasourceParams
+    }
+    if (opts.pipeInfoRes !== undefined && opts.pipeInfoRes !== null) {
+      postBody['pipeInfoRes'] = opts.pipeInfoRes
+    }
+    if (opts.imageParams !== undefined && opts.imageParams !== null) {
+      postBody['imageParams'] = opts.imageParams
+    }
+    if (opts.specialParams !== undefined && opts.specialParams !== null) {
+      postBody['specialParams'] = opts.specialParams
+    }
+    if (opts.alcGeneralParams !== undefined && opts.alcGeneralParams !== null) {
+      postBody['alcGeneralParams'] = opts.alcGeneralParams
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskOutputParamInfoUpdate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskOutputParamInfoUpdate',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新任务的运行参数信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.draftId] - 草稿 ID  optional
+      * @param {array} [opts.inputParams] - 输入参数列表  optional
+      * @param {array} [opts.outputParams] - 输出参数列表  optional
+      * @param {taskRunParam} [opts.runParams] - 运行参数  optional
+      * @param {array} [opts.debugParams] - 调试参数列表  optional
+      * @param {taskLoopParam} [opts.loopParams] - 循环节点参数  optional
+      * @param {taskSparkJarParam} [opts.sparkJarParams] - Spark Jar 节点参数  optional
+      * @param {taskDatasourceParam} [opts.datasourceParams] - 数据源节点参数  optional
+      * @param {taskPipeInfoRes} [opts.pipeInfoRes] - 数据集成相关参数  optional
+      * @param {taskImageParam} [opts.imageParams] - Image镜像参数  optional
+      * @param {array} [opts.specialParams] - 特有参数列表  optional
+      * @param {taskAlcGeneralParam} [opts.alcGeneralParams] - ALC_GENERAL 任务参数（含 alcTaskId / alcTaskType / originalName / alcWorkspaceCode）  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean2 uranusResultBoolean2
+      */
+
+  uranusTaskRunParamInfoUpdate (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskRunParamInfoUpdate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskRunParamInfoUpdate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.draftId !== undefined && opts.draftId !== null) {
+      postBody['draftId'] = opts.draftId
+    }
+    if (opts.inputParams !== undefined && opts.inputParams !== null) {
+      postBody['inputParams'] = opts.inputParams
+    }
+    if (opts.outputParams !== undefined && opts.outputParams !== null) {
+      postBody['outputParams'] = opts.outputParams
+    }
+    if (opts.runParams !== undefined && opts.runParams !== null) {
+      postBody['runParams'] = opts.runParams
+    }
+    if (opts.debugParams !== undefined && opts.debugParams !== null) {
+      postBody['debugParams'] = opts.debugParams
+    }
+    if (opts.loopParams !== undefined && opts.loopParams !== null) {
+      postBody['loopParams'] = opts.loopParams
+    }
+    if (opts.sparkJarParams !== undefined && opts.sparkJarParams !== null) {
+      postBody['sparkJarParams'] = opts.sparkJarParams
+    }
+    if (opts.datasourceParams !== undefined && opts.datasourceParams !== null) {
+      postBody['datasourceParams'] = opts.datasourceParams
+    }
+    if (opts.pipeInfoRes !== undefined && opts.pipeInfoRes !== null) {
+      postBody['pipeInfoRes'] = opts.pipeInfoRes
+    }
+    if (opts.imageParams !== undefined && opts.imageParams !== null) {
+      postBody['imageParams'] = opts.imageParams
+    }
+    if (opts.specialParams !== undefined && opts.specialParams !== null) {
+      postBody['specialParams'] = opts.specialParams
+    }
+    if (opts.alcGeneralParams !== undefined && opts.alcGeneralParams !== null) {
+      postBody['alcGeneralParams'] = opts.alcGeneralParams
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskRunParamInfoUpdate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskRunParamInfoUpdate',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新任务的数据源参数信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.draftId] - 草稿 ID  optional
+      * @param {array} [opts.inputParams] - 输入参数列表  optional
+      * @param {array} [opts.outputParams] - 输出参数列表  optional
+      * @param {taskRunParam} [opts.runParams] - 运行参数  optional
+      * @param {array} [opts.debugParams] - 调试参数列表  optional
+      * @param {taskLoopParam} [opts.loopParams] - 循环节点参数  optional
+      * @param {taskSparkJarParam} [opts.sparkJarParams] - Spark Jar 节点参数  optional
+      * @param {taskDatasourceParam} [opts.datasourceParams] - 数据源节点参数  optional
+      * @param {taskPipeInfoRes} [opts.pipeInfoRes] - 数据集成相关参数  optional
+      * @param {taskImageParam} [opts.imageParams] - Image镜像参数  optional
+      * @param {array} [opts.specialParams] - 特有参数列表  optional
+      * @param {taskAlcGeneralParam} [opts.alcGeneralParams] - ALC_GENERAL 任务参数（含 alcTaskId / alcTaskType / originalName / alcWorkspaceCode）  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean2 uranusResultBoolean2
+      */
+
+  uranusTaskDatasourceParamInfoUpdate (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskDatasourceParamInfoUpdate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskDatasourceParamInfoUpdate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.draftId !== undefined && opts.draftId !== null) {
+      postBody['draftId'] = opts.draftId
+    }
+    if (opts.inputParams !== undefined && opts.inputParams !== null) {
+      postBody['inputParams'] = opts.inputParams
+    }
+    if (opts.outputParams !== undefined && opts.outputParams !== null) {
+      postBody['outputParams'] = opts.outputParams
+    }
+    if (opts.runParams !== undefined && opts.runParams !== null) {
+      postBody['runParams'] = opts.runParams
+    }
+    if (opts.debugParams !== undefined && opts.debugParams !== null) {
+      postBody['debugParams'] = opts.debugParams
+    }
+    if (opts.loopParams !== undefined && opts.loopParams !== null) {
+      postBody['loopParams'] = opts.loopParams
+    }
+    if (opts.sparkJarParams !== undefined && opts.sparkJarParams !== null) {
+      postBody['sparkJarParams'] = opts.sparkJarParams
+    }
+    if (opts.datasourceParams !== undefined && opts.datasourceParams !== null) {
+      postBody['datasourceParams'] = opts.datasourceParams
+    }
+    if (opts.pipeInfoRes !== undefined && opts.pipeInfoRes !== null) {
+      postBody['pipeInfoRes'] = opts.pipeInfoRes
+    }
+    if (opts.imageParams !== undefined && opts.imageParams !== null) {
+      postBody['imageParams'] = opts.imageParams
+    }
+    if (opts.specialParams !== undefined && opts.specialParams !== null) {
+      postBody['specialParams'] = opts.specialParams
+    }
+    if (opts.alcGeneralParams !== undefined && opts.alcGeneralParams !== null) {
+      postBody['alcGeneralParams'] = opts.alcGeneralParams
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskDatasourceParamInfoUpdate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskDatasourceParamInfoUpdate',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新任务的Image参数信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.draftId] - 草稿 ID  optional
+      * @param {array} [opts.inputParams] - 输入参数列表  optional
+      * @param {array} [opts.outputParams] - 输出参数列表  optional
+      * @param {taskRunParam} [opts.runParams] - 运行参数  optional
+      * @param {array} [opts.debugParams] - 调试参数列表  optional
+      * @param {taskLoopParam} [opts.loopParams] - 循环节点参数  optional
+      * @param {taskSparkJarParam} [opts.sparkJarParams] - Spark Jar 节点参数  optional
+      * @param {taskDatasourceParam} [opts.datasourceParams] - 数据源节点参数  optional
+      * @param {taskPipeInfoRes} [opts.pipeInfoRes] - 数据集成相关参数  optional
+      * @param {taskImageParam} [opts.imageParams] - Image镜像参数  optional
+      * @param {array} [opts.specialParams] - 特有参数列表  optional
+      * @param {taskAlcGeneralParam} [opts.alcGeneralParams] - ALC_GENERAL 任务参数（含 alcTaskId / alcTaskType / originalName / alcWorkspaceCode）  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean2 uranusResultBoolean2
+      */
+
+  uranusTaskImageParamInfoUpdate (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskImageParamInfoUpdate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskImageParamInfoUpdate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.draftId !== undefined && opts.draftId !== null) {
+      postBody['draftId'] = opts.draftId
+    }
+    if (opts.inputParams !== undefined && opts.inputParams !== null) {
+      postBody['inputParams'] = opts.inputParams
+    }
+    if (opts.outputParams !== undefined && opts.outputParams !== null) {
+      postBody['outputParams'] = opts.outputParams
+    }
+    if (opts.runParams !== undefined && opts.runParams !== null) {
+      postBody['runParams'] = opts.runParams
+    }
+    if (opts.debugParams !== undefined && opts.debugParams !== null) {
+      postBody['debugParams'] = opts.debugParams
+    }
+    if (opts.loopParams !== undefined && opts.loopParams !== null) {
+      postBody['loopParams'] = opts.loopParams
+    }
+    if (opts.sparkJarParams !== undefined && opts.sparkJarParams !== null) {
+      postBody['sparkJarParams'] = opts.sparkJarParams
+    }
+    if (opts.datasourceParams !== undefined && opts.datasourceParams !== null) {
+      postBody['datasourceParams'] = opts.datasourceParams
+    }
+    if (opts.pipeInfoRes !== undefined && opts.pipeInfoRes !== null) {
+      postBody['pipeInfoRes'] = opts.pipeInfoRes
+    }
+    if (opts.imageParams !== undefined && opts.imageParams !== null) {
+      postBody['imageParams'] = opts.imageParams
+    }
+    if (opts.specialParams !== undefined && opts.specialParams !== null) {
+      postBody['specialParams'] = opts.specialParams
+    }
+    if (opts.alcGeneralParams !== undefined && opts.alcGeneralParams !== null) {
+      postBody['alcGeneralParams'] = opts.alcGeneralParams
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskImageParamInfoUpdate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskImageParamInfoUpdate',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新任务的SparkJar参数信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.draftId] - 草稿 ID  optional
+      * @param {array} [opts.inputParams] - 输入参数列表  optional
+      * @param {array} [opts.outputParams] - 输出参数列表  optional
+      * @param {taskRunParam} [opts.runParams] - 运行参数  optional
+      * @param {array} [opts.debugParams] - 调试参数列表  optional
+      * @param {taskLoopParam} [opts.loopParams] - 循环节点参数  optional
+      * @param {taskSparkJarParam} [opts.sparkJarParams] - Spark Jar 节点参数  optional
+      * @param {taskDatasourceParam} [opts.datasourceParams] - 数据源节点参数  optional
+      * @param {taskPipeInfoRes} [opts.pipeInfoRes] - 数据集成相关参数  optional
+      * @param {taskImageParam} [opts.imageParams] - Image镜像参数  optional
+      * @param {array} [opts.specialParams] - 特有参数列表  optional
+      * @param {taskAlcGeneralParam} [opts.alcGeneralParams] - ALC_GENERAL 任务参数（含 alcTaskId / alcTaskType / originalName / alcWorkspaceCode）  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean2 uranusResultBoolean2
+      */
+
+  uranusTaskSparkJarParamInfoUpdate (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskSparkJarParamInfoUpdate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskSparkJarParamInfoUpdate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.draftId !== undefined && opts.draftId !== null) {
+      postBody['draftId'] = opts.draftId
+    }
+    if (opts.inputParams !== undefined && opts.inputParams !== null) {
+      postBody['inputParams'] = opts.inputParams
+    }
+    if (opts.outputParams !== undefined && opts.outputParams !== null) {
+      postBody['outputParams'] = opts.outputParams
+    }
+    if (opts.runParams !== undefined && opts.runParams !== null) {
+      postBody['runParams'] = opts.runParams
+    }
+    if (opts.debugParams !== undefined && opts.debugParams !== null) {
+      postBody['debugParams'] = opts.debugParams
+    }
+    if (opts.loopParams !== undefined && opts.loopParams !== null) {
+      postBody['loopParams'] = opts.loopParams
+    }
+    if (opts.sparkJarParams !== undefined && opts.sparkJarParams !== null) {
+      postBody['sparkJarParams'] = opts.sparkJarParams
+    }
+    if (opts.datasourceParams !== undefined && opts.datasourceParams !== null) {
+      postBody['datasourceParams'] = opts.datasourceParams
+    }
+    if (opts.pipeInfoRes !== undefined && opts.pipeInfoRes !== null) {
+      postBody['pipeInfoRes'] = opts.pipeInfoRes
+    }
+    if (opts.imageParams !== undefined && opts.imageParams !== null) {
+      postBody['imageParams'] = opts.imageParams
+    }
+    if (opts.specialParams !== undefined && opts.specialParams !== null) {
+      postBody['specialParams'] = opts.specialParams
+    }
+    if (opts.alcGeneralParams !== undefined && opts.alcGeneralParams !== null) {
+      postBody['alcGeneralParams'] = opts.alcGeneralParams
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskSparkJarParamInfoUpdate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskSparkJarParamInfoUpdate',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新任务的Loop参数信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.draftId] - 草稿 ID  optional
+      * @param {array} [opts.inputParams] - 输入参数列表  optional
+      * @param {array} [opts.outputParams] - 输出参数列表  optional
+      * @param {taskRunParam} [opts.runParams] - 运行参数  optional
+      * @param {array} [opts.debugParams] - 调试参数列表  optional
+      * @param {taskLoopParam} [opts.loopParams] - 循环节点参数  optional
+      * @param {taskSparkJarParam} [opts.sparkJarParams] - Spark Jar 节点参数  optional
+      * @param {taskDatasourceParam} [opts.datasourceParams] - 数据源节点参数  optional
+      * @param {taskPipeInfoRes} [opts.pipeInfoRes] - 数据集成相关参数  optional
+      * @param {taskImageParam} [opts.imageParams] - Image镜像参数  optional
+      * @param {array} [opts.specialParams] - 特有参数列表  optional
+      * @param {taskAlcGeneralParam} [opts.alcGeneralParams] - ALC_GENERAL 任务参数（含 alcTaskId / alcTaskType / originalName / alcWorkspaceCode）  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean2 uranusResultBoolean2
+      */
+
+  uranusTaskLoopParamInfoUpdate (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskLoopParamInfoUpdate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskLoopParamInfoUpdate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.draftId !== undefined && opts.draftId !== null) {
+      postBody['draftId'] = opts.draftId
+    }
+    if (opts.inputParams !== undefined && opts.inputParams !== null) {
+      postBody['inputParams'] = opts.inputParams
+    }
+    if (opts.outputParams !== undefined && opts.outputParams !== null) {
+      postBody['outputParams'] = opts.outputParams
+    }
+    if (opts.runParams !== undefined && opts.runParams !== null) {
+      postBody['runParams'] = opts.runParams
+    }
+    if (opts.debugParams !== undefined && opts.debugParams !== null) {
+      postBody['debugParams'] = opts.debugParams
+    }
+    if (opts.loopParams !== undefined && opts.loopParams !== null) {
+      postBody['loopParams'] = opts.loopParams
+    }
+    if (opts.sparkJarParams !== undefined && opts.sparkJarParams !== null) {
+      postBody['sparkJarParams'] = opts.sparkJarParams
+    }
+    if (opts.datasourceParams !== undefined && opts.datasourceParams !== null) {
+      postBody['datasourceParams'] = opts.datasourceParams
+    }
+    if (opts.pipeInfoRes !== undefined && opts.pipeInfoRes !== null) {
+      postBody['pipeInfoRes'] = opts.pipeInfoRes
+    }
+    if (opts.imageParams !== undefined && opts.imageParams !== null) {
+      postBody['imageParams'] = opts.imageParams
+    }
+    if (opts.specialParams !== undefined && opts.specialParams !== null) {
+      postBody['specialParams'] = opts.specialParams
+    }
+    if (opts.alcGeneralParams !== undefined && opts.alcGeneralParams !== null) {
+      postBody['alcGeneralParams'] = opts.alcGeneralParams
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskLoopParamInfoUpdate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskLoopParamInfoUpdate',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新任务的集成任务参数信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.draftId] - 草稿 ID  optional
+      * @param {array} [opts.inputParams] - 输入参数列表  optional
+      * @param {array} [opts.outputParams] - 输出参数列表  optional
+      * @param {taskRunParam} [opts.runParams] - 运行参数  optional
+      * @param {array} [opts.debugParams] - 调试参数列表  optional
+      * @param {taskLoopParam} [opts.loopParams] - 循环节点参数  optional
+      * @param {taskSparkJarParam} [opts.sparkJarParams] - Spark Jar 节点参数  optional
+      * @param {taskDatasourceParam} [opts.datasourceParams] - 数据源节点参数  optional
+      * @param {taskPipeInfoRes} [opts.pipeInfoRes] - 数据集成相关参数  optional
+      * @param {taskImageParam} [opts.imageParams] - Image镜像参数  optional
+      * @param {array} [opts.specialParams] - 特有参数列表  optional
+      * @param {taskAlcGeneralParam} [opts.alcGeneralParams] - ALC_GENERAL 任务参数（含 alcTaskId / alcTaskType / originalName / alcWorkspaceCode）  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean2 uranusResultBoolean2
+      */
+
+  uranusTaskPipeParamInfoUpdate (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskPipeParamInfoUpdate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskPipeParamInfoUpdate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.draftId !== undefined && opts.draftId !== null) {
+      postBody['draftId'] = opts.draftId
+    }
+    if (opts.inputParams !== undefined && opts.inputParams !== null) {
+      postBody['inputParams'] = opts.inputParams
+    }
+    if (opts.outputParams !== undefined && opts.outputParams !== null) {
+      postBody['outputParams'] = opts.outputParams
+    }
+    if (opts.runParams !== undefined && opts.runParams !== null) {
+      postBody['runParams'] = opts.runParams
+    }
+    if (opts.debugParams !== undefined && opts.debugParams !== null) {
+      postBody['debugParams'] = opts.debugParams
+    }
+    if (opts.loopParams !== undefined && opts.loopParams !== null) {
+      postBody['loopParams'] = opts.loopParams
+    }
+    if (opts.sparkJarParams !== undefined && opts.sparkJarParams !== null) {
+      postBody['sparkJarParams'] = opts.sparkJarParams
+    }
+    if (opts.datasourceParams !== undefined && opts.datasourceParams !== null) {
+      postBody['datasourceParams'] = opts.datasourceParams
+    }
+    if (opts.pipeInfoRes !== undefined && opts.pipeInfoRes !== null) {
+      postBody['pipeInfoRes'] = opts.pipeInfoRes
+    }
+    if (opts.imageParams !== undefined && opts.imageParams !== null) {
+      postBody['imageParams'] = opts.imageParams
+    }
+    if (opts.specialParams !== undefined && opts.specialParams !== null) {
+      postBody['specialParams'] = opts.specialParams
+    }
+    if (opts.alcGeneralParams !== undefined && opts.alcGeneralParams !== null) {
+      postBody['alcGeneralParams'] = opts.alcGeneralParams
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskPipeParamInfoUpdate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskPipeParamInfoUpdate',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新任务的脚本内容
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.draftId] - 草稿 ID  optional
+      * @param {string} [opts.fileName] - 文件名  optional
+      * @param {string} [opts.content] - 文件内容  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean2 uranusResultBoolean2
+      */
+
+  uranusTaskScriptContentUpdate (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskScriptContentUpdate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskScriptContentUpdate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.draftId !== undefined && opts.draftId !== null) {
+      postBody['draftId'] = opts.draftId
+    }
+    if (opts.fileName !== undefined && opts.fileName !== null) {
+      postBody['fileName'] = opts.fileName
+    }
+    if (opts.content !== undefined && opts.content !== null) {
+      postBody['content'] = opts.content
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskScriptContentUpdate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskScriptContentUpdate',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  模糊列出可以依赖的任务信息，工作流和工作流内部任务不能够自依赖
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.companyCode] - 租户code（服务端注入，调用方无需填写）  optional
+      * @param {string} [opts.workspaceCode] - 工作空间code（服务端注入，调用方无需填写）  optional
+      * @param {string} [opts.pin] - 操作用户pin（服务端注入，调用方无需填写）；用于跨工作空间依赖时查询用户所属空间列表  optional
+      * @param {string} [opts.regionId] - 地域ID（服务端注入，调用方无需填写）；用于跨工作空间依赖时调用工作空间SDK  optional
+      * @param {string} [opts.taskDraftId] - 任务的草稿id，即需要查询可依赖任务的任务  optional
+      * @param {string} [opts.taskNameFuzz] - 依赖任务名称的模糊检索关键词  optional
+      * @param {string} [opts.dependTaskId] - 通过依赖任务taskId精确查询  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultTaskDependInfoResList uranusResultTaskDependInfoResList
+      */
+
+  uranusTaskDependableListFuzz (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskDependableListFuzz"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskDependableListFuzz"
+      )
+    }
+
+    let postBody = {}
+    if (opts.companyCode !== undefined && opts.companyCode !== null) {
+      postBody['companyCode'] = opts.companyCode
+    }
+    if (opts.workspaceCode !== undefined && opts.workspaceCode !== null) {
+      postBody['workspaceCode'] = opts.workspaceCode
+    }
+    if (opts.pin !== undefined && opts.pin !== null) {
+      postBody['pin'] = opts.pin
+    }
+    if (opts.regionId !== undefined && opts.regionId !== null) {
+      postBody['regionId'] = opts.regionId
+    }
+    if (opts.taskDraftId !== undefined && opts.taskDraftId !== null) {
+      postBody['taskDraftId'] = opts.taskDraftId
+    }
+    if (opts.taskNameFuzz !== undefined && opts.taskNameFuzz !== null) {
+      postBody['taskNameFuzz'] = opts.taskNameFuzz
+    }
+    if (opts.dependTaskId !== undefined && opts.dependTaskId !== null) {
+      postBody['dependTaskId'] = opts.dependTaskId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskDependableListFuzz with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskDependableListFuzz',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取spark版本
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultListString2 uranusResultListString2
+      */
+
+  uranusSparkTaskSparkVersion (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusSparkTaskSparkVersion"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusSparkTaskSparkVersion"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusSparkTaskSparkVersion with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusSparkTaskSparkVersion',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  spark参数keys
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultListObject2 uranusResultListObject2
+      */
+
+  uranusSparkTaskParameterKeys (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusSparkTaskParameterKeys"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusSparkTaskParameterKeys"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusSparkTaskParameterKeys with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusSparkTaskParameterKeys',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  列出LOOP任务常用元素分隔符
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultListElementDelimiters2 uranusResultListElementDelimiters2
+      */
+
+  uranusLoopTaskElementDelimiters (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusLoopTaskElementDelimiters"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusLoopTaskElementDelimiters"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusLoopTaskElementDelimiters with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusLoopTaskElementDelimiters',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  发布任务到运维中心
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.companyCode] - 租户code  optional
+      * @param {string} [opts.workspaceCode] - 工作空间code  optional
+      * @param {string} [opts.pin] - 操作用户  optional
+      * @param {string} [opts.taskDraftId] - 任务的草稿id  optional
+      * @param {string} [opts.batchId] - 内部任务的批次id（当和工作流一起发布的时候使用）  optional
+      * @param {string} [opts.reason] - 发布原因  optional
+      * @param {boolean} [opts.enable] - 是否启用任务, TASK节点传true； INTERNAL_TASK工作流最后一个节点传true，其他传false；WORKFLOW传false  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultTaskPublishRes uranusResultTaskPublishRes
+      */
+
+  uranusTaskDeployAndEnable (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskDeployAndEnable"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskDeployAndEnable"
+      )
+    }
+
+    let postBody = {}
+    if (opts.companyCode !== undefined && opts.companyCode !== null) {
+      postBody['companyCode'] = opts.companyCode
+    }
+    if (opts.workspaceCode !== undefined && opts.workspaceCode !== null) {
+      postBody['workspaceCode'] = opts.workspaceCode
+    }
+    if (opts.pin !== undefined && opts.pin !== null) {
+      postBody['pin'] = opts.pin
+    }
+    if (opts.taskDraftId !== undefined && opts.taskDraftId !== null) {
+      postBody['taskDraftId'] = opts.taskDraftId
+    }
+    if (opts.batchId !== undefined && opts.batchId !== null) {
+      postBody['batchId'] = opts.batchId
+    }
+    if (opts.reason !== undefined && opts.reason !== null) {
+      postBody['reason'] = opts.reason
+    }
+    if (opts.enable !== undefined && opts.enable !== null) {
+      postBody['enable'] = opts.enable
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskDeployAndEnable with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskDeployAndEnable',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  从运维中心下线任务
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.companyCode] - 租户code  optional
+      * @param {string} [opts.workspaceCode] - 工作空间code  optional
+      * @param {string} [opts.pin] - 操作用户  optional
+      * @param {string} [opts.flowDraftId] - 任务所属工作流的草稿id, 当内部任务跟随工作流删除时需要  optional
+      * @param {string} [opts.taskDraftId] - 任务的草稿id  optional
+      * @param {string} [opts.batchId] - 删除操作的批次id，内部任务随工作流删除时需要  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultTaskPublishRes uranusResultTaskPublishRes
+      */
+
+  uranusTaskOffline (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskOffline"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskOffline"
+      )
+    }
+
+    let postBody = {}
+    if (opts.companyCode !== undefined && opts.companyCode !== null) {
+      postBody['companyCode'] = opts.companyCode
+    }
+    if (opts.workspaceCode !== undefined && opts.workspaceCode !== null) {
+      postBody['workspaceCode'] = opts.workspaceCode
+    }
+    if (opts.pin !== undefined && opts.pin !== null) {
+      postBody['pin'] = opts.pin
+    }
+    if (opts.flowDraftId !== undefined && opts.flowDraftId !== null) {
+      postBody['flowDraftId'] = opts.flowDraftId
+    }
+    if (opts.taskDraftId !== undefined && opts.taskDraftId !== null) {
+      postBody['taskDraftId'] = opts.taskDraftId
+    }
+    if (opts.batchId !== undefined && opts.batchId !== null) {
+      postBody['batchId'] = opts.batchId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskOffline with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskOffline',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  从运维中心下线任务
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.taskDraftId] - 任务的草稿id  optional
+      * @param {string} [opts.reason] - 任务提交原因的模糊检索关键词  optional
+      * @param {integer} [opts.pageNum] - 页号，从1开始  optional
+      * @param {integer} [opts.pageSize] - 每页的记录数  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultListTaskHistoryPage uranusResultListTaskHistoryPage
+      */
+
+  uranusTaskHistoryList (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskHistoryList"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskHistoryList"
+      )
+    }
+
+    let postBody = {}
+    if (opts.taskDraftId !== undefined && opts.taskDraftId !== null) {
+      postBody['taskDraftId'] = opts.taskDraftId
+    }
+    if (opts.reason !== undefined && opts.reason !== null) {
+      postBody['reason'] = opts.reason
+    }
+    if (opts.pageNum !== undefined && opts.pageNum !== null) {
+      postBody['pageNum'] = opts.pageNum
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskHistoryList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskHistoryList',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取任务发布历史版本的具体详情
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} opts.historyId - 任务的发布历史id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultTaskInfoRes uranusResultTaskInfoRes
+      */
+
+  uranusTaskHistoryDetail (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskHistoryDetail"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskHistoryDetail"
+      )
+    }
+    if (opts.historyId === undefined || opts.historyId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.historyId' when calling uranusTaskHistoryDetail"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.historyId !== undefined && opts.historyId !== null) {
+      queryParams['historyId'] = opts.historyId
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskHistoryDetail with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskHistoryDetail',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  重新发布历史版本任务到运维中心
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.historyId] - 任务发布历史id  optional
+      * @param {string} [opts.pin] - 操作用户  optional
+      * @param {string} [opts.taskDraftId] - 任务的草稿id  optional
+      * @param {string} [opts.reason] - 发布原因  optional
+      * @param {boolean} [opts.enable] - 是否启用任务, TASK节点传true； INTERNAL_TASK工作流最后一个节点传true，其他传false；WORKFLOW传false  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean2 uranusResultBoolean2
+      */
+
+  uranusTaskRedeployAndEnable (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskRedeployAndEnable"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskRedeployAndEnable"
+      )
+    }
+
+    let postBody = {}
+    if (opts.historyId !== undefined && opts.historyId !== null) {
+      postBody['historyId'] = opts.historyId
+    }
+    if (opts.pin !== undefined && opts.pin !== null) {
+      postBody['pin'] = opts.pin
+    }
+    if (opts.taskDraftId !== undefined && opts.taskDraftId !== null) {
+      postBody['taskDraftId'] = opts.taskDraftId
+    }
+    if (opts.reason !== undefined && opts.reason !== null) {
+      postBody['reason'] = opts.reason
+    }
+    if (opts.enable !== undefined && opts.enable !== null) {
+      postBody['enable'] = opts.enable
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskRedeployAndEnable with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskRedeployAndEnable',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  数据集成任务获取建表语句
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.createTableSql] - 创建表SQL，当为申请生成创建表SQL时，该字段为空  optional
+      * @param {array} [opts.environment] - 当前环境，prod 生产、dev 开发  optional
+      * @param {string} [opts.sinkType] - 目标数据源类型  optional
+      * @param {string} [opts.sinkId] - 目标数据源Id  optional
+      * @param {string} [opts.sourceId] - 源数据源Id  optional
+      * @param {string} [opts.sourceTableName] - 源表名称  optional
+      * @param {string} [opts.resourceCode] - 资源组code  optional
+      * @param {string} [opts.tableMatchingType] - 表的匹配类型  optional
+      * @param {string} [opts.schema] - 数据库名称，PG数据库引擎时使用  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultString2 uranusResultString2
+      */
+
+  uranusTaskPipeShowCreateTable (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskPipeShowCreateTable"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskPipeShowCreateTable"
+      )
+    }
+
+    let postBody = {}
+    if (opts.createTableSql !== undefined && opts.createTableSql !== null) {
+      postBody['createTableSql'] = opts.createTableSql
+    }
+    if (opts.environment !== undefined && opts.environment !== null) {
+      postBody['environment'] = opts.environment
+    }
+    if (opts.sinkType !== undefined && opts.sinkType !== null) {
+      postBody['sinkType'] = opts.sinkType
+    }
+    if (opts.sinkId !== undefined && opts.sinkId !== null) {
+      postBody['sinkId'] = opts.sinkId
+    }
+    if (opts.sourceId !== undefined && opts.sourceId !== null) {
+      postBody['sourceId'] = opts.sourceId
+    }
+    if (opts.sourceTableName !== undefined && opts.sourceTableName !== null) {
+      postBody['sourceTableName'] = opts.sourceTableName
+    }
+    if (opts.resourceCode !== undefined && opts.resourceCode !== null) {
+      postBody['resourceCode'] = opts.resourceCode
+    }
+    if (
+      opts.tableMatchingType !== undefined &&
+      opts.tableMatchingType !== null
+    ) {
+      postBody['tableMatchingType'] = opts.tableMatchingType
+    }
+    if (opts.schema !== undefined && opts.schema !== null) {
+      postBody['schema'] = opts.schema
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskPipeShowCreateTable with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskPipeShowCreateTable',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  数据集成任务一键建表
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.createTableSql] - 创建表SQL，当为申请生成创建表SQL时，该字段为空  optional
+      * @param {array} [opts.environment] - 当前环境，prod 生产、dev 开发  optional
+      * @param {string} [opts.sinkType] - 目标数据源类型  optional
+      * @param {string} [opts.sinkId] - 目标数据源Id  optional
+      * @param {string} [opts.sourceId] - 源数据源Id  optional
+      * @param {string} [opts.sourceTableName] - 源表名称  optional
+      * @param {string} [opts.resourceCode] - 资源组code  optional
+      * @param {string} [opts.tableMatchingType] - 表的匹配类型  optional
+      * @param {string} [opts.schema] - 数据库名称，PG数据库引擎时使用  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean2 uranusResultBoolean2
+      */
+
+  uranusTaskPipeCreateTable (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskPipeCreateTable"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskPipeCreateTable"
+      )
+    }
+
+    let postBody = {}
+    if (opts.createTableSql !== undefined && opts.createTableSql !== null) {
+      postBody['createTableSql'] = opts.createTableSql
+    }
+    if (opts.environment !== undefined && opts.environment !== null) {
+      postBody['environment'] = opts.environment
+    }
+    if (opts.sinkType !== undefined && opts.sinkType !== null) {
+      postBody['sinkType'] = opts.sinkType
+    }
+    if (opts.sinkId !== undefined && opts.sinkId !== null) {
+      postBody['sinkId'] = opts.sinkId
+    }
+    if (opts.sourceId !== undefined && opts.sourceId !== null) {
+      postBody['sourceId'] = opts.sourceId
+    }
+    if (opts.sourceTableName !== undefined && opts.sourceTableName !== null) {
+      postBody['sourceTableName'] = opts.sourceTableName
+    }
+    if (opts.resourceCode !== undefined && opts.resourceCode !== null) {
+      postBody['resourceCode'] = opts.resourceCode
+    }
+    if (
+      opts.tableMatchingType !== undefined &&
+      opts.tableMatchingType !== null
+    ) {
+      postBody['tableMatchingType'] = opts.tableMatchingType
+    }
+    if (opts.schema !== undefined && opts.schema !== null) {
+      postBody['schema'] = opts.schema
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskPipeCreateTable with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskPipeCreateTable',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  任务依赖节点的输出参数查询
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.taskDraftId - 任务的草稿id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultListDependOutputParam uranusResultListDependOutputParam
+      */
+
+  uranusTaskDependOutputParamList (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskDependOutputParamList"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskDependOutputParamList"
+      )
+    }
+    if (opts.taskDraftId === undefined || opts.taskDraftId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.taskDraftId' when calling uranusTaskDependOutputParamList"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.taskDraftId !== undefined && opts.taskDraftId !== null) {
+      queryParams['taskDraftId'] = opts.taskDraftId
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskDependOutputParamList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskDependOutputParamList',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取工作流的历史版本内部任务拓扑顺序
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} opts.historyId - 任务的历史版本id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultListTaskHistoryRes uranusResultListTaskHistoryRes
+      */
+
+  uranusFlowInternalTaskHistoryTopo (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusFlowInternalTaskHistoryTopo"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusFlowInternalTaskHistoryTopo"
+      )
+    }
+    if (opts.historyId === undefined || opts.historyId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.historyId' when calling uranusFlowInternalTaskHistoryTopo"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.historyId !== undefined && opts.historyId !== null) {
+      queryParams['historyId'] = opts.historyId
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusFlowInternalTaskHistoryTopo with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusFlowInternalTaskHistoryTopo',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新任务的特有参数信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.draftId] - 草稿 ID  optional
+      * @param {array} [opts.inputParams] - 输入参数列表  optional
+      * @param {array} [opts.outputParams] - 输出参数列表  optional
+      * @param {taskRunParam} [opts.runParams] - 运行参数  optional
+      * @param {array} [opts.debugParams] - 调试参数列表  optional
+      * @param {taskLoopParam} [opts.loopParams] - 循环节点参数  optional
+      * @param {taskSparkJarParam} [opts.sparkJarParams] - Spark Jar 节点参数  optional
+      * @param {taskDatasourceParam} [opts.datasourceParams] - 数据源节点参数  optional
+      * @param {taskPipeInfoRes} [opts.pipeInfoRes] - 数据集成相关参数  optional
+      * @param {taskImageParam} [opts.imageParams] - Image镜像参数  optional
+      * @param {array} [opts.specialParams] - 特有参数列表  optional
+      * @param {taskAlcGeneralParam} [opts.alcGeneralParams] - ALC_GENERAL 任务参数（含 alcTaskId / alcTaskType / originalName / alcWorkspaceCode）  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean2 uranusResultBoolean2
+      */
+
+  uranusTaskSpecialParamUpdate (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskSpecialParamUpdate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskSpecialParamUpdate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.draftId !== undefined && opts.draftId !== null) {
+      postBody['draftId'] = opts.draftId
+    }
+    if (opts.inputParams !== undefined && opts.inputParams !== null) {
+      postBody['inputParams'] = opts.inputParams
+    }
+    if (opts.outputParams !== undefined && opts.outputParams !== null) {
+      postBody['outputParams'] = opts.outputParams
+    }
+    if (opts.runParams !== undefined && opts.runParams !== null) {
+      postBody['runParams'] = opts.runParams
+    }
+    if (opts.debugParams !== undefined && opts.debugParams !== null) {
+      postBody['debugParams'] = opts.debugParams
+    }
+    if (opts.loopParams !== undefined && opts.loopParams !== null) {
+      postBody['loopParams'] = opts.loopParams
+    }
+    if (opts.sparkJarParams !== undefined && opts.sparkJarParams !== null) {
+      postBody['sparkJarParams'] = opts.sparkJarParams
+    }
+    if (opts.datasourceParams !== undefined && opts.datasourceParams !== null) {
+      postBody['datasourceParams'] = opts.datasourceParams
+    }
+    if (opts.pipeInfoRes !== undefined && opts.pipeInfoRes !== null) {
+      postBody['pipeInfoRes'] = opts.pipeInfoRes
+    }
+    if (opts.imageParams !== undefined && opts.imageParams !== null) {
+      postBody['imageParams'] = opts.imageParams
+    }
+    if (opts.specialParams !== undefined && opts.specialParams !== null) {
+      postBody['specialParams'] = opts.specialParams
+    }
+    if (opts.alcGeneralParams !== undefined && opts.alcGeneralParams !== null) {
+      postBody['alcGeneralParams'] = opts.alcGeneralParams
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskSpecialParamUpdate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskSpecialParamUpdate',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  同步任务的调试参数到输入参数
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} opts.taskDraftId - 任务的草稿id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultTaskParamInfoRes uranusResultTaskParamInfoRes
+      */
+
+  uranusTaskDebugParamSync (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskDebugParamSync"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskDebugParamSync"
+      )
+    }
+    if (opts.taskDraftId === undefined || opts.taskDraftId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.taskDraftId' when calling uranusTaskDebugParamSync"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.taskDraftId !== undefined && opts.taskDraftId !== null) {
+      queryParams['taskDraftId'] = opts.taskDraftId
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskDebugParamSync with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskDebugParamSync',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新任务的调试参数信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.draftId] - 草稿 ID  optional
+      * @param {array} [opts.inputParams] - 输入参数列表  optional
+      * @param {array} [opts.outputParams] - 输出参数列表  optional
+      * @param {taskRunParam} [opts.runParams] - 运行参数  optional
+      * @param {array} [opts.debugParams] - 调试参数列表  optional
+      * @param {taskLoopParam} [opts.loopParams] - 循环节点参数  optional
+      * @param {taskSparkJarParam} [opts.sparkJarParams] - Spark Jar 节点参数  optional
+      * @param {taskDatasourceParam} [opts.datasourceParams] - 数据源节点参数  optional
+      * @param {taskPipeInfoRes} [opts.pipeInfoRes] - 数据集成相关参数  optional
+      * @param {taskImageParam} [opts.imageParams] - Image镜像参数  optional
+      * @param {array} [opts.specialParams] - 特有参数列表  optional
+      * @param {taskAlcGeneralParam} [opts.alcGeneralParams] - ALC_GENERAL 任务参数（含 alcTaskId / alcTaskType / originalName / alcWorkspaceCode）  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean2 uranusResultBoolean2
+      */
+
+  uranusTaskDebugParamInfoUpdate (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskDebugParamInfoUpdate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskDebugParamInfoUpdate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.draftId !== undefined && opts.draftId !== null) {
+      postBody['draftId'] = opts.draftId
+    }
+    if (opts.inputParams !== undefined && opts.inputParams !== null) {
+      postBody['inputParams'] = opts.inputParams
+    }
+    if (opts.outputParams !== undefined && opts.outputParams !== null) {
+      postBody['outputParams'] = opts.outputParams
+    }
+    if (opts.runParams !== undefined && opts.runParams !== null) {
+      postBody['runParams'] = opts.runParams
+    }
+    if (opts.debugParams !== undefined && opts.debugParams !== null) {
+      postBody['debugParams'] = opts.debugParams
+    }
+    if (opts.loopParams !== undefined && opts.loopParams !== null) {
+      postBody['loopParams'] = opts.loopParams
+    }
+    if (opts.sparkJarParams !== undefined && opts.sparkJarParams !== null) {
+      postBody['sparkJarParams'] = opts.sparkJarParams
+    }
+    if (opts.datasourceParams !== undefined && opts.datasourceParams !== null) {
+      postBody['datasourceParams'] = opts.datasourceParams
+    }
+    if (opts.pipeInfoRes !== undefined && opts.pipeInfoRes !== null) {
+      postBody['pipeInfoRes'] = opts.pipeInfoRes
+    }
+    if (opts.imageParams !== undefined && opts.imageParams !== null) {
+      postBody['imageParams'] = opts.imageParams
+    }
+    if (opts.specialParams !== undefined && opts.specialParams !== null) {
+      postBody['specialParams'] = opts.specialParams
+    }
+    if (opts.alcGeneralParams !== undefined && opts.alcGeneralParams !== null) {
+      postBody['alcGeneralParams'] = opts.alcGeneralParams
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskDebugParamInfoUpdate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskDebugParamInfoUpdate',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  解析脚本内容中的系统参数
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.taskDraftId] - 任务草稿id  optional
+      * @param {string} [opts.content] - 任务脚本内容  optional
+      * @param {string} [opts.currentTime] - 自定义的系统当前时间，例如&quot;2025-05-15 00:00&quot;  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultTaskParamInfoRes uranusResultTaskParamInfoRes
+      */
+
+  uranusTaskParseScriptContentSystemParam (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskParseScriptContentSystemParam"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskParseScriptContentSystemParam"
+      )
+    }
+
+    let postBody = {}
+    if (opts.taskDraftId !== undefined && opts.taskDraftId !== null) {
+      postBody['taskDraftId'] = opts.taskDraftId
+    }
+    if (opts.content !== undefined && opts.content !== null) {
+      postBody['content'] = opts.content
+    }
+    if (opts.currentTime !== undefined && opts.currentTime !== null) {
+      postBody['currentTime'] = opts.currentTime
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskParseScriptContentSystemParam with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskParseScriptContentSystemParam',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  调试任务, 返回debugId
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.taskDraftId] - 任务的草稿id  optional
+      * @param {string} [opts.pin] - 操作用户  optional
+      * @param {boolean} [opts.selected] - 是否执行选中， true：执行选中，false：全部执行  optional
+      * @param {string} [opts.selectedContent] - 选中的脚本内容，selected&#x3D;&#x3D;true时需要赋值  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultInteger uranusResultInteger
+      */
+
+  uranusTaskDebug (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskDebug"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskDebug"
+      )
+    }
+
+    let postBody = {}
+    if (opts.taskDraftId !== undefined && opts.taskDraftId !== null) {
+      postBody['taskDraftId'] = opts.taskDraftId
+    }
+    if (opts.pin !== undefined && opts.pin !== null) {
+      postBody['pin'] = opts.pin
+    }
+    if (opts.selected !== undefined && opts.selected !== null) {
+      postBody['selected'] = opts.selected
+    }
+    if (opts.selectedContent !== undefined && opts.selectedContent !== null) {
+      postBody['selectedContent'] = opts.selectedContent
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskDebug with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskDebug',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  终止任务
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} opts.debugId - 任务的调试id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean2 uranusResultBoolean2
+      */
+
+  uranusTaskKill (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskKill"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskKill"
+      )
+    }
+    if (opts.debugId === undefined || opts.debugId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.debugId' when calling uranusTaskKill"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.debugId !== undefined && opts.debugId !== null) {
+      queryParams['debugId'] = opts.debugId
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskKill with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskKill',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取调试结果列表，返回结果文件列表
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} opts.debugId - 任务的调试id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultListString2 uranusResultListString2
+      */
+
+  uranusTaskDebugResultList (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskDebugResultList"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskDebugResultList"
+      )
+    }
+    if (opts.debugId === undefined || opts.debugId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.debugId' when calling uranusTaskDebugResultList"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.debugId !== undefined && opts.debugId !== null) {
+      queryParams['debugId'] = opts.debugId
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskDebugResultList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskDebugResultList',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取调试结果内容
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.fileName] - 文件名称 taskId_${结果集数字}  第一个结果就是：1_1,第二个结果集就是：1_2  optional
+      * @param {integer} [opts.pos] - 文件偏移量  optional
+      * @param {integer} [opts.lines] - 读取结果条数  optional
+      * @param {integer} [opts.debugId] - 任务的调试id  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultObject uranusResultObject
+      */
+
+  uranusTaskDebugResultContent (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskDebugResultContent"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskDebugResultContent"
+      )
+    }
+
+    let postBody = {}
+    if (opts.fileName !== undefined && opts.fileName !== null) {
+      postBody['fileName'] = opts.fileName
+    }
+    if (opts.pos !== undefined && opts.pos !== null) {
+      postBody['pos'] = opts.pos
+    }
+    if (opts.lines !== undefined && opts.lines !== null) {
+      postBody['lines'] = opts.lines
+    }
+    if (opts.debugId !== undefined && opts.debugId !== null) {
+      postBody['debugId'] = opts.debugId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskDebugResultContent with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskDebugResultContent',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取调试运行日志
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} opts.debugId - 任务的调试id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultString2 uranusResultString2
+      */
+
+  uranusTaskDebugLog (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskDebugLog"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskDebugLog"
+      )
+    }
+    if (opts.debugId === undefined || opts.debugId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.debugId' when calling uranusTaskDebugLog"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.debugId !== undefined && opts.debugId !== null) {
+      queryParams['debugId'] = opts.debugId
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskDebugLog with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskDebugLog',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取调试历史信息列表
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.taskDraftId] - 任务的草稿id  optional
+      * @param {integer} [opts.pageSize] - 分页的每页的记录数  optional
+      * @param {integer} [opts.pageNum] - 第几页  optional
+      * @param {string} [opts.startTimeFrom] - 开始时间起点  optional
+      * @param {string} [opts.startTimeEnd] - 开始时间终点  optional
+      * @param {string} [opts.endTimeFrom] - 结束时间起点  optional
+      * @param {string} [opts.endTimeEnd] - 结束时间终点  optional
+      * @param {array} [opts.statuses] - 任务的状态列表, CANCELLING 终止、WAITING_EXEC 等待执行、RUNNING 执行中、SUCCESS 执行成功、FAILURE 执行失败、CANCELLED 终止执行、TIMEOUT 执行超时  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultListDebugHistoryPage uranusResultListDebugHistoryPage
+      */
+
+  uranusTaskDebugHistoryList (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskDebugHistoryList"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskDebugHistoryList"
+      )
+    }
+
+    let postBody = {}
+    if (opts.taskDraftId !== undefined && opts.taskDraftId !== null) {
+      postBody['taskDraftId'] = opts.taskDraftId
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+    if (opts.pageNum !== undefined && opts.pageNum !== null) {
+      postBody['pageNum'] = opts.pageNum
+    }
+    if (opts.startTimeFrom !== undefined && opts.startTimeFrom !== null) {
+      postBody['startTimeFrom'] = opts.startTimeFrom
+    }
+    if (opts.startTimeEnd !== undefined && opts.startTimeEnd !== null) {
+      postBody['startTimeEnd'] = opts.startTimeEnd
+    }
+    if (opts.endTimeFrom !== undefined && opts.endTimeFrom !== null) {
+      postBody['endTimeFrom'] = opts.endTimeFrom
+    }
+    if (opts.endTimeEnd !== undefined && opts.endTimeEnd !== null) {
+      postBody['endTimeEnd'] = opts.endTimeEnd
+    }
+    if (opts.statuses !== undefined && opts.statuses !== null) {
+      postBody['statuses'] = opts.statuses
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskDebugHistoryList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskDebugHistoryList',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取调试运行详情
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} opts.debugId - 任务的调试id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultTaskDebugDetail uranusResultTaskDebugDetail
+      */
+
+  uranusTaskDebugDetail (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskDebugDetail"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskDebugDetail"
+      )
+    }
+    if (opts.debugId === undefined || opts.debugId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.debugId' when calling uranusTaskDebugDetail"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.debugId !== undefined && opts.debugId !== null) {
+      queryParams['debugId'] = opts.debugId
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskDebugDetail with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskDebugDetail',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  JCW SQL语法检测
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.taskDraftId - 任务的草稿id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultListString2 uranusResultListString2
+      */
+
+  uranusTaskDebugSyntaxCheck (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskDebugSyntaxCheck"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskDebugSyntaxCheck"
+      )
+    }
+    if (opts.taskDraftId === undefined || opts.taskDraftId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.taskDraftId' when calling uranusTaskDebugSyntaxCheck"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.taskDraftId !== undefined && opts.taskDraftId !== null) {
+      queryParams['taskDraftId'] = opts.taskDraftId
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskDebugSyntaxCheck with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskDebugSyntaxCheck',
       'GET',
       pathParams,
       queryParams,
@@ -29514,7 +48019,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -29652,7 +48157,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -29780,7 +48285,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -29896,7 +48401,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -30021,7 +48526,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -30142,7 +48647,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -30262,7 +48767,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -30382,7 +48887,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -30455,6 +48960,150 @@ class SHENHAIPLATFORM extends Service {
   }
 
   /**
+      *  任务脚本内容全文检索
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.keyword] - 全文查询关键字，多个关键词可以空格分开  optional
+      * @param {array} [opts.taskType] - 任务类型，JCW_SQL：云原生存算引擎SQL任务，PYTHON：python脚本任务，SHELL：Linux shell脚本任务，STARROCKS：StarRocks SQL任务，MYSQL：MySQL SQL任务，LOOP：通用循环任务，AI_LAKE：AI数据湖计算任务，JOY_BUILDER：JoyBuilder计算任务  optional
+      * @param {string} [opts.manager] - 任务负责人  optional
+      * @param {string} [opts.updateTimeFrom] - 任务更新时间检索范围的开始时间  optional
+      * @param {string} [opts.updateTimeTo] - 任务更新时间检索范围的结束时间  optional
+      * @param {string} [opts.sortType] - 查询结果的排序方式，相关度打分排序：SCORE，脚本更新时间：UPDATE_TIME  optional
+      * @param {integer} [opts.pageNum] - 页号  optional
+      * @param {integer} [opts.pageSize] - 页面容量  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultPageTaskFullTextQueryRes uranusResultPageTaskFullTextQueryRes
+      */
+
+  uranusTaskFullTextQuery (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskFullTextQuery"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskFullTextQuery"
+      )
+    }
+
+    let postBody = {}
+    if (opts.keyword !== undefined && opts.keyword !== null) {
+      postBody['keyword'] = opts.keyword
+    }
+    if (opts.taskType !== undefined && opts.taskType !== null) {
+      postBody['taskType'] = opts.taskType
+    }
+    if (opts.manager !== undefined && opts.manager !== null) {
+      postBody['manager'] = opts.manager
+    }
+    if (opts.updateTimeFrom !== undefined && opts.updateTimeFrom !== null) {
+      postBody['updateTimeFrom'] = opts.updateTimeFrom
+    }
+    if (opts.updateTimeTo !== undefined && opts.updateTimeTo !== null) {
+      postBody['updateTimeTo'] = opts.updateTimeTo
+    }
+    if (opts.sortType !== undefined && opts.sortType !== null) {
+      postBody['sortType'] = opts.sortType
+    }
+    if (opts.pageNum !== undefined && opts.pageNum !== null) {
+      postBody['pageNum'] = opts.pageNum
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskFullTextQuery with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskFullTextQuery',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  获取taskCode
       * @param {Object} opts - parameters
       * @param {string} opts.appName - 应用名称
@@ -30494,7 +49143,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -30606,7 +49255,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -30738,7 +49387,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -30854,7 +49503,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -30988,7 +49637,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -31116,7 +49765,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -31254,7 +49903,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -31382,7 +50031,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -31510,7 +50159,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -31630,7 +50279,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -31750,7 +50399,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -31879,7 +50528,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -32003,7 +50652,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -32123,7 +50772,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -32234,7 +50883,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -32366,7 +51015,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -32486,7 +51135,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -32597,7 +51246,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -32727,7 +51376,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -32852,7 +51501,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -32977,7 +51626,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -33097,7 +51746,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -33261,7 +51910,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -33453,7 +52102,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -33666,7 +52315,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -33854,7 +52503,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -33988,7 +52637,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -34108,7 +52757,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -34219,7 +52868,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -34339,7 +52988,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -34468,7 +53117,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -34588,7 +53237,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -34708,7 +53357,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -34752,6 +53401,4701 @@ class SHENHAIPLATFORM extends Service {
 
     let request = super.makeRequest(
       '/regions/{regionId}/apps/{appName}/uranusTaskDetail',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  任务名称是否已经存在
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.taskName - 要创建的任务/工作流名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean2 uranusResultBoolean2
+      */
+
+  uranusTaskNameExisted (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskNameExisted"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskNameExisted"
+      )
+    }
+    if (opts.taskName === undefined || opts.taskName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.taskName' when calling uranusTaskNameExisted"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.taskName !== undefined && opts.taskName !== null) {
+      queryParams['taskName'] = opts.taskName
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskNameExisted with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskNameExisted',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询可以创建的任务类型
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultListTaskNodeTypeVo uranusResultListTaskNodeTypeVo
+      */
+
+  uranusTaskTypeList (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskTypeList"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskTypeList"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskTypeList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskTypeList',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建工作流节点
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.companyCode] - 租户code  optional
+      * @param {string} [opts.workspaceCode] - 工作空间code  optional
+      * @param {string} [opts.pin] - 操作用户  optional
+      * @param {string} [opts.catalogId] - 工作流所属业务目录  optional
+      * @param {string} [opts.flowName] - 工作流名称  optional
+      * @param {string} [opts.owner] - 工作流负责人  optional
+      * @param {array} [opts.collaborators] - 工作流协作人  optional
+      * @param {string} [opts.desc] - 工作流描述信息  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultString2 uranusResultString2
+      */
+
+  uranusFlowNodeCreate (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusFlowNodeCreate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusFlowNodeCreate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.companyCode !== undefined && opts.companyCode !== null) {
+      postBody['companyCode'] = opts.companyCode
+    }
+    if (opts.workspaceCode !== undefined && opts.workspaceCode !== null) {
+      postBody['workspaceCode'] = opts.workspaceCode
+    }
+    if (opts.pin !== undefined && opts.pin !== null) {
+      postBody['pin'] = opts.pin
+    }
+    if (opts.catalogId !== undefined && opts.catalogId !== null) {
+      postBody['catalogId'] = opts.catalogId
+    }
+    if (opts.flowName !== undefined && opts.flowName !== null) {
+      postBody['flowName'] = opts.flowName
+    }
+    if (opts.owner !== undefined && opts.owner !== null) {
+      postBody['owner'] = opts.owner
+    }
+    if (opts.collaborators !== undefined && opts.collaborators !== null) {
+      postBody['collaborators'] = opts.collaborators
+    }
+    if (opts.desc !== undefined && opts.desc !== null) {
+      postBody['desc'] = opts.desc
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusFlowNodeCreate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusFlowNodeCreate',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建任务节点
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.catalogId] - 创建任务/工作流的业务目录id  optional
+      * @param {string} [opts.flowId] - 为空时为TaskKind&#x3D;TASK的任务，或工作流任务  optional
+      * @param {string} [opts.taskName] - 任务/工作流名称  optional
+      * @param {string} [opts.taskType] - 任务类型, JCW_SQL jcw引擎的SQL任务、PYTHON python任务、SHELL Linux脚本任务、SPARK_JAR sparkJar任务、STAR_ROCKS starrocks任务、MYSQL mysql任务、LOOP 循环节点任务、PIPE 数据集成任务  optional
+      * @param {string} [opts.owner] - 任务负责人  optional
+      * @param {array} [opts.collaborators] - 任务协作人  optional
+      * @param {string} [opts.desc] - 任务描述  optional
+      * @param {string} [opts.companyCode] - 租户code  optional
+      * @param {string} [opts.workspaceCode] - 工作空间code  optional
+      * @param {string} [opts.pin] - 操作用户  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultString2 uranusResultString2
+      */
+
+  uranusTaskNodeCreate (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskNodeCreate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskNodeCreate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.catalogId !== undefined && opts.catalogId !== null) {
+      postBody['catalogId'] = opts.catalogId
+    }
+    if (opts.flowId !== undefined && opts.flowId !== null) {
+      postBody['flowId'] = opts.flowId
+    }
+    if (opts.taskName !== undefined && opts.taskName !== null) {
+      postBody['taskName'] = opts.taskName
+    }
+    if (opts.taskType !== undefined && opts.taskType !== null) {
+      postBody['taskType'] = opts.taskType
+    }
+    if (opts.owner !== undefined && opts.owner !== null) {
+      postBody['owner'] = opts.owner
+    }
+    if (opts.collaborators !== undefined && opts.collaborators !== null) {
+      postBody['collaborators'] = opts.collaborators
+    }
+    if (opts.desc !== undefined && opts.desc !== null) {
+      postBody['desc'] = opts.desc
+    }
+    if (opts.companyCode !== undefined && opts.companyCode !== null) {
+      postBody['companyCode'] = opts.companyCode
+    }
+    if (opts.workspaceCode !== undefined && opts.workspaceCode !== null) {
+      postBody['workspaceCode'] = opts.workspaceCode
+    }
+    if (opts.pin !== undefined && opts.pin !== null) {
+      postBody['pin'] = opts.pin
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskNodeCreate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskNodeCreate',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  从外部aifactory批量导入ALC_GENERAL任务，Uranus仅持久化alcTaskId / alcTaskType / originalName / alcWorkspaceCode，完整配置由aifactory持有
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {array} [opts.items] - 待导入ALC_GENERAL任务列表  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultListAlcGeneralTaskImportItemRes uranusResultListAlcGeneralTaskImportItemRes
+      */
+
+  uranusTaskNodeBatchImport (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskNodeBatchImport"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskNodeBatchImport"
+      )
+    }
+
+    let postBody = {}
+    if (opts.items !== undefined && opts.items !== null) {
+      postBody['items'] = opts.items
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskNodeBatchImport with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskNodeBatchImport',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除任务节点
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.companyCode] - 租户code  optional
+      * @param {string} [opts.workspaceCode] - 工作空间code  optional
+      * @param {string} [opts.pin] - 操作用户  optional
+      * @param {string} [opts.taskDraftId] - 任务的草稿id  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean2 uranusResultBoolean2
+      */
+
+  uranusTaskOrFlowNodeDelete (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskOrFlowNodeDelete"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskOrFlowNodeDelete"
+      )
+    }
+
+    let postBody = {}
+    if (opts.companyCode !== undefined && opts.companyCode !== null) {
+      postBody['companyCode'] = opts.companyCode
+    }
+    if (opts.workspaceCode !== undefined && opts.workspaceCode !== null) {
+      postBody['workspaceCode'] = opts.workspaceCode
+    }
+    if (opts.pin !== undefined && opts.pin !== null) {
+      postBody['pin'] = opts.pin
+    }
+    if (opts.taskDraftId !== undefined && opts.taskDraftId !== null) {
+      postBody['taskDraftId'] = opts.taskDraftId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskOrFlowNodeDelete with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskOrFlowNodeDelete',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  抢任务节点锁
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.taskDraftId - 任务/工作流草稿id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultTaskInfoRes uranusResultTaskInfoRes
+      */
+
+  uranusTaskNodeSnatchLock (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskNodeSnatchLock"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskNodeSnatchLock"
+      )
+    }
+    if (opts.taskDraftId === undefined || opts.taskDraftId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.taskDraftId' when calling uranusTaskNodeSnatchLock"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.taskDraftId !== undefined && opts.taskDraftId !== null) {
+      queryParams['taskDraftId'] = opts.taskDraftId
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskNodeSnatchLock with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskNodeSnatchLock',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  列出工作流下的所有任务节点
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.flowDraftId - 工作流草稿id
+      * @param {string} opts.purpose - 列出节点画布信息的目的，VIEW-展示、OFFLINE-下线
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultListTaskCanvasInfoRes uranusResultListTaskCanvasInfoRes
+      */
+
+  uranusFlowListNode (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusFlowListNode"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusFlowListNode"
+      )
+    }
+    if (opts.flowDraftId === undefined || opts.flowDraftId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.flowDraftId' when calling uranusFlowListNode"
+      )
+    }
+    if (opts.purpose === undefined || opts.purpose === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.purpose' when calling uranusFlowListNode"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.flowDraftId !== undefined && opts.flowDraftId !== null) {
+      queryParams['flowDraftId'] = opts.flowDraftId
+    }
+    if (opts.purpose !== undefined && opts.purpose !== null) {
+      queryParams['purpose'] = opts.purpose
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusFlowListNode with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusFlowListNode',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询工作流下的任务节点
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.flowDraftId] - 工作流草稿id  optional
+      * @param {integer} [opts.pageSize] - 分页的每页的记录数  optional
+      * @param {integer} [opts.pageNum] - 第几页  optional
+      * @param {string} [opts.createTimeFrom] - 任务创建时间起点  optional
+      * @param {string} [opts.createTimeEnd] - 任务创建时间终点  optional
+      * @param {string} [opts.updateTimeFrom] - 任务更新时间起点  optional
+      * @param {string} [opts.updateTimeEnd] - 任务更新时间终点  optional
+      * @param {string} [opts.manager] - 任务负责人  optional
+      * @param {string} [opts.taskName] - 任务名称  optional
+      * @param {array} [opts.taskType] - 任务类型, JCW_SQL jcw引擎的SQL任务、PYTHON python任务、SHELL Linux脚本任务、SPARK_JAR sparkJar任务、STAR_ROCKS starrocks任务、MYSQL mysql任务、LOOP 循环节点任务、PIPE 数据集成任务  optional
+      * @param {string} [opts.taskClassify] - 任务的种类, INTEGRATION 数据集成、JCW jcw引擎、DATA_SOURCE 数据源类型、COMMON 通用类型  optional
+      * @param {string} [opts.taskStatus] - 任务的提交到运维中心的状态, UNPUBLISH 未提交、PUBLISHED 已提交、UPDATE_UNPUBLISH 更新未提交  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultPageTaskCanvasInfoRes uranusResultPageTaskCanvasInfoRes
+      */
+
+  uranusFlowSearchNode (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusFlowSearchNode"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusFlowSearchNode"
+      )
+    }
+
+    let postBody = {}
+    if (opts.flowDraftId !== undefined && opts.flowDraftId !== null) {
+      postBody['flowDraftId'] = opts.flowDraftId
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+    if (opts.pageNum !== undefined && opts.pageNum !== null) {
+      postBody['pageNum'] = opts.pageNum
+    }
+    if (opts.createTimeFrom !== undefined && opts.createTimeFrom !== null) {
+      postBody['createTimeFrom'] = opts.createTimeFrom
+    }
+    if (opts.createTimeEnd !== undefined && opts.createTimeEnd !== null) {
+      postBody['createTimeEnd'] = opts.createTimeEnd
+    }
+    if (opts.updateTimeFrom !== undefined && opts.updateTimeFrom !== null) {
+      postBody['updateTimeFrom'] = opts.updateTimeFrom
+    }
+    if (opts.updateTimeEnd !== undefined && opts.updateTimeEnd !== null) {
+      postBody['updateTimeEnd'] = opts.updateTimeEnd
+    }
+    if (opts.manager !== undefined && opts.manager !== null) {
+      postBody['manager'] = opts.manager
+    }
+    if (opts.taskName !== undefined && opts.taskName !== null) {
+      postBody['taskName'] = opts.taskName
+    }
+    if (opts.taskType !== undefined && opts.taskType !== null) {
+      postBody['taskType'] = opts.taskType
+    }
+    if (opts.taskClassify !== undefined && opts.taskClassify !== null) {
+      postBody['taskClassify'] = opts.taskClassify
+    }
+    if (opts.taskStatus !== undefined && opts.taskStatus !== null) {
+      postBody['taskStatus'] = opts.taskStatus
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusFlowSearchNode with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusFlowSearchNode',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新所有节点的画布信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.flowDraftId] - 工作流草稿Id  optional
+      * @param {array} [opts.taskNodes] - 工作流的所有节点画布信息  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean2 uranusResultBoolean2
+      */
+
+  uranusFlowUpdateAllCanvas (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusFlowUpdateAllCanvas"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusFlowUpdateAllCanvas"
+      )
+    }
+
+    let postBody = {}
+    if (opts.flowDraftId !== undefined && opts.flowDraftId !== null) {
+      postBody['flowDraftId'] = opts.flowDraftId
+    }
+    if (opts.taskNodes !== undefined && opts.taskNodes !== null) {
+      postBody['taskNodes'] = opts.taskNodes
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusFlowUpdateAllCanvas with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusFlowUpdateAllCanvas',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  批量预发布节点请求正确的发布顺序
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.flowDraftId] - 工作流草稿id  optional
+      * @param {array} [opts.taskDraftIds] - 该工作流内部任务的草稿id  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultListString2 uranusResultListString2
+      */
+
+  uranusFlowPrepublishNodesSort (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusFlowPrepublishNodesSort"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusFlowPrepublishNodesSort"
+      )
+    }
+
+    let postBody = {}
+    if (opts.flowDraftId !== undefined && opts.flowDraftId !== null) {
+      postBody['flowDraftId'] = opts.flowDraftId
+    }
+    if (opts.taskDraftIds !== undefined && opts.taskDraftIds !== null) {
+      postBody['taskDraftIds'] = opts.taskDraftIds
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusFlowPrepublishNodesSort with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusFlowPrepublishNodesSort',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取任务节点锁的状态
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.taskDraftId - 任务草稿id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultTaskLockStatus uranusResultTaskLockStatus
+      */
+
+  uranusTaskNodeLockStatus (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskNodeLockStatus"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskNodeLockStatus"
+      )
+    }
+    if (opts.taskDraftId === undefined || opts.taskDraftId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.taskDraftId' when calling uranusTaskNodeLockStatus"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.taskDraftId !== undefined && opts.taskDraftId !== null) {
+      queryParams['taskDraftId'] = opts.taskDraftId
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskNodeLockStatus with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskNodeLockStatus',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  列出工作流下某版本的所有历史任务节点
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} opts.flowHistoryId - 工作流历史版本id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultListTaskCanvasInfoRes uranusResultListTaskCanvasInfoRes
+      */
+
+  uranusFlowListHistoryNode (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusFlowListHistoryNode"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusFlowListHistoryNode"
+      )
+    }
+    if (opts.flowHistoryId === undefined || opts.flowHistoryId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.flowHistoryId' when calling uranusFlowListHistoryNode"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.flowHistoryId !== undefined && opts.flowHistoryId !== null) {
+      queryParams['flowHistoryId'] = opts.flowHistoryId
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusFlowListHistoryNode with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusFlowListHistoryNode',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建一个新的外部任务，支持多种任务类型
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.catalogId] - 目录ID，用于分类和管理任务。创建工作流内部节点时可空（由父工作流派生）  optional
+      * @param {string} [opts.flowId] - 所属工作流草稿ID（flw_ 前缀）。为空时创建独立任务（TaskKind&#x3D;TASK）；非空时创建工作流内部任务（TaskKind&#x3D;INTERNAL_TASK）  optional
+      * @param {string} [opts.taskName] - 任务名称  optional
+      * @param {string} [opts.taskType] - 任务类型，定义任务的性质和处理方式，只支持 STARROCKS、PYTHON 两种类型的任务  optional
+      * @param {string} [opts.desc] - 任务描述信息  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultTaskCreatePublicRes uranusResultTaskCreatePublicRes
+      */
+
+  uranusTaskPublicCreate (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskPublicCreate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskPublicCreate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.catalogId !== undefined && opts.catalogId !== null) {
+      postBody['catalogId'] = opts.catalogId
+    }
+    if (opts.flowId !== undefined && opts.flowId !== null) {
+      postBody['flowId'] = opts.flowId
+    }
+    if (opts.taskName !== undefined && opts.taskName !== null) {
+      postBody['taskName'] = opts.taskName
+    }
+    if (opts.taskType !== undefined && opts.taskType !== null) {
+      postBody['taskType'] = opts.taskType
+    }
+    if (opts.desc !== undefined && opts.desc !== null) {
+      postBody['desc'] = opts.desc
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskPublicCreate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskPublicCreate',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新任务的数据源配置信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.taskDraftId] - 任务的草稿ID  optional
+      * @param {string} [opts.datasourceId] - 数据源ID  optional
+      * @param {string} [opts.datasourceName] - 数据源名称  optional
+      * @param {string} [opts.datasourceType] - 数据源类型  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean uranusResultBoolean
+      */
+
+  uranusTaskPublicUpdateDatasource (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskPublicUpdateDatasource"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskPublicUpdateDatasource"
+      )
+    }
+
+    let postBody = {}
+    if (opts.taskDraftId !== undefined && opts.taskDraftId !== null) {
+      postBody['taskDraftId'] = opts.taskDraftId
+    }
+    if (opts.datasourceId !== undefined && opts.datasourceId !== null) {
+      postBody['datasourceId'] = opts.datasourceId
+    }
+    if (opts.datasourceName !== undefined && opts.datasourceName !== null) {
+      postBody['datasourceName'] = opts.datasourceName
+    }
+    if (opts.datasourceType !== undefined && opts.datasourceType !== null) {
+      postBody['datasourceType'] = opts.datasourceType
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskPublicUpdateDatasource with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskPublicUpdateDatasource',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新任务的脚本文件内容
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.draftId] - 草稿ID，用于标识该任务脚本信息所属的草稿  optional
+      * @param {string} [opts.content] - 任务脚本的内容  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean uranusResultBoolean
+      */
+
+  uranusTaskPublicUpdateScript (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskPublicUpdateScript"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskPublicUpdateScript"
+      )
+    }
+
+    let postBody = {}
+    if (opts.draftId !== undefined && opts.draftId !== null) {
+      postBody['draftId'] = opts.draftId
+    }
+    if (opts.content !== undefined && opts.content !== null) {
+      postBody['content'] = opts.content
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskPublicUpdateScript with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskPublicUpdateScript',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  启动任务调试，返回调试ID
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.taskDraftId] - 任务草稿ID，用于标识要调试的任务草稿  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultTaskDebugPublicRes uranusResultTaskDebugPublicRes
+      */
+
+  uranusTaskPublicDebug (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskPublicDebug"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskPublicDebug"
+      )
+    }
+
+    let postBody = {}
+    if (opts.taskDraftId !== undefined && opts.taskDraftId !== null) {
+      postBody['taskDraftId'] = opts.taskDraftId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskPublicDebug with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskPublicDebug',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  根据调试ID查询任务的执行日志
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} opts.debugId - 调试ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultTaskDebugLogPublicRes uranusResultTaskDebugLogPublicRes
+      */
+
+  uranusTaskPublicDebugLog (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskPublicDebugLog"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskPublicDebugLog"
+      )
+    }
+    if (opts.debugId === undefined || opts.debugId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.debugId' when calling uranusTaskPublicDebugLog"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.debugId !== undefined && opts.debugId !== null) {
+      queryParams['debugId'] = opts.debugId
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskPublicDebugLog with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskPublicDebugLog',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  根据调试ID查询任务的执行结果
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} opts.debugId - 调试ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultTaskDebugResultPublicRes uranusResultTaskDebugResultPublicRes
+      */
+
+  uranusTaskPublicDebugResult (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskPublicDebugResult"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskPublicDebugResult"
+      )
+    }
+    if (opts.debugId === undefined || opts.debugId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.debugId' when calling uranusTaskPublicDebugResult"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.debugId !== undefined && opts.debugId !== null) {
+      queryParams['debugId'] = opts.debugId
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskPublicDebugResult with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskPublicDebugResult',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  配置任务的基本信息，包括名称、描述、负责人等
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.taskDraftId] - 任务草稿ID  optional
+      * @param {string} [opts.taskId] - 任务ID  optional
+      * @param {string} [opts.taskName] - 任务名称  optional
+      * @param {string} [opts.taskKind] - 任务种类  optional
+      * @param {string} [opts.taskType] - 任务类型  optional
+      * @param {string} [opts.taskClassify] - 任务分类  optional
+      * @param {string} [opts.taskStatus] - 任务状态  optional
+      * @param {string} [opts.manager] - 负责人  optional
+      * @param {array} [opts.collaborators] - 协作人列表  optional
+      * @param {string} [opts.desc] - 任务描述  optional
+      * @param {integer} [opts.version] - 版本号  optional
+      * @param {string} [opts.catalogId] - 目录ID  optional
+      * @param {string} [opts.catalogName] - 目录名称  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean uranusResultBoolean
+      */
+
+  uranusTaskPublicConfigBaseInfo (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskPublicConfigBaseInfo"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskPublicConfigBaseInfo"
+      )
+    }
+
+    let postBody = {}
+    if (opts.taskDraftId !== undefined && opts.taskDraftId !== null) {
+      postBody['taskDraftId'] = opts.taskDraftId
+    }
+    if (opts.taskId !== undefined && opts.taskId !== null) {
+      postBody['taskId'] = opts.taskId
+    }
+    if (opts.taskName !== undefined && opts.taskName !== null) {
+      postBody['taskName'] = opts.taskName
+    }
+    if (opts.taskKind !== undefined && opts.taskKind !== null) {
+      postBody['taskKind'] = opts.taskKind
+    }
+    if (opts.taskType !== undefined && opts.taskType !== null) {
+      postBody['taskType'] = opts.taskType
+    }
+    if (opts.taskClassify !== undefined && opts.taskClassify !== null) {
+      postBody['taskClassify'] = opts.taskClassify
+    }
+    if (opts.taskStatus !== undefined && opts.taskStatus !== null) {
+      postBody['taskStatus'] = opts.taskStatus
+    }
+    if (opts.manager !== undefined && opts.manager !== null) {
+      postBody['manager'] = opts.manager
+    }
+    if (opts.collaborators !== undefined && opts.collaborators !== null) {
+      postBody['collaborators'] = opts.collaborators
+    }
+    if (opts.desc !== undefined && opts.desc !== null) {
+      postBody['desc'] = opts.desc
+    }
+    if (opts.version !== undefined && opts.version !== null) {
+      postBody['version'] = opts.version
+    }
+    if (opts.catalogId !== undefined && opts.catalogId !== null) {
+      postBody['catalogId'] = opts.catalogId
+    }
+    if (opts.catalogName !== undefined && opts.catalogName !== null) {
+      postBody['catalogName'] = opts.catalogName
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskPublicConfigBaseInfo with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskPublicConfigBaseInfo',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  配置任务的调度策略，包括调度周期、优先级、重试次数等
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.taskDraftId] - 任务草稿ID  optional
+      * @param {string} [opts.cronExpression] - Cron表达式，定义任务调度时间，例如：00 09 00 * * ?  optional
+      * @param {string} [opts.priority] - 任务优先级：L4&lt;L3&lt;L2&lt;L1  optional
+      * @param {integer} [opts.timeout] - 任务执行超时时间（单位：分钟）  optional
+      * @param {integer} [opts.retryTimes] - 任务失败重试次数  optional
+      * @param {integer} [opts.retryInterval] - 任务重试间隔时间（单位：秒）  optional
+      * @param {boolean} [opts.isCrossCycleDepend] - 是否跨周期依赖类型  optional
+      * @param {integer} [opts.cu] - CU数量，表示任务调度时可用的计算单元数量  optional
+      * @param {integer} [opts.parallelism] - 并行度，表示任务调度时的并行执行数量  optional
+      * @param {string} [opts.resourceCode] - 资源组code，用于标识任务调度所在的资源组  optional
+      * @param {integer} [opts.imageId] - 用于标识任务调度所需的镜像, 适用于Python任务, 当配置为0时 更新为系统默认镜像  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean uranusResultBoolean
+      */
+
+  uranusTaskPublicConfigSchedule (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskPublicConfigSchedule"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskPublicConfigSchedule"
+      )
+    }
+
+    let postBody = {}
+    if (opts.taskDraftId !== undefined && opts.taskDraftId !== null) {
+      postBody['taskDraftId'] = opts.taskDraftId
+    }
+    if (opts.cronExpression !== undefined && opts.cronExpression !== null) {
+      postBody['cronExpression'] = opts.cronExpression
+    }
+    if (opts.priority !== undefined && opts.priority !== null) {
+      postBody['priority'] = opts.priority
+    }
+    if (opts.timeout !== undefined && opts.timeout !== null) {
+      postBody['timeout'] = opts.timeout
+    }
+    if (opts.retryTimes !== undefined && opts.retryTimes !== null) {
+      postBody['retryTimes'] = opts.retryTimes
+    }
+    if (opts.retryInterval !== undefined && opts.retryInterval !== null) {
+      postBody['retryInterval'] = opts.retryInterval
+    }
+    if (
+      opts.isCrossCycleDepend !== undefined &&
+      opts.isCrossCycleDepend !== null
+    ) {
+      postBody['isCrossCycleDepend'] = opts.isCrossCycleDepend
+    }
+    if (opts.cu !== undefined && opts.cu !== null) {
+      postBody['cu'] = opts.cu
+    }
+    if (opts.parallelism !== undefined && opts.parallelism !== null) {
+      postBody['parallelism'] = opts.parallelism
+    }
+    if (opts.resourceCode !== undefined && opts.resourceCode !== null) {
+      postBody['resourceCode'] = opts.resourceCode
+    }
+    if (opts.imageId !== undefined && opts.imageId !== null) {
+      postBody['imageId'] = opts.imageId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskPublicConfigSchedule with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskPublicConfigSchedule',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  配置任务的预警策略，包括预警方式、预警时机、接收人等
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.taskDraftId] - 任务草稿ID  optional
+      * @param {array} [opts.method] - 任务提醒方式列表，支持以下值：mail(邮件)、website(站内信)、phone(语音)、message(短信)、outWebsite(机器人)  optional
+      * @param {array} [opts.timing] - 任务提醒时间设置列表，支持以下值：finalFailed(最终失败)、everyFailed(每次失败)、success(成功完成)、startDelay(启动延迟)、finishDelay(结束延迟)  optional
+      * @param {array} [opts.receiver] - 接收者列表  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean uranusResultBoolean
+      */
+
+  uranusTaskPublicConfigAlarm (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskPublicConfigAlarm"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskPublicConfigAlarm"
+      )
+    }
+
+    let postBody = {}
+    if (opts.taskDraftId !== undefined && opts.taskDraftId !== null) {
+      postBody['taskDraftId'] = opts.taskDraftId
+    }
+    if (opts.method !== undefined && opts.method !== null) {
+      postBody['method'] = opts.method
+    }
+    if (opts.timing !== undefined && opts.timing !== null) {
+      postBody['timing'] = opts.timing
+    }
+    if (opts.receiver !== undefined && opts.receiver !== null) {
+      postBody['receiver'] = opts.receiver
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskPublicConfigAlarm with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskPublicConfigAlarm',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  列出当前任务可以依赖的其他任务列表
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.taskDraftId] - 当前任务的草稿ID  optional
+      * @param {string} [opts.taskNameFuzz] - 用于模糊检索任务名称的关键词  optional
+      * @param {string} [opts.dependTaskId] - 通过依赖任务taskId精确查询的任务ID  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultListTaskDependInfoPublicRes uranusResultListTaskDependInfoPublicRes
+      */
+
+  uranusTaskPublicListDependable (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskPublicListDependable"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskPublicListDependable"
+      )
+    }
+
+    let postBody = {}
+    if (opts.taskDraftId !== undefined && opts.taskDraftId !== null) {
+      postBody['taskDraftId'] = opts.taskDraftId
+    }
+    if (opts.taskNameFuzz !== undefined && opts.taskNameFuzz !== null) {
+      postBody['taskNameFuzz'] = opts.taskNameFuzz
+    }
+    if (opts.dependTaskId !== undefined && opts.dependTaskId !== null) {
+      postBody['dependTaskId'] = opts.dependTaskId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskPublicListDependable with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskPublicListDependable',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  全量更新任务的依赖信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.taskDraftId] - 任务草稿ID，用于标识当前任务的依赖信息请求  optional
+      * @param {array} [opts.dependsTaskDraftId] - 依赖的任务草稿ID列表，用于获取这些任务的最新依赖信息  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean uranusResultBoolean
+      */
+
+  uranusTaskPublicConfigDepend (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskPublicConfigDepend"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskPublicConfigDepend"
+      )
+    }
+
+    let postBody = {}
+    if (opts.taskDraftId !== undefined && opts.taskDraftId !== null) {
+      postBody['taskDraftId'] = opts.taskDraftId
+    }
+    if (
+      opts.dependsTaskDraftId !== undefined &&
+      opts.dependsTaskDraftId !== null
+    ) {
+      postBody['dependsTaskDraftId'] = opts.dependsTaskDraftId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskPublicConfigDepend with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskPublicConfigDepend',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  将任务提交到运维中心进行发布
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.taskDraftId] - 任务草稿ID  optional
+      * @param {string} [opts.reason] - 发布任务的原因说明，发布原因  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean uranusResultBoolean
+      */
+
+  uranusTaskPublicPublish (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskPublicPublish"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskPublicPublish"
+      )
+    }
+
+    let postBody = {}
+    if (opts.taskDraftId !== undefined && opts.taskDraftId !== null) {
+      postBody['taskDraftId'] = opts.taskDraftId
+    }
+    if (opts.reason !== undefined && opts.reason !== null) {
+      postBody['reason'] = opts.reason
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskPublicPublish with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskPublicPublish',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  列出当前工作区下的所有数据源信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultListDataSourceInfoPublicRes uranusResultListDataSourceInfoPublicRes
+      */
+
+  uranusTaskPublicListDatasources (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskPublicListDatasources"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskPublicListDatasources"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskPublicListDatasources with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskPublicListDatasources',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  列出所有镜像信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultListImageInfoPublicRes uranusResultListImageInfoPublicRes
+      */
+
+  uranusTaskPublicListImages (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskPublicListImages"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskPublicListImages"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskPublicListImages with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskPublicListImages',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  列出当前工作区下的所有资源组信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultListResourceInfoPublicRes uranusResultListResourceInfoPublicRes
+      */
+
+  uranusTaskPublicListResources (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskPublicListResources"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskPublicListResources"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskPublicListResources with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskPublicListResources',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取任务详情信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.taskDraftId - 任务草稿ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultTaskInfoPublicRes uranusResultTaskInfoPublicRes
+      */
+
+  uranusTaskPublicDetail (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskPublicDetail"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskPublicDetail"
+      )
+    }
+    if (opts.taskDraftId === undefined || opts.taskDraftId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.taskDraftId' when calling uranusTaskPublicDetail"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.taskDraftId !== undefined && opts.taskDraftId !== null) {
+      queryParams['taskDraftId'] = opts.taskDraftId
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskPublicDetail with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskPublicDetail',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  配置任务启动相关参数，现在只支持Python任务配置该参数
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.taskDraftId] - 任务草稿ID  optional
+      * @param {array} [opts.startCmdParam] - 启动命令参数列表  optional
+      * @param {array} [opts.envParam] - 环境变量参数列表  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean uranusResultBoolean
+      */
+
+  uranusTaskPublicConfigStartParams (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskPublicConfigStartParams"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskPublicConfigStartParams"
+      )
+    }
+
+    let postBody = {}
+    if (opts.taskDraftId !== undefined && opts.taskDraftId !== null) {
+      postBody['taskDraftId'] = opts.taskDraftId
+    }
+    if (opts.startCmdParam !== undefined && opts.startCmdParam !== null) {
+      postBody['startCmdParam'] = opts.startCmdParam
+    }
+    if (opts.envParam !== undefined && opts.envParam !== null) {
+      postBody['envParam'] = opts.envParam
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskPublicConfigStartParams with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskPublicConfigStartParams',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  抢任务节点锁，同一用户重复抢锁为幂等成功
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.taskDraftId - 任务草稿ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultTaskInfoRes uranusResultTaskInfoRes
+      */
+
+  uranusTaskPublicSnatchLock (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskPublicSnatchLock"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskPublicSnatchLock"
+      )
+    }
+    if (opts.taskDraftId === undefined || opts.taskDraftId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.taskDraftId' when calling uranusTaskPublicSnatchLock"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.taskDraftId !== undefined && opts.taskDraftId !== null) {
+      queryParams['taskDraftId'] = opts.taskDraftId
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskPublicSnatchLock with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskPublicSnatchLock',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建一个新的工作流节点
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.catalogId] - 所属目录ID（biz_ 前缀），必填  optional
+      * @param {string} [opts.flowName] - 工作流名称，必填  optional
+      * @param {string} [opts.desc] - 工作流描述  optional
+      * @param {array} [opts.collaborators] - 协作人列表  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultFlowCreatePublicRes uranusResultFlowCreatePublicRes
+      */
+
+  uranusTaskPublicCreateFlow (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskPublicCreateFlow"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskPublicCreateFlow"
+      )
+    }
+
+    let postBody = {}
+    if (opts.catalogId !== undefined && opts.catalogId !== null) {
+      postBody['catalogId'] = opts.catalogId
+    }
+    if (opts.flowName !== undefined && opts.flowName !== null) {
+      postBody['flowName'] = opts.flowName
+    }
+    if (opts.desc !== undefined && opts.desc !== null) {
+      postBody['desc'] = opts.desc
+    }
+    if (opts.collaborators !== undefined && opts.collaborators !== null) {
+      postBody['collaborators'] = opts.collaborators
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskPublicCreateFlow with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskPublicCreateFlow',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  分页列出当前工作空间下的所有任务（含工作流内外部任务）与工作流的简要信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} [opts.pageNum] - 页码，从 1 开始  optional
+      * @param {integer} [opts.pageSize] - 每页大小，最大 200  optional
+      * @param {string} [opts.taskNameFuzz] - 任务名模糊匹配关键词，为空时列出全部  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultPageResultContentTaskListItemPublicRes uranusResultPageResultContentTaskListItemPublicRes
+      */
+
+  uranusTaskPublicPageList (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskPublicPageList"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskPublicPageList"
+      )
+    }
+
+    let postBody = {}
+    if (opts.pageNum !== undefined && opts.pageNum !== null) {
+      postBody['pageNum'] = opts.pageNum
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
+    if (opts.taskNameFuzz !== undefined && opts.taskNameFuzz !== null) {
+      postBody['taskNameFuzz'] = opts.taskNameFuzz
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskPublicPageList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskPublicPageList',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  按全路径判断业务目录是否存在，例如 /dir1/dir2/dir3
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.absolutePath - 目录绝对路径，例如 /dir1/dir2/dir3
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean uranusResultBoolean
+      */
+
+  uranusTaskPublicCatalogExistedByPath (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskPublicCatalogExistedByPath"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskPublicCatalogExistedByPath"
+      )
+    }
+    if (opts.absolutePath === undefined || opts.absolutePath === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.absolutePath' when calling uranusTaskPublicCatalogExistedByPath"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.absolutePath !== undefined && opts.absolutePath !== null) {
+      queryParams['absolutePath'] = opts.absolutePath
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskPublicCatalogExistedByPath with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskPublicCatalogExistedByPath',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  全量更新任务的输入参数列表
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.taskDraftId] - 任务草稿ID  optional
+      * @param {array} [opts.inputParams] - 输入参数列表（全量替换）  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean uranusResultBoolean
+      */
+
+  uranusTaskPublicUpdateInputParam (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskPublicUpdateInputParam"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskPublicUpdateInputParam"
+      )
+    }
+
+    let postBody = {}
+    if (opts.taskDraftId !== undefined && opts.taskDraftId !== null) {
+      postBody['taskDraftId'] = opts.taskDraftId
+    }
+    if (opts.inputParams !== undefined && opts.inputParams !== null) {
+      postBody['inputParams'] = opts.inputParams
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskPublicUpdateInputParam with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskPublicUpdateInputParam',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  全量更新任务的输出参数列表
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.taskDraftId] - 任务草稿ID  optional
+      * @param {array} [opts.outputParams] - 输出参数列表（全量替换）  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean uranusResultBoolean
+      */
+
+  uranusTaskPublicUpdateOutputParam (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskPublicUpdateOutputParam"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskPublicUpdateOutputParam"
+      )
+    }
+
+    let postBody = {}
+    if (opts.taskDraftId !== undefined && opts.taskDraftId !== null) {
+      postBody['taskDraftId'] = opts.taskDraftId
+    }
+    if (opts.outputParams !== undefined && opts.outputParams !== null) {
+      postBody['outputParams'] = opts.outputParams
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskPublicUpdateOutputParam with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskPublicUpdateOutputParam',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  根据调试ID停止正在运行的调试任务
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} opts.debugId - 调试ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean uranusResultBoolean
+      */
+
+  uranusTaskPublicStopDebug (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskPublicStopDebug"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskPublicStopDebug"
+      )
+    }
+    if (opts.debugId === undefined || opts.debugId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.debugId' when calling uranusTaskPublicStopDebug"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.debugId !== undefined && opts.debugId !== null) {
+      queryParams['debugId'] = opts.debugId
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskPublicStopDebug with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskPublicStopDebug',
       'GET',
       pathParams,
       queryParams,
@@ -34837,7 +58181,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -34992,7 +58336,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -35143,7 +58487,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -35259,7 +58603,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -35382,7 +58726,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -35501,7 +58845,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -35625,7 +58969,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -35745,7 +59089,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -35874,7 +59218,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -35994,7 +59338,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -36147,7 +59491,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -36296,7 +59640,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -36445,7 +59789,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -36594,7 +59938,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -36743,7 +60087,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -36892,7 +60236,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -37021,7 +60365,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -37094,6 +60438,1178 @@ class SHENHAIPLATFORM extends Service {
   }
 
   /**
+      *  创建计算引擎实体
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.regionId
+      * @param {string} opts.appName - 请求应用名
+      * @param {string} [opts.workspaceCode] - 工作空间Code  optional
+      * @param {string} [opts.engineName] - 存算引擎实例名  optional
+      * @param {string} [opts.engineType] - 计算引擎类型(JCW/JMR)  optional
+      * @param {string} [opts.description] - 描述信息  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param workspaceEngineResp result
+      */
+
+  engineCreate (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  engineCreate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling engineCreate"
+      )
+    }
+    if (opts.regionId === undefined || opts.regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionId' when calling engineCreate"
+      )
+    }
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling engineCreate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.workspaceCode !== undefined && opts.workspaceCode !== null) {
+      postBody['workspaceCode'] = opts.workspaceCode
+    }
+    if (opts.engineName !== undefined && opts.engineName !== null) {
+      postBody['engineName'] = opts.engineName
+    }
+    if (opts.engineType !== undefined && opts.engineType !== null) {
+      postBody['engineType'] = opts.engineType
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName,
+      regionId: opts.regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call engineCreate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/engineCreate',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  通过工作空间Code查询绑定的计算引擎列表
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.regionId
+      * @param {string} opts.appName - 请求应用名
+      * @param {integer} [opts.id]   optional
+      * @param {string} [opts.workspaceCode]   optional
+      * @param {string} [opts.projectCode]   optional
+      * @param {string} [opts.resourceCode]   optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param workspaceEngineResp result
+      */
+
+  getEngineByWorkspaceCode (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getEngineByWorkspaceCode"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling getEngineByWorkspaceCode"
+      )
+    }
+    if (opts.regionId === undefined || opts.regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionId' when calling getEngineByWorkspaceCode"
+      )
+    }
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling getEngineByWorkspaceCode"
+      )
+    }
+
+    let postBody = {}
+    if (opts.id !== undefined && opts.id !== null) {
+      postBody['id'] = opts.id
+    }
+    if (opts.workspaceCode !== undefined && opts.workspaceCode !== null) {
+      postBody['workspaceCode'] = opts.workspaceCode
+    }
+    if (opts.projectCode !== undefined && opts.projectCode !== null) {
+      postBody['projectCode'] = opts.projectCode
+    }
+    if (opts.resourceCode !== undefined && opts.resourceCode !== null) {
+      postBody['resourceCode'] = opts.resourceCode
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName,
+      regionId: opts.regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getEngineByWorkspaceCode with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/getEngineByWorkspaceCode',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  按照projectCode查询绑定的计算引擎信息以及计算引擎绑定的空间信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.regionId
+      * @param {string} opts.appName - 请求应用名
+      * @param {integer} [opts.id]   optional
+      * @param {string} [opts.workspaceCode]   optional
+      * @param {string} [opts.projectCode]   optional
+      * @param {string} [opts.resourceCode]   optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param engineWorkspaceDetailResp result
+      */
+
+  getByProjectCode (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getByProjectCode"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling getByProjectCode"
+      )
+    }
+    if (opts.regionId === undefined || opts.regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionId' when calling getByProjectCode"
+      )
+    }
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling getByProjectCode"
+      )
+    }
+
+    let postBody = {}
+    if (opts.id !== undefined && opts.id !== null) {
+      postBody['id'] = opts.id
+    }
+    if (opts.workspaceCode !== undefined && opts.workspaceCode !== null) {
+      postBody['workspaceCode'] = opts.workspaceCode
+    }
+    if (opts.projectCode !== undefined && opts.projectCode !== null) {
+      postBody['projectCode'] = opts.projectCode
+    }
+    if (opts.resourceCode !== undefined && opts.resourceCode !== null) {
+      postBody['resourceCode'] = opts.resourceCode
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName,
+      regionId: opts.regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getByProjectCode with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/getByProjectCode',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  通过空间code查询绑定的计算引擎信息及对应类型和JCW/JMR实例信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.regionId
+      * @param {string} opts.appName - 请求应用名
+      * @param {integer} [opts.id]   optional
+      * @param {string} [opts.workspaceCode]   optional
+      * @param {string} [opts.projectCode]   optional
+      * @param {string} [opts.resourceCode]   optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param workspaceEngineDetailResp result
+      */
+
+  getEngineDetailsByWorkspaceCode (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getEngineDetailsByWorkspaceCode"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling getEngineDetailsByWorkspaceCode"
+      )
+    }
+    if (opts.regionId === undefined || opts.regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionId' when calling getEngineDetailsByWorkspaceCode"
+      )
+    }
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling getEngineDetailsByWorkspaceCode"
+      )
+    }
+
+    let postBody = {}
+    if (opts.id !== undefined && opts.id !== null) {
+      postBody['id'] = opts.id
+    }
+    if (opts.workspaceCode !== undefined && opts.workspaceCode !== null) {
+      postBody['workspaceCode'] = opts.workspaceCode
+    }
+    if (opts.projectCode !== undefined && opts.projectCode !== null) {
+      postBody['projectCode'] = opts.projectCode
+    }
+    if (opts.resourceCode !== undefined && opts.resourceCode !== null) {
+      postBody['resourceCode'] = opts.resourceCode
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName,
+      regionId: opts.regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getEngineDetailsByWorkspaceCode with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/getEngineDetailsByWorkspaceCode',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  通过计算引擎Code查询绑定的云仓和JMR实例列表
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.regionId
+      * @param {string} opts.appName - 请求应用名
+      * @param {string} [opts.engineCode] - 计算引擎Code  optional
+      * @param {integer} [opts.id]   optional
+      * @param {string} [opts.workspaceCode]   optional
+      * @param {string} [opts.projectCode]   optional
+      * @param {string} [opts.resourceCode]   optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param engineBoundInstancesResp result
+      */
+
+  getInstances (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getInstances"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling getInstances"
+      )
+    }
+    if (opts.regionId === undefined || opts.regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionId' when calling getInstances"
+      )
+    }
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling getInstances"
+      )
+    }
+
+    let postBody = {}
+    if (opts.engineCode !== undefined && opts.engineCode !== null) {
+      postBody['engineCode'] = opts.engineCode
+    }
+    if (opts.id !== undefined && opts.id !== null) {
+      postBody['id'] = opts.id
+    }
+    if (opts.workspaceCode !== undefined && opts.workspaceCode !== null) {
+      postBody['workspaceCode'] = opts.workspaceCode
+    }
+    if (opts.projectCode !== undefined && opts.projectCode !== null) {
+      postBody['projectCode'] = opts.projectCode
+    }
+    if (opts.resourceCode !== undefined && opts.resourceCode !== null) {
+      postBody['resourceCode'] = opts.resourceCode
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName,
+      regionId: opts.regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getInstances with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/getInstances',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  计算引擎绑定云仓或JMR实例
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.regionId
+      * @param {string} opts.appName - 请求应用名
+      * @param {string} [opts.engineCode] - 计算引擎Code  optional
+      * @param {string} [opts.instanceCode] - 实例Code  optional
+      * @param {string} [opts.instanceName] - 实例名称  optional
+      * @param {string} [opts.instanceType] - 实例类型(JCW/JMR)  optional
+      * @param {string} [opts.resourceCode] - 资源组Code  optional
+      * @param {string} [opts.env] - 环境类型(dev/prod)  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      */
+
+  bindInstance (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  bindInstance"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling bindInstance"
+      )
+    }
+    if (opts.regionId === undefined || opts.regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionId' when calling bindInstance"
+      )
+    }
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling bindInstance"
+      )
+    }
+
+    let postBody = {}
+    if (opts.engineCode !== undefined && opts.engineCode !== null) {
+      postBody['engineCode'] = opts.engineCode
+    }
+    if (opts.instanceCode !== undefined && opts.instanceCode !== null) {
+      postBody['instanceCode'] = opts.instanceCode
+    }
+    if (opts.instanceName !== undefined && opts.instanceName !== null) {
+      postBody['instanceName'] = opts.instanceName
+    }
+    if (opts.instanceType !== undefined && opts.instanceType !== null) {
+      postBody['instanceType'] = opts.instanceType
+    }
+    if (opts.resourceCode !== undefined && opts.resourceCode !== null) {
+      postBody['resourceCode'] = opts.resourceCode
+    }
+    if (opts.env !== undefined && opts.env !== null) {
+      postBody['env'] = opts.env
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName,
+      regionId: opts.regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call bindInstance with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/bindInstance',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  计算引擎解绑实例
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.regionId
+      * @param {string} opts.appName - 请求应用名
+      * @param {string} opts.engineCode - 引擎 Code
+      * @param {string} opts.instanceCode - 实例 Code
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      */
+
+  unbindInstance (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  unbindInstance"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling unbindInstance"
+      )
+    }
+    if (opts.regionId === undefined || opts.regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionId' when calling unbindInstance"
+      )
+    }
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling unbindInstance"
+      )
+    }
+    if (opts.engineCode === undefined || opts.engineCode === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.engineCode' when calling unbindInstance"
+      )
+    }
+    if (opts.instanceCode === undefined || opts.instanceCode === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceCode' when calling unbindInstance"
+      )
+    }
+
+    let postBody = {}
+    if (opts.engineCode !== undefined && opts.engineCode !== null) {
+      postBody['engineCode'] = opts.engineCode
+    }
+    if (opts.instanceCode !== undefined && opts.instanceCode !== null) {
+      postBody['instanceCode'] = opts.instanceCode
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName,
+      regionId: opts.regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call unbindInstance with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/unbindInstance',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  前端绑定计算引擎弹窗一键完成绑定
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.regionId
+      * @param {string} opts.appName - 请求应用名
+      * @param {string} [opts.workspaceCode] - 工作空间Code  optional
+      * @param {string} [opts.engineName] - 存算引擎实例名  optional
+      * @param {string} [opts.engineType] - 计算引擎类型(JCW/JMR)  optional
+      * @param {engineEnvConfig} [opts.devConfig]   optional
+      * @param {engineEnvConfig} [opts.prodConfig]   optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param workspaceEngineResp result
+      */
+
+  bindWorkspaceEngine (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  bindWorkspaceEngine"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling bindWorkspaceEngine"
+      )
+    }
+    if (opts.regionId === undefined || opts.regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionId' when calling bindWorkspaceEngine"
+      )
+    }
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling bindWorkspaceEngine"
+      )
+    }
+
+    let postBody = {}
+    if (opts.workspaceCode !== undefined && opts.workspaceCode !== null) {
+      postBody['workspaceCode'] = opts.workspaceCode
+    }
+    if (opts.engineName !== undefined && opts.engineName !== null) {
+      postBody['engineName'] = opts.engineName
+    }
+    if (opts.engineType !== undefined && opts.engineType !== null) {
+      postBody['engineType'] = opts.engineType
+    }
+    if (opts.devConfig !== undefined && opts.devConfig !== null) {
+      postBody['devConfig'] = opts.devConfig
+    }
+    if (opts.prodConfig !== undefined && opts.prodConfig !== null) {
+      postBody['prodConfig'] = opts.prodConfig
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName,
+      regionId: opts.regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call bindWorkspaceEngine with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/bindWorkspaceEngine',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  创建工作空间
       * @param {Object} opts - parameters
       * @param {string} opts.appName - 应用名称
@@ -37105,6 +61621,7 @@ class SHENHAIPLATFORM extends Service {
       * @param {array} [opts.manager]   optional
       * @param {string} [opts.workspaceDescription]   optional
       * @param {string} [opts.workspaceModel]   optional
+      * @param {string} [opts.workspaceLabel]   optional
       * @param {string} [opts.engineType]   optional
       * @param {array} [opts.calculateResourceCode]   optional
       * @param {array} [opts.integrationResourceCode]   optional
@@ -37168,6 +61685,9 @@ class SHENHAIPLATFORM extends Service {
     if (opts.workspaceModel !== undefined && opts.workspaceModel !== null) {
       postBody['workspaceModel'] = opts.workspaceModel
     }
+    if (opts.workspaceLabel !== undefined && opts.workspaceLabel !== null) {
+      postBody['workspaceLabel'] = opts.workspaceLabel
+    }
     if (opts.engineType !== undefined && opts.engineType !== null) {
       postBody['engineType'] = opts.engineType
     }
@@ -37212,7 +61732,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -37352,7 +61872,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -37433,6 +61953,7 @@ class SHENHAIPLATFORM extends Service {
       * @param {integer} [opts.id]   optional
       * @param {string} [opts.workspaceCode]   optional
       * @param {string} [opts.projectCode]   optional
+      * @param {string} [opts.resourceCode]   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -37481,6 +62002,9 @@ class SHENHAIPLATFORM extends Service {
     if (opts.projectCode !== undefined && opts.projectCode !== null) {
       postBody['projectCode'] = opts.projectCode
     }
+    if (opts.resourceCode !== undefined && opts.resourceCode !== null) {
+      postBody['resourceCode'] = opts.resourceCode
+    }
 
     let queryParams = {}
 
@@ -37492,7 +62016,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -37640,7 +62164,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -37787,7 +62311,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -37924,7 +62448,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -38079,7 +62603,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -38123,6 +62647,143 @@ class SHENHAIPLATFORM extends Service {
 
     let request = super.makeRequest(
       '/regions/{regionId}/apps/{appName}/workspaceBundleOrUnBundleResource',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  强制解绑资源组
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.regionId
+      * @param {string} opts.appName - 请求应用名
+      * @param {string} [opts.resourceCode] - 资源code  optional
+      * @param {string} [opts.userPin]   optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  workspaceForceUnBundleResource (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  workspaceForceUnBundleResource"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling workspaceForceUnBundleResource"
+      )
+    }
+    if (opts.regionId === undefined || opts.regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionId' when calling workspaceForceUnBundleResource"
+      )
+    }
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling workspaceForceUnBundleResource"
+      )
+    }
+
+    let postBody = {}
+    if (opts.resourceCode !== undefined && opts.resourceCode !== null) {
+      postBody['resourceCode'] = opts.resourceCode
+    }
+    if (opts.userPin !== undefined && opts.userPin !== null) {
+      postBody['userPin'] = opts.userPin
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName,
+      regionId: opts.regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call workspaceForceUnBundleResource with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/workspaceForceUnBundleResource',
       'POST',
       pathParams,
       queryParams,
@@ -38235,7 +62896,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -38364,7 +63025,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -38445,6 +63106,7 @@ class SHENHAIPLATFORM extends Service {
       * @param {integer} [opts.id]   optional
       * @param {string} [opts.workspaceCode]   optional
       * @param {string} [opts.projectCode]   optional
+      * @param {string} [opts.resourceCode]   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -38493,6 +63155,9 @@ class SHENHAIPLATFORM extends Service {
     if (opts.projectCode !== undefined && opts.projectCode !== null) {
       postBody['projectCode'] = opts.projectCode
     }
+    if (opts.resourceCode !== undefined && opts.resourceCode !== null) {
+      postBody['resourceCode'] = opts.resourceCode
+    }
 
     let queryParams = {}
 
@@ -38504,7 +63169,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -38585,6 +63250,7 @@ class SHENHAIPLATFORM extends Service {
       * @param {integer} [opts.id]   optional
       * @param {string} [opts.workspaceCode]   optional
       * @param {string} [opts.projectCode]   optional
+      * @param {string} [opts.resourceCode]   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -38633,6 +63299,9 @@ class SHENHAIPLATFORM extends Service {
     if (opts.projectCode !== undefined && opts.projectCode !== null) {
       postBody['projectCode'] = opts.projectCode
     }
+    if (opts.resourceCode !== undefined && opts.resourceCode !== null) {
+      postBody['resourceCode'] = opts.resourceCode
+    }
 
     let queryParams = {}
 
@@ -38644,7 +63313,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -38732,6 +63401,8 @@ class SHENHAIPLATFORM extends Service {
       * @param {integer} [opts.purchaseDuration]   optional
       * @param {createProjectResourceParam} [opts.projectResourceReq]   optional
       * @param {string} [opts.returnUrl]   optional
+      * @param {string} [opts.bizResourceKey]   optional
+      * @param {array} [opts.bizTagInfos]   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -38805,6 +63476,12 @@ class SHENHAIPLATFORM extends Service {
     if (opts.returnUrl !== undefined && opts.returnUrl !== null) {
       postBody['returnUrl'] = opts.returnUrl
     }
+    if (opts.bizResourceKey !== undefined && opts.bizResourceKey !== null) {
+      postBody['bizResourceKey'] = opts.bizResourceKey
+    }
+    if (opts.bizTagInfos !== undefined && opts.bizTagInfos !== null) {
+      postBody['bizTagInfos'] = opts.bizTagInfos
+    }
 
     let queryParams = {}
 
@@ -38816,7 +63493,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -38941,7 +63618,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -39106,7 +63783,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -39271,7 +63948,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -39420,7 +64097,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -39545,7 +64222,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -39590,6 +64267,824 @@ class SHENHAIPLATFORM extends Service {
     let request = super.makeRequest(
       '/regions/{regionId}/apps/{appName}/workspaceExpiredInfo',
       'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取资源组code被绑定的工作空间
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.regionId
+      * @param {string} opts.appName - 请求应用名
+      * @param {integer} [opts.id]   optional
+      * @param {string} [opts.workspaceCode]   optional
+      * @param {string} [opts.projectCode]   optional
+      * @param {string} [opts.resourceCode]   optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param workspaceListResp result
+      */
+
+  workspaceGetByResource (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  workspaceGetByResource"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling workspaceGetByResource"
+      )
+    }
+    if (opts.regionId === undefined || opts.regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionId' when calling workspaceGetByResource"
+      )
+    }
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling workspaceGetByResource"
+      )
+    }
+
+    let postBody = {}
+    if (opts.id !== undefined && opts.id !== null) {
+      postBody['id'] = opts.id
+    }
+    if (opts.workspaceCode !== undefined && opts.workspaceCode !== null) {
+      postBody['workspaceCode'] = opts.workspaceCode
+    }
+    if (opts.projectCode !== undefined && opts.projectCode !== null) {
+      postBody['projectCode'] = opts.projectCode
+    }
+    if (opts.resourceCode !== undefined && opts.resourceCode !== null) {
+      postBody['resourceCode'] = opts.resourceCode
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName,
+      regionId: opts.regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call workspaceGetByResource with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/workspaceGetByResource',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  产品开通的地域信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.regionId
+      * @param {string} opts.appName - 请求应用名
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param productRegionListResp result
+      */
+
+  workspaceGetProductRegionInfo (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  workspaceGetProductRegionInfo"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling workspaceGetProductRegionInfo"
+      )
+    }
+    if (opts.regionId === undefined || opts.regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionId' when calling workspaceGetProductRegionInfo"
+      )
+    }
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling workspaceGetProductRegionInfo"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName,
+      regionId: opts.regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call workspaceGetProductRegionInfo with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/workspaceGetProductRegionInfo',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询指定工作空间下的参数列表及参数值
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.regionId
+      * @param {string} opts.appName - 请求应用名
+      * @param {string} [opts.workspaceCode] - 工作空间Code  optional
+      * @param {string} [opts.paramType] - 参数类型  optional
+      * @param {string} [opts.paramName] - 参数名称  optional
+      * @param {string} [opts.owner] - 责任人  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param workspaceParamResp result
+      */
+
+  paramList (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  paramList"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling paramList"
+      )
+    }
+    if (opts.regionId === undefined || opts.regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionId' when calling paramList"
+      )
+    }
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling paramList"
+      )
+    }
+
+    let postBody = {}
+    if (opts.workspaceCode !== undefined && opts.workspaceCode !== null) {
+      postBody['workspaceCode'] = opts.workspaceCode
+    }
+    if (opts.paramType !== undefined && opts.paramType !== null) {
+      postBody['paramType'] = opts.paramType
+    }
+    if (opts.paramName !== undefined && opts.paramName !== null) {
+      postBody['paramName'] = opts.paramName
+    }
+    if (opts.owner !== undefined && opts.owner !== null) {
+      postBody['owner'] = opts.owner
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName,
+      regionId: opts.regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call paramList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/paramList',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  批量配置/保存空间参数
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.regionId
+      * @param {string} opts.appName - 请求应用名
+      * @param {string} [opts.workspaceCode] - 工作空间Code  optional
+      * @param {array} [opts.params] - 参数配置列表  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      */
+
+  paramBatchSave (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  paramBatchSave"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling paramBatchSave"
+      )
+    }
+    if (opts.regionId === undefined || opts.regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionId' when calling paramBatchSave"
+      )
+    }
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling paramBatchSave"
+      )
+    }
+
+    let postBody = {}
+    if (opts.workspaceCode !== undefined && opts.workspaceCode !== null) {
+      postBody['workspaceCode'] = opts.workspaceCode
+    }
+    if (opts.params !== undefined && opts.params !== null) {
+      postBody['params'] = opts.params
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName,
+      regionId: opts.regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call paramBatchSave with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/paramBatchSave',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除空间参数
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.regionId
+      * @param {string} opts.appName - 请求应用名
+      * @param {string} opts.paramCode - 参数 Code
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      */
+
+  paramDelete (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  paramDelete"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling paramDelete"
+      )
+    }
+    if (opts.regionId === undefined || opts.regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionId' when calling paramDelete"
+      )
+    }
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling paramDelete"
+      )
+    }
+    if (opts.paramCode === undefined || opts.paramCode === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.paramCode' when calling paramDelete"
+      )
+    }
+
+    let postBody = {}
+    if (opts.paramCode !== undefined && opts.paramCode !== null) {
+      postBody['paramCode'] = opts.paramCode
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName,
+      regionId: opts.regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call paramDelete with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/paramDelete',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取支持的参数类型枚举列表
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.regionId
+      * @param {string} opts.appName - 请求应用名
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param object result
+      */
+
+  paramTypes (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  paramTypes"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling paramTypes"
+      )
+    }
+    if (opts.regionId === undefined || opts.regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionId' when calling paramTypes"
+      )
+    }
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling paramTypes"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName,
+      regionId: opts.regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call paramTypes with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/paramTypes',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -39705,7 +65200,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -39865,7 +65360,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -40002,7 +65497,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -40130,7 +65625,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -40263,7 +65758,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -40396,7 +65891,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -40560,7 +66055,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -40720,7 +66215,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -40880,7 +66375,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -41044,7 +66539,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']
@@ -41204,7 +66699,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.0'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
     }
 
     let contentTypes = ['application/json']

@@ -14,7 +14,10 @@
  * limitations under the License.
  *
  * Workspace
- * 工作空间相关的操作
+ * 工作空间相关的操作。
+
+详细操作说明请参考帮助文档：[创建及管理工作空间](https://docs.jdcloud.com/cn/jdaip/create-and-manage-workspace)
+
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -30,7 +33,7 @@ Service._services[serviceId] = true
 
 /**
  * jdaip service.
- * @version 1.0.2
+ * @version 1.0.3
  */
 
 class JDAIP extends Service {
@@ -91,7 +94,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -235,7 +238,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -371,7 +374,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -492,7 +495,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -638,7 +641,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -764,7 +767,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -915,7 +918,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1051,7 +1054,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1198,7 +1201,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1316,7 +1319,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1461,7 +1464,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1543,10 +1546,10 @@ class JDAIP extends Service {
 - **基本信息**：任务名称、描述、框架类型
 - **镜像配置**：镜像可见性、镜像ID、镜像地址
 - **启动命令**：训练脚本执行命令和环境变量
-- **资源配置**：队列、GPU/CPU/内存、节点数量
-- **存储配置**：OSS/CFS/JPFS 存储挂载
+- **资源配置**：队列、GPU/CPU/内存、节点数量、可用区（公共池）
+- **存储配置**：OSS/CFS/JPFS 为外部共享存储（&#x60;storageSpaces&#x60;）；本地存储为顶层字段 &#x60;localStorage&#x60;（训练节点本地临时高速缓存，仅专属资源池，每个任务最多一个）
 - **数据与模型**：数据集、模型、代码仓库配置
-- **高级配置**：重启策略（仅异构节点池+PyTorch）、健康检测
+- **高级配置**：重启策略（仅异构节点池+PyTorch）、健康检测、公共池排队超时
 
 ## 创建流程
 
@@ -1560,6 +1563,10 @@ class JDAIP extends Service {
 - &#x60;resource&#x60; 参数已废弃
 - Ray 任务必须使用 &#x60;roleResource&#x60; 配置 Head 和 Worker 角色
 - **重启策略仅适用于异构节点池的 PyTorch 任务**，云主机资源池和 Ray 任务不支持
+- 公共资源池角色规格须通过 &#x60;logicAzCode&#x60; 指定可用区（异构规格还须填 &#x60;hpcClusterName&#x60;）
+- &#x60;queuingTimeoutMinutes&#x60; 仅公共资源池生效，排队超时后任务自动回滚为创建失败
+- 本地存储（顶层字段 &#x60;localStorage&#x60;）仅支持专属资源池（接口会校验拒绝公共资源池），每个任务最多一个，数据随实例删除/销毁自动清除、不支持持久化，不可存放 checkpoint、模型权重等关键数据
+- 本地存储依赖队列节点已配置本地高速盘（目前主要是异构专属节点池具备该能力），接口暂不校验节点本地盘能力，若节点不满足条件，任务会调度失败并停留在排队/启动中，而非创建时直接报错
 
       * @param {Object} opts - parameters
       * @param {string} opts.workspaceId - 工作空间ID
@@ -1612,7 +1619,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1739,7 +1746,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1829,6 +1836,7 @@ class JDAIP extends Service {
       * @param {string} [opts.name] - 训练任务名称。1~32字符，仅支持中文、大小写字母、数字、英文中划线 &quot;-&quot;和英文下划线&quot;_&quot;。  optional
       * @param {string} [opts.description] - 训练任务的描述信息，不超过256个字符。  optional
       * @param {string} [opts.permission] - 工作空间中的资源归属权限，支持(public,private)，默认为public。  optional
+      * @param {integer} [opts.taskPriority] - 任务优先级，取值范围[1, 9]; 当队列开启优先级调度时生效  optional
       * @param {string} [opts.ownerUserPin] - 归属用户pin。
 可配置任务所属主账号pin，或者工作空间其他成员的子账号pin
   optional
@@ -1872,6 +1880,9 @@ class JDAIP extends Service {
     if (opts.permission !== undefined && opts.permission !== null) {
       postBody['permission'] = opts.permission
     }
+    if (opts.taskPriority !== undefined && opts.taskPriority !== null) {
+      postBody['taskPriority'] = opts.taskPriority
+    }
     if (opts.ownerUserPin !== undefined && opts.ownerUserPin !== null) {
       postBody['ownerUserPin'] = opts.ownerUserPin
     }
@@ -1885,7 +1896,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1970,7 +1981,7 @@ class JDAIP extends Service {
 ## 注意事项
 
 - 删除操作不可恢复，请确保已备份重要数据
-- 删除任务不会删除关联的存储数据、数据集和模型
+- 删除任务不会删除关联的持久化存储（OSS/CFS/JPFS）数据、数据集和模型；本地存储（顶层字段 &#x60;localStorage&#x60;）会随实例删除自动清除，不支持恢复
 
       * @param {Object} opts - parameters
       * @param {string} opts.workspaceId - 工作空间ID
@@ -2015,7 +2026,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -2100,7 +2111,7 @@ class JDAIP extends Service {
 ## 注意事项
 
 - 停止操作**不可逆**，停止后无法恢复或重新启动任务
-- 所有计算资源将被释放，存储数据不会被删除
+- 所有计算资源将被释放，持久化存储（OSS/CFS/JPFS）数据不会被删除；本地存储（顶层字段 &#x60;localStorage&#x60;）会随实例释放自动清除
 - 如需保存训练进度，请确保代码支持检查点保存
 
       * @param {Object} opts - parameters
@@ -2147,7 +2158,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -2298,7 +2309,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -2428,7 +2439,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -2571,7 +2582,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -2644,9 +2655,10 @@ class JDAIP extends Service {
   }
 
   /**
-      *  查询训练任务实例列表。
+      *  获取训练任务实例列表。
 
-获取训练任务下所有运行实例（Pod）的详细信息，包括状态、IP、运行时长等。
+查询训练任务下所有运行实例（Pod）的详细信息，包括名称、类型、状态、IP、运行时长等。
+支持分页查询和多种过滤条件，异常状态数据可优先展示。
 
 ## 使用场景
 
@@ -2663,13 +2675,13 @@ class JDAIP extends Service {
       * @param {filter} [opts.filters] - &lt;b&gt;filters 中支持使用以下关键字进行过滤&lt;/b&gt;
 &#x60;name&#x60;: 实例名称，模糊匹配，支持单个。
 &#x60;type&#x60;: 实例类型，模糊匹配，支持单个。
-&#x60;state&#x60;: 实例状态，精确匹配，支持多个，用&quot;,&quot;隔开。
-&#x60;ip&#x60;: 实例Ip，精确匹配，支持多个，用&quot;,&quot;隔开。
+&#x60;state&#x60;: 实例状态，精确匹配，支持多个。
+&#x60;ip&#x60;: 实例Ip，精确匹配，支持多个。
   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param instanceListInfoForJob podListInfo
+      * @param instanceListInfoForJob instanceInfoList
       * @param number totalCount  本次查询可匹配到的总记录数，使用者需要结合 &#x60;pageNumber&#x60; 和 &#x60;pageSize&#x60; 计算是否可以继续分页。
       */
 
@@ -2718,7 +2730,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -2870,7 +2882,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -3013,7 +3025,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -3143,7 +3155,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -3284,7 +3296,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -3419,7 +3431,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -3574,7 +3586,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -3726,7 +3738,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -3771,6 +3783,280 @@ class JDAIP extends Service {
     let request = super.makeRequest(
       '/train/{regionId}/workspaces/{workspaceId}/experiments/{experimentId}/runs',
       'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询微调运行详情。
+
+获取微调运行的完整信息，包括训练配置、资源使用、运行状态等。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.workspaceId - 工作空间ID
+      * @param {string} opts.experimentId - 微调实验ID
+      * @param {string} opts.runId - 微调运行ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param runDetailInfoForExperiment runDetailInfo  微调运行详情。
+      */
+
+  describeRun (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeRun"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.workspaceId === undefined || opts.workspaceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.workspaceId' when calling describeRun"
+      )
+    }
+    if (opts.experimentId === undefined || opts.experimentId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.experimentId' when calling describeRun"
+      )
+    }
+    if (opts.runId === undefined || opts.runId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.runId' when calling describeRun"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      workspaceId: opts.workspaceId,
+      experimentId: opts.experimentId,
+      runId: opts.runId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeRun with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/train/{regionId}/workspaces/{workspaceId}/experiments/{experimentId}/runs/{runId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新微调运行。
+
+更新微调运行的元数据属性，不影响正在进行的训练任务。
+
+## 使用场景
+
+- 修改运行名称以便更好地识别和管理
+- 更新运行描述信息
+- 调整任务优先级
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.workspaceId - 工作空间ID
+      * @param {string} opts.experimentId - 微调实验ID
+      * @param {string} opts.runId - 微调运行ID
+      * @param {string} [opts.name] - 微调运行名称。1~32字符，仅支持中文、大小写字母、数字、英文中划线 &quot;-&quot;和英文下划线&quot;_&quot;。  optional
+      * @param {string} [opts.description] - 微调运行的描述信息，不超过256个字符。  optional
+      * @param {integer} [opts.taskPriority] - 任务优先级。取值范围1~9，当队列开启优先级调度时生效。  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  updateRun (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  updateRun"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.workspaceId === undefined || opts.workspaceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.workspaceId' when calling updateRun"
+      )
+    }
+    if (opts.experimentId === undefined || opts.experimentId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.experimentId' when calling updateRun"
+      )
+    }
+    if (opts.runId === undefined || opts.runId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.runId' when calling updateRun"
+      )
+    }
+
+    let postBody = {}
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+    if (opts.taskPriority !== undefined && opts.taskPriority !== null) {
+      postBody['taskPriority'] = opts.taskPriority
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      workspaceId: opts.workspaceId,
+      experimentId: opts.experimentId,
+      runId: opts.runId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call updateRun with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/train/{regionId}/workspaces/{workspaceId}/experiments/{experimentId}/runs/{runId}',
+      'PUT',
       pathParams,
       queryParams,
       headerParams,
@@ -3863,7 +4149,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -4001,7 +4287,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -4152,7 +4438,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -4302,7 +4588,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -4375,7 +4661,33 @@ class JDAIP extends Service {
   }
 
   /**
-      *  获取数据集列表
+      *  获取数据集列表。
+
+## 接口查询说明
+
+- 数据类型-任务类型
+  | 数据类型 | 任务类型 |
+  |------|------|
+  | text：文本 | sft：文本生成-SFT指令微调 |
+  | text：文本 | dpo：文本生成-DPO偏好训练 |
+  | text：文本 | cpt：文本生成-增量预训练 |
+  | text：文本 | distill：文本生成-模型蒸馏 |
+  | text：文本 | custom：自定义 |
+  | image：图像 | image-classification：图像分类 |
+  | image：图像 | custom：自定义 |
+  | custom：自定义 | custom：自定义 |
+
+- 下游任务使用，查询条件一：
+  | 任务模块 | 查询条件 |
+  |------|------|
+  | Notebook | &quot;filters&quot;:[{&quot;name&quot;:&quot;states&quot;,&quot;values&quot;:[&quot;success&quot;]}] |
+  | 训练任务 | &quot;filters&quot;:[{&quot;name&quot;:&quot;states&quot;,&quot;values&quot;:[&quot;success&quot;]}] |
+  | 模型精调 | &quot;filters&quot;:[{&quot;name&quot;:&quot;states&quot;,&quot;values&quot;:[&quot;success&quot;]},{&quot;name&quot;:&quot;datasetTypes&quot;,&quot;values&quot;:[&quot;text&quot;]},{&quot;name&quot;:&quot;taskTypes&quot;,&quot;values&quot;:[&quot;cpt&quot;,&quot;dpo&quot;,&quot;sft&quot;]}] |
+  | 模型蒸馏 | &quot;filters&quot;:[{&quot;name&quot;:&quot;states&quot;,&quot;values&quot;:[&quot;success&quot;]},{&quot;name&quot;:&quot;datasetTypes&quot;,&quot;values&quot;:[&quot;text&quot;]},{&quot;name&quot;:&quot;taskTypes&quot;,&quot;values&quot;:[&quot;distill&quot;]}] |
+  | 数据标注 | &quot;filters&quot;:[{&quot;name&quot;:&quot;states&quot;,&quot;values&quot;:[&quot;success&quot;]},{&quot;name&quot;:&quot;datasetTypes&quot;,&quot;values&quot;:[&quot;image&quot;]},{&quot;name&quot;:&quot;taskTypes&quot;,&quot;values&quot;:[&quot;image-classification&quot;]}] |
+
+- 下游任务使用，查询条件二： filters 中加上{&quot;name&quot;:&quot;cfsVpcIds&quot;,&quot;values&quot;:[&quot;vpc-5n****qw&quot;]}, 可过滤不可用的cfs数据集，cfsVpcIds传资源队列对用的vpcId
+
       * @param {Object} opts - parameters
       * @param {string} opts.workspaceId - 工作空间ID
       * @param {integer} [opts.pageNumber] - 页码；默认为1。  optional
@@ -4386,7 +4698,7 @@ class JDAIP extends Service {
 &#x60;createUser&#x60;: 创建人名称，模糊匹配，支持单个
 &#x60;datasetTypes&#x60;: 数据集类型数组，支持多个，取值范围：[&#x60;text&#x60;, &#x60;custom&#x60;]
 &#x60;datasetIds&#x60;: 数据集ID数组，支持多个
-&#x60;taskTypes&#x60;: 任务类型数组，支持多个，取值范围：[&#x60;sft&#x60;, &#x60;dpo&#x60;, &#x60;cpt&#x60;, &#x60;custom&#x60;]
+&#x60;taskTypes&#x60;: 任务类型数组，支持多个，取值范围：[&#x60;sft&#x60;, &#x60;dpo&#x60;, &#x60;cpt&#x60;, &#x60;custom&#x60;,&#x60;distill&#x60;,&#x60;image-classification&#x60;]
 &#x60;labels&#x60;: 标签数组，支持多个
 &#x60;cfsVpcIds&#x60;: cfsVpcId数组，支持多个
 &#x60;states&#x60;: 资源状态数组，支持多个，取值范围：[&#x60;running&#x60;, &#x60;success&#x60;, &#x60;failed&#x60;]
@@ -4437,7 +4749,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -4510,7 +4822,24 @@ class JDAIP extends Service {
   }
 
   /**
-      *  创建数据集/新版本
+      *  创建数据集/新版本。
+详细操作说明请参考帮助文档：[资产管理-数据集](https://docs.jdcloud.com/cn/jdaip/dataset)
+
+## 数据类型-任务类型说明
+
+- Notebook、训练任务、仿真服务可使用所有类型数据集
+
+| 数据类型 | 任务类型 | 数据来源支持 | 数据说明 |
+|------|------|------|------|
+| text：文本 | sft：文本生成-SFT指令微调 | 仅支持oss | 单轮或多轮的文本对话数据，提问与回答一一对应。适用于模型精调的SFT训练。支持Alpaca和Sharegpt格式，仅支持JSON格式文本文件，编码仅限UTF-8； |
+| text：文本 | dpo：文本生成-DPO偏好训练 | 仅支持oss | 单轮或多轮的文本对话数据，在 chosen 列中提供更优的回答，并在 rejected 列中提供更差的回答。适用于模型精调的DPO偏好训练。 支持Alpaca和Sharegpt格式，仅支持JSON格式文本文件，编码仅限UTF-8； |
+| text：文本 | cpt：文本生成-增量预训练 | 仅支持oss |特定领域的大规模无标注数据。适用于模型精调的增量预训练。支持Alpaca和Sharegpt格式，仅支持JSON格式文本文件，编码仅限UTF-8； |
+| text：文本 | distill：文本生成-模型蒸馏 | 仅支持oss | 包含用户提问的文本数据集。适用于模型蒸馏，将作为输入数据源，批量请求教师模型生成蒸馏数据。[模型蒸馏 Prompt 集格式说明](https://docs.jdcloud.com/cn/jdaip/prompt-dataset) |
+| text：文本 | custom：自定义 | 支持oss、cfs、jpfs | - |
+| image：图像 | image-classification：图像分类 | 仅支持oss | 数据标注使用，图像文件仅支持 png、jpg、jpeg、bmp 格式。 |
+| image：图像 | custom：自定义 | 仅支持oss | - |
+| custom：自定义 | custom：自定义 | 支持oss、cfs、jpfs | - |
+
       * @param {Object} opts - parameters
       * @param {string} opts.workspaceId - 工作空间ID
       * @param {createDatasetParam} opts.datasetSpec - 创建数据集的参数
@@ -4559,7 +4888,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -4677,7 +5006,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -4810,7 +5139,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -4883,7 +5212,11 @@ class JDAIP extends Service {
   }
 
   /**
-      *  根据数据集ID删除数据集
+      *  根据数据集ID删除数据集。
+
+## 接口说明
+- 删除数据集，会自动删除该数据集下的所有版本
+
       * @param {Object} opts - parameters
       * @param {string} opts.workspaceId - 工作空间ID
       * @param {string} opts.datasetId - 数据集ID
@@ -4927,7 +5260,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -5000,7 +5333,14 @@ class JDAIP extends Service {
   }
 
   /**
-      *  获取数据集的版本列表
+      *  获取数据集列表。
+
+## 接口查询说明
+
+- 下游任务使用，查询条件一： &quot;filters&quot;:[{&quot;name&quot;:&quot;states&quot;,&quot;values&quot;:[&quot;success&quot;]}]
+
+- 下游任务使用，查询条件二： filters 中加上{&quot;name&quot;:&quot;cfsVpcIds&quot;,&quot;values&quot;:[&quot;vpc-5n****qw&quot;]}, 可过滤不可用的cfs数据集版本，cfsVpcIds传资源队列对用的vpcId
+
       * @param {Object} opts - parameters
       * @param {string} opts.workspaceId - 工作空间ID
       * @param {string} opts.datasetId - 数据集ID
@@ -5065,7 +5405,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -5190,7 +5530,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -5330,7 +5670,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -5454,7 +5794,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -5590,7 +5930,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -5664,6 +6004,11 @@ class JDAIP extends Service {
 
   /**
       *  获取镜像列表
+
+## 下游任务使用时，接口入参说明
+- imageUsages 镜像用途，传对应的任务。[notebook、training训练任务、inference在线服务、finetune精调实验、simulation仿真任务、offlineTask离线任务]
+- states状态，只查询注册成功的数据。[success注册成功]
+
       * @param {Object} opts - parameters
       * @param {string} opts.workspaceId - 工作空间ID
       * @param {integer} [opts.pageNumber] - 页码；默认为1。  optional
@@ -5673,7 +6018,7 @@ class JDAIP extends Service {
 &#x60;createUser&#x60;: 创建人名称，模糊匹配，支持单个
 &#x60;imageTypes&#x60;: 镜像类型，支持多个，取值范围：[&#x60;gpu&#x60;, &#x60;cpu&#x60;]
 &#x60;imageIds&#x60;: 镜像ID数组，支持多个
-&#x60;imageUsages&#x60;: 镜像用途，支持多个，取值范围：[notebook Notebook、training 开发训练、inference 在线服务]
+&#x60;imageUsages&#x60;: 镜像用途，支持多个，取值范围：[notebook、training训练任务、inference在线服务、finetune精调实验、simulation仿真任务、offlineTask离线任务]
 &#x60;labels&#x60;: 标签数组，支持多个
 &#x60;states&#x60;: 状态数组，支持多个，取值范围：[资源状态:queuing排队中、pending启动中、running构建中、success注册成功、failed构建失败、deleting删除中、deleted已删除]
 &#x60;permission&#x60;: 权限，精确匹配，支持单个，可选(public,private)。
@@ -5723,7 +6068,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -5796,14 +6141,16 @@ class JDAIP extends Service {
   }
 
   /**
-      *  创建镜像
+      *  创建镜像。
+详细操作说明请参考帮助文档：[资产管理-镜像](https://docs.jdcloud.com/cn/jdaip/image)
+
       * @param {Object} opts - parameters
       * @param {string} opts.workspaceId - 工作空间ID
       * @param {createImageParam} opts.createImageSpec - 创建镜像的参数
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param string imageId  镜像ID
+      * @param string imageId  镜像ID。 示例img-lh****3p
       */
 
   createImage (opts, regionId = this.config.regionId, callback) {
@@ -5844,7 +6191,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -5962,7 +6309,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -6089,7 +6436,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -6206,7 +6553,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -6279,12 +6626,23 @@ class JDAIP extends Service {
   }
 
   /**
-      *  获取构建镜像的pod日志，采用SSE流式返回。
+      *  获取构建镜像任务关联的 Pod 日志（流式返回）。
+
+通过 SSE（Server-Sent Events）技术实时推送训练日志，适用于实时监控训练进度。
+
+## 特点
+
+- **实时性**：日志实时推送，无需轮询
+- **持续连接**：保持长连接，适合长时间训练任务
+- **自动重连**：客户端断开后可自动重连
 
       * @param {Object} opts - parameters
       * @param {string} opts.workspaceId - 工作空间ID
       * @param {string} opts.imageId - 镜像ID
-      * @param {string} opts.podName - pod name
+      * @param {string} opts.podName - pod名。
+- 可在详情接口中获取，[describeImage](./describeImage.md)
+- 也可在列表接口中获取，[describeImages](./describeImages.md)
+
       * @param {integer} [opts.tailLines] - 从最后多少条开始返回日志，默认100条。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -6335,7 +6693,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -6409,6 +6767,11 @@ class JDAIP extends Service {
 
   /**
       *  获取公共镜像列表
+
+## 接口说明-返回数据包含
+- 已上线镜像
+- 未上线且镜像灰度列表中存在当前登录主账号pin的镜像
+
       * @param {Object} opts - parameters
       * @param {integer} [opts.pageNumber] - 页码；默认为1。  optional
       * @param {integer} [opts.pageSize] - 分页大小；&lt;br&gt;默认为10；取值范围[1, 100]。  optional
@@ -6416,11 +6779,11 @@ class JDAIP extends Service {
 &#x60;imageName&#x60;: 镜像名称，模糊匹配，支持单个
 &#x60;imageTypes&#x60;: 镜像类型，支持多个，取值范围：[&#x60;gpu&#x60;, &#x60;cpu&#x60;]
 &#x60;imageIds&#x60;: 镜像ID数组，支持多个
-&#x60;imageUsages&#x60;: 镜像用途，支持多个，取值范围：[notebook Notebook、training 开发训练、inference 在线服务]
-&#x60;labelsIn&#x60;: 标签，多个标签查询，有一个标签匹配上就行
-&#x60;labelsEq&#x60;: 标签，多个标签查询，每一个标签都要匹配到
-&#x60;labelsLikeIn&#x60;: 标签(模糊查询)，多个标签查询，有一个标签匹配上就行
-&#x60;labelsLikeEq&#x60;: 标签(模糊查询)，多个标签查询，每一个标签都要匹配到
+&#x60;imageUsages&#x60;: 镜像用途，支持多个，取值范围：[notebook、training训练任务、inference在线服务、finetune精调实验、simulation仿真任务、offlineTask离线任务]
+&#x60;labelsIn&#x60;: 标签，多个标签查询，镜像命中一个标签即可查到
+&#x60;labelsEq&#x60;: 标签，多个标签查询，镜像命中所有标签才可查到
+&#x60;labelsLikeIn&#x60;: 标签(模糊查询)，多个标签查询，镜像命中一个标签即可查到
+&#x60;labelsLikeEq&#x60;: 标签(模糊查询)，多个标签查询，镜像命中所有标签才可查到
   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -6458,7 +6821,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -6537,7 +6900,7 @@ class JDAIP extends Service {
       * @param {string} opts.inferenceId - 推理服务 ID
       * @param {string} opts.inferenceId - 推理服务ID
       * @param {string} opts.workspaceId - workspaceID
-      * @param {rolloutInferenceSpec} opts.rolloutInferenceSpec
+      * @param {rolloutInferenceRequest} opts.rolloutInferenceSpec
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -6606,7 +6969,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -6731,7 +7094,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -6814,7 +7177,7 @@ class JDAIP extends Service {
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param rolloutInfo rollouts
+      * @param rolloutHistory rollouts
       * @param integer total  总记录数
       */
 
@@ -6865,7 +7228,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -7007,7 +7370,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -7136,7 +7499,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -7272,7 +7635,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -7395,7 +7758,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -7513,7 +7876,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -7632,7 +7995,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -7751,7 +8114,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -7879,7 +8242,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -7957,6 +8320,14 @@ class JDAIP extends Service {
       * @param {string} opts.workspaceId - 工作空间ID
       * @param {integer} [opts.pageNumber] - 页码；默认为1。  optional
       * @param {integer} [opts.pageSize] - 分页大小；&lt;br&gt;默认为20；取值范围[1, 100]。  optional
+      * @param {string} [opts.order] - &lt;b&gt;排序字段；默认为 createTime&lt;/b&gt;
+&#x60;createTime&#x60;: 按该服务的创建时间排序。
+&#x60;running&#x60;: 按该服务中运行的版本数排序。
+  optional
+      * @param {string} [opts.sort] - &lt;b&gt;排序方式；默认为 desc&lt;/b&gt;
+&#x60;desc&#x60;: 按 order 字段降序排序。
+&#x60;asc&#x60;: 按 order 字段升序排序。
+  optional
       * @param {filter} [opts.filters] - &lt;b&gt;filters 中支持使用以下关键字进行过滤&lt;/b&gt;
 &#x60;serviceId&#x60;: 服务ID，精确匹配，支持多个。
 &#x60;name&#x60;: 名称，模糊匹配，支持单个。
@@ -8001,6 +8372,12 @@ class JDAIP extends Service {
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
+    if (opts.order !== undefined && opts.order !== null) {
+      queryParams['order'] = opts.order
+    }
+    if (opts.sort !== undefined && opts.sort !== null) {
+      queryParams['sort'] = opts.sort
+    }
     Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
@@ -8009,7 +8386,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -8148,7 +8525,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -8274,7 +8651,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -8399,7 +8776,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -8526,7 +8903,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -8664,7 +9041,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -8709,6 +9086,135 @@ class JDAIP extends Service {
     let request = super.makeRequest(
       '/infer-regions/{regionId}/workspace/{workspaceId}/inferences/{inferenceId}/pods',
       'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  重建指定推理服务下Pod的容器
+      * @param {Object} opts - parameters
+      * @param {string} opts.workspaceId - 工作空间ID
+      * @param {string} opts.inferenceId - 推理服务 ID
+      * @param {string} opts.podName - 需要重起容器的Pod名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string podName  重起容器的Pod名称
+      * @param string message  容器重起请求结果信息
+      */
+
+  restartInferenceContainer (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  restartInferenceContainer"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.workspaceId === undefined || opts.workspaceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.workspaceId' when calling restartInferenceContainer"
+      )
+    }
+    if (opts.inferenceId === undefined || opts.inferenceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.inferenceId' when calling restartInferenceContainer"
+      )
+    }
+    if (opts.podName === undefined || opts.podName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.podName' when calling restartInferenceContainer"
+      )
+    }
+
+    let postBody = {}
+    if (opts.podName !== undefined && opts.podName !== null) {
+      postBody['podName'] = opts.podName
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      workspaceId: opts.workspaceId,
+      inferenceId: opts.inferenceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call restartInferenceContainer with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/infer-regions/{regionId}/workspace/{workspaceId}/inferences/{inferenceId}/recreate',
+      'POST',
       pathParams,
       queryParams,
       headerParams,
@@ -8785,7 +9291,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -8920,7 +9426,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -9055,7 +9561,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -9173,7 +9679,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -9263,6 +9769,8 @@ class JDAIP extends Service {
 &#x60;queue&#x60;: 队列ID，精确匹配，支持单个。
 &#x60;workspaceId&#x60;: 工作空间ID，精确匹配，支持单个。
   optional
+      * @param {tagFilter} [opts.userTags] - 用户自定义标签列表。  optional
+      * @param {string} [opts.resourceGroupIds] - 资源组ID列表  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -9299,6 +9807,14 @@ class JDAIP extends Service {
       queryParams['pageSize'] = opts.pageSize
     }
     Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(
+      queryParams,
+      super.buildTagFilterParam(opts.userTags, 'userTags')
+    )
+    Object.assign(
+      queryParams,
+      super.buildArrayParam(opts.resourceGroupIds, 'resourceGroupIds')
+    )
 
     let pathParams = {
       regionId: regionId,
@@ -9306,7 +9822,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -9423,7 +9939,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -9540,7 +10056,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -9654,7 +10170,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -9727,7 +10243,11 @@ class JDAIP extends Service {
   }
 
   /**
-      *  查询私有模型列表
+      *  查询私有模型列表。
+
+## 接口查询说明
+- 下游任务使用，查询条件： filters 中加上{&quot;name&quot;:&quot;cfsVpcIds&quot;,&quot;values&quot;:[&quot;vpc-5n****qw&quot;]}, 可过滤不可用的cfs模型，cfsVpcIds传资源队列对用的vpcId
+
       * @param {Object} opts - parameters
       * @param {string} opts.workspaceId - 工作空间ID
       * @param {integer} [opts.pageNumber] - 页码；默认为1。  optional
@@ -9785,7 +10305,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -9859,6 +10379,9 @@ class JDAIP extends Service {
 
   /**
       *  创建新模型/新版本。
+
+详细操作说明请参考帮助文档：[资产管理-模型](https://docs.jdcloud.com/cn/jdaip/model)
+
       * @param {Object} opts - parameters
       * @param {string} opts.workspaceId - 工作空间ID
       * @param {modelSpecPrivate} opts.modelSpec - 模型配置。
@@ -9907,7 +10430,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -10034,7 +10557,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -10107,7 +10630,8 @@ class JDAIP extends Service {
   }
 
   /**
-      *  根据模型ID删除模型
+      *  根据模型ID删除模型, 会删除模型下所有版本
+
       * @param {Object} opts - parameters
       * @param {string} opts.workspaceId - 工作空间ID
       * @param {string} opts.modelId - 模型ID
@@ -10151,7 +10675,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -10224,7 +10748,11 @@ class JDAIP extends Service {
   }
 
   /**
-      *  获取模型的版本列表
+      *  获取模型的版本列表。
+
+## 接口查询说明
+- 下游任务使用，查询条件： filters 中加上{&quot;name&quot;:&quot;cfsVpcIds&quot;,&quot;values&quot;:[&quot;vpc-5n****qw&quot;]}, 可过滤不可用的cfs模型，cfsVpcIds传资源队列对用的vpcId
+
       * @param {Object} opts - parameters
       * @param {string} opts.workspaceId - 工作空间ID
       * @param {string} opts.modelId - 模型ID
@@ -10285,7 +10813,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -10410,7 +10938,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -10550,7 +11078,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -10674,7 +11202,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -10747,7 +11275,19 @@ class JDAIP extends Service {
   }
 
   /**
-      *  查询公共模型列表
+      *  查询公共模型列表。
+
+## 接口查询说明
+- 下游任务使用，查询条件：
+  | 任务模块 | 查询条件 |
+  |------|------|
+  | Notebook | &quot;filters&quot;:[{&quot;name&quot;:&quot;labelsEq&quot;,&quot;values&quot;:[&quot;support.task:notebook&quot;]}] |
+  | 训练任务 | &quot;filters&quot;:[{&quot;name&quot;:&quot;labelsEq&quot;,&quot;values&quot;:[&quot;support.task:trainjob&quot;]}] |
+  | 模型精调 | &quot;filters&quot;:[{&quot;name&quot;:&quot;labelsEq&quot;,&quot;values&quot;:[&quot;support.task:finetune&quot;,&quot;finetune.model_series:llama&quot;,&quot;finetune.model_series:qwen&quot;]}] |
+  | 模型蒸馏 | &quot;filters&quot;:[{&quot;name&quot;:&quot;labelsEq&quot;,&quot;values&quot;:[&quot;support.task:finetune&quot;,&quot;finetune.model_series:llama&quot;,&quot;finetune.model_series:qwen&quot;]}] |
+  | 在线服务-自定义部署 | &quot;filters&quot;:[{&quot;name&quot;:&quot;labelsEq&quot;,&quot;values&quot;:[&quot;support.task:custom-deploy&quot;]}] |
+  | 在线服务-LLM大语言模型部署 | &quot;filters&quot;:[{&quot;name&quot;:&quot;labelsEq&quot;,&quot;values&quot;:[&quot;support.task:llm-deploy&quot;]}] |
+
       * @param {Object} opts - parameters
       * @param {integer} [opts.pageNumber] - 页码；默认为1。  optional
       * @param {integer} [opts.pageSize] - 分页大小；&lt;br&gt;默认为10；取值范围[1, 100]。  optional
@@ -10794,7 +11334,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -10867,7 +11407,7 @@ class JDAIP extends Service {
   }
 
   /**
-      *  获取公共模型版本详情
+      *  获取公共模型版本详情（公共模型只有一个版本，该接口也是公共模型详情）
       * @param {Object} opts - parameters
       * @param {string} opts.modelId - 模型ID
       * @param {string} opts.version - 模型版本
@@ -10912,7 +11452,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -10956,127 +11496,6 @@ class JDAIP extends Service {
 
     let request = super.makeRequest(
       '/model-regions/{regionId}/publicModel/{modelId}/version/{version}',
-      'GET',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  管理端查询公共模型列表
-      * @param {Object} opts - parameters
-      * @param {integer} [opts.pageNumber] - 页码；默认为1。  optional
-      * @param {integer} [opts.pageSize] - 分页大小；&lt;br&gt;默认为10；取值范围[1, 100]。  optional
-      * @param {filter} [opts.filters] - &lt;b&gt;filters 中支持使用以下关键字进行过滤&lt;/b&gt;
-&#x60;modelName&#x60;: 模型名称，模糊匹配，支持单个
-&#x60;modelDescription&#x60;: 模型描述，模糊匹配，支持单个
-&#x60;modelIds&#x60;: 模型Id，精确匹配，支持多个
-&#x60;labelsIn&#x60;: 标签，多个标签查询，有一个标签匹配上就行
-&#x60;labelsEq&#x60;: 标签，多个标签查询，每一个标签都要匹配到
-&#x60;online&#x60;: true上线、false下线
-  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param modelsPublic models
-      * @param integer totalCount  模型个数
-      */
-
-  describeAdminPublicModels (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  describeAdminPublicModels"
-      )
-    }
-
-    opts = opts || {}
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
-      queryParams['pageNumber'] = opts.pageNumber
-    }
-    if (opts.pageSize !== undefined && opts.pageSize !== null) {
-      queryParams['pageSize'] = opts.pageSize
-    }
-    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call describeAdminPublicModels with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/model-regions/{regionId}/adminPublicModel',
       'GET',
       pathParams,
       queryParams,
@@ -11183,7 +11602,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -11259,14 +11678,17 @@ class JDAIP extends Service {
       *  在工作空间下创建一个Notebook实例，Notebook是基于Kubernetes的交互式开发环境，支持JupyterLab应用。
 
 ## 接口说明
-- **资源队列**: 必须选择一个队列，使用公共资源池时必须指定规格，使用私有资源池时必须指定CPU和内存，是否使用GPU可以按需选择。公共资源池队列ID固定为&#x60;joybuilder-public-queue&#x60;。
+- **资源队列**: 必须选择一个队列，使用公共资源池时必须指定规格和逻辑可用区，使用私有资源池时必须指定CPU和内存，是否使用GPU可以按需选择。公共资源池队列ID固定为&#x60;joybuilder-public-queue&#x60;。
 - **镜像配置**: 支持公共镜像和自定义镜像，需要指定镜像来源(public/self)、镜像名称、镜像URL等信息。
 - **存储空间**: 使用用户个人存储，第一块存储默认作为工作目录，挂载到Notebook实例中&#x60;/mnt/workspace&#x60;目录下。支持cfs、oss、jpfs三种存储类型。&#x60;cfs&#x60;和&#x60;jpfs&#x60;类型存储只能选择与队列同vpc下的资源，使用私有资源池时跨vpc需要打通(vpcPeering)对等连接。
 - **数据集**: 可选择公共数据集或个人数据集。&#x60;cfs&#x60;和&#x60;jpfs&#x60;类型的数据集只能选择与队列同vpc下的数据集，使用私有资源池时跨vpc需要打通(vpcPeering)对等连接。
 - **模型**: 可选择公共模型或个人模型。&#x60;cfs&#x60;和&#x60;jpfs&#x60;类型的模型只能选择与队列同vpc下的模型，使用私有资源池时跨vpc需要打通(vpcPeering)对等连接。
-- **SSH连接**: 开启后需要选择一个与队列同vpc下的负载均衡(LB)，并设置一个未占用的监听端口，实例运行后可以通过LB的公网IP和端口进行SSH访问，使用私有资源池时跨vpc需要打通(vpcPeering)对等连接。
+- **SSH连接**: 开启后需要选择一个与队列同vpc下的负载均衡(LB)，并设置一个未占用的监听端口，实例运行后可以通过LB的公网IP和端口进行SSH访问。公共资源池下LbSpec不为空仅表示需要公网访问；私有资源池下需要指定lbId和lbPort。公共资源池可通过LbSpec.lbEnable&#x3D;true开启公网访问，系统自动分配LB。
+- **公网出口**: 公共资源池可通过internetEgress.switchStatus&#x3D;on开启公网出口，并设置internetEgress.egressType&#x3D;SHARE_GATEWAY配置出公网访问方式，经平台共享NAT网关出公网。switchStatus必须显式传值，switchStatus&#x3D;off时关闭公网出口且egressType无效。设为SHARE_GATEWAY时，要求实例规格支持出公网(allowInternet&#x3D;true)，否则创建被拒绝。私有资源池暂不支持。
 - **计费配置**: 在私有资源池中创建Notebook时不计费，在公共资源池中创建Notebook时默认为按规格配置计费。
 - **资源权限**: 支持设置工作空间中的资源归属权限(public/private)，管理员可查看工作空间中全部资源，其他用户只能查看归属自己的private权限的资源或public权限的资源。
+- **节点亲和性**: 公共资源池不支持设置节点亲和性(nodeAffinities)，仅私有资源池支持。
+- **环境变量**: 可通过envs配置最多100个用户环境变量；该参数可选，与平台系统变量同名时运行时以平台值为准。
 
 ## Notebook环境说明
 - Notebook通过(/home/.notebook_utils/notebook_start.sh)脚本启动，启动脚本不可更改。
@@ -11281,7 +11703,7 @@ class JDAIP extends Service {
       * @param {notebookSpec} opts.notebookSpec - notebook配置。
       * @param {chargeSpec} [opts.chargeSpec] - 计费配置。
 在私有资源池中创建Notebook时不计费并且参数无效。
-在公共资源池中创建Notebook时默认为按配置计费，并且只支持按配置计费。
+在公共资源池中创建Notebook时默认为按配置计费(postpaid_by_duration)，只支持按配置计费。
   optional
       * @param {logCollectConfig} [opts.logCollectConfig] - 日志采集配置  optional
       * @param {string} regionId - ID of the region
@@ -11337,7 +11759,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -11449,7 +11871,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -11533,6 +11955,7 @@ class JDAIP extends Service {
 - 访问信息: 访问令牌、控制台地址、VSCode地址
 - 计费信息: 公共资源池的计费详情(私有资源池无计费信息)
 - 关机策略: 自动关机策略配置
+- 环境变量: 用户配置的环境变量列表
 
       * @param {Object} opts - parameters
       * @param {string} opts.workspaceId - 工作空间ID
@@ -11578,7 +12001,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -11653,14 +12076,26 @@ class JDAIP extends Service {
   /**
       *  更新Notebook实例的基础属性，不影响资源配置。
 
+## 可更新字段
+- name: 名称
+- description: 描述
+- permission: 资源归属权限
+- ownerUserPin: 资源归属用户
+- internetEgress: 公网出口配置
       * @param {Object} opts - parameters
       * @param {string} opts.workspaceId - 工作空间ID
       * @param {string} opts.notebookId - notebook ID
-      * @param {string} [opts.name] - 名称。1~32字符，可以包含中文、数字、大小写字母、英文下划线“_”、中划线“-”或点“.”。传null表示不修改此字段。  optional
+      * @param {string} [opts.name] - 名称。1~32字符，可以包含中文、数字、大小写字母、英文下划线&quot;_&quot;、中划线&quot;-&quot;或点&quot;.&quot;。传null表示不修改此字段。  optional
       * @param {string} [opts.description] - 描述。不超过256字符。传null表示不修改此字段。  optional
       * @param {string} [opts.permission] - 工作空间中的资源归属权限，支持(public,private)，只有管理员和拥有者可以修改。传null表示不修改此字段。
 管理员可查看工作空间中全部资源，其他用户只能查看归属自己的private权限的资源或public权限的资源。  optional
       * @param {string} [opts.ownerUserPin] - 资源归属用户。传null表示不修改此字段。  optional
+      * @param {internetEgressInfo} [opts.internetEgress] - 公网出口配置，用于配置Notebook的出公网访问方式。传null表示不修改此字段。
+
+## 使用说明
+- switchStatus必须显式传值，为on时开启公网出口，为off时关闭公网出口且egressType无效
+- **公共资源池**: switchStatus&#x3D;on时可设置 internetEgress.egressType&#x3D;SHARE_GATEWAY，经平台共享NAT网关出公网
+- **私有资源池**: 暂不支持公网出口配置  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -11704,6 +12139,9 @@ class JDAIP extends Service {
     if (opts.ownerUserPin !== undefined && opts.ownerUserPin !== null) {
       postBody['ownerUserPin'] = opts.ownerUserPin
     }
+    if (opts.internetEgress !== undefined && opts.internetEgress !== null) {
+      postBody['internetEgress'] = opts.internetEgress
+    }
 
     let queryParams = {}
 
@@ -11714,7 +12152,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -11838,7 +12276,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -11922,7 +12360,7 @@ class JDAIP extends Service {
 启动时支持更换资源配置(仅私有资源池):
 - 在公共资源池中的Notebook不允许变更资源配置，workloadSpec参数只能传null。
 - 在私有资源池中的Notebook不允许变更为公共资源池，但允许更换私有资源池中的其它队列。
-- 支持在启动时更换公网访问配置(LB)，或移除公网访问配置。
+- 支持在启动时更换公网访问配置(LB)，或移除公网访问配置。公共资源池可通过lbEnable&#x3D;true开启公网访问。
 
       * @param {Object} opts - parameters
       * @param {string} opts.workspaceId - 工作空间ID
@@ -11932,7 +12370,7 @@ class JDAIP extends Service {
 在公共资源池中的Notebook不允许变更资源配置，只能传null。
 在私有资源池中的Notebook不允许变更为公共资源池，但允许更换私有资源池中的其它队列。
   optional
-      * @param {lbSpec} [opts.lbSpec] - 只支持私有资源池中的Notebook可以更换公网访问配置。不需要更换时需要传null。  optional
+      * @param {lbSpec} [opts.lbSpec] - 只支持私有资源池中的Notebook可以更换公网访问配置，公共资源池可通过lbEnable&#x3D;true开启公网访问。不需要更换时需要传null。  optional
       * @param {boolean} [opts.removeLb] - 是否移除公网访问配置。  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -11984,7 +12422,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -12109,7 +12547,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -12190,14 +12628,16 @@ class JDAIP extends Service {
 - **存储配置**: 更新存储空间挂载配置
 - **数据集配置**: 更新数据集挂载配置
 - **模型配置**: 更新模型挂载配置
-- **公网访问配置**: 更新或移除负载均衡配置(仅私有资源池)
+- **公网访问配置**: 更新或移除负载均衡配置(仅私有资源池)；公共资源池可通过lbEnable&#x3D;true开启公网访问
 - **代码配置**: 更新代码库挂载配置
+- **环境变量配置**: 新增、修改、删除或清空用户环境变量
 - **节点亲和性配置**: 更新节点调度亲和性规则
 
 ## 接口说明
 - 更新操作需要在Notebook停止状态下进行。
 - 更新存储、数据集、模型配置时需要确保新配置与队列的网络连通性。
 - 传null的字段表示不修改该属性。
+- envs不传或传null表示不修改，传空数组表示清空，传非空数组表示全量替换。
 
       * @param {Object} opts - parameters
       * @param {string} opts.workspaceId - 工作空间ID
@@ -12259,7 +12699,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -12401,7 +12841,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -12527,7 +12967,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -12672,7 +13112,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -12819,7 +13259,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -12948,7 +13388,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -13086,7 +13526,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -13212,7 +13652,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -13370,7 +13810,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -13516,7 +13956,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -13560,6 +14000,137 @@ class JDAIP extends Service {
 
     let request = super.makeRequest(
       '/nb-regions/{regionId}/api/{apiType}/notebook:count',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询当前用户可见的规格以及售卖状态。
+## 接口说明
+- 按可访问可用区、资源池类型和规格类型过滤可见资源。
+- 返回结果按规格类型和可用区聚合，并标记每个规格是否有库存。
+
+      * @param {Object} opts - parameters
+      * @param {string} [opts.category] - 规格类型。  optional
+      * @param {string} opts.poolType - 资源池类型。&#x60;public&#x60; 为公共资源池，&#x60;exclusive&#x60; 为专享公共池。
+      * @param {string} [opts.hpcClusterName] - HPC物理集群名称，仅 &#x60;category&#x3D;hpc&#x60; 时有效。  optional
+      * @param {boolean} [opts.dryRun] - 为 &#x60;true&#x60; 时不调用库存接口，返回规格均标记为可售，用于测试验证和前端分类渲染。  optional
+      * @param {string} [opts.zone] - 可用区列表。中心随机为 &#x60;center_random&#x60;，边缘场景为逻辑可用区编码。  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param categoryFlavor categoryFlavors
+      */
+
+  describeFlavors (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeFlavors"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.poolType === undefined || opts.poolType === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.poolType' when calling describeFlavors"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.category !== undefined && opts.category !== null) {
+      queryParams['category'] = opts.category
+    }
+    if (opts.poolType !== undefined && opts.poolType !== null) {
+      queryParams['poolType'] = opts.poolType
+    }
+    if (opts.hpcClusterName !== undefined && opts.hpcClusterName !== null) {
+      queryParams['hpcClusterName'] = opts.hpcClusterName
+    }
+    if (opts.dryRun !== undefined && opts.dryRun !== null) {
+      queryParams['dryRun'] = opts.dryRun
+    }
+    Object.assign(queryParams, super.buildArrayParam(opts.zone, 'zone'))
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeFlavors with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/public-pool/{regionId}/flavors',
       'GET',
       pathParams,
       queryParams,
@@ -13646,7 +14217,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -13719,7 +14290,10 @@ class JDAIP extends Service {
   }
 
   /**
-      *  添加代码仓配置
+      *  添加代码仓配置。
+
+详细操作说明请参考帮助文档：[资产管理-代码配置](https://docs.jdcloud.com/cn/jdaip/code)
+
       * @param {Object} opts - parameters
       * @param {string} opts.workspaceId - 工作空间ID
       * @param {createCodeRepoConfigParam} opts.createCodeRepoConfigParam - 创建代码仓配置的参数
@@ -13773,7 +14347,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -13891,7 +14465,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -14024,7 +14598,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -14141,7 +14715,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -14214,7 +14788,11 @@ class JDAIP extends Service {
   }
 
   /**
-      *  创建工作空间。
+      *
+创建工作空间。
+
+详细操作说明请参考帮助文档：[创建及管理工作空间](https://docs.jdcloud.com/cn/jdaip/create-and-manage-workspace)
+
       * @param {Object} opts - parameters
       * @param {workspaceSpec} opts.workspaceSpec - 工作空间配置。
       * @param {string} regionId - ID of the region
@@ -14255,7 +14833,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -14374,7 +14952,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -14448,6 +15026,16 @@ class JDAIP extends Service {
 
   /**
       *  关联队列。
+详细操作说明请参考帮助文档：[创建及管理工作空间-配置关联队列](https://docs.jdcloud.com/cn/jdaip/create-and-manage-workspace)
+
+## 资源队列相关文档
+- [资源队列文档](https://docs.jdcloud.com/cn/jdaip/queue-details)
+- 资源队列列表接口 [listQueue](../JOYSCALE-队列/listQueue.md)
+
+## 接口说明
+- 指定模块使用：支持所有模块时，字段allModuleSupported&#x3D;true,字段queueModules不传
+- 指定成员使用：支持所有成员时，字段allMemberSupported&#x3D;true,字段queueMemberPins不传
+
       * @param {Object} opts - parameters
       * @param {string} opts.workspaceId - 工作空间ID
       * @param {array} [opts.queueIds] - 关联的队列。【废弃】该字段即将下线，建议使用新的资源队列配置字段[queueConfigs]。  optional
@@ -14494,7 +15082,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -14567,7 +15155,11 @@ class JDAIP extends Service {
   }
 
   /**
-      *  解绑队列
+      *  解绑队列。
+
+## 接口说明
+- 当队列下有未停止的任务（notebook、训练任务、在线服务等）时， 不可解绑
+
       * @param {Object} opts - parameters
       * @param {string} opts.workspaceId - 工作空间ID
       * @param {string} [opts.queueIds] - 队列ID。  optional
@@ -14606,7 +15198,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
     }
 
     let contentTypes = ['application/json']

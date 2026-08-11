@@ -14,7 +14,10 @@
  * limitations under the License.
  *
  * Workspace
- * 工作空间相关的操作
+ * 工作空间相关的操作。
+
+详细操作说明请参考帮助文档：[创建及管理工作空间](https://docs.jdcloud.com/cn/jdaip/create-and-manage-workspace)
+
  *
  * OpenAPI spec version: v1
  * Contact:

@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * shenhaiplatform service.
- * @version 1.0.2
+ * @version 1.0.3
  */
 
 class SHENHAIPLATFORM extends Service {
@@ -85,7 +85,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -202,7 +202,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -323,7 +323,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -444,7 +444,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -557,7 +557,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -687,7 +687,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -809,7 +809,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -940,7 +940,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1053,7 +1053,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1168,7 +1168,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1292,7 +1292,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1417,7 +1417,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1560,7 +1560,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1703,7 +1703,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -1885,7 +1885,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -2041,7 +2041,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -2197,7 +2197,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -2317,7 +2317,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -2437,7 +2437,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -2557,7 +2557,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -2677,7 +2677,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -2807,7 +2807,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -2928,7 +2928,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -3058,7 +3058,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -3191,7 +3191,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -3329,7 +3329,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -3467,7 +3467,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -3609,7 +3609,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -3747,7 +3747,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -3876,7 +3876,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -4000,7 +4000,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -4151,7 +4151,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -4316,7 +4316,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -4524,7 +4524,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -4658,7 +4658,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -4810,7 +4810,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -4956,7 +4956,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -5102,7 +5102,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -5248,7 +5248,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -5376,7 +5376,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -5522,7 +5522,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -5650,7 +5650,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -5778,7 +5778,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -5902,7 +5902,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -6026,7 +6026,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -6160,7 +6160,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -6338,7 +6338,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -6508,7 +6508,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -6654,7 +6654,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -6800,7 +6800,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -6942,7 +6942,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -7080,7 +7080,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -7226,7 +7226,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -7376,7 +7376,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -7514,7 +7514,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -7998,7 +7998,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -8144,7 +8144,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -8290,7 +8290,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -8774,7 +8774,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -9258,7 +9258,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -9387,7 +9387,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -9523,7 +9523,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -9659,7 +9659,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -9821,7 +9821,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -9955,7 +9955,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -10097,7 +10097,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -10235,7 +10235,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -10372,7 +10372,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -10598,7 +10598,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -10800,7 +10800,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -10923,7 +10923,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -11065,7 +11065,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -11207,7 +11207,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -11335,7 +11335,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -11454,7 +11454,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -11582,7 +11582,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -11710,7 +11710,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -11834,7 +11834,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -11998,7 +11998,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -12126,7 +12126,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -12277,7 +12277,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -12413,7 +12413,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -12564,7 +12564,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -12708,7 +12708,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -12848,7 +12848,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -12980,7 +12980,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -13112,7 +13112,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -13235,7 +13235,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -13354,7 +13354,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -13486,7 +13486,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -13609,7 +13609,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -13732,7 +13732,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -13855,7 +13855,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -13996,7 +13996,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -14137,7 +14137,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -14278,7 +14278,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -14406,7 +14406,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -14570,7 +14570,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -14690,7 +14690,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -14814,7 +14814,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -14964,7 +14964,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -15092,7 +15092,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -15220,7 +15220,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -15348,7 +15348,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -15476,7 +15476,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -15604,7 +15604,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -15929,7 +15929,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -16057,7 +16057,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -16181,7 +16181,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -16310,7 +16310,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -16427,7 +16427,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -16556,7 +16556,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -16674,7 +16674,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -16808,7 +16808,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -16934,7 +16934,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -17055,7 +17055,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -17172,7 +17172,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -17293,7 +17293,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -17407,7 +17407,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -17521,7 +17521,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -17635,7 +17635,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -17753,7 +17753,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -17867,7 +17867,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -17981,7 +17981,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -18099,7 +18099,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -18227,7 +18227,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -18358,7 +18358,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -18505,7 +18505,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -18636,7 +18636,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -18787,7 +18787,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -18915,7 +18915,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -19051,7 +19051,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -19195,7 +19195,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -19335,7 +19335,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -19475,7 +19475,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -19619,7 +19619,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -19767,7 +19767,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -19979,7 +19979,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -20114,7 +20114,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -20245,7 +20245,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -20380,7 +20380,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -20508,7 +20508,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -20702,7 +20702,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -20896,7 +20896,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -21035,7 +21035,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -21190,7 +21190,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -21334,7 +21334,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -21469,7 +21469,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -21676,7 +21676,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -21802,7 +21802,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -21920,7 +21920,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -22038,7 +22038,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -22155,7 +22155,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -22272,7 +22272,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -22393,7 +22393,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -22511,7 +22511,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -22635,7 +22635,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -22761,7 +22761,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -22887,7 +22887,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -23000,7 +23000,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -23117,7 +23117,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -23234,7 +23234,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -23351,7 +23351,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -23468,7 +23468,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -23581,7 +23581,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -23694,7 +23694,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -23807,7 +23807,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -23920,7 +23920,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -24033,7 +24033,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -24240,7 +24240,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -24366,7 +24366,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -24488,7 +24488,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -24610,7 +24610,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -24732,7 +24732,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -24939,7 +24939,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -25066,7 +25066,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -25215,7 +25215,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -25375,7 +25375,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -25529,7 +25529,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -25705,7 +25705,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -25894,7 +25894,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -26012,7 +26012,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -26138,7 +26138,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -26263,7 +26263,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -26430,7 +26430,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -26565,7 +26565,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -26697,7 +26697,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -26833,7 +26833,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -26968,7 +26968,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -27149,7 +27149,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -27281,7 +27281,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -27416,7 +27416,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -27551,7 +27551,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -27777,7 +27777,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -27903,7 +27903,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -28025,7 +28025,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -28147,7 +28147,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -28269,7 +28269,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -28391,7 +28391,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -28513,7 +28513,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -28627,7 +28627,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -28741,7 +28741,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -28855,7 +28855,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -28973,7 +28973,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -29087,7 +29087,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -29201,7 +29201,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -29319,7 +29319,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -29437,7 +29437,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -29663,7 +29663,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -29789,7 +29789,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -29907,7 +29907,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -30025,7 +30025,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -30142,7 +30142,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -30259,7 +30259,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -30380,7 +30380,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -30498,7 +30498,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -30622,7 +30622,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -30748,7 +30748,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -30874,7 +30874,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -31056,7 +31056,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -31204,7 +31204,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -31322,7 +31322,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -31514,7 +31514,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -31632,7 +31632,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -31750,7 +31750,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -31931,7 +31931,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -32049,7 +32049,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -32175,7 +32175,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -32292,7 +32292,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -32413,7 +32413,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -32538,7 +32538,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -32658,7 +32658,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -32778,7 +32778,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -32906,7 +32906,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -33047,7 +33047,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -33176,7 +33176,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -33326,7 +33326,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -33533,7 +33533,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -33691,7 +33691,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -33835,7 +33835,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -33971,7 +33971,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -34108,7 +34108,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -34219,7 +34219,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -34330,7 +34330,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -34450,7 +34450,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -34590,7 +34590,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -34710,7 +34710,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -34830,7 +34830,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -34959,7 +34959,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -35079,7 +35079,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -35199,7 +35199,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -35319,7 +35319,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -35443,7 +35443,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -35572,7 +35572,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -35716,7 +35716,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -35852,7 +35852,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -35981,7 +35981,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -36101,7 +36101,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -36221,7 +36221,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -36345,7 +36345,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -36461,7 +36461,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -36581,7 +36581,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -36693,7 +36693,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -36817,7 +36817,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -36937,7 +36937,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -37057,7 +37057,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -37190,7 +37190,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -37323,7 +37323,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -37443,7 +37443,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -37647,7 +37647,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -37851,7 +37851,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -37987,7 +37987,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -38123,7 +38123,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -38294,7 +38294,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -38455,7 +38455,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -38603,7 +38603,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -38731,7 +38731,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -38856,7 +38856,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -38980,7 +38980,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -39100,7 +39100,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -39220,7 +39220,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -39340,7 +39340,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -39509,7 +39509,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -39646,7 +39646,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -39770,7 +39770,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -39891,7 +39891,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -40020,7 +40020,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -40149,7 +40149,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -40318,7 +40318,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -40433,7 +40433,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -40552,7 +40552,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -40663,7 +40663,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -40787,7 +40787,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -40912,7 +40912,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -41046,7 +41046,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -41170,7 +41170,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -41306,7 +41306,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -41442,7 +41442,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -41570,7 +41570,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -41698,7 +41698,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -41834,7 +41834,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -41966,7 +41966,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -42077,7 +42077,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -42197,7 +42197,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -42312,7 +42312,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -42432,7 +42432,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -42543,7 +42543,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -42723,7 +42723,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -42897,7 +42897,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -43033,7 +43033,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -43153,7 +43153,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -43317,7 +43317,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -43481,7 +43481,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -43645,7 +43645,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -43809,7 +43809,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -43973,7 +43973,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -44137,7 +44137,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -44301,7 +44301,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -44465,7 +44465,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -44593,7 +44593,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -44737,7 +44737,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -44848,7 +44848,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -44963,7 +44963,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -45078,7 +45078,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -45218,7 +45218,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -45354,7 +45354,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -45482,7 +45482,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -45602,7 +45602,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -45734,7 +45734,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -45889,7 +45889,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -46040,7 +46040,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -46164,7 +46164,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -46288,7 +46288,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -46452,7 +46452,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -46572,7 +46572,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -46736,7 +46736,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -46864,7 +46864,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -46992,7 +46992,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -47112,7 +47112,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -47232,7 +47232,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -47364,7 +47364,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -47484,7 +47484,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -47628,7 +47628,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -47748,7 +47748,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -47868,7 +47868,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -48019,7 +48019,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -48157,7 +48157,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -48285,7 +48285,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -48401,7 +48401,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -48526,7 +48526,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -48647,7 +48647,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -48767,7 +48767,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -48887,7 +48887,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -49031,7 +49031,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -49143,7 +49143,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -49255,7 +49255,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -49387,7 +49387,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -49503,7 +49503,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -49637,7 +49637,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -49765,7 +49765,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -49903,7 +49903,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -50031,7 +50031,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -50159,7 +50159,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -50279,7 +50279,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -50399,7 +50399,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -50528,7 +50528,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -50652,7 +50652,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -50772,7 +50772,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -50883,7 +50883,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -51015,7 +51015,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -51135,7 +51135,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -51246,7 +51246,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -51376,7 +51376,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -51501,7 +51501,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -51626,7 +51626,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -51746,7 +51746,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -51910,7 +51910,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -52102,7 +52102,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -52315,7 +52315,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -52503,7 +52503,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -52637,7 +52637,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -52757,7 +52757,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -52868,7 +52868,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -52988,7 +52988,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -53117,7 +53117,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -53237,7 +53237,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -53357,7 +53357,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -53477,7 +53477,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -53588,7 +53588,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -53732,7 +53732,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -53884,7 +53884,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -54000,7 +54000,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -54128,7 +54128,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -54248,7 +54248,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -54377,7 +54377,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -54537,7 +54537,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -54657,7 +54657,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -54781,7 +54781,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -54901,7 +54901,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -55021,7 +55021,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -55153,7 +55153,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -55285,7 +55285,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -55363,6 +55363,7 @@ class SHENHAIPLATFORM extends Service {
       * @param {string} opts.appName - 应用名称
       * @param {string} [opts.draftId] - 草稿ID，用于标识该任务脚本信息所属的草稿  optional
       * @param {string} [opts.content] - 任务脚本的内容  optional
+      * @param {string} [opts.contentEncoding] - 内容编码方式。当值为 &quot;base64&quot; 时，content 字段为 base64 编码，需解码后使用；其他情况不处理  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -55400,6 +55401,9 @@ class SHENHAIPLATFORM extends Service {
     if (opts.content !== undefined && opts.content !== null) {
       postBody['content'] = opts.content
     }
+    if (opts.contentEncoding !== undefined && opts.contentEncoding !== null) {
+      postBody['contentEncoding'] = opts.contentEncoding
+    }
 
     let queryParams = {}
 
@@ -55409,7 +55413,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -55525,7 +55529,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -55645,7 +55649,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -55765,7 +55769,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -55933,7 +55937,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -56096,7 +56100,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -56224,7 +56228,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -56352,7 +56356,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -56479,7 +56483,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -56599,7 +56603,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -56714,7 +56718,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -56825,7 +56829,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -56940,7 +56944,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -57060,7 +57064,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -57188,7 +57192,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -57308,7 +57312,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -57436,7 +57440,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -57560,7 +57564,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -57684,7 +57688,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -57808,7 +57812,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -57932,7 +57936,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -58052,7 +58056,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -58181,7 +58185,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -58336,7 +58340,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -58487,7 +58491,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -58603,7 +58607,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -58726,7 +58730,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -58845,7 +58849,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -58969,7 +58973,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -59089,7 +59093,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -59218,7 +59222,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -59338,7 +59342,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -59491,7 +59495,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -59640,7 +59644,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -59789,7 +59793,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -59938,7 +59942,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -60087,7 +60091,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -60236,7 +60240,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -60365,7 +60369,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -60509,7 +60513,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -60591,6 +60595,7 @@ class SHENHAIPLATFORM extends Service {
       * @param {string} [opts.workspaceCode]   optional
       * @param {string} [opts.projectCode]   optional
       * @param {string} [opts.resourceCode]   optional
+      * @param {string} [opts.engineCode] - 存算引擎实例编码  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -60642,6 +60647,9 @@ class SHENHAIPLATFORM extends Service {
     if (opts.resourceCode !== undefined && opts.resourceCode !== null) {
       postBody['resourceCode'] = opts.resourceCode
     }
+    if (opts.engineCode !== undefined && opts.engineCode !== null) {
+      postBody['engineCode'] = opts.engineCode
+    }
 
     let queryParams = {}
 
@@ -60653,7 +60661,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -60735,6 +60743,7 @@ class SHENHAIPLATFORM extends Service {
       * @param {string} [opts.workspaceCode]   optional
       * @param {string} [opts.projectCode]   optional
       * @param {string} [opts.resourceCode]   optional
+      * @param {string} [opts.engineCode] - 存算引擎实例编码  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -60786,6 +60795,9 @@ class SHENHAIPLATFORM extends Service {
     if (opts.resourceCode !== undefined && opts.resourceCode !== null) {
       postBody['resourceCode'] = opts.resourceCode
     }
+    if (opts.engineCode !== undefined && opts.engineCode !== null) {
+      postBody['engineCode'] = opts.engineCode
+    }
 
     let queryParams = {}
 
@@ -60797,7 +60809,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -60879,6 +60891,7 @@ class SHENHAIPLATFORM extends Service {
       * @param {string} [opts.workspaceCode]   optional
       * @param {string} [opts.projectCode]   optional
       * @param {string} [opts.resourceCode]   optional
+      * @param {string} [opts.engineCode] - 存算引擎实例编码  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -60934,6 +60947,9 @@ class SHENHAIPLATFORM extends Service {
     if (opts.resourceCode !== undefined && opts.resourceCode !== null) {
       postBody['resourceCode'] = opts.resourceCode
     }
+    if (opts.engineCode !== undefined && opts.engineCode !== null) {
+      postBody['engineCode'] = opts.engineCode
+    }
 
     let queryParams = {}
 
@@ -60945,7 +60961,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -61023,11 +61039,11 @@ class SHENHAIPLATFORM extends Service {
       * @param {string} opts.appName - 应用名称
       * @param {string} opts.regionId
       * @param {string} opts.appName - 请求应用名
-      * @param {string} [opts.engineCode] - 计算引擎Code  optional
       * @param {integer} [opts.id]   optional
       * @param {string} [opts.workspaceCode]   optional
       * @param {string} [opts.projectCode]   optional
       * @param {string} [opts.resourceCode]   optional
+      * @param {string} [opts.engineCode] - 存算引擎实例编码  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -61067,9 +61083,6 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let postBody = {}
-    if (opts.engineCode !== undefined && opts.engineCode !== null) {
-      postBody['engineCode'] = opts.engineCode
-    }
     if (opts.id !== undefined && opts.id !== null) {
       postBody['id'] = opts.id
     }
@@ -61082,6 +61095,9 @@ class SHENHAIPLATFORM extends Service {
     if (opts.resourceCode !== undefined && opts.resourceCode !== null) {
       postBody['resourceCode'] = opts.resourceCode
     }
+    if (opts.engineCode !== undefined && opts.engineCode !== null) {
+      postBody['engineCode'] = opts.engineCode
+    }
 
     let queryParams = {}
 
@@ -61093,7 +61109,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -61244,7 +61260,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -61389,7 +61405,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -61537,7 +61553,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -61581,6 +61597,294 @@ class SHENHAIPLATFORM extends Service {
 
     let request = super.makeRequest(
       '/regions/{regionId}/apps/{appName}/bindWorkspaceEngine',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  通过计算引擎Code查询绑定的JMR引擎配置信息(支持按类型过滤)
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.regionId
+      * @param {string} opts.appName - 请求应用名
+      * @param {string} [opts.engineCode] - 计算引擎Code  optional
+      * @param {string} [opts.configType] - 配置类型(如 core-site, hdfs-site 等，为空返回全部)  optional
+      * @param {string} [opts.env] - 环境类型(dev/prod)  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param engineJmrConfigResp result
+      */
+
+  getJmrConfigs (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getJmrConfigs"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling getJmrConfigs"
+      )
+    }
+    if (opts.regionId === undefined || opts.regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionId' when calling getJmrConfigs"
+      )
+    }
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling getJmrConfigs"
+      )
+    }
+
+    let postBody = {}
+    if (opts.engineCode !== undefined && opts.engineCode !== null) {
+      postBody['engineCode'] = opts.engineCode
+    }
+    if (opts.configType !== undefined && opts.configType !== null) {
+      postBody['configType'] = opts.configType
+    }
+    if (opts.env !== undefined && opts.env !== null) {
+      postBody['env'] = opts.env
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName,
+      regionId: opts.regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getJmrConfigs with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/getJmrConfigs',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  根据存算引擎实例编码查询对应的regionId
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.regionId
+      * @param {string} opts.appName - 请求应用名
+      * @param {integer} [opts.id]   optional
+      * @param {string} [opts.workspaceCode]   optional
+      * @param {string} [opts.projectCode]   optional
+      * @param {string} [opts.resourceCode]   optional
+      * @param {string} [opts.engineCode] - 存算引擎实例编码  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param string result  存算引擎对应的regionId
+      */
+
+  getRegionByEngineCode (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getRegionByEngineCode"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling getRegionByEngineCode"
+      )
+    }
+    if (opts.regionId === undefined || opts.regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionId' when calling getRegionByEngineCode"
+      )
+    }
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling getRegionByEngineCode"
+      )
+    }
+
+    let postBody = {}
+    if (opts.id !== undefined && opts.id !== null) {
+      postBody['id'] = opts.id
+    }
+    if (opts.workspaceCode !== undefined && opts.workspaceCode !== null) {
+      postBody['workspaceCode'] = opts.workspaceCode
+    }
+    if (opts.projectCode !== undefined && opts.projectCode !== null) {
+      postBody['projectCode'] = opts.projectCode
+    }
+    if (opts.resourceCode !== undefined && opts.resourceCode !== null) {
+      postBody['resourceCode'] = opts.resourceCode
+    }
+    if (opts.engineCode !== undefined && opts.engineCode !== null) {
+      postBody['engineCode'] = opts.engineCode
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName,
+      regionId: opts.regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getRegionByEngineCode with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/getRegionByEngineCode',
       'POST',
       pathParams,
       queryParams,
@@ -61732,7 +62036,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -61872,7 +62176,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -61954,6 +62258,7 @@ class SHENHAIPLATFORM extends Service {
       * @param {string} [opts.workspaceCode]   optional
       * @param {string} [opts.projectCode]   optional
       * @param {string} [opts.resourceCode]   optional
+      * @param {string} [opts.engineCode] - 存算引擎实例编码  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -62005,6 +62310,9 @@ class SHENHAIPLATFORM extends Service {
     if (opts.resourceCode !== undefined && opts.resourceCode !== null) {
       postBody['resourceCode'] = opts.resourceCode
     }
+    if (opts.engineCode !== undefined && opts.engineCode !== null) {
+      postBody['engineCode'] = opts.engineCode
+    }
 
     let queryParams = {}
 
@@ -62016,7 +62324,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -62164,7 +62472,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -62311,7 +62619,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -62448,7 +62756,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -62603,7 +62911,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -62740,7 +63048,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -62896,7 +63204,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -63025,7 +63333,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -63107,6 +63415,7 @@ class SHENHAIPLATFORM extends Service {
       * @param {string} [opts.workspaceCode]   optional
       * @param {string} [opts.projectCode]   optional
       * @param {string} [opts.resourceCode]   optional
+      * @param {string} [opts.engineCode] - 存算引擎实例编码  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -63158,6 +63467,9 @@ class SHENHAIPLATFORM extends Service {
     if (opts.resourceCode !== undefined && opts.resourceCode !== null) {
       postBody['resourceCode'] = opts.resourceCode
     }
+    if (opts.engineCode !== undefined && opts.engineCode !== null) {
+      postBody['engineCode'] = opts.engineCode
+    }
 
     let queryParams = {}
 
@@ -63169,7 +63481,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -63251,6 +63563,7 @@ class SHENHAIPLATFORM extends Service {
       * @param {string} [opts.workspaceCode]   optional
       * @param {string} [opts.projectCode]   optional
       * @param {string} [opts.resourceCode]   optional
+      * @param {string} [opts.engineCode] - 存算引擎实例编码  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -63302,6 +63615,9 @@ class SHENHAIPLATFORM extends Service {
     if (opts.resourceCode !== undefined && opts.resourceCode !== null) {
       postBody['resourceCode'] = opts.resourceCode
     }
+    if (opts.engineCode !== undefined && opts.engineCode !== null) {
+      postBody['engineCode'] = opts.engineCode
+    }
 
     let queryParams = {}
 
@@ -63313,7 +63629,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -63493,7 +63809,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -63618,7 +63934,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -63783,7 +64099,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -63948,7 +64264,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -64097,7 +64413,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -64222,7 +64538,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -64304,6 +64620,7 @@ class SHENHAIPLATFORM extends Service {
       * @param {string} [opts.workspaceCode]   optional
       * @param {string} [opts.projectCode]   optional
       * @param {string} [opts.resourceCode]   optional
+      * @param {string} [opts.engineCode] - 存算引擎实例编码  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -64355,6 +64672,9 @@ class SHENHAIPLATFORM extends Service {
     if (opts.resourceCode !== undefined && opts.resourceCode !== null) {
       postBody['resourceCode'] = opts.resourceCode
     }
+    if (opts.engineCode !== undefined && opts.engineCode !== null) {
+      postBody['engineCode'] = opts.engineCode
+    }
 
     let queryParams = {}
 
@@ -64366,7 +64686,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -64498,7 +64818,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -64642,7 +64962,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -64777,7 +65097,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -64913,7 +65233,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -65040,7 +65360,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -65200,7 +65520,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -65360,7 +65680,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -65497,7 +65817,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -65625,7 +65945,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -65758,7 +66078,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -65891,7 +66211,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -66055,7 +66375,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -66215,7 +66535,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -66375,7 +66695,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -66539,7 +66859,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']
@@ -66699,7 +67019,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
     }
 
     let contentTypes = ['application/json']

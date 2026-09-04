@@ -33,7 +33,7 @@ Service._services[serviceId] = true
 
 /**
  * jdaip service.
- * @version 1.0.3
+ * @version 1.0.7
  */
 
 class JDAIP extends Service {
@@ -94,7 +94,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -238,7 +238,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -374,7 +374,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -495,7 +495,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -641,7 +641,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -767,7 +767,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -918,7 +918,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -1054,7 +1054,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -1201,7 +1201,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -1319,7 +1319,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -1464,7 +1464,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -1546,10 +1546,10 @@ class JDAIP extends Service {
 - **基本信息**：任务名称、描述、框架类型
 - **镜像配置**：镜像可见性、镜像ID、镜像地址
 - **启动命令**：训练脚本执行命令和环境变量
-- **资源配置**：队列、GPU/CPU/内存、节点数量、可用区（公共池）
+- **资源配置**：队列、GPU/CPU/内存、节点数量、可用区（公共资源池/共享资源池）
 - **存储配置**：OSS/CFS/JPFS 为外部共享存储（&#x60;storageSpaces&#x60;）；本地存储为顶层字段 &#x60;localStorage&#x60;（训练节点本地临时高速缓存，仅专属资源池，每个任务最多一个）
 - **数据与模型**：数据集、模型、代码仓库配置
-- **高级配置**：重启策略（仅异构节点池+PyTorch）、健康检测、公共池排队超时
+- **高级配置**：重启策略（仅异构节点池+PyTorch）、健康检测、公共池排队超时、容器特权模式（仅专属资源池整机 GPU）
 
 ## 创建流程
 
@@ -1563,8 +1563,11 @@ class JDAIP extends Service {
 - &#x60;resource&#x60; 参数已废弃
 - Ray 任务必须使用 &#x60;roleResource&#x60; 配置 Head 和 Worker 角色
 - **重启策略仅适用于异构节点池的 PyTorch 任务**，云主机资源池和 Ray 任务不支持
-- 公共资源池角色规格须通过 &#x60;logicAzCode&#x60; 指定可用区（异构规格还须填 &#x60;hpcClusterName&#x60;）
-- &#x60;queuingTimeoutMinutes&#x60; 仅公共资源池生效，排队超时后任务自动回滚为创建失败
+- 公共资源池和共享资源池角色规格须通过 &#x60;logicAzCode&#x60; 指定可用区（异构规格还须填 &#x60;hpcClusterName&#x60;）
+- 共享资源池固定使用 &#x60;queueId&#x3D;joybuilder-exclusive-queue&#x60;；用户必须已加入共享池且存在启用的 user queue
+- 共享资源池创建任务时 &#x60;taskPriority&#x60; 必填，取值范围 &#x60;1..9&#x60;；公共资源池不支持 &#x60;taskPriority&#x60;
+- &#x60;queuingTimeoutMinutes&#x60; 仅公共资源池和共享资源池生效，排队超时后任务自动回滚为创建失败
+- &#x60;privileged&#x3D;true&#x60; 仅支持专属资源池整机 GPU 任务；&#x60;Ascend&#x60; 前缀型号要求单实例申请 16 卡，其他非空 GPU 型号要求单实例申请 8 卡；Ray 全部角色都必须满足
 - 本地存储（顶层字段 &#x60;localStorage&#x60;）仅支持专属资源池（接口会校验拒绝公共资源池），每个任务最多一个，数据随实例删除/销毁自动清除、不支持持久化，不可存放 checkpoint、模型权重等关键数据
 - 本地存储依赖队列节点已配置本地高速盘（目前主要是异构专属节点池具备该能力），接口暂不校验节点本地盘能力，若节点不满足条件，任务会调度失败并停留在排队/启动中，而非创建时直接报错
 
@@ -1619,7 +1622,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -1746,7 +1749,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -1821,7 +1824,7 @@ class JDAIP extends Service {
   /**
       *  更新训练任务属性信息。
 
-仅支持更新任务的元数据属性（名称、描述、权限、归属），不影响正在运行的训练任务。
+支持更新任务的元数据属性（名称、描述、权限、归属）和排队中任务的优先级。
 
 ## 使用场景
 
@@ -1829,6 +1832,7 @@ class JDAIP extends Service {
 - 更新任务描述信息
 - 调整资源的可见性权限
 - 转移任务归属给其他用户
+- 调整共享资源池排队中任务的优先级
 
       * @param {Object} opts - parameters
       * @param {string} opts.workspaceId - 工作空间ID
@@ -1836,7 +1840,9 @@ class JDAIP extends Service {
       * @param {string} [opts.name] - 训练任务名称。1~32字符，仅支持中文、大小写字母、数字、英文中划线 &quot;-&quot;和英文下划线&quot;_&quot;。  optional
       * @param {string} [opts.description] - 训练任务的描述信息，不超过256个字符。  optional
       * @param {string} [opts.permission] - 工作空间中的资源归属权限，支持(public,private)，默认为public。  optional
-      * @param {integer} [opts.taskPriority] - 任务优先级，取值范围[1, 9]; 当队列开启优先级调度时生效  optional
+      * @param {integer} [opts.taskPriority] - 任务优先级，取值范围 &#x60;1..9&#x60;。仅排队中（&#x60;queuing&#x60;）任务允许更新。
+共享资源池直接校验范围；公共资源池不支持；其他资源队列按队列策略校验。
+  optional
       * @param {string} [opts.ownerUserPin] - 归属用户pin。
 可配置任务所属主账号pin，或者工作空间其他成员的子账号pin
   optional
@@ -1896,7 +1902,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -2026,7 +2032,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -2158,7 +2164,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -2309,7 +2315,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -2439,7 +2445,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -2582,7 +2588,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -2730,7 +2736,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -2882,7 +2888,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -2927,6 +2933,1243 @@ class JDAIP extends Service {
     let request = super.makeRequest(
       '/train/{regionId}/workspaces/{workspaceId}/jobs/{jobId}/instances/{instanceName}:events',
       'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询训练任务的所有性能分析（profiling）任务列表。
+
+分页查询指定训练任务下的 profiling 任务列表，支持按任务名称和状态进行过滤。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.workspaceId - 工作空间ID
+      * @param {string} opts.jobId - 训练任务ID
+      * @param {integer} [opts.pageNumber] - 页码；默认为1。  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[1, 100]。  optional
+      * @param {filter} [opts.filters] - &lt;b&gt;filters 中支持使用以下关键字进行过滤&lt;/b&gt;
+&#x60;name&#x60;: 性能分析任务名称，模糊匹配，支持单个。
+&#x60;status&#x60;: 任务状态，精确匹配，支持多个，可选(pending/running/completed/failed/canceled)。
+&#x60;targetType&#x60;: 监控目标类型，精确匹配，支持多个，可选(instance/pid)。
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param profilingTaskListInfo profilingTaskList
+      * @param number totalCount  本次查询可匹配到的总记录数。
+      */
+
+  describeProfilingTasks (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeProfilingTasks"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.workspaceId === undefined || opts.workspaceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.workspaceId' when calling describeProfilingTasks"
+      )
+    }
+    if (opts.jobId === undefined || opts.jobId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.jobId' when calling describeProfilingTasks"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: regionId,
+      workspaceId: opts.workspaceId,
+      jobId: opts.jobId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeProfilingTasks with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/train/{regionId}/workspaces/{workspaceId}/jobs/{jobId}:profilingTasks',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  新建性能分析（profiling）任务。
+
+为指定训练任务创建 profiling 监控任务，支持按实例或按PID两种模式（二选一）。
+
+## 采集模式
+
+- **instance 模式**：采集所选实例的所有PID，&#x60;targets&#x60; 中每个实例的 &#x60;pids&#x60; 为空数组
+- **pid 模式**：采集所选实例内筛选的PID，&#x60;targets&#x60; 中每个实例的 &#x60;pids&#x60; 填写指定PID列表
+
+## 前置准备
+
+创建任务前，可调用以下辅助接口获取PID信息：
+- &#x60;describeInstances&#x60;：查询实例信息（IP、状态、Pod IP）
+- &#x60;describeProfilingInstancePids&#x60;：查询指定实例的PID列表（PID、命令、用户、GPU PID）
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.workspaceId - 工作空间ID
+      * @param {string} opts.jobId - 训练任务ID
+      * @param {profilingParam} opts.profilingParam - 性能分析任务参数。
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string profilingId  性能分析任务ID。
+      */
+
+  createProfilingTask (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createProfilingTask"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.workspaceId === undefined || opts.workspaceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.workspaceId' when calling createProfilingTask"
+      )
+    }
+    if (opts.jobId === undefined || opts.jobId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.jobId' when calling createProfilingTask"
+      )
+    }
+    if (opts.profilingParam === undefined || opts.profilingParam === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.profilingParam' when calling createProfilingTask"
+      )
+    }
+
+    let postBody = {}
+    if (opts.profilingParam !== undefined && opts.profilingParam !== null) {
+      postBody['profilingParam'] = opts.profilingParam
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      workspaceId: opts.workspaceId,
+      jobId: opts.jobId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createProfilingTask with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/train/{regionId}/workspaces/{workspaceId}/jobs/{jobId}:profilingTasks',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询性能分析任务的详细信息。
+
+返回 profiling 任务的完整信息，包括基本信息和监控目标的采集状态列表（profiling_instance 表）。
+支持按实例名称、节点名称和采集状态进行过滤分页查询。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.workspaceId - 工作空间ID
+      * @param {string} opts.jobId - 训练任务ID
+      * @param {string} opts.profilingId - 性能分析任务ID
+      * @param {integer} [opts.pageNumber] - 页码；默认为1。  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[1, 100]。  optional
+      * @param {filter} [opts.filters] - &lt;b&gt;filters 中支持使用以下关键字进行过滤&lt;/b&gt;
+&#x60;instanceName&#x60;: 实例名称，模糊匹配，支持单个。
+&#x60;nodeName&#x60;: 所属节点名称，模糊匹配，支持单个。
+&#x60;collectStatus&#x60;: 采集状态，精确匹配，支持多个，可选(pending/collecting/success/failed)。
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param profilingTaskDetail profilingTask  性能分析任务详情。
+      * @param profilingInstanceCollectInfo instanceList
+      * @param number totalCount  监控目标实例总数。
+      */
+
+  describeProfilingTask (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeProfilingTask"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.workspaceId === undefined || opts.workspaceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.workspaceId' when calling describeProfilingTask"
+      )
+    }
+    if (opts.jobId === undefined || opts.jobId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.jobId' when calling describeProfilingTask"
+      )
+    }
+    if (opts.profilingId === undefined || opts.profilingId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.profilingId' when calling describeProfilingTask"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: regionId,
+      workspaceId: opts.workspaceId,
+      jobId: opts.jobId,
+      profilingId: opts.profilingId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeProfilingTask with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/train/{regionId}/workspaces/{workspaceId}/jobs/{jobId}/profilingTasks/{profilingId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除性能分析任务。
+
+软删除指定的 profiling 任务及其关联的监控目标列表数据。删除后不可恢复。
+
+## 注意事项
+
+- 删除操作为软删除，数据状态标记为已删除
+- 删除后任务不再在列表中显示
+- 正在运行的任务需先停止再删除
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.workspaceId - 工作空间ID
+      * @param {string} opts.jobId - 训练任务ID
+      * @param {string} opts.profilingId - 性能分析任务ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteProfilingTask (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteProfilingTask"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.workspaceId === undefined || opts.workspaceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.workspaceId' when calling deleteProfilingTask"
+      )
+    }
+    if (opts.jobId === undefined || opts.jobId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.jobId' when calling deleteProfilingTask"
+      )
+    }
+    if (opts.profilingId === undefined || opts.profilingId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.profilingId' when calling deleteProfilingTask"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      workspaceId: opts.workspaceId,
+      jobId: opts.jobId,
+      profilingId: opts.profilingId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteProfilingTask with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/train/{regionId}/workspaces/{workspaceId}/jobs/{jobId}/profilingTasks/{profilingId}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询指定实例的PID列表（用于性能分析任务创建前的PID选择）。
+
+返回指定实例内所有进程的PID、命令、用户和GPU PID信息，仅在 pid 模式下需要调用此接口。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.workspaceId - 工作空间ID
+      * @param {string} opts.jobId - 训练任务ID
+      * @param {string} opts.instanceName - 实例名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param profilingPidInfo pidList
+      */
+
+  describeProfilingInstancePids (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeProfilingInstancePids"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.workspaceId === undefined || opts.workspaceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.workspaceId' when calling describeProfilingInstancePids"
+      )
+    }
+    if (opts.jobId === undefined || opts.jobId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.jobId' when calling describeProfilingInstancePids"
+      )
+    }
+    if (opts.instanceName === undefined || opts.instanceName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceName' when calling describeProfilingInstancePids"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      workspaceId: opts.workspaceId,
+      jobId: opts.jobId,
+      instanceName: opts.instanceName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeProfilingInstancePids with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/train/{regionId}/workspaces/{workspaceId}/jobs/{jobId}/profilingInstances/{instanceName}:pids',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  下载性能分析任务指定实例的采集结果。
+
+下载指定 profiling 任务下指定实例的采集结果文件，以实例为单位进行下载。每次下载会将该实例的 &#x60;downloadTimes&#x60; 计数器加1。
+
+## 注意事项
+
+- 仅状态为 &#x60;completed&#x60; 的任务才允许下载
+- 结果文件为该实例采集数据的打包压缩文件
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.workspaceId - 工作空间ID
+      * @param {string} opts.jobId - 训练任务ID
+      * @param {string} opts.instanceName - 实例名称
+      * @param {string} opts.profilingId - 性能分析任务ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string downloadUrl  结果文件下载地址。
+      */
+
+  downloadProfilingTask (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  downloadProfilingTask"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.workspaceId === undefined || opts.workspaceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.workspaceId' when calling downloadProfilingTask"
+      )
+    }
+    if (opts.jobId === undefined || opts.jobId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.jobId' when calling downloadProfilingTask"
+      )
+    }
+    if (opts.instanceName === undefined || opts.instanceName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceName' when calling downloadProfilingTask"
+      )
+    }
+    if (opts.profilingId === undefined || opts.profilingId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.profilingId' when calling downloadProfilingTask"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      workspaceId: opts.workspaceId,
+      jobId: opts.jobId,
+      instanceName: opts.instanceName,
+      profilingId: opts.profilingId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call downloadProfilingTask with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/train/{regionId}/workspaces/{workspaceId}/jobs/{jobId}/profilingTasks/{profilingId}/instances/{instanceName}:download',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  转存性能分析任务结果至OSS。
+
+将指定 profiling 任务的采集结果文件转存至用户指定的OSS存储空间。
+
+## 注意事项
+
+- 仅状态为 &#x60;completed&#x60; 的任务才允许转存
+- 需确保目标OSS Bucket已存在且有写入权限
+- 转存为异步操作，提交后返回转存任务状态
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.workspaceId - 工作空间ID
+      * @param {string} opts.jobId - 训练任务ID
+      * @param {string} opts.profilingId - 性能分析任务ID
+      * @param {transferToOssParam} opts.transferParam - 转存参数。
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string status  转存状态，可选(transferring/success/failed)。
+      */
+
+  transferProfilingTaskToOss (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  transferProfilingTaskToOss"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.workspaceId === undefined || opts.workspaceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.workspaceId' when calling transferProfilingTaskToOss"
+      )
+    }
+    if (opts.jobId === undefined || opts.jobId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.jobId' when calling transferProfilingTaskToOss"
+      )
+    }
+    if (opts.profilingId === undefined || opts.profilingId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.profilingId' when calling transferProfilingTaskToOss"
+      )
+    }
+    if (opts.transferParam === undefined || opts.transferParam === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.transferParam' when calling transferProfilingTaskToOss"
+      )
+    }
+
+    let postBody = {}
+    if (opts.transferParam !== undefined && opts.transferParam !== null) {
+      postBody['transferParam'] = opts.transferParam
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      workspaceId: opts.workspaceId,
+      jobId: opts.jobId,
+      profilingId: opts.profilingId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call transferProfilingTaskToOss with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/train/{regionId}/workspaces/{workspaceId}/jobs/{jobId}/profilingTasks/{profilingId}:transferToOss',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询训练任务的导出模型列表。
+
+分页查询指定训练任务下的模型导出记录列表，支持按状态进行过滤。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.workspaceId - 工作空间ID
+      * @param {string} opts.jobId - 训练任务ID
+      * @param {integer} [opts.pageNumber] - 页码；默认为1。  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[1, 500]。  optional
+      * @param {filter} [opts.filters] - &lt;b&gt;filters 中支持使用以下关键字进行过滤&lt;/b&gt;
+&#x60;status&#x60;: 导出状态，精确匹配，支持多个，可选(pending/exporting/completed/failed)。
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param modelExportListItem modelExportListInfo
+      * @param number totalCount  本次查询可匹配到的总记录数。
+      */
+
+  describeModelExports (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeModelExports"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.workspaceId === undefined || opts.workspaceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.workspaceId' when calling describeModelExports"
+      )
+    }
+    if (opts.jobId === undefined || opts.jobId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.jobId' when calling describeModelExports"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: regionId,
+      workspaceId: opts.workspaceId,
+      jobId: opts.jobId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeModelExports with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/train/{regionId}/workspaces/{workspaceId}/jobs/{jobId}/modelExports',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建导出模型任务。
+
+将指定训练任务产出的模型导出到用户指定的存储位置，支持指定模型格式和框架。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.workspaceId - 工作空间ID
+      * @param {string} opts.jobId - 训练任务ID
+      * @param {modelExportParam} opts.modelExportParam - 导出模型参数。
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string exportId  导出任务ID。
+      */
+
+  createModelExport (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createModelExport"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.workspaceId === undefined || opts.workspaceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.workspaceId' when calling createModelExport"
+      )
+    }
+    if (opts.jobId === undefined || opts.jobId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.jobId' when calling createModelExport"
+      )
+    }
+    if (opts.modelExportParam === undefined || opts.modelExportParam === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.modelExportParam' when calling createModelExport"
+      )
+    }
+
+    let postBody = {}
+    if (opts.modelExportParam !== undefined && opts.modelExportParam !== null) {
+      postBody['modelExportParam'] = opts.modelExportParam
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      workspaceId: opts.workspaceId,
+      jobId: opts.jobId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createModelExport with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/train/{regionId}/workspaces/{workspaceId}/jobs/{jobId}/modelExports',
+      'POST',
       pathParams,
       queryParams,
       headerParams,
@@ -3025,7 +4268,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -3155,7 +4398,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -3296,7 +4539,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -3431,7 +4674,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -3586,7 +4829,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -3738,7 +4981,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -3866,7 +5109,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -4012,7 +5255,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -4149,7 +5392,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -4287,7 +5530,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -4438,7 +5681,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -4588,7 +5831,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -4749,7 +5992,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -4888,7 +6131,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -5006,7 +6249,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -5139,7 +6382,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -5260,7 +6503,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -5405,7 +6648,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -5530,7 +6773,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -5670,7 +6913,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -5794,7 +7037,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -5930,7 +7173,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -6068,7 +7311,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -6191,7 +7434,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -6309,7 +7552,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -6436,7 +7679,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -6553,7 +7796,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -6693,7 +7936,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -6821,7 +8064,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -6969,7 +8212,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -7094,7 +8337,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -7228,7 +8471,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -7370,7 +8613,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -7446,9 +8689,9 @@ class JDAIP extends Service {
       *  创建推理服务
       * @param {Object} opts - parameters
       * @param {string} opts.workspaceId - 工作空间ID
-      * @param {inferenceSpec} opts.inferenceSpec - 创建推理服务的规格（与请求 JSON 字段 inferenceSpec 对应）
+      * @param {inferenceSpec} opts.inferenceSpec - 创建推理服务的规格
       * @param {logCollectConfig} [opts.logCollectConfig] - 日志采集配置  optional
-      * @param {extendInferenceRequest} [opts.extend] - 推理服务扩展信息（如用户标签、资源组等）  optional
+      * @param {extendInferenceRequest} [opts.extend] - 推理服务扩展信息（如用户标签、资源组、关联产品等）  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -7499,7 +8742,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -7581,6 +8824,8 @@ class JDAIP extends Service {
       @return {Object} result
       * @param string inferenceId  服务ID
       * @param string deployType  部署方式（自定义,或者大语言模型）
+      * @param string serviceType  在线服务类型
+      * @param smartRouterConfig smartRouterConfig  智能路由配置，仅智能路由服务返回
       * @param integer trafficPercent  流量占比
       * @param string status  服务状态
       * @param integer qps  推理服务限流阈值（QPS）
@@ -7635,7 +8880,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -7758,7 +9003,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -7876,7 +9121,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -7995,7 +9240,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -8114,7 +9359,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -8242,7 +9487,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -8386,7 +9631,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -8475,8 +9720,14 @@ class JDAIP extends Service {
       * @param string address  推理服务总的调用地址
       * @param string accessToken  访问服务的Bearer Token
       * @param string gatewayType  网关类型，shared:共享网关, dedicated:专属网关
+      * @param string serviceType  在线服务类型
+      * @param string dgAddress  专属网关公网调用地址
+      * @param string dgInnerAddress  专属网关内网调用地址
       * @param integer qps  推理服务限流阈值（QPS）
       * @param boolean enableLimit  开启 true 关闭 false
+      * @param string productId  服务关联的产品ID
+      * @param string productName  服务关联的产品名称
+      * @param string bgbu  服务关联产品所属BG/BU
       * @param integer total  该服务中总版本数
       * @param string ownerUser  服务的所有者
       * @param string ownerUserPin  服务的所有者PIN
@@ -8525,7 +9776,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -8651,7 +9902,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -8776,7 +10027,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -8903,7 +10154,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -9041,7 +10292,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -9170,7 +10421,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -9291,7 +10542,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -9426,7 +10677,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -9561,7 +10812,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -9679,7 +10930,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -9822,7 +11073,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -9939,7 +11190,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -10014,6 +11265,294 @@ class JDAIP extends Service {
   /**
       *  查询节点列表
       * @param {Object} opts - parameters
+      * @param {string} [opts.nodePoolId] - 节点池ID  optional
+      * @param {string} [opts.id] - 节点ID  optional
+      * @param {string} [opts.name] - 节点名称  optional
+      * @param {string} [opts.status] - 状态，多个状态值用&quot;|&quot;分隔，例如：aaa|bbb|ccc  optional
+      * @param {string} [opts.ipv4] - 节点ipv4地址，多个ip4值用&quot;|&quot;ip1|ip2|ip3  optional
+      * @param {string} [opts.config] - 规格  optional
+      * @param {integer} [opts.page] - 分页页码；未传时默认1  optional
+      * @param {integer} [opts.pageSize] - 分页页大小；未传时默认10；最大100  optional
+      * @param {string} [opts.orderBy] - 排序字段  optional
+      * @param {string} [opts.orderType] - 升降序  optional
+      * @param {string} [opts.labels] - 调度标签  optional
+      * @param {string} [opts.schedulingStatus] - 是否启用 调度，enable：启用；disable：停用  optional
+      * @param {string} [opts.orderId] - 购买批次订单号  optional
+      * @param {string} [opts.gpuModel] - 卡类型  optional
+      * @param {string} [opts.clusterId] - 集群ID  optional
+      * @param {string} [opts.usageStatus] - 节点使用状态，used：已使用；idle：空闲  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param externalNode data
+      * @param integer total  记录总数
+      */
+
+  describeNodes (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeNodes"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.nodePoolId !== undefined && opts.nodePoolId !== null) {
+      queryParams['nodePoolId'] = opts.nodePoolId
+    }
+    if (opts.id !== undefined && opts.id !== null) {
+      queryParams['id'] = opts.id
+    }
+    if (opts.name !== undefined && opts.name !== null) {
+      queryParams['name'] = opts.name
+    }
+    if (opts.status !== undefined && opts.status !== null) {
+      queryParams['status'] = opts.status
+    }
+    if (opts.ipv4 !== undefined && opts.ipv4 !== null) {
+      queryParams['ipv4'] = opts.ipv4
+    }
+    if (opts.config !== undefined && opts.config !== null) {
+      queryParams['config'] = opts.config
+    }
+    if (opts.page !== undefined && opts.page !== null) {
+      queryParams['page'] = opts.page
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    if (opts.orderBy !== undefined && opts.orderBy !== null) {
+      queryParams['orderBy'] = opts.orderBy
+    }
+    if (opts.orderType !== undefined && opts.orderType !== null) {
+      queryParams['orderType'] = opts.orderType
+    }
+    if (opts.labels !== undefined && opts.labels !== null) {
+      queryParams['labels'] = opts.labels
+    }
+    if (opts.schedulingStatus !== undefined && opts.schedulingStatus !== null) {
+      queryParams['schedulingStatus'] = opts.schedulingStatus
+    }
+    if (opts.orderId !== undefined && opts.orderId !== null) {
+      queryParams['orderId'] = opts.orderId
+    }
+    if (opts.gpuModel !== undefined && opts.gpuModel !== null) {
+      queryParams['gpuModel'] = opts.gpuModel
+    }
+    if (opts.clusterId !== undefined && opts.clusterId !== null) {
+      queryParams['clusterId'] = opts.clusterId
+    }
+    if (opts.usageStatus !== undefined && opts.usageStatus !== null) {
+      queryParams['usageStatus'] = opts.usageStatus
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeNodes with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/describeNodes',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  节点详情
+      * @param {Object} opts - parameters
+      * @param {string} opts.name - 节点名称
+      * @param {string} opts.nodePoolId - 节点池ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param externalNode externalNode
+      */
+
+  describeNode (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeNode"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.name === undefined || opts.name === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.name' when calling describeNode"
+      )
+    }
+    if (opts.nodePoolId === undefined || opts.nodePoolId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.nodePoolId' when calling describeNode"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.nodePoolId !== undefined && opts.nodePoolId !== null) {
+      queryParams['nodePoolId'] = opts.nodePoolId
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      name: opts.name
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeNode with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/describeNode/{name}:get',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询节点列表
+      * @param {Object} opts - parameters
       * @param {integer} [opts.page] - 页码；默认为1。  optional
       * @param {integer} [opts.pageSize] - 分页大小；&lt;br&gt;默认为20；取值范围[10, 100]。  optional
       * @param {filter} [opts.filters] - &lt;b&gt;filters 中支持使用以下关键字进行过滤&lt;/b&gt;
@@ -10056,7 +11595,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -10129,6 +11668,530 @@ class JDAIP extends Service {
   }
 
   /**
+      *  查询节点池列表
+      * @param {Object} opts - parameters
+      * @param {string} [opts.filter] - 节点池ID或名称，模糊匹配  optional
+      * @param {string} [opts.id] - 节点池ID  optional
+      * @param {string} [opts.name] - 节点池名称  optional
+      * @param {string} [opts.poolType] - 节点池类型  optional
+      * @param {string} [opts.status] - 状态  optional
+      * @param {string} [opts.bizType] - 业务类型  optional
+      * @param {boolean} [opts.rdma] - 是否rdma网络  optional
+      * @param {integer} [opts.page] - 分页页码；未传时默认1  optional
+      * @param {integer} [opts.pageSize] - 分页页大小；未传时默认10  optional
+      * @param {string} [opts.orderBy] - 排序字段  optional
+      * @param {string} [opts.orderType] - 升降序  optional
+      * @param {boolean} [opts.showTags] - 是否返回Tag,默认不返回  optional
+      * @param {string} [opts.clusterId] - 集群ID  optional
+      * @param {tagFilter} [opts.tags] - Tag筛选条件  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param externalNodePool data
+      * @param integer total  记录总数
+      */
+
+  describeNodePools (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeNodePools"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.filter !== undefined && opts.filter !== null) {
+      queryParams['filter'] = opts.filter
+    }
+    if (opts.id !== undefined && opts.id !== null) {
+      queryParams['id'] = opts.id
+    }
+    if (opts.name !== undefined && opts.name !== null) {
+      queryParams['name'] = opts.name
+    }
+    if (opts.poolType !== undefined && opts.poolType !== null) {
+      queryParams['poolType'] = opts.poolType
+    }
+    if (opts.status !== undefined && opts.status !== null) {
+      queryParams['status'] = opts.status
+    }
+    if (opts.bizType !== undefined && opts.bizType !== null) {
+      queryParams['bizType'] = opts.bizType
+    }
+    if (opts.rdma !== undefined && opts.rdma !== null) {
+      queryParams['rdma'] = opts.rdma
+    }
+    if (opts.page !== undefined && opts.page !== null) {
+      queryParams['page'] = opts.page
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    if (opts.orderBy !== undefined && opts.orderBy !== null) {
+      queryParams['orderBy'] = opts.orderBy
+    }
+    if (opts.orderType !== undefined && opts.orderType !== null) {
+      queryParams['orderType'] = opts.orderType
+    }
+    if (opts.showTags !== undefined && opts.showTags !== null) {
+      queryParams['showTags'] = opts.showTags
+    }
+    if (opts.clusterId !== undefined && opts.clusterId !== null) {
+      queryParams['clusterId'] = opts.clusterId
+    }
+    Object.assign(queryParams, super.buildTagFilterParam(opts.tags, 'tags'))
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeNodePools with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/describeNodePools',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询节点池详情
+      * @param {Object} opts - parameters
+      * @param {string} opts.id - 节点池ID
+      * @param {boolean} [opts.withoutQuota] - 是否忽略配额信息，默认值false  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param externalNodePool externalNodePool
+      */
+
+  describeNodePool (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeNodePool"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.id === undefined || opts.id === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.id' when calling describeNodePool"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.withoutQuota !== undefined && opts.withoutQuota !== null) {
+      queryParams['withoutQuota'] = opts.withoutQuota
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      id: opts.id
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeNodePool with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/describeNodePool/{id}:get',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询队列列表
+      * @param {Object} opts - parameters
+      * @param {string} [opts.filter] - 模糊匹配过来条件名称或描述  optional
+      * @param {string} [opts.nodePoolId] - 节点池ID  optional
+      * @param {integer} [opts.status] - 状态，1创建中2创建失败3运行中4更新中5错误6删除中7已删除  optional
+      * @param {integer} [opts.queueType] - 队列类型，0：普通队列；1：安全队列，默认0  optional
+      * @param {string} [opts.ids] - 队列ID列表，逗号分割  optional
+      * @param {integer} [opts.page] - 分页页码；未传时默认1  optional
+      * @param {integer} [opts.pageSize] - 分页页大小；未传时默认10  optional
+      * @param {string} [opts.orderBy] - 排序字段  optional
+      * @param {string} [opts.orderType] - 升降序  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param externalQueue data
+      * @param integer total  记录总数
+      */
+
+  describeQueues (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeQueues"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.filter !== undefined && opts.filter !== null) {
+      queryParams['filter'] = opts.filter
+    }
+    if (opts.nodePoolId !== undefined && opts.nodePoolId !== null) {
+      queryParams['nodePoolId'] = opts.nodePoolId
+    }
+    if (opts.status !== undefined && opts.status !== null) {
+      queryParams['status'] = opts.status
+    }
+    if (opts.queueType !== undefined && opts.queueType !== null) {
+      queryParams['queueType'] = opts.queueType
+    }
+    if (opts.ids !== undefined && opts.ids !== null) {
+      queryParams['ids'] = opts.ids
+    }
+    if (opts.page !== undefined && opts.page !== null) {
+      queryParams['page'] = opts.page
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    if (opts.orderBy !== undefined && opts.orderBy !== null) {
+      queryParams['orderBy'] = opts.orderBy
+    }
+    if (opts.orderType !== undefined && opts.orderType !== null) {
+      queryParams['orderType'] = opts.orderType
+    }
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeQueues with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/describeQueues',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询队列详情
+      * @param {Object} opts - parameters
+      * @param {string} opts.id - 队列ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param externalQueue externalQueue
+      */
+
+  describeQueue (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeQueue"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.id === undefined || opts.id === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.id' when calling describeQueue"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      id: opts.id
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeQueue with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/describeQueue/{id}:get',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  查询指定监控维度的列表
       * @param {Object} opts - parameters
       * @param {string} opts.type - 监控维度
@@ -10170,7 +12233,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -10305,7 +12368,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -10430,7 +12493,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -10557,7 +12620,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -10675,7 +12738,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -10813,7 +12876,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -10938,7 +13001,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -11078,7 +13141,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -11202,7 +13265,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -11334,7 +13397,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -11452,7 +13515,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -11602,7 +13665,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -11759,7 +13822,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -11871,7 +13934,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -12001,7 +14064,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -12152,7 +14215,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -12276,7 +14339,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -12422,7 +14485,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -12547,7 +14610,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -12632,6 +14695,7 @@ class JDAIP extends Service {
 - **代码配置**: 更新代码库挂载配置
 - **环境变量配置**: 新增、修改、删除或清空用户环境变量
 - **节点亲和性配置**: 更新节点调度亲和性规则
+- **调度优先级配置**: 更新调度优先级(taskPriority，仅开启优先级的私有池/专享资源池)
 
 ## 接口说明
 - 更新操作需要在Notebook停止状态下进行。
@@ -12699,7 +14763,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -12841,7 +14905,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -12967,7 +15031,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -13112,7 +15176,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -13259,7 +15323,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -13388,7 +15452,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -13526,7 +15590,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -13652,7 +15716,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -13810,7 +15874,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -13956,7 +16020,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -14087,7 +16151,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -14131,6 +16195,137 @@ class JDAIP extends Service {
 
     let request = super.makeRequest(
       '/public-pool/{regionId}/flavors',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询多个规格详情，供外部客户调用。
+
+## 接口说明
+- 支持按 &#x60;flavorIds&#x60; 批量查询；重复规格ID按首次出现顺序去重。
+- 指定 &#x60;flavorIds&#x60; 时，响应按去重后的传入顺序返回；未指定时按规格ID排序。
+- 返回基础规格属性，不包含调度标签、灰度开关和灰度Pin等内部配置。
+
+      * @param {Object} opts - parameters
+      * @param {string} [opts.category] - 规格类型。  optional
+      * @param {string} [opts.gpuDeviceName] - GPU设备名。  optional
+      * @param {boolean} [opts.rdma] - 是否支持RDMA。  optional
+      * @param {boolean} [opts.allowInternet] - 是否允许公网访问。  optional
+      * @param {string} [opts.flavorIds] - 规格ID列表。指定时按首次出现顺序返回。  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param flavorDetail flavorDetails
+      * @param integer totalCount  总记录数。
+      */
+
+  describeFlavorDetails (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeFlavorDetails"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.category !== undefined && opts.category !== null) {
+      queryParams['category'] = opts.category
+    }
+    if (opts.gpuDeviceName !== undefined && opts.gpuDeviceName !== null) {
+      queryParams['gpuDeviceName'] = opts.gpuDeviceName
+    }
+    if (opts.rdma !== undefined && opts.rdma !== null) {
+      queryParams['rdma'] = opts.rdma
+    }
+    if (opts.allowInternet !== undefined && opts.allowInternet !== null) {
+      queryParams['allowInternet'] = opts.allowInternet
+    }
+    Object.assign(
+      queryParams,
+      super.buildArrayParam(opts.flavorIds, 'flavorIds')
+    )
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeFlavorDetails with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/public-pool/{regionId}/flavorDetails',
       'GET',
       pathParams,
       queryParams,
@@ -14217,7 +16412,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -14347,7 +16542,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -14465,7 +16660,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -14598,7 +16793,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -14715,7 +16910,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -14833,7 +17028,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -14952,7 +17147,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -15082,7 +17277,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']
@@ -15198,7 +17393,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.7'
     }
 
     let contentTypes = ['application/json']

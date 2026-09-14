@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * ydapp service.
- * @version 1.0.4
+ * @version 1.0.5
  */
 
 class YDAPP extends Service {
@@ -72,7 +72,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -147,17 +147,16 @@ class YDAPP extends Service {
   /**
       *  创建应用
       * @param {Object} opts - parameters
-      * @param {string} opts.appKey - 应用名称
-      * @param {string} [opts.appName] - 应用中文名称  optional
-      * @param {string} opts.systemId - 绑定系统id
-      * @param {string} [opts.description] - 应用描述  optional
-      * @param {string} opts.appLevel - 应用级别：0-核心应用，3-其他应用
+      * @param {string} opts.appKey - 应用英文名称，由小写字母、数字和中划线组成，以小写字母或数字开头结尾，长度为2-27个字符
+      * @param {string} [opts.appName] - 应用中文名称，为空默认和应用英文名称保持一致  optional
+      * @param {string} opts.systemId - 绑定系统ID
+      * @param {string} [opts.description] - 应用描述，长度不超过100  optional
+      * @param {integer} opts.appLevel - 应用级别：0-核心应用，3-其他应用
       * @param {boolean} opts.stateful - 应用类型：true-有状态应用，false-无状态应用
-      * @param {string} opts.language - 编程语言：Java、Php、其他
-      * @param {appMember} opts.appMembers
+      * @param {string} opts.language - 编程语言：Java、Php、Other
       * @param {string} callback - callback
       @return {Object} result
-      * @param string value  应用ID
+      * @param string appId  应用ID
       */
 
   createApp (opts, callback) {
@@ -188,11 +187,6 @@ class YDAPP extends Service {
         "Missing the required parameter 'opts.language' when calling createApp"
       )
     }
-    if (opts.appMembers === undefined || opts.appMembers === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.appMembers' when calling createApp"
-      )
-    }
 
     let postBody = {}
     if (opts.appKey !== undefined && opts.appKey !== null) {
@@ -216,9 +210,6 @@ class YDAPP extends Service {
     if (opts.language !== undefined && opts.language !== null) {
       postBody['language'] = opts.language
     }
-    if (opts.appMembers !== undefined && opts.appMembers !== null) {
-      postBody['appMembers'] = opts.appMembers
-    }
 
     let queryParams = {}
 
@@ -227,7 +218,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -306,15 +297,14 @@ class YDAPP extends Service {
       * @param {string} callback - callback
       @return {Object} result
       * @param string appId  应用ID
-      * @param string appKey  应用名称
+      * @param string appKey  应用英文名称
       * @param string appName  应用中文名称
       * @param string description  应用描述
-      * @param string appLevel  应用级别：0-核心应用，3-其他应用
+      * @param integer appLevel  应用级别：0-核心应用，3-其他应用
       * @param boolean stateful  应用类型：true-有状态应用，false-无状态应用
-      * @param string language  编程语言：Java、Php、其他
-      * @param appMembers appMembers
+      * @param string language  编程语言：Java、Php、Other
       * @param string systemId  系统ID
-      * @param string systemKey  系统名称
+      * @param string systemKey  系统英文名
       * @param string systemName  系统中文名
       */
 
@@ -336,7 +326,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -412,22 +402,31 @@ class YDAPP extends Service {
       *  根据应用 ID 编辑应用
       * @param {Object} opts - parameters
       * @param {string} opts.appId - 应用ID
-      * @param {string} [opts.appName] - 应用中文名称  optional
-      * @param {string} [opts.description] - 应用描述  optional
-      * @param {string} [opts.appLevel] - 应用级别：0-核心应用，3-其他应用  optional
-      * @param {string} [opts.language] - 编程语言：Java、Php、其他  optional
-      * @param {appMember} [opts.appMembers]   optional
+      * @param {string} [opts.appName] - 应用中文名称，为空默认和应用英文名称保持一致  optional
+      * @param {string} [opts.description] - 应用描述，长度不超过100  optional
+      * @param {integer} opts.appLevel - 应用级别：0-核心应用，3-其他应用
+      * @param {string} opts.language - 编程语言：Java、Php、Other
       * @param {string} callback - callback
       @return {Object} result
       * @param boolean success  操作是否成功
       */
 
-  updateApp (opts, callback) {
+  modifyApp (opts, callback) {
     opts = opts || {}
 
     if (opts.appId === undefined || opts.appId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.appId' when calling updateApp"
+        "Missing the required parameter 'opts.appId' when calling modifyApp"
+      )
+    }
+    if (opts.appLevel === undefined || opts.appLevel === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appLevel' when calling modifyApp"
+      )
+    }
+    if (opts.language === undefined || opts.language === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.language' when calling modifyApp"
       )
     }
 
@@ -444,9 +443,6 @@ class YDAPP extends Service {
     if (opts.language !== undefined && opts.language !== null) {
       postBody['language'] = opts.language
     }
-    if (opts.appMembers !== undefined && opts.appMembers !== null) {
-      postBody['appMembers'] = opts.appMembers
-    }
 
     let queryParams = {}
 
@@ -456,7 +452,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -486,7 +482,7 @@ class YDAPP extends Service {
     let returnType = null
 
     this.config.logger(
-      `call updateApp with params:\npathParams:${JSON.stringify(
+      `call modifyApp with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -555,7 +551,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -628,17 +624,16 @@ class YDAPP extends Service {
   }
 
   /**
-      *  将制品包与指定应用建立关联，返回流水线ID
+      *  将程序包与指定应用建立关联，返回程序包ID
       * @param {Object} opts - parameters
       * @param {string} opts.appId - 应用ID，E.g.，app-123456789
-      * @param {string} [opts.name] - 制品包名称，E.g.，my-app-package  optional
-      * @param {string} [opts.version] - 制品包版本号，E.g.，v1.0.0  optional
-      * @param {string} [opts.desc] - 制品包描述，E.g.，一次构建产物  optional
-      * @param {string} [opts.env] - 环境标识，E.g.，prod  optional
-      * @param {string} [opts.url] - 制品包下载地址，E.g.，https://repo.jdcloud.com/artifact/my-app-package-v1.0.0.tar.gz  optional
+      * @param {string} opts.name - 程序包名称，支持5-64位大小写字母、中划线和下划线
+      * @param {string} opts.version - 程序包版本，支持2-32位大小写字母、数字、点和中划线
+      * @param {string} [opts.desc] - 备注，最长128字符  optional
+      * @param {string} opts.url - 程序包地址
       * @param {string} callback - callback
       @return {Object} result
-      * @param integer value  关联生成的流水线ID，E.g.，10086
+      * @param integer packageId  程序包ID
       */
 
   linkPackage (opts, callback) {
@@ -647,6 +642,21 @@ class YDAPP extends Service {
     if (opts.appId === undefined || opts.appId === null) {
       throw new Error(
         "Missing the required parameter 'opts.appId' when calling linkPackage"
+      )
+    }
+    if (opts.name === undefined || opts.name === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.name' when calling linkPackage"
+      )
+    }
+    if (opts.version === undefined || opts.version === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.version' when calling linkPackage"
+      )
+    }
+    if (opts.url === undefined || opts.url === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.url' when calling linkPackage"
       )
     }
 
@@ -660,9 +670,6 @@ class YDAPP extends Service {
     if (opts.desc !== undefined && opts.desc !== null) {
       postBody['desc'] = opts.desc
     }
-    if (opts.env !== undefined && opts.env !== null) {
-      postBody['env'] = opts.env
-    }
     if (opts.url !== undefined && opts.url !== null) {
       postBody['url'] = opts.url
     }
@@ -675,7 +682,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -748,10 +755,10 @@ class YDAPP extends Service {
   }
 
   /**
-      *  对指定制品包触发安全扫描
+      *  对指定程序包触发安全扫描
       * @param {Object} opts - parameters
       * @param {string} opts.appId - 应用ID，E.g.，app-123456789
-      * @param {integer} opts.packageId - 制品包ID，E.g.，10086
+      * @param {integer} opts.packageId - 程序包ID，E.g.，10086
       * @param {string} callback - callback
       @return {Object} result
       * @param boolean success  操作结果(true-成功, false-失败)，E.g.，true
@@ -782,7 +789,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -855,7 +862,7 @@ class YDAPP extends Service {
   }
 
   /**
-      *  获取制品包预签名 PUT 上传地址。客户端使用返回的 presignedPutUrl 直接 PUT 上传文件， 上传成功后再用 finalUrl 调用关联接口（linkPackage）来关联包。
+      *  获取程序包预签名 PUT 上传地址。客户端使用返回的 presignedPutUrl 直接 PUT 上传文件， 上传成功后再用 finalUrl 调用关联接口（linkPackage）来关联包。
       * @param {Object} opts - parameters
       * @param {string} opts.appId - 应用ID，E.g.，app-123456789
       * @param {string} opts.fileName - 原始文件名（含后缀，须为 zip/jar/war 格式），E.g.，my-app-package-v1.0.0.jar
@@ -892,7 +899,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -965,14 +972,14 @@ class YDAPP extends Service {
   }
 
   /**
-      *  获取指定应用下制品包的下载信息，包含名称、版本及预签名下载地址（preSignedUrl）。 调用方使用返回的 preSignedUrl 自行下载文件（该地址有鉴权、有效期有限）。
+      *  获取指定应用下程序包的下载信息，包含名称、版本及预签名下载地址（preSignedUrl）。 调用方使用返回的 preSignedUrl 自行下载文件（该地址有鉴权、有效期有限）。
       * @param {Object} opts - parameters
       * @param {string} opts.appId - 应用ID，E.g.，app-123456789
-      * @param {integer} opts.packageId - 制品包ID，E.g.，10086
+      * @param {integer} opts.packageId - 程序包ID，E.g.，10086
       * @param {string} callback - callback
       @return {Object} result
-      * @param string name  制品包名称（可能与上传的包名不同），E.g.，my-app-package
-      * @param string rawFilename  制品包原始名称，与上传包名一致，E.g.，my-app-package-v1.0.0.tar.gz
+      * @param string name  程序包名称（可能与上传的包名不同），E.g.，my-app-package
+      * @param string rawFilename  程序包原始名称，与上传包名一致，E.g.，my-app-package-v1.0.0.tar.gz
       * @param string url  S3 地址，有鉴权不能直接下载，E.g.，http://s3.cn-north-1.jdcloud-oss.com/jd/package/my-app-package.tar.gz
       * @param string preSignedUrl  内网 S3 下载地址，有效期7天（V2版本加签），调用方使用该地址下载文件，E.g.，http://s3-internal.cn-north-1.jdcloud-oss.com/jd/package/my-app-package.tar.gz?AWSAccessKeyId&#x3D;xxx
       * @param string version  版本号，E.g.，v1.0.0
@@ -1002,7 +1009,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -1075,15 +1082,15 @@ class YDAPP extends Service {
   }
 
   /**
-      *  分页查询指定应用下的制品包列表，支持按名称模糊搜索
+      *  分页查询指定应用下的程序包列表，支持按名称模糊搜索
       * @param {Object} opts - parameters
       * @param {string} opts.appId - 应用ID，E.g.，app-123456789
       * @param {integer} [opts.pageNum] - 页码，默认为1，E.g.，1  optional
       * @param {integer} [opts.pageSize] - 每页数量，默认10，最大100  optional
-      * @param {string} [opts.nameLike] - 制品包名称，模糊匹配，E.g.，my-app  optional
+      * @param {string} [opts.nameLike] - 程序包名称，模糊匹配，E.g.，my-app  optional
       * @param {string} callback - callback
       @return {Object} result
-      * @param packageDetailInfo data
+      * @param packageResult data
       * @param integer totalCount  总记录数，E.g.，100
       */
 
@@ -1114,7 +1121,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -1187,10 +1194,10 @@ class YDAPP extends Service {
   }
 
   /**
-      *  删除指定应用下的制品包
+      *  删除指定应用下的程序包
       * @param {Object} opts - parameters
       * @param {string} opts.appId - 应用ID，E.g.，app-123456789
-      * @param {integer} opts.packageId - 制品包ID，E.g.，10086
+      * @param {integer} opts.packageId - 程序包ID，E.g.，10086
       * @param {string} callback - callback
       @return {Object} result
       * @param boolean success  操作结果(true-成功, false-失败)，E.g.，true
@@ -1220,7 +1227,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -1304,12 +1311,12 @@ class YDAPP extends Service {
       * @param string autoDeleteLatestDate  最后一次执行自动删除镜像策略的时间，E.g.，&#39;2024-10-25 14:24:56&#39;
       */
 
-  describeAutoDeletePolicy (opts, callback) {
+  describeAppImageAutoDeletePolicy (opts, callback) {
     opts = opts || {}
 
     if (opts.appId === undefined || opts.appId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.appId' when calling describeAutoDeletePolicy"
+        "Missing the required parameter 'opts.appId' when calling describeAppImageAutoDeletePolicy"
       )
     }
 
@@ -1322,7 +1329,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -1352,7 +1359,7 @@ class YDAPP extends Service {
     let returnType = null
 
     this.config.logger(
-      `call describeAutoDeletePolicy with params:\npathParams:${JSON.stringify(
+      `call describeAppImageAutoDeletePolicy with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1365,7 +1372,7 @@ class YDAPP extends Service {
     )
 
     let request = super.makeRequest(
-      '/app/{appId}/imageRepo:autoDeletePolicy',
+      '/app/{appId}/image:autoDeletePolicy',
       'GET',
       pathParams,
       queryParams,
@@ -1404,12 +1411,12 @@ class YDAPP extends Service {
       * @param boolean success  操作结果(true-成功, false-失败)，E.g.，true
       */
 
-  openAutoDeleteRepo (opts, callback) {
+  openAppImageAutoDelete (opts, callback) {
     opts = opts || {}
 
     if (opts.appId === undefined || opts.appId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.appId' when calling openAutoDeleteRepo"
+        "Missing the required parameter 'opts.appId' when calling openAppImageAutoDelete"
       )
     }
 
@@ -1426,7 +1433,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -1456,7 +1463,7 @@ class YDAPP extends Service {
     let returnType = null
 
     this.config.logger(
-      `call openAutoDeleteRepo with params:\npathParams:${JSON.stringify(
+      `call openAppImageAutoDelete with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1469,7 +1476,7 @@ class YDAPP extends Service {
     )
 
     let request = super.makeRequest(
-      '/app/{appId}/imageRepo:openAutoDelete',
+      '/app/{appId}/image:openAutoDelete',
       'POST',
       pathParams,
       queryParams,
@@ -1507,12 +1514,12 @@ class YDAPP extends Service {
       * @param boolean success  操作结果(true-成功, false-失败)，E.g.，true
       */
 
-  closeAutoDeleteRepo (opts, callback) {
+  closeAppImageAutoDelete (opts, callback) {
     opts = opts || {}
 
     if (opts.appId === undefined || opts.appId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.appId' when calling closeAutoDeleteRepo"
+        "Missing the required parameter 'opts.appId' when calling closeAppImageAutoDelete"
       )
     }
 
@@ -1526,7 +1533,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -1556,7 +1563,7 @@ class YDAPP extends Service {
     let returnType = null
 
     this.config.logger(
-      `call closeAutoDeleteRepo with params:\npathParams:${JSON.stringify(
+      `call closeAppImageAutoDelete with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1569,7 +1576,7 @@ class YDAPP extends Service {
     )
 
     let request = super.makeRequest(
-      '/app/{appId}/imageRepo:closeAutoDelete',
+      '/app/{appId}/image:closeAutoDelete',
       'POST',
       pathParams,
       queryParams,
@@ -1601,13 +1608,12 @@ class YDAPP extends Service {
   /**
       *  创建镜像编译流水线任务，返回流水线任务ID
       * @param {Object} opts - parameters
-      * @param {string} opts.appId - 应用ID，E.g.，app-123456789
-      * @param {string} opts.baseImageUid - 基础镜像UID，从 baseImages 接口返回参数 uid 获取，E.g.，baseimg-123456789
-      * @param {integer} opts.packageId - 制品包ID，E.g.，10086
-      * @param {string} [opts.args] - 附加扩展参数，一般无需传递，E.g.，&#39;&#39;  optional
+      * @param {string} opts.appId - 应用ID
+      * @param {string} opts.baseImageUid - 基础镜像UID
+      * @param {integer} opts.packageId - 程序包ID
       * @param {string} callback - callback
       @return {Object} result
-      * @param string value  流水线任务ID，E.g.，task-123456789
+      * @param string pipelineTaskId  流水线任务ID
       */
 
   createPipelineTask (opts, callback) {
@@ -1630,27 +1636,22 @@ class YDAPP extends Service {
     }
 
     let postBody = {}
-    if (opts.appId !== undefined && opts.appId !== null) {
-      postBody['appId'] = opts.appId
-    }
     if (opts.baseImageUid !== undefined && opts.baseImageUid !== null) {
       postBody['baseImageUid'] = opts.baseImageUid
     }
     if (opts.packageId !== undefined && opts.packageId !== null) {
       postBody['packageId'] = opts.packageId
     }
-    if (opts.args !== undefined && opts.args !== null) {
-      postBody['args'] = opts.args
-    }
 
     let queryParams = {}
 
     let pathParams = {
-      regionId: 'jdcloud'
+      regionId: 'jdcloud',
+      appId: opts.appId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -1693,7 +1694,7 @@ class YDAPP extends Service {
     )
 
     let request = super.makeRequest(
-      '/pipelinetask',
+      '/app/{appId}/pipelinetask',
       'POST',
       pathParams,
       queryParams,
@@ -1723,31 +1724,39 @@ class YDAPP extends Service {
   }
 
   /**
-      *  分页查询用户镜像仓库的编译镜像记录，支持多条件过滤
+      *  分页查询应用镜像仓库的编译镜像，支持多条件过滤
       * @param {Object} opts - parameters
-      * @param {string} [opts.uid] - 镜像记录UID，E.g.，rec-123456789  optional
-      * @param {string} [opts.appId] - 应用ID，E.g.，app-123456789  optional
-      * @param {string} [opts.pipelineTaskId] - 流水线任务ID，E.g.，task-123456789  optional
-      * @param {integer} [opts.packageId] - 制品包ID，E.g.，10086  optional
-      * @param {string} [opts.version] - 版本，E.g.，v1.0.0  optional
-      * @param {string} [opts.status] - 记录状态，active-可用; deleted-已删除; building-编译中; failed-失败; timeout-获取结果超时，E.g.，active  optional
+      * @param {string} opts.appId - 应用ID
       * @param {integer} [opts.pageNum] - 页码，默认1  optional
       * @param {integer} [opts.pageSize] - 每页数量，默认10，最大100  optional
+      * @param {string} [opts.uid] - 镜像记录UID  optional
+      * @param {string} [opts.pipelineTaskId] - 流水线任务ID  optional
+      * @param {integer} [opts.packageId] - 程序包ID  optional
+      * @param {string} [opts.version] - 镜像版本  optional
       * @param {string} callback - callback
       @return {Object} result
-      * @param imageRepoRecord data
+      * @param appImageResult data
       * @param integer totalCount  总记录数，E.g.，100
       */
 
-  describeImageRecords (opts, callback) {
+  describeAppImages (opts, callback) {
     opts = opts || {}
 
+    if (opts.appId === undefined || opts.appId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appId' when calling describeAppImages"
+      )
+    }
+
     let postBody = {}
+    if (opts.pageNum !== undefined && opts.pageNum !== null) {
+      postBody['pageNum'] = opts.pageNum
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      postBody['pageSize'] = opts.pageSize
+    }
     if (opts.uid !== undefined && opts.uid !== null) {
       postBody['uid'] = opts.uid
-    }
-    if (opts.appId !== undefined && opts.appId !== null) {
-      postBody['appId'] = opts.appId
     }
     if (opts.pipelineTaskId !== undefined && opts.pipelineTaskId !== null) {
       postBody['pipelineTaskId'] = opts.pipelineTaskId
@@ -1758,24 +1767,16 @@ class YDAPP extends Service {
     if (opts.version !== undefined && opts.version !== null) {
       postBody['version'] = opts.version
     }
-    if (opts.status !== undefined && opts.status !== null) {
-      postBody['status'] = opts.status
-    }
-    if (opts.pageNum !== undefined && opts.pageNum !== null) {
-      postBody['pageNum'] = opts.pageNum
-    }
-    if (opts.pageSize !== undefined && opts.pageSize !== null) {
-      postBody['pageSize'] = opts.pageSize
-    }
 
     let queryParams = {}
 
     let pathParams = {
-      regionId: 'jdcloud'
+      regionId: 'jdcloud',
+      appId: opts.appId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -1805,7 +1806,7 @@ class YDAPP extends Service {
     let returnType = null
 
     this.config.logger(
-      `call describeImageRecords with params:\npathParams:${JSON.stringify(
+      `call describeAppImages with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1818,7 +1819,7 @@ class YDAPP extends Service {
     )
 
     let request = super.makeRequest(
-      '/imageRecords:page',
+      '/app/{appId}/images',
       'POST',
       pathParams,
       queryParams,
@@ -1848,20 +1849,20 @@ class YDAPP extends Service {
   }
 
   /**
-      *  根据UID删除指定的编译镜像记录
+      *  根据UID删除指定的应用镜像
       * @param {Object} opts - parameters
-      * @param {string} opts.uid - 镜像记录UID，从 imageRecords 接口返回参数 uid 获取，E.g.，rec-123456789
+      * @param {string} opts.uid - 应用镜像UID
       * @param {string} callback - callback
       @return {Object} result
       * @param boolean success  操作结果(true-成功, false-失败)，E.g.，true
       */
 
-  deleteImageRecord (opts, callback) {
+  deleteAppImage (opts, callback) {
     opts = opts || {}
 
     if (opts.uid === undefined || opts.uid === null) {
       throw new Error(
-        "Missing the required parameter 'opts.uid' when calling deleteImageRecord"
+        "Missing the required parameter 'opts.uid' when calling deleteAppImage"
       )
     }
 
@@ -1874,7 +1875,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -1904,7 +1905,7 @@ class YDAPP extends Service {
     let returnType = null
 
     this.config.logger(
-      `call deleteImageRecord with params:\npathParams:${JSON.stringify(
+      `call deleteAppImage with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -1917,7 +1918,7 @@ class YDAPP extends Service {
     )
 
     let request = super.makeRequest(
-      '/imageRecord/{uid}',
+      '/images/{uid}',
       'DELETE',
       pathParams,
       queryParams,
@@ -1947,12 +1948,11 @@ class YDAPP extends Service {
   }
 
   /**
-      *  查询已发布的基础镜像列表，可按镜像类型过滤（JAVA、PHP、Nginx）
+      *  查询已发布的基础镜像列表
       * @param {Object} opts - parameters
-      * @param {string} [opts.imageType] - 镜像类型，可选值：JAVA、PHP、Nginx，E.g.，JAVA  optional
       * @param {string} callback - callback
       @return {Object} result
-      * @param baseImage data
+      * @param baseImageResult data
       * @param integer totalCount  总记录数，E.g.，10
       */
 
@@ -1961,16 +1961,13 @@ class YDAPP extends Service {
 
     let postBody = null
     let queryParams = {}
-    if (opts.imageType !== undefined && opts.imageType !== null) {
-      queryParams['imageType'] = opts.imageType
-    }
 
     let pathParams = {
       regionId: 'jdcloud'
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -2049,7 +2046,7 @@ class YDAPP extends Service {
       * @param {integer} [opts.pageSize] - 每页数量，默认10，最大100  optional
       * @param {string} callback - callback
       @return {Object} result
-      * @param openapiDeployClusterRespVo data
+      * @param clusterResult data
       * @param integer totalCount  本次查询可匹配到的总记录数。
       */
 
@@ -2071,7 +2068,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -2114,8 +2111,249 @@ class YDAPP extends Service {
     )
 
     let request = super.makeRequest(
-      '/clusters:page',
+      '/clusters',
       'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  在指定云鼎 k8s 集群上安装组件（如 csi-nfs 文件存储插件）
+      * @param {Object} opts - parameters
+      * @param {string} opts.k8sClusterId - 云鼎k8s集群ID
+      * @param {string} opts.addon - 组件名，目前仅支持 csi-nfs
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean success  执行结果
+      */
+
+  installClusterAddon (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  installClusterAddon"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.k8sClusterId === undefined || opts.k8sClusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.k8sClusterId' when calling installClusterAddon"
+      )
+    }
+    if (opts.addon === undefined || opts.addon === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.addon' when calling installClusterAddon"
+      )
+    }
+
+    let postBody = {}
+    if (opts.addon !== undefined && opts.addon !== null) {
+      postBody['addon'] = opts.addon
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      k8sClusterId: opts.k8sClusterId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call installClusterAddon with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/clusters/{k8sClusterId}/addon',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  分页查询指定云鼎 k8s 集群上的组件列表
+      * @param {Object} opts - parameters
+      * @param {string} opts.k8sClusterId - 云鼎k8s集群ID
+      * @param {integer} [opts.pageNum] - 页码  optional
+      * @param {integer} [opts.pageSize] - 每页数量，默认10，最大100  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param clusterAddonResult data
+      * @param integer totalCount  总记录数
+      */
+
+  describeClusterAddons (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeClusterAddons"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.k8sClusterId === undefined || opts.k8sClusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.k8sClusterId' when calling describeClusterAddons"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNum !== undefined && opts.pageNum !== null) {
+      queryParams['pageNum'] = opts.pageNum
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      k8sClusterId: opts.k8sClusterId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeClusterAddons with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/clusters/{k8sClusterId}/addons',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -2177,7 +2415,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -2290,7 +2528,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -2407,7 +2645,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -2451,6 +2689,1074 @@ class YDAPP extends Service {
 
     let request = super.makeRequest(
       '/app/{appId}:customRegistryToken',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  分页查询指定分组下 Pod 容器的日志
+      * @param {Object} opts - parameters
+      * @param {string} opts.groupId - 分组ID
+      * @param {string} opts.podName - Pod名称
+      * @param {string} opts.containerName - 容器名称
+      * @param {integer} [opts.pageNum] - 页码  optional
+      * @param {integer} [opts.pageSize] - 每页数量，默认10，最大100  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param containerLogResult data
+      * @param integer totalCount  总记录数
+      */
+
+  describeContainerLogs (opts, callback) {
+    opts = opts || {}
+
+    if (opts.groupId === undefined || opts.groupId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.groupId' when calling describeContainerLogs"
+      )
+    }
+    if (opts.podName === undefined || opts.podName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.podName' when calling describeContainerLogs"
+      )
+    }
+    if (opts.containerName === undefined || opts.containerName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.containerName' when calling describeContainerLogs"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNum !== undefined && opts.pageNum !== null) {
+      queryParams['pageNum'] = opts.pageNum
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      groupId: opts.groupId,
+      podName: opts.podName,
+      containerName: opts.containerName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeContainerLogs with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/group/{groupId}/pod/{podName}/container/{containerName}/logs',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建 Pod 异常分析任务并返回诊断任务ID
+      * @param {Object} opts - parameters
+      * @param {string} opts.appId - 应用ID
+      * @param {string} opts.groupId - 分组ID
+      * @param {string} opts.podName - Pod名称
+      * @param {integer} [opts.taskId] - 部署任务ID，不传时分析当前 Pod  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string diagnosisId  异常分析任务ID
+      * @param integer expiresAt  任务过期时间，秒级时间戳
+      * @param integer pollIntervalSeconds  建议轮询间隔，单位秒
+      */
+
+  createPodDiagnosis (opts, callback) {
+    opts = opts || {}
+
+    if (opts.appId === undefined || opts.appId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appId' when calling createPodDiagnosis"
+      )
+    }
+    if (opts.groupId === undefined || opts.groupId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.groupId' when calling createPodDiagnosis"
+      )
+    }
+    if (opts.podName === undefined || opts.podName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.podName' when calling createPodDiagnosis"
+      )
+    }
+
+    let postBody = {}
+    if (opts.podName !== undefined && opts.podName !== null) {
+      postBody['podName'] = opts.podName
+    }
+    if (opts.taskId !== undefined && opts.taskId !== null) {
+      postBody['taskId'] = opts.taskId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      appId: opts.appId,
+      groupId: opts.groupId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createPodDiagnosis with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/app/{appId}/group/{groupId}/pod-diagnoses',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  根据诊断任务ID轮询大模型最新分析结果
+      * @param {Object} opts - parameters
+      * @param {string} opts.diagnosisId - 异常分析任务ID
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string diagnosisId  异常分析任务ID
+      * @param object data  大模型返回的动态分析数据（自由结构）
+      * @param integer queriedAt  本次查询时间，秒级时间戳
+      * @param integer expiresAt  任务过期时间，秒级时间戳
+      * @param integer pollIntervalSeconds  建议轮询间隔，单位秒
+      */
+
+  describePodDiagnosis (opts, callback) {
+    opts = opts || {}
+
+    if (opts.diagnosisId === undefined || opts.diagnosisId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.diagnosisId' when calling describePodDiagnosis"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      diagnosisId: opts.diagnosisId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describePodDiagnosis with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/pod-diagnoses/{diagnosisId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询指定分组下已挂载的存储卷列表
+      * @param {Object} opts - parameters
+      * @param {string} opts.groupId - 分组ID
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param groupVolumeResult data
+      * @param integer totalCount  总记录数
+      */
+
+  describeGroupVolumes (opts, callback) {
+    opts = opts || {}
+
+    if (opts.groupId === undefined || opts.groupId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.groupId' when calling describeGroupVolumes"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      groupId: opts.groupId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeGroupVolumes with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/group/{groupId}/volumes',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建/编辑/删除挂载卷，全量覆盖：提交后的完整列表即为最终结果
+      * @param {Object} opts - parameters
+      * @param {string} opts.groupId - 分组ID
+      * @param {array} [opts.volumes] - 组卷列表，全量覆盖；传空列表表示清空  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param groupVolumeResult data
+      * @param integer totalCount  总记录数
+      */
+
+  modifyGroupVolume (opts, callback) {
+    opts = opts || {}
+
+    if (opts.groupId === undefined || opts.groupId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.groupId' when calling modifyGroupVolume"
+      )
+    }
+
+    let postBody = {}
+    if (opts.volumes !== undefined && opts.volumes !== null) {
+      postBody['volumes'] = opts.volumes
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      groupId: opts.groupId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyGroupVolume with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/group/{groupId}/volumes',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询指定分组下的标签列表
+      * @param {Object} opts - parameters
+      * @param {string} opts.groupId - 分组ID
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param groupTagResult data
+      * @param integer totalCount  总记录数
+      */
+
+  describeGroupTags (opts, callback) {
+    opts = opts || {}
+
+    if (opts.groupId === undefined || opts.groupId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.groupId' when calling describeGroupTags"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      groupId: opts.groupId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeGroupTags with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/group/{groupId}/tags',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建/编辑/删除标签，全量覆盖
+      * @param {Object} opts - parameters
+      * @param {string} opts.groupId - 分组ID
+      * @param {array} [opts.tags] - 标签/注解列表，全量覆盖；传空列表表示清空  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean success  执行结果
+      */
+
+  modifyGroupTags (opts, callback) {
+    opts = opts || {}
+
+    if (opts.groupId === undefined || opts.groupId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.groupId' when calling modifyGroupTags"
+      )
+    }
+
+    let postBody = {}
+    if (opts.tags !== undefined && opts.tags !== null) {
+      postBody['tags'] = opts.tags
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      groupId: opts.groupId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyGroupTags with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/group/{groupId}/tags',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询指定分组下的注解列表
+      * @param {Object} opts - parameters
+      * @param {string} opts.groupId - 分组ID
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param groupTagResult data
+      * @param integer totalCount  总记录数
+      */
+
+  describeGroupAnnotations (opts, callback) {
+    opts = opts || {}
+
+    if (opts.groupId === undefined || opts.groupId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.groupId' when calling describeGroupAnnotations"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      groupId: opts.groupId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeGroupAnnotations with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/group/{groupId}/annotations',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建/编辑/删除注解，全量覆盖
+      * @param {Object} opts - parameters
+      * @param {string} opts.groupId - 分组ID
+      * @param {array} [opts.tags] - 标签/注解列表，全量覆盖；传空列表表示清空  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean success  执行结果
+      */
+
+  modifyGroupAnnotations (opts, callback) {
+    opts = opts || {}
+
+    if (opts.groupId === undefined || opts.groupId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.groupId' when calling modifyGroupAnnotations"
+      )
+    }
+
+    let postBody = {}
+    if (opts.tags !== undefined && opts.tags !== null) {
+      postBody['tags'] = opts.tags
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      groupId: opts.groupId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyGroupAnnotations with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/group/{groupId}/annotations',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  分页查询指定部署任务下的容器（Pod）列表
+      * @param {Object} opts - parameters
+      * @param {integer} opts.taskId - 部署任务ID
+      * @param {integer} [opts.pageNum] - 页码  optional
+      * @param {integer} [opts.pageSize] - 每页数量，默认10，最大100  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param podResult data
+      * @param integer totalCount  总记录数
+      */
+
+  describeTaskPods (opts, callback) {
+    opts = opts || {}
+
+    if (opts.taskId === undefined || opts.taskId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.taskId' when calling describeTaskPods"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNum !== undefined && opts.pageNum !== null) {
+      queryParams['pageNum'] = opts.pageNum
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      taskId: opts.taskId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeTaskPods with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/task/{taskId}/pods',
       'GET',
       pathParams,
       queryParams,
@@ -2537,7 +3843,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -2653,7 +3959,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -2767,7 +4073,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -2874,7 +4180,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -2985,7 +4291,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -3099,7 +4405,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -3214,7 +4520,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -3322,7 +4628,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -3436,6 +4742,7 @@ class YDAPP extends Service {
       * @param integer readyCheckPort  就绪检查端口
       * @param string readyCheckScheme  就绪检查协议
       * @param integer terminationGraceSeconds  终止宽限期秒数
+      * @param podAntiAffinity podAntiAffinity
       */
 
   describeGroupConfig (opts, callback) {
@@ -3462,7 +4769,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -3535,196 +4842,26 @@ class YDAPP extends Service {
   }
 
   /**
-      *  删除指定应用分组
+      *  在指定应用下创建分组，所选集群的环境必须与分组环境一致
       * @param {Object} opts - parameters
       * @param {string} opts.appId - 应用ID
-      * @param {string} opts.groupId - 分组ID
-      * @param {string} callback - callback
-      @return {Object} result
-      * @param boolean success  操作结果
-      */
-
-  deleteAppGroup (opts, callback) {
-    opts = opts || {}
-
-    if (opts.appId === undefined || opts.appId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.appId' when calling deleteAppGroup"
-      )
-    }
-    if (opts.groupId === undefined || opts.groupId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.groupId' when calling deleteAppGroup"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: 'jdcloud',
-      appId: opts.appId,
-      groupId: opts.groupId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call deleteAppGroup with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/app/{appId}/group/{groupId}',
-      'DELETE',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  在指定应用下创建分组
-      * @param {Object} opts - parameters
-      * @param {string} opts.appId - 应用ID
-      * @param {string} opts.appId - 应用ID，服务端会从 path 参数写入
-      * @param {string} opts.groupKey - 分组 key
-      * @param {string} [opts.groupName] - 分组名称  optional
-      * @param {string} opts.env - 环境
-      * @param {string} [opts.serviceName] - 服务名称  optional
+      * @param {string} opts.groupKey - 分组英文名，由小写字母、数字和中划线组成，以小写字母或数字开头结尾，长度为2-27个字符
+      * @param {string} [opts.groupName] - 分组中文名称，为空默认和分组英文名保持一致  optional
+      * @param {string} opts.env - 分组环境，必须与所选集群环境一致。test-测试环境; product-生产环境
       * @param {integer} opts.clusterId - 集群ID
-      * @param {integer} opts.podCount - Pod 数量
-      * @param {number} opts.cpu - CPU 限制
-      * @param {number} opts.memory - 内存限制
-      * @param {number} opts.requestCpu - CPU 请求量
-      * @param {number} opts.requestMemory - 内存请求量
-      * @param {string} opts.imageUrl - 镜像地址，固定值：imageUrlHolder
-      * @param {integer} [opts.terminationGraceSeconds] - 优雅终止时间  optional
-      * @param {deployStrategyStruct} opts.deployStrategyStruct
-      * @param {healthCheckStruct} [opts.healthCheckStruct]   optional
-      * @param {readyCheckStruct} [opts.readyCheckStruct]   optional
-      * @param {lifecycleStruct} [opts.lifecycleStruct]   optional
-      * @param {containerInfoStruct} [opts.containerInfo]   optional
-      * @param {baseInfoStruct} [opts.baseInfo]   optional
-      * @param {array} [opts.configFiles] - 配置文件列表  optional
-      * @param {array} [opts.ports] - 端口列表  optional
-      * @param {array} [opts.tags] - 标签列表  optional
-      * @param {array} [opts.annotations] - 注解列表  optional
-      * @param {startCmdStruct} [opts.startCmdStruct]   optional
-      * @param {array} [opts.volumeBases] - 卷基础配置列表  optional
+      * @param {integer} opts.podCount - Pod数量，最小值 1
+      * @param {number} opts.cpu - CPU规格，单位为核，最小为0.1。CPU资源，单位为核
+      * @param {number} opts.memory - 内存规格，单位为GB，最小为0.1。内存资源，单位为GB
+      * @param {number} opts.requestCpu - CPU限制，单位为核，最小为0.1。CPU资源限制，单位为核
+      * @param {number} opts.requestMemory - 内存限制，单位为GB，最小为0.1。内存资源限制，单位为GB
       * @param {string} callback - callback
       @return {Object} result
-      * @param integer id  自增ID
-      * @param string appId  应用ID
       * @param string groupId  分组ID
-      * @param string appKey  应用 key
-      * @param string groupKey  分组 key
-      * @param string groupName  分组名称
-      * @param string serviceName  服务名称
-      * @param string env  环境
-      * @param string type  类型
-      * @param boolean stateful  是否有状态
-      * @param integer clusterId  集群ID
-      * @param string namespace  命名空间
-      * @param string description  描述
-      * @param string imageUrl  镜像地址
-      * @param string imagePullPolicy  镜像拉取策略
-      * @param string deployStrategy  部署策略
-      * @param string healthCheck  健康检查
-      * @param string readyCheck  就绪检查
-      * @param string lifecycle  生命周期
-      * @param integer podCount  Pod 数量
-      * @param string cpu  CPU 限制
-      * @param string requestCpu  CPU 请求量
-      * @param string disk  磁盘
-      * @param string gpu  GPU
-      * @param string startCmd  启动命令
-      * @param string memory  内存限制
-      * @param string requestMemory  内存请求量
-      * @param string tenant  租户
-      * @param boolean configChange  配置是否变更
-      * @param boolean opconfigChange  运维配置是否变更
-      * @param integer terminationGraceSeconds  优雅终止时间
-      * @param string ports  端口配置
-      * @param boolean hpaEnabled  是否开启 HPA
-      * @param integer createTime  创建时间
-      * @param integer updateTime  更新时间
-      * @param string createdBy  创建人
-      * @param string updatedBy  更新人
-      * @param string tenantId  租户ID
-      * @param deployStrategyStruct deployStrategyStruct
-      * @param healthCheckStruct healthCheckStruct
-      * @param readyCheckStruct readyCheckStruct
-      * @param lifecycleStruct lifecycleStruct
-      * @param string failedConfigs
-      * @param string warningMessage  警告信息
       */
 
   createAppGroup (opts, callback) {
     opts = opts || {}
 
-    if (opts.appId === undefined || opts.appId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.appId' when calling createAppGroup"
-      )
-    }
     if (opts.appId === undefined || opts.appId === null) {
       throw new Error(
         "Missing the required parameter 'opts.appId' when calling createAppGroup"
@@ -3770,24 +4907,8 @@ class YDAPP extends Service {
         "Missing the required parameter 'opts.requestMemory' when calling createAppGroup"
       )
     }
-    if (opts.imageUrl === undefined || opts.imageUrl === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.imageUrl' when calling createAppGroup"
-      )
-    }
-    if (
-      opts.deployStrategyStruct === undefined ||
-      opts.deployStrategyStruct === null
-    ) {
-      throw new Error(
-        "Missing the required parameter 'opts.deployStrategyStruct' when calling createAppGroup"
-      )
-    }
 
     let postBody = {}
-    if (opts.appId !== undefined && opts.appId !== null) {
-      postBody['appId'] = opts.appId
-    }
     if (opts.groupKey !== undefined && opts.groupKey !== null) {
       postBody['groupKey'] = opts.groupKey
     }
@@ -3796,9 +4917,6 @@ class YDAPP extends Service {
     }
     if (opts.env !== undefined && opts.env !== null) {
       postBody['env'] = opts.env
-    }
-    if (opts.serviceName !== undefined && opts.serviceName !== null) {
-      postBody['serviceName'] = opts.serviceName
     }
     if (opts.clusterId !== undefined && opts.clusterId !== null) {
       postBody['clusterId'] = opts.clusterId
@@ -3818,57 +4936,6 @@ class YDAPP extends Service {
     if (opts.requestMemory !== undefined && opts.requestMemory !== null) {
       postBody['requestMemory'] = opts.requestMemory
     }
-    if (opts.imageUrl !== undefined && opts.imageUrl !== null) {
-      postBody['imageUrl'] = opts.imageUrl
-    }
-    if (
-      opts.terminationGraceSeconds !== undefined &&
-      opts.terminationGraceSeconds !== null
-    ) {
-      postBody['terminationGraceSeconds'] = opts.terminationGraceSeconds
-    }
-    if (
-      opts.deployStrategyStruct !== undefined &&
-      opts.deployStrategyStruct !== null
-    ) {
-      postBody['deployStrategyStruct'] = opts.deployStrategyStruct
-    }
-    if (
-      opts.healthCheckStruct !== undefined &&
-      opts.healthCheckStruct !== null
-    ) {
-      postBody['healthCheckStruct'] = opts.healthCheckStruct
-    }
-    if (opts.readyCheckStruct !== undefined && opts.readyCheckStruct !== null) {
-      postBody['readyCheckStruct'] = opts.readyCheckStruct
-    }
-    if (opts.lifecycleStruct !== undefined && opts.lifecycleStruct !== null) {
-      postBody['lifecycleStruct'] = opts.lifecycleStruct
-    }
-    if (opts.containerInfo !== undefined && opts.containerInfo !== null) {
-      postBody['containerInfo'] = opts.containerInfo
-    }
-    if (opts.baseInfo !== undefined && opts.baseInfo !== null) {
-      postBody['baseInfo'] = opts.baseInfo
-    }
-    if (opts.configFiles !== undefined && opts.configFiles !== null) {
-      postBody['configFiles'] = opts.configFiles
-    }
-    if (opts.ports !== undefined && opts.ports !== null) {
-      postBody['ports'] = opts.ports
-    }
-    if (opts.tags !== undefined && opts.tags !== null) {
-      postBody['tags'] = opts.tags
-    }
-    if (opts.annotations !== undefined && opts.annotations !== null) {
-      postBody['annotations'] = opts.annotations
-    }
-    if (opts.startCmdStruct !== undefined && opts.startCmdStruct !== null) {
-      postBody['startCmdStruct'] = opts.startCmdStruct
-    }
-    if (opts.volumeBases !== undefined && opts.volumeBases !== null) {
-      postBody['volumeBases'] = opts.volumeBases
-    }
 
     let queryParams = {}
 
@@ -3878,7 +4945,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -3951,81 +5018,121 @@ class YDAPP extends Service {
   }
 
   /**
-      *  复制指定分组
+      *  删除指定应用分组
+      * @param {Object} opts - parameters
+      * @param {string} opts.groupId - 分组ID
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean success  操作结果
+      */
+
+  deleteAppGroup (opts, callback) {
+    opts = opts || {}
+
+    if (opts.groupId === undefined || opts.groupId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.groupId' when calling deleteAppGroup"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      groupId: opts.groupId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteAppGroup with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/group/{groupId}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  复制指定分组，所选集群的环境必须与分组环境一致
       * @param {Object} opts - parameters
       * @param {string} opts.appId - 应用ID
       * @param {string} opts.groupId - 源分组ID
-      * @param {string} opts.appId - 应用ID，服务端会从 path 参数写入
-      * @param {string} opts.groupKey - 分组 key
-      * @param {string} [opts.groupName] - 分组名称  optional
-      * @param {string} opts.env - 环境
-      * @param {string} [opts.serviceName] - 服务名称  optional
+      * @param {string} opts.groupKey - 分组英文名，由小写字母、数字和中划线组成，以小写字母或数字开头结尾，长度为2-27个字符
+      * @param {string} [opts.groupName] - 分组中文名称，为空默认和分组英文名保持一致  optional
+      * @param {string} opts.env - 分组环境，必须与所选集群环境一致。test-测试环境; product-生产环境
       * @param {integer} opts.clusterId - 集群ID
-      * @param {integer} opts.podCount - Pod 数量
-      * @param {number} opts.cpu - CPU 限制
-      * @param {number} opts.memory - 内存限制
-      * @param {number} opts.requestCpu - CPU 请求量
-      * @param {number} opts.requestMemory - 内存请求量
-      * @param {string} [opts.imageUrl] - 镜像地址，固定值：imageUrlHolder  optional
-      * @param {integer} [opts.terminationGraceSeconds] - 优雅终止时间  optional
-      * @param {deployStrategyStruct} [opts.deployStrategyStruct]   optional
-      * @param {healthCheckStruct} [opts.healthCheckStruct]   optional
-      * @param {readyCheckStruct} [opts.readyCheckStruct]   optional
-      * @param {lifecycleStruct} [opts.lifecycleStruct]   optional
-      * @param {containerInfoStruct} [opts.containerInfo]   optional
-      * @param {baseInfoStruct} [opts.baseInfo]   optional
-      * @param {array} [opts.configFiles] - 配置文件列表  optional
-      * @param {array} [opts.ports] - 端口列表  optional
-      * @param {array} [opts.tags] - 标签列表  optional
-      * @param {array} [opts.annotations] - 注解列表  optional
-      * @param {startCmdStruct} [opts.startCmdStruct]   optional
-      * @param {array} [opts.volumeBases] - 卷基础配置列表  optional
+      * @param {integer} opts.podCount - Pod数量，最小值 1
+      * @param {number} opts.cpu - CPU规格，单位为核，最小为0.1。CPU资源，单位为核
+      * @param {number} opts.memory - 内存规格，单位为GB，最小为0.1。内存资源，单位为GB
+      * @param {number} opts.requestCpu - CPU限制，单位为核，最小为0.1。CPU资源限制，单位为核
+      * @param {number} opts.requestMemory - 内存限制，单位为GB，最小为0.1。内存资源限制，单位为GB
       * @param {string} callback - callback
       @return {Object} result
-      * @param integer id  自增ID
-      * @param string appId  应用ID
       * @param string groupId  分组ID
-      * @param string appKey  应用 key
-      * @param string groupKey  分组 key
-      * @param string groupName  分组名称
-      * @param string serviceName  服务名称
-      * @param string env  环境
-      * @param string type  类型
-      * @param boolean stateful  是否有状态
-      * @param integer clusterId  集群ID
-      * @param string namespace  命名空间
-      * @param string description  描述
-      * @param string imageUrl  镜像地址
-      * @param string imagePullPolicy  镜像拉取策略
-      * @param string deployStrategy  部署策略
-      * @param string healthCheck  健康检查
-      * @param string readyCheck  就绪检查
-      * @param string lifecycle  生命周期
-      * @param integer podCount  Pod 数量
-      * @param string cpu  CPU 限制
-      * @param string requestCpu  CPU 请求量
-      * @param string disk  磁盘
-      * @param string gpu  GPU
-      * @param string startCmd  启动命令
-      * @param string memory  内存限制
-      * @param string requestMemory  内存请求量
-      * @param string tenant  租户
-      * @param boolean configChange  配置是否变更
-      * @param boolean opconfigChange  运维配置是否变更
-      * @param integer terminationGraceSeconds  优雅终止时间
-      * @param string ports  端口配置
-      * @param boolean hpaEnabled  是否开启 HPA
-      * @param integer createTime  创建时间
-      * @param integer updateTime  更新时间
-      * @param string createdBy  创建人
-      * @param string updatedBy  更新人
-      * @param string tenantId  租户ID
-      * @param deployStrategyStruct deployStrategyStruct
-      * @param healthCheckStruct healthCheckStruct
-      * @param readyCheckStruct readyCheckStruct
-      * @param lifecycleStruct lifecycleStruct
-      * @param string failedConfigs
-      * @param string warningMessage  警告信息
       */
 
   copyAppGroup (opts, callback) {
@@ -4039,11 +5146,6 @@ class YDAPP extends Service {
     if (opts.groupId === undefined || opts.groupId === null) {
       throw new Error(
         "Missing the required parameter 'opts.groupId' when calling copyAppGroup"
-      )
-    }
-    if (opts.appId === undefined || opts.appId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.appId' when calling copyAppGroup"
       )
     }
     if (opts.groupKey === undefined || opts.groupKey === null) {
@@ -4088,9 +5190,6 @@ class YDAPP extends Service {
     }
 
     let postBody = {}
-    if (opts.appId !== undefined && opts.appId !== null) {
-      postBody['appId'] = opts.appId
-    }
     if (opts.groupKey !== undefined && opts.groupKey !== null) {
       postBody['groupKey'] = opts.groupKey
     }
@@ -4099,9 +5198,6 @@ class YDAPP extends Service {
     }
     if (opts.env !== undefined && opts.env !== null) {
       postBody['env'] = opts.env
-    }
-    if (opts.serviceName !== undefined && opts.serviceName !== null) {
-      postBody['serviceName'] = opts.serviceName
     }
     if (opts.clusterId !== undefined && opts.clusterId !== null) {
       postBody['clusterId'] = opts.clusterId
@@ -4121,57 +5217,6 @@ class YDAPP extends Service {
     if (opts.requestMemory !== undefined && opts.requestMemory !== null) {
       postBody['requestMemory'] = opts.requestMemory
     }
-    if (opts.imageUrl !== undefined && opts.imageUrl !== null) {
-      postBody['imageUrl'] = opts.imageUrl
-    }
-    if (
-      opts.terminationGraceSeconds !== undefined &&
-      opts.terminationGraceSeconds !== null
-    ) {
-      postBody['terminationGraceSeconds'] = opts.terminationGraceSeconds
-    }
-    if (
-      opts.deployStrategyStruct !== undefined &&
-      opts.deployStrategyStruct !== null
-    ) {
-      postBody['deployStrategyStruct'] = opts.deployStrategyStruct
-    }
-    if (
-      opts.healthCheckStruct !== undefined &&
-      opts.healthCheckStruct !== null
-    ) {
-      postBody['healthCheckStruct'] = opts.healthCheckStruct
-    }
-    if (opts.readyCheckStruct !== undefined && opts.readyCheckStruct !== null) {
-      postBody['readyCheckStruct'] = opts.readyCheckStruct
-    }
-    if (opts.lifecycleStruct !== undefined && opts.lifecycleStruct !== null) {
-      postBody['lifecycleStruct'] = opts.lifecycleStruct
-    }
-    if (opts.containerInfo !== undefined && opts.containerInfo !== null) {
-      postBody['containerInfo'] = opts.containerInfo
-    }
-    if (opts.baseInfo !== undefined && opts.baseInfo !== null) {
-      postBody['baseInfo'] = opts.baseInfo
-    }
-    if (opts.configFiles !== undefined && opts.configFiles !== null) {
-      postBody['configFiles'] = opts.configFiles
-    }
-    if (opts.ports !== undefined && opts.ports !== null) {
-      postBody['ports'] = opts.ports
-    }
-    if (opts.tags !== undefined && opts.tags !== null) {
-      postBody['tags'] = opts.tags
-    }
-    if (opts.annotations !== undefined && opts.annotations !== null) {
-      postBody['annotations'] = opts.annotations
-    }
-    if (opts.startCmdStruct !== undefined && opts.startCmdStruct !== null) {
-      postBody['startCmdStruct'] = opts.startCmdStruct
-    }
-    if (opts.volumeBases !== undefined && opts.volumeBases !== null) {
-      postBody['volumeBases'] = opts.volumeBases
-    }
 
     let queryParams = {}
 
@@ -4182,7 +5227,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -4497,7 +5542,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -4812,7 +5857,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -4856,6 +5901,117 @@ class YDAPP extends Service {
 
     let request = super.makeRequest(
       '/app/{appId}/group/{groupId}:updateStartCmd',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  配置应用分组的容器端口，协议默认为TCP
+      * @param {Object} opts - parameters
+      * @param {string} opts.appId - 应用ID
+      * @param {string} opts.groupId - 分组ID
+      * @param {array} [opts.ports] - 容器端口配置列表  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean success  操作结果
+      */
+
+  modifyContainerPort (opts, callback) {
+    opts = opts || {}
+
+    if (opts.appId === undefined || opts.appId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appId' when calling modifyContainerPort"
+      )
+    }
+    if (opts.groupId === undefined || opts.groupId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.groupId' when calling modifyContainerPort"
+      )
+    }
+
+    let postBody = {}
+    if (opts.ports !== undefined && opts.ports !== null) {
+      postBody['ports'] = opts.ports
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      appId: opts.appId,
+      groupId: opts.groupId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyContainerPort with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/app/{appId}/group/{groupId}:modifyContainerPort',
       'POST',
       pathParams,
       queryParams,
@@ -5127,7 +6283,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -5442,7 +6598,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -5549,7 +6705,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -5664,7 +6820,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -5771,7 +6927,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -5894,7 +7050,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -6017,7 +7173,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -6128,7 +7284,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -6243,7 +7399,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -6357,7 +7513,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -6430,16 +7586,724 @@ class YDAPP extends Service {
   }
 
   /**
+      *  查询指定应用分组下的 PVC 列表
+      * @param {Object} opts - parameters
+      * @param {string} opts.appId - 应用ID
+      * @param {string} opts.groupId - 分组ID
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param pvcDetailResult data
+      * @param integer totalCount  总记录数
+      */
+
+  describePvcs (opts, callback) {
+    opts = opts || {}
+
+    if (opts.appId === undefined || opts.appId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appId' when calling describePvcs"
+      )
+    }
+    if (opts.groupId === undefined || opts.groupId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.groupId' when calling describePvcs"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      appId: opts.appId,
+      groupId: opts.groupId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describePvcs with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/apps/{appId}/groups/{groupId}/pvcs',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询指定应用分组下某个 PVC 的详情
+      * @param {Object} opts - parameters
+      * @param {string} opts.appId - 应用ID
+      * @param {string} opts.groupId - 分组ID
+      * @param {string} opts.name - PVC名称
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string mountId  挂载目标ID
+      * @param string cfsId  文件系统ID
+      * @param string mountIp  挂载目标IP
+      * @param string name  PVC名称
+      * @param number storageGi  PVC大小（GiB）
+      * @param string phase  状态：Pending/Bound/Lost
+      * @param integer createTime  创建时间，10位秒级时间戳
+      * @param string path  指定 cfs 路径
+      */
+
+  describePvc (opts, callback) {
+    opts = opts || {}
+
+    if (opts.appId === undefined || opts.appId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appId' when calling describePvc"
+      )
+    }
+    if (opts.groupId === undefined || opts.groupId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.groupId' when calling describePvc"
+      )
+    }
+    if (opts.name === undefined || opts.name === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.name' when calling describePvc"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      appId: opts.appId,
+      groupId: opts.groupId,
+      name: opts.name
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describePvc with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/apps/{appId}/groups/{groupId}/pvcs/{name}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除指定应用分组下的 PVC
+      * @param {Object} opts - parameters
+      * @param {string} opts.appId - 应用ID
+      * @param {string} opts.groupId - 分组ID
+      * @param {string} opts.name - PVC名称
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean success  执行结果
+      */
+
+  deletePvc (opts, callback) {
+    opts = opts || {}
+
+    if (opts.appId === undefined || opts.appId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appId' when calling deletePvc"
+      )
+    }
+    if (opts.groupId === undefined || opts.groupId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.groupId' when calling deletePvc"
+      )
+    }
+    if (opts.name === undefined || opts.name === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.name' when calling deletePvc"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      appId: opts.appId,
+      groupId: opts.groupId,
+      name: opts.name
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deletePvc with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/apps/{appId}/groups/{groupId}/pvcs/{name}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  在指定应用分组下创建 PVC
+      * @param {Object} opts - parameters
+      * @param {string} opts.appId - 应用ID
+      * @param {string} opts.groupId - 分组ID
+      * @param {string} opts.name - PVC名称，由小写字母、数字和中划线组成，以小写字母或数字开头结尾，长度为2-32个字符
+      * @param {string} opts.fileSystemId - 文件系统ID（cfs 的 id）
+      * @param {string} opts.mountTargetId - 挂载目标ID（cfs 的挂载目标 id）
+      * @param {string} opts.ipAddress - 挂载目标IP（cfs 的挂载目标 ip），需为合法的 IPv4 地址
+      * @param {number} opts.storageGi - PVC大小（Gi），cfs 不生效
+      * @param {string} [opts.path] - 指定 cfs 路径  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean success  执行结果
+      */
+
+  createPvc (opts, callback) {
+    opts = opts || {}
+
+    if (opts.appId === undefined || opts.appId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appId' when calling createPvc"
+      )
+    }
+    if (opts.groupId === undefined || opts.groupId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.groupId' when calling createPvc"
+      )
+    }
+    if (opts.name === undefined || opts.name === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.name' when calling createPvc"
+      )
+    }
+    if (opts.fileSystemId === undefined || opts.fileSystemId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.fileSystemId' when calling createPvc"
+      )
+    }
+    if (opts.mountTargetId === undefined || opts.mountTargetId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.mountTargetId' when calling createPvc"
+      )
+    }
+    if (opts.ipAddress === undefined || opts.ipAddress === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.ipAddress' when calling createPvc"
+      )
+    }
+    if (opts.storageGi === undefined || opts.storageGi === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.storageGi' when calling createPvc"
+      )
+    }
+
+    let postBody = {}
+    if (opts.appId !== undefined && opts.appId !== null) {
+      postBody['appId'] = opts.appId
+    }
+    if (opts.groupId !== undefined && opts.groupId !== null) {
+      postBody['groupId'] = opts.groupId
+    }
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.fileSystemId !== undefined && opts.fileSystemId !== null) {
+      postBody['fileSystemId'] = opts.fileSystemId
+    }
+    if (opts.mountTargetId !== undefined && opts.mountTargetId !== null) {
+      postBody['mountTargetId'] = opts.mountTargetId
+    }
+    if (opts.ipAddress !== undefined && opts.ipAddress !== null) {
+      postBody['ipAddress'] = opts.ipAddress
+    }
+    if (opts.storageGi !== undefined && opts.storageGi !== null) {
+      postBody['storageGi'] = opts.storageGi
+    }
+    if (opts.path !== undefined && opts.path !== null) {
+      postBody['path'] = opts.path
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createPvc with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/pvc',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询指定集群可用的 ZFS 文件系统列表
+      * @param {Object} opts - parameters
+      * @param {integer} opts.clusterId - 集群ID
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param zfsAvailableListVo data
+      * @param integer totalCount  总记录数
+      */
+
+  describeZfs (opts, callback) {
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling describeZfs"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      clusterId: opts.clusterId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeZfs with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/cluster/{clusterId}/zfs',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询指定应用分组下 Pod 的挂载卷列表
+      * @param {Object} opts - parameters
+      * @param {string} opts.appId - 应用ID
+      * @param {string} opts.groupId - 分组ID
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param podVolumeResult data
+      * @param integer totalCount  总记录数
+      */
+
+  describePodVolumes (opts, callback) {
+    opts = opts || {}
+
+    if (opts.appId === undefined || opts.appId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appId' when calling describePodVolumes"
+      )
+    }
+    if (opts.groupId === undefined || opts.groupId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.groupId' when calling describePodVolumes"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: 'jdcloud',
+      appId: opts.appId,
+      groupId: opts.groupId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describePodVolumes with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/apps/{appId}/groups/{groupId}/volumes',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  创建系统
       * @param {Object} opts - parameters
-      * @param {string} opts.systemKey - 系统名称
-      * @param {string} [opts.systemName] - 系统中文名  optional
-      * @param {string} [opts.description] - 应用描述  optional
-      * @param {string} opts.josAppKey - 绑定JOS应用名称appKey
+      * @param {string} opts.systemKey - 系统英文名，对应 k8s 集群的 namespace；支持小写字母、数字和中划线，且必须以字母或数字开头、结尾，长度2~50字符
+      * @param {string} [opts.systemName] - 系统中文名，为空时和系统英文名保持一致  optional
+      * @param {string} [opts.description] - 系统描述  optional
+      * @param {string} opts.josAppKey - 绑定 JOS 应用 appKey
       * @param {string} callback - callback
       @return {Object} result
       * @param string systemId  系统ID
       * @param string vpcId  私有网络ID
+      * @param string systemKey  系统英文名，对应 k8s 集群的 namespace
       */
 
   createSystem (opts, callback) {
@@ -6477,7 +8341,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -6554,7 +8418,7 @@ class YDAPP extends Service {
       * @param {Object} opts - parameters
       * @param {string} callback - callback
       @return {Object} result
-      * @param josApp apps
+      * @param josAppSpec apps
       */
 
   describeJosApps (opts, callback) {
@@ -6568,7 +8432,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -6647,7 +8511,7 @@ class YDAPP extends Service {
       * @param {integer} [opts.pageSize] - 每页数量，默认10，最大100  optional
       * @param {string} callback - callback
       @return {Object} result
-      * @param wukongSystem data
+      * @param systemResult data
       * @param integer totalCount  本次查询可匹配到的总记录数。
       */
 
@@ -6669,7 +8533,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -6777,7 +8641,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -6853,19 +8717,19 @@ class YDAPP extends Service {
       *  根据系统 ID 修改系统详情
       * @param {Object} opts - parameters
       * @param {string} opts.systemId - 系统ID
-      * @param {string} [opts.systemName] - 系统中文名  optional
-      * @param {string} [opts.description] - 应用描述  optional
+      * @param {string} [opts.systemName] - 系统中文名，为空时和系统英文名保持一致  optional
+      * @param {string} [opts.description] - 系统描述  optional
       * @param {string} callback - callback
       @return {Object} result
       * @param string value  结果值
       */
 
-  updateSystem (opts, callback) {
+  modifySystem (opts, callback) {
     opts = opts || {}
 
     if (opts.systemId === undefined || opts.systemId === null) {
       throw new Error(
-        "Missing the required parameter 'opts.systemId' when calling updateSystem"
+        "Missing the required parameter 'opts.systemId' when calling modifySystem"
       )
     }
 
@@ -6885,7 +8749,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']
@@ -6915,7 +8779,7 @@ class YDAPP extends Service {
     let returnType = null
 
     this.config.logger(
-      `call updateSystem with params:\npathParams:${JSON.stringify(
+      `call modifySystem with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -6984,7 +8848,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.4'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
     }
 
     let contentTypes = ['application/json']

@@ -33,7 +33,7 @@ Service._services[serviceId] = true
 
 /**
  * jdaip service.
- * @version 1.0.10
+ * @version 1.0.11
  */
 
 class JDAIP extends Service {
@@ -94,7 +94,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -238,7 +238,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -374,7 +374,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -495,7 +495,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -641,7 +641,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -767,7 +767,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -918,7 +918,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -1054,7 +1054,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -1201,7 +1201,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -1320,7 +1320,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -1465,7 +1465,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -1624,7 +1624,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -1752,7 +1752,7 @@ Batch 任务额外返回 &#x60;minAvailable&#x60; 和 &#x60;batchSummary&#x60;�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -1840,7 +1840,7 @@ Batch 任务额外返回 &#x60;minAvailable&#x60; 和 &#x60;batchSummary&#x60;�
       * @param {Object} opts - parameters
       * @param {string} opts.workspaceId - 工作空间ID
       * @param {string} opts.jobId - 训练任务ID
-      * @param {string} [opts.name] - 训练任务名称。1~32字符，仅支持中文、大小写字母、数字、英文中划线 &quot;-&quot;和英文下划线&quot;_&quot;。  optional
+      * @param {string} [opts.name] - 训练任务名称。1~256字符，仅支持中文、大小写字母、数字、英文中划线 &quot;-&quot;和英文下划线&quot;_&quot;。  optional
       * @param {string} [opts.description] - 训练任务的描述信息，不超过256个字符。  optional
       * @param {string} [opts.permission] - 工作空间中的资源归属权限，支持(public,private)，默认为public。  optional
       * @param {integer} [opts.taskPriority] - 任务优先级，取值范围 &#x60;1..9&#x60;。仅排队中（&#x60;queuing&#x60;）任务允许更新。
@@ -1905,7 +1905,7 @@ Batch 任务额外返回 &#x60;minAvailable&#x60; 和 &#x60;batchSummary&#x60;�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -2035,7 +2035,7 @@ Batch 任务额外返回 &#x60;minAvailable&#x60; 和 &#x60;batchSummary&#x60;�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -2167,7 +2167,7 @@ Batch 任务额外返回 &#x60;minAvailable&#x60; 和 &#x60;batchSummary&#x60;�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -2318,7 +2318,7 @@ Batch 任务额外返回 &#x60;minAvailable&#x60; 和 &#x60;batchSummary&#x60;�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -2448,7 +2448,7 @@ Batch 任务额外返回 &#x60;minAvailable&#x60; 和 &#x60;batchSummary&#x60;�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -2493,6 +2493,155 @@ Batch 任务额外返回 &#x60;minAvailable&#x60; 和 &#x60;batchSummary&#x60;�
     let request = super.makeRequest(
       '/train/{regionId}/workspaces/{workspaceId}/jobs/{jobId}:restartHistory',
       'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  调整训练任务的调度优先级。
+
+通过调整优先级可以影响任务的调度顺序，优先级高的任务会更快获得计算资源。
+
+## 系统预置优先级
+
+- &#x60;high-priority&#x60;：高优先级（20000），优先调度
+- &#x60;normal-priority&#x60;：普通优先级（10000），默认
+- &#x60;low-priority&#x60;：低优先级（5000），最后调度
+
+## 注意事项
+
+- 提高优先级可以让任务更快被调度执行
+- 如果队列调度策略支持资源抢占，可能导致运行中的低优先级任务被停止
+- 优先级调整仅影响排队中的任务，对已运行的任务无效
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.workspaceId - 工作空间ID
+      * @param {string} opts.jobId - 训练任务ID
+      * @param {string} opts.jobId - 任务 ID
+      * @param {schedulePriority} opts.schedulePriority - 调度优先级
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  changePriority (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  changePriority"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.workspaceId === undefined || opts.workspaceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.workspaceId' when calling changePriority"
+      )
+    }
+    if (opts.jobId === undefined || opts.jobId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.jobId' when calling changePriority"
+      )
+    }
+    if (opts.jobId === undefined || opts.jobId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.jobId' when calling changePriority"
+      )
+    }
+    if (opts.schedulePriority === undefined || opts.schedulePriority === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.schedulePriority' when calling changePriority"
+      )
+    }
+
+    let postBody = {}
+    if (opts.schedulePriority !== undefined && opts.schedulePriority !== null) {
+      postBody['schedulePriority'] = opts.schedulePriority
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      workspaceId: opts.workspaceId,
+      jobId: opts.jobId,
+      jobId: opts.jobId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call changePriority with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/train/{regionId}/workspaces/{workspaceId}/jobs/{jobId}:changePriority',
+      'POST',
       pathParams,
       queryParams,
       headerParams,
@@ -2591,7 +2740,7 @@ Batch 任务额外返回 &#x60;minAvailable&#x60; 和 &#x60;batchSummary&#x60;�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -2635,6 +2784,145 @@ Batch 任务额外返回 &#x60;minAvailable&#x60; 和 &#x60;batchSummary&#x60;�
 
     let request = super.makeRequest(
       '/train/{regionId}/workspaces/{workspaceId}/jobs/{jobId}/pods/{podName}:logs',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取训练任务关联的 Pod 日志（非流式返回）。
+
+一次性获取指定数量的日志内容，适用于日志分析、问题排查等场景。
+
+## 使用场景
+
+- 获取历史日志进行分析
+- 问题排查和诊断
+- 日志导出和归档
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.workspaceId - 工作空间ID
+      * @param {string} opts.jobId - 训练任务ID
+      * @param {string} opts.podName - pod名称
+      * @param {integer} [opts.tailLines] - 从最后多少条开始返回日志，默认100条。  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string podName  pod名称
+      * @param string data  非流式Pod日志。 通过\n换行
+      */
+
+  getPodLimitLogs (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getPodLimitLogs"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.workspaceId === undefined || opts.workspaceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.workspaceId' when calling getPodLimitLogs"
+      )
+    }
+    if (opts.jobId === undefined || opts.jobId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.jobId' when calling getPodLimitLogs"
+      )
+    }
+    if (opts.podName === undefined || opts.podName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.podName' when calling getPodLimitLogs"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.tailLines !== undefined && opts.tailLines !== null) {
+      queryParams['tailLines'] = opts.tailLines
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      workspaceId: opts.workspaceId,
+      jobId: opts.jobId,
+      podName: opts.podName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getPodLimitLogs with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/train/{regionId}/workspaces/{workspaceId}/jobs/{jobId}/pods/{podName}:limitLogs',
       'GET',
       pathParams,
       queryParams,
@@ -2740,7 +3028,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -2892,7 +3180,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -3029,7 +3317,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -3227,7 +3515,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -3372,7 +3660,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -3505,7 +3793,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -3637,7 +3925,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -3780,7 +4068,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -3960,7 +4248,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -4090,7 +4378,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -4221,7 +4509,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -4359,7 +4647,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -4502,7 +4790,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -4632,7 +4920,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -4773,7 +5061,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -4908,7 +5196,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -5063,7 +5351,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -5215,7 +5503,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -5343,7 +5631,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -5489,7 +5777,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -5626,7 +5914,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -5764,7 +6052,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -5915,7 +6203,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -6065,7 +6353,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -6226,7 +6514,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -6365,7 +6653,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -6483,7 +6771,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -6616,7 +6904,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -6737,7 +7025,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -6882,7 +7170,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -7007,7 +7295,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -7147,7 +7435,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -7271,7 +7559,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -7407,7 +7695,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -7545,7 +7833,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -7668,7 +7956,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -7786,7 +8074,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -7913,7 +8201,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -8030,7 +8318,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -8170,7 +8458,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -8298,7 +8586,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -8446,7 +8734,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -8571,7 +8859,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -8705,7 +8993,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -8847,7 +9135,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -8976,7 +9264,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -9114,7 +9402,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -9237,7 +9525,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -9355,7 +9643,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -9474,7 +9762,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -9593,7 +9881,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -9721,7 +10009,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -9865,7 +10153,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -10010,7 +10298,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -10136,7 +10424,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -10261,7 +10549,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -10388,7 +10676,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -10526,7 +10814,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -10655,7 +10943,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -10776,7 +11064,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -10911,7 +11199,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -11046,7 +11334,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -11164,7 +11452,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -11307,7 +11595,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -11424,7 +11712,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -11554,7 +11842,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -11722,7 +12010,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -11842,7 +12130,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -11963,7 +12251,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -12084,7 +12372,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -12201,7 +12489,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -12359,7 +12647,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -12474,7 +12762,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -12614,7 +12902,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -12725,7 +13013,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -12839,7 +13127,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -12974,7 +13262,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -13099,7 +13387,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -13226,7 +13514,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -13344,7 +13632,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -13482,7 +13770,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -13607,7 +13895,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -13747,7 +14035,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -13871,7 +14159,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -14003,7 +14291,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -14121,7 +14409,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -14271,7 +14559,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -14428,7 +14716,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -14540,7 +14828,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -14670,7 +14958,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -14754,7 +15042,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
       * @param {Object} opts - parameters
       * @param {string} opts.workspaceId - 工作空间ID
       * @param {string} opts.notebookId - notebook ID
-      * @param {string} [opts.name] - 名称。1~32字符，可以包含中文、数字、大小写字母、英文下划线&quot;_&quot;、中划线&quot;-&quot;或点&quot;.&quot;。传null表示不修改此字段。  optional
+      * @param {string} [opts.name] - 名称。1~256字符，可以包含中文、数字、大小写字母、英文下划线&quot;_&quot;、中划线&quot;-&quot;或点&quot;.&quot;。传null表示不修改此字段。  optional
       * @param {string} [opts.description] - 描述。不超过256字符。传null表示不修改此字段。  optional
       * @param {string} [opts.permission] - 工作空间中的资源归属权限，支持(public,private)，只有管理员和拥有者可以修改。传null表示不修改此字段。
 管理员可查看工作空间中全部资源，其他用户只能查看归属自己的private权限的资源或public权限的资源。  optional
@@ -14821,7 +15109,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -14945,7 +15233,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -15091,7 +15379,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -15216,7 +15504,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -15369,7 +15657,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -15413,6 +15701,146 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
 
     let request = super.makeRequest(
       '/nb-regions/{regionId}/workspace/{workspaceId}/notebook/{notebookId}:updateResourceProperties',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新Notebook的调度优先级。
+
+## 接口说明
+- 仅支持处于 排队中(waiting) 或 停止(stopped) 状态的Notebook。
+- 仅私有资源池且队列开启了调度优先级时可设置。
+- 优先级取值范围为[1, 队列优先级上限]，数值越大优先级越高。
+- 对处于 排队中(waiting) 状态的Notebook，新优先级会即时生效。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.workspaceId - 工作空间ID
+      * @param {string} opts.notebookId - notebook ID
+      * @param {integer} opts.taskPriority - 任务调度优先级，数值越大，优先级越高。
+**取值范围：** 1 ~ 9
+**按资源池类型区分：**
+- 专享队列：必须设置(1~9)。
+- 空间私有队列：开启调度优先级时必填。
+- 公共队列：不支持设置。
+
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  updateNotebookTaskPriority (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  updateNotebookTaskPriority"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.workspaceId === undefined || opts.workspaceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.workspaceId' when calling updateNotebookTaskPriority"
+      )
+    }
+    if (opts.notebookId === undefined || opts.notebookId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.notebookId' when calling updateNotebookTaskPriority"
+      )
+    }
+    if (opts.taskPriority === undefined || opts.taskPriority === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.taskPriority' when calling updateNotebookTaskPriority"
+      )
+    }
+
+    let postBody = {}
+    if (opts.taskPriority !== undefined && opts.taskPriority !== null) {
+      postBody['taskPriority'] = opts.taskPriority
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      workspaceId: opts.workspaceId,
+      notebookId: opts.notebookId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call updateNotebookTaskPriority with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/nb-regions/{regionId}/workspace/{workspaceId}/notebook/{notebookId}:taskPriority',
       'POST',
       pathParams,
       queryParams,
@@ -15511,7 +15939,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -15637,7 +16065,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -15782,7 +16210,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -15929,7 +16357,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -16058,7 +16486,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -16196,7 +16624,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -16322,7 +16750,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -16367,6 +16795,131 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     let request = super.makeRequest(
       '/nb-regions/{regionId}/workspace/{workspaceId}/notebook/{notebookId}/logCollectConfig:delete',
       'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取notebook SSH公钥列表
+      * @param {Object} opts - parameters
+      * @param {string} opts.workspaceId - 工作空间ID
+      * @param {string} opts.notebookId - notebook ID
+      * @param {string} opts.notebookId - notebook id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string publicKeys
+      */
+
+  getNotebookSshPublicKeys (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getNotebookSshPublicKeys"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.workspaceId === undefined || opts.workspaceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.workspaceId' when calling getNotebookSshPublicKeys"
+      )
+    }
+    if (opts.notebookId === undefined || opts.notebookId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.notebookId' when calling getNotebookSshPublicKeys"
+      )
+    }
+    if (opts.notebookId === undefined || opts.notebookId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.notebookId' when calling getNotebookSshPublicKeys"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      workspaceId: opts.workspaceId,
+      notebookId: opts.notebookId,
+      notebookId: opts.notebookId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getNotebookSshPublicKeys with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/nb-regions/{regionId}/workspace/{workspaceId}/notebook/{notebookId}/sshpublickeys',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -16480,7 +17033,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -16626,7 +17179,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -16757,7 +17310,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -16888,7 +17441,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -17018,7 +17571,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -17148,7 +17701,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -17266,7 +17819,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -17399,7 +17952,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -17516,7 +18069,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -17634,7 +18187,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -17753,7 +18306,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -17883,7 +18436,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']
@@ -17999,7 +18552,7 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
     }
 
     let contentTypes = ['application/json']

@@ -33,7 +33,7 @@ Service._services[serviceId] = true
 
 /**
  * jdaip service.
- * @version 1.0.8
+ * @version 1.0.10
  */
 
 class JDAIP extends Service {
@@ -94,7 +94,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -238,7 +238,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -374,7 +374,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -495,7 +495,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -641,7 +641,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -767,7 +767,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -918,7 +918,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -1054,7 +1054,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -1201,7 +1201,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -1281,6 +1281,7 @@ class JDAIP extends Service {
 **支持的训练任务类型：**
 - &#x60;pytorch&#x60;：PyTorch 框架，适用于深度学习训练、分布式训练
 - &#x60;ray&#x60;：Ray 框架，适用于分布式计算、强化学习、超参调优
+- &#x60;batch&#x60;：批量任务，多个同规格 Worker 副本独立执行
 
       * @param {Object} opts - parameters
       * @param {string} opts.workspaceId - 工作空间ID
@@ -1319,7 +1320,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -1464,7 +1465,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -1562,6 +1563,7 @@ class JDAIP extends Service {
 
 - &#x60;resource&#x60; 参数已废弃
 - Ray 任务必须使用 &#x60;roleResource&#x60; 配置 Head 和 Worker 角色
+- Batch 任务使用单 Worker &#x60;roleResource&#x60;，副本数取 Worker 的 &#x60;count&#x60;，&#x60;minAvailable&#x60; 默认 1，不支持重启策略、健康检测、高级配置和 RDMA
 - **重启策略仅适用于异构节点池的 PyTorch 任务**，云主机资源池和 Ray 任务不支持
 - 公共资源池和共享资源池角色规格须通过 &#x60;logicAzCode&#x60; 指定可用区（异构规格还须填 &#x60;hpcClusterName&#x60;）
 - 共享资源池固定使用 &#x60;queueId&#x3D;joybuilder-exclusive-queue&#x60;；用户必须已加入共享池且存在启用的 user queue
@@ -1622,7 +1624,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -1698,6 +1700,7 @@ class JDAIP extends Service {
       *  查询训练任务详情。
 
 获取训练任务的完整配置信息和运行状态，包括基本信息、镜像配置、资源配置、存储配置、运行配置、Pod信息等。
+Batch 任务额外返回 &#x60;minAvailable&#x60; 和 &#x60;batchSummary&#x60;；混合成功/失败时状态为 &#x60;partial-success&#x60;。
 
 ## 使用场景
 
@@ -1749,7 +1752,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -1902,7 +1905,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -2032,7 +2035,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -2164,7 +2167,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -2315,7 +2318,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -2445,7 +2448,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -2588,7 +2591,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -2665,6 +2668,7 @@ class JDAIP extends Service {
 
 查询训练任务下所有运行实例（Pod）的详细信息，包括名称、类型、状态、IP、运行时长等。
 支持分页查询和多种过滤条件，异常状态数据可优先展示。
+Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;terminationReason&#x60;、&#x60;attemptNo&#x60; 和 &#x60;isCurrent&#x60;。
 
 ## 使用场景
 
@@ -2736,7 +2740,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -2888,7 +2892,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -2971,7 +2975,8 @@ class JDAIP extends Service {
       * @param {integer} [opts.pageNumber] - 页码；默认为1。  optional
       * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[1, 100]。  optional
       * @param {filter} [opts.filters] - &lt;b&gt;filters 中支持使用以下关键字进行过滤&lt;/b&gt;
-&#x60;name&#x60;: 性能分析任务名称，精确匹配，支持单个。
+&#x60;profilingId&#x60;: 性能分析任务ID，模糊匹配，支持单个。
+&#x60;name&#x60;: 性能分析任务名称，模糊匹配，支持单个。
 &#x60;status&#x60;: 任务状态，精确匹配，支持多个，可选(pending/running/completed/failed/expired)。
 &#x60;targetType&#x60;: 监控目标类型，精确匹配，支持多个，可选(instance/pid)。
   optional
@@ -3024,7 +3029,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -3222,7 +3227,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -3307,8 +3312,8 @@ class JDAIP extends Service {
       * @param {integer} [opts.pageNumber] - 页码；默认为1。  optional
       * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[1, 100]。  optional
       * @param {filter} [opts.filters] - &lt;b&gt;filters 中支持使用以下关键字进行过滤&lt;/b&gt;
-&#x60;instanceName&#x60;: 实例名称，精确匹配，支持单个。
-&#x60;nodeName&#x60;: 所属节点名称，精确匹配，支持单个。
+&#x60;instanceName&#x60;: 实例名称，模糊匹配，支持单个。
+&#x60;nodeName&#x60;: 所属节点名称，模糊匹配，支持单个。
 &#x60;collectStatus&#x60;: 采集状态，精确匹配，支持多个，可选(pending/collecting/success/failed)。
   optional
       * @param {string} regionId - ID of the region
@@ -3367,7 +3372,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -3500,7 +3505,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -3632,7 +3637,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -3775,7 +3780,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -3955,7 +3960,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -4085,7 +4090,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -4216,7 +4221,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -4354,7 +4359,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -4497,7 +4502,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -4627,7 +4632,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -4768,7 +4773,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -4903,7 +4908,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -5058,7 +5063,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -5210,7 +5215,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -5338,7 +5343,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -5484,7 +5489,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -5621,7 +5626,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -5759,7 +5764,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -5910,7 +5915,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -6060,7 +6065,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -6221,7 +6226,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -6360,7 +6365,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -6478,7 +6483,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -6611,7 +6616,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -6732,7 +6737,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -6877,7 +6882,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -7002,7 +7007,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -7142,7 +7147,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -7266,7 +7271,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -7402,7 +7407,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -7540,7 +7545,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -7663,7 +7668,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -7781,7 +7786,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -7908,7 +7913,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -8025,7 +8030,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -8165,7 +8170,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -8293,7 +8298,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -8441,7 +8446,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -8566,7 +8571,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -8700,7 +8705,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -8842,7 +8847,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -8971,7 +8976,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -9109,7 +9114,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -9232,7 +9237,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -9350,7 +9355,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -9469,7 +9474,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -9588,7 +9593,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -9716,7 +9721,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -9860,7 +9865,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -10005,7 +10010,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -10131,7 +10136,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -10256,7 +10261,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -10383,7 +10388,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -10521,7 +10526,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -10650,7 +10655,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -10771,7 +10776,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -10906,7 +10911,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -11041,7 +11046,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -11159,7 +11164,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -11302,7 +11307,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -11419,7 +11424,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -11463,6 +11468,136 @@ class JDAIP extends Service {
 
     let request = super.makeRequest(
       '/infer-regions/{regionId}/api/{apiType}/inferenceCount',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询pin下有权限的工作空间下的专属网关列表。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.apiType - 接口类型(admin)
+      * @param {integer} [opts.pageNumber] - 页码；默认为1。  optional
+      * @param {integer} [opts.pageSize] - 分页大小；&lt;br&gt;默认为10；取值范围[1, 100]。  optional
+      * @param {filter} [opts.filters] - &lt;b&gt;filters 中支持使用以下关键字进行过滤&lt;/b&gt;
+&#x60;serviceId&#x60;: 服务ID, 精确匹配，支持多个。
+&#x60;name&#x60;: 名称，模糊匹配，支持单个。
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param adminDedicatedGatewayInfo dedicatedGateways
+      * @param number totalCount  本次查询可匹配到的总记录数，使用者需要结合 &#x60;pageNumber&#x60; 和 &#x60;pageSize&#x60; 计算是否可以继续分页。
+      */
+
+  adminDescribeDedicatedGateways (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  adminDescribeDedicatedGateways"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.apiType === undefined || opts.apiType === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.apiType' when calling adminDescribeDedicatedGateways"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: regionId,
+      apiType: opts.apiType
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call adminDescribeDedicatedGateways with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/infer-regions/{regionId}/api/{apiType}/dedicatedGateways',
       'GET',
       pathParams,
       queryParams,
@@ -11587,7 +11722,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -11707,7 +11842,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -11828,7 +11963,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -11949,7 +12084,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -12066,7 +12201,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -12224,7 +12359,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -12339,7 +12474,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -12479,7 +12614,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -12590,7 +12725,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -12704,7 +12839,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -12839,7 +12974,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -12964,7 +13099,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -13091,7 +13226,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -13209,7 +13344,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -13347,7 +13482,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -13472,7 +13607,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -13612,7 +13747,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -13736,7 +13871,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -13868,7 +14003,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -13986,7 +14121,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -14136,7 +14271,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -14293,7 +14428,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -14405,7 +14540,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -14535,7 +14670,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -14686,7 +14821,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -14810,7 +14945,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -14956,7 +15091,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -15081,7 +15216,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -15234,7 +15369,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -15376,7 +15511,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -15502,7 +15637,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -15647,7 +15782,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -15794,7 +15929,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -15923,7 +16058,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -16061,7 +16196,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -16187,7 +16322,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -16345,7 +16480,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -16491,7 +16626,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -16622,7 +16757,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -16753,7 +16888,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -16883,7 +17018,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -17013,7 +17148,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -17131,7 +17266,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -17264,7 +17399,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -17381,7 +17516,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -17499,7 +17634,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -17618,7 +17753,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -17748,7 +17883,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']
@@ -17864,7 +17999,7 @@ class JDAIP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.8'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.10'
     }
 
     let contentTypes = ['application/json']

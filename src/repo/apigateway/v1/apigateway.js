@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 自定义域名
+ * Customized-Domain-Name
  * api 自定义域名 service
  *
  * OpenAPI spec version: v1
@@ -33,7 +33,7 @@ Service._services[serviceId] = true
  * @version 1.0.1
  */
 
-JDCloud.APIGATEWAY = class APIGATEWAY extends Service {
+class APIGATEWAY extends Service {
   constructor (options = {}) {
     options._defaultEndpoint = {}
     options._defaultEndpoint.protocol =
@@ -81,7 +81,7 @@ auth_user_id - 用户标识，精确匹配，jd_cloud（京东云用户）, jd_a
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId
@@ -130,7 +130,7 @@ auth_user_id - 用户标识，精确匹配，jd_cloud（京东云用户）, jd_a
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/accessAuths',
       'GET',
       pathParams,
@@ -238,7 +238,7 @@ auth_user_id - 用户标识，精确匹配，jd_cloud（京东云用户）, jd_a
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/accessAuths',
       'POST',
       pathParams,
@@ -361,7 +361,7 @@ auth_user_id - 用户标识，精确匹配，jd_cloud（京东云用户）, jd_a
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/accessAuths:checkAccessKeyExist',
       'POST',
       pathParams,
@@ -472,7 +472,7 @@ auth_user_id - 用户标识，精确匹配，jd_cloud（京东云用户）, jd_a
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/accessAuths/{accessAuthId}',
       'GET',
       pathParams,
@@ -588,7 +588,7 @@ auth_user_id - 用户标识，精确匹配，jd_cloud（京东云用户）, jd_a
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/accessAuths/{accessAuthId}',
       'PATCH',
       pathParams,
@@ -699,7 +699,7 @@ auth_user_id - 用户标识，精确匹配，jd_cloud（京东云用户）, jd_a
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/accessAuths/{accessAuthId}',
       'DELETE',
       pathParams,
@@ -810,7 +810,7 @@ auth_user_id - 用户标识，精确匹配，jd_cloud（京东云用户）, jd_a
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/accessAuths/{accessAuthId}:bindGroup',
       'GET',
       pathParams,
@@ -931,7 +931,7 @@ auth_user_id - 用户标识，精确匹配，jd_cloud（京东云用户）, jd_a
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/accessAuths/{accessAuthId}:bindGroup',
       'POST',
       pathParams,
@@ -1044,7 +1044,7 @@ auth_user_id - 用户标识，精确匹配，jd_cloud（京东云用户）, jd_a
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/accessAuths:groupList',
       'GET',
       pathParams,
@@ -1109,7 +1109,7 @@ auth_user_id - 用户标识，精确匹配，jd_cloud（京东云用户）, jd_a
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId
@@ -1158,7 +1158,7 @@ auth_user_id - 用户标识，精确匹配，jd_cloud（京东云用户）, jd_a
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/accessAuths:authorizedApiGroupList',
       'GET',
       pathParams,
@@ -1225,7 +1225,7 @@ accessKey - accesskey，模糊匹配
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId
@@ -1274,7 +1274,7 @@ accessKey - accesskey，模糊匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/accessKeys',
       'GET',
       pathParams,
@@ -1390,7 +1390,7 @@ accessKey - accesskey，模糊匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/accessKeys',
       'POST',
       pathParams,
@@ -1512,7 +1512,7 @@ accessKey - accesskey，模糊匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/accessKeys:checkAccessKeyExist',
       'POST',
       pathParams,
@@ -1623,7 +1623,7 @@ accessKey - accesskey，模糊匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/accessKeys/{accessKeyId}',
       'GET',
       pathParams,
@@ -1747,7 +1747,7 @@ accessKey - accesskey，模糊匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/accessKeys/{accessKeyId}',
       'PATCH',
       pathParams,
@@ -1858,7 +1858,7 @@ accessKey - accesskey，模糊匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/accessKeys/{accessKeyId}',
       'DELETE',
       pathParams,
@@ -1969,7 +1969,7 @@ accessKey - accesskey，模糊匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/accessKeys/{accessKeyId}:bindGroup',
       'GET',
       pathParams,
@@ -2090,7 +2090,7 @@ accessKey - accesskey，模糊匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/accessKeys/{accessKeyId}:bindGroup',
       'POST',
       pathParams,
@@ -2201,7 +2201,7 @@ accessKey - accesskey，模糊匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/accessKeys/{accessKeyId}:groupList',
       'GET',
       pathParams,
@@ -2285,7 +2285,7 @@ isApiProduct - 是否API产品，精确匹配，1为是
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId,
@@ -2336,7 +2336,7 @@ isApiProduct - 是否API产品，精确匹配，1为是
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/apiGroups/{apiGroupId}/revision/{revision}/apis',
       'GET',
       pathParams,
@@ -2459,7 +2459,7 @@ isApiProduct - 是否API产品，精确匹配，1为是
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/apiGroups/{apiGroupId}/revision/{revision}/apis',
       'POST',
       pathParams,
@@ -2587,7 +2587,7 @@ isApiProduct - 是否API产品，精确匹配，1为是
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/apiGroups/{apiGroupId}/revision/{revision}/apis:checkApiNameExist',
       'POST',
       pathParams,
@@ -2663,7 +2663,7 @@ isApiProduct - 是否API产品，精确匹配，1为是
 
     let postBody = null
     let queryParams = {}
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId,
@@ -2715,7 +2715,7 @@ isApiProduct - 是否API产品，精确匹配，1为是
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/apiGroups/{apiGroupId}/revision/{revision}/apis/{apiId}',
       'GET',
       pathParams,
@@ -2845,7 +2845,7 @@ isApiProduct - 是否API产品，精确匹配，1为是
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/apiGroups/{apiGroupId}/revision/{revision}/apis/{apiId}',
       'PUT',
       pathParams,
@@ -2969,7 +2969,7 @@ isApiProduct - 是否API产品，精确匹配，1为是
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/apiGroups/{apiGroupId}/revision/{revision}/apis/{apiId}',
       'DELETE',
       pathParams,
@@ -3098,7 +3098,7 @@ isApiProduct - 是否API产品，精确匹配，1为是
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/apiGroups/{apiGroupId}/revision/{revision}/apisName/{apiName}',
       'PUT',
       pathParams,
@@ -3222,7 +3222,7 @@ isApiProduct - 是否API产品，精确匹配，1为是
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/apiGroups/{apiGroupId}/revision/{revision}/apisName/{apiName}',
       'DELETE',
       pathParams,
@@ -3293,10 +3293,10 @@ jdsfId - 微服务网关ID，精确匹配
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
     Object.assign(
       queryParams,
-      this.buildTagFilterParam(opts.tagFilters, 'tagFilters')
+      super.buildTagFilterParam(opts.tagFilters, 'tagFilters')
     )
 
     let pathParams = {
@@ -3346,7 +3346,7 @@ jdsfId - 微服务网关ID，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/apiGroups',
       'GET',
       pathParams,
@@ -3502,7 +3502,7 @@ jdsfId - 微服务网关ID，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/apiGroups',
       'POST',
       pathParams,
@@ -3616,7 +3616,7 @@ jdsfId - 微服务网关ID，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/apiGroups:checkGroupNameExist',
       'POST',
       pathParams,
@@ -3727,7 +3727,7 @@ jdsfId - 微服务网关ID，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/apiGroups/{apiGroupId}',
       'GET',
       pathParams,
@@ -3878,7 +3878,7 @@ jdsfId - 微服务网关ID，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/apiGroups/{apiGroupId}',
       'PUT',
       pathParams,
@@ -3988,7 +3988,7 @@ jdsfId - 微服务网关ID，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/apiGroups/{apiGroupId}',
       'DELETE',
       pathParams,
@@ -4046,7 +4046,7 @@ jdsfId - 微服务网关ID，精确匹配
 
     let postBody = null
     let queryParams = {}
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId
@@ -4095,7 +4095,7 @@ jdsfId - 微服务网关ID，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/apiGroups:isDeploy',
       'GET',
       pathParams,
@@ -4288,7 +4288,7 @@ jdsfId - 微服务网关ID，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/apiGroups/{apiGroupId}/backendConfig',
       'POST',
       pathParams,
@@ -4367,7 +4367,7 @@ jdsfId - 微服务网关ID，精确匹配
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId,
@@ -4418,7 +4418,7 @@ jdsfId - 微服务网关ID，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/apiGroups/{apiGroupId}/environment/{environment}/backendConfigs',
       'GET',
       pathParams,
@@ -4536,7 +4536,7 @@ jdsfId - 微服务网关ID，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/apiGroups/{apiGroupId}/backendConfig/{backendConfigId}',
       'GET',
       pathParams,
@@ -4731,7 +4731,7 @@ jdsfId - 微服务网关ID，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/apiGroups/{apiGroupId}/backendConfig/{backendConfigId}',
       'PATCH',
       pathParams,
@@ -4848,7 +4848,7 @@ jdsfId - 微服务网关ID，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/apiGroups/{apiGroupId}/backendConfig/{backendConfigId}',
       'DELETE',
       pathParams,
@@ -4912,7 +4912,7 @@ jdsfId - 微服务网关ID，精确匹配
 
     let postBody = null
     let queryParams = {}
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId,
@@ -4962,7 +4962,7 @@ jdsfId - 微服务网关ID，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/apiGroups/{apiGroupId}/deployments',
       'GET',
       pathParams,
@@ -5118,7 +5118,7 @@ jdsfId - 微服务网关ID，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/apiGroups/{apiGroupId}/deployments',
       'POST',
       pathParams,
@@ -5236,7 +5236,7 @@ jdsfId - 微服务网关ID，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/apiGroups/{apiGroupId}/deployments/{deploymentId}',
       'GET',
       pathParams,
@@ -5354,7 +5354,7 @@ jdsfId - 微服务网关ID，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/apiGroups/{apiGroupId}/deployments/{deploymentId}:offline',
       'POST',
       pathParams,
@@ -5471,7 +5471,7 @@ jdsfId - 微服务网关ID，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/apiGroups/{apiGroupId}/deployments:offline',
       'POST',
       pathParams,
@@ -5595,7 +5595,7 @@ jdsfId - 微服务网关ID，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/kms',
       'GET',
       pathParams,
@@ -5708,7 +5708,7 @@ jdsfId - 微服务网关ID，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/kms',
       'POST',
       pathParams,
@@ -5822,7 +5822,7 @@ jdsfId - 微服务网关ID，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/kms',
       'PUT',
       pathParams,
@@ -5943,7 +5943,7 @@ jdsfId - 微服务网关ID，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/kms',
       'PATCH',
       pathParams,
@@ -6054,7 +6054,7 @@ jdsfId - 微服务网关ID，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/kms/{keyId}',
       'GET',
       pathParams,
@@ -6120,7 +6120,7 @@ jdsfId - 微服务网关ID，精确匹配
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId
@@ -6169,7 +6169,7 @@ jdsfId - 微服务网关ID，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/rateLimitPolicies',
       'GET',
       pathParams,
@@ -6280,7 +6280,7 @@ jdsfId - 微服务网关ID，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/rateLimitPolicies',
       'POST',
       pathParams,
@@ -6394,7 +6394,7 @@ jdsfId - 微服务网关ID，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/rateLimitPolicies:checkPolicyNameExist',
       'PATCH',
       pathParams,
@@ -6505,7 +6505,7 @@ jdsfId - 微服务网关ID，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/rateLimitPolicies/{policyId}',
       'GET',
       pathParams,
@@ -6624,7 +6624,7 @@ jdsfId - 微服务网关ID，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/rateLimitPolicies/{policyId}',
       'PATCH',
       pathParams,
@@ -6735,7 +6735,7 @@ jdsfId - 微服务网关ID，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/rateLimitPolicies/{policyId}',
       'DELETE',
       pathParams,
@@ -6846,7 +6846,7 @@ jdsfId - 微服务网关ID，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/rateLimitPolicies/{policyId}:bindGroup',
       'GET',
       pathParams,
@@ -6967,7 +6967,7 @@ jdsfId - 微服务网关ID，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/rateLimitPolicies/{policyId}:bindGroup',
       'POST',
       pathParams,
@@ -7078,7 +7078,7 @@ jdsfId - 微服务网关ID，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/rateLimitPolicies/{policyId}:groupList',
       'GET',
       pathParams,
@@ -7153,7 +7153,7 @@ revisionNote - 修订备注，精确匹配
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId,
@@ -7203,7 +7203,7 @@ revisionNote - 修订备注，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/apiGroups/{apiGroupId}/revision',
       'GET',
       pathParams,
@@ -7327,7 +7327,7 @@ revisionNote - 修订备注，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/apiGroups/{apiGroupId}/revision',
       'POST',
       pathParams,
@@ -7438,7 +7438,7 @@ revisionNote - 修订备注，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/apiGroups/{apiGroupId}/revisions',
       'GET',
       pathParams,
@@ -7559,7 +7559,7 @@ revisionNote - 修订备注，精确匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/apiGroups/{apiGroupId}/revision:checkExist',
       'POST',
       pathParams,
@@ -7640,7 +7640,7 @@ revisionNote - 修订备注，模糊匹配
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId,
@@ -7691,7 +7691,7 @@ revisionNote - 修订备注，模糊匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/apiGroups/{apiGroupId}/revision/{revisionId}',
       'GET',
       pathParams,
@@ -7814,7 +7814,7 @@ revisionNote - 修订备注，模糊匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/apiGroups/{apiGroupId}/revision/{revisionId}',
       'PATCH',
       pathParams,
@@ -7932,7 +7932,7 @@ revisionNote - 修订备注，模糊匹配
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/apiGroups/{apiGroupId}/revision/{revisionId}',
       'DELETE',
       pathParams,
@@ -8000,7 +8000,7 @@ orderBy - 排序类型 desc asc
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId
@@ -8049,7 +8049,7 @@ orderBy - 排序类型 desc asc
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/subscriptionKeys',
       'GET',
       pathParams,
@@ -8161,7 +8161,7 @@ orderBy - 排序类型 desc asc
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/subscriptionKeys',
       'POST',
       pathParams,
@@ -8275,7 +8275,7 @@ orderBy - 排序类型 desc asc
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/subscriptionKeys/{subscriptionKeyId}',
       'GET',
       pathParams,
@@ -8398,7 +8398,7 @@ orderBy - 排序类型 desc asc
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/subscriptionKeys/{subscriptionKeyId}',
       'PATCH',
       pathParams,
@@ -8512,7 +8512,7 @@ orderBy - 排序类型 desc asc
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/subscriptionKeys/{subscriptionKeyId}',
       'DELETE',
       pathParams,
@@ -8578,7 +8578,7 @@ orderBy - 排序类型 desc asc
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
-    Object.assign(queryParams, this.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
 
     let pathParams = {
       regionId: regionId
@@ -8627,7 +8627,7 @@ orderBy - 排序类型 desc asc
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/ucAccessKeys',
       'GET',
       pathParams,
@@ -8738,7 +8738,7 @@ orderBy - 排序类型 desc asc
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/pins/{pin}:checkPin',
       'POST',
       pathParams,
@@ -8864,7 +8864,7 @@ orderBy - 排序类型 desc asc
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/userdomain',
       'GET',
       pathParams,
@@ -8991,7 +8991,7 @@ orderBy - 排序类型 desc asc
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/userdomain',
       'POST',
       pathParams,
@@ -9107,7 +9107,7 @@ orderBy - 排序类型 desc asc
       'DEBUG'
     )
 
-    let request = this.makeRequest(
+    let request = super.makeRequest(
       '/regions/{regionId}/userdomain',
       'DELETE',
       pathParams,
@@ -9137,4 +9137,4 @@ orderBy - 排序类型 desc asc
     )
   }
 }
-module.exports = JDCloud.APIGATEWAY
+module.exports = APIGATEWAY

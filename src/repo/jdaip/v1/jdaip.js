@@ -2956,7 +2956,6 @@ Batch 任务额外返回 &#x60;minAvailable&#x60; 和 &#x60;batchSummary&#x60;�
 
 查询训练任务下所有运行实例（Pod）的详细信息，包括名称、类型、状态、IP、运行时长等。
 支持分页查询和多种过滤条件，异常状态数据可优先展示。
-Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;terminationReason&#x60;、&#x60;attemptNo&#x60; 和 &#x60;isCurrent&#x60;。
 
 ## 使用场景
 
@@ -12837,20 +12836,21 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
   /**
       *  查询队列列表
       * @param {Object} opts - parameters
-      * @param {string} [opts.filter] - 模糊匹配过来条件名称或描述  optional
+      * @param {string} [opts.filter] - 模糊匹配队列名称或描述  optional
       * @param {string} [opts.nodePoolId] - 节点池ID  optional
       * @param {integer} [opts.status] - 状态，1创建中2创建失败3运行中4更新中5错误6删除中7已删除  optional
-      * @param {integer} [opts.queueType] - 队列类型，0：普通队列；1：安全队列，默认0  optional
+      * @param {string} [opts.queueType] - 队列类型，common：普通队列；security：安全队列；不传则不过滤队列类型  optional
       * @param {string} [opts.ids] - 队列ID列表，逗号分割  optional
       * @param {integer} [opts.page] - 分页页码；未传时默认1  optional
-      * @param {integer} [opts.pageSize] - 分页页大小；未传时默认10  optional
-      * @param {string} [opts.orderBy] - 排序字段  optional
+      * @param {integer} [opts.pageSize] - 分页页大小；未传时默认10，最大值为99  optional
+      * @param {string} [opts.orderBy] - 排序字段；当前服务端固定按创建时间排序，仅支持createTime  optional
       * @param {string} [opts.orderType] - 升降序  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
       * @param externalQueue data
       * @param integer total  记录总数
+      * @param integer totalCount  兼容字段，当前队列列表返回值为0，请以total为准
       */
 
   describeQueues (opts, regionId = this.config.regionId, callback) {
@@ -13058,6 +13058,645 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     let request = super.makeRequest(
       '/regions/{regionId}/describeQueue/{id}:get',
       'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询安全队列所属集群的负载均衡信息；负载均衡未就绪时返回错误
+      * @param {Object} opts - parameters
+      * @param {string} opts.id - 队列ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string loadBalancerId  负载均衡ID
+      * @param string loadBalancerName  负载均衡名称
+      * @param string loadBalancerPrivateIp  负载均衡私网IP
+      * @param string loadBalancerState  负载均衡状态
+      * @param string loadBalancerMsg  负载均衡状态说明
+      * @param string loadBalancerElasticIpId  负载均衡弹性公网IP ID
+      * @param string loadBalancerElasticIpAddress  负载均衡弹性公网IP地址
+      */
+
+  describeQueueLoadBalancer (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeQueueLoadBalancer"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.id === undefined || opts.id === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.id' when calling describeQueueLoadBalancer"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      id: opts.id
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeQueueLoadBalancer with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/describeQueueLoadBalancer/{id}:get',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建资源队列；节点池必须存在且处于运行中状态，创建成功后返回资源队列ID
+      * @param {Object} opts - parameters
+      * @param {} opts.name - 资源队列名称
+      * @param {} opts.nodePoolId - 节点池ID；安全节点池可传入带 sec- 前缀的展示ID，服务端会转换为真实节点池ID
+      * @param {} [opts.desc] - 资源队列描述  optional
+      * @param {} [opts.gpuQuotas] - GPU资源配额；未配置GPU配额时可不传  optional
+      * @param {} [opts.cpuQuota] - CPU和内存资源配额；未配置普通资源配额时可不传  optional
+      * @param {} [opts.taskPriority] - 是否开启任务优先级；不传表示不配置该策略  optional
+      * @param {} [opts.taskPreempt] - 是否开启任务抢占；不传表示不配置该策略。仅传 taskPreempt 时，服务端会同时开启任务优先级  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string data  资源队列ID
+      */
+
+  createQueue (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createQueue"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.name === undefined || opts.name === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.name' when calling createQueue"
+      )
+    }
+    if (opts.nodePoolId === undefined || opts.nodePoolId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.nodePoolId' when calling createQueue"
+      )
+    }
+
+    let postBody = {}
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.nodePoolId !== undefined && opts.nodePoolId !== null) {
+      postBody['nodePoolId'] = opts.nodePoolId
+    }
+    if (opts.desc !== undefined && opts.desc !== null) {
+      postBody['desc'] = opts.desc
+    }
+    if (opts.gpuQuotas !== undefined && opts.gpuQuotas !== null) {
+      postBody['gpuQuotas'] = opts.gpuQuotas
+    }
+    if (opts.cpuQuota !== undefined && opts.cpuQuota !== null) {
+      postBody['cpuQuota'] = opts.cpuQuota
+    }
+    if (opts.taskPriority !== undefined && opts.taskPriority !== null) {
+      postBody['taskPriority'] = opts.taskPriority
+    }
+    if (opts.taskPreempt !== undefined && opts.taskPreempt !== null) {
+      postBody['taskPreempt'] = opts.taskPreempt
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createQueue with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/createQueue',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改资源队列；type&#x3D;base 修改名称和描述，type&#x3D;gpu 或 type&#x3D;cpu 进入配额更新逻辑，按请求体传入的 GPU配额、CPU/内存配额和任务优先级策略同步更新
+      * @param {Object} opts - parameters
+      * @param {string} opts.id - 队列ID
+      * @param {string} opts.type - 修改类型；base表示修改基础信息，gpu表示修改GPU配额，cpu表示修改CPU和内存配额
+      * @param {} [opts.id] - 队列ID；type&#x3D;gpu 或 type&#x3D;cpu 时服务端使用该字段作为下游配额更新的队列ID，需与路径中的id保持一致  optional
+      * @param {} [opts.name] - 资源队列名称；type&#x3D;base时使用  optional
+      * @param {} [opts.desc] - 资源队列描述；type&#x3D;base时使用  optional
+      * @param {} [opts.gpuQuotas] - GPU资源配额；type&#x3D;gpu 或 type&#x3D;cpu 时进入配额更新逻辑，服务端会按请求体传入内容组装下游配额更新请求  optional
+      * @param {} [opts.cpuQuota] - CPU和内存资源配额；type&#x3D;gpu 或 type&#x3D;cpu 时进入配额更新逻辑，服务端会按请求体传入内容组装下游配额更新请求  optional
+      * @param {} [opts.taskPriority] - 是否开启任务优先级；type&#x3D;gpu或type&#x3D;cpu时可同步修改，不传表示不修改该策略  optional
+      * @param {} [opts.taskPreempt] - 是否开启任务抢占；type&#x3D;gpu或type&#x3D;cpu时可同步修改，不传表示不修改该策略。仅传 taskPreempt 时，服务端会同时开启任务优先级  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string data  资源队列ID
+      */
+
+  modifyQueue (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyQueue"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.id === undefined || opts.id === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.id' when calling modifyQueue"
+      )
+    }
+    if (opts.type === undefined || opts.type === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.type' when calling modifyQueue"
+      )
+    }
+
+    let postBody = {}
+    if (opts.type !== undefined && opts.type !== null) {
+      postBody['type'] = opts.type
+    }
+    if (opts.id !== undefined && opts.id !== null) {
+      postBody['id'] = opts.id
+    }
+    if (opts.name !== undefined && opts.name !== null) {
+      postBody['name'] = opts.name
+    }
+    if (opts.desc !== undefined && opts.desc !== null) {
+      postBody['desc'] = opts.desc
+    }
+    if (opts.gpuQuotas !== undefined && opts.gpuQuotas !== null) {
+      postBody['gpuQuotas'] = opts.gpuQuotas
+    }
+    if (opts.cpuQuota !== undefined && opts.cpuQuota !== null) {
+      postBody['cpuQuota'] = opts.cpuQuota
+    }
+    if (opts.taskPriority !== undefined && opts.taskPriority !== null) {
+      postBody['taskPriority'] = opts.taskPriority
+    }
+    if (opts.taskPreempt !== undefined && opts.taskPreempt !== null) {
+      postBody['taskPreempt'] = opts.taskPreempt
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      id: opts.id
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyQueue with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/modifyQueue/{id}',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改资源队列启用状态；enable&#x3D;true 启用队列，enable&#x3D;false 禁用队列
+      * @param {Object} opts - parameters
+      * @param {string} opts.id - 队列ID
+      * @param {boolean} opts.enable - 是否启用队列；true为启用，false为禁用
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string data  空字符串
+      */
+
+  modifyQueueEnable (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyQueueEnable"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.id === undefined || opts.id === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.id' when calling modifyQueueEnable"
+      )
+    }
+    if (opts.enable === undefined || opts.enable === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.enable' when calling modifyQueueEnable"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      id: opts.id,
+      enable: opts.enable
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyQueueEnable with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/modifyQueueEnable/{id}/{enable}',
+      'PATCH',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除资源队列
+      * @param {Object} opts - parameters
+      * @param {string} opts.id - 队列ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string data  空字符串
+      */
+
+  deleteQueue (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteQueue"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.id === undefined || opts.id === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.id' when calling deleteQueue"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      id: opts.id
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteQueue with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/deleteQueue/{id}',
+      'DELETE',
       pathParams,
       queryParams,
       headerParams,
@@ -18232,6 +18871,242 @@ Batch 实例额外返回 &#x60;taskIndex&#x60;、&#x60;exitCode&#x60;、&#x60;te
     let request = super.makeRequest(
       '/ws-regions/{regionId}/workspace',
       'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询工作空间列表
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码；默认为1。  optional
+      * @param {integer} [opts.pageSize] - 分页大小；&lt;br&gt;默认为10；取值范围[1, 100]。  optional
+      * @param {filter} [opts.filters] - &lt;b&gt;filters 中支持使用以下关键字进行过滤&lt;/b&gt;
+&#x60;workspaceNames&#x60;: 工作空间名称，模糊匹配，支持多个
+&#x60;workspaceIds&#x60;: 工作空间Id，精确匹配，支持多个
+&#x60;users&#x60;: 空间管理员（子账号名称），模糊匹配，支持多个
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param workspaceInfoWithoutRole workspaces
+      * @param integer totalCount  工作空间个数
+      */
+
+  describeWorkspaces (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeWorkspaces"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeWorkspaces with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/ws-regions/{regionId}/workspaces',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询工作空间详情l，仅返回工作空间的基础信息。
+
+### 其他相关信息接口参考
+1. 获取工作空间下队列列表：[describeWorkspaceQueues](./describeWorkspaceQueues.md)
+2. 获取工作空间下成员列表：[describeMembers](./describeMembers.md)
+3. 获取工作空间下日志投递配置：[describeLogConfigs](./describeLogConfigs.md)
+4. 获取工作空间关机策略详情：[describeShutdownPolicy](./describeShutdownPolicy.md)
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.workspaceId - 工作空间ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param workspaceInfoWithRole workspaceInfo  工作空间列表
+      */
+
+  describeWorkspace (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeWorkspace"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.workspaceId === undefined || opts.workspaceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.workspaceId' when calling describeWorkspace"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      workspaceId: opts.workspaceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jdaip/1.0.11'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeWorkspace with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/ws-regions/{regionId}/workspace/{workspaceId}',
+      'GET',
       pathParams,
       queryParams,
       headerParams,

@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * ydapp service.
- * @version 1.0.5
+ * @version 1.0.6
  */
 
 class YDAPP extends Service {
@@ -72,7 +72,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -218,7 +218,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -326,7 +326,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -452,7 +452,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -551,7 +551,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -682,7 +682,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -789,7 +789,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -899,7 +899,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -1009,7 +1009,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -1121,7 +1121,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -1227,7 +1227,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -1329,7 +1329,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -1433,7 +1433,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -1533,7 +1533,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -1651,7 +1651,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -1776,7 +1776,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -1875,7 +1875,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -1967,7 +1967,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -2068,7 +2068,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -2189,7 +2189,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -2309,7 +2309,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -2415,7 +2415,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -2528,7 +2528,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -2645,7 +2645,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -2767,7 +2767,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -2889,7 +2889,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -2992,7 +2992,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -3092,7 +3092,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -3197,7 +3197,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -3297,7 +3297,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -3401,7 +3401,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -3501,7 +3501,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -3605,7 +3605,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -3713,7 +3713,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -3843,7 +3843,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -3959,7 +3959,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -4073,7 +4073,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -4180,7 +4180,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -4291,7 +4291,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -4405,7 +4405,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -4520,7 +4520,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -4628,7 +4628,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -4769,7 +4769,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -4945,7 +4945,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -5044,7 +5044,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -5227,7 +5227,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -5542,7 +5542,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -5857,7 +5857,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -5968,7 +5968,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -6283,7 +6283,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -6598,7 +6598,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -6705,7 +6705,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -6820,7 +6820,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -6927,7 +6927,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -7050,7 +7050,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -7173,7 +7173,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -7284,7 +7284,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -7357,6 +7357,321 @@ class YDAPP extends Service {
   }
 
   /**
+      *  检索指定日志集、日志主题下的日志，支持预览、全文检索和按检索语句检索
+      * @param {Object} opts - parameters
+      * @param {string} opts.logsetUID - 日志集UID
+      * @param {string} opts.logtopicUID - 日志主题UID
+      * @param {string} opts.action - 检索方式，preview（预览）/ fulltext（全文检索）/ advance（按检索语句检索）
+      * @param {string} [opts.expr] - Base64 编码的搜索表达式  optional
+      * @param {boolean} [opts.caseSensitive] - 检索关键字是否大小写敏感，默认 false  optional
+      * @param {string} [opts.startTime] - 开始时间，格式 YYYY-MM-DDThh:mm:ssTZD，例如 2018-11-09T15:34:46+0800；action 不为 preview 时必填  optional
+      * @param {string} [opts.endTime] - 结束时间，格式 YYYY-MM-DDThh:mm:ssTZD，例如 2018-11-09T15:34:46+0800；action 不为 preview 时必填  optional
+      * @param {integer} [opts.pageNumber] - 页码，最小为 1，最大为 99  optional
+      * @param {integer} [opts.pageSize] - 每页数量，默认 10，最大 100  optional
+      * @param {string} [opts.sort] - 返回结果排序，asc（按时间正序）/ desc（按时间倒序），默认 desc  optional
+      * @param {logFilter} [opts.filters] - 检索过滤条件列表  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer total  检索到的日志总数
+      * @param object data
+      * @param searchFields searchFields
+      */
+
+  searchLogs (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  searchLogs"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.logsetUID === undefined || opts.logsetUID === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.logsetUID' when calling searchLogs"
+      )
+    }
+    if (opts.logtopicUID === undefined || opts.logtopicUID === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.logtopicUID' when calling searchLogs"
+      )
+    }
+    if (opts.action === undefined || opts.action === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.action' when calling searchLogs"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.action !== undefined && opts.action !== null) {
+      queryParams['action'] = opts.action
+    }
+    if (opts.expr !== undefined && opts.expr !== null) {
+      queryParams['expr'] = opts.expr
+    }
+    if (opts.caseSensitive !== undefined && opts.caseSensitive !== null) {
+      queryParams['caseSensitive'] = opts.caseSensitive
+    }
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    if (opts.sort !== undefined && opts.sort !== null) {
+      queryParams['sort'] = opts.sort
+    }
+    Object.assign(queryParams, super.buildArrayParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: regionId,
+      logsetUID: opts.logsetUID,
+      logtopicUID: opts.logtopicUID
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call searchLogs with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/logsets/{logsetUID}/logtopics/{logtopicUID}/search',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  按日志集、日志主题对日志做分析统计
+      * @param {Object} opts - parameters
+      * @param {string} opts.logsetUID - 日志集UID
+      * @param {string} opts.logtopicUID - 日志主题UID
+      * @param {string} opts.expr - Base64 编码的搜索表达式
+      * @param {integer} opts.startTime - 开始时间，10 位时间戳
+      * @param {integer} opts.endTime - 结束时间，10 位时间戳
+      * @param {string} [opts.timeInterval] - 时间间隔，默认 15M  optional
+      * @param {string} [opts.debug] - 是否返回调试信息  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param array data
+      * @param string fields
+      * @param analysisMetaData metadata
+      */
+
+  analysis (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  analysis"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.logsetUID === undefined || opts.logsetUID === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.logsetUID' when calling analysis"
+      )
+    }
+    if (opts.logtopicUID === undefined || opts.logtopicUID === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.logtopicUID' when calling analysis"
+      )
+    }
+    if (opts.expr === undefined || opts.expr === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.expr' when calling analysis"
+      )
+    }
+    if (opts.startTime === undefined || opts.startTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.startTime' when calling analysis"
+      )
+    }
+    if (opts.endTime === undefined || opts.endTime === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.endTime' when calling analysis"
+      )
+    }
+
+    let postBody = {}
+    if (opts.expr !== undefined && opts.expr !== null) {
+      postBody['expr'] = opts.expr
+    }
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      postBody['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      postBody['endTime'] = opts.endTime
+    }
+    if (opts.timeInterval !== undefined && opts.timeInterval !== null) {
+      postBody['timeInterval'] = opts.timeInterval
+    }
+    if (opts.debug !== undefined && opts.debug !== null) {
+      postBody['debug'] = opts.debug
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      logsetUID: opts.logsetUID,
+      logtopicUID: opts.logtopicUID
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call analysis with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/logsets/{logsetUID}/logtopics/{logtopicUID}/analysis',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  支持分页查询的Pod列表获取
       * @param {Object} opts - parameters
       * @param {string} opts.appId - 应用ID
@@ -7399,7 +7714,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -7513,7 +7828,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -7620,7 +7935,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -7740,7 +8055,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -7853,7 +8168,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -8013,7 +8328,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -8113,7 +8428,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -8220,7 +8535,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -8341,7 +8656,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -8432,7 +8747,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -8533,7 +8848,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -8641,7 +8956,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -8749,7 +9064,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']
@@ -8848,7 +9163,7 @@ class YDAPP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.5'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  ydapp/1.0.6'
     }
 
     let contentTypes = ['application/json']

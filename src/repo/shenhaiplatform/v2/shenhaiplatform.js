@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * shenhaiplatform service.
- * @version 1.0.3
+ * @version 1.0.4
  */
 
 class SHENHAIPLATFORM extends Service {
@@ -85,7 +85,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -202,7 +202,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -323,7 +323,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -444,7 +444,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -557,7 +557,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -687,7 +687,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -809,7 +809,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -940,7 +940,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -1053,7 +1053,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -1168,7 +1168,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -1292,7 +1292,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -1417,7 +1417,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -1560,7 +1560,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -1703,7 +1703,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -1885,7 +1885,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -2041,7 +2041,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -2197,7 +2197,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -2317,7 +2317,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -2437,7 +2437,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -2557,7 +2557,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -2677,7 +2677,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -2807,7 +2807,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -2928,7 +2928,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -3058,7 +3058,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -3191,7 +3191,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -3329,7 +3329,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -3467,7 +3467,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -3609,7 +3609,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -3747,7 +3747,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -3876,7 +3876,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -4000,7 +4000,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -4151,7 +4151,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -4316,7 +4316,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -4524,7 +4524,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -4658,7 +4658,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -4810,7 +4810,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -4956,7 +4956,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -5102,7 +5102,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -5248,7 +5248,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -5376,7 +5376,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -5522,7 +5522,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -5650,7 +5650,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -5778,7 +5778,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -5902,7 +5902,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -6026,7 +6026,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -6160,7 +6160,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -6338,7 +6338,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -6508,7 +6508,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -6654,7 +6654,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -6800,7 +6800,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -6942,7 +6942,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -7080,7 +7080,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -7226,7 +7226,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -7376,7 +7376,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -7514,7 +7514,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -7998,7 +7998,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -8144,7 +8144,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -8290,7 +8290,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -8774,7 +8774,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -9258,7 +9258,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -9387,7 +9387,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -9523,7 +9523,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -9659,7 +9659,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -9821,7 +9821,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -9955,7 +9955,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -10097,7 +10097,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -10235,7 +10235,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -10372,7 +10372,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -10598,7 +10598,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -10800,7 +10800,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -10923,7 +10923,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -11065,7 +11065,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -11207,7 +11207,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -11335,7 +11335,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -11454,7 +11454,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -11582,7 +11582,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -11710,7 +11710,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -11834,7 +11834,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -11998,7 +11998,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -12126,7 +12126,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -12277,7 +12277,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -12413,7 +12413,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -12564,7 +12564,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -12708,7 +12708,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -12848,7 +12848,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -12980,7 +12980,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -13112,7 +13112,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -13235,7 +13235,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -13354,7 +13354,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -13486,7 +13486,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -13609,7 +13609,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -13732,7 +13732,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -13855,7 +13855,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -13996,7 +13996,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -14137,7 +14137,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -14278,7 +14278,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -14406,7 +14406,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -14570,7 +14570,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -14690,7 +14690,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -14814,7 +14814,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -14964,7 +14964,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -15092,7 +15092,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -15220,7 +15220,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -15348,7 +15348,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -15476,7 +15476,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -15604,7 +15604,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -15929,7 +15929,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -16057,7 +16057,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -16181,7 +16181,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -16310,7 +16310,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -16427,7 +16427,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -16556,7 +16556,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -16674,7 +16674,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -16808,7 +16808,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -16934,7 +16934,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -17055,7 +17055,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -17172,7 +17172,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -17293,7 +17293,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -17407,7 +17407,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -17521,7 +17521,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -17635,7 +17635,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -17753,7 +17753,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -17867,7 +17867,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -17981,7 +17981,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -18099,7 +18099,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -18227,7 +18227,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -18358,7 +18358,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -18505,7 +18505,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -18636,7 +18636,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -18787,7 +18787,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -18915,7 +18915,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -19051,7 +19051,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -19195,7 +19195,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -19335,7 +19335,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -19475,7 +19475,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -19619,7 +19619,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -19767,7 +19767,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -19979,7 +19979,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -20114,7 +20114,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -20245,7 +20245,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -20380,7 +20380,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -20508,7 +20508,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -20702,7 +20702,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -20896,7 +20896,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -21035,7 +21035,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -21190,7 +21190,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -21334,7 +21334,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -21469,7 +21469,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -21676,7 +21676,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -21802,7 +21802,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -21920,7 +21920,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -22038,7 +22038,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -22155,7 +22155,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -22272,7 +22272,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -22393,7 +22393,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -22511,7 +22511,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -22635,7 +22635,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -22761,7 +22761,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -22887,7 +22887,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -23000,7 +23000,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -23117,7 +23117,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -23234,7 +23234,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -23351,7 +23351,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -23468,7 +23468,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -23581,7 +23581,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -23694,7 +23694,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -23807,7 +23807,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -23920,7 +23920,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -24033,7 +24033,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -24240,7 +24240,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -24366,7 +24366,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -24488,7 +24488,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -24610,7 +24610,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -24732,7 +24732,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -24939,7 +24939,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -25066,7 +25066,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -25215,7 +25215,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -25375,7 +25375,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -25529,7 +25529,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -25705,7 +25705,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -25894,7 +25894,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -26012,7 +26012,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -26138,7 +26138,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -26263,7 +26263,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -26430,7 +26430,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -26565,7 +26565,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -26697,7 +26697,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -26833,7 +26833,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -26968,7 +26968,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -27149,7 +27149,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -27281,7 +27281,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -27416,7 +27416,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -27551,7 +27551,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -27777,7 +27777,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -27903,7 +27903,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -28025,7 +28025,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -28147,7 +28147,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -28269,7 +28269,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -28391,7 +28391,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -28513,7 +28513,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -28627,7 +28627,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -28741,7 +28741,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -28855,7 +28855,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -28973,7 +28973,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -29087,7 +29087,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -29201,7 +29201,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -29319,7 +29319,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -29437,7 +29437,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -29663,7 +29663,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -29789,7 +29789,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -29907,7 +29907,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -30025,7 +30025,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -30142,7 +30142,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -30259,7 +30259,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -30380,7 +30380,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -30498,7 +30498,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -30622,7 +30622,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -30748,7 +30748,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -30874,7 +30874,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -31056,7 +31056,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -31204,7 +31204,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -31322,7 +31322,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -31514,7 +31514,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -31632,7 +31632,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -31750,7 +31750,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -31931,7 +31931,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -32049,7 +32049,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -32175,7 +32175,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -32292,7 +32292,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -32413,7 +32413,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -32538,7 +32538,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -32582,6 +32582,502 @@ class SHENHAIPLATFORM extends Service {
 
     let request = super.makeRequest(
       '/regions/{regionId}/apps/{appName}/rotorUpdateTaskScheduleState',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询空间参数列表
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultListSpaceParamVo uranusResultListSpaceParamVo
+      */
+
+  uranusSpaceParamList (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusSpaceParamList"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusSpaceParamList"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusSpaceParamList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusSpaceParamList',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  新建空间参数
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.paramKey] - 参数名，空间内唯一  optional
+      * @param {string} [opts.paramDesc] - 参数描述  optional
+      * @param {string} [opts.paramValueDev] - 参数开发值（调试时替换使用）  optional
+      * @param {string} [opts.paramValueProd] - 参数生产值（提交时替换使用）  optional
+      * @param {string} [opts.owner] - 负责人（为空时默认为当前操作用户）  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultSpaceParamVo uranusResultSpaceParamVo
+      */
+
+  uranusSpaceParamCreate (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusSpaceParamCreate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusSpaceParamCreate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.paramKey !== undefined && opts.paramKey !== null) {
+      postBody['paramKey'] = opts.paramKey
+    }
+    if (opts.paramDesc !== undefined && opts.paramDesc !== null) {
+      postBody['paramDesc'] = opts.paramDesc
+    }
+    if (opts.paramValueDev !== undefined && opts.paramValueDev !== null) {
+      postBody['paramValueDev'] = opts.paramValueDev
+    }
+    if (opts.paramValueProd !== undefined && opts.paramValueProd !== null) {
+      postBody['paramValueProd'] = opts.paramValueProd
+    }
+    if (opts.owner !== undefined && opts.owner !== null) {
+      postBody['owner'] = opts.owner
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusSpaceParamCreate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusSpaceParamCreate',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  编辑空间参数
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} [opts.id] - 空间参数ID  optional
+      * @param {string} [opts.paramKey] - 参数名，空间内唯一  optional
+      * @param {string} [opts.paramDesc] - 参数描述  optional
+      * @param {string} [opts.paramValueDev] - 参数开发值（调试时替换使用）  optional
+      * @param {string} [opts.paramValueProd] - 参数生产值（提交时替换使用）  optional
+      * @param {string} [opts.owner] - 负责人  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultSpaceParamVo uranusResultSpaceParamVo
+      */
+
+  uranusSpaceParamUpdate (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusSpaceParamUpdate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusSpaceParamUpdate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.id !== undefined && opts.id !== null) {
+      postBody['id'] = opts.id
+    }
+    if (opts.paramKey !== undefined && opts.paramKey !== null) {
+      postBody['paramKey'] = opts.paramKey
+    }
+    if (opts.paramDesc !== undefined && opts.paramDesc !== null) {
+      postBody['paramDesc'] = opts.paramDesc
+    }
+    if (opts.paramValueDev !== undefined && opts.paramValueDev !== null) {
+      postBody['paramValueDev'] = opts.paramValueDev
+    }
+    if (opts.paramValueProd !== undefined && opts.paramValueProd !== null) {
+      postBody['paramValueProd'] = opts.paramValueProd
+    }
+    if (opts.owner !== undefined && opts.owner !== null) {
+      postBody['owner'] = opts.owner
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusSpaceParamUpdate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusSpaceParamUpdate',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除空间参数
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {integer} [opts.id] - 空间参数ID  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultSpaceParamBoolean uranusResultSpaceParamBoolean
+      */
+
+  uranusSpaceParamDelete (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusSpaceParamDelete"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusSpaceParamDelete"
+      )
+    }
+
+    let postBody = {}
+    if (opts.id !== undefined && opts.id !== null) {
+      postBody['id'] = opts.id
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusSpaceParamDelete with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusSpaceParamDelete',
       'POST',
       pathParams,
       queryParams,
@@ -32658,7 +33154,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -32778,7 +33274,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -32906,7 +33402,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -33047,7 +33543,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -33176,7 +33672,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -33326,7 +33822,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -33533,7 +34029,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -33691,7 +34187,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -33835,7 +34331,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -33971,7 +34467,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -34108,7 +34604,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -34219,7 +34715,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -34330,7 +34826,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -34450,7 +34946,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -34529,6 +35025,7 @@ class SHENHAIPLATFORM extends Service {
       * @param {string} [opts.flowCode] - 流程code  optional
       * @param {string} [opts.content] - 脚本内容  optional
       * @param {string} [opts.execEngine] - 执行引擎MapReduce,Spark,Tez,presto,Python2,Python3,auto,默认spark  optional
+      * @param {string} [opts.engineCode] - 执行引擎编码，只支持JCW类型的引擎  optional
       * @param {uranusTaskParamReq} [opts.args] - 脚本内容的变量参数配置  optional
       * @param {string} [opts.resourceName] - 资源组名称  optional
       * @param {string} [opts.resourceCode] - 资源组code  optional
@@ -34569,6 +35066,9 @@ class SHENHAIPLATFORM extends Service {
     if (opts.execEngine !== undefined && opts.execEngine !== null) {
       postBody['execEngine'] = opts.execEngine
     }
+    if (opts.engineCode !== undefined && opts.engineCode !== null) {
+      postBody['engineCode'] = opts.engineCode
+    }
     if (opts.args !== undefined && opts.args !== null) {
       postBody['args'] = opts.args
     }
@@ -34590,7 +35090,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -34710,7 +35210,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -34830,7 +35330,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -34959,7 +35459,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -35079,7 +35579,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -35199,7 +35699,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -35319,7 +35819,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -35443,7 +35943,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -35572,7 +36072,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -35716,7 +36216,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -35852,7 +36352,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -35981,7 +36481,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -36101,7 +36601,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -36221,7 +36721,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -36345,7 +36845,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -36461,7 +36961,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -36581,7 +37081,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -36693,7 +37193,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -36817,7 +37317,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -36937,7 +37437,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -37057,7 +37557,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -37190,7 +37690,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -37323,7 +37823,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -37443,7 +37943,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -37647,7 +38147,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -37851,7 +38351,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -37987,7 +38487,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -38123,7 +38623,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -38294,7 +38794,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -38455,7 +38955,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -38603,7 +39103,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -38731,7 +39231,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -38856,7 +39356,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -38980,7 +39480,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -39100,7 +39600,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -39220,7 +39720,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -39340,7 +39840,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -39429,6 +39929,8 @@ class SHENHAIPLATFORM extends Service {
       * @param {string} [opts.lineDelim] - 表行分隔符（只有TEXTFILE类型表需要该字段）  optional
       * @param {array} [opts.bucketCols] - 分桶字段  optional
       * @param {integer} [opts.bucketNum] - 分桶字段  optional
+      * @param {string} [opts.dbName] - 库名（JMR 引擎由用户选择后回传；JCW 引擎可不传）  optional
+      * @param {string} [opts.env] - 环境：dev 开发环境，prod 生产环境（JMR 标准模式由前端选定）  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -39500,6 +40002,12 @@ class SHENHAIPLATFORM extends Service {
     if (opts.bucketNum !== undefined && opts.bucketNum !== null) {
       postBody['bucketNum'] = opts.bucketNum
     }
+    if (opts.dbName !== undefined && opts.dbName !== null) {
+      postBody['dbName'] = opts.dbName
+    }
+    if (opts.env !== undefined && opts.env !== null) {
+      postBody['env'] = opts.env
+    }
 
     let queryParams = {}
 
@@ -39509,7 +40017,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -39589,6 +40097,9 @@ class SHENHAIPLATFORM extends Service {
       * @param {integer} opts.auth - 是否负责，1 负责、0不负责
       * @param {string} opts.env - 环境信息，dev 开发、prod 生产
       * @param {integer} [opts.diff] - 0 不强对比，1 开发、生产表强对比  optional
+      * @param {string} opts.engineType - 引擎类型：JCW/JMR
+      * @param {string} [opts.engineCode] - 引擎编码  optional
+      * @param {string} [opts.dbName] - 库名（JMR 引擎必传, 默认JCW不传）  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -39624,6 +40135,11 @@ class SHENHAIPLATFORM extends Service {
         "Missing the required parameter 'opts.env' when calling uranusTableLike"
       )
     }
+    if (opts.engineType === undefined || opts.engineType === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.engineType' when calling uranusTableLike"
+      )
+    }
 
     let postBody = null
     let queryParams = {}
@@ -39639,6 +40155,15 @@ class SHENHAIPLATFORM extends Service {
     if (opts.diff !== undefined && opts.diff !== null) {
       queryParams['diff'] = opts.diff
     }
+    if (opts.engineType !== undefined && opts.engineType !== null) {
+      queryParams['engineType'] = opts.engineType
+    }
+    if (opts.engineCode !== undefined && opts.engineCode !== null) {
+      queryParams['engineCode'] = opts.engineCode
+    }
+    if (opts.dbName !== undefined && opts.dbName !== null) {
+      queryParams['dbName'] = opts.dbName
+    }
 
     let pathParams = {
       regionId: regionId,
@@ -39646,7 +40171,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -39724,6 +40249,7 @@ class SHENHAIPLATFORM extends Service {
       * @param {string} opts.appName - 应用名称
       * @param {string} [opts.tableName] - 校验表名称  optional
       * @param {string} opts.env - 环境信息，dev 开发、prod 生产
+      * @param {string} [opts.dbName] - 校验库名称  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -39763,6 +40289,9 @@ class SHENHAIPLATFORM extends Service {
     if (opts.env !== undefined && opts.env !== null) {
       queryParams['env'] = opts.env
     }
+    if (opts.dbName !== undefined && opts.dbName !== null) {
+      queryParams['dbName'] = opts.dbName
+    }
 
     let pathParams = {
       regionId: regionId,
@@ -39770,7 +40299,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -39891,7 +40420,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -39969,6 +40498,7 @@ class SHENHAIPLATFORM extends Service {
       * @param {string} opts.appName - 应用名称
       * @param {string} opts.table - 根据表名删除表
       * @param {string} opts.env - 环境信息，dev 开发、prod 生产
+      * @param {string} [opts.dbName] - 库名（JMR 引擎必传）  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -40013,6 +40543,9 @@ class SHENHAIPLATFORM extends Service {
     if (opts.env !== undefined && opts.env !== null) {
       queryParams['env'] = opts.env
     }
+    if (opts.dbName !== undefined && opts.dbName !== null) {
+      queryParams['dbName'] = opts.dbName
+    }
 
     let pathParams = {
       regionId: regionId,
@@ -40020,7 +40553,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -40096,8 +40629,9 @@ class SHENHAIPLATFORM extends Service {
       *  查询授权表的列数据
       * @param {Object} opts - parameters
       * @param {string} opts.appName - 应用名称
-      * @param {string} opts.table - 墨迹搜索字段
+      * @param {string} opts.table - 模糊搜索字段
       * @param {string} opts.env - 环境信息，dev 开发、prod 生产
+      * @param {string} [opts.dbName] - 库名（JMR 引擎必传）  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -40142,6 +40676,9 @@ class SHENHAIPLATFORM extends Service {
     if (opts.env !== undefined && opts.env !== null) {
       queryParams['env'] = opts.env
     }
+    if (opts.dbName !== undefined && opts.dbName !== null) {
+      queryParams['dbName'] = opts.dbName
+    }
 
     let pathParams = {
       regionId: regionId,
@@ -40149,7 +40686,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -40238,6 +40775,8 @@ class SHENHAIPLATFORM extends Service {
       * @param {string} [opts.lineDelim] - 表行分隔符（只有TEXTFILE类型表需要该字段）  optional
       * @param {array} [opts.bucketCols] - 分桶字段  optional
       * @param {integer} [opts.bucketNum] - 分桶字段  optional
+      * @param {string} [opts.dbName] - 库名（JMR 引擎由用户选择后回传；JCW 引擎可不传）  optional
+      * @param {string} [opts.env] - 环境：dev 开发环境，prod 生产环境（JMR 标准模式由前端选定）  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -40309,6 +40848,12 @@ class SHENHAIPLATFORM extends Service {
     if (opts.bucketNum !== undefined && opts.bucketNum !== null) {
       postBody['bucketNum'] = opts.bucketNum
     }
+    if (opts.dbName !== undefined && opts.dbName !== null) {
+      postBody['dbName'] = opts.dbName
+    }
+    if (opts.env !== undefined && opts.env !== null) {
+      postBody['env'] = opts.env
+    }
 
     let queryParams = {}
 
@@ -40318,7 +40863,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -40433,7 +40978,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -40552,7 +41097,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -40663,7 +41208,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -40741,6 +41286,7 @@ class SHENHAIPLATFORM extends Service {
       * @param {string} opts.appName - 应用名称
       * @param {string} [opts.tableName] - 表名称  optional
       * @param {string} opts.env - 环境信息，dev 开发、prod 生产
+      * @param {string} [opts.dbName] - 库名（JMR 引擎必传）  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -40780,6 +41326,9 @@ class SHENHAIPLATFORM extends Service {
     if (opts.env !== undefined && opts.env !== null) {
       queryParams['env'] = opts.env
     }
+    if (opts.dbName !== undefined && opts.dbName !== null) {
+      queryParams['dbName'] = opts.dbName
+    }
 
     let pathParams = {
       regionId: regionId,
@@ -40787,7 +41336,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -40860,11 +41409,15 @@ class SHENHAIPLATFORM extends Service {
   }
 
   /**
-      *  查询表来源列表并标识默认项
+      *  查询表来源列表并标识默认项，每条带当前用户选定的引擎编码
       * @param {Object} opts - parameters
       * @param {string} opts.appName - 应用名称
       * @param {string} opts.regionId - 地域ID
       * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.engineCode] - 引擎编码  optional
+      * @param {string} [opts.clusterId] - 集群 ID（JMR 引擎）  optional
+      * @param {string} [opts.engineType] - 引擎类型：JCW、JMR、AI_LAKE  optional
+      * @param {string} [opts.dbName] - 库名（JMR 引擎）  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -40903,6 +41456,18 @@ class SHENHAIPLATFORM extends Service {
 
     let postBody = null
     let queryParams = {}
+    if (opts.engineCode !== undefined && opts.engineCode !== null) {
+      queryParams['engineCode'] = opts.engineCode
+    }
+    if (opts.clusterId !== undefined && opts.clusterId !== null) {
+      queryParams['clusterId'] = opts.clusterId
+    }
+    if (opts.engineType !== undefined && opts.engineType !== null) {
+      queryParams['engineType'] = opts.engineType
+    }
+    if (opts.dbName !== undefined && opts.dbName !== null) {
+      queryParams['dbName'] = opts.dbName
+    }
 
     let pathParams = {
       regionId: regionId,
@@ -40912,7 +41477,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -40985,12 +41550,15 @@ class SHENHAIPLATFORM extends Service {
   }
 
   /**
-      *  更新用户默认表来源
+      *  更新用户默认表来源（即引擎类型）与默认引擎编码，各字段非空才覆盖
       * @param {Object} opts - parameters
       * @param {string} opts.appName - 应用名称
       * @param {string} opts.regionId - 地域ID
       * @param {string} opts.appName - 应用名称
-      * @param {string} opts.sourceType - 表来源类型：JCW、AI_LAKE
+      * @param {string} opts.sourceType - 表来源类型，即引擎类型：JCW、AI_LAKE、JMR（必传，为空返回参数错误）
+      * @param {string} [opts.engineCode] - 引擎编码  optional
+      * @param {string} [opts.clusterId] - 集群 ID（JMR 引擎）  optional
+      * @param {string} [opts.dbName] - 库名（JMR 引擎）  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -41037,6 +41605,15 @@ class SHENHAIPLATFORM extends Service {
     if (opts.sourceType !== undefined && opts.sourceType !== null) {
       queryParams['sourceType'] = opts.sourceType
     }
+    if (opts.engineCode !== undefined && opts.engineCode !== null) {
+      queryParams['engineCode'] = opts.engineCode
+    }
+    if (opts.clusterId !== undefined && opts.clusterId !== null) {
+      queryParams['clusterId'] = opts.clusterId
+    }
+    if (opts.dbName !== undefined && opts.dbName !== null) {
+      queryParams['dbName'] = opts.dbName
+    }
 
     let pathParams = {
       regionId: regionId,
@@ -41046,7 +41623,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -41090,6 +41667,408 @@ class SHENHAIPLATFORM extends Service {
 
     let request = super.makeRequest(
       '/regions/{regionId}/apps/{appName}/uranusTableDefaultSource',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  列出可用数据库（JCW 返回单一库名，JMR 返回集群下全部库名）。当前仅 JMR 引擎需要该接口，服务端固定按 JMR 引擎解析集群
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.env] - 环境：dev 开发环境，prod 生产环境（JMR 引擎必传）  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultResListString uranusResultResListString
+      */
+
+  uranusTableDatabases (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTableDatabases"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTableDatabases"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.env !== undefined && opts.env !== null) {
+      queryParams['env'] = opts.env
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTableDatabases with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTableDatabases',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  覆盖式设置 JMR 引擎可管理库列表（仅空间管理员可改）
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.regionId - 地域ID
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.engineCode] - 引擎编码  optional
+      * @param {string} [opts.clusterId] - 集群 ID（JMR 引擎）  optional
+      * @param {string} [opts.engineType] - 引擎类型：JCW、JMR、AI_LAKE  optional
+      * @param {string} [opts.dbName] - 库名（JMR 引擎）  optional
+      * @param {array} [opts.databaseNames] - 库名列表  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean uranusResultBoolean
+      */
+
+  uranusTableSelectDatabases (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTableSelectDatabases"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTableSelectDatabases"
+      )
+    }
+    if (opts.regionId === undefined || opts.regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionId' when calling uranusTableSelectDatabases"
+      )
+    }
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTableSelectDatabases"
+      )
+    }
+
+    let postBody = {}
+    if (opts.engineCode !== undefined && opts.engineCode !== null) {
+      postBody['engineCode'] = opts.engineCode
+    }
+    if (opts.clusterId !== undefined && opts.clusterId !== null) {
+      postBody['clusterId'] = opts.clusterId
+    }
+    if (opts.engineType !== undefined && opts.engineType !== null) {
+      postBody['engineType'] = opts.engineType
+    }
+    if (opts.dbName !== undefined && opts.dbName !== null) {
+      postBody['dbName'] = opts.dbName
+    }
+    if (opts.databaseNames !== undefined && opts.databaseNames !== null) {
+      postBody['databaseNames'] = opts.databaseNames
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName,
+      regionId: opts.regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTableSelectDatabases with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTableSelectDatabases',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询当前空间引擎下可查询的库列表（读管理员配置的可管理库列表）。引擎上下文（engineCode / clusterId / engineType / dbName）非空时按传入值解析，为空则回退用户选定引擎
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.regionId - 地域ID
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.engineCode] - 引擎编码  optional
+      * @param {string} [opts.clusterId] - 集群 ID（JMR 引擎）  optional
+      * @param {string} [opts.engineType] - 引擎类型：JCW、JMR、AI_LAKE  optional
+      * @param {string} [opts.dbName] - 库名（JMR 引擎）  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultResListString uranusResultResListString
+      */
+
+  uranusTableManagedDatabases (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTableManagedDatabases"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTableManagedDatabases"
+      )
+    }
+    if (opts.regionId === undefined || opts.regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionId' when calling uranusTableManagedDatabases"
+      )
+    }
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTableManagedDatabases"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.engineCode !== undefined && opts.engineCode !== null) {
+      queryParams['engineCode'] = opts.engineCode
+    }
+    if (opts.clusterId !== undefined && opts.clusterId !== null) {
+      queryParams['clusterId'] = opts.clusterId
+    }
+    if (opts.engineType !== undefined && opts.engineType !== null) {
+      queryParams['engineType'] = opts.engineType
+    }
+    if (opts.dbName !== undefined && opts.dbName !== null) {
+      queryParams['dbName'] = opts.dbName
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName,
+      regionId: opts.regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTableManagedDatabases with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTableManagedDatabases',
       'GET',
       pathParams,
       queryParams,
@@ -41170,7 +42149,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -41306,7 +42285,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -41442,7 +42421,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -41570,7 +42549,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -41698,7 +42677,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -41834,7 +42813,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -41966,7 +42945,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -42077,7 +43056,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -42197,7 +43176,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -42312,7 +43291,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -42357,6 +43336,134 @@ class SHENHAIPLATFORM extends Service {
     let request = super.makeRequest(
       '/regions/{regionId}/apps/{appName}/uranusTaskPublicListFlatCatalog',
       'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建任务业务目录，返回 biz_ 前缀的目录ID
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.parentId] - 父级业务ID（biz_ 前缀）；为空或 ROOT 时创建在根目录下  optional
+      * @param {string} [opts.catalogName] - 目录名称  optional
+      * @param {string} [opts.desc] - 目录描述  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultTaskCatalogCreatePublicRes uranusResultTaskCatalogCreatePublicRes
+      */
+
+  uranusTaskPublicCatalogCreate (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskPublicCatalogCreate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskPublicCatalogCreate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.parentId !== undefined && opts.parentId !== null) {
+      postBody['parentId'] = opts.parentId
+    }
+    if (opts.catalogName !== undefined && opts.catalogName !== null) {
+      postBody['catalogName'] = opts.catalogName
+    }
+    if (opts.desc !== undefined && opts.desc !== null) {
+      postBody['desc'] = opts.desc
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskPublicCatalogCreate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskPublicCatalogCreate',
+      'POST',
       pathParams,
       queryParams,
       headerParams,
@@ -42432,7 +43539,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -42543,7 +43650,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -42624,7 +43731,7 @@ class SHENHAIPLATFORM extends Service {
       * @param {string} [opts.taskId] - 任务 ID  optional
       * @param {string} [opts.workId] - 工作 ID  optional
       * @param {string} [opts.taskKind] - 任务种类， WORKFLOW 工作流、TASK 单任务、INTERNAL_TASK 工作流内部任务  optional
-      * @param {string} [opts.taskType] - 任务类型, JCW_SQL jcw引擎的SQL任务、PYTHON python任务、SHELL Linux脚本任务、SPARK_JAR sparkJar任务、STAR_ROCKS starrocks任务、MYSQL mysql任务、LOOP 循环节点任务、PIPE 数据集成任务  optional
+      * @param {string} [opts.taskType] - 任务类型, JCW_SQL jcw引擎的SQL任务、PYTHON python任务、SHELL Linux脚本任务、SPARK_JAR sparkJar任务、STAR_ROCKS starrocks任务、MYSQL mysql任务、LOOP 循环节点任务、PIPE 数据集成任务、JMR_HIVE_SQL JMR Hive SQL任务、JMR_SPARK_SQL JMR Spark SQL任务、JMR_SPARK JMR Spark任务、JMR_SHELL JMR Shell任务、JMR_PYTHON JMR Python任务  optional
       * @param {string} [opts.taskClassify] - 任务的种类, INTEGRATION 数据集成、JCW jcw引擎、DATA_SOURCE 数据源类型、COMMON 通用类型  optional
       * @param {string} [opts.taskStatus] - 任务的提交到运维中心的状态, UNPUBLISH 未提交、PUBLISHED 已提交、UPDATE_UNPUBLISH 更新未提交  optional
       * @param {string} [opts.manager] - 负责人  optional
@@ -42723,7 +43830,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -42810,6 +43917,7 @@ class SHENHAIPLATFORM extends Service {
       * @param {integer} [opts.retryTimes] - 重试次数  optional
       * @param {integer} [opts.retryInterval] - 重试间隔  optional
       * @param {string} [opts.resourceGroup] - 资源组  optional
+      * @param {string} [opts.engineCode] - 执行引擎编码（任务绑定的计算引擎实例Code）  optional
       * @param {string} [opts.crossCycleDependType] - 跨周期依赖类型，目前只支持SELF  optional
       * @param {string} [opts.scheduleCycle] - 任务调度周期类型，当为手动调度任务是该字段必填，且为 manual  optional
       * @param {string} regionId - ID of the region
@@ -42879,6 +43987,9 @@ class SHENHAIPLATFORM extends Service {
     if (opts.resourceGroup !== undefined && opts.resourceGroup !== null) {
       postBody['resourceGroup'] = opts.resourceGroup
     }
+    if (opts.engineCode !== undefined && opts.engineCode !== null) {
+      postBody['engineCode'] = opts.engineCode
+    }
     if (
       opts.crossCycleDependType !== undefined &&
       opts.crossCycleDependType !== null
@@ -42897,7 +44008,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -43033,7 +44144,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -43153,7 +44264,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -43241,6 +44352,10 @@ class SHENHAIPLATFORM extends Service {
       * @param {taskImageParam} [opts.imageParams] - Image镜像参数  optional
       * @param {array} [opts.specialParams] - 特有参数列表  optional
       * @param {taskAlcGeneralParam} [opts.alcGeneralParams] - ALC_GENERAL 任务参数（含 alcTaskId / alcTaskType / originalName / alcWorkspaceCode）  optional
+      * @param {array} [opts.envParams] - 本节点环境变量列表（LOCAL + UPSTREAM 混合，供配置页展示/编辑）  optional
+      * @param {object} [opts.finalEnvParams] - 合并后的最终环境变量（已解析到常量，供预览/注入）  optional
+      * @param {array} [opts.flowParams] - 所属工作流参数（只读回显，不参与本节点参数落库）  optional
+      * @param {array} [opts.spaceParams] - 所属空间参数（只读回显，不参与本节点参数落库）  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -43308,6 +44423,18 @@ class SHENHAIPLATFORM extends Service {
     if (opts.alcGeneralParams !== undefined && opts.alcGeneralParams !== null) {
       postBody['alcGeneralParams'] = opts.alcGeneralParams
     }
+    if (opts.envParams !== undefined && opts.envParams !== null) {
+      postBody['envParams'] = opts.envParams
+    }
+    if (opts.finalEnvParams !== undefined && opts.finalEnvParams !== null) {
+      postBody['finalEnvParams'] = opts.finalEnvParams
+    }
+    if (opts.flowParams !== undefined && opts.flowParams !== null) {
+      postBody['flowParams'] = opts.flowParams
+    }
+    if (opts.spaceParams !== undefined && opts.spaceParams !== null) {
+      postBody['spaceParams'] = opts.spaceParams
+    }
 
     let queryParams = {}
 
@@ -43317,7 +44444,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -43405,6 +44532,10 @@ class SHENHAIPLATFORM extends Service {
       * @param {taskImageParam} [opts.imageParams] - Image镜像参数  optional
       * @param {array} [opts.specialParams] - 特有参数列表  optional
       * @param {taskAlcGeneralParam} [opts.alcGeneralParams] - ALC_GENERAL 任务参数（含 alcTaskId / alcTaskType / originalName / alcWorkspaceCode）  optional
+      * @param {array} [opts.envParams] - 本节点环境变量列表（LOCAL + UPSTREAM 混合，供配置页展示/编辑）  optional
+      * @param {object} [opts.finalEnvParams] - 合并后的最终环境变量（已解析到常量，供预览/注入）  optional
+      * @param {array} [opts.flowParams] - 所属工作流参数（只读回显，不参与本节点参数落库）  optional
+      * @param {array} [opts.spaceParams] - 所属空间参数（只读回显，不参与本节点参数落库）  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -43472,6 +44603,18 @@ class SHENHAIPLATFORM extends Service {
     if (opts.alcGeneralParams !== undefined && opts.alcGeneralParams !== null) {
       postBody['alcGeneralParams'] = opts.alcGeneralParams
     }
+    if (opts.envParams !== undefined && opts.envParams !== null) {
+      postBody['envParams'] = opts.envParams
+    }
+    if (opts.finalEnvParams !== undefined && opts.finalEnvParams !== null) {
+      postBody['finalEnvParams'] = opts.finalEnvParams
+    }
+    if (opts.flowParams !== undefined && opts.flowParams !== null) {
+      postBody['flowParams'] = opts.flowParams
+    }
+    if (opts.spaceParams !== undefined && opts.spaceParams !== null) {
+      postBody['spaceParams'] = opts.spaceParams
+    }
 
     let queryParams = {}
 
@@ -43481,7 +44624,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -43569,6 +44712,10 @@ class SHENHAIPLATFORM extends Service {
       * @param {taskImageParam} [opts.imageParams] - Image镜像参数  optional
       * @param {array} [opts.specialParams] - 特有参数列表  optional
       * @param {taskAlcGeneralParam} [opts.alcGeneralParams] - ALC_GENERAL 任务参数（含 alcTaskId / alcTaskType / originalName / alcWorkspaceCode）  optional
+      * @param {array} [opts.envParams] - 本节点环境变量列表（LOCAL + UPSTREAM 混合，供配置页展示/编辑）  optional
+      * @param {object} [opts.finalEnvParams] - 合并后的最终环境变量（已解析到常量，供预览/注入）  optional
+      * @param {array} [opts.flowParams] - 所属工作流参数（只读回显，不参与本节点参数落库）  optional
+      * @param {array} [opts.spaceParams] - 所属空间参数（只读回显，不参与本节点参数落库）  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -43636,6 +44783,18 @@ class SHENHAIPLATFORM extends Service {
     if (opts.alcGeneralParams !== undefined && opts.alcGeneralParams !== null) {
       postBody['alcGeneralParams'] = opts.alcGeneralParams
     }
+    if (opts.envParams !== undefined && opts.envParams !== null) {
+      postBody['envParams'] = opts.envParams
+    }
+    if (opts.finalEnvParams !== undefined && opts.finalEnvParams !== null) {
+      postBody['finalEnvParams'] = opts.finalEnvParams
+    }
+    if (opts.flowParams !== undefined && opts.flowParams !== null) {
+      postBody['flowParams'] = opts.flowParams
+    }
+    if (opts.spaceParams !== undefined && opts.spaceParams !== null) {
+      postBody['spaceParams'] = opts.spaceParams
+    }
 
     let queryParams = {}
 
@@ -43645,7 +44804,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -43733,6 +44892,10 @@ class SHENHAIPLATFORM extends Service {
       * @param {taskImageParam} [opts.imageParams] - Image镜像参数  optional
       * @param {array} [opts.specialParams] - 特有参数列表  optional
       * @param {taskAlcGeneralParam} [opts.alcGeneralParams] - ALC_GENERAL 任务参数（含 alcTaskId / alcTaskType / originalName / alcWorkspaceCode）  optional
+      * @param {array} [opts.envParams] - 本节点环境变量列表（LOCAL + UPSTREAM 混合，供配置页展示/编辑）  optional
+      * @param {object} [opts.finalEnvParams] - 合并后的最终环境变量（已解析到常量，供预览/注入）  optional
+      * @param {array} [opts.flowParams] - 所属工作流参数（只读回显，不参与本节点参数落库）  optional
+      * @param {array} [opts.spaceParams] - 所属空间参数（只读回显，不参与本节点参数落库）  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -43800,6 +44963,18 @@ class SHENHAIPLATFORM extends Service {
     if (opts.alcGeneralParams !== undefined && opts.alcGeneralParams !== null) {
       postBody['alcGeneralParams'] = opts.alcGeneralParams
     }
+    if (opts.envParams !== undefined && opts.envParams !== null) {
+      postBody['envParams'] = opts.envParams
+    }
+    if (opts.finalEnvParams !== undefined && opts.finalEnvParams !== null) {
+      postBody['finalEnvParams'] = opts.finalEnvParams
+    }
+    if (opts.flowParams !== undefined && opts.flowParams !== null) {
+      postBody['flowParams'] = opts.flowParams
+    }
+    if (opts.spaceParams !== undefined && opts.spaceParams !== null) {
+      postBody['spaceParams'] = opts.spaceParams
+    }
 
     let queryParams = {}
 
@@ -43809,7 +44984,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -43897,6 +45072,10 @@ class SHENHAIPLATFORM extends Service {
       * @param {taskImageParam} [opts.imageParams] - Image镜像参数  optional
       * @param {array} [opts.specialParams] - 特有参数列表  optional
       * @param {taskAlcGeneralParam} [opts.alcGeneralParams] - ALC_GENERAL 任务参数（含 alcTaskId / alcTaskType / originalName / alcWorkspaceCode）  optional
+      * @param {array} [opts.envParams] - 本节点环境变量列表（LOCAL + UPSTREAM 混合，供配置页展示/编辑）  optional
+      * @param {object} [opts.finalEnvParams] - 合并后的最终环境变量（已解析到常量，供预览/注入）  optional
+      * @param {array} [opts.flowParams] - 所属工作流参数（只读回显，不参与本节点参数落库）  optional
+      * @param {array} [opts.spaceParams] - 所属空间参数（只读回显，不参与本节点参数落库）  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -43964,6 +45143,18 @@ class SHENHAIPLATFORM extends Service {
     if (opts.alcGeneralParams !== undefined && opts.alcGeneralParams !== null) {
       postBody['alcGeneralParams'] = opts.alcGeneralParams
     }
+    if (opts.envParams !== undefined && opts.envParams !== null) {
+      postBody['envParams'] = opts.envParams
+    }
+    if (opts.finalEnvParams !== undefined && opts.finalEnvParams !== null) {
+      postBody['finalEnvParams'] = opts.finalEnvParams
+    }
+    if (opts.flowParams !== undefined && opts.flowParams !== null) {
+      postBody['flowParams'] = opts.flowParams
+    }
+    if (opts.spaceParams !== undefined && opts.spaceParams !== null) {
+      postBody['spaceParams'] = opts.spaceParams
+    }
 
     let queryParams = {}
 
@@ -43973,7 +45164,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -44061,6 +45252,10 @@ class SHENHAIPLATFORM extends Service {
       * @param {taskImageParam} [opts.imageParams] - Image镜像参数  optional
       * @param {array} [opts.specialParams] - 特有参数列表  optional
       * @param {taskAlcGeneralParam} [opts.alcGeneralParams] - ALC_GENERAL 任务参数（含 alcTaskId / alcTaskType / originalName / alcWorkspaceCode）  optional
+      * @param {array} [opts.envParams] - 本节点环境变量列表（LOCAL + UPSTREAM 混合，供配置页展示/编辑）  optional
+      * @param {object} [opts.finalEnvParams] - 合并后的最终环境变量（已解析到常量，供预览/注入）  optional
+      * @param {array} [opts.flowParams] - 所属工作流参数（只读回显，不参与本节点参数落库）  optional
+      * @param {array} [opts.spaceParams] - 所属空间参数（只读回显，不参与本节点参数落库）  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -44128,6 +45323,18 @@ class SHENHAIPLATFORM extends Service {
     if (opts.alcGeneralParams !== undefined && opts.alcGeneralParams !== null) {
       postBody['alcGeneralParams'] = opts.alcGeneralParams
     }
+    if (opts.envParams !== undefined && opts.envParams !== null) {
+      postBody['envParams'] = opts.envParams
+    }
+    if (opts.finalEnvParams !== undefined && opts.finalEnvParams !== null) {
+      postBody['finalEnvParams'] = opts.finalEnvParams
+    }
+    if (opts.flowParams !== undefined && opts.flowParams !== null) {
+      postBody['flowParams'] = opts.flowParams
+    }
+    if (opts.spaceParams !== undefined && opts.spaceParams !== null) {
+      postBody['spaceParams'] = opts.spaceParams
+    }
 
     let queryParams = {}
 
@@ -44137,7 +45344,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -44225,6 +45432,10 @@ class SHENHAIPLATFORM extends Service {
       * @param {taskImageParam} [opts.imageParams] - Image镜像参数  optional
       * @param {array} [opts.specialParams] - 特有参数列表  optional
       * @param {taskAlcGeneralParam} [opts.alcGeneralParams] - ALC_GENERAL 任务参数（含 alcTaskId / alcTaskType / originalName / alcWorkspaceCode）  optional
+      * @param {array} [opts.envParams] - 本节点环境变量列表（LOCAL + UPSTREAM 混合，供配置页展示/编辑）  optional
+      * @param {object} [opts.finalEnvParams] - 合并后的最终环境变量（已解析到常量，供预览/注入）  optional
+      * @param {array} [opts.flowParams] - 所属工作流参数（只读回显，不参与本节点参数落库）  optional
+      * @param {array} [opts.spaceParams] - 所属空间参数（只读回显，不参与本节点参数落库）  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -44292,6 +45503,18 @@ class SHENHAIPLATFORM extends Service {
     if (opts.alcGeneralParams !== undefined && opts.alcGeneralParams !== null) {
       postBody['alcGeneralParams'] = opts.alcGeneralParams
     }
+    if (opts.envParams !== undefined && opts.envParams !== null) {
+      postBody['envParams'] = opts.envParams
+    }
+    if (opts.finalEnvParams !== undefined && opts.finalEnvParams !== null) {
+      postBody['finalEnvParams'] = opts.finalEnvParams
+    }
+    if (opts.flowParams !== undefined && opts.flowParams !== null) {
+      postBody['flowParams'] = opts.flowParams
+    }
+    if (opts.spaceParams !== undefined && opts.spaceParams !== null) {
+      postBody['spaceParams'] = opts.spaceParams
+    }
 
     let queryParams = {}
 
@@ -44301,7 +45524,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -44389,6 +45612,10 @@ class SHENHAIPLATFORM extends Service {
       * @param {taskImageParam} [opts.imageParams] - Image镜像参数  optional
       * @param {array} [opts.specialParams] - 特有参数列表  optional
       * @param {taskAlcGeneralParam} [opts.alcGeneralParams] - ALC_GENERAL 任务参数（含 alcTaskId / alcTaskType / originalName / alcWorkspaceCode）  optional
+      * @param {array} [opts.envParams] - 本节点环境变量列表（LOCAL + UPSTREAM 混合，供配置页展示/编辑）  optional
+      * @param {object} [opts.finalEnvParams] - 合并后的最终环境变量（已解析到常量，供预览/注入）  optional
+      * @param {array} [opts.flowParams] - 所属工作流参数（只读回显，不参与本节点参数落库）  optional
+      * @param {array} [opts.spaceParams] - 所属空间参数（只读回显，不参与本节点参数落库）  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -44456,6 +45683,18 @@ class SHENHAIPLATFORM extends Service {
     if (opts.alcGeneralParams !== undefined && opts.alcGeneralParams !== null) {
       postBody['alcGeneralParams'] = opts.alcGeneralParams
     }
+    if (opts.envParams !== undefined && opts.envParams !== null) {
+      postBody['envParams'] = opts.envParams
+    }
+    if (opts.finalEnvParams !== undefined && opts.finalEnvParams !== null) {
+      postBody['finalEnvParams'] = opts.finalEnvParams
+    }
+    if (opts.flowParams !== undefined && opts.flowParams !== null) {
+      postBody['flowParams'] = opts.flowParams
+    }
+    if (opts.spaceParams !== undefined && opts.spaceParams !== null) {
+      postBody['spaceParams'] = opts.spaceParams
+    }
 
     let queryParams = {}
 
@@ -44465,7 +45704,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -44593,7 +45832,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -44737,7 +45976,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -44848,7 +46087,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -44963,7 +46202,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -45078,7 +46317,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -45218,7 +46457,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -45354,7 +46593,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -45482,7 +46721,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -45602,7 +46841,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -45734,7 +46973,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -45889,7 +47128,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -46040,7 +47279,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -46164,7 +47403,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -46288,7 +47527,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -46376,6 +47615,10 @@ class SHENHAIPLATFORM extends Service {
       * @param {taskImageParam} [opts.imageParams] - Image镜像参数  optional
       * @param {array} [opts.specialParams] - 特有参数列表  optional
       * @param {taskAlcGeneralParam} [opts.alcGeneralParams] - ALC_GENERAL 任务参数（含 alcTaskId / alcTaskType / originalName / alcWorkspaceCode）  optional
+      * @param {array} [opts.envParams] - 本节点环境变量列表（LOCAL + UPSTREAM 混合，供配置页展示/编辑）  optional
+      * @param {object} [opts.finalEnvParams] - 合并后的最终环境变量（已解析到常量，供预览/注入）  optional
+      * @param {array} [opts.flowParams] - 所属工作流参数（只读回显，不参与本节点参数落库）  optional
+      * @param {array} [opts.spaceParams] - 所属空间参数（只读回显，不参与本节点参数落库）  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -46443,6 +47686,18 @@ class SHENHAIPLATFORM extends Service {
     if (opts.alcGeneralParams !== undefined && opts.alcGeneralParams !== null) {
       postBody['alcGeneralParams'] = opts.alcGeneralParams
     }
+    if (opts.envParams !== undefined && opts.envParams !== null) {
+      postBody['envParams'] = opts.envParams
+    }
+    if (opts.finalEnvParams !== undefined && opts.finalEnvParams !== null) {
+      postBody['finalEnvParams'] = opts.finalEnvParams
+    }
+    if (opts.flowParams !== undefined && opts.flowParams !== null) {
+      postBody['flowParams'] = opts.flowParams
+    }
+    if (opts.spaceParams !== undefined && opts.spaceParams !== null) {
+      postBody['spaceParams'] = opts.spaceParams
+    }
 
     let queryParams = {}
 
@@ -46452,7 +47707,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -46497,6 +47752,310 @@ class SHENHAIPLATFORM extends Service {
     let request = super.makeRequest(
       '/regions/{regionId}/apps/{appName}/uranusTaskSpecialParamUpdate',
       'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新任务的环境变量信息
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.draftId] - 草稿 ID  optional
+      * @param {array} [opts.inputParams] - 输入参数列表  optional
+      * @param {array} [opts.outputParams] - 输出参数列表  optional
+      * @param {taskRunParam} [opts.runParams] - 运行参数  optional
+      * @param {array} [opts.debugParams] - 调试参数列表  optional
+      * @param {taskLoopParam} [opts.loopParams] - 循环节点参数  optional
+      * @param {taskSparkJarParam} [opts.sparkJarParams] - Spark Jar 节点参数  optional
+      * @param {taskDatasourceParam} [opts.datasourceParams] - 数据源节点参数  optional
+      * @param {taskPipeInfoRes} [opts.pipeInfoRes] - 数据集成相关参数  optional
+      * @param {taskImageParam} [opts.imageParams] - Image镜像参数  optional
+      * @param {array} [opts.specialParams] - 特有参数列表  optional
+      * @param {taskAlcGeneralParam} [opts.alcGeneralParams] - ALC_GENERAL 任务参数（含 alcTaskId / alcTaskType / originalName / alcWorkspaceCode）  optional
+      * @param {array} [opts.envParams] - 本节点环境变量列表（LOCAL + UPSTREAM 混合，供配置页展示/编辑）  optional
+      * @param {object} [opts.finalEnvParams] - 合并后的最终环境变量（已解析到常量，供预览/注入）  optional
+      * @param {array} [opts.flowParams] - 所属工作流参数（只读回显，不参与本节点参数落库）  optional
+      * @param {array} [opts.spaceParams] - 所属空间参数（只读回显，不参与本节点参数落库）  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean2 uranusResultBoolean2
+      */
+
+  uranusTaskEnvParamInfoUpdate (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskEnvParamInfoUpdate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskEnvParamInfoUpdate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.draftId !== undefined && opts.draftId !== null) {
+      postBody['draftId'] = opts.draftId
+    }
+    if (opts.inputParams !== undefined && opts.inputParams !== null) {
+      postBody['inputParams'] = opts.inputParams
+    }
+    if (opts.outputParams !== undefined && opts.outputParams !== null) {
+      postBody['outputParams'] = opts.outputParams
+    }
+    if (opts.runParams !== undefined && opts.runParams !== null) {
+      postBody['runParams'] = opts.runParams
+    }
+    if (opts.debugParams !== undefined && opts.debugParams !== null) {
+      postBody['debugParams'] = opts.debugParams
+    }
+    if (opts.loopParams !== undefined && opts.loopParams !== null) {
+      postBody['loopParams'] = opts.loopParams
+    }
+    if (opts.sparkJarParams !== undefined && opts.sparkJarParams !== null) {
+      postBody['sparkJarParams'] = opts.sparkJarParams
+    }
+    if (opts.datasourceParams !== undefined && opts.datasourceParams !== null) {
+      postBody['datasourceParams'] = opts.datasourceParams
+    }
+    if (opts.pipeInfoRes !== undefined && opts.pipeInfoRes !== null) {
+      postBody['pipeInfoRes'] = opts.pipeInfoRes
+    }
+    if (opts.imageParams !== undefined && opts.imageParams !== null) {
+      postBody['imageParams'] = opts.imageParams
+    }
+    if (opts.specialParams !== undefined && opts.specialParams !== null) {
+      postBody['specialParams'] = opts.specialParams
+    }
+    if (opts.alcGeneralParams !== undefined && opts.alcGeneralParams !== null) {
+      postBody['alcGeneralParams'] = opts.alcGeneralParams
+    }
+    if (opts.envParams !== undefined && opts.envParams !== null) {
+      postBody['envParams'] = opts.envParams
+    }
+    if (opts.finalEnvParams !== undefined && opts.finalEnvParams !== null) {
+      postBody['finalEnvParams'] = opts.finalEnvParams
+    }
+    if (opts.flowParams !== undefined && opts.flowParams !== null) {
+      postBody['flowParams'] = opts.flowParams
+    }
+    if (opts.spaceParams !== undefined && opts.spaceParams !== null) {
+      postBody['spaceParams'] = opts.spaceParams
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskEnvParamInfoUpdate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskEnvParamInfoUpdate',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  任务依赖节点的环境变量查询
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.taskDraftId - 任务的草稿id
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultListTaskEnvVarDependRes uranusResultListTaskEnvVarDependRes
+      */
+
+  uranusTaskDependEnvParamList (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskDependEnvParamList"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskDependEnvParamList"
+      )
+    }
+    if (opts.taskDraftId === undefined || opts.taskDraftId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.taskDraftId' when calling uranusTaskDependEnvParamList"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.taskDraftId !== undefined && opts.taskDraftId !== null) {
+      queryParams['taskDraftId'] = opts.taskDraftId
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskDependEnvParamList with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskDependEnvParamList',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -46572,7 +48131,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -46660,6 +48219,10 @@ class SHENHAIPLATFORM extends Service {
       * @param {taskImageParam} [opts.imageParams] - Image镜像参数  optional
       * @param {array} [opts.specialParams] - 特有参数列表  optional
       * @param {taskAlcGeneralParam} [opts.alcGeneralParams] - ALC_GENERAL 任务参数（含 alcTaskId / alcTaskType / originalName / alcWorkspaceCode）  optional
+      * @param {array} [opts.envParams] - 本节点环境变量列表（LOCAL + UPSTREAM 混合，供配置页展示/编辑）  optional
+      * @param {object} [opts.finalEnvParams] - 合并后的最终环境变量（已解析到常量，供预览/注入）  optional
+      * @param {array} [opts.flowParams] - 所属工作流参数（只读回显，不参与本节点参数落库）  optional
+      * @param {array} [opts.spaceParams] - 所属空间参数（只读回显，不参与本节点参数落库）  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -46727,6 +48290,18 @@ class SHENHAIPLATFORM extends Service {
     if (opts.alcGeneralParams !== undefined && opts.alcGeneralParams !== null) {
       postBody['alcGeneralParams'] = opts.alcGeneralParams
     }
+    if (opts.envParams !== undefined && opts.envParams !== null) {
+      postBody['envParams'] = opts.envParams
+    }
+    if (opts.finalEnvParams !== undefined && opts.finalEnvParams !== null) {
+      postBody['finalEnvParams'] = opts.finalEnvParams
+    }
+    if (opts.flowParams !== undefined && opts.flowParams !== null) {
+      postBody['flowParams'] = opts.flowParams
+    }
+    if (opts.spaceParams !== undefined && opts.spaceParams !== null) {
+      postBody['spaceParams'] = opts.spaceParams
+    }
 
     let queryParams = {}
 
@@ -46736,7 +48311,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -46864,7 +48439,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -46992,7 +48567,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -47112,7 +48687,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -47232,7 +48807,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -47364,7 +48939,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -47484,7 +49059,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -47628,7 +49203,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -47748,7 +49323,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -47868,7 +49443,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -48019,7 +49594,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -48157,7 +49732,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -48285,7 +49860,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -48401,7 +49976,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -48526,7 +50101,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -48647,7 +50222,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -48767,7 +50342,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -48887,7 +50462,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -49031,7 +50606,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -49143,7 +50718,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -49255,7 +50830,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -49387,7 +50962,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -49503,7 +51078,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -49637,7 +51212,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -49765,7 +51340,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -49903,7 +51478,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -50031,7 +51606,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -50159,7 +51734,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -50279,7 +51854,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -50399,7 +51974,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -50528,7 +52103,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -50652,7 +52227,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -50772,7 +52347,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -50883,7 +52458,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -51015,7 +52590,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -51135,7 +52710,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -51246,7 +52821,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -51376,7 +52951,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -51501,7 +53076,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -51578,7 +53153,7 @@ class SHENHAIPLATFORM extends Service {
       * @param {Object} opts - parameters
       * @param {string} opts.appName - 应用名称
       * @param {array} [opts.ids] - 节点列表  optional
-      * @param {string} opts.reason - 发布原因
+      * @param {string} opts.reason - 发布任务的原因
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -51626,7 +53201,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -51746,7 +53321,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -51910,7 +53485,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -52102,7 +53677,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -52315,7 +53890,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -52503,7 +54078,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -52637,7 +54212,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -52757,7 +54332,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -52868,7 +54443,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -52988,7 +54563,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -53117,7 +54692,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -53237,7 +54812,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -53357,7 +54932,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -53477,7 +55052,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -53588,7 +55163,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -53732,7 +55307,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -53811,7 +55386,7 @@ class SHENHAIPLATFORM extends Service {
       * @param {string} [opts.catalogId] - 创建任务/工作流的业务目录id  optional
       * @param {string} [opts.flowId] - 为空时为TaskKind&#x3D;TASK的任务，或工作流任务  optional
       * @param {string} [opts.taskName] - 任务/工作流名称  optional
-      * @param {string} [opts.taskType] - 任务类型, JCW_SQL jcw引擎的SQL任务、PYTHON python任务、SHELL Linux脚本任务、SPARK_JAR sparkJar任务、STAR_ROCKS starrocks任务、MYSQL mysql任务、LOOP 循环节点任务、PIPE 数据集成任务  optional
+      * @param {string} [opts.taskType] - 任务类型, JCW_SQL jcw引擎的SQL任务、PYTHON python任务、SHELL Linux脚本任务、SPARK_JAR sparkJar任务、STAR_ROCKS starrocks任务、MYSQL mysql任务、LOOP 循环节点任务、PIPE 数据集成任务、JMR_HIVE_SQL JMR Hive SQL任务、JMR_SPARK_SQL JMR Spark SQL任务、JMR_SPARK JMR Spark任务、JMR_SHELL JMR Shell任务、JMR_PYTHON JMR Python任务  optional
       * @param {string} [opts.owner] - 任务负责人  optional
       * @param {array} [opts.collaborators] - 任务协作人  optional
       * @param {string} [opts.desc] - 任务描述  optional
@@ -53884,7 +55459,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -54000,7 +55575,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -54128,7 +55703,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -54248,7 +55823,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -54377,7 +55952,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -54462,7 +56037,7 @@ class SHENHAIPLATFORM extends Service {
       * @param {string} [opts.updateTimeEnd] - 任务更新时间终点  optional
       * @param {string} [opts.manager] - 任务负责人  optional
       * @param {string} [opts.taskName] - 任务名称  optional
-      * @param {array} [opts.taskType] - 任务类型, JCW_SQL jcw引擎的SQL任务、PYTHON python任务、SHELL Linux脚本任务、SPARK_JAR sparkJar任务、STAR_ROCKS starrocks任务、MYSQL mysql任务、LOOP 循环节点任务、PIPE 数据集成任务  optional
+      * @param {array} [opts.taskType] - 任务类型, JCW_SQL jcw引擎的SQL任务、PYTHON python任务、SHELL Linux脚本任务、SPARK_JAR sparkJar任务、STAR_ROCKS starrocks任务、MYSQL mysql任务、LOOP 循环节点任务、PIPE 数据集成任务、JMR_HIVE_SQL JMR Hive SQL任务、JMR_SPARK_SQL JMR Spark SQL任务、JMR_SPARK JMR Spark任务、JMR_SHELL JMR Shell任务、JMR_PYTHON JMR Python任务  optional
       * @param {string} [opts.taskClassify] - 任务的种类, INTEGRATION 数据集成、JCW jcw引擎、DATA_SOURCE 数据源类型、COMMON 通用类型  optional
       * @param {string} [opts.taskStatus] - 任务的提交到运维中心的状态, UNPUBLISH 未提交、PUBLISHED 已提交、UPDATE_UNPUBLISH 更新未提交  optional
       * @param {string} regionId - ID of the region
@@ -54537,7 +56112,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -54657,7 +56232,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -54781,7 +56356,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -54901,7 +56476,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -55021,7 +56596,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -55153,7 +56728,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -55285,7 +56860,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -55413,7 +56988,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -55529,7 +57104,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -55649,7 +57224,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -55769,7 +57344,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -55937,7 +57512,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -56023,6 +57598,7 @@ class SHENHAIPLATFORM extends Service {
       * @param {integer} [opts.cu] - CU数量，表示任务调度时可用的计算单元数量  optional
       * @param {integer} [opts.parallelism] - 并行度，表示任务调度时的并行执行数量  optional
       * @param {string} [opts.resourceCode] - 资源组code，用于标识任务调度所在的资源组  optional
+      * @param {string} [opts.engineCode] - 执行引擎编码（任务绑定的计算引擎实例Code）  optional
       * @param {integer} [opts.imageId] - 用于标识任务调度所需的镜像, 适用于Python任务, 当配置为0时 更新为系统默认镜像  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -56088,6 +57664,9 @@ class SHENHAIPLATFORM extends Service {
     if (opts.resourceCode !== undefined && opts.resourceCode !== null) {
       postBody['resourceCode'] = opts.resourceCode
     }
+    if (opts.engineCode !== undefined && opts.engineCode !== null) {
+      postBody['engineCode'] = opts.engineCode
+    }
     if (opts.imageId !== undefined && opts.imageId !== null) {
       postBody['imageId'] = opts.imageId
     }
@@ -56100,7 +57679,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -56228,7 +57807,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -56356,7 +57935,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -56429,7 +58008,7 @@ class SHENHAIPLATFORM extends Service {
   }
 
   /**
-      *  全量更新任务的依赖信息
+      *  全量更新任务的依赖信息。写依赖校验允许 manual 周期任务作为依赖，其余跨工作空间、状态、自依赖等校验保持不变
       * @param {Object} opts - parameters
       * @param {string} opts.appName - 应用名称
       * @param {string} [opts.taskDraftId] - 任务草稿ID，用于标识当前任务的依赖信息请求  optional
@@ -56483,7 +58062,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -56603,7 +58182,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -56718,7 +58297,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -56829,7 +58408,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -56944,7 +58523,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -57064,7 +58643,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -57192,7 +58771,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -57312,7 +58891,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -57440,7 +59019,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -57564,7 +59143,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -57688,7 +59267,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -57812,7 +59391,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -57936,7 +59515,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -58056,7 +59635,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -58101,6 +59680,390 @@ class SHENHAIPLATFORM extends Service {
     let request = super.makeRequest(
       '/regions/{regionId}/apps/{appName}/uranusTaskPublicStopDebug',
       'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建任务草稿，支持全部任务类型，owner/collaborators 由请求指定
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.catalogId] - 目录ID。创建工作流内部节点时可空（由父工作流派生）  optional
+      * @param {string} [opts.flowId] - 所属工作流草稿ID（flw_ 前缀）。为空时创建独立任务（TaskKind&#x3D;TASK）；非空时创建工作流内部任务（TaskKind&#x3D;INTERNAL_TASK）  optional
+      * @param {string} [opts.taskName] - 任务名称  optional
+      * @param {string} [opts.taskType] - 任务类型，支持字典内的全部任务类型（含 ALC_GENERAL、SPARK、MYSQL 等），不限定白名单  optional
+      * @param {string} [opts.owner] - 任务负责人  optional
+      * @param {array} [opts.collaborators] - 协作人列表  optional
+      * @param {string} [opts.desc] - 任务描述信息  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultTaskCreatePublicRes uranusResultTaskCreatePublicRes
+      */
+
+  uranusTaskPublicNodeCreate (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskPublicNodeCreate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskPublicNodeCreate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.catalogId !== undefined && opts.catalogId !== null) {
+      postBody['catalogId'] = opts.catalogId
+    }
+    if (opts.flowId !== undefined && opts.flowId !== null) {
+      postBody['flowId'] = opts.flowId
+    }
+    if (opts.taskName !== undefined && opts.taskName !== null) {
+      postBody['taskName'] = opts.taskName
+    }
+    if (opts.taskType !== undefined && opts.taskType !== null) {
+      postBody['taskType'] = opts.taskType
+    }
+    if (opts.owner !== undefined && opts.owner !== null) {
+      postBody['owner'] = opts.owner
+    }
+    if (opts.collaborators !== undefined && opts.collaborators !== null) {
+      postBody['collaborators'] = opts.collaborators
+    }
+    if (opts.desc !== undefined && opts.desc !== null) {
+      postBody['desc'] = opts.desc
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskPublicNodeCreate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskPublicNodeCreate',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  判断任务名称在当前工作空间是否已存在
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.taskName - 任务名称
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean uranusResultBoolean
+      */
+
+  uranusTaskPublicNameExisted (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskPublicNameExisted"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskPublicNameExisted"
+      )
+    }
+    if (opts.taskName === undefined || opts.taskName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.taskName' when calling uranusTaskPublicNameExisted"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.taskName !== undefined && opts.taskName !== null) {
+      queryParams['taskName'] = opts.taskName
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskPublicNameExisted with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskPublicNameExisted',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  更新任务的 SparkJar 参数，包括主 Jar、主类、依赖资源等
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} [opts.taskDraftId] - 任务草稿ID（tsk_ 前缀）  optional
+      * @param {taskSparkJarParamPublic} [opts.sparkJarParams] - SparkJar 参数  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param uranusResultBoolean uranusResultBoolean
+      */
+
+  uranusTaskPublicSparkJarParamInfoUpdate (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  uranusTaskPublicSparkJarParamInfoUpdate"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling uranusTaskPublicSparkJarParamInfoUpdate"
+      )
+    }
+
+    let postBody = {}
+    if (opts.taskDraftId !== undefined && opts.taskDraftId !== null) {
+      postBody['taskDraftId'] = opts.taskDraftId
+    }
+    if (opts.sparkJarParams !== undefined && opts.sparkJarParams !== null) {
+      postBody['sparkJarParams'] = opts.sparkJarParams
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call uranusTaskPublicSparkJarParamInfoUpdate with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/uranusTaskPublicSparkJarParamInfoUpdate',
+      'POST',
       pathParams,
       queryParams,
       headerParams,
@@ -58185,7 +60148,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -58340,7 +60303,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -58491,7 +60454,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -58607,7 +60570,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -58730,7 +60693,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -58849,7 +60812,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -58973,7 +60936,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -59093,7 +61056,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -59222,7 +61185,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -59342,7 +61305,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -59495,7 +61458,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -59644,7 +61607,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -59793,7 +61756,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -59942,7 +61905,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -60091,7 +62054,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -60240,7 +62203,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -60369,7 +62332,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -60513,7 +62476,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -60593,9 +62556,10 @@ class SHENHAIPLATFORM extends Service {
       * @param {string} opts.appName - 请求应用名
       * @param {integer} [opts.id]   optional
       * @param {string} [opts.workspaceCode]   optional
-      * @param {string} [opts.projectCode]   optional
+      * @param {string} [opts.projectCode] - 云仓项目code / JMR实例code  optional
+      * @param {string} [opts.instanceCode] - 实例编码(解绑引擎实例时使用，JCW项目projectCode或JMR集群实例ID)  optional
       * @param {string} [opts.resourceCode]   optional
-      * @param {string} [opts.engineCode] - 存算引擎实例编码  optional
+      * @param {string} [opts.engineCode] - 存算引擎实例编码（getEngineDetailsByEngineCode、getInstances 等按引擎查询接口必填）  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -60644,6 +62608,9 @@ class SHENHAIPLATFORM extends Service {
     if (opts.projectCode !== undefined && opts.projectCode !== null) {
       postBody['projectCode'] = opts.projectCode
     }
+    if (opts.instanceCode !== undefined && opts.instanceCode !== null) {
+      postBody['instanceCode'] = opts.instanceCode
+    }
     if (opts.resourceCode !== undefined && opts.resourceCode !== null) {
       postBody['resourceCode'] = opts.resourceCode
     }
@@ -60661,7 +62628,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -60734,16 +62701,17 @@ class SHENHAIPLATFORM extends Service {
   }
 
   /**
-      *  按照projectCode查询绑定的计算引擎信息以及计算引擎绑定的空间信息
+      *  按照projectCode查询绑定的计算引擎信息以及计算引擎绑定的空间信息。同一云仓项目可挂多个工作空间时仍返回单条（按绑定id最小）。
       * @param {Object} opts - parameters
       * @param {string} opts.appName - 应用名称
       * @param {string} opts.regionId
       * @param {string} opts.appName - 请求应用名
       * @param {integer} [opts.id]   optional
       * @param {string} [opts.workspaceCode]   optional
-      * @param {string} [opts.projectCode]   optional
+      * @param {string} [opts.projectCode] - 云仓项目code / JMR实例code  optional
+      * @param {string} [opts.instanceCode] - 实例编码(解绑引擎实例时使用，JCW项目projectCode或JMR集群实例ID)  optional
       * @param {string} [opts.resourceCode]   optional
-      * @param {string} [opts.engineCode] - 存算引擎实例编码  optional
+      * @param {string} [opts.engineCode] - 存算引擎实例编码（getEngineDetailsByEngineCode、getInstances 等按引擎查询接口必填）  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -60792,6 +62760,9 @@ class SHENHAIPLATFORM extends Service {
     if (opts.projectCode !== undefined && opts.projectCode !== null) {
       postBody['projectCode'] = opts.projectCode
     }
+    if (opts.instanceCode !== undefined && opts.instanceCode !== null) {
+      postBody['instanceCode'] = opts.instanceCode
+    }
     if (opts.resourceCode !== undefined && opts.resourceCode !== null) {
       postBody['resourceCode'] = opts.resourceCode
     }
@@ -60809,7 +62780,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -60889,9 +62860,10 @@ class SHENHAIPLATFORM extends Service {
       * @param {string} opts.appName - 请求应用名
       * @param {integer} [opts.id]   optional
       * @param {string} [opts.workspaceCode]   optional
-      * @param {string} [opts.projectCode]   optional
+      * @param {string} [opts.projectCode] - 云仓项目code / JMR实例code  optional
+      * @param {string} [opts.instanceCode] - 实例编码(解绑引擎实例时使用，JCW项目projectCode或JMR集群实例ID)  optional
       * @param {string} [opts.resourceCode]   optional
-      * @param {string} [opts.engineCode] - 存算引擎实例编码  optional
+      * @param {string} [opts.engineCode] - 存算引擎实例编码（getEngineDetailsByEngineCode、getInstances 等按引擎查询接口必填）  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -60944,6 +62916,9 @@ class SHENHAIPLATFORM extends Service {
     if (opts.projectCode !== undefined && opts.projectCode !== null) {
       postBody['projectCode'] = opts.projectCode
     }
+    if (opts.instanceCode !== undefined && opts.instanceCode !== null) {
+      postBody['instanceCode'] = opts.instanceCode
+    }
     if (opts.resourceCode !== undefined && opts.resourceCode !== null) {
       postBody['resourceCode'] = opts.resourceCode
     }
@@ -60961,7 +62936,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -61034,6 +63009,162 @@ class SHENHAIPLATFORM extends Service {
   }
 
   /**
+      *  通过计算引擎Code查询引擎详情及绑定的JCW/JMR实例信息（含云仓资源组实时查询、JMR默认访问身份）。请求体必填engineCode，返回单个引擎及其cloudProjects/jmrInstances。
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.regionId
+      * @param {string} opts.appName - 请求应用名
+      * @param {integer} [opts.id]   optional
+      * @param {string} [opts.workspaceCode]   optional
+      * @param {string} [opts.projectCode] - 云仓项目code / JMR实例code  optional
+      * @param {string} [opts.instanceCode] - 实例编码(解绑引擎实例时使用，JCW项目projectCode或JMR集群实例ID)  optional
+      * @param {string} [opts.resourceCode]   optional
+      * @param {string} [opts.engineCode] - 存算引擎实例编码（getEngineDetailsByEngineCode、getInstances 等按引擎查询接口必填）  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param workspaceEngineDetailResp result
+      */
+
+  getEngineDetailsByEngineCode (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getEngineDetailsByEngineCode"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling getEngineDetailsByEngineCode"
+      )
+    }
+    if (opts.regionId === undefined || opts.regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionId' when calling getEngineDetailsByEngineCode"
+      )
+    }
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling getEngineDetailsByEngineCode"
+      )
+    }
+
+    let postBody = {}
+    if (opts.id !== undefined && opts.id !== null) {
+      postBody['id'] = opts.id
+    }
+    if (opts.workspaceCode !== undefined && opts.workspaceCode !== null) {
+      postBody['workspaceCode'] = opts.workspaceCode
+    }
+    if (opts.projectCode !== undefined && opts.projectCode !== null) {
+      postBody['projectCode'] = opts.projectCode
+    }
+    if (opts.instanceCode !== undefined && opts.instanceCode !== null) {
+      postBody['instanceCode'] = opts.instanceCode
+    }
+    if (opts.resourceCode !== undefined && opts.resourceCode !== null) {
+      postBody['resourceCode'] = opts.resourceCode
+    }
+    if (opts.engineCode !== undefined && opts.engineCode !== null) {
+      postBody['engineCode'] = opts.engineCode
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName,
+      regionId: opts.regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getEngineDetailsByEngineCode with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/getEngineDetailsByEngineCode',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  通过计算引擎Code查询绑定的云仓和JMR实例列表
       * @param {Object} opts - parameters
       * @param {string} opts.appName - 应用名称
@@ -61041,9 +63172,10 @@ class SHENHAIPLATFORM extends Service {
       * @param {string} opts.appName - 请求应用名
       * @param {integer} [opts.id]   optional
       * @param {string} [opts.workspaceCode]   optional
-      * @param {string} [opts.projectCode]   optional
+      * @param {string} [opts.projectCode] - 云仓项目code / JMR实例code  optional
+      * @param {string} [opts.instanceCode] - 实例编码(解绑引擎实例时使用，JCW项目projectCode或JMR集群实例ID)  optional
       * @param {string} [opts.resourceCode]   optional
-      * @param {string} [opts.engineCode] - 存算引擎实例编码  optional
+      * @param {string} [opts.engineCode] - 存算引擎实例编码（getEngineDetailsByEngineCode、getInstances 等按引擎查询接口必填）  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -61092,6 +63224,9 @@ class SHENHAIPLATFORM extends Service {
     if (opts.projectCode !== undefined && opts.projectCode !== null) {
       postBody['projectCode'] = opts.projectCode
     }
+    if (opts.instanceCode !== undefined && opts.instanceCode !== null) {
+      postBody['instanceCode'] = opts.instanceCode
+    }
     if (opts.resourceCode !== undefined && opts.resourceCode !== null) {
       postBody['resourceCode'] = opts.resourceCode
     }
@@ -61109,7 +63244,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -61182,7 +63317,7 @@ class SHENHAIPLATFORM extends Service {
   }
 
   /**
-      *  计算引擎绑定云仓或JMR实例
+      *  计算引擎绑定云仓或JMR实例。JCW：同一工作空间内同一云仓项目只能绑定一次（不可同时挂到开发与生产），允许同一项目绑定到多个工作空间。JMR：同一集群可绑定到多个工作空间，同一工作空间内可绑定多个引擎；同一引擎下同一集群可按env分别绑定dev/prod，并配置不同默认访问身份。
       * @param {Object} opts - parameters
       * @param {string} opts.appName - 应用名称
       * @param {string} opts.regionId
@@ -61191,8 +63326,9 @@ class SHENHAIPLATFORM extends Service {
       * @param {string} [opts.instanceCode] - 实例Code  optional
       * @param {string} [opts.instanceName] - 实例名称  optional
       * @param {string} [opts.instanceType] - 实例类型(JCW/JMR)  optional
-      * @param {string} [opts.resourceCode] - 资源组Code  optional
-      * @param {string} [opts.env] - 环境类型(dev/prod)  optional
+      * @param {string} [opts.defaultAccessIdentity] - JMR默认访问身份(CLUSTER_ACCOUNT_HADOOP-集群账号hadoop，TASK_OWNER_MAPPED_ACCOUNT-任务责任人映射集群账号；可选，不传落库为null，查询时兜底返回CLUSTER_ACCOUNT_HADOOP)  optional
+      * @param {string} [opts.env] - 环境类型(dev/prod)。同一引擎下同一实例按环境区分，允许同一JMR集群分别绑定开发/生产并配置不同访问身份  optional
+      * @param {string} [opts.workspaceCode] - 工作空间Code(管理员校验用，网关未注入workspaceCode头时兜底)  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -61243,11 +63379,17 @@ class SHENHAIPLATFORM extends Service {
     if (opts.instanceType !== undefined && opts.instanceType !== null) {
       postBody['instanceType'] = opts.instanceType
     }
-    if (opts.resourceCode !== undefined && opts.resourceCode !== null) {
-      postBody['resourceCode'] = opts.resourceCode
+    if (
+      opts.defaultAccessIdentity !== undefined &&
+      opts.defaultAccessIdentity !== null
+    ) {
+      postBody['defaultAccessIdentity'] = opts.defaultAccessIdentity
     }
     if (opts.env !== undefined && opts.env !== null) {
       postBody['env'] = opts.env
+    }
+    if (opts.workspaceCode !== undefined && opts.workspaceCode !== null) {
+      postBody['workspaceCode'] = opts.workspaceCode
     }
 
     let queryParams = {}
@@ -61260,7 +63402,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -61338,8 +63480,12 @@ class SHENHAIPLATFORM extends Service {
       * @param {string} opts.appName - 应用名称
       * @param {string} opts.regionId
       * @param {string} opts.appName - 请求应用名
-      * @param {string} opts.engineCode - 引擎 Code
-      * @param {string} opts.instanceCode - 实例 Code
+      * @param {integer} [opts.id]   optional
+      * @param {string} [opts.workspaceCode]   optional
+      * @param {string} [opts.projectCode] - 云仓项目code / JMR实例code  optional
+      * @param {string} [opts.instanceCode] - 实例编码(解绑引擎实例时使用，JCW项目projectCode或JMR集群实例ID)  optional
+      * @param {string} [opts.resourceCode]   optional
+      * @param {string} [opts.engineCode] - 存算引擎实例编码（getEngineDetailsByEngineCode、getInstances 等按引擎查询接口必填）  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -61376,23 +63522,25 @@ class SHENHAIPLATFORM extends Service {
         "Missing the required parameter 'opts.appName' when calling unbindInstance"
       )
     }
-    if (opts.engineCode === undefined || opts.engineCode === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.engineCode' when calling unbindInstance"
-      )
-    }
-    if (opts.instanceCode === undefined || opts.instanceCode === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.instanceCode' when calling unbindInstance"
-      )
-    }
 
     let postBody = {}
-    if (opts.engineCode !== undefined && opts.engineCode !== null) {
-      postBody['engineCode'] = opts.engineCode
+    if (opts.id !== undefined && opts.id !== null) {
+      postBody['id'] = opts.id
+    }
+    if (opts.workspaceCode !== undefined && opts.workspaceCode !== null) {
+      postBody['workspaceCode'] = opts.workspaceCode
+    }
+    if (opts.projectCode !== undefined && opts.projectCode !== null) {
+      postBody['projectCode'] = opts.projectCode
     }
     if (opts.instanceCode !== undefined && opts.instanceCode !== null) {
       postBody['instanceCode'] = opts.instanceCode
+    }
+    if (opts.resourceCode !== undefined && opts.resourceCode !== null) {
+      postBody['resourceCode'] = opts.resourceCode
+    }
+    if (opts.engineCode !== undefined && opts.engineCode !== null) {
+      postBody['engineCode'] = opts.engineCode
     }
 
     let queryParams = {}
@@ -61405,7 +63553,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -61478,7 +63626,158 @@ class SHENHAIPLATFORM extends Service {
   }
 
   /**
-      *  前端绑定计算引擎弹窗一键完成绑定
+      *  设置工作空间下的默认计算引擎(同一工作空间默认引擎唯一)
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.regionId
+      * @param {string} opts.appName - 请求应用名
+      * @param {integer} [opts.id]   optional
+      * @param {string} [opts.workspaceCode]   optional
+      * @param {string} [opts.projectCode] - 云仓项目code / JMR实例code  optional
+      * @param {string} [opts.instanceCode] - 实例编码(解绑引擎实例时使用，JCW项目projectCode或JMR集群实例ID)  optional
+      * @param {string} [opts.resourceCode]   optional
+      * @param {string} [opts.engineCode] - 存算引擎实例编码（getEngineDetailsByEngineCode、getInstances 等按引擎查询接口必填）  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      */
+
+  setEnginePrimary (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  setEnginePrimary"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling setEnginePrimary"
+      )
+    }
+    if (opts.regionId === undefined || opts.regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionId' when calling setEnginePrimary"
+      )
+    }
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling setEnginePrimary"
+      )
+    }
+
+    let postBody = {}
+    if (opts.id !== undefined && opts.id !== null) {
+      postBody['id'] = opts.id
+    }
+    if (opts.workspaceCode !== undefined && opts.workspaceCode !== null) {
+      postBody['workspaceCode'] = opts.workspaceCode
+    }
+    if (opts.projectCode !== undefined && opts.projectCode !== null) {
+      postBody['projectCode'] = opts.projectCode
+    }
+    if (opts.instanceCode !== undefined && opts.instanceCode !== null) {
+      postBody['instanceCode'] = opts.instanceCode
+    }
+    if (opts.resourceCode !== undefined && opts.resourceCode !== null) {
+      postBody['resourceCode'] = opts.resourceCode
+    }
+    if (opts.engineCode !== undefined && opts.engineCode !== null) {
+      postBody['engineCode'] = opts.engineCode
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName,
+      regionId: opts.regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call setEnginePrimary with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/setEnginePrimary',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  前端绑定计算引擎弹窗一键完成绑定。JCW不允许devConfig与prodConfig使用同一云仓项目（同一工作空间内项目唯一），但同一项目可以绑定到多个工作空间。JMR允许devConfig与prodConfig使用同一集群，分别指定默认访问身份，详情查询按环境返回两条实例；同一集群可绑定到多个工作空间，同一工作空间内也可绑定多个引擎。
       * @param {Object} opts - parameters
       * @param {string} opts.appName - 应用名称
       * @param {string} opts.regionId
@@ -61553,7 +63852,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -61626,14 +63925,167 @@ class SHENHAIPLATFORM extends Service {
   }
 
   /**
-      *  通过计算引擎Code查询绑定的JMR引擎配置信息(支持按类型过滤)
+      *  编辑已绑定计算引擎的开发/生产环境配置。引擎名绑定后不可修改；类型不可在JCW/JMR间切换。JCW可改项目与追加资源组，同一工作空间内同一云仓项目不能同时作为dev/prod。JMR可改集群与默认访问身份；同一集群仍可同时作为dev/prod，且同一集群允许被多个工作空间绑定。清空某一环境则解绑该环境，不可两个环境同时为空。
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.regionId
+      * @param {string} opts.appName - 请求应用名
+      * @param {string} [opts.engineCode] - 计算引擎Code(必填)  optional
+      * @param {string} [opts.workspaceCode] - 工作空间Code  optional
+      * @param {string} [opts.engineName] - 存算引擎实例名(绑定完成后不可修改，提交值忽略)  optional
+      * @param {string} [opts.engineType] - 计算引擎类型(JCW/JMR，不可改为另一类型)  optional
+      * @param {engineEnvConfig} [opts.devConfig]   optional
+      * @param {engineEnvConfig} [opts.prodConfig]   optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param workspaceEngineResp result
+      */
+
+  updateWorkspaceEngine (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  updateWorkspaceEngine"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling updateWorkspaceEngine"
+      )
+    }
+    if (opts.regionId === undefined || opts.regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionId' when calling updateWorkspaceEngine"
+      )
+    }
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling updateWorkspaceEngine"
+      )
+    }
+
+    let postBody = {}
+    if (opts.engineCode !== undefined && opts.engineCode !== null) {
+      postBody['engineCode'] = opts.engineCode
+    }
+    if (opts.workspaceCode !== undefined && opts.workspaceCode !== null) {
+      postBody['workspaceCode'] = opts.workspaceCode
+    }
+    if (opts.engineName !== undefined && opts.engineName !== null) {
+      postBody['engineName'] = opts.engineName
+    }
+    if (opts.engineType !== undefined && opts.engineType !== null) {
+      postBody['engineType'] = opts.engineType
+    }
+    if (opts.devConfig !== undefined && opts.devConfig !== null) {
+      postBody['devConfig'] = opts.devConfig
+    }
+    if (opts.prodConfig !== undefined && opts.prodConfig !== null) {
+      postBody['prodConfig'] = opts.prodConfig
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName,
+      regionId: opts.regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call updateWorkspaceEngine with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/updateWorkspaceEngine',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  通过计算引擎Code查询绑定的JMR引擎配置信息(支持按类型过滤)。绑定JMR时会额外落一条configType&#x3D;openldap-proxy，properties含userName与解密后的password；按configType过滤时只返回对应类型。
       * @param {Object} opts - parameters
       * @param {string} opts.appName - 应用名称
       * @param {string} opts.regionId
       * @param {string} opts.appName - 请求应用名
       * @param {string} [opts.engineCode] - 计算引擎Code  optional
-      * @param {string} [opts.configType] - 配置类型(如 core-site, hdfs-site 等，为空返回全部)  optional
-      * @param {string} [opts.env] - 环境类型(dev/prod)  optional
+      * @param {string} [opts.workspaceCode] - 工作空间Code(可选，管理员权限校验兜底使用，header有值时优先取header)  optional
+      * @param {string} [opts.configType] - 配置类型(如 core-site, hdfs-site, openldap-proxy 等，为空返回全部)  optional
+      * @param {string} [opts.env] - 环境类型(dev/prod)；refreshJmrConfigs/getJmrConfigs 均可选：空则覆盖全部环境、非空则只作用该环境  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -61676,6 +64128,9 @@ class SHENHAIPLATFORM extends Service {
     if (opts.engineCode !== undefined && opts.engineCode !== null) {
       postBody['engineCode'] = opts.engineCode
     }
+    if (opts.workspaceCode !== undefined && opts.workspaceCode !== null) {
+      postBody['workspaceCode'] = opts.workspaceCode
+    }
     if (opts.configType !== undefined && opts.configType !== null) {
       postBody['configType'] = opts.configType
     }
@@ -61693,7 +64148,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -61766,6 +64221,437 @@ class SHENHAIPLATFORM extends Service {
   }
 
   /**
+      *  刷新JMR集群的Hadoop配置快照：删除本地存储的该JMR集群全部Hadoop配置，重新从JMR服务拉取最新配置并插入。拉取失败不删除本地数据；删除与插入在同一事务内原子化。不触碰openldap-proxy代理用户配置。env可选，传了只刷该环境、不传则刷该引擎下所有JMR集群的全部环境。
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.regionId
+      * @param {string} opts.appName - 请求应用名
+      * @param {string} [opts.engineCode] - 计算引擎Code  optional
+      * @param {string} [opts.workspaceCode] - 工作空间Code(可选，管理员权限校验兜底使用，header有值时优先取header)  optional
+      * @param {string} [opts.configType] - 配置类型(如 core-site, hdfs-site, openldap-proxy 等，为空返回全部)  optional
+      * @param {string} [opts.env] - 环境类型(dev/prod)；refreshJmrConfigs/getJmrConfigs 均可选：空则覆盖全部环境、非空则只作用该环境  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param integer result  刷新成功的配置行数
+      */
+
+  refreshJmrConfigs (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  refreshJmrConfigs"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling refreshJmrConfigs"
+      )
+    }
+    if (opts.regionId === undefined || opts.regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionId' when calling refreshJmrConfigs"
+      )
+    }
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling refreshJmrConfigs"
+      )
+    }
+
+    let postBody = {}
+    if (opts.engineCode !== undefined && opts.engineCode !== null) {
+      postBody['engineCode'] = opts.engineCode
+    }
+    if (opts.workspaceCode !== undefined && opts.workspaceCode !== null) {
+      postBody['workspaceCode'] = opts.workspaceCode
+    }
+    if (opts.configType !== undefined && opts.configType !== null) {
+      postBody['configType'] = opts.configType
+    }
+    if (opts.env !== undefined && opts.env !== null) {
+      postBody['env'] = opts.env
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName,
+      regionId: opts.regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call refreshJmrConfigs with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/refreshJmrConfigs',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询 JMR 引擎下全部账号映射，可选按 clusterId/env 过滤。云账号与 JMR 系统账号一一对应，同一云账号在 (engineCode, clusterId, env) 粒度内只允许一条有效映射。
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.regionId
+      * @param {string} opts.appName - 请求应用名
+      * @param {string} [opts.engineCode] - 计算引擎Code(必填)  optional
+      * @param {string} [opts.clusterId] - JMR 集群ID(可选，过滤指定集群)  optional
+      * @param {string} [opts.env] - 环境类型 dev / prod(可选，过滤指定环境)  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      * @param jmrAccountMappingResp result
+      */
+
+  getJmrAccountMappings (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getJmrAccountMappings"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling getJmrAccountMappings"
+      )
+    }
+    if (opts.regionId === undefined || opts.regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionId' when calling getJmrAccountMappings"
+      )
+    }
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling getJmrAccountMappings"
+      )
+    }
+
+    let postBody = {}
+    if (opts.engineCode !== undefined && opts.engineCode !== null) {
+      postBody['engineCode'] = opts.engineCode
+    }
+    if (opts.clusterId !== undefined && opts.clusterId !== null) {
+      postBody['clusterId'] = opts.clusterId
+    }
+    if (opts.env !== undefined && opts.env !== null) {
+      postBody['env'] = opts.env
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName,
+      regionId: opts.regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getJmrAccountMappings with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/getJmrAccountMappings',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  全量覆盖保存 JMR 账号映射：前端传入该引擎/集群/环境粒度下全量映射对，库中存在则更新、请求新增则插入、库中多余则逻辑删除；传空列表清空。cloudAccount 原样保存（支持中文/特殊字符），systemAccount 仅允许字母数字下划线连字符且不超过64位。
+      * @param {Object} opts - parameters
+      * @param {string} opts.appName - 应用名称
+      * @param {string} opts.regionId
+      * @param {string} opts.appName - 请求应用名
+      * @param {string} [opts.engineCode] - 计算引擎Code(必填)  optional
+      * @param {string} [opts.clusterId] - JMR 集群ID(必填)  optional
+      * @param {string} [opts.env] - 环境类型 dev / prod(必填)  optional
+      * @param {array} [opts.mappings] - 该粒度下全量账号映射对；传空列表即清空该粒度全部映射。同一 cloudAccount 重复时以最后一条为准  optional
+      * @param {string} [opts.workspaceCode] - 工作空间Code(可选，管理员权限校验兜底)  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string code  返回编码
+      * @param string message  返回信息
+      */
+
+  saveJmrAccountMapping (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  saveJmrAccountMapping"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling saveJmrAccountMapping"
+      )
+    }
+    if (opts.regionId === undefined || opts.regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.regionId' when calling saveJmrAccountMapping"
+      )
+    }
+    if (opts.appName === undefined || opts.appName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.appName' when calling saveJmrAccountMapping"
+      )
+    }
+
+    let postBody = {}
+    if (opts.engineCode !== undefined && opts.engineCode !== null) {
+      postBody['engineCode'] = opts.engineCode
+    }
+    if (opts.clusterId !== undefined && opts.clusterId !== null) {
+      postBody['clusterId'] = opts.clusterId
+    }
+    if (opts.env !== undefined && opts.env !== null) {
+      postBody['env'] = opts.env
+    }
+    if (opts.mappings !== undefined && opts.mappings !== null) {
+      postBody['mappings'] = opts.mappings
+    }
+    if (opts.workspaceCode !== undefined && opts.workspaceCode !== null) {
+      postBody['workspaceCode'] = opts.workspaceCode
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      appName: opts.appName,
+      regionId: opts.regionId,
+      appName: opts.appName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call saveJmrAccountMapping with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/apps/{appName}/saveJmrAccountMapping',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  根据存算引擎实例编码查询对应的regionId
       * @param {Object} opts - parameters
       * @param {string} opts.appName - 应用名称
@@ -61773,9 +64659,10 @@ class SHENHAIPLATFORM extends Service {
       * @param {string} opts.appName - 请求应用名
       * @param {integer} [opts.id]   optional
       * @param {string} [opts.workspaceCode]   optional
-      * @param {string} [opts.projectCode]   optional
+      * @param {string} [opts.projectCode] - 云仓项目code / JMR实例code  optional
+      * @param {string} [opts.instanceCode] - 实例编码(解绑引擎实例时使用，JCW项目projectCode或JMR集群实例ID)  optional
       * @param {string} [opts.resourceCode]   optional
-      * @param {string} [opts.engineCode] - 存算引擎实例编码  optional
+      * @param {string} [opts.engineCode] - 存算引擎实例编码（getEngineDetailsByEngineCode、getInstances 等按引擎查询接口必填）  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -61824,6 +64711,9 @@ class SHENHAIPLATFORM extends Service {
     if (opts.projectCode !== undefined && opts.projectCode !== null) {
       postBody['projectCode'] = opts.projectCode
     }
+    if (opts.instanceCode !== undefined && opts.instanceCode !== null) {
+      postBody['instanceCode'] = opts.instanceCode
+    }
     if (opts.resourceCode !== undefined && opts.resourceCode !== null) {
       postBody['resourceCode'] = opts.resourceCode
     }
@@ -61841,7 +64731,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -62036,7 +64926,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -62176,7 +65066,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -62256,9 +65146,10 @@ class SHENHAIPLATFORM extends Service {
       * @param {string} opts.appName - 请求应用名
       * @param {integer} [opts.id]   optional
       * @param {string} [opts.workspaceCode]   optional
-      * @param {string} [opts.projectCode]   optional
+      * @param {string} [opts.projectCode] - 云仓项目code / JMR实例code  optional
+      * @param {string} [opts.instanceCode] - 实例编码(解绑引擎实例时使用，JCW项目projectCode或JMR集群实例ID)  optional
       * @param {string} [opts.resourceCode]   optional
-      * @param {string} [opts.engineCode] - 存算引擎实例编码  optional
+      * @param {string} [opts.engineCode] - 存算引擎实例编码（getEngineDetailsByEngineCode、getInstances 等按引擎查询接口必填）  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -62307,6 +65198,9 @@ class SHENHAIPLATFORM extends Service {
     if (opts.projectCode !== undefined && opts.projectCode !== null) {
       postBody['projectCode'] = opts.projectCode
     }
+    if (opts.instanceCode !== undefined && opts.instanceCode !== null) {
+      postBody['instanceCode'] = opts.instanceCode
+    }
     if (opts.resourceCode !== undefined && opts.resourceCode !== null) {
       postBody['resourceCode'] = opts.resourceCode
     }
@@ -62324,7 +65218,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -62472,7 +65366,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -62619,7 +65513,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -62756,7 +65650,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -62838,6 +65732,7 @@ class SHENHAIPLATFORM extends Service {
       * @param {string} [opts.userPin]   optional
       * @param {array} [opts.calculateResourceCode]   optional
       * @param {array} [opts.integrationResourceCode]   optional
+      * @param {array} [opts.generalResourceCode] - 通用型资源组Code（双用途：计算+集成）  optional
       * @param {boolean} [opts.bundleResource]   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -62897,6 +65792,12 @@ class SHENHAIPLATFORM extends Service {
     ) {
       postBody['integrationResourceCode'] = opts.integrationResourceCode
     }
+    if (
+      opts.generalResourceCode !== undefined &&
+      opts.generalResourceCode !== null
+    ) {
+      postBody['generalResourceCode'] = opts.generalResourceCode
+    }
     if (opts.bundleResource !== undefined && opts.bundleResource !== null) {
       postBody['bundleResource'] = opts.bundleResource
     }
@@ -62911,7 +65812,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -63048,7 +65949,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -63204,7 +66105,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -63333,7 +66234,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -63413,9 +66314,10 @@ class SHENHAIPLATFORM extends Service {
       * @param {string} opts.appName - 请求应用名
       * @param {integer} [opts.id]   optional
       * @param {string} [opts.workspaceCode]   optional
-      * @param {string} [opts.projectCode]   optional
+      * @param {string} [opts.projectCode] - 云仓项目code / JMR实例code  optional
+      * @param {string} [opts.instanceCode] - 实例编码(解绑引擎实例时使用，JCW项目projectCode或JMR集群实例ID)  optional
       * @param {string} [opts.resourceCode]   optional
-      * @param {string} [opts.engineCode] - 存算引擎实例编码  optional
+      * @param {string} [opts.engineCode] - 存算引擎实例编码（getEngineDetailsByEngineCode、getInstances 等按引擎查询接口必填）  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -63464,6 +66366,9 @@ class SHENHAIPLATFORM extends Service {
     if (opts.projectCode !== undefined && opts.projectCode !== null) {
       postBody['projectCode'] = opts.projectCode
     }
+    if (opts.instanceCode !== undefined && opts.instanceCode !== null) {
+      postBody['instanceCode'] = opts.instanceCode
+    }
     if (opts.resourceCode !== undefined && opts.resourceCode !== null) {
       postBody['resourceCode'] = opts.resourceCode
     }
@@ -63481,7 +66386,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -63561,9 +66466,10 @@ class SHENHAIPLATFORM extends Service {
       * @param {string} opts.appName - 请求应用名
       * @param {integer} [opts.id]   optional
       * @param {string} [opts.workspaceCode]   optional
-      * @param {string} [opts.projectCode]   optional
+      * @param {string} [opts.projectCode] - 云仓项目code / JMR实例code  optional
+      * @param {string} [opts.instanceCode] - 实例编码(解绑引擎实例时使用，JCW项目projectCode或JMR集群实例ID)  optional
       * @param {string} [opts.resourceCode]   optional
-      * @param {string} [opts.engineCode] - 存算引擎实例编码  optional
+      * @param {string} [opts.engineCode] - 存算引擎实例编码（getEngineDetailsByEngineCode、getInstances 等按引擎查询接口必填）  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -63612,6 +66518,9 @@ class SHENHAIPLATFORM extends Service {
     if (opts.projectCode !== undefined && opts.projectCode !== null) {
       postBody['projectCode'] = opts.projectCode
     }
+    if (opts.instanceCode !== undefined && opts.instanceCode !== null) {
+      postBody['instanceCode'] = opts.instanceCode
+    }
     if (opts.resourceCode !== undefined && opts.resourceCode !== null) {
       postBody['resourceCode'] = opts.resourceCode
     }
@@ -63629,7 +66538,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -63809,7 +66718,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -63934,7 +66843,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -64099,7 +67008,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -64264,7 +67173,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -64413,7 +67322,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -64538,7 +67447,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -64618,9 +67527,10 @@ class SHENHAIPLATFORM extends Service {
       * @param {string} opts.appName - 请求应用名
       * @param {integer} [opts.id]   optional
       * @param {string} [opts.workspaceCode]   optional
-      * @param {string} [opts.projectCode]   optional
+      * @param {string} [opts.projectCode] - 云仓项目code / JMR实例code  optional
+      * @param {string} [opts.instanceCode] - 实例编码(解绑引擎实例时使用，JCW项目projectCode或JMR集群实例ID)  optional
       * @param {string} [opts.resourceCode]   optional
-      * @param {string} [opts.engineCode] - 存算引擎实例编码  optional
+      * @param {string} [opts.engineCode] - 存算引擎实例编码（getEngineDetailsByEngineCode、getInstances 等按引擎查询接口必填）  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -64669,6 +67579,9 @@ class SHENHAIPLATFORM extends Service {
     if (opts.projectCode !== undefined && opts.projectCode !== null) {
       postBody['projectCode'] = opts.projectCode
     }
+    if (opts.instanceCode !== undefined && opts.instanceCode !== null) {
+      postBody['instanceCode'] = opts.instanceCode
+    }
     if (opts.resourceCode !== undefined && opts.resourceCode !== null) {
       postBody['resourceCode'] = opts.resourceCode
     }
@@ -64686,7 +67599,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -64818,7 +67731,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -64962,7 +67875,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -65097,7 +68010,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -65175,7 +68088,8 @@ class SHENHAIPLATFORM extends Service {
       * @param {string} opts.appName - 应用名称
       * @param {string} opts.regionId
       * @param {string} opts.appName - 请求应用名
-      * @param {string} opts.paramCode - 参数 Code
+      * @param {string} [opts.paramCode] - 参数Code  optional
+      * @param {string} [opts.workspaceCode] - 工作空间Code(可选，与paramList/paramBatchSave请求体字段对齐)  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -65212,15 +68126,13 @@ class SHENHAIPLATFORM extends Service {
         "Missing the required parameter 'opts.appName' when calling paramDelete"
       )
     }
-    if (opts.paramCode === undefined || opts.paramCode === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.paramCode' when calling paramDelete"
-      )
-    }
 
     let postBody = {}
     if (opts.paramCode !== undefined && opts.paramCode !== null) {
       postBody['paramCode'] = opts.paramCode
+    }
+    if (opts.workspaceCode !== undefined && opts.workspaceCode !== null) {
+      postBody['workspaceCode'] = opts.workspaceCode
     }
 
     let queryParams = {}
@@ -65233,7 +68145,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -65360,7 +68272,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -65520,7 +68432,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -65680,7 +68592,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -65817,7 +68729,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -65945,7 +68857,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -66078,7 +68990,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -66211,7 +69123,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -66375,7 +69287,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -66535,7 +69447,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -66695,7 +69607,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -66859,7 +69771,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']
@@ -67019,7 +69931,7 @@ class SHENHAIPLATFORM extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  shenhaiplatform/1.0.4'
     }
 
     let contentTypes = ['application/json']

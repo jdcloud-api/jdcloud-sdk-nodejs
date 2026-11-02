@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * cmp service.
- * @version 0.2.2
+ * @version 0.2.3
  */
 
 class CMP extends Service {
@@ -103,7 +103,7 @@ class CMP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -271,7 +271,7 @@ class CMP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -404,7 +404,7 @@ class CMP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -517,7 +517,7 @@ class CMP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -641,7 +641,7 @@ class CMP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -768,7 +768,7 @@ class CMP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -917,7 +917,7 @@ class CMP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -995,7 +995,17 @@ class CMP extends Service {
 
       * @param {Object} opts - parameters
       * @param {string} opts.resourceId - 资源ID（实例ID）
-      * @param {string} [opts.description] - 描述信息，最长256个字符
+      * @param {string} [opts.description] - 故障描述，最长256个字符；必填且不能仅包含空白字符。
+  optional
+      * @param {string} [opts.reproductionCommand] - 故障复现命令，最多2048个UTF-8字节；必填且不能仅包含空白字符。
+仅保存和展示提报原文，不执行命令。
+  optional
+      * @param {string} [opts.commandOutput] - 故障复现命令输出，最多16384个UTF-8字节；必填且不能仅包含空白字符。
+按原文保存，超出长度限制时拒绝，不截断。
+  optional
+      * @param {boolean} [opts.discardLocalDataDisk] - 是否允许本次迁移丢弃本地数据盘，缺省或false保持原迁移行为，仅显式true时允许弃盘。
+true仅支持云系统盘VM实例，保留系统盘和云数据盘，不支持本地系统盘。
+不要求实例实际存在本地数据盘，纯云盘或无数据盘实例满足上述条件时也可传true。
   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -1034,6 +1044,21 @@ class CMP extends Service {
     if (opts.description !== undefined && opts.description !== null) {
       postBody['description'] = opts.description
     }
+    if (
+      opts.reproductionCommand !== undefined &&
+      opts.reproductionCommand !== null
+    ) {
+      postBody['reproductionCommand'] = opts.reproductionCommand
+    }
+    if (opts.commandOutput !== undefined && opts.commandOutput !== null) {
+      postBody['commandOutput'] = opts.commandOutput
+    }
+    if (
+      opts.discardLocalDataDisk !== undefined &&
+      opts.discardLocalDataDisk !== null
+    ) {
+      postBody['discardLocalDataDisk'] = opts.discardLocalDataDisk
+    }
 
     let queryParams = {}
 
@@ -1042,7 +1067,7 @@ class CMP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -1170,7 +1195,7 @@ class CMP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -1282,7 +1307,7 @@ class CMP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.3'
     }
 
     let contentTypes = ['application/json']
@@ -1392,7 +1417,7 @@ class CMP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.2'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.3'
     }
 
     let contentTypes = ['application/json']

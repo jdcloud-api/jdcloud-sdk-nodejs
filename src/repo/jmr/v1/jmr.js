@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 集群管理
- * JMR集群管理相关接口
+ * 弹性伸缩
+ * JMR 集群 Task 节点组弹性伸缩接口：伸缩组（含扩容/缩容规则）的增删改查、手工触发伸缩、伸缩记录查询与导出、可选节点组与指标字典
  *
  * OpenAPI spec version: v1
  * Contact:
@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * jmr service.
- * @version 1.1.6
+ * @version 1.1.16
  */
 
 class JMR extends Service {
@@ -84,7 +84,7 @@ class JMR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
     }
 
     let contentTypes = ['application/json']
@@ -159,7 +159,8 @@ class JMR extends Service {
   /**
       *  获取对应版本的软件清单信息
       * @param {Object} opts - parameters
-      * @param {string} opts.version - JMR软件版本号
+      * @param {string} opts.softVer - JMR软件版本号
+      * @param {string} opts.template - JMR的模板名称
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -181,16 +182,24 @@ class JMR extends Service {
 
     opts = opts || {}
 
-    if (opts.version === undefined || opts.version === null) {
+    if (opts.softVer === undefined || opts.softVer === null) {
       throw new Error(
-        "Missing the required parameter 'opts.version' when calling getSoftwareInfo"
+        "Missing the required parameter 'opts.softVer' when calling getSoftwareInfo"
+      )
+    }
+    if (opts.template === undefined || opts.template === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.template' when calling getSoftwareInfo"
       )
     }
 
     let postBody = null
     let queryParams = {}
-    if (opts.version !== undefined && opts.version !== null) {
-      queryParams['version'] = opts.version
+    if (opts.softVer !== undefined && opts.softVer !== null) {
+      queryParams['softVer'] = opts.softVer
+    }
+    if (opts.template !== undefined && opts.template !== null) {
+      queryParams['template'] = opts.template
     }
 
     let pathParams = {
@@ -198,7 +207,7 @@ class JMR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
     }
 
     let contentTypes = ['application/json']
@@ -302,7 +311,7 @@ class JMR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
     }
 
     let contentTypes = ['application/json']
@@ -375,17 +384,18 @@ class JMR extends Service {
   }
 
   /**
-      *  查询JMR的监控模板信息
+      *  查询集群操作(比如:扩容缩容)的进度信息
+
       * @param {Object} opts - parameters
-      * @param {string} opts.clusterId - 集群ID
+      * @param {string} opts.clusterIds - 集群IDs，多个ID使用_分隔符
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param monitorLabelDetail data
+      * @param progressStatus progressStatus
       * @param boolean status
       */
 
-  monitorLabelList (opts, regionId = this.config.regionId, callback) {
+  describeProgressStatus (opts, regionId = this.config.regionId, callback) {
     if (typeof regionId === 'function') {
       callback = regionId
       regionId = this.config.regionId
@@ -393,29 +403,30 @@ class JMR extends Service {
 
     if (regionId === undefined || regionId === null) {
       throw new Error(
-        "Missing the required parameter 'regionId' when calling  monitorLabelList"
+        "Missing the required parameter 'regionId' when calling  describeProgressStatus"
       )
     }
 
     opts = opts || {}
 
-    if (opts.clusterId === undefined || opts.clusterId === null) {
+    if (opts.clusterIds === undefined || opts.clusterIds === null) {
       throw new Error(
-        "Missing the required parameter 'opts.clusterId' when calling monitorLabelList"
+        "Missing the required parameter 'opts.clusterIds' when calling describeProgressStatus"
       )
     }
 
-    let postBody = {}
-
+    let postBody = null
     let queryParams = {}
+    if (opts.clusterIds !== undefined && opts.clusterIds !== null) {
+      queryParams['clusterIds'] = opts.clusterIds
+    }
 
     let pathParams = {
-      regionId: regionId,
-      clusterId: opts.clusterId
+      regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
     }
 
     let contentTypes = ['application/json']
@@ -445,7 +456,7 @@ class JMR extends Service {
     let returnType = null
 
     this.config.logger(
-      `call monitorLabelList with params:\npathParams:${JSON.stringify(
+      `call describeProgressStatus with params:\npathParams:${JSON.stringify(
         pathParams
       )},\nqueryParams:${JSON.stringify(
         queryParams
@@ -458,8 +469,8 @@ class JMR extends Service {
     )
 
     let request = super.makeRequest(
-      '/regions/{regionId}/monitorLabelList/{clusterId}',
-      'POST',
+      '/regions/{regionId}/clustersProgressStatus',
+      'GET',
       pathParams,
       queryParams,
       headerParams,
@@ -528,7 +539,7 @@ class JMR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
     }
 
     let contentTypes = ['application/json']
@@ -610,6 +621,13 @@ class JMR extends Service {
       * @param {string} [opts.orderBy] - 排序，比如 id desc  optional
       * @param {integer} [opts.pageNum] - 页数，默认为1  optional
       * @param {integer} [opts.pageSize] - 每页数目，默认为10  optional
+      * @param {filter} [opts.filters] - 过滤参数，多个过滤参数之间的关系为“与”(and)
+支持以下属性的过滤：
+clusterId, 支持operator选项：eq
+clusterName, 支持operator选项：eq, like
+status, 支持operator选项：eq
+  optional
+      * @param {tagFilter} [opts.tagFilters] - 资源标签  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -652,13 +670,18 @@ class JMR extends Service {
     if (opts.pageSize !== undefined && opts.pageSize !== null) {
       queryParams['pageSize'] = opts.pageSize
     }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+    Object.assign(
+      queryParams,
+      super.buildTagFilterParam(opts.tagFilters, 'tagFilters')
+    )
 
     let pathParams = {
       regionId: regionId
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
     }
 
     let contentTypes = ['application/json']
@@ -739,6 +762,8 @@ class JMR extends Service {
       * @param {string} callback - callback
       @return {Object} result
       * @param boolean status  是否开始释放集群
+      * @param string clusterId  集群ID
+      * @param string message  释放集群的信息
       */
 
   releaseCluster (opts, regionId = this.config.regionId, callback) {
@@ -771,7 +796,7 @@ class JMR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
     }
 
     let contentTypes = ['application/json']
@@ -853,6 +878,8 @@ class JMR extends Service {
       * @param {string} callback - callback
       @return {Object} result
       * @param boolean status  是否开始扩容集群
+      * @param string clusterId  集群ID
+      * @param string message  扩容集群的信息
       */
 
   clusterExpansion (opts, regionId = this.config.regionId, callback) {
@@ -890,7 +917,7 @@ class JMR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
     }
 
     let contentTypes = ['application/json']
@@ -972,6 +999,8 @@ class JMR extends Service {
       * @param {string} callback - callback
       @return {Object} result
       * @param boolean status  是否开始缩容集群
+      * @param string clusterId  集群ID
+      * @param string message  缩容集群的信息
       */
 
   clusterReduction (opts, regionId = this.config.regionId, callback) {
@@ -1009,7 +1038,7 @@ class JMR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
     }
 
     let contentTypes = ['application/json']
@@ -1130,7 +1159,7 @@ class JMR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.6'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
     }
 
     let contentTypes = ['application/json']
@@ -1175,6 +1204,3430 @@ class JMR extends Service {
     let request = super.makeRequest(
       '/regions/{regionId}/cluster:create',
       'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取指定集群某个服务当前生效的配置文件内容，以 properties Map 形式返回。
+仅支持 v2 集群（controlMethod&#x3D;ambari）。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 集群ID
+      * @param {string} opts.serviceName - 服务名称，如 HDFS/HIVE/YARN/HBASE/MAPREDUCE/SPARK 等。
+返回该服务下全部 config type 的 properties。
+
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status  调用是否成功
+      * @param string message  调用信息
+      * @param serviceConfig data
+      */
+
+  describeClusterConfigs (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeClusterConfigs"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling describeClusterConfigs"
+      )
+    }
+    if (opts.serviceName === undefined || opts.serviceName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.serviceName' when calling describeClusterConfigs"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.serviceName !== undefined && opts.serviceName !== null) {
+      queryParams['serviceName'] = opts.serviceName
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      clusterId: opts.clusterId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeClusterConfigs with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/clusters/{clusterId}/configs',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询集群下 Hive 库表权限，支持按数据库、表、主体类型、主体名称过滤。
+仅支持 v2 集群（controlMethod&#x3D;ambari），且集群需安装 Ranger。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 集群ID
+      * @param {string} [opts.database] - 数据库名，可选过滤条件  optional
+      * @param {string} [opts.table] - 表名，可选过滤条件  optional
+      * @param {string} [opts.principalType] - 主体类型过滤，user 或 group  optional
+      * @param {string} [opts.principalName] - 主体名称过滤，用户名或用户组名  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status  调用是否成功
+      * @param string message  调用信息
+      * @param object data  权限列表
+      */
+
+  listHivePermissions (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  listHivePermissions"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling listHivePermissions"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.database !== undefined && opts.database !== null) {
+      queryParams['database'] = opts.database
+    }
+    if (opts.table !== undefined && opts.table !== null) {
+      queryParams['table'] = opts.table
+    }
+    if (opts.principalType !== undefined && opts.principalType !== null) {
+      queryParams['principalType'] = opts.principalType
+    }
+    if (opts.principalName !== undefined && opts.principalName !== null) {
+      queryParams['principalName'] = opts.principalName
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      clusterId: opts.clusterId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call listHivePermissions with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/clusters/{clusterId}/hivePermissions',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  对指定主体（用户/用户组）在指定库表上授权。
+主体需已同步到 Ranger（否则报错）。table 为空时表示数据库级授权。
+仅支持 v2 集群（controlMethod&#x3D;ambari），且集群需安装 Ranger。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 集群ID
+      * @param {hivePermission} opts.hivePermission - 授权请求体
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status  调用是否成功
+      * @param string message  调用信息
+      * @param object data  无业务数据
+      */
+
+  grantHivePermission (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  grantHivePermission"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling grantHivePermission"
+      )
+    }
+    if (opts.hivePermission === undefined || opts.hivePermission === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.hivePermission' when calling grantHivePermission"
+      )
+    }
+
+    let postBody = {}
+    if (opts.hivePermission !== undefined && opts.hivePermission !== null) {
+      postBody['hivePermission'] = opts.hivePermission
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      clusterId: opts.clusterId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call grantHivePermission with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/clusters/{clusterId}/hivePermissions:grant',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  回收指定主体（用户/用户组）在指定库表上的权限。
+privileges 为空时表示回收该主体在该资源上的全部权限。
+仅支持 v2 集群（controlMethod&#x3D;ambari），且集群需安装 Ranger。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 集群ID
+      * @param {hivePermission} opts.hivePermission - 回收请求体
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status  调用是否成功
+      * @param string message  调用信息
+      * @param object data  无业务数据
+      */
+
+  revokeHivePermission (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  revokeHivePermission"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling revokeHivePermission"
+      )
+    }
+    if (opts.hivePermission === undefined || opts.hivePermission === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.hivePermission' when calling revokeHivePermission"
+      )
+    }
+
+    let postBody = {}
+    if (opts.hivePermission !== undefined && opts.hivePermission !== null) {
+      postBody['hivePermission'] = opts.hivePermission
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      clusterId: opts.clusterId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call revokeHivePermission with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/clusters/{clusterId}/hivePermissions:revoke',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  列出集群下所有数据库名。
+仅支持 v2 集群（controlMethod&#x3D;ambari）。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 集群ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status  调用是否成功
+      * @param string message  调用信息
+      * @param object data  数据库列表
+      */
+
+  listDatabases (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  listDatabases"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling listDatabases"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      clusterId: opts.clusterId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call listDatabases with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/clusters/{clusterId}/databases',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建数据库，执行传入的 CREATE DATABASE 语句。
+仅支持 v2 集群（controlMethod&#x3D;ambari）。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 集群ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status  调用是否成功
+      * @param string message  调用信息
+      * @param string data  执行结果日志
+      */
+
+  createDatabase (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createDatabase"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling createDatabase"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      clusterId: opts.clusterId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createDatabase with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/clusters/{clusterId}/databases',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取指定数据库的详情，包括 location、owner、parameters 等。
+仅支持 v2 集群（controlMethod&#x3D;ambari）。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 集群ID
+      * @param {string} opts.dbName - 数据库名
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status  调用是否成功
+      * @param string message  调用信息
+      * @param databaseDetail data
+      */
+
+  getDatabase (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getDatabase"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling getDatabase"
+      )
+    }
+    if (opts.dbName === undefined || opts.dbName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.dbName' when calling getDatabase"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      clusterId: opts.clusterId,
+      dbName: opts.dbName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getDatabase with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/clusters/{clusterId}/databases/{dbName}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  列出指定数据库下的所有表名，支持按通配符 pattern 过滤。
+仅支持 v2 集群（controlMethod&#x3D;ambari）。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 集群ID
+      * @param {string} opts.dbName - 数据库名
+      * @param {string} [opts.pattern] - 表名匹配模式，支持 Hive LIKE 通配符，如 *、t_*、*_test  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status  调用是否成功
+      * @param string message  调用信息
+      * @param object data  表名列表
+      */
+
+  listTables (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  listTables"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling listTables"
+      )
+    }
+    if (opts.dbName === undefined || opts.dbName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.dbName' when calling listTables"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pattern !== undefined && opts.pattern !== null) {
+      queryParams['pattern'] = opts.pattern
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      clusterId: opts.clusterId,
+      dbName: opts.dbName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call listTables with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/clusters/{clusterId}/databases/{dbName}/tables',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建表，执行传入的 CREATE TABLE 语句。
+仅支持 v2 集群（controlMethod&#x3D;ambari）。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 集群ID
+      * @param {string} opts.dbName - 数据库名
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status  调用是否成功
+      * @param string message  调用信息
+      * @param string data  执行结果日志
+      */
+
+  createTable (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createTable"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling createTable"
+      )
+    }
+    if (opts.dbName === undefined || opts.dbName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.dbName' when calling createTable"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      clusterId: opts.clusterId,
+      dbName: opts.dbName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createTable with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/clusters/{clusterId}/databases/{dbName}/tables',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  获取指定表的详情，包括列定义、存储描述符、表参数等。
+仅支持 v2 集群（controlMethod&#x3D;ambari）。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 集群ID
+      * @param {string} opts.dbName - 数据库名
+      * @param {string} opts.tableName - 表名
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status  调用是否成功
+      * @param string message  调用信息
+      * @param tableDetail data
+      */
+
+  getTable (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  getTable"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling getTable"
+      )
+    }
+    if (opts.dbName === undefined || opts.dbName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.dbName' when calling getTable"
+      )
+    }
+    if (opts.tableName === undefined || opts.tableName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.tableName' when calling getTable"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      clusterId: opts.clusterId,
+      dbName: opts.dbName,
+      tableName: opts.tableName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call getTable with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/clusters/{clusterId}/databases/{dbName}/tables/{tableName}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  列出指定表的分区名列表，按 maxParts 限量返回。
+仅支持 v2 集群（controlMethod&#x3D;ambari）。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 集群ID
+      * @param {string} opts.dbName - 数据库名
+      * @param {string} opts.tableName - 表名
+      * @param {integer} [opts.maxParts] - 最多返回的分区数，默认100，上限1000  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status  调用是否成功
+      * @param string message  调用信息
+      * @param object data  分区名列表
+      */
+
+  listPartitions (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  listPartitions"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling listPartitions"
+      )
+    }
+    if (opts.dbName === undefined || opts.dbName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.dbName' when calling listPartitions"
+      )
+    }
+    if (opts.tableName === undefined || opts.tableName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.tableName' when calling listPartitions"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.maxParts !== undefined && opts.maxParts !== null) {
+      queryParams['maxParts'] = opts.maxParts
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      clusterId: opts.clusterId,
+      dbName: opts.dbName,
+      tableName: opts.tableName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call listPartitions with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/clusters/{clusterId}/databases/{dbName}/tables/{tableName}/partitions',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除数据库，执行传入的 DROP DATABASE 语句。
+仅支持 v2 集群（controlMethod&#x3D;ambari）。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 集群ID
+      * @param {string} opts.dbName - 数据库名
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status  调用是否成功
+      * @param string message  调用信息
+      * @param string data  执行结果日志
+      */
+
+  dropDatabase (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  dropDatabase"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling dropDatabase"
+      )
+    }
+    if (opts.dbName === undefined || opts.dbName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.dbName' when calling dropDatabase"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      clusterId: opts.clusterId,
+      dbName: opts.dbName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call dropDatabase with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/clusters/{clusterId}/databases/{dbName}:drop',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除表，执行传入的 DROP TABLE 语句。
+仅支持 v2 集群（controlMethod&#x3D;ambari）。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 集群ID
+      * @param {string} opts.dbName - 数据库名
+      * @param {string} opts.tableName - 表名
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status  调用是否成功
+      * @param string message  调用信息
+      * @param string data  执行结果日志
+      */
+
+  dropTable (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  dropTable"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling dropTable"
+      )
+    }
+    if (opts.dbName === undefined || opts.dbName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.dbName' when calling dropTable"
+      )
+    }
+    if (opts.tableName === undefined || opts.tableName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.tableName' when calling dropTable"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      clusterId: opts.clusterId,
+      dbName: opts.dbName,
+      tableName: opts.tableName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call dropTable with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/clusters/{clusterId}/databases/{dbName}/tables/{tableName}:drop',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改表，执行传入的 ALTER TABLE 语句（如重命名、增改列、设置表属性等）。
+仅支持 v2 集群（controlMethod&#x3D;ambari）。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 集群ID
+      * @param {string} opts.dbName - 数据库名
+      * @param {string} opts.tableName - 表名
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status  调用是否成功
+      * @param string message  调用信息
+      * @param string data  执行结果日志
+      */
+
+  alterTable (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  alterTable"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling alterTable"
+      )
+    }
+    if (opts.dbName === undefined || opts.dbName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.dbName' when calling alterTable"
+      )
+    }
+    if (opts.tableName === undefined || opts.tableName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.tableName' when calling alterTable"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      clusterId: opts.clusterId,
+      dbName: opts.dbName,
+      tableName: opts.tableName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call alterTable with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/clusters/{clusterId}/databases/{dbName}/tables/{tableName}:alter',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  在指定集群的 OpenLDAP 上创建用户，并加入 hadoop 组。
+仅支持 v2 集群（controlMethod&#x3D;ambari），且集群需安装 OpenLDAP。
+uidNumber 取 ou&#x3D;people 现有最大 +1，gidNumber&#x3D;1000，homeDirectory&#x3D;/home/users/{userName}。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 集群ID
+      * @param {openLdapUser} opts.openLdapUser - 创建用户请求体
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status  调用是否成功
+      * @param string message  调用信息
+      * @param string data  创建成功的用户 DN（uid&#x3D;{userName},ou&#x3D;people,dc&#x3D;jmr,dc&#x3D;com）
+      */
+
+  createOpenLdapUser (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createOpenLdapUser"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling createOpenLdapUser"
+      )
+    }
+    if (opts.openLdapUser === undefined || opts.openLdapUser === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.openLdapUser' when calling createOpenLdapUser"
+      )
+    }
+
+    let postBody = {}
+    if (opts.openLdapUser !== undefined && opts.openLdapUser !== null) {
+      postBody['openLdapUser'] = opts.openLdapUser
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      clusterId: opts.clusterId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createOpenLdapUser with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/clusters/{clusterId}/ldapUsers:create',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询集群下已配置的伸缩组列表（每个 Task 节点组最多一个伸缩组，子规则随组返回）。
+支持按节点组过滤与分页。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 集群ID
+      * @param {string} [opts.configGroupId] - 节点组ID，可选过滤条件  optional
+      * @param {string} [opts.configGroupName] - 节点组名称，可选过滤条件（模糊匹配）  optional
+      * @param {integer} [opts.pageNum] - 页码，从1开始，默认1  optional
+      * @param {integer} [opts.pageSize] - 每页条数，默认20  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status  调用是否成功
+      * @param string message  调用信息
+      * @param object data  伸缩组列表
+      */
+
+  describeScalingGroups (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeScalingGroups"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling describeScalingGroups"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.configGroupId !== undefined && opts.configGroupId !== null) {
+      queryParams['configGroupId'] = opts.configGroupId
+    }
+    if (opts.configGroupName !== undefined && opts.configGroupName !== null) {
+      queryParams['configGroupName'] = opts.configGroupName
+    }
+    if (opts.pageNum !== undefined && opts.pageNum !== null) {
+      queryParams['pageNum'] = opts.pageNum
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      clusterId: opts.clusterId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeScalingGroups with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/clusters/{clusterId}/scalingGroups',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  为指定 Task 节点组创建伸缩组，扩容/缩容子规则一次性提交。
+节点组必须支持弹性伸缩（可先调 describeScalableNodeGroups 查询）。
+enableScaleOut / enableScaleIn 为 PRD 的两个开关：开关关闭时对应方向的子规则不生效。
+dryRun 为影子模式（只记录活动不真正伸缩），上线灰度期使用。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 集群ID
+      * @param {scalingGroupRequest} opts.scalingGroup - 伸缩组配置（扩容/缩容子规则一次性提交）
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status  调用是否成功
+      * @param string message  调用信息
+      * @param object data  无业务数据
+      */
+
+  createScalingGroup (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createScalingGroup"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling createScalingGroup"
+      )
+    }
+    if (opts.scalingGroup === undefined || opts.scalingGroup === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.scalingGroup' when calling createScalingGroup"
+      )
+    }
+
+    let postBody = {}
+    if (opts.scalingGroup !== undefined && opts.scalingGroup !== null) {
+      postBody['scalingGroup'] = opts.scalingGroup
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      clusterId: opts.clusterId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createScalingGroup with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/clusters/{clusterId}/scalingGroups',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询单个伸缩组详情，用于编辑回显。version 是乐观锁版本号，修改时必须原样回传。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 集群ID
+      * @param {string} opts.configGroupId - 节点组ID（伸缩维度）
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status  调用是否成功
+      * @param string message  调用信息
+      * @param scalingGroup data
+      */
+
+  describeScalingGroup (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeScalingGroup"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling describeScalingGroup"
+      )
+    }
+    if (opts.configGroupId === undefined || opts.configGroupId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.configGroupId' when calling describeScalingGroup"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      clusterId: opts.clusterId,
+      configGroupId: opts.configGroupId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeScalingGroup with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/clusters/{clusterId}/scalingGroups/{configGroupId}',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  修改伸缩组配置。注意这是**全量替换**语义：请求体里没有的字段按默认值/空处理，
+扩容与缩容子规则按提交内容整组重建（不是增量修改）。
+因此编辑前必须先调 describeScalingGroup 取到完整配置，只改需要改的字段后再整体提交；
+启用/停用（enable）也走本接口整体提交，没有单独的启停接口。
+version 必须与 describeScalingGroup 返回的一致，不一致表示配置已被他人修改，会报错。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 集群ID
+      * @param {string} opts.configGroupId - 节点组ID（伸缩维度）
+      * @param {scalingGroupRequest} opts.scalingGroup - 伸缩组配置（全量提交）
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status  调用是否成功
+      * @param string message  调用信息
+      * @param object data  无业务数据
+      */
+
+  modifyScalingGroup (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  modifyScalingGroup"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling modifyScalingGroup"
+      )
+    }
+    if (opts.configGroupId === undefined || opts.configGroupId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.configGroupId' when calling modifyScalingGroup"
+      )
+    }
+    if (opts.scalingGroup === undefined || opts.scalingGroup === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.scalingGroup' when calling modifyScalingGroup"
+      )
+    }
+
+    let postBody = {}
+    if (opts.scalingGroup !== undefined && opts.scalingGroup !== null) {
+      postBody['scalingGroup'] = opts.scalingGroup
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      clusterId: opts.clusterId,
+      configGroupId: opts.configGroupId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call modifyScalingGroup with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/clusters/{clusterId}/scalingGroups/{configGroupId}:update',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  把源节点组的伸缩配置复制到目标节点组，便于同类节点组之间复用。
+isCover&#x3D;true 时覆盖目标节点组已有配置，否则目标节点组已有配置时报错。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 集群ID
+      * @param {string} opts.configGroupId - 源节点组ID
+      * @param {scalingCopyRequest} opts.scalingCopy - 复制请求体
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status  调用是否成功
+      * @param string message  调用信息
+      * @param object data  无业务数据
+      */
+
+  copyScalingGroup (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  copyScalingGroup"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling copyScalingGroup"
+      )
+    }
+    if (opts.configGroupId === undefined || opts.configGroupId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.configGroupId' when calling copyScalingGroup"
+      )
+    }
+    if (opts.scalingCopy === undefined || opts.scalingCopy === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.scalingCopy' when calling copyScalingGroup"
+      )
+    }
+
+    let postBody = {}
+    if (opts.scalingCopy !== undefined && opts.scalingCopy !== null) {
+      postBody['scalingCopy'] = opts.scalingCopy
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      clusterId: opts.clusterId,
+      configGroupId: opts.configGroupId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call copyScalingGroup with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/clusters/{clusterId}/scalingGroups/{configGroupId}:copy',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除伸缩组配置（含扩容/缩容子规则），删除后该节点组不再自动伸缩。
+已经在执行中的伸缩活动不受影响，会继续跑完。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 集群ID
+      * @param {string} opts.configGroupId - 节点组ID（伸缩维度）
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status  调用是否成功
+      * @param string message  调用信息
+      * @param object data  无业务数据
+      */
+
+  deleteScalingGroup (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteScalingGroup"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling deleteScalingGroup"
+      )
+    }
+    if (opts.configGroupId === undefined || opts.configGroupId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.configGroupId' when calling deleteScalingGroup"
+      )
+    }
+
+    let postBody = {}
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      clusterId: opts.clusterId,
+      configGroupId: opts.configGroupId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteScalingGroup with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/clusters/{clusterId}/scalingGroups/{configGroupId}:delete',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  手工触发一次伸缩，不依赖伸缩规则是否命中（规则中的冷却时间、日限、节点上下限仍然生效）。
+该节点组必须已配置伸缩组；targetNum 为期望的节点总数（不是增量）。
+被风控拦下时 status&#x3D;false，message 为原因、data.rejectReason 为机器可读的原因码，
+可能的取值：GROUP_DISABLED / GROUP_SUSPENDED / CLUSTER_NOT_RUNNING / ACTIVITY_RUNNING /
+METRIC_UNAVAILABLE / METRIC_NOT_ENOUGH / IN_COOLDOWN / RULE_NOT_MATCH / OUT_OF_BOUND /
+DAILY_LIMIT / HARD_LIMIT / NO_STOCK / IDLE_NODE_NOT_ENOUGH / NODE_GROUP_EMPTY。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 集群ID
+      * @param {string} opts.configGroupId - 节点组ID（伸缩维度）
+      * @param {scalingExecutionRequest} opts.scalingExecution - 手工伸缩请求体
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status  调用是否成功；被风控拦下时为 false
+      * @param string message  调用信息，被拦下时为拒绝原因
+      * @param scalingExecution data
+      */
+
+  executeScalingManually (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  executeScalingManually"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling executeScalingManually"
+      )
+    }
+    if (opts.configGroupId === undefined || opts.configGroupId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.configGroupId' when calling executeScalingManually"
+      )
+    }
+    if (opts.scalingExecution === undefined || opts.scalingExecution === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.scalingExecution' when calling executeScalingManually"
+      )
+    }
+
+    let postBody = {}
+    if (opts.scalingExecution !== undefined && opts.scalingExecution !== null) {
+      postBody['scalingExecution'] = opts.scalingExecution
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      clusterId: opts.clusterId,
+      configGroupId: opts.configGroupId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call executeScalingManually with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/clusters/{clusterId}/scalingGroups/{configGroupId}:execute',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询集群下可作为伸缩对象的节点组（Task 节点组）及其是否支持伸缩。
+scalable&#x3D;false 的节点组不可配置伸缩，reason 给出原因，调用方据此置灰。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 集群ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status  调用是否成功
+      * @param string message  调用信息
+      * @param object data
+      */
+
+  describeScalableNodeGroups (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeScalableNodeGroups"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling describeScalableNodeGroups"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      clusterId: opts.clusterId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeScalableNodeGroups with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/clusters/{clusterId}/scalableNodeGroups',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询可用于伸缩规则的指标字典，是规则里 conditions[].metricKey 的取值来源。
+不依赖具体集群，clusterId 只用于路径统一。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 集群ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status  调用是否成功
+      * @param string message  调用信息
+      * @param object data
+      */
+
+  describeScalingMetrics (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeScalingMetrics"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling describeScalingMetrics"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      clusterId: opts.clusterId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeScalingMetrics with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/clusters/{clusterId}/scalingMetrics',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询伸缩记录，只保留最近 60 天。记录包含自动触发、手工触发、被拒绝与影子模式（DRY_RUN）
+的全部活动，status 为 REJECTED 的记录 rejectReason 说明未执行的原因。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 集群ID
+      * @param {string} [opts.configGroupId] - 节点组ID，可选过滤条件  optional
+      * @param {string} [opts.configGroupName] - 节点组名称，可选过滤条件  optional
+      * @param {string} [opts.ruleName] - 规则名称，可选过滤条件  optional
+      * @param {string} [opts.status] - 活动状态，多个用英文逗号分隔，取值 PENDING/RUNNING/SUCCESS/FAILED/REJECTED/DRY_RUN  optional
+      * @param {string} [opts.startTime] - 起始时间，格式 yyyy-MM-dd 或 yyyy-MM-dd HH:mm:ss  optional
+      * @param {string} [opts.endTime] - 结束时间，格式 yyyy-MM-dd 或 yyyy-MM-dd HH:mm:ss  optional
+      * @param {integer} [opts.pageNum] - 页码，从1开始，默认1  optional
+      * @param {integer} [opts.pageSize] - 每页条数，默认20，上限100  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status  调用是否成功
+      * @param string message  调用信息
+      * @param object data  伸缩记录列表
+      */
+
+  describeScalingActivities (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeScalingActivities"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling describeScalingActivities"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.configGroupId !== undefined && opts.configGroupId !== null) {
+      queryParams['configGroupId'] = opts.configGroupId
+    }
+    if (opts.configGroupName !== undefined && opts.configGroupName !== null) {
+      queryParams['configGroupName'] = opts.configGroupName
+    }
+    if (opts.ruleName !== undefined && opts.ruleName !== null) {
+      queryParams['ruleName'] = opts.ruleName
+    }
+    if (opts.status !== undefined && opts.status !== null) {
+      queryParams['status'] = opts.status
+    }
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+    if (opts.pageNum !== undefined && opts.pageNum !== null) {
+      queryParams['pageNum'] = opts.pageNum
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      clusterId: opts.clusterId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeScalingActivities with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/clusters/{clusterId}/scalingActivities',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  按查询条件导出伸缩记录 CSV，最多导出 10000 行，超出部分截断。
+CSV 文本通过 data.content 返回，由调用方自行落盘（接口不返回二进制流）。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 集群ID
+      * @param {string} [opts.configGroupId] - 节点组ID，可选过滤条件  optional
+      * @param {string} [opts.configGroupName] - 节点组名称，可选过滤条件  optional
+      * @param {string} [opts.ruleName] - 规则名称，可选过滤条件  optional
+      * @param {string} [opts.status] - 活动状态，多个用英文逗号分隔  optional
+      * @param {string} [opts.startTime] - 起始时间，格式 yyyy-MM-dd 或 yyyy-MM-dd HH:mm:ss  optional
+      * @param {string} [opts.endTime] - 结束时间，格式 yyyy-MM-dd 或 yyyy-MM-dd HH:mm:ss  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status  调用是否成功
+      * @param string message  调用信息
+      * @param object data
+      */
+
+  exportScalingActivities (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  exportScalingActivities"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling exportScalingActivities"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.configGroupId !== undefined && opts.configGroupId !== null) {
+      queryParams['configGroupId'] = opts.configGroupId
+    }
+    if (opts.configGroupName !== undefined && opts.configGroupName !== null) {
+      queryParams['configGroupName'] = opts.configGroupName
+    }
+    if (opts.ruleName !== undefined && opts.ruleName !== null) {
+      queryParams['ruleName'] = opts.ruleName
+    }
+    if (opts.status !== undefined && opts.status !== null) {
+      queryParams['status'] = opts.status
+    }
+    if (opts.startTime !== undefined && opts.startTime !== null) {
+      queryParams['startTime'] = opts.startTime
+    }
+    if (opts.endTime !== undefined && opts.endTime !== null) {
+      queryParams['endTime'] = opts.endTime
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      clusterId: opts.clusterId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call exportScalingActivities with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/clusters/{clusterId}/scalingActivities:export',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询一条伸缩活动的执行日志，包含触发时的指标快照与执行过程输出，用于「查看日志」。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 集群ID
+      * @param {string} opts.activityId - 伸缩活动ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param boolean status  调用是否成功
+      * @param string message  调用信息
+      * @param object data
+      */
+
+  describeScalingActivityLog (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeScalingActivityLog"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling describeScalingActivityLog"
+      )
+    }
+    if (opts.activityId === undefined || opts.activityId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.activityId' when calling describeScalingActivityLog"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      clusterId: opts.clusterId,
+      activityId: opts.activityId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeScalingActivityLog with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/clusters/{clusterId}/scalingActivities/{activityId}',
+      'GET',
       pathParams,
       queryParams,
       headerParams,

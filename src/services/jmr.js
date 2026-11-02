@@ -13,8 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * 集群管理
- * JMR集群管理相关接口
+ * 弹性伸缩
+ * JMR 集群 Task 节点组弹性伸缩接口：伸缩组（含扩容/缩容规则）的增删改查、手工触发伸缩、伸缩记录查询与导出、可选节点组与指标字典
  *
  * OpenAPI spec version: v1
  * Contact:

@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * jmr service.
- * @version 1.1.16
+ * @version 1.1.17
  */
 
 class JMR extends Service {
@@ -84,7 +84,7 @@ class JMR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.17'
     }
 
     let contentTypes = ['application/json']
@@ -207,7 +207,7 @@ class JMR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.17'
     }
 
     let contentTypes = ['application/json']
@@ -311,7 +311,7 @@ class JMR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.17'
     }
 
     let contentTypes = ['application/json']
@@ -426,7 +426,7 @@ class JMR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.17'
     }
 
     let contentTypes = ['application/json']
@@ -539,7 +539,7 @@ class JMR extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.17'
     }
 
     let contentTypes = ['application/json']
@@ -681,7 +681,7 @@ status, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.17'
     }
 
     let contentTypes = ['application/json']
@@ -796,7 +796,7 @@ status, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.17'
     }
 
     let contentTypes = ['application/json']
@@ -869,17 +869,23 @@ status, 支持operator选项：eq
   }
 
   /**
-      *  扩容集群
+      *  扩容集群：在已有节点组内追加节点，或新建 Task/Edge 节点组。
+接口为异步：返回成功仅表示扩容已开始，集群状态会变为 EXPANDING，请轮询 describeClusters 直到恢复 RUNNING。
+失败语义：业务校验失败时 HTTP 仍返回 200，result.status 为 false，具体原因见 result.message。
+clientToken 幂等：相同 clientToken 的重复请求在 24 小时内只执行一次并返回首次结果。
+
       * @param {Object} opts - parameters
-      * @param {clusterExpansion} opts.clusterExpansion - 描述集群扩容信息
-      * @param {string} [opts.clientToken] - 用于保证请求的幂等性。由客户端生成，长度不能超过64个字符。
+      * @param {clusterExpansion} opts.clusterExpansion - 描述集群扩容信息。
+      * @param {string} [opts.clientToken] - 幂等 token，由客户端生成，长度 1-64 个字符。
+相同 token 的重复请求在 24 小时内只执行一次并返回首次结果；token 已用于不同参数时返回失败。
+若上一次请求处于「状态未知」（服务异常/超时），接口会拒绝并要求确认集群状态后再用新 token 重试。
   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param boolean status  是否开始扩容集群
+      * @param boolean status  是否开始扩容；false 表示未执行，原因见 message
       * @param string clusterId  集群ID
-      * @param string message  扩容集群的信息
+      * @param string message  扩容集群的信息；status&#x3D;false 时为失败原因
       */
 
   clusterExpansion (opts, regionId = this.config.regionId, callback) {
@@ -917,7 +923,7 @@ status, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.17'
     }
 
     let contentTypes = ['application/json']
@@ -990,17 +996,23 @@ status, 支持operator选项：eq
   }
 
   /**
-      *  缩容集群
+      *  缩容集群：释放 Task/Edge 节点，保留 reserveNum 个。
+接口为异步：返回成功仅表示缩容已开始，集群状态会变为 REDUCING，请轮询 describeClusters 直到恢复 RUNNING。
+失败语义：业务校验失败时 HTTP 仍返回 200，result.status 为 false，具体原因见 result.message。
+clientToken 幂等：相同 clientToken 的重复请求在 24 小时内只执行一次并返回首次结果。
+
       * @param {Object} opts - parameters
-      * @param {clusterReduction} opts.clusterReduction - 描述集群缩容信息
-      * @param {string} [opts.clientToken] - 用于保证请求的幂等性。由客户端生成，长度不能超过64个字符。
+      * @param {clusterReduction} opts.clusterReduction - 描述集群缩容信息。
+      * @param {string} [opts.clientToken] - 幂等 token，由客户端生成，长度 1-64 个字符。
+相同 token 的重复请求在 24 小时内只执行一次并返回首次结果；token 已用于不同参数时返回失败。
+若上一次请求处于「状态未知」（服务异常/超时），接口会拒绝并要求确认集群状态后再用新 token 重试。
   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
-      * @param boolean status  是否开始缩容集群
+      * @param boolean status  是否开始缩容；false 表示未执行，原因见 message
       * @param string clusterId  集群ID
-      * @param string message  缩容集群的信息
+      * @param string message  缩容集群的信息；status&#x3D;false 时为失败原因
       */
 
   clusterReduction (opts, regionId = this.config.regionId, callback) {
@@ -1038,7 +1050,7 @@ status, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.17'
     }
 
     let contentTypes = ['application/json']
@@ -1159,7 +1171,7 @@ status, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.17'
     }
 
     let contentTypes = ['application/json']
@@ -1285,7 +1297,7 @@ status, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.17'
     }
 
     let contentTypes = ['application/json']
@@ -1416,7 +1428,7 @@ status, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.17'
     }
 
     let contentTypes = ['application/json']
@@ -1542,7 +1554,7 @@ status, 支持operator选项：eq
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.17'
     }
 
     let contentTypes = ['application/json']
@@ -1668,7 +1680,7 @@ privileges 为空时表示回收该主体在该资源上的全部权限。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.17'
     }
 
     let contentTypes = ['application/json']
@@ -1783,7 +1795,7 @@ privileges 为空时表示回收该主体在该资源上的全部权限。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.17'
     }
 
     let contentTypes = ['application/json']
@@ -1899,7 +1911,7 @@ privileges 为空时表示回收该主体在该资源上的全部权限。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.17'
     }
 
     let contentTypes = ['application/json']
@@ -2021,7 +2033,7 @@ privileges 为空时表示回收该主体在该资源上的全部权限。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.17'
     }
 
     let contentTypes = ['application/json']
@@ -2147,7 +2159,7 @@ privileges 为空时表示回收该主体在该资源上的全部权限。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.17'
     }
 
     let contentTypes = ['application/json']
@@ -2270,7 +2282,7 @@ privileges 为空时表示回收该主体在该资源上的全部权限。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.17'
     }
 
     let contentTypes = ['application/json']
@@ -2399,7 +2411,7 @@ privileges 为空时表示回收该主体在该资源上的全部权限。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.17'
     }
 
     let contentTypes = ['application/json']
@@ -2532,7 +2544,7 @@ privileges 为空时表示回收该主体在该资源上的全部权限。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.17'
     }
 
     let contentTypes = ['application/json']
@@ -2655,7 +2667,7 @@ privileges 为空时表示回收该主体在该资源上的全部权限。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.17'
     }
 
     let contentTypes = ['application/json']
@@ -2785,7 +2797,7 @@ privileges 为空时表示回收该主体在该资源上的全部权限。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.17'
     }
 
     let contentTypes = ['application/json']
@@ -2915,7 +2927,7 @@ privileges 为空时表示回收该主体在该资源上的全部权限。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.17'
     }
 
     let contentTypes = ['application/json']
@@ -3041,7 +3053,7 @@ uidNumber 取 ou&#x3D;people 现有最大 +1，gidNumber&#x3D;1000，homeDirecto
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.17'
     }
 
     let contentTypes = ['application/json']
@@ -3172,7 +3184,7 @@ uidNumber 取 ou&#x3D;people 现有最大 +1，gidNumber&#x3D;1000，homeDirecto
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.17'
     }
 
     let contentTypes = ['application/json']
@@ -3299,7 +3311,7 @@ dryRun 为影子模式（只记录活动不真正伸缩），上线灰度期使�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.17'
     }
 
     let contentTypes = ['application/json']
@@ -3420,7 +3432,7 @@ dryRun 为影子模式（只记录活动不真正伸缩），上线灰度期使�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.17'
     }
 
     let contentTypes = ['application/json']
@@ -3555,7 +3567,7 @@ version 必须与 describeScalingGroup 返回的一致，不一致表示配置�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.17'
     }
 
     let contentTypes = ['application/json']
@@ -3687,7 +3699,7 @@ isCover&#x3D;true 时覆盖目标节点组已有配置，否则目标节点组�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.17'
     }
 
     let contentTypes = ['application/json']
@@ -3810,7 +3822,7 @@ isCover&#x3D;true 时覆盖目标节点组已有配置，否则目标节点组�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.17'
     }
 
     let contentTypes = ['application/json']
@@ -3946,7 +3958,7 @@ DAILY_LIMIT / HARD_LIMIT / NO_STOCK / IDLE_NODE_NOT_ENOUGH / NODE_GROUP_EMPTY。
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.17'
     }
 
     let contentTypes = ['application/json']
@@ -4061,7 +4073,7 @@ scalable&#x3D;false 的节点组不可配置伸缩，reason 给出原因，调�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.17'
     }
 
     let contentTypes = ['application/json']
@@ -4176,7 +4188,7 @@ scalable&#x3D;false 的节点组不可配置伸缩，reason 给出原因，调�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.17'
     }
 
     let contentTypes = ['application/json']
@@ -4323,7 +4335,7 @@ scalable&#x3D;false 的节点组不可配置伸缩，reason 给出原因，调�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.17'
     }
 
     let contentTypes = ['application/json']
@@ -4462,7 +4474,7 @@ CSV 文本通过 data.content 返回，由调用方自行落盘（接口不返�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.17'
     }
 
     let contentTypes = ['application/json']
@@ -4583,7 +4595,7 @@ CSV 文本通过 data.content 返回，由调用方自行落盘（接口不返�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  jmr/1.1.17'
     }
 
     let contentTypes = ['application/json']

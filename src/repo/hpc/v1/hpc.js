@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * hpc service.
- * @version 4.3.11
+ * @version 4.3.16
  */
 
 class HPC extends Service {
@@ -102,7 +102,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
     }
 
     let contentTypes = ['application/json']
@@ -268,7 +268,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
     }
 
     let contentTypes = ['application/json']
@@ -385,7 +385,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
     }
 
     let contentTypes = ['application/json']
@@ -499,7 +499,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
     }
 
     let contentTypes = ['application/json']
@@ -572,6 +572,99 @@ class HPC extends Service {
   }
 
   /**
+      *  根据资源 ID 批量查询最近五分钟内的云助手心跳状态。
+      * @param {Object} opts - parameters
+      * @param {filter} [opts.filters] - 过滤条件，目前只支持 resourceId，最多传入 10 个值  optional
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param hPCAssistantAgent hpcAssistantAgents
+      */
+
+  describeHPCAssistantAgents (opts, callback) {
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: 'jdcloud'
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeHPCAssistantAgents with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/hpcassistantagents',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  删除hpc网络诊断
       * @param {Object} opts - parameters
       * @param {string} opts.hpcNetworkDiagnoseId - hpc net diagnosis ID
@@ -612,7 +705,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
     }
 
     let contentTypes = ['application/json']
@@ -727,7 +820,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
     }
 
     let contentTypes = ['application/json']
@@ -897,7 +990,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
     }
 
     let contentTypes = ['application/json']
@@ -1015,7 +1108,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
     }
 
     let contentTypes = ['application/json']
@@ -1144,7 +1237,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
     }
 
     let contentTypes = ['application/json']
@@ -1272,7 +1365,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
     }
 
     let contentTypes = ['application/json']
@@ -1385,7 +1478,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
     }
 
     let contentTypes = ['application/json']
@@ -1497,7 +1590,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
     }
 
     let contentTypes = ['application/json']
@@ -1609,7 +1702,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
     }
 
     let contentTypes = ['application/json']
@@ -1721,7 +1814,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
     }
 
     let contentTypes = ['application/json']
@@ -1802,8 +1895,12 @@ class HPC extends Service {
 
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID。
-      * @param {string} opts.password - 实例密码。可用于SSH登录和VNC登录，长度为8-30个字符，必须同时包含大、小写英文字母、数字和特殊符号中的三类字符。特殊符号包括：\(\)\&#x60;~!@#$%^&amp;\*\_-+&#x3D;\|{}\[ ]:&quot;;&#39;&lt;&gt;,.?/
-
+      * @param {string} [opts.password] - 实例密码。当passwordAuth为yes时必填。可用于SSH登录和VNC登录，长度为8-30个字符，必须同时包含大、小写英文字母、数字和特殊符号中的三类字符。特殊符号包括：\(\)\&#x60;~!@#$%^&amp;\*_-+&#x3D;\|{}\[ ]:&quot;;&#39;&lt;&gt;,.?/
+  optional
+      * @param {string} [opts.passwordAuth] - 认证模式。yes表示密码认证（需同时指定password），no表示密钥认证（需同时指定keyNames）。不指定时默认为yes。
+  optional
+      * @param {array} [opts.keyNames] - 密钥对名称列表。当passwordAuth为no时，通过此参数指定绑定的密钥对名称。目前只支持一个密钥对。
+  optional
       * @param {string} [opts.packageId] - 镜像ID。
 若不指定镜像ID，默认使用当前主机的原镜像重置系统。
   optional
@@ -1843,15 +1940,16 @@ class HPC extends Service {
         "Missing the required parameter 'opts.instanceId' when calling rebuildInstance"
       )
     }
-    if (opts.password === undefined || opts.password === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.password' when calling rebuildInstance"
-      )
-    }
 
     let postBody = {}
     if (opts.password !== undefined && opts.password !== null) {
       postBody['password'] = opts.password
+    }
+    if (opts.passwordAuth !== undefined && opts.passwordAuth !== null) {
+      postBody['passwordAuth'] = opts.passwordAuth
+    }
+    if (opts.keyNames !== undefined && opts.keyNames !== null) {
+      postBody['keyNames'] = opts.keyNames
     }
     if (opts.packageId !== undefined && opts.packageId !== null) {
       postBody['packageId'] = opts.packageId
@@ -1883,7 +1981,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
     }
 
     let contentTypes = ['application/json']
@@ -1964,8 +2062,12 @@ class HPC extends Service {
 
       * @param {Object} opts - parameters
       * @param {string} opts.instanceId - 实例ID。
-      * @param {string} opts.password - 实例密码。可用于SSH登录和VNC登录，长度为8-30个字符，必须同时包含大、小写英文字母、数字和特殊符号中的三类字符。特殊符号包括：\(\)\&#x60;~!@#$%^&amp;\*\_-+&#x3D;\|{}\[ ]:&quot;;&#39;&lt;&gt;,.?/
-
+      * @param {string} [opts.password] - 实例密码。当passwordAuth为yes时必填。可用于SSH登录和VNC登录，长度为8-30个字符，必须同时包含大、小写英文字母、数字和特殊符号中的三类字符。特殊符号包括：\(\)\&#x60;~!@#$%^&amp;\*_-+&#x3D;\|{}\[ ]:&quot;;&#39;&lt;&gt;,.?/
+  optional
+      * @param {string} [opts.passwordAuth] - 认证模式。yes表示密码认证（需同时指定password），no表示密钥认证（需同时指定keyNames）。不指定时默认为yes。
+  optional
+      * @param {array} [opts.keyNames] - 密钥对名称列表。当passwordAuth为no时，通过此参数指定绑定的密钥对名称。目前只支持一个密钥对。
+  optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -1990,15 +2092,16 @@ class HPC extends Service {
         "Missing the required parameter 'opts.instanceId' when calling recoverInstance"
       )
     }
-    if (opts.password === undefined || opts.password === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.password' when calling recoverInstance"
-      )
-    }
 
     let postBody = {}
     if (opts.password !== undefined && opts.password !== null) {
       postBody['password'] = opts.password
+    }
+    if (opts.passwordAuth !== undefined && opts.passwordAuth !== null) {
+      postBody['passwordAuth'] = opts.passwordAuth
+    }
+    if (opts.keyNames !== undefined && opts.keyNames !== null) {
+      postBody['keyNames'] = opts.keyNames
     }
 
     let queryParams = {}
@@ -2009,7 +2112,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
     }
 
     let contentTypes = ['application/json']
@@ -2131,7 +2234,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
     }
 
     let contentTypes = ['application/json']
@@ -2253,7 +2356,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
     }
 
     let contentTypes = ['application/json']
@@ -2375,7 +2478,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
     }
 
     let contentTypes = ['application/json']
@@ -2506,7 +2609,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
     }
 
     let contentTypes = ['application/json']
@@ -2609,7 +2712,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
     }
 
     let contentTypes = ['application/json']
@@ -2768,7 +2871,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
     }
 
     let contentTypes = ['application/json']
@@ -2812,6 +2915,720 @@ class HPC extends Service {
 
     let request = super.makeRequest(
       '/regions/{regionId}/baremetals:exportInstancesData',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询密钥对列表。
+
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码；默认为1。  optional
+      * @param {integer} [opts.pageSize] - 分页大小；&lt;br&gt;默认为20；取值范围[10, 100]。  optional
+      * @param {filter} [opts.filters] - &lt;b&gt;filters 中支持使用以下关键字进行过滤&lt;/b&gt;
+&#x60;keyNames&#x60;: 密钥对名称。支持精确批量
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param keypair keypairs
+      * @param integer totalCount  本次查询可匹配到的总记录数。
+      */
+
+  describeKeypairs (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeKeypairs"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeKeypairs with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/keypairs',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  创建SSH密钥对。创建成功后系统会返回密钥对的私钥，请妥善保管，私钥仅在此一次返回，后续无法再次获取。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.keyName - 密钥对名称。只支持数字、大小写字母、下划线（_）和连字符（-），长度不超过32个字符。
+
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string keyName  密钥对名称
+      * @param string privateKey  密钥对私钥（PEM格式），仅创建时返回，请妥善保管
+      * @param string keyFingerprint  密钥对指纹
+      */
+
+  createKeypair (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createKeypair"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.keyName === undefined || opts.keyName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.keyName' when calling createKeypair"
+      )
+    }
+
+    let postBody = {}
+    if (opts.keyName !== undefined && opts.keyName !== null) {
+      postBody['keyName'] = opts.keyName
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createKeypair with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/keypairs',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  导入SSH密钥对。用户需提供公钥内容，系统将导入该密钥对用于实例认证。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.keyName - 密钥对名称。只支持数字、大小写字母、下划线（_）和连字符（-），长度不超过32个字符。
+
+      * @param {string} opts.publicKey - 密钥对公钥内容。支持SSH RSA格式的公钥。
+
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string keyName  密钥对名称
+      * @param string keyFingerprint  密钥对指纹
+      */
+
+  importKeypair (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  importKeypair"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.keyName === undefined || opts.keyName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.keyName' when calling importKeypair"
+      )
+    }
+    if (opts.publicKey === undefined || opts.publicKey === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.publicKey' when calling importKeypair"
+      )
+    }
+
+    let postBody = {}
+    if (opts.keyName !== undefined && opts.keyName !== null) {
+      postBody['keyName'] = opts.keyName
+    }
+    if (opts.publicKey !== undefined && opts.publicKey !== null) {
+      postBody['publicKey'] = opts.publicKey
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call importKeypair with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/keypairs:import',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  删除SSH密钥对。删除前请确保该密钥对未绑定任何实例。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.keyName - 密钥对名称。
+
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  deleteKeypair (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  deleteKeypair"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.keyName === undefined || opts.keyName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.keyName' when calling deleteKeypair"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      keyName: opts.keyName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call deleteKeypair with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/keypairs/{keyName}',
+      'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  将密钥对绑定到指定实例。支持批量绑定，已绑定其他密钥对的实例会被跳过。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.keyName - 密钥对名称。
+
+      * @param {array} [opts.instanceIds] - 需要绑定密钥对的实例ID列表，一次最多支持100个实例。
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string successInstanceIds
+      * @param string failInstanceIds
+      */
+
+  attachKeypair (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  attachKeypair"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.keyName === undefined || opts.keyName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.keyName' when calling attachKeypair"
+      )
+    }
+
+    let postBody = {}
+    if (opts.instanceIds !== undefined && opts.instanceIds !== null) {
+      postBody['instanceIds'] = opts.instanceIds
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      keyName: opts.keyName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call attachKeypair with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/keypairs/{keyName}:attach',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  将密钥对从指定实例上解绑。支持批量解绑。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.keyName - 密钥对名称。
+
+      * @param {array} [opts.instanceIds] - 需要解绑密钥对的实例ID列表，一次最多支持100个实例。
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string successInstanceIds
+      * @param string failInstanceIds
+      */
+
+  detachKeypair (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  detachKeypair"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.keyName === undefined || opts.keyName === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.keyName' when calling detachKeypair"
+      )
+    }
+
+    let postBody = {}
+    if (opts.instanceIds !== undefined && opts.instanceIds !== null) {
+      postBody['instanceIds'] = opts.instanceIds
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      keyName: opts.keyName
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call detachKeypair with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/keypairs/{keyName}:detach',
       'POST',
       pathParams,
       queryParams,
@@ -2887,7 +3704,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
     }
 
     let contentTypes = ['application/json']
@@ -3012,7 +3829,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
     }
 
     let contentTypes = ['application/json']
@@ -3165,7 +3982,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
     }
 
     let contentTypes = ['application/json']
@@ -3278,7 +4095,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
     }
 
     let contentTypes = ['application/json']
@@ -3409,7 +4226,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
     }
 
     let contentTypes = ['application/json']
@@ -3540,7 +4357,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
     }
 
     let contentTypes = ['application/json']
@@ -3670,7 +4487,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
     }
 
     let contentTypes = ['application/json']
@@ -3783,7 +4600,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
     }
 
     let contentTypes = ['application/json']
@@ -3891,7 +4708,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
     }
 
     let contentTypes = ['application/json']
@@ -3990,7 +4807,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
     }
 
     let contentTypes = ['application/json']
@@ -4092,7 +4909,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
     }
 
     let contentTypes = ['application/json']
@@ -4168,7 +4985,10 @@ class HPC extends Service {
       *  查询配额
 
       * @param {Object} opts - parameters
-      * @param {string} opts.resourceType - 资源类型：hpc
+      * @param {string} opts.resourceType - 资源类型。取值范围：
+- hpc：HPC实例配额
+- keypair：密钥对配额
+
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
       @return {Object} result
@@ -4206,7 +5026,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
     }
 
     let contentTypes = ['application/json']
@@ -4279,6 +5099,122 @@ class HPC extends Service {
   }
 
   /**
+      *  CreateWebTerminalSession 创建 WebTerminal 会话并返回会话参数。
+      * @param {Object} opts - parameters
+      * @param {string} opts.resourceID - 资源 ID
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param integer expireAt
+      * @param string sessionID
+      * @param string userWSURL
+      */
+
+  createWebTerminalSession (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  createWebTerminalSession"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.resourceID === undefined || opts.resourceID === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.resourceID' when calling createWebTerminalSession"
+      )
+    }
+
+    let postBody = {}
+    if (opts.resourceID !== undefined && opts.resourceID !== null) {
+      postBody['resourceID'] = opts.resourceID
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call createWebTerminalSession with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/webterminalsessions',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  查询用户可调度集群
 
       * @param {Object} opts - parameters
@@ -4318,7 +5254,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
     }
 
     let contentTypes = ['application/json']
@@ -4413,7 +5349,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.11'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
     }
 
     let contentTypes = ['application/json']

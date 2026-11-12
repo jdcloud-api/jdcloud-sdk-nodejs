@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * hpc service.
- * @version 4.3.16
+ * @version 4.4.18
  */
 
 class HPC extends Service {
@@ -102,7 +102,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']
@@ -268,7 +268,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']
@@ -385,7 +385,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']
@@ -499,7 +499,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']
@@ -592,7 +592,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']
@@ -705,7 +705,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']
@@ -820,7 +820,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']
@@ -990,7 +990,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']
@@ -1108,7 +1108,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']
@@ -1237,7 +1237,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']
@@ -1365,7 +1365,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']
@@ -1478,7 +1478,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']
@@ -1590,7 +1590,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']
@@ -1702,7 +1702,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']
@@ -1814,7 +1814,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']
@@ -1904,7 +1904,7 @@ class HPC extends Service {
       * @param {string} [opts.packageId] - 镜像ID。
 若不指定镜像ID，默认使用当前主机的原镜像重置系统。
   optional
-      * @param {string} [opts.hostname] - 实例hostname。
+      * @param {string} [opts.hostName] - 实例hostname。
 **Windows系统**：长度为2\~15个字符，允许大小写字母、数字或连字符（-），不能以连字符（-）开头或结尾，不能连续使用连字符（-），也不能全部使用数字。不支持点号（.）。
 **Linux系统**：长度为2-64个字符，允许使用大小写字母、数字或连字符（-），但不能连续使用连字符（-），不能以连字符（-）开头或结尾。
   optional
@@ -1954,8 +1954,8 @@ class HPC extends Service {
     if (opts.packageId !== undefined && opts.packageId !== null) {
       postBody['packageId'] = opts.packageId
     }
-    if (opts.hostname !== undefined && opts.hostname !== null) {
-      postBody['hostname'] = opts.hostname
+    if (opts.hostName !== undefined && opts.hostName !== null) {
+      postBody['hostName'] = opts.hostName
     }
     if (opts.metadata !== undefined && opts.metadata !== null) {
       postBody['metadata'] = opts.metadata
@@ -1981,7 +1981,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']
@@ -2112,7 +2112,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']
@@ -2234,7 +2234,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']
@@ -2356,7 +2356,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']
@@ -2478,7 +2478,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']
@@ -2609,7 +2609,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']
@@ -2712,7 +2712,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']
@@ -2871,7 +2871,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']
@@ -2944,6 +2944,128 @@ class HPC extends Service {
   }
 
   /**
+      *  查询统一计费实例的详细信息列表。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.instanceId - 实例ID。
+
+      * @param {integer} [opts.pageNumber] - 页码；默认为1。  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认为100；最大1000。  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param billingInstance instances
+      * @param integer total  本次查询可匹配到的总记录数，使用者需要结合 &#x60;pageNumber&#x60; 和 &#x60;pageSize&#x60; 计算是否可以继续分页。
+      */
+
+  describeBillingInstances (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeBillingInstances"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.instanceId === undefined || opts.instanceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.instanceId' when calling describeBillingInstances"
+      )
+    }
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+
+    let pathParams = {
+      regionId: regionId,
+      instanceId: opts.instanceId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeBillingInstances with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/describeBillingInstances',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  查询密钥对列表。
 
       * @param {Object} opts - parameters
@@ -2988,7 +3110,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']
@@ -3106,7 +3228,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']
@@ -3233,7 +3355,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']
@@ -3345,7 +3467,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']
@@ -3465,7 +3587,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']
@@ -3585,7 +3707,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']
@@ -3704,7 +3826,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']
@@ -3829,7 +3951,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']
@@ -3982,7 +4104,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']
@@ -4026,381 +4148,6 @@ class HPC extends Service {
 
     let request = super.makeRequest(
       '/regions/{regionId}/network:describeCommunicationRange',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  删除用户可调度的网络集群Id
-
-      * @param {Object} opts - parameters
-      * @param {integer} opts.id - Id
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  deleteCluster (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  deleteCluster"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.id === undefined || opts.id === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.id' when calling deleteCluster"
-      )
-    }
-
-    let postBody = null
-    let queryParams = {}
-    if (opts.id !== undefined && opts.id !== null) {
-      queryParams['id'] = opts.id
-    }
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call deleteCluster with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/operation:deleteCluster',
-      'DELETE',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  更新用户可调度的网络集群
-
-      * @param {Object} opts - parameters
-      * @param {integer} opts.id - Id
-      * @param {string} opts.clusterId - 逻辑集群id
-      * @param {array} [opts.podIds] - podId列表  optional
-      * @param {array} [opts.suIds] - suId列表  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  modifyCluster (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  modifyCluster"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.id === undefined || opts.id === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.id' when calling modifyCluster"
-      )
-    }
-    if (opts.clusterId === undefined || opts.clusterId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.clusterId' when calling modifyCluster"
-      )
-    }
-
-    let postBody = {}
-    if (opts.id !== undefined && opts.id !== null) {
-      postBody['id'] = opts.id
-    }
-    if (opts.clusterId !== undefined && opts.clusterId !== null) {
-      postBody['clusterId'] = opts.clusterId
-    }
-    if (opts.podIds !== undefined && opts.podIds !== null) {
-      postBody['podIds'] = opts.podIds
-    }
-    if (opts.suIds !== undefined && opts.suIds !== null) {
-      postBody['suIds'] = opts.suIds
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call modifyCluster with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/operation:modifyCluster',
-      'POST',
-      pathParams,
-      queryParams,
-      headerParams,
-      formParams,
-      postBody,
-      contentTypes,
-      accepts,
-      returnType,
-      callback
-    )
-
-    return request.then(
-      function (result) {
-        if (callback && typeof callback === 'function') {
-          return callback(null, result)
-        }
-        return result
-      },
-      function (error) {
-        if (callback && typeof callback === 'function') {
-          return callback(error)
-        }
-        return Promise.reject(error)
-      }
-    )
-  }
-
-  /**
-      *  创建用户可调度的网络集群
-
-      * @param {Object} opts - parameters
-      * @param {string} opts.az - az
-      * @param {string} opts.clusterId - 逻辑集群id
-      * @param {array} [opts.podIds] - podId列表  optional
-      * @param {array} [opts.suIds] - suId列表  optional
-      * @param {string} regionId - ID of the region
-      * @param {string} callback - callback
-      @return {Object} result
-      */
-
-  createCluster (opts, regionId = this.config.regionId, callback) {
-    if (typeof regionId === 'function') {
-      callback = regionId
-      regionId = this.config.regionId
-    }
-
-    if (regionId === undefined || regionId === null) {
-      throw new Error(
-        "Missing the required parameter 'regionId' when calling  createCluster"
-      )
-    }
-
-    opts = opts || {}
-
-    if (opts.az === undefined || opts.az === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.az' when calling createCluster"
-      )
-    }
-    if (opts.clusterId === undefined || opts.clusterId === null) {
-      throw new Error(
-        "Missing the required parameter 'opts.clusterId' when calling createCluster"
-      )
-    }
-
-    let postBody = {}
-    if (opts.az !== undefined && opts.az !== null) {
-      postBody['az'] = opts.az
-    }
-    if (opts.clusterId !== undefined && opts.clusterId !== null) {
-      postBody['clusterId'] = opts.clusterId
-    }
-    if (opts.podIds !== undefined && opts.podIds !== null) {
-      postBody['podIds'] = opts.podIds
-    }
-    if (opts.suIds !== undefined && opts.suIds !== null) {
-      postBody['suIds'] = opts.suIds
-    }
-
-    let queryParams = {}
-
-    let pathParams = {
-      regionId: regionId
-    }
-
-    let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
-    }
-
-    let contentTypes = ['application/json']
-    let accepts = ['application/json']
-
-    // 扩展自定义头
-    if (opts['x-extra-header']) {
-      for (let extraHeader in opts['x-extra-header']) {
-        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
-      }
-
-      if (Array.isArray(opts['x-extra-header']['content-type'])) {
-        contentTypes = opts['x-extra-header']['content-type']
-      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
-        contentTypes = opts['x-extra-header']['content-type'].split(',')
-      }
-
-      if (Array.isArray(opts['x-extra-header']['accept'])) {
-        accepts = opts['x-extra-header']['accept']
-      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
-        accepts = opts['x-extra-header']['accept'].split(',')
-      }
-    }
-
-    let formParams = {}
-
-    let returnType = null
-
-    this.config.logger(
-      `call createCluster with params:\npathParams:${JSON.stringify(
-        pathParams
-      )},\nqueryParams:${JSON.stringify(
-        queryParams
-      )}, \nheaderParams:${JSON.stringify(
-        headerParams
-      )}, \nformParams:${JSON.stringify(
-        formParams
-      )}, \npostBody:${JSON.stringify(postBody)}`,
-      'DEBUG'
-    )
-
-    let request = super.makeRequest(
-      '/regions/{regionId}/operation:createCluster',
       'POST',
       pathParams,
       queryParams,
@@ -4487,7 +4234,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']
@@ -4600,7 +4347,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']
@@ -4708,7 +4455,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']
@@ -4807,7 +4554,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']
@@ -4909,7 +4656,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']
@@ -5026,7 +4773,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']
@@ -5142,7 +4889,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']
@@ -5254,7 +5001,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']
@@ -5349,7 +5096,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.3.16'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
     }
 
     let contentTypes = ['application/json']

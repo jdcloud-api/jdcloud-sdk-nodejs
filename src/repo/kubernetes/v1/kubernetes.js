@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * kubernetes service.
- * @version 1.4.14
+ * @version 1.4.15
  */
 
 class KUBERNETES extends Service {
@@ -92,7 +92,7 @@ class KUBERNETES extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']
@@ -210,7 +210,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']
@@ -432,7 +432,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']
@@ -543,7 +543,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']
@@ -666,7 +666,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']
@@ -780,7 +780,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']
@@ -825,6 +825,148 @@ id - id，支持多个
     let request = super.makeRequest(
       '/regions/{regionId}/clusters/{clusterId}',
       'DELETE',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  添加集群的网络配置
+      * @param {Object} opts - parameters
+      * @param {string} opts.clusterId - 集群 ID
+      * @param {string} opts.resourceType - 资源类型：pod_subnet,node_subnet,pod_subnet_with_namespace,hpc_node_subnet
+      * @param {string} opts.resourceId - 资源 id
+      * @param {boolean} opts.enabled - 资源是否启用
+      * @param {string} [opts.namespace] - pod子网关联的命名空间  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  addClusterNetworkDetail (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  addClusterNetworkDetail"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.clusterId === undefined || opts.clusterId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.clusterId' when calling addClusterNetworkDetail"
+      )
+    }
+    if (opts.resourceType === undefined || opts.resourceType === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.resourceType' when calling addClusterNetworkDetail"
+      )
+    }
+    if (opts.resourceId === undefined || opts.resourceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.resourceId' when calling addClusterNetworkDetail"
+      )
+    }
+    if (opts.enabled === undefined || opts.enabled === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.enabled' when calling addClusterNetworkDetail"
+      )
+    }
+
+    let postBody = {}
+    if (opts.resourceType !== undefined && opts.resourceType !== null) {
+      postBody['resourceType'] = opts.resourceType
+    }
+    if (opts.resourceId !== undefined && opts.resourceId !== null) {
+      postBody['resourceId'] = opts.resourceId
+    }
+    if (opts.enabled !== undefined && opts.enabled !== null) {
+      postBody['enabled'] = opts.enabled
+    }
+    if (opts.namespace !== undefined && opts.namespace !== null) {
+      postBody['namespace'] = opts.namespace
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId,
+      clusterId: opts.clusterId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call addClusterNetworkDetail with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/clusters/{clusterId}:networks',
+      'POST',
       pathParams,
       queryParams,
       headerParams,
@@ -901,7 +1043,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']
@@ -1022,7 +1164,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']
@@ -1137,7 +1279,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']
@@ -1264,7 +1406,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']
@@ -1385,7 +1527,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']
@@ -1502,7 +1644,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']
@@ -1638,7 +1780,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']
@@ -1760,7 +1902,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']
@@ -1888,7 +2030,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']
@@ -2000,7 +2142,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']
@@ -2175,7 +2317,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']
@@ -2285,7 +2427,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']
@@ -2418,7 +2560,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']
@@ -2546,7 +2688,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']
@@ -2686,7 +2828,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']
@@ -2819,7 +2961,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']
@@ -2939,7 +3081,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']
@@ -3115,7 +3257,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']
@@ -3226,7 +3368,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']
@@ -3369,7 +3511,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']
@@ -3479,7 +3621,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']
@@ -3605,7 +3747,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']
@@ -3725,7 +3867,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']
@@ -3848,7 +3990,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']
@@ -3968,7 +4110,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']
@@ -4092,7 +4234,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']
@@ -4198,7 +4340,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']
@@ -4305,7 +4447,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']
@@ -4432,7 +4574,7 @@ clusterName - 根据 cluster 名称查询
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']
@@ -4548,7 +4690,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']
@@ -4726,7 +4868,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']
@@ -4837,7 +4979,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']
@@ -4956,7 +5098,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']
@@ -5070,7 +5212,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']
@@ -5177,7 +5319,7 @@ id - id，支持多个
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.14'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  kubernetes/1.4.15'
     }
 
     let contentTypes = ['application/json']

@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * hpc service.
- * @version 4.4.18
+ * @version 4.4.20
  */
 
 class HPC extends Service {
@@ -102,7 +102,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -268,7 +268,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -385,7 +385,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -499,7 +499,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -592,7 +592,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -705,7 +705,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -820,7 +820,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -990,7 +990,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -1108,7 +1108,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -1237,7 +1237,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -1365,7 +1365,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -1478,7 +1478,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -1590,7 +1590,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -1702,7 +1702,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -1814,7 +1814,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -1897,9 +1897,13 @@ class HPC extends Service {
       * @param {string} opts.instanceId - 实例ID。
       * @param {string} [opts.password] - 实例密码。当passwordAuth为yes时必填。可用于SSH登录和VNC登录，长度为8-30个字符，必须同时包含大、小写英文字母、数字和特殊符号中的三类字符。特殊符号包括：\(\)\&#x60;~!@#$%^&amp;\*_-+&#x3D;\|{}\[ ]:&quot;;&#39;&lt;&gt;,.?/
   optional
-      * @param {string} [opts.passwordAuth] - 认证模式。yes表示密码认证（需同时指定password），no表示密钥认证（需同时指定keyNames）。不指定时默认为yes。
+      * @param {string} [opts.passwordAuth] - 允许SSH密码登录。
+可选值：
+&#x60;yes&#x60;（默认值）：允许SSH密码登录。
+&#x60;no&#x60;：禁止SSH密码登录。
+仅在指定密钥时此参数有效，指定此参数后密码即使输入也将被忽略，同时会在系统内禁用SSH密码登录。
   optional
-      * @param {array} [opts.keyNames] - 密钥对名称列表。当passwordAuth为no时，通过此参数指定绑定的密钥对名称。目前只支持一个密钥对。
+      * @param {array} [opts.keyNames] - 密钥对名称列表。通过此参数指定绑定的密钥对名称。目前只支持一个密钥对。
   optional
       * @param {string} [opts.packageId] - 镜像ID。
 若不指定镜像ID，默认使用当前主机的原镜像重置系统。
@@ -1981,7 +1985,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -2064,9 +2068,13 @@ class HPC extends Service {
       * @param {string} opts.instanceId - 实例ID。
       * @param {string} [opts.password] - 实例密码。当passwordAuth为yes时必填。可用于SSH登录和VNC登录，长度为8-30个字符，必须同时包含大、小写英文字母、数字和特殊符号中的三类字符。特殊符号包括：\(\)\&#x60;~!@#$%^&amp;\*_-+&#x3D;\|{}\[ ]:&quot;;&#39;&lt;&gt;,.?/
   optional
-      * @param {string} [opts.passwordAuth] - 认证模式。yes表示密码认证（需同时指定password），no表示密钥认证（需同时指定keyNames）。不指定时默认为yes。
+      * @param {string} [opts.passwordAuth] - 允许SSH密码登录。
+可选值：
+&#x60;yes&#x60;（默认值）：允许SSH密码登录。
+&#x60;no&#x60;：禁止SSH密码登录。
+仅在指定密钥时此参数有效，指定此参数后密码即使输入也将被忽略，同时会在系统内禁用SSH密码登录。
   optional
-      * @param {array} [opts.keyNames] - 密钥对名称列表。当passwordAuth为no时，通过此参数指定绑定的密钥对名称。目前只支持一个密钥对。
+      * @param {array} [opts.keyNames] - 密钥对名称列表。通过此参数指定绑定的密钥对名称。目前只支持一个密钥对。
   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -2112,7 +2120,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -2234,7 +2242,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -2356,7 +2364,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -2478,7 +2486,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -2609,7 +2617,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -2712,7 +2720,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -2871,7 +2879,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -2993,7 +3001,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -3110,7 +3118,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -3228,7 +3236,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -3355,7 +3363,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -3467,7 +3475,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -3587,7 +3595,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -3707,7 +3715,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -3826,7 +3834,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -3951,7 +3959,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -4104,7 +4112,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -4234,7 +4242,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -4347,7 +4355,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -4455,7 +4463,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -4554,7 +4562,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -4656,7 +4664,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -4773,7 +4781,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -4889,7 +4897,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -5001,7 +5009,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']
@@ -5096,7 +5104,7 @@ class HPC extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.18'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  hpc/4.4.20'
     }
 
     let contentTypes = ['application/json']

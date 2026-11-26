@@ -30,7 +30,7 @@ Service._services[serviceId] = true
 
 /**
  * cmp service.
- * @version 0.2.3
+ * @version 0.2.12
  */
 
 class CMP extends Service {
@@ -103,7 +103,7 @@ class CMP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -271,7 +271,7 @@ class CMP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -404,7 +404,7 @@ class CMP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -517,7 +517,7 @@ class CMP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -641,7 +641,7 @@ class CMP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -768,7 +768,7 @@ class CMP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -848,7 +848,7 @@ class CMP extends Service {
       * @param {integer} [opts.pageSize] - 分页大小；&lt;br&gt;默认为20；取值范围[10, 100]。  optional
       * @param {string} opts.eventType - 事件类型
 - Evacuate：非预期
-- Maintenance：预期
+- Maintenance：预期，包含系统运维以及实例异常的迁移、维修、重启、观察事件
 - OfflineMachine：实例所在宿主机下线
 - HpcEvacuate：异构计算实例非预期
 
@@ -917,7 +917,7 @@ class CMP extends Service {
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -990,11 +990,20 @@ class CMP extends Service {
   }
 
   /**
-      *  创建自定义运维事件，仅支持实例资源。
+      *  创建自定义运维事件，支持VM云主机（i-前缀）和异构计算实例（hpc-前缀）。
 仅灰度用户可用（元数据 vm_submithost&#x3D;1）。
 
       * @param {Object} opts - parameters
-      * @param {string} opts.resourceId - 资源ID（实例ID）
+      * @param {string} [opts.clientToken] - 创建事件的幂等标识，最多64个字符。同一账号（PIN）使用相同clientToken时，在通过原有参数、灰度和资源校验后返回首次创建的eventId。
+后续请求修改其他参数（包括targetState）或原事件执行失败，均不会覆盖首次事件或创建新事件；创建新事件应使用新的clientToken。
+不传或空字符串时沿用原创建行为，不保证幂等。
+  optional
+      * @param {string} [opts.targetState] - 可选的恢复后开机状态，仅支持VM云主机；异构计算实例传入该参数时会忽略且不向下游透传。不传时沿用原有开关机处理逻辑。
+running：按开机意图执行，开机条件、调用、轮询及失败处理沿用原流程。
+stopped：不自动开机，包括失败后的兜底开机，并跳过原有running检查；不会主动关闭已运行的实例。
+本参数只控制恢复后的自动开机行为，不改变恢复成功判定。
+  optional
+      * @param {string} opts.resourceId - 资源ID，支持i-前缀的VM云主机实例和hpc-前缀的异构计算实例。
       * @param {string} [opts.description] - 故障描述，最长256个字符；必填且不能仅包含空白字符。
   optional
       * @param {string} [opts.reproductionCommand] - 故障复现命令，最多2048个UTF-8字节；必填且不能仅包含空白字符。
@@ -1006,6 +1015,7 @@ class CMP extends Service {
       * @param {boolean} [opts.discardLocalDataDisk] - 是否允许本次迁移丢弃本地数据盘，缺省或false保持原迁移行为，仅显式true时允许弃盘。
 true仅支持云系统盘VM实例，保留系统盘和云数据盘，不支持本地系统盘。
 不要求实例实际存在本地数据盘，纯云盘或无数据盘实例满足上述条件时也可传true。
+异构计算实例传入该参数时会忽略且不向下游透传。
   optional
       * @param {string} regionId - ID of the region
       * @param {string} callback - callback
@@ -1038,6 +1048,12 @@ true仅支持云系统盘VM实例，保留系统盘和云数据盘，不支持�
     }
 
     let postBody = {}
+    if (opts.clientToken !== undefined && opts.clientToken !== null) {
+      postBody['clientToken'] = opts.clientToken
+    }
+    if (opts.targetState !== undefined && opts.targetState !== null) {
+      postBody['targetState'] = opts.targetState
+    }
     if (opts.resourceId !== undefined && opts.resourceId !== null) {
       postBody['resourceId'] = opts.resourceId
     }
@@ -1067,7 +1083,7 @@ true仅支持云系统盘VM实例，保留系统盘和云数据盘，不支持�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -1111,6 +1127,318 @@ true仅支持云系统盘VM实例，保留系统盘和云数据盘，不支持�
 
     let request = super.makeRequest(
       '/regions/{regionId}/maintenanceEvents',
+      'POST',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  查询异构计算实例运维事件。接口始终按资源维度聚合并分页，即使filters中传入resourceId，也仅返回资源摘要，不返回事件明细。
+nodeState和authorizationState会在资源聚合后进行过滤；同一字段传入多个值时为OR，不同字段同时传入时为AND。
+totalCount始终表示聚合及状态过滤后满足条件的唯一资源总数；仅传入一个resourceId时，totalCount只能为0或1。
+默认按create_time降序排列。
+
+      * @param {Object} opts - parameters
+      * @param {integer} [opts.pageNumber] - 页码；默认为1。  optional
+      * @param {integer} [opts.pageSize] - 分页大小；默认为20；取值范围[10, 100]。  optional
+      * @param {string} [opts.order] - 排序字段：
+- create_time：创建时间
+- event_time：事件执行开始时间
+- finish_time：事件完成时间
+  optional
+      * @param {string} [opts.sort] - 排序方式：
+- desc：降序
+- asc：升序
+  optional
+      * @param {filter} [opts.filters] - &lt;b&gt;filters 中支持使用以下关键字进行过滤&lt;/b&gt;
+&#x60;eventId&#x60;: 运维事件ID，精确匹配，支持多个。
+&#x60;resourceId&#x60;: 资源ID，精确匹配，支持多个。
+&#x60;eventStatus&#x60;: 运维事件状态，精确匹配，支持多个。
+&#x60;nodeState&#x60;: 聚合后的资源节点状态，精确匹配，支持多个；可选值为Inquiring、Scheduled、Avoided、Executing、Executed、Canceled、Failed、Frozen、Reject、SreConfirm、TransferredToFailover。
+&#x60;authorizationState&#x60;: 聚合后的资源授权状态，精确匹配，支持多个；可选值为Authorized、PendingAuthorization、NoAuthorization。
+同一过滤字段中的多个值按OR匹配，不同过滤字段之间按AND匹配。状态过滤完成后再计算totalCount并分页。
+  optional
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param hpcMaintenanceEventsByResource resourceEvents
+      * @param integer totalCount  聚合及状态过滤后满足条件的唯一异构计算资源总数，前端应使用该字段进行分页。
+      */
+
+  describeInstanceMaintenanceEvents (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  describeInstanceMaintenanceEvents"
+      )
+    }
+
+    opts = opts || {}
+
+    let postBody = null
+    let queryParams = {}
+    if (opts.pageNumber !== undefined && opts.pageNumber !== null) {
+      queryParams['pageNumber'] = opts.pageNumber
+    }
+    if (opts.pageSize !== undefined && opts.pageSize !== null) {
+      queryParams['pageSize'] = opts.pageSize
+    }
+    if (opts.order !== undefined && opts.order !== null) {
+      queryParams['order'] = opts.order
+    }
+    if (opts.sort !== undefined && opts.sort !== null) {
+      queryParams['sort'] = opts.sort
+    }
+    Object.assign(queryParams, super.buildFilterParam(opts.filters, 'filters'))
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.12'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call describeInstanceMaintenanceEvents with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/hpcMaintenanceEvents',
+      'GET',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
+      *  上报异构计算资源故障事件。事件上报后需先由管理员审核，再由用户授权。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.resourceId - 异构计算资源ID
+      * @param {string} [opts.description] - 故障描述，最长256个字符。  optional
+      * @param {string} [opts.reproductionCommand] - 故障复现命令，仅保存和展示提报原文，不执行命令，最多2048个UTF-8字节。  optional
+      * @param {string} [opts.commandOutput] - 故障复现命令输出，按原文保存，最多16384个UTF-8字节。  optional
+      * @param {boolean} [opts.discardLocalDataDisk] - 是否允许本次迁移丢弃本地数据盘，缺省或false表示未开启。  optional
+      * @param {string} opts.faultType - 故障类型，例如GPU_XID_79。
+      * @param {string} opts.deviceType - 故障设备类型，例如gpu。
+      * @param {string} opts.deviceId - 故障设备唯一标识。
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      * @param string eventId  运维事件ID
+      */
+
+  reportCustomEventsOnResource (
+    opts,
+    regionId = this.config.regionId,
+    callback
+  ) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  reportCustomEventsOnResource"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.resourceId === undefined || opts.resourceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.resourceId' when calling reportCustomEventsOnResource"
+      )
+    }
+    if (opts.faultType === undefined || opts.faultType === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.faultType' when calling reportCustomEventsOnResource"
+      )
+    }
+    if (opts.deviceType === undefined || opts.deviceType === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.deviceType' when calling reportCustomEventsOnResource"
+      )
+    }
+    if (opts.deviceId === undefined || opts.deviceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.deviceId' when calling reportCustomEventsOnResource"
+      )
+    }
+
+    let postBody = {}
+    if (opts.resourceId !== undefined && opts.resourceId !== null) {
+      postBody['resourceId'] = opts.resourceId
+    }
+    if (opts.description !== undefined && opts.description !== null) {
+      postBody['description'] = opts.description
+    }
+    if (
+      opts.reproductionCommand !== undefined &&
+      opts.reproductionCommand !== null
+    ) {
+      postBody['reproductionCommand'] = opts.reproductionCommand
+    }
+    if (opts.commandOutput !== undefined && opts.commandOutput !== null) {
+      postBody['commandOutput'] = opts.commandOutput
+    }
+    if (
+      opts.discardLocalDataDisk !== undefined &&
+      opts.discardLocalDataDisk !== null
+    ) {
+      postBody['discardLocalDataDisk'] = opts.discardLocalDataDisk
+    }
+    if (opts.faultType !== undefined && opts.faultType !== null) {
+      postBody['faultType'] = opts.faultType
+    }
+    if (opts.deviceType !== undefined && opts.deviceType !== null) {
+      postBody['deviceType'] = opts.deviceType
+    }
+    if (opts.deviceId !== undefined && opts.deviceId !== null) {
+      postBody['deviceId'] = opts.deviceId
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.12'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call reportCustomEventsOnResource with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/hpcMaintenanceEvents',
       'POST',
       pathParams,
       queryParams,
@@ -1195,7 +1523,7 @@ true仅支持云系统盘VM实例，保留系统盘和云数据盘，不支持�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -1268,7 +1596,7 @@ true仅支持云系统盘VM实例，保留系统盘和云数据盘，不支持�
   }
 
   /**
-      *  授权计划迁移系统中的运维事件，授权前会校验事件是否存在且归属当前账号，仅支持计划迁移系统内的事件。
+      *  授权计划迁移系统中的运维事件。授权前会校验事件与当前账号的归属关系，资源ID由后端根据事件获取，仅支持计划迁移系统内的事件。
 
       * @param {Object} opts - parameters
       * @param {string} opts.eventId - 运维事件ID
@@ -1307,7 +1635,7 @@ true仅支持云系统盘VM实例，保留系统盘和云数据盘，不支持�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.12'
     }
 
     let contentTypes = ['application/json']
@@ -1380,6 +1708,133 @@ true仅支持云系统盘VM实例，保留系统盘和云数据盘，不支持�
   }
 
   /**
+      *  按异构计算资源授权实例级运维事件。提交的处置建议必须与当前资源的最终处置建议一致；若建议已变化，请重新查询后再授权。
+
+      * @param {Object} opts - parameters
+      * @param {string} opts.resourceId - 异构计算资源ID。
+      * @param {string} opts.finalSuggest - 最终处置建议，请使用标准值；服务端兼容大小写及首尾空白并统一为以下值：
+- Repair：维修
+- Reboot：重启
+- Observe：观察
+
+      * @param {string} regionId - ID of the region
+      * @param {string} callback - callback
+      @return {Object} result
+      */
+
+  authorizeInstanceEvent (opts, regionId = this.config.regionId, callback) {
+    if (typeof regionId === 'function') {
+      callback = regionId
+      regionId = this.config.regionId
+    }
+
+    if (regionId === undefined || regionId === null) {
+      throw new Error(
+        "Missing the required parameter 'regionId' when calling  authorizeInstanceEvent"
+      )
+    }
+
+    opts = opts || {}
+
+    if (opts.resourceId === undefined || opts.resourceId === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.resourceId' when calling authorizeInstanceEvent"
+      )
+    }
+    if (opts.finalSuggest === undefined || opts.finalSuggest === null) {
+      throw new Error(
+        "Missing the required parameter 'opts.finalSuggest' when calling authorizeInstanceEvent"
+      )
+    }
+
+    let postBody = {}
+    if (opts.resourceId !== undefined && opts.resourceId !== null) {
+      postBody['resourceId'] = opts.resourceId
+    }
+    if (opts.finalSuggest !== undefined && opts.finalSuggest !== null) {
+      postBody['finalSuggest'] = opts.finalSuggest
+    }
+
+    let queryParams = {}
+
+    let pathParams = {
+      regionId: regionId
+    }
+
+    let headerParams = {
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.12'
+    }
+
+    let contentTypes = ['application/json']
+    let accepts = ['application/json']
+
+    // 扩展自定义头
+    if (opts['x-extra-header']) {
+      for (let extraHeader in opts['x-extra-header']) {
+        headerParams[extraHeader] = opts['x-extra-header'][extraHeader]
+      }
+
+      if (Array.isArray(opts['x-extra-header']['content-type'])) {
+        contentTypes = opts['x-extra-header']['content-type']
+      } else if (typeof opts['x-extra-header']['content-type'] === 'string') {
+        contentTypes = opts['x-extra-header']['content-type'].split(',')
+      }
+
+      if (Array.isArray(opts['x-extra-header']['accept'])) {
+        accepts = opts['x-extra-header']['accept']
+      } else if (typeof opts['x-extra-header']['accept'] === 'string') {
+        accepts = opts['x-extra-header']['accept'].split(',')
+      }
+    }
+
+    let formParams = {}
+
+    let returnType = null
+
+    this.config.logger(
+      `call authorizeInstanceEvent with params:\npathParams:${JSON.stringify(
+        pathParams
+      )},\nqueryParams:${JSON.stringify(
+        queryParams
+      )}, \nheaderParams:${JSON.stringify(
+        headerParams
+      )}, \nformParams:${JSON.stringify(
+        formParams
+      )}, \npostBody:${JSON.stringify(postBody)}`,
+      'DEBUG'
+    )
+
+    let request = super.makeRequest(
+      '/regions/{regionId}/maintenanceEvents:authorizeInstanceEvent',
+      'PUT',
+      pathParams,
+      queryParams,
+      headerParams,
+      formParams,
+      postBody,
+      contentTypes,
+      accepts,
+      returnType,
+      callback
+    )
+
+    return request.then(
+      function (result) {
+        if (callback && typeof callback === 'function') {
+          return callback(null, result)
+        }
+        return result
+      },
+      function (error) {
+        if (callback && typeof callback === 'function') {
+          return callback(error)
+        }
+        return Promise.reject(error)
+      }
+    )
+  }
+
+  /**
       *  查询规格实例的推荐规格（用于实例所在宿主机器下线事件）
 如果实例规格没有查询到对应的推荐规格，返回的推荐规格为空
 
@@ -1417,7 +1872,7 @@ true仅支持云系统盘VM实例，保留系统盘和云数据盘，不支持�
     }
 
     let headerParams = {
-      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.3'
+      'User-Agent': 'JdcloudSdkNode/1.0.0  cmp/0.2.12'
     }
 
     let contentTypes = ['application/json']
